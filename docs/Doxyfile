@@ -11,6 +11,7 @@ RECURSIVE              = YES
 EXCLUDE_PATTERNS       = */gen/*
 EXTENSION_MAPPING      = inc=C++
 EXTRACT_ALL            = NO
+HAVE_DOT               = NO
 WARN_IF_UNDOCUMENTED   = YES
 WARN_IF_DOC_ERROR      = YES
 WARN_NO_PARAMDOC       = NO
