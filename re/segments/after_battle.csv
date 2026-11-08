@@ -1,0 +1,5 @@
+start,end,name,confidence,evidence
+0x0041fcc0,0x00420110,battle_tail,high,Unit::detach_scene/set_position/Block6c::clear just before the battle.cpp scalar-deleting dtors: tail of ww/battle.cpp.
+0x00420270,0x00420390,battle_init,high,Header static-init group (pi a3363c) between battle.cpp functions 0x420240 and 0x4203c0; this is battle.cpp own end-of-object init group.
+0x004203e0,0x004231f0,boids,medium,"Flock/boid steering (Particle::init, Projectile::update and its many helpers through List::at_word) used by Flock::spawn/foreach; WinMain 0x420ea0 and other strays inside look relocated."
+0x00423220,0x00423590,misc_423220,low,"Assorted small helpers (bone_id_of_name ""bip01 head"", Cam angle conversions, Place::set_angle) before camman.cpp; no shared data."

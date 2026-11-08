@@ -1,0 +1,4716 @@
+{
+ "group": "r2_ui",
+ "classes": [
+  {
+   "class": "Font2d",
+   "size": "0x40",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "loaded",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x1",
+     "name": "name",
+     "type": "char",
+     "size": 1,
+     "count": 37
+    },
+    {
+     "off": "0x26",
+     "name": "texture",
+     "type": "ptr:Texture",
+     "size": 4
+    },
+    {
+     "off": "0x2a",
+     "name": "first_char",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x2c",
+     "name": "last_char",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x2e",
+     "name": "max_w",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x30",
+     "name": "max_h",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x32",
+     "name": "glyph_height",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x34",
+     "name": "line_height",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x36",
+     "name": "space_width",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x38",
+     "name": "spacing",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x3a",
+     "name": "kerning",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x3c",
+     "name": "glyphs",
+     "type": "ptr:FontGlyph",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "Font2d::init writes every field; 0x623dc0 (labelled TextDesc::clear) is the full zeroing ctor up to 0x3c+4",
+   "confidence": "high",
+   "notes": "Same object as Font (g04, ui.hpp: loaded 0x0, space_width 0x36, spacing 0x38) and as the `this` of the Text (g08) draw functions and TextRenderer::draw_wrapped (reads 0x32..0x38). Those labels should be merged with this layout.",
+   "override": true
+  },
+  {
+   "class": "Image2D",
+   "size": "0xb7",
+   "base": "Gadget",
+   "vtable": "0x9da70c",
+   "fields": [
+    {
+     "off": "0x70",
+     "name": "active",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x71",
+     "name": "kind",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x72",
+     "name": "sprite_set",
+     "type": "ptr:BmpRes",
+     "size": 4
+    },
+    {
+     "off": "0x76",
+     "name": "sprite_name",
+     "type": "char",
+     "size": 1,
+     "count": 16
+    },
+    {
+     "off": "0x86",
+     "name": "sprite_86",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x88",
+     "name": "src_rect",
+     "type": "i16",
+     "size": 2,
+     "count": 4
+    },
+    {
+     "off": "0x90",
+     "name": "font",
+     "type": "ptr:Font2d",
+     "size": 4
+    },
+    {
+     "off": "0x94",
+     "name": "text",
+     "type": "ptr:char",
+     "size": 4
+    },
+    {
+     "off": "0x98",
+     "name": "text_mode",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x9a",
+     "name": "text_9a",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x9c",
+     "name": "scale_x",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0xa0",
+     "name": "scale_y",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0xa4",
+     "name": "wrap_a4",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0xa6",
+     "name": "wrap_a6",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0xa8",
+     "name": "wrap_a8",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0xaa",
+     "name": "wrap_aa",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0xab",
+     "name": "wrap_ab",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0xad",
+     "name": "colour",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xb1",
+     "name": "queue_b1",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0xb3",
+     "name": "queue_b3",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0xb5",
+     "name": "queue_b5",
+     "type": "i16",
+     "size": 2
+    }
+   ],
+   "members": [],
+   "evidence": "new(0xb7) before ctor 0x629400 (calls Gadget ctor 0x61de00 first, vtable 0x9da70c); Label::draw reads every field",
+   "confidence": "high",
+   "notes": "One widget class for the labels Image2D / Image2d / Label / TextDesc(vtable): kind 0 = sprite (sprite_set + sprite_name, Label::create), kind 1 = text (font + text, Image2D::create). colour+3 (0xb0) is the alpha byte Label::draw reads alone. Base Gadget (g05) covers 0x0..0x6f.",
+   "override": true
+  },
+  {
+   "class": "ObjectiveMenu",
+   "size": null,
+   "base": "CampScreen",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "objmenu.cpp draw_mask 0x7240f0 / Menu::update_720ca0 / open_7226a0 run on the objective menu this (offsets 0..0x80, 0x127, 0x14f are CampScreen fields)",
+   "confidence": "medium",
+   "notes": "alias of CampScreen (round 2 ui merge): same object; its functions are moved to CampScreen.",
+   "override": true
+  },
+  {
+   "class": "TextBox",
+   "size": null,
+   "base": "Gadget",
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x70",
+     "name": "text",
+     "type": "ptr:char",
+     "size": 4
+    },
+    {
+     "off": "0x74",
+     "name": "font",
+     "type": "ptr:Font2d",
+     "size": 4
+    },
+    {
+     "off": "0x78",
+     "name": "colour",
+     "type": "u8",
+     "size": 1,
+     "count": 4
+    },
+    {
+     "off": "0x7c",
+     "name": "text_7c",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x7e",
+     "name": "text_7e",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x80",
+     "name": "text_80",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x82",
+     "name": "align",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x83",
+     "name": "focused",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x84",
+     "name": "u8_84",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x85",
+     "name": "max_len",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x87",
+     "name": "cursor",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x89",
+     "name": "caret_colour",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x8d",
+     "name": "sel_anchor",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x8f",
+     "name": "view_start",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x91",
+     "name": "line_starts",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x95",
+     "name": "lines_valid",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x96",
+     "name": "line_count",
+     "type": "i16",
+     "size": 2
+    }
+   ],
+   "members": [],
+   "evidence": "TextBox2d::init 0x62eaf0 writes 0x70..0x96; draw/key/cursor fns read them; Gadget rect 0x9..0xf, scale 0x11",
+   "confidence": "medium",
+   "notes": "One class for the labels TextBox / TextBox2d / TxtBox / TxtBox2d / Edit / Button2 (all txtbox2d.cpp, same fields). colour is r,g,b,a bytes (init writes the dword, draw reads the bytes). line_starts is an i16 array (indexed reads at -2 and 0). Size probably 0x98 (last field end) but no operator new seen. The scroll2d.cpp functions labelled TextBox:: (init/reset/drag/scroll_x/setup/thumb_pos/scroll_y) are Scroll (g08) methods and were reassigned there.",
+   "override": true
+  },
+  {
+   "class": "Surface",
+   "size": "0x34",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "surface",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "owned",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "locked",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "bits",
+     "type": "u8*",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "pitch",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "lock_bits",
+     "type": "u8*",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "lock_pitch",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x1c",
+     "name": "width",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x20",
+     "name": "height",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x24",
+     "name": "format_bits",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x28",
+     "name": "bytes_per_pixel",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x2c",
+     "name": "blend_mode",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x2d",
+     "name": "lock_depth",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x2e",
+     "name": "lock_stack",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x30",
+     "name": "u32_30",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "ctor 0x60fad0 memset(this, 0, 0x34), +0x24 = -1; create 0x60fb60, read_desc 0x60fca0 (+0..+0x28), lock 0x60fe60 (LockRect -> +0x14/+0x18), vgabuf.cpp blitters read bits/pitch/format/bpp",
+   "confidence": "high",
+   "notes": "One class for the labels Surface (g03) and Image (g08): surface.cpp / vgabuf.cpp, the same 0x34-byte object (Image is an alias). surface is the IDirect3DSurface8*. lock_depth/lock_stack are a bit stack of nested lock states (BitWriter/BitQueue/ComPtr labels are its methods). +0x30 never accessed (size from the memset). Camera::get_1c/get_20 and Texture::read_desc/lock are Surface methods (the Camera render target).",
+   "override": true
+  },
+  {
+   "class": "ItemScreen",
+   "size": "0xe27",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "open",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x1",
+     "name": "shown",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x2",
+     "name": "i16_2",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x4",
+     "name": "u32_4",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "u32_8",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "camera",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x1c",
+     "name": "scene",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x20",
+     "name": "shadow_scene",
+     "type": "ptr:SceneS",
+     "size": 4
+    },
+    {
+     "off": "0x24",
+     "name": "actor",
+     "type": "ptr:Actor",
+     "size": 4
+    }
+   ],
+   "members": [
+    {
+     "off": "0x28",
+     "name": "label0",
+     "class": "Label"
+    },
+    {
+     "off": "0xdf",
+     "name": "label1",
+     "class": "Label"
+    },
+    {
+     "off": "0x196",
+     "name": "label2",
+     "class": "Label"
+    },
+    {
+     "off": "0x24d",
+     "name": "label3",
+     "class": "Label"
+    },
+    {
+     "off": "0x304",
+     "name": "label4",
+     "class": "Label"
+    },
+    {
+     "off": "0x3bb",
+     "name": "label5",
+     "class": "Label"
+    },
+    {
+     "off": "0x472",
+     "name": "label6",
+     "class": "Label"
+    },
+    {
+     "off": "0x529",
+     "name": "label7",
+     "class": "Label"
+    },
+    {
+     "off": "0x5e0",
+     "name": "label8",
+     "class": "Label"
+    },
+    {
+     "off": "0x697",
+     "name": "button",
+     "class": "Button"
+    },
+    {
+     "off": "0x9dd",
+     "name": "label9",
+     "class": "Label"
+    },
+    {
+     "off": "0xa94",
+     "name": "label10",
+     "class": "Label"
+    },
+    {
+     "off": "0xb4b",
+     "name": "label11",
+     "class": "Label"
+    },
+    {
+     "off": "0xc02",
+     "name": "label12",
+     "class": "Label"
+    },
+    {
+     "off": "0xcb9",
+     "name": "label13",
+     "class": "Label"
+    },
+    {
+     "off": "0xd70",
+     "name": "label14",
+     "class": "Label"
+    }
+   ],
+   "evidence": "dtor 0x6b96b0 destroys Labels (0xb7) at +0x28+k*0xb7 (9), a Button at +0x697 and 6 Labels from +0x9dd",
+   "confidence": "medium",
+   "notes": "the armory item screen (armory.cpp). ArmoryScreen (g15) is an alias: Panel::update_6bb750 updates the embedded Labels/Button (its +0x5d.. bytes are member Widget fields). actor (+0x24) is an Actor (update_6bb750 reads its +0x90 Plane). gameover.cpp functions of the old label are GameOver (g08).",
+   "override": true
+  },
+  {
+   "class": "Button",
+   "size": "0x346",
+   "base": "Widget",
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x70",
+     "name": "state",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x74",
+     "name": "shown",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x75",
+     "name": "tri",
+     "type": "i16",
+     "size": 2,
+     "count": 6
+    },
+    {
+     "off": "0x81",
+     "name": "hit_rect",
+     "type": "i16",
+     "size": 2,
+     "count": 4
+    },
+    {
+     "off": "0x89",
+     "name": "u8_89",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x8a",
+     "name": "pressed",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x8b",
+     "name": "held",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x8c",
+     "name": "drawn",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x8d",
+     "name": "shape",
+     "type": "i8",
+     "size": 1,
+     "count": 2
+    },
+    {
+     "off": "0x8f",
+     "name": "hover",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x90",
+     "name": "u8_90",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x91",
+     "name": "i16_91",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x93",
+     "name": "sprite_set",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xe3",
+     "name": "i8_e3",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x10d",
+     "name": "tooltip",
+     "type": "char",
+     "size": 1,
+     "count": 81
+    },
+    {
+     "off": "0x15e",
+     "name": "help_text",
+     "type": "char",
+     "size": 1,
+     "count": 201
+    },
+    {
+     "off": "0x227",
+     "name": "caption",
+     "type": "char",
+     "size": 1,
+     "count": 257
+    },
+    {
+     "off": "0x328",
+     "name": "caption_box",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x32c",
+     "name": "caption_colour",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x330",
+     "name": "caption_330",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x332",
+     "name": "caption_332",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x334",
+     "name": "caption_334",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x336",
+     "name": "press_dx",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x338",
+     "name": "press_dy",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x33a",
+     "name": "callback",
+     "type": "ptr:fn",
+     "size": 4
+    },
+    {
+     "off": "0x342",
+     "name": "u32_342",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [
+    {
+     "off": "0x97",
+     "name": "states0",
+     "class": "ButtonState"
+    },
+    {
+     "off": "0xaa",
+     "name": "states1",
+     "class": "ButtonState"
+    },
+    {
+     "off": "0xbd",
+     "name": "states2",
+     "class": "ButtonState"
+    },
+    {
+     "off": "0xd0",
+     "name": "states3",
+     "class": "ButtonState"
+    }
+   ],
+   "evidence": "original/ui.hpp Button; embedded with stride 0x346 (MainMenu +0x6c5/+0xa0b, ItemScreen +0x697/+0x9dd); calls Widget methods on this",
+   "confidence": "high",
+   "notes": "shape is shape (+0x8d) and its neighbour +0x8e, written together as one word by create / update. states[4] are ButtonState members. MenuButton / UiButton / Window2d / Ctl::set_rect3 / set_name8 use this layout (reassigned). caption_box is a TextRenderer (g01). +0x33e..+0x341 unseen. tooltip / help_text: strncpy 0x50 / 0xc8 + terminator (set_texts 0x623c40). set_name 0x623b60 strcpy()s up to 0x20 chars to +0x97, over states[0..1]. Round 2: +0x8b held/highlight byte, written from outside only (ComboBox::set_flag 0x6b3e50, OptMenu opt_handle, SaveMenu layout via slot0+0x8b). Button::update 0x62e490 (txtbox2d.cpp, +0x83/+0x84/+0x87/+0x8d) is a TextBox method (moved).",
+   "override": true
+  },
+  {
+   "class": "Font",
+   "size": null,
+   "base": "Font2d",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "font2d.cpp functions: same layout as Font2d (g01): loaded +0, name +1, texture +0x26, char range +0x2a/+0x2c, metrics +0x2e..+0x3a, glyphs +0x3c",
+   "confidence": "high",
+   "notes": "alias of Font2d (g01). The d3dfont.cpp functions of the label are the CD3DFont class -> D3DFont. 0x575940 not thiscall; 0x57efe0 (bitmap.cpp) passes this+4 on, no direct accesses.",
+   "override": true
+  },
+  {
+   "class": "Widget",
+   "size": null,
+   "base": null,
+   "vtable": "0x9da64c",
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "vtable",
+     "type": "ptr:vtable",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "child",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x6",
+     "name": "fit",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x7",
+     "name": "enabled",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x8",
+     "name": "i8_8",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x9",
+     "name": "x",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0xb",
+     "name": "y",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0xd",
+     "name": "x2",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0xf",
+     "name": "y2",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x11",
+     "name": "scale",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x15",
+     "name": "move_arg",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x19",
+     "name": "resize_arg",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x1d",
+     "name": "scale_arg",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x21",
+     "name": "target_x",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x23",
+     "name": "target_y",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x25",
+     "name": "move_25",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x29",
+     "name": "move_29",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x2d",
+     "name": "move_cos",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x31",
+     "name": "move_sin",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x35",
+     "name": "moving",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x36",
+     "name": "move_36",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x37",
+     "name": "move_speed",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x3b",
+     "name": "move_accel",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x3f",
+     "name": "resizing",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x40",
+     "name": "resize_40",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x41",
+     "name": "resize_41",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x42",
+     "name": "resize_42",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x46",
+     "name": "resize_46",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x4a",
+     "name": "resize_speed",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x4e",
+     "name": "resize_accel",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x52",
+     "name": "target_w",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x54",
+     "name": "target_h",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x56",
+     "name": "resize_56",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x5a",
+     "name": "resize_5a",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x5e",
+     "name": "scaling",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x5f",
+     "name": "scale_5f",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x60",
+     "name": "scale_target",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x64",
+     "name": "scale_64",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x68",
+     "name": "scale_speed",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x6c",
+     "name": "scale_accel",
+     "type": "f32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "original/ui.hpp Widget; ctor 0x61de00 (vtable 0x9da64c) initialises +0x9..+0x6c; gadget.cpp move/resize/scale animations",
+   "confidence": "medium",
+   "notes": "en2d widget base (~0x70 bytes; +4/+6/+7/+8 from ui.hpp Button and the Scroll/Image2d subclasses, +5 unknown). Rect::step_61f980 reads 8 bytes at +0 once: decoded bytes past the function end, not a real access. Button / Ctl / Image2d / Scroll / script-node functions that carried this label were reassigned. Remaining report: Rect::step_61f980 8-byte read at +0 is a mis-decoded access past the function end (explained, not a field).",
+   "override": true
+  },
+  {
+   "class": "Gadget",
+   "size": null,
+   "base": "Widget",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "Gadget::ctor 0x61de00 is the Widget ctor (vtable 0x9da64c), Object::~Object its dtor",
+   "confidence": "medium",
+   "notes": "alias of Widget. set_rect/scroll_pos/destroy_tree/check_weather moved to Ctl/Scroll/Script/QuickSaveScreen",
+   "override": true
+  },
+  {
+   "class": "Hud",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "tex_maingame",
+     "type": "ptr:Texture",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "tex_mgexp",
+     "type": "ptr:Texture",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "tex_08",
+     "type": "ptr:Texture",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "tex_tui",
+     "type": "ptr:Texture",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "sprites",
+     "type": "ptr:BmpRes",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "exp_sprites",
+     "type": "ptr:BmpRes",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "sprites_18",
+     "type": "ptr:BmpRes",
+     "size": 4
+    },
+    {
+     "off": "0x1c",
+     "name": "target_sprites",
+     "type": "ptr:BmpRes",
+     "size": 4
+    },
+    {
+     "off": "0x20",
+     "name": "shown_hp",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x24",
+     "name": "shown_145",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x28",
+     "name": "shown_126",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x2c",
+     "name": "target_hp",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x30",
+     "name": "health_state",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x31",
+     "name": "health_state_31",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x32",
+     "name": "u8_32",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x33",
+     "name": "target_id",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x37",
+     "name": "target_is_unit",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x38",
+     "name": "target_time",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x3c",
+     "name": "exp_target",
+     "type": "i32",
+     "size": 4,
+     "count": 9
+    },
+    {
+     "off": "0x60",
+     "name": "u32_60",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x69",
+     "name": "exp_shown",
+     "type": "i32",
+     "size": 4,
+     "count": 9
+    },
+    {
+     "off": "0x8d",
+     "name": "exp_state",
+     "type": "i8",
+     "size": 1,
+     "count": 9
+    },
+    {
+     "off": "0x96",
+     "name": "exp_time",
+     "type": "u32",
+     "size": 4,
+     "count": 9
+    },
+    {
+     "off": "0xba",
+     "name": "exp_start",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xbe",
+     "name": "exp_count",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0xc0",
+     "name": "exp_on",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0xc1",
+     "name": "level_on",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0xc2",
+     "name": "level_state",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0xc3",
+     "name": "level_c3",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0xc4",
+     "name": "level_time",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xcc",
+     "name": "combo_on",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0xcd",
+     "name": "combo_state",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0xce",
+     "name": "combo_count",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0xd0",
+     "name": "combo_time",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xd5",
+     "name": "slot_unit",
+     "type": "u32",
+     "size": 4,
+     "count": 8
+    },
+    {
+     "off": "0xf5",
+     "name": "slot_flag",
+     "type": "u8",
+     "size": 1,
+     "count": 8
+    },
+    {
+     "off": "0xfd",
+     "name": "slot_time",
+     "type": "u32",
+     "size": 4,
+     "count": 8
+    },
+    {
+     "off": "0x11d",
+     "name": "slot_state",
+     "type": "u8",
+     "size": 1,
+     "count": 8
+    },
+    {
+     "off": "0x125",
+     "name": "arrow_unit",
+     "type": "u32",
+     "size": 4,
+     "count": 8
+    },
+    {
+     "off": "0x145",
+     "name": "arrow_count",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x147",
+     "name": "u32_147",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x14b",
+     "name": "u16_14b",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x14d",
+     "name": "blink_on",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x14e",
+     "name": "blink_state",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x14f",
+     "name": "blink_time",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x153",
+     "name": "blink_start",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x157",
+     "name": "obj_alpha",
+     "type": "u16",
+     "size": 2,
+     "count": 40
+    },
+    {
+     "off": "0x1a7",
+     "name": "obj_1a7",
+     "type": "u16",
+     "size": 2,
+     "count": 40
+    },
+    {
+     "off": "0x1f7",
+     "name": "obj_count",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x1f9",
+     "name": "obj_time",
+     "type": "u32",
+     "size": 4,
+     "count": 40
+    },
+    {
+     "off": "0x299",
+     "name": "obj_id",
+     "type": "u32",
+     "size": 4,
+     "count": 40
+    },
+    {
+     "off": "0x21ed",
+     "name": "portrait_actor",
+     "type": "ptr:Actor",
+     "size": 4
+    }
+   ],
+   "members": [
+    {
+     "off": "0x339",
+     "name": "squad_button0",
+     "class": "Button"
+    },
+    {
+     "off": "0x67f",
+     "name": "squad_button1",
+     "class": "Button"
+    },
+    {
+     "off": "0x9c5",
+     "name": "squad_button2",
+     "class": "Button"
+    },
+    {
+     "off": "0xd0b",
+     "name": "squad_button3",
+     "class": "Button"
+    },
+    {
+     "off": "0x1051",
+     "name": "squad_button4",
+     "class": "Button"
+    },
+    {
+     "off": "0x1397",
+     "name": "squad_button5",
+     "class": "Button"
+    },
+    {
+     "off": "0x16dd",
+     "name": "squad_button6",
+     "class": "Button"
+    },
+    {
+     "off": "0x1a23",
+     "name": "squad_button7",
+     "class": "Button"
+    },
+    {
+     "off": "0x1d69",
+     "name": "minimap",
+     "class": "MiniMap"
+    }
+   ],
+   "evidence": "hud.cpp: Hud::draw calls ExpCounter/LevelBanner/ComboCounter/Squad/... with ecx = this; texture slots 0..0xc (load/free_resources); minimap at +0x1d69 (MiniMap)",
+   "confidence": "medium",
+   "notes": "The objective arrays (0x157/0x1a7/0x1f9/0x299, count at 0x1f7) have length 40 assumed (parallel arrays; no bound seen). The exp arrays (0x3c/0x69/0x8d/0x96) are 9-element parallel arrays inferred from the spacing. Functions labelled ExpCounter/ComboCounter/LevelBanner/Fade/SlotList/State/ItemPortrait/UnitPortrait/UnitPanel are Hud members (reassigned). Members: 8 Buttons (stride 0x346) at 0x339 (Hud init 0x6f94f0, labelled Panel) and the MiniMap (g14) at 0x1d69, so size >= 0x1d69 + sizeof(MiniMap). 0x21ed (= 0x1d69 + 0x484, right after the MiniMap) is the actor read by 0x707230 (assigned to Hud by g04).",
+   "override": true
+  },
+  {
+   "class": "MessageLog",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "open",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x1",
+     "name": "res",
+     "type": "u32",
+     "size": 4,
+     "count": 4
+    },
+    {
+     "off": "0x11",
+     "name": "sprites",
+     "type": "ptr:BmpRes",
+     "size": 4
+    },
+    {
+     "off": "0x15",
+     "name": "font",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x19",
+     "name": "icons",
+     "type": "ptr:BmpRes",
+     "size": 4
+    },
+    {
+     "off": "0x1d",
+     "name": "prev_button",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0x21",
+     "name": "next_button",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0x25",
+     "name": "turn_kind",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x31",
+     "name": "page_texture",
+     "type": "ptr:RenderTexture",
+     "size": 4
+    },
+    {
+     "off": "0x39",
+     "name": "close_button",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0x3d",
+     "name": "title",
+     "type": "ptr:Label",
+     "size": 4
+    },
+    {
+     "off": "0x41",
+     "name": "res_41",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x45",
+     "name": "u16_45",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x47",
+     "name": "page",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x49",
+     "name": "entry",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x4b",
+     "name": "page_count",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x4d",
+     "name": "mode",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [],
+   "evidence": "i_msglog.cpp: load 0x6e1570 (MSGLOG/MSGLOG_B/COMMELE2/MESSAGE at +1..+0xd, +0x41, arrow buttons +0x1d/+0x21), release 0x6e1810, show 0x6e19b0, draw, draw_page (Book), init (LongBar), page_capture (PageTurn)",
+   "confidence": "medium",
+   "notes": "the message-log SCREEN. Round 2: the i_msglog.cpp functions g15 put on MsgLog (Panel::release/show/refresh_backdrop, MsgLog::load_6e1570) and Dialog::step 0x6e1250 / Combo::entry_at 0x6e29a0 are moved here. page_texture is a RenderTexture (create_2d, d3d texture at +0x58). Pointee checks through title (Label) depend on Image2D.",
+   "override": true
+  },
+  {
+   "class": "QuickBar",
+   "size": "0x45f",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "texture",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "sprites",
+     "type": "ptr:BmpRes",
+     "size": 4
+    },
+    {
+     "off": "0x452",
+     "name": "state",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x454",
+     "name": "timer",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x458",
+     "name": "popup_open",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x459",
+     "name": "u32_459",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x45d",
+     "name": "u8_45d",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x45e",
+     "name": "active",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [
+    {
+     "off": "0x8",
+     "name": "save_text",
+     "class": "Image2D"
+    },
+    {
+     "off": "0xbf",
+     "name": "save_bar",
+     "class": "Image2D"
+    },
+    {
+     "off": "0x176",
+     "name": "load_text",
+     "class": "Image2D"
+    },
+    {
+     "off": "0x22d",
+     "name": "load_bar",
+     "class": "Image2D"
+    },
+    {
+     "off": "0x2e4",
+     "name": "loadc_text",
+     "class": "Image2D"
+    },
+    {
+     "off": "0x39b",
+     "name": "loadc_bar",
+     "class": "Image2D"
+    }
+   ],
+   "evidence": "ctor 0x6e32d0 constructs 6 Image2D (0xb7) at +8..+0x39b and zeroes +0/+4/+0x452/+0x454/+0x45d; init 0x6e33e0 (qs_bar / ql_bar / qlc_bar bitmaps + texts)",
+   "confidence": "medium",
+   "notes": "The i_qsave.cpp quick-save / quick-load bar. Same object as g15 QuickSaveScreen (reset / refresh_buttons / set_mode use +0x452..+0x45e): its functions are moved here; QuickSaveScreen should become an alias (base QuickBar). The members are bitmaps (Label::create) at 0xbf/0x22d/0x39b and texts (Image2D::create) at 0x8/0x176/0x2e4, all Image2D. +0 is written 0 and released through Res1 / QuitPopup-labelled helpers (texture handle); size 0x45f = end of +0x45e (no new seen).",
+   "override": true
+  },
+  {
+   "class": "Interface",
+   "size": null,
+   "base": "MainMenu",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "mainmenu.cpp, same offsets (+0x15..+0x2d images, +0x3412.. flags)",
+   "confidence": "high",
+   "notes": "alias of MainMenu (round 2 ui merge): same object; its functions are moved to MainMenu.",
+   "override": true
+  },
+  {
+   "class": "CampScreen",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "state",
+     "type": "u8",
+     "size": 1,
+     "count": 4
+    },
+    {
+     "off": "0x4",
+     "name": "slot_masks",
+     "type": "ptr:void",
+     "size": 4,
+     "count": 16
+    },
+    {
+     "off": "0x44",
+     "name": "p_44",
+     "type": "ptr:Widget",
+     "size": 4
+    },
+    {
+     "off": "0x48",
+     "name": "p_48",
+     "type": "ptr:Widget",
+     "size": 4
+    },
+    {
+     "off": "0x4c",
+     "name": "p_4c",
+     "type": "ptr:Widget",
+     "size": 4
+    },
+    {
+     "off": "0x50",
+     "name": "p_50",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x54",
+     "name": "p_54",
+     "type": "ptr:Widget",
+     "size": 4
+    },
+    {
+     "off": "0x58",
+     "name": "p_58",
+     "type": "ptr:Widget",
+     "size": 4
+    },
+    {
+     "off": "0x5c",
+     "name": "p_5c",
+     "type": "ptr:Widget",
+     "size": 4
+    },
+    {
+     "off": "0x60",
+     "name": "p_60",
+     "type": "ptr:Widget",
+     "size": 4
+    },
+    {
+     "off": "0x64",
+     "name": "p_64",
+     "type": "ptr:Widget",
+     "size": 4
+    },
+    {
+     "off": "0x68",
+     "name": "p_68",
+     "type": "ptr:Widget",
+     "size": 4
+    },
+    {
+     "off": "0x6c",
+     "name": "p_6c",
+     "type": "ptr:Widget",
+     "size": 4
+    },
+    {
+     "off": "0x70",
+     "name": "background",
+     "type": "ptr:Widget",
+     "size": 4
+    },
+    {
+     "off": "0x74",
+     "name": "p_74",
+     "type": "ptr:Widget",
+     "size": 4
+    },
+    {
+     "off": "0x78",
+     "name": "p_78",
+     "type": "ptr:Widget",
+     "size": 4
+    },
+    {
+     "off": "0x7c",
+     "name": "p_7c",
+     "type": "ptr:Widget",
+     "size": 4
+    },
+    {
+     "off": "0x80",
+     "name": "visible",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x81",
+     "name": "brief_text",
+     "type": "ptr:Image2D",
+     "size": 4
+    },
+    {
+     "off": "0x85",
+     "name": "brief_up",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0x89",
+     "name": "brief_down",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0x8d",
+     "name": "brief_line",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x8f",
+     "name": "brief_px",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x91",
+     "name": "brief_hold_ms",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x95",
+     "name": "p_95",
+     "type": "ptr:Widget",
+     "size": 4
+    },
+    {
+     "off": "0x99",
+     "name": "p_99",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0xa7",
+     "name": "u16_a7",
+     "type": "i16",
+     "size": 2,
+     "count": 10
+    },
+    {
+     "off": "0xbb",
+     "name": "u32_bb",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xbf",
+     "name": "u32_bf",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xc3",
+     "name": "u32_c3",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xc7",
+     "name": "u32_c7",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xcb",
+     "name": "u32_cb",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xcf",
+     "name": "p_cf",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0xd3",
+     "name": "p_d3",
+     "type": "ptr:Widget",
+     "size": 4
+    },
+    {
+     "off": "0xd7",
+     "name": "p_d7",
+     "type": "ptr:Widget",
+     "size": 4
+    },
+    {
+     "off": "0xdb",
+     "name": "p_db",
+     "type": "ptr:Widget",
+     "size": 4
+    },
+    {
+     "off": "0xdf",
+     "name": "p_df",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0xed",
+     "name": "u16_ed",
+     "type": "i16",
+     "size": 2,
+     "count": 10
+    },
+    {
+     "off": "0x101",
+     "name": "u32_101",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x105",
+     "name": "u32_105",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x109",
+     "name": "p_109",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x10d",
+     "name": "p_10d",
+     "type": "ptr:Widget",
+     "size": 4
+    },
+    {
+     "off": "0x111",
+     "name": "p_111",
+     "type": "ptr:Widget",
+     "size": 4
+    },
+    {
+     "off": "0x115",
+     "name": "p_115",
+     "type": "ptr:Widget",
+     "size": 4
+    },
+    {
+     "off": "0x119",
+     "name": "p_119",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x127",
+     "name": "u16_127",
+     "type": "i16",
+     "size": 2,
+     "count": 10
+    },
+    {
+     "off": "0x13b",
+     "name": "u32_13b",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x13f",
+     "name": "u32_13f",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x143",
+     "name": "u32_143",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x147",
+     "name": "u32_147",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x14b",
+     "name": "u32_14b",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x14f",
+     "name": "u16_14f",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x151",
+     "name": "army_scene",
+     "type": "ptr:Scene",
+     "size": 4
+    },
+    {
+     "off": "0x155",
+     "name": "army_camera",
+     "type": "ptr:Camera",
+     "size": 4
+    },
+    {
+     "off": "0x159",
+     "name": "army_model",
+     "type": "ptr:Actor",
+     "size": 4
+    },
+    {
+     "off": "0x15d",
+     "name": "u32_15d",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x161",
+     "name": "army_item",
+     "type": "ptr:Actor",
+     "size": 4
+    },
+    {
+     "off": "0x165",
+     "name": "army_item2",
+     "type": "ptr:Actor",
+     "size": 4
+    },
+    {
+     "off": "0x169",
+     "name": "u32_169",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x16d",
+     "name": "u32_16d",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x171",
+     "name": "p_171",
+     "type": "ptr:Widget",
+     "size": 4
+    },
+    {
+     "off": "0x175",
+     "name": "siege_scene",
+     "type": "ptr:Scene",
+     "size": 4
+    },
+    {
+     "off": "0x179",
+     "name": "siege_camera",
+     "type": "ptr:Camera",
+     "size": 4
+    },
+    {
+     "off": "0x17d",
+     "name": "siege_model",
+     "type": "ptr:Actor",
+     "size": 4
+    },
+    {
+     "off": "0x181",
+     "name": "u32_181",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x185",
+     "name": "u32_185",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x189",
+     "name": "u32_189",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x18d",
+     "name": "siege_frame",
+     "type": "ptr:Image2D",
+     "size": 4
+    },
+    {
+     "off": "0x195",
+     "name": "u32_195",
+     "type": "i32",
+     "size": 4,
+     "count": 6
+    },
+    {
+     "off": "0x1ad",
+     "name": "u8_1ad",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x1ae",
+     "name": "u8_1ae",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x1af",
+     "name": "u8_1af",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x1b0",
+     "name": "u8_1b0",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x1b1",
+     "name": "u8_1b1",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x1b2",
+     "name": "u8_1b2",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x1b3",
+     "name": "u32_1b3",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1b7",
+     "name": "u32_1b7",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1bb",
+     "name": "u32_1bb",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1bf",
+     "name": "u32_1bf",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1c3",
+     "name": "u32_1c3",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1c7",
+     "name": "u8_1c7",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x1c8",
+     "name": "map_scene",
+     "type": "ptr:Scene",
+     "size": 4
+    },
+    {
+     "off": "0x1cc",
+     "name": "map_camera",
+     "type": "ptr:Camera",
+     "size": 4
+    },
+    {
+     "off": "0x1d0",
+     "name": "f32_1d0",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x1d4",
+     "name": "f32_1d4",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x1d8",
+     "name": "f32_1d8",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x1dc",
+     "name": "f32_1dc",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x1e0",
+     "name": "u8_1e0",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x1e1",
+     "name": "u32_1e1",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1e5",
+     "name": "u32_1e5",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1e9",
+     "name": "u32_1e9",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1ed",
+     "name": "u32_1ed",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1f1",
+     "name": "u32_1f1",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1f5",
+     "name": "u32_1f5",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1f9",
+     "name": "u32_1f9",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x1fd",
+     "name": "u32_1fd",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x201",
+     "name": "u32_201",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x205",
+     "name": "u32_205",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x209",
+     "name": "u32_209",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x20d",
+     "name": "p_20d",
+     "type": "ptr:Widget",
+     "size": 4
+    },
+    {
+     "off": "0x211",
+     "name": "strat_up",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0x215",
+     "name": "p_215",
+     "type": "ptr:Widget",
+     "size": 4
+    },
+    {
+     "off": "0x219",
+     "name": "u32_219",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x21d",
+     "name": "strat_selected",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x221",
+     "name": "p_221",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x225",
+     "name": "u32_225",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x229",
+     "name": "u32_229",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x22d",
+     "name": "u32_22d",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x231",
+     "name": "p_231",
+     "type": "u8*",
+     "size": 4
+    },
+    {
+     "off": "0x235",
+     "name": "u32_235",
+     "type": "i32",
+     "size": 4,
+     "count": 4
+    },
+    {
+     "off": "0x245",
+     "name": "u32_245",
+     "type": "i32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x251",
+     "name": "u32_251",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x255",
+     "name": "u32_255",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x259",
+     "name": "u32_259",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x25d",
+     "name": "u32_25d",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x261",
+     "name": "u32_261",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x265",
+     "name": "u32_265",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x269",
+     "name": "mission",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x26c",
+     "name": "u16_26c",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x26e",
+     "name": "u16_26e",
+     "type": "u16",
+     "size": 2
+    }
+   ],
+   "members": [],
+   "evidence": "all objm_*.cpp page functions are called with this = the objective menu (ObjectiveMenu::draw 0x71f690 (unlabelled), Menu::update_720ca0, CampScreen::set_state_721a60); each page keeps its fields in its own range; briefing page (objmenu.cpp Scroller init 0x723c80 / buttons 0x724210, draw_mask 0x7240f0)",
+   "confidence": "medium",
+   "notes": "the objective (campaign) menu. Round 2: one class for CampScreen (g07), ObjectiveMenu (g01: draw_mask), Scroller (g15: the briefing text page +0x70..+0x91, +0x269 mission); both are aliases. Also moved here: objm_* functions of MapView (g14), ShopPage / SiegeDebrief (g15), Res2 (g06), Loader (g13: parse_map / parse_light +0x1c8 Scene*) and Timer::remaining 0x7294b0 (+0x159) - those labels should become aliases of CampScreen. Page ranges: main 0x44..0x91, reward 0x95..0xd3, shop 0xd7..0x109, army 0x10d..0x16d, siege/cannon 0x175..0x1c7, map 0x1c8..0x20d, strategy 0x211..0x225, debrief 0x229..0x265. ptr:Widget = a control whose subclass (Button / Image2D / ...) is not pinned (only Widget offsets are read through it). +0x50 points to a widget-pointer array, +0x159 to an unknown record (+0x0/+0x4/+0x90, +0xc -> +0x44). Bytes 0..3 are read as a dword and as 4 bytes (state[4]). Size unknown (>= 0x270).",
+   "override": true
+  },
+  {
+   "class": "Scroll",
+   "size": null,
+   "base": "Gadget",
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x70",
+     "name": "enabled",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x71",
+     "name": "id",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x73",
+     "name": "pressed",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x74",
+     "name": "extra",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x75",
+     "name": "min",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x79",
+     "name": "max",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x7d",
+     "name": "page",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x81",
+     "name": "pos",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x85",
+     "name": "dragging",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x86",
+     "name": "drag_x",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x88",
+     "name": "drag_y",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x8a",
+     "name": "drag_pos",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x8e",
+     "name": "callback",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "ctors 0x62b6c0 / 0x62c610 (Gadget ctor 0x61de00, then +0x70..+0x8e); set_pos 0x62be50 clamps pos to [min, max-page+extra]",
+   "confidence": "medium",
+   "notes": "+0x6..+0x11 are Gadget fields (rect at +9..+0xf); base Gadget size 0x70 assumed (first own field); many functions labelled Slider/TextBox/Widget/Gadget/Ctl/Scroller/Button in scroll2d.cpp use this same layout; EditBox::cursor_column/set_top/bottom_line use it too (moved here)",
+   "override": true
+  },
+  {
+   "class": "Panels",
+   "size": "0x134",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "volume",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "source_a",
+     "type": "ptr:Sound3D",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "source_c",
+     "type": "ptr:Sound3D",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "source_d",
+     "type": "ptr:Sound3D",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "source_b",
+     "type": "ptr:Sound3D",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "slots",
+     "type": "StreamSlot",
+     "size": 24,
+     "count": 12
+    }
+   ],
+   "members": [],
+   "evidence": "memset 0x134 (0x4ceab0); 4 sources +4..+0x10 (reset 0x4ceb90 / alloc 0x4cf900); 12 x 0x18 slots from SoundList::entry",
+   "confidence": "medium",
+   "notes": "the game sound player (as_sounds / as_sound_list / as_party in C++). +0 is the volume scale (play_sound multiplies by it, Party::set_scale 0x45f6b0 writes it). Round 2: Unit::play_sound 0x4cf0f0 (g09 -> Sounds), SoundList::entry 0x4cf690 and Party::first_free / set_scale (cpuusage.cpp) take this object and are moved here; g10 Sounds (= Weather) is a different object.",
+   "override": true
+  },
+  {
+   "class": "Image",
+   "size": null,
+   "base": "Surface",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "g08 Image = g03 Surface: ctor 0x60fad0 / memset 0x34, identical offsets",
+   "confidence": "high",
+   "notes": "alias of Surface (round 2 ui merge): same object; its functions are moved to Surface.",
+   "override": true
+  },
+  {
+   "class": "Ending",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "picture",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "picture2",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x22d",
+     "name": "u32_22d",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x231",
+     "name": "score",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x233",
+     "name": "kind",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x234",
+     "name": "is_open",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x235",
+     "name": "u8_235",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [
+    {
+     "off": "0x8",
+     "name": "title",
+     "class": "Label"
+    },
+    {
+     "off": "0xbf",
+     "name": "text",
+     "class": "Image2D"
+    },
+    {
+     "off": "0x176",
+     "name": "frame",
+     "class": "Image2D"
+    }
+   ],
+   "evidence": "ctor 0x6ce050 (Image2D ctors at +8/+0xbf/+0x176), init 0x6ce100, open 0x6d19e0, load_pictures 0x6d1f20",
+   "confidence": "medium",
+   "notes": "kind 0 good / 1 bad ending, score selects G_END1..8 / B_END1..5; size probably 0x236 (no new/memset seen); Ending::start 0x471f90 is a Game method (moved)",
+   "override": true
+  },
+  {
+   "class": "MainMenu",
+   "size": "0x3454",
+   "base": "Control2D",
+   "vtable": "0x9d85a8",
+   "fields": [
+    {
+     "off": "0x15",
+     "name": "images",
+     "type": "u32",
+     "size": 4,
+     "count": 7
+    },
+    {
+     "off": "0x31",
+     "name": "font",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x35",
+     "name": "font2",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x3412",
+     "name": "open",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x3413",
+     "name": "busy",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x3414",
+     "name": "slide",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x3415",
+     "name": "panel_save",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x3416",
+     "name": "panel_options",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x3417",
+     "name": "panel_quit_game",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x3418",
+     "name": "panel_quit",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x3419",
+     "name": "u8_3419",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x341a",
+     "name": "u8_341a",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x341b",
+     "name": "u8_341b",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x341c",
+     "name": "u8_341c",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x341d",
+     "name": "u8_341d",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x341e",
+     "name": "buttons_off",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x341f",
+     "name": "release_time",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x3423",
+     "name": "u16_3423",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x3425",
+     "name": "u16_3425",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x3427",
+     "name": "u8_3427",
+     "type": "u8",
+     "size": 1,
+     "count": 3
+    },
+    {
+     "off": "0x342a",
+     "name": "u32_342a",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x342e",
+     "name": "cheat_buf",
+     "type": "char",
+     "size": 1,
+     "count": 32
+    },
+    {
+     "off": "0x344e",
+     "name": "cheat_len",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x3450",
+     "name": "u32_3450",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [
+    {
+     "off": "0x39",
+     "name": "button0",
+     "class": "Button"
+    },
+    {
+     "off": "0x37f",
+     "name": "button1",
+     "class": "Button"
+    },
+    {
+     "off": "0x6c5",
+     "name": "button2",
+     "class": "Button"
+    },
+    {
+     "off": "0xa0b",
+     "name": "button3",
+     "class": "Button"
+    },
+    {
+     "off": "0xd51",
+     "name": "button4",
+     "class": "Button"
+    },
+    {
+     "off": "0x1097",
+     "name": "button5",
+     "class": "Button"
+    },
+    {
+     "off": "0x13dd",
+     "name": "button6",
+     "class": "Button"
+    },
+    {
+     "off": "0x1723",
+     "name": "button7",
+     "class": "Button"
+    },
+    {
+     "off": "0x1a69",
+     "name": "button8",
+     "class": "Button"
+    },
+    {
+     "off": "0x1daf",
+     "name": "button9",
+     "class": "Button"
+    },
+    {
+     "off": "0x20f5",
+     "name": "button10",
+     "class": "Button"
+    },
+    {
+     "off": "0x243b",
+     "name": "button11",
+     "class": "Button"
+    },
+    {
+     "off": "0x2781",
+     "name": "button12",
+     "class": "Button"
+    },
+    {
+     "off": "0x2ac7",
+     "name": "img_main",
+     "class": "Image2D"
+    },
+    {
+     "off": "0x2b7e",
+     "name": "img_alab_l",
+     "class": "Image2D"
+    },
+    {
+     "off": "0x2c35",
+     "name": "img_alab_r",
+     "class": "Image2D"
+    },
+    {
+     "off": "0x2cec",
+     "name": "img_alab_s",
+     "class": "Image2D"
+    },
+    {
+     "off": "0x2da3",
+     "name": "img_gold_l",
+     "class": "Image2D"
+    },
+    {
+     "off": "0x2e5a",
+     "name": "img_gold_r",
+     "class": "Image2D"
+    },
+    {
+     "off": "0x2f11",
+     "name": "img_lea_l",
+     "class": "Image2D"
+    },
+    {
+     "off": "0x2fc8",
+     "name": "img_lea_r",
+     "class": "Image2D"
+    },
+    {
+     "off": "0x307f",
+     "name": "img_sphere",
+     "class": "Image2D"
+    },
+    {
+     "off": "0x3136",
+     "name": "img_stripe",
+     "class": "Image2D"
+    },
+    {
+     "off": "0x31ed",
+     "name": "img_logo_bar",
+     "class": "Image2D"
+    },
+    {
+     "off": "0x32a4",
+     "name": "img_logo",
+     "class": "Image2D"
+    },
+    {
+     "off": "0x335b",
+     "name": "img_joan",
+     "class": "Image2D"
+    }
+   ],
+   "evidence": "ctor 0x434ce0: Control2D ctor 0x628a30 (g04; 0x15 bytes), 13 Buttons at +0x39 (stride 0x346), 13 Image2D at +0x2ac7 (stride 0xb7), vtable 0x9d85a8; init 0x709090",
+   "confidence": "medium",
+   "notes": "size 0x3454 = end of +0x3450 (no new seen); panel_* bytes are tested with panel_head() in update_70acb0 (save menu / options / quit); images are released 10 s after release_time; g06 Interface (free_sounds/reset_widgets/clear_flags) is the same object. Round 2: g06 Interface (free_sounds/reset_widgets/clear_flags) is an alias of this class; its +0x13/+0x14 flags are Control2D flags[2..3], +0x15.. the 7 image handles (released through the texture manager).",
+   "override": true
+  },
+  {
+   "class": "OptMenu",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "images",
+     "type": "u32",
+     "size": 4,
+     "count": 6
+    },
+    {
+     "off": "0x18",
+     "name": "u32_18",
+     "type": "u32",
+     "size": 4,
+     "count": 4
+    },
+    {
+     "off": "0x28",
+     "name": "title",
+     "type": "ptr:Image2D",
+     "size": 4
+    },
+    {
+     "off": "0x2c",
+     "name": "frame_top",
+     "type": "ptr:Image2D",
+     "size": 4
+    },
+    {
+     "off": "0x30",
+     "name": "frame_bottom",
+     "type": "ptr:Image2D",
+     "size": 4
+    },
+    {
+     "off": "0x34",
+     "name": "tab_buttons",
+     "type": "ptr:Button",
+     "size": 4,
+     "count": 5
+    },
+    {
+     "off": "0x48",
+     "name": "snd_slider_48",
+     "type": "ptr:ScrollBox",
+     "size": 4
+    },
+    {
+     "off": "0x4c",
+     "name": "snd_btn_4c",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0x50",
+     "name": "snd_slider_50",
+     "type": "ptr:ScrollBox",
+     "size": 4
+    },
+    {
+     "off": "0x54",
+     "name": "snd_btn_54",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0x58",
+     "name": "snd_slider_58",
+     "type": "ptr:ScrollBox",
+     "size": 4
+    },
+    {
+     "off": "0x5c",
+     "name": "snd_btn_5c",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0x60",
+     "name": "snd_slider_60",
+     "type": "ptr:ScrollBox",
+     "size": 4
+    },
+    {
+     "off": "0x64",
+     "name": "snd_btn_64",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0x68",
+     "name": "snd_slider_68",
+     "type": "ptr:ScrollBox",
+     "size": 4
+    },
+    {
+     "off": "0x6c",
+     "name": "snd_btn_6c",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0x70",
+     "name": "snd_slider_70",
+     "type": "ptr:ScrollBox",
+     "size": 4
+    },
+    {
+     "off": "0x74",
+     "name": "snd_btn_74",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0x78",
+     "name": "snd_combo_78",
+     "type": "ptr:ComboBox",
+     "size": 4
+    },
+    {
+     "off": "0x7c",
+     "name": "snd_btn_7c",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0x80",
+     "name": "snd_combo_80",
+     "type": "ptr:ComboBox",
+     "size": 4
+    },
+    {
+     "off": "0x84",
+     "name": "snd_btn_84",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0x88",
+     "name": "snd_btn_88",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0x8c",
+     "name": "snd_btn_8c",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0x90",
+     "name": "game_combo_90",
+     "type": "ptr:ComboBox",
+     "size": 4
+    },
+    {
+     "off": "0x94",
+     "name": "game_btn_94",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0x98",
+     "name": "game_btn_98",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0x9c",
+     "name": "game_btn_9c",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0xa0",
+     "name": "game_slider_a0",
+     "type": "ptr:ScrollBox",
+     "size": 4
+    },
+    {
+     "off": "0xa4",
+     "name": "game_btn_a4",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0xa8",
+     "name": "game_slider_a8",
+     "type": "ptr:ScrollBox",
+     "size": 4
+    },
+    {
+     "off": "0xac",
+     "name": "game_btn_ac",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0xb0",
+     "name": "game_slider_b0",
+     "type": "ptr:ScrollBox",
+     "size": 4
+    },
+    {
+     "off": "0xb4",
+     "name": "game_btn_b4",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0xb8",
+     "name": "key_combo_b8",
+     "type": "ptr:ComboBox",
+     "size": 4
+    },
+    {
+     "off": "0xbc",
+     "name": "key_btn_bc",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0xc0",
+     "name": "key_combo_c0",
+     "type": "ptr:ComboBox",
+     "size": 4
+    },
+    {
+     "off": "0xc4",
+     "name": "key_btn_c4",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0xc8",
+     "name": "key_slider_c8",
+     "type": "ptr:ScrollBox",
+     "size": 4
+    },
+    {
+     "off": "0xcc",
+     "name": "key_btn_cc",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0xd0",
+     "name": "key_slider_d0",
+     "type": "ptr:ScrollBox",
+     "size": 4
+    },
+    {
+     "off": "0xd4",
+     "name": "key_btn_d4",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0xd8",
+     "name": "key_btn_d8",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0xdc",
+     "name": "key_btn_dc",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0xe0",
+     "name": "key_btn_e0",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0xe4",
+     "name": "key_combo_e4",
+     "type": "ptr:ComboBox",
+     "size": 4
+    },
+    {
+     "off": "0xe8",
+     "name": "key_btn_e8",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0xec",
+     "name": "video_combo_ec",
+     "type": "ptr:ComboBox",
+     "size": 4
+    },
+    {
+     "off": "0xf0",
+     "name": "video_btn_f0",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0xf4",
+     "name": "credit_btn_f4",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0xf8",
+     "name": "credit_btn_f8",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0xfc",
+     "name": "credit_btn_fc",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0x100",
+     "name": "credit_combo_100",
+     "type": "ptr:ComboBox",
+     "size": 4
+    },
+    {
+     "off": "0x104",
+     "name": "credit_lines",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x108",
+     "name": "credit_labels",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x10c",
+     "name": "key_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x110",
+     "name": "keys",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x114",
+     "name": "key_slot",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x115",
+     "name": "video_combo_115",
+     "type": "ptr:ComboBox",
+     "size": 4
+    },
+    {
+     "off": "0x119",
+     "name": "video_btn_119",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0x11d",
+     "name": "video_btn_11d",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0x121",
+     "name": "page",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x122",
+     "name": "slide_state",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x123",
+     "name": "slide_flag",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [],
+   "evidence": "load 0x73c740 (+0..+0x14 images); every control pointer is typed by the release pair that frees it: 0x6217e0+0x6b33a0 = Button, 0x6b3130+0x741240 = ComboBox, 0x760440+0x741290 = ScrollBox, 0x629830+0x6bd440 = Image2D (release_all 0x73c410, 0x749e00, 0x740df0, 0x744ce0, 0x7429c0)",
+   "confidence": "medium",
+   "notes": "The options screen. One class for the labels OptMenu (g08) and Panel (g15, alias) plus the g15 option labels Opt/OptPanel/OptionMenu/OptionsMenu/OptionsPage/Settings/SlidePanel/CreditsScreen (their functions are moved here; those labels keep base Panel). Pages: tabs 0x34..0x44, sound 0x48..0x8c, game 0x90..0xb4, keys 0xb8..0xe8, video 0xec/0xf0/0x115..0x11d, credits 0xf4..0x108. credit_lines / credit_labels point to 10-element Button* arrays (new[]), keys to the key table (0x10c entries). The combo/button pairs: the Button right after a ComboBox is its caption (opt_handle writes Button+0x8b = hover). +0x18..+0x24 only seen in C++; size unknown (>= 0x124).",
+   "override": true
+  },
+  {
+   "class": "SaveMenu",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "sprites",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "u32_4",
+     "type": "u32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x10",
+     "name": "sprites2",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "u32_14",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "font",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x1c",
+     "name": "u32_1c",
+     "type": "u32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x28",
+     "name": "font2",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x449d",
+     "name": "name",
+     "type": "char",
+     "size": 1,
+     "count": 64
+    },
+    {
+     "off": "0x4afb",
+     "name": "sliding",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x4afc",
+     "name": "u8_4afc",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x4afd",
+     "name": "u8_4afd",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x4afe",
+     "name": "state",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x4aff",
+     "name": "u8_4aff",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x4b00",
+     "name": "u8_4b00",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x4b01",
+     "name": "save_mode",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x4b02",
+     "name": "slide_pos",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x4b04",
+     "name": "u8_4b04",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x4b05",
+     "name": "is_open",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x4b06",
+     "name": "from_victory",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x4b07",
+     "name": "from_defeat",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x4b08",
+     "name": "u8_4b08",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [
+    {
+     "off": "0x2c",
+     "name": "slot0",
+     "class": "Button"
+    },
+    {
+     "off": "0x372",
+     "name": "slot1",
+     "class": "Button"
+    },
+    {
+     "off": "0x6b8",
+     "name": "slot2",
+     "class": "Button"
+    },
+    {
+     "off": "0x9fe",
+     "name": "slot3",
+     "class": "Button"
+    },
+    {
+     "off": "0xd44",
+     "name": "slot4",
+     "class": "Button"
+    },
+    {
+     "off": "0x108a",
+     "name": "slot5",
+     "class": "Button"
+    },
+    {
+     "off": "0x13d0",
+     "name": "slot6",
+     "class": "Button"
+    },
+    {
+     "off": "0x1716",
+     "name": "slot7",
+     "class": "Button"
+    },
+    {
+     "off": "0x1a5c",
+     "name": "slot8",
+     "class": "Button"
+    },
+    {
+     "off": "0x1da2",
+     "name": "slot9",
+     "class": "Button"
+    },
+    {
+     "off": "0x20e8",
+     "name": "list",
+     "class": "ComboBox"
+    },
+    {
+     "off": "0x2195",
+     "name": "frame",
+     "class": "Label"
+    },
+    {
+     "off": "0x224c",
+     "name": "pic",
+     "class": "Label"
+    },
+    {
+     "off": "0x2303",
+     "name": "info_bar",
+     "class": "Button"
+    },
+    {
+     "off": "0x2649",
+     "name": "info",
+     "class": "Label"
+    },
+    {
+     "off": "0x2700",
+     "name": "bar_top",
+     "class": "Label"
+    },
+    {
+     "off": "0x27b7",
+     "name": "bar_bottom",
+     "class": "Label"
+    },
+    {
+     "off": "0x286e",
+     "name": "btn_286e",
+     "class": "Button"
+    },
+    {
+     "off": "0x2bb4",
+     "name": "btn_2bb4",
+     "class": "Button"
+    },
+    {
+     "off": "0x2efa",
+     "name": "btn_2efa",
+     "class": "Button"
+    },
+    {
+     "off": "0x3240",
+     "name": "btn_3240",
+     "class": "Button"
+    },
+    {
+     "off": "0x3586",
+     "name": "btn_3586",
+     "class": "Button"
+    },
+    {
+     "off": "0x38cc",
+     "name": "mark",
+     "class": "Button"
+    },
+    {
+     "off": "0x3c12",
+     "name": "btn_3c12",
+     "class": "Button"
+    },
+    {
+     "off": "0x3f58",
+     "name": "btn_3f58",
+     "class": "Button"
+    },
+    {
+     "off": "0x429e",
+     "name": "in_frame",
+     "class": "Label"
+    },
+    {
+     "off": "0x4355",
+     "name": "in_bg",
+     "class": "Label"
+    },
+    {
+     "off": "0x440c",
+     "name": "name_edit",
+     "class": "EditBox"
+    }
+   ],
+   "evidence": "InfoPanel::init 0x74cb10 creates every child gadget (10 slot Buttons stride 0x346 at +0x2c, ComboBox +0x20e8, Labels, EditBox +0x440c); Briefing::start 0x74da40 resets +0x4afc..+0x4b08",
+   "confidence": "medium",
+   "notes": "member sizes (Button 0x346, Label 0xb7, ComboBox 0xad, EditBox 0x91) are the strides between members; the 0x20 bytes at +0x20c8 and +0x44dd..+0x4afb are unknown (name buffer length 0x40 is the EditBox limit); size unknown (>= 0x4b09); InfoPanel/Images labels and Menu::load_save are methods of this object (moved); i_igmenu.cpp functions labelled SaveMenu belong to IngameMenu (g06, moved); the one checker report (indexed +0xb7 = slot0 +0x8b) needs Button (g03) to declare +0x8b",
+   "override": true
+  },
+  {
+   "class": "Sms",
+   "size": "0x191",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "sound",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "font",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x176",
+     "name": "shown",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x178",
+     "name": "show_time",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x17c",
+     "name": "duration",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x180",
+     "name": "u32_180",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x184",
+     "name": "head",
+     "type": "ptr:SmsNode",
+     "size": 4
+    },
+    {
+     "off": "0x188",
+     "name": "tail",
+     "type": "ptr:SmsNode",
+     "size": 4
+    },
+    {
+     "off": "0x18c",
+     "name": "count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x190",
+     "name": "visible",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [
+    {
+     "off": "0x8",
+     "name": "text",
+     "class": "Image2D"
+    },
+    {
+     "off": "0xbf",
+     "name": "bar",
+     "class": "Label"
+    }
+   ],
+   "evidence": "ctor 0x6e4e20 (Image2D at +8 / +0xbf, duration 3000 ms), init 0x6e4f10, add 0x6e5700 / pop_head 0x6e5d00 (list at +0x184..+0x18c)",
+   "confidence": "medium",
+   "notes": "size 0x191 = end of +0x190 (no new seen). One class for the i_sms.cpp object: labels PickupNotice (g14, alias) and SmsBar (g06; QuickBar::init 0x6e4f10 is this init), Panel/Screen functions of i_sms.cpp. g06 QuickBar is NOT this object (it is the i_qsave.cpp quick-save bar).",
+   "override": true
+  },
+  {
+   "class": "Text",
+   "size": null,
+   "base": "Font2d",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "draw 0x626320 / draw_line 0x6255d0 / draw_3 0x626130 read Font2d +0x0/+0x26/+0x34..+0x38 of this",
+   "confidence": "medium",
+   "notes": "alias of Font2d (g01): the Text::draw* functions are font methods; wrap_631080 uses the TextBox layout (moved to TextBox, g01); workshop_* lookups moved to TxtRes; the rest (next_word, poll, draw_aligned, format_*) touch no fields of this",
+   "override": true
+  },
+  {
+   "class": "Workshop",
+   "size": null,
+   "base": "WorkScreen",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "i_work.cpp release 0x6e9a50: same offsets (+0xc..+0x30 controls, +0x35, +0x4d)",
+   "confidence": "medium",
+   "notes": "alias of WorkScreen (round 2 ui merge): same object; its functions are moved to WorkScreen.",
+   "override": true
+  },
+  {
+   "class": "List",
+   "size": null,
+   "base": "DynArray",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "most List functions are DynArray/DynArrayB wrappers (get/empty_at/ptr_at/save/load) with no own field access",
+   "confidence": "medium",
+   "notes": "Grab-bag label (165 functions). Functions touching fields beyond the DynArray header belong to the owning classes and are reassigned (interfac/list.cpp -> ListBox, mglist.cpp -> MgList, gfile3 savers -> the saved object's class, ...). The rest stay here as DynArray helpers (many run on DynArrayB-derived lists).",
+   "override": true
+  },
+  {
+   "class": "ListBox",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x3",
+     "name": "u8_3",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x4",
+     "name": "u8_4",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x5",
+     "name": "ready",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x9",
+     "name": "x0",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0xb",
+     "name": "y0",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0xd",
+     "name": "x1",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0xf",
+     "name": "y1",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x11",
+     "name": "items",
+     "type": "ptr:ListBoxItem",
+     "size": 4
+    },
+    {
+     "off": "0x15",
+     "name": "count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x19",
+     "name": "capacity",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x1d",
+     "name": "text_x",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x1f",
+     "name": "text_y",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x21",
+     "name": "text_x1",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x23",
+     "name": "text_y1",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x25",
+     "name": "row_height",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x2b",
+     "name": "scroll",
+     "type": "ptr:Scroll",
+     "size": 4
+    },
+    {
+     "off": "0x37",
+     "name": "bitmap",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x44",
+     "name": "i32_44",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x48",
+     "name": "i32_48",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4c",
+     "name": "fixed_pages",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x50",
+     "name": "selected",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xa0",
+     "name": "u32_a0",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xa4",
+     "name": "colour",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xa8",
+     "name": "style",
+     "type": "u16",
+     "size": 2,
+     "count": 5
+    },
+    {
+     "off": "0xb2",
+     "name": "u32_b2",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [
+    {
+     "off": "0x54",
+     "name": "column0",
+     "class": "ListBoxColumn"
+    },
+    {
+     "off": "0x67",
+     "name": "column1",
+     "class": "ListBoxColumn"
+    },
+    {
+     "off": "0x7a",
+     "name": "column2",
+     "class": "ListBoxColumn"
+    },
+    {
+     "off": "0x8d",
+     "name": "column3",
+     "class": "ListBoxColumn"
+    }
+   ],
+   "evidence": "interfac/list.cpp: setup_6f80c0 initialises the whole object (+3..+0xb2, ready=+5); append/remove keep +0x11/+0x15/+0x19 (stride 0x195) and update the Scroll at +0x2b",
+   "confidence": "medium",
+   "notes": "New class for the UI list widget of interfac/list.cpp (labels List::*, Names::find, Grid::setup/hit). Size unknown (>= 0xb6); 0x0-0x2 likely a WidgetChild base (reset_6f93d0 calls WidgetChild::disable on this). g06 maps 0x6f80c0/0x6f8e40 to List; mapped to ListBox here.",
+   "override": true
+  },
+  {
+   "class": "MsgLog",
+   "size": "0x82",
+   "base": "DynArrayB",
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x2e",
+     "name": "count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x32",
+     "name": "last",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x36",
+     "name": "cur_kind",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x3a",
+     "name": "first_of_kind",
+     "type": "u32",
+     "size": 4,
+     "count": 9
+    },
+    {
+     "off": "0x5e",
+     "name": "count_of_kind",
+     "type": "i32",
+     "size": 4,
+     "count": 9
+    }
+   ],
+   "members": [],
+   "evidence": "ctor = DynArrayB(4,5,0,0) then clear (+0x2e/+0x32, 9 x {+0x3a,+0x5e}); clear_slot writes +0x36",
+   "confidence": "high",
+   "notes": "the message-log DATA (msglog.cpp, DynArrayB-based). The i_msglog.cpp screen functions are MessageLog (moved).",
+   "override": true
+  },
+  {
+   "class": "ComboBox",
+   "size": "0xad",
+   "base": "Gadget",
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x70",
+     "name": "created",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x74",
+     "name": "style",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x78",
+     "name": "last_x",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x7c",
+     "name": "last_y",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x80",
+     "name": "selected",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x84",
+     "name": "font",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x88",
+     "name": "u32_88",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x8c",
+     "name": "button",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0x90",
+     "name": "arrow_up",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0x94",
+     "name": "arrow_down",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0x98",
+     "name": "slider",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0x9c",
+     "name": "items",
+     "type": "u8*",
+     "size": 4
+    },
+    {
+     "off": "0xa0",
+     "name": "item_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xa4",
+     "name": "pressed",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0xa5",
+     "name": "list",
+     "type": "ptr:ListBox",
+     "size": 4
+    },
+    {
+     "off": "0xa9",
+     "name": "open",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "ctor 0x6b22f0: Gadget ctor, vtable, memset(+0x70, 0, 0x3d) -> 0xad; free_parts deletes +0x8c..+0x98/+0xa5",
+   "confidence": "medium",
+   "notes": "style 2 keeps items as 0x191-byte strings at +0x9c, else in the ListBox +0xa5 (remove_6f8830 / hit_6f8e40 are ListBox methods; step_6b4280 writes ListBox+0x44, remove_from reads +0x15). SpellBtn::draw is its draw. ComboBox::set_b2 0x6b33f0 (no callers) writes +0xb2, past the 0xad object: not a ComboBox method, owner unknown (left; the one remaining report). The two scalar_dtor labels (0x6b33a0 Widget dtor, 0x6b3420 List dtor) are generic deleting dtors.",
+   "override": true
+  },
+  {
+   "class": "BuyScreen",
+   "size": "0x259",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "tex",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "sheet",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "panel_a",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "panel_b",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "open",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x11",
+     "name": "dragging",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x12",
+     "name": "place",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x16",
+     "name": "unit",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x30",
+     "name": "player_grid",
+     "type": "ptr:Grid",
+     "size": 4
+    },
+    {
+     "off": "0x4e",
+     "name": "shop_grid",
+     "type": "ptr:Grid",
+     "size": 4
+    },
+    {
+     "off": "0x56",
+     "name": "u8_56",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x57",
+     "name": "gold",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x5b",
+     "name": "prices",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x231",
+     "name": "drag_state",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x235",
+     "name": "i32_235",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x239",
+     "name": "drag_item",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x23d",
+     "name": "drag_index",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x241",
+     "name": "drag_from_shop",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x245",
+     "name": "i32_245",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x249",
+     "name": "i16_249",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x24b",
+     "name": "i16_24b",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x24d",
+     "name": "u32_24d",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x251",
+     "name": "u32_251",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x255",
+     "name": "u32_255",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [
+    {
+     "off": "0x5f",
+     "name": "stage_player",
+     "class": "ShopStage"
+    },
+    {
+     "off": "0x148",
+     "name": "stage_shop",
+     "class": "ShopStage"
+    }
+   ],
+   "evidence": "0x6c2b70 memset(this, 0, 0x259); release/set_open free +8/+0xc, +0x5b, +0x30, the two model slots in the scenes +0x5f/+0x148 (stride 0xe9)",
+   "confidence": "medium",
+   "notes": "Shop (buy/sell) screen. All i_buy Shop:: functions and Backpack::* (they use +0x4e) moved here, plus Cutscene::setup_cameras. Bytes 0x1a..0x2f, 0x34..0x4d (0x38: a UnitData-like record copied by apply), 0x52..0x55 not seen directly. 0x231..0x258 typed from the C++ (drag state). Buy::load 0x6c9060 (g08) loads +0 and is also a BuyScreen method. Round 2: 0x6d50e0 Panel::set_pos (+0x44c/+0x44e) moved to PopupScreen (g14) and 0x6ce100 Panel::init_good_fin (+0x231 u16 / +0x233, creates the good1 labels at +8) to Ending.",
+   "override": true
+  },
+  {
+   "class": "Inventory",
+   "size": null,
+   "base": "Grid",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "inventory.cpp add/find/count call Grid::find_place / List on this",
+   "confidence": "low",
+   "notes": "Item grid (Grid, g06); no own fields seen. Inventory::add 0x495f40 and Holder::add_list* operate on UnitData (+0x16/+0x1a grids) and moved there; the i_buy Inventory:: functions are InventoryScreen; Inventory::draw (i_unitatt) is UnitAttPanel. Round 2: gfile3.cpp save_47e850 / load_parts 0x47e9f0 (raw 0x1e bytes, item stacks +2..+0xe, grids +0x12..+0x1a) are UnitData (g10) methods (moved).",
+   "override": true
+  },
+  {
+   "class": "InventoryScreen",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "tex",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "sheet",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "open",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x9",
+     "name": "u32_9",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xd",
+     "name": "u32_d",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x11",
+     "name": "u8_11",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x12",
+     "name": "i16_12",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x14",
+     "name": "u8_14",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x15",
+     "name": "u8_15",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x16",
+     "name": "u8_16",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x17",
+     "name": "i32_17",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x1b",
+     "name": "u32_1b",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1f",
+     "name": "u32_1f",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x23",
+     "name": "i32_23",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x27",
+     "name": "u16_27",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x29",
+     "name": "u32_29",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x2d",
+     "name": "u16_2d",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x2f",
+     "name": "u16_2f",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x31",
+     "name": "i16_31",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x33",
+     "name": "i16_33",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x35",
+     "name": "u32_35",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "init 0x6d65d0 (+4 sheet, +0, +0x11..+0x23), update 0x6d8ac0 / draw_items 0x6d6740",
+   "confidence": "low",
+   "notes": "Pickup/inventory panel of i_buy.cpp (was Inventory::*). Meanings not resolved; size unknown (>= 0x39).",
+   "override": true
+  },
+  {
+   "class": "PickupNotice",
+   "size": null,
+   "base": "Sms",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "i_sms.cpp draw 0x6e5140 reads +0x184/+0x18c/+0x190 = Sms head/count/visible",
+   "confidence": "medium",
+   "notes": "alias of Sms (round 2 ui merge): same object; its functions are moved to Sms.",
+   "override": true
+  },
+  {
+   "class": "WorkScreen",
+   "size": "0x72",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "tex_a",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "tex_b",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "tex_c",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "row_frames",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "row_icons",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "add_buttons",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "remove_buttons",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x1c",
+     "name": "ok_button",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0x20",
+     "name": "cancel_button",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0x24",
+     "name": "button_24",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0x28",
+     "name": "background",
+     "type": "ptr:Image2D",
+     "size": 4
+    },
+    {
+     "off": "0x2c",
+     "name": "info_frame",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0x30",
+     "name": "title_frame",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0x34",
+     "name": "open",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x35",
+     "name": "hover_row",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x37",
+     "name": "state",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x39",
+     "name": "place",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x3d",
+     "name": "u32_3d",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x41",
+     "name": "gold",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x45",
+     "name": "cost",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x49",
+     "name": "total",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4d",
+     "name": "loaded",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x51",
+     "name": "u8_51",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x52",
+     "name": "stock",
+     "type": "u32",
+     "size": 4,
+     "count": 4
+    },
+    {
+     "off": "0x62",
+     "name": "orders",
+     "type": "u32",
+     "size": 4,
+     "count": 4
+    }
+   ],
+   "members": [],
+   "evidence": "Workshop::release 0x6e9a50 (like Barracks::release: arrays +0xc..+0x18 of 4, singles +0x1c..+0x30, +0x4d = 0, +0x35 = -1); refresh 0x6ea020 copies 4 stock dwords to +0x52, zeroes +0x62",
+   "confidence": "medium",
+   "notes": "Workshop screen (i_work.cpp), Barracks layout shifted by 4. One class for WorkScreen (g14) and Workshop (g08, alias: release 0x6e9a50 / update 0x6ec480 / load_barr 0x6ed4e0). Images3/Work/WorkInterface/WorkshopPanel and Cutscene::update_6ece80 are its methods. row_* / add / remove buttons point to arrays of 4 Button* (new[]). Size 0x72 = end of +0x62[4] (not proven). The f_work.cpp Workshop add_type 0x46a6f0 is Siege (g05).",
+   "override": true
+  },
+  {
+   "class": "Panel",
+   "size": null,
+   "base": "OptMenu",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "optmenui.cpp handlers called with the OptMenu this; g15 Panel fields 0x34/0x115/0x122/0x123 are OptMenu fields (tab_buttons, video combo, slide bytes)",
+   "confidence": "medium",
+   "notes": "alias of OptMenu (round 2): the optmenui.cpp part of the old Panel catch-all. Panel::destroy_children 0x760440 is a ScrollBox method (moved).",
+   "override": true
+  },
+  {
+   "class": "Scroller",
+   "size": null,
+   "base": "CampScreen",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "objmenu.cpp / objmenub.cpp briefing page functions: +0x70..+0x91, +0x269 of the objective menu",
+   "confidence": "medium",
+   "notes": "alias of CampScreen (round 2 ui merge): same object; its functions are moved to CampScreen.",
+   "override": true
+  },
+  {
+   "class": "ArmoryScreen",
+   "size": null,
+   "base": "ItemScreen",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "armory.cpp 0x6ba810 / 0x6bb750: this = the item screen (+0/+1 open flags, embedded labels from +0x28)",
+   "confidence": "medium",
+   "notes": "alias of ItemScreen (round 2 ui merge): same object; its functions are moved to ItemScreen.",
+   "override": true
+  }
+ ],
+ "functions": {
+  "0x5a93b0": "Surface",
+  "0x60fa20": "Surface",
+  "0x60fa50": "Surface",
+  "0x60fa70": "Surface",
+  "0x60fa90": "Surface",
+  "0x60fad0": "Surface",
+  "0x60fb10": "Surface",
+  "0x60fb60": "Surface",
+  "0x60fc20": "Surface",
+  "0x60fca0": "Surface",
+  "0x60fd20": "Surface",
+  "0x60fd70": "Surface",
+  "0x60fe60": "Surface",
+  "0x60ff20": "Surface",
+  "0x60ff70": "Surface",
+  "0x60ffd0": "Surface",
+  "0x610040": "Surface",
+  "0x6100a0": "Surface",
+  "0x610360": "Surface",
+  "0x6103e0": "Surface",
+  "0x6104b0": "Surface",
+  "0x70d510": "MainMenu",
+  "0x70d670": "MainMenu",
+  "0x70dae0": "MainMenu",
+  "0x70db10": "MainMenu",
+  "0x70dcb0": "MainMenu",
+  "0x6e5140": "Sms",
+  "0x6e5f20": "Sms",
+  "0x6e6010": "Sms",
+  "0x6e4f10": "Sms",
+  "0x6e32d0": "QuickBar",
+  "0x6e37d0": "QuickBar",
+  "0x6e3890": "QuickBar",
+  "0x6e39a0": "QuickBar",
+  "0x6e3a90": "QuickBar",
+  "0x6e4360": "QuickBar",
+  "0x6e44b0": "QuickBar",
+  "0x73c410": "OptMenu",
+  "0x73cc00": "OptMenu",
+  "0x7412e0": "OptMenu",
+  "0x741960": "OptMenu",
+  "0x7420e0": "OptMenu",
+  "0x742bf0": "OptMenu",
+  "0x742ee0": "OptMenu",
+  "0x743170": "OptMenu",
+  "0x7433d0": "OptMenu",
+  "0x7480e0": "OptMenu",
+  "0x74a580": "OptMenu",
+  "0x74bc50": "OptMenu",
+  "0x74c2e0": "OptMenu",
+  "0x760440": "ScrollBox",
+  "0x720ca0": "CampScreen",
+  "0x7226a0": "CampScreen",
+  "0x7240f0": "CampScreen",
+  "0x729120": "CampScreen",
+  "0x73a320": "CampScreen",
+  "0x723c80": "CampScreen",
+  "0x723f90": "CampScreen",
+  "0x724210": "CampScreen",
+  "0x724bf0": "CampScreen",
+  "0x7294b0": "CampScreen",
+  "0x730150": "CampScreen",
+  "0x731a60": "CampScreen",
+  "0x731b00": "CampScreen",
+  "0x7380b0": "CampScreen",
+  "0x738340": "CampScreen",
+  "0x73b040": "CampScreen",
+  "0x73b2e0": "CampScreen",
+  "0x73b6e0": "CampScreen",
+  "0x6e9a50": "WorkScreen",
+  "0x6ec480": "WorkScreen",
+  "0x6ed4e0": "WorkScreen",
+  "0x6ba810": "ItemScreen",
+  "0x6bb750": "ItemScreen",
+  "0x6e1570": "MessageLog",
+  "0x6e1810": "MessageLog",
+  "0x6e19b0": "MessageLog",
+  "0x6e1c60": "MessageLog",
+  "0x6e1250": "MessageLog",
+  "0x6e29a0": "MessageLog",
+  "0x62e490": "TextBox",
+  "0x6d50e0": "PopupScreen",
+  "0x6ce100": "Ending",
+  "0x47e850": "UnitData",
+  "0x47e9f0": "UnitData",
+  "0x4cf0f0": "Panels",
+  "0x4cf690": "Panels",
+  "0x45f450": "Panels",
+  "0x45f6b0": "Panels"
+ },
+ "notes": "Round 2, family ui. Merges (canonical <- aliases, functions moved): Surface <- Image; MainMenu <- Interface; Sms <- PickupNotice (+ i_sms init 0x6e4f10 of g06 SmsBar); QuickBar (i_qsave.cpp bar, NOT Sms) <- the g15 QuickSaveScreen functions; OptMenu <- Panel (+ the g15 option labels' functions; every control pointer typed Button / ComboBox / ScrollBox / Image2D from its release pair); CampScreen <- ObjectiveMenu, Scroller (+ objm_* functions of MapView, ShopPage, SiegeDebrief, Res2, Loader, Timer::remaining 0x7294b0); WorkScreen <- Workshop; ItemScreen <- ArmoryScreen; Font2d <- Font, Text (unchanged from round 1); Widget <- Gadget (unchanged). MessageLog (i_msglog.cpp screen) and MsgLog (msglog.cpp DynArrayB data) stay separate: the screen functions g15 put on MsgLog moved to MessageLog. Button gets +0x8b (held). ComboBox +0xa5 is a ListBox.\nNeeds for other families: (1) g06 SmsBar should be an alias of Sms; g15 QuickSaveScreen an alias of QuickBar; g14 MapView, g15 ShopPage / SiegeDebrief, g06 Res2 and the game-side part of g13 Loader aliases of CampScreen (their functions are moved here). (2) Moved out of ui classes: 0x760440 Panel::destroy_children -> ScrollBox (g08, scrlbox fields +0x70..+0x8c); 0x6d50e0 Panel::set_pos -> PopupScreen (g14, +0x44c/+0x44e); 0x47e850 / 0x47e9f0 (gfile3 raw 0x1e-byte save/load) -> UnitData (g10); 0x6e3a90 Intro::animate (i_qsave.cpp) -> QuickBar; 0x6e1250 Dialog::step and 0x6e29a0 Combo::entry_at (i_msglog.cpp) -> MessageLog. (3) Taken into Panels (the sndplay.cpp sound player, +0 volume): 0x4cf0f0 Unit::play_sound (g09 -> Sounds; g10 Sounds = Weather is another object, so its +0 report goes away), SoundList::entry 0x4cf690, Party::first_free 0x45f450 / set_scale 0x45f6b0 (cpuusage.cpp, called on the sound player). (4) zz_reconcile currently maps 0x60fa50/0x60fa70/0x60fca0/0x60fe60 to Image and 0x6ce100 to BuyScreen; with this file the re-run should give Surface and Ending (equal coverage, later file). (5) ScrollBox (g08) and ListBox (g11) are now the pointee classes of the OptMenu sliders and of ComboBox+0xa5; keep their layouts covering Widget offsets and ListBox +0x15/+0x44.\nRemaining check reports (explained in class notes): ComboBox::set_b2 0x6b33f0 writes +0xb2 past the 0xad ComboBox (no callers, owner unknown); Widget Rect::step_61f980 8-byte read at +0 is a mis-decoded access."
+}

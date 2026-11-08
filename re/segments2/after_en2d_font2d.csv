@@ -1,0 +1,6 @@
+start,end,name,confidence,evidence,target
+0x00624e60,0x00627f10,font2d_text,high,Font measure/glyph and Text draw functions between font2d.cpp Font2d::release and Bitmap::crop_key (font2d.cpp),en2d/font2d.cpp
+0x00628940,0x00628940,font2d_alpha,high,pixel_alpha is the helper of font2d.cpp Bitmap::crop_key right before it,en2d/font2d.cpp
+0x00628a30,0x006293b0,ctl2d,medium,"Abstract widget base (vtable 0x9da6f8 of 4 purecalls, between font2d and image2d rdata), Gadget/Widget/Ctl virtuals and Overlay2D/ModelHolder",
+0x00629400,0x00629400,image2d_ctor,high,"Widget629::ctor stores vtable 0x9da70c, the same as image2d.cpp Widget::~Widget that follows",en2d/image2d.cpp
+0x00629660,0x00629660,image2d_label,high,Label::create sandwiched between image2d.cpp Image2D::create and Image2d::release,en2d/image2d.cpp

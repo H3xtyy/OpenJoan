@@ -1,0 +1,50 @@
+// Generated (re/layout/gen_types.py) from re/layout/layouts.json: the data members of MouseCursor
+// (r5_image.json, confidence medium). Do not edit; change the spec.
+    char init_flag;  // 0x0
+    std::int8_t shape_count;  // 0x1
+    char hide_flag;  // 0x2
+    char frozen;  // 0x3
+    std::int16_t cur_shape;  // 0x4
+    std::int32_t old_x1;  // 0x6
+    std::int32_t old_y1;  // 0xa
+    std::int32_t old_x2;  // 0xe
+    std::int32_t old_y2;  // 0x12
+    std::int32_t x1;  // 0x16
+    std::int32_t y1;  // 0x1a
+    std::int32_t x2;  // 0x1e
+    std::int32_t y2;  // 0x22
+    std::int32_t hot_spot_x;  // 0x26
+    std::int32_t hot_spot_y;  // 0x2a
+    std::int32_t width;  // 0x2e
+    std::int32_t height;  // 0x32
+    char processing;  // 0x36
+    std::uint8_t u8_37;  // 0x37
+    Bitmap* icon_bitmap;  // 0x38
+    std::uint32_t u32_3c;  // 0x3c
+    Surface* cursor_image;  // 0x40
+    Bitmap* default_bitmap;  // 0x44
+    std::int32_t default_hot_x;  // 0x48
+    std::int32_t default_hot_y;  // 0x4c
+    char clip_flag;  // 0x50
+    char dirty_valid;  // 0x51
+    std::int32_t dirty_x1;  // 0x52
+    std::int32_t dirty_y1;  // 0x56
+    std::int32_t dirty_x2;  // 0x5a
+    std::int32_t dirty_y2;  // 0x5e
+    std::int32_t dirty_last_x;  // 0x62
+    std::int32_t dirty_last_y;  // 0x66
+    std::int32_t clip_x1;  // 0x6a
+    std::int32_t clip_y1;  // 0x6e
+    std::int32_t clip_x2;  // 0x72
+    std::int32_t clip_y2;  // 0x76
+    CursorShape shape[3];  // 0x7a
+    std::uint8_t gap_bc[0x6];
+    std::uint32_t u32_c2;  // 0xc2
+    std::int32_t mode;  // 0xc6
+    std::uint32_t mode_value;  // 0xca
+    std::uint8_t gap_ce[0x4];
+    std::int16_t i16_d2;  // 0xd2
+    CursorRec* shape_table;  // 0xd4
+    ResourceDb res_cursor;  // 0xd8
+    VgaBuf* vga_buf;  // 0x1fc
+    std::int32_t show_count;  // 0x200

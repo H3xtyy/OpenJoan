@@ -1,0 +1,3 @@
+start,end,name,confidence,evidence,target
+0x005a29a0,0x005a6660,txtres_fmt_g0,medium,"Text formatting (format_double/int/roman, Strings::format/get, Text::format) built on TextRes::small_buffer; directly after txtres.cpp.",ilib/txtres.cpp
+0x005a80c0,0x005a8600,volpan,medium,"Own static-init set opening a TU of volume/pan pairs (+-10000 DirectSound units, Volume::ctor, Force from camera point); .rdata 0x9d8fcc..d8 just before vqueue FILE 0x9d8fdc.",

@@ -1,0 +1,7 @@
+start,end,name,confidence,evidence
+0x0060b3e0,0x0060ba00,texturea_tail,high,TextureManager/Dds helpers right after texturea.cpp's anchors; Dds::has_alpha's "BMP/TGA/DDS" constants lie inside texturea.cpp's .rdata (before its __FILE__ string): the tail of en3d/texturea.cpp.
+0x0060bad0,0x0060efb0,mathlib,medium,Static-init pair opens a new object: matrix/quaternion/vector/box/plane/segment/ray math plus the Bone transform node sharing the identity matrices at .data 0xa18a78..; .rdata 0x9d9c40.. follows texturea's.
+0x0060f020,0x0060f4b0,vtxconv,low,Run of vertex-record copy/convert helpers called only from Plane::set_format (and DynGrass/Track); no data refs - split from mathlib by topic only.
+0x0060f540,0x006100a0,surface,low,Display/palette/Image/Texture-lock/BitWriter surface code ("Cannot determine the pixel format..." / "Cannot lock surface" strings just before vgabuf.cpp's __FILE__); could be the start of en3d/vgabuf.cpp.
+0x00610110,0x006101b0,vgabuf_pix,medium,RGB pack/unpack helpers whose callers are the vgabuf.cpp '=' functions right after (Unpacker::words / Pal::convert) and save_bmp: probably en3d/vgabuf.cpp.
+0x006102d0,0x00611e70,vgabuf_blit,high,Pixel pokes / 8->16/24/32 blitters / save_bmp between vgabuf.cpp's '=' members (0x6101f0..0x610270) and its __FILE__ anchors (0x6123f0): part of en3d/vgabuf.cpp.

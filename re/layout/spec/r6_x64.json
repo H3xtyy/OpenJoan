@@ -1,0 +1,630 @@
+{
+ "group": "r6_x64",
+ "classes": [
+  {
+   "class": "Sms",
+   "size": "0x191",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "sound",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "font",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x176",
+     "name": "shown",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x178",
+     "name": "show_time",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x17c",
+     "name": "duration",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x180",
+     "name": "u32_180",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x184",
+     "name": "head",
+     "type": "ptr:SmsNode",
+     "size": 4
+    },
+    {
+     "off": "0x188",
+     "name": "tail",
+     "type": "ptr:SmsNode",
+     "size": 4
+    },
+    {
+     "off": "0x18c",
+     "name": "count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x190",
+     "name": "visible",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [
+    {
+     "off": "0x8",
+     "name": "text",
+     "class": "Image2D"
+    },
+    {
+     "off": "0xbf",
+     "name": "bar",
+     "class": "Label"
+    }
+   ],
+   "evidence": "ctor 0x6e4e20 (Image2D at +8 / +0xbf, duration 3000 ms), init 0x6e4f10, add 0x6e5700 / pop_head 0x6e5d00 (list at +0x184..+0x18c) | r6: Phase 2 x64 audit (ilib-interfac-2): sound holds the pointer TextureManager::load 0x6099c0 returns (interfac/i_sms.cpp:564)",
+   "confidence": "medium",
+   "notes": "size 0x191 = end of +0x190 (no new seen). One class for the i_sms.cpp object: labels PickupNotice (g14, alias) and SmsBar (g06; QuickBar::init 0x6e4f10 is this init), Panel/Screen functions of i_sms.cpp. g06 QuickBar is NOT this object (it is the i_qsave.cpp quick-save bar).",
+   "override": true
+  },
+  {
+   "class": "Buy",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "sprite",
+     "type": "ptr:void",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "load 0x6c9060 loads the BUY sprite into +0 | r6: Phase 2 x64 audit (ilib-interfac-2): sprite holds the pointer TextureManager::load 0x6099c0 returns (interfac/i_buy.cpp:2621)",
+   "confidence": "low",
+   "notes": "only one field known; open_* lookups moved to TxtRes; Res1::free_b 0x6c90e0 frees the same field",
+   "override": true
+  },
+  {
+   "class": "Popup",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x122",
+     "name": "text_buf",
+     "type": "char",
+     "size": 1,
+     "count": 260
+    },
+    {
+     "off": "0x226",
+     "name": "u8_226",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x444",
+     "name": "u32_444",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x448",
+     "name": "image",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x44c",
+     "name": "x",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x44e",
+     "name": "y",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x450",
+     "name": "title",
+     "type": "ptr:char",
+     "size": 4
+    },
+    {
+     "off": "0x454",
+     "name": "text",
+     "type": "ptr:char",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "load_gpopup/free_gpopup 0x6d3be0/0x6d3c60 (+0x448), set_title 0x6d52c0 (+0x450), set_text 0x6d5230 (+0x454) | r6: Phase 2 x64 audit (ilib-interfac-2): image holds the pointer TextureManager::load 0x6099c0 returns (interfac/i_buy.cpp:2836)",
+   "confidence": "low",
+   "notes": "popupwin.cpp functions -> PopupWin (g01), combobox.cpp -> ComboBox (g14), i_vict.cpp -> Glory (g06), open_* -> TxtRes; set_text 0x4775f0 (gamefile.cpp, memcpy 0x104 to +0x122, clears +0x226) may be a different object; PopupScreen/MessageBox/Dialog (other groups) read +0x44c..+0x454 of the same popup",
+   "override": true
+  },
+  {
+   "class": "Ending",
+   "size": "0x236",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "picture",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "picture2",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x22d",
+     "name": "u32_22d",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x231",
+     "name": "score",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x233",
+     "name": "kind",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x234",
+     "name": "is_open",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x235",
+     "name": "u8_235",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [
+    {
+     "off": "0x8",
+     "name": "title",
+     "class": "Label"
+    },
+    {
+     "off": "0xbf",
+     "name": "text",
+     "class": "Image2D"
+    },
+    {
+     "off": "0x176",
+     "name": "frame",
+     "class": "Image2D"
+    }
+   ],
+   "evidence": "ctor 0x6ce050 (Image2D ctors at +8/+0xbf/+0x176), init 0x6ce100, open 0x6d19e0, load_pictures 0x6d1f20 | r5: data-image review (re/image/spec, to_layout.py) | r6: Phase 2 x64 audit (ilib-interfac-2): picture / picture2 hold the pointers TextureManager::load 0x6099c0 returns (interfac/i_buy.cpp:5028/5032)",
+   "confidence": "medium",
+   "notes": "kind 0 good / 1 bad ending, score selects G_END1..8 / B_END1..5; size probably 0x236 (no new/memset seen); Ending::start 0x471f90 is a Game method (moved) R3: +0x22d \"call\" crt::_ftol with ecx = the field is a scanner artefact (not a dereference).",
+   "override": true
+  },
+  {
+   "class": "ScenePose",
+   "size": "0x20",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "kind",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "pos",
+     "type": "f32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x18",
+     "name": "f32_18",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x1c",
+     "name": "f32_1c",
+     "type": "f32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "Phase 2 x64 audit (engine-5): en3d/plane.cpp env_map reads Scene::ptr_b9 as kind +0, a Vec3 at +0xc, floats at +0x18 / +0x1c",
+   "confidence": "medium",
+   "notes": "the object Scene::ptr_b9 points at (a camera pose); bytes 4..0xb unknown"
+  },
+  {
+   "class": "Scene",
+   "size": "0xd5",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "params",
+     "type": "u32",
+     "size": 4,
+     "count": 6
+    },
+    {
+     "off": "0x18",
+     "name": "sky",
+     "type": "ptr:SkyBox",
+     "size": 4
+    },
+    {
+     "off": "0x1c",
+     "name": "plane_1c",
+     "type": "ptr:Plane",
+     "size": 4
+    },
+    {
+     "off": "0x20",
+     "name": "mode",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x24",
+     "name": "sector_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x28",
+     "name": "sector_capacity",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x2c",
+     "name": "sectors",
+     "type": "ptr:SceneSPtr",
+     "size": 4
+    },
+    {
+     "off": "0x30",
+     "name": "tree",
+     "type": "ptr:SectorNode",
+     "size": 4
+    },
+    {
+     "off": "0x34",
+     "name": "visible",
+     "type": "ptr:SceneSPtr",
+     "size": 4
+    },
+    {
+     "off": "0x38",
+     "name": "visible_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x3c",
+     "name": "visible_capacity",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x40",
+     "name": "list_40",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x44",
+     "name": "list_40_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x48",
+     "name": "list_40_capacity",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4c",
+     "name": "light_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x50",
+     "name": "light_capacity",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x54",
+     "name": "lights",
+     "type": "ptr:LightPtr",
+     "size": 4
+    },
+    {
+     "off": "0x58",
+     "name": "occluders",
+     "type": "ptr:Occluder",
+     "size": 4
+    },
+    {
+     "off": "0x5c",
+     "name": "occluder_total",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x60",
+     "name": "occluder_capacity",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x64",
+     "name": "occluder_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x68",
+     "name": "u32_68",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x6c",
+     "name": "u32_6c",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x70",
+     "name": "lit",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x71",
+     "name": "plane_71",
+     "type": "ptr:Plane",
+     "size": 4
+    },
+    {
+     "off": "0x75",
+     "name": "actor_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x79",
+     "name": "actor_capacity",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x7d",
+     "name": "actors",
+     "type": "ptr:ActorPtr",
+     "size": 4
+    },
+    {
+     "off": "0x81",
+     "name": "plane_81",
+     "type": "ptr:Plane",
+     "size": 4
+    },
+    {
+     "off": "0xb5",
+     "name": "camera",
+     "type": "ptr:Light",
+     "size": 4
+    },
+    {
+     "off": "0xb9",
+     "name": "ptr_b9",
+     "type": "ptr:ScenePose",
+     "size": 4
+    },
+    {
+     "off": "0xbd",
+     "name": "fog_flags",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xc1",
+     "name": "material_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xc5",
+     "name": "materials",
+     "type": "ptr:BillboardPtr",
+     "size": 4
+    },
+    {
+     "off": "0xc9",
+     "name": "region_buffer",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0xcd",
+     "name": "u32_cd",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xd1",
+     "name": "buffer_d1",
+     "type": "ptr:void",
+     "size": 4
+    }
+   ],
+   "members": [
+    {
+     "off": "0x85",
+     "name": "light_pick",
+     "class": "LightPick"
+    }
+   ],
+   "evidence": "new(0xd5) before ctor 0x5e9a00 (memset 0xd5, SceneSub ctor at +0x85); clear 0x5e9b10 / setup 0x5e9e50 / render in en3d/scene.cpp; r2: scan_5eda20 / scan_list rec layout | r6: Phase 2 x64 audit (engine-5): ptr_b9 points at a ScenePose (en3d/plane.cpp env_map)",
+   "confidence": "high",
+   "notes": "0xb9..0xbc never accessed. sectors/visible/lights/actors/materials are arrays of pointers (SceneS*, SceneS*, Light*, Actor*, ?); occluders are 0x94-byte records. render writes sky->bones+0x30..0x38 (the sky bone matrix translation row, Bone spec of another group does not declare it). Functions of en3d/scene_s.cpp labelled Scene:: are SceneS methods (moved); map-script readers (rts2/world_s/gamefil2) are Cell methods (moved). r2: +0xb9 is zeroed by the save-load pointer clear 0x484b60 (a pointer). The 0x30-byte record at +0x85 (SceneSub) is the key-light pick record of Picker::scan_5eda20 / scan_list (scene.cpp): restated as the new class LightPick. Array::at1 0x5ea410 (count +0x75, items +0x7d) is Scene::actor(i) - moved here. r3: arrays typed: sectors / visible SceneS*, lights Light*, actors Actor*, materials (+0xc5) Billboard* (free_c5 releases each with Billboard::release and the virtual deleting dtor), occluders 0x94-byte records typed as Occluder (g12 layout covers 0..0x73 only, stride 0x94). The -0x4 indexed reads of 1-based loops (setup, add_actor, remove_*, lights_*, ...) are base[i-1], reported but not fields. +0x40 list and +0xc9 / +0xd1 buffers keep ptr:void.",
+   "override": true
+  },
+  {
+   "class": "LightningBolt",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "billboard",
+     "type": "ptr:Billboard",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "light",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "u32_8",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "u32_c",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "flash_time",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "gamma",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "flash",
+     "type": "i16",
+     "size": 2
+    }
+   ],
+   "members": [],
+   "evidence": "Entry::close 0x68c840 (as_lightning_bolt), dtor 0x68c800, deleting dtor 0x689f60 | r6: Phase 2 x64 audit (unplaced-c-2): light is the Light pointer weather.cpp passes to Scene::remove_light",
+   "confidence": "medium",
+   "notes": "element of Weather.bolts; +0x14 is a float passed to set_gamma r4: +0x10 time the flash gamma (+0x14) is applied (weather.cpp thunder_update).",
+   "override": true
+  },
+  {
+   "class": "Cycler",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "items",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "count",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x6",
+     "name": "u16_6",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x8",
+     "name": "sorted",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x9",
+     "name": "prev_key",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0xa",
+     "name": "next_key",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0xb",
+     "name": "current",
+     "type": "ptr:void",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "misc_634e40.cpp step: cycles current through items[count] with the prev / next keys | r6: Phase 2 x64 audit (unplaced-b-1): current is a pointer like items (misc_634e40.cpp; dead code)",
+   "confidence": "medium",
+   "notes": "items is u32*. R3: items (+0) stays ptr:void: a u32 array read as a[i-1] (displacement -4) and sorted with qsort; a typed pointee would report the -4 access.",
+   "override": true
+  }
+ ]
+}

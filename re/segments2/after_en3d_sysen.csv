@@ -1,0 +1,5 @@
+start,end,name,confidence,evidence,target
+0x00603710,0x00603710,sysen_g0a,high,Obj::open (calls init_display) between sysen.cpp SysEn::dtor and activate.,en3d/sysen.cpp
+0x006037f0,0x006037f0,sysen_g0b,medium,"Game::init_display, counterpart of shutdown_managers, after sysen.cpp activate.",en3d/sysen.cpp
+0x00603ad0,0x00603fd0,sysen_g0c,medium,"System-engine run: flush_loader, screenshot, window proc, screen close/activate, device-lost restart (shutdown_managers before it is likely sysen too).",en3d/sysen.cpp
+0x006040b0,0x006040b0,texdir_g0,high,Ctor of the TexDir global a59718 (init_5641c0) whose dtor Obj::call_604150 0x6040e0 opens texdir.cpp.,en3d/texdir.cpp

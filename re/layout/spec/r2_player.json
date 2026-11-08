@@ -1,0 +1,692 @@
+{
+ "group": "r2_player",
+ "classes": [
+  {
+   "class": "Player",
+   "size": "0x126e",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "unit_id",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "i16_4",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x10",
+     "name": "mode",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "prev_mode",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "cam_zones",
+     "type": "ptr:CamZones",
+     "size": 4
+    },
+    {
+     "off": "0x44",
+     "name": "rally_pos",
+     "type": "f32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x74",
+     "name": "follow_mode",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x75",
+     "name": "follow_param",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x79",
+     "name": "u8_79",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x7a",
+     "name": "u16_7a",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x7c",
+     "name": "u8_7c",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x7d",
+     "name": "cursor_mode",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x81",
+     "name": "blocked",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x82",
+     "name": "i32_82",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x86",
+     "name": "u32_86",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x8a",
+     "name": "i32_8a",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x8e",
+     "name": "button_down",
+     "type": "u8",
+     "size": 1,
+     "count": 4
+    },
+    {
+     "off": "0x92",
+     "name": "button_up",
+     "type": "u8",
+     "size": 1,
+     "count": 4
+    },
+    {
+     "off": "0x96",
+     "name": "order_state",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x97",
+     "name": "press_time",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x9b",
+     "name": "combo_step",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x9d",
+     "name": "i8_9d",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x9e",
+     "name": "i32_9e",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xa2",
+     "name": "i32_a2",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xa6",
+     "name": "turn",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0xa8",
+     "name": "u32_a8",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xac",
+     "name": "riding",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0xad",
+     "name": "aim_yaw_rad",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0xb1",
+     "name": "aim_yaw_deg",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0xb5",
+     "name": "f32_b5",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0xb9",
+     "name": "i16_b9",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0xbb",
+     "name": "i32_bb",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xbf",
+     "name": "aiming",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0xc0",
+     "name": "aim_time",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xc4",
+     "name": "mounted",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0xc5",
+     "name": "mount_heading",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0xc9",
+     "name": "f32_c9",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0xcd",
+     "name": "i16_cd",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0xd3",
+     "name": "goto_target",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xd7",
+     "name": "goto_kind",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xdb",
+     "name": "goto_active",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0xdd",
+     "name": "goto_time",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xe1",
+     "name": "f32_e1",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0xe9",
+     "name": "f32_e9",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0xed",
+     "name": "zoom_dist",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0xf1",
+     "name": "u32_f1",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xf5",
+     "name": "rts_active",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xf9",
+     "name": "group_counts",
+     "type": "u8",
+     "size": 1,
+     "count": 12
+    },
+    {
+     "off": "0x105",
+     "name": "group_units",
+     "type": "u32",
+     "size": 4,
+     "count": 1100
+    },
+    {
+     "off": "0x1235",
+     "name": "dragging",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x1236",
+     "name": "group",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x1237",
+     "name": "u8_1237",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x1238",
+     "name": "u32_1238",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x123c",
+     "name": "drag_x",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x1240",
+     "name": "drag_y",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x1248",
+     "name": "pick_kind",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x124c",
+     "name": "click_time",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1250",
+     "name": "pick_id",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1254",
+     "name": "u32_1254",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1258",
+     "name": "point_name",
+     "type": "char",
+     "size": 1,
+     "count": 9
+    },
+    {
+     "off": "0x1261",
+     "name": "u32_1261",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1265",
+     "name": "rts_icon",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1269",
+     "name": "u8_1269",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x126a",
+     "name": "f32_126a",
+     "type": "f32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "global g_a5b9e8; gfile3 write_camera 0x4857c0 / load 0x485930 write/read 0x126e bytes of this; reset_state 0x485990; Player/Mission/UnitCtl/Cmd/Screen::reset/Mount/Groups functions all run on g_a5b9e8 with the same offsets",
+   "confidence": "medium",
+   "override": true,
+   "notes": "Merged: Mission (g06) and UnitCtl (g09) are this object (aliases with base Player); camcmd/mission/ctrl/uinput/rts/rts2/playerctl functions labelled Cmd (0x42ba40/0x433c20/0x43acb0/0x43b2d0), Screen::reset 0x42de70, Mount::try_dismount 0x43c920, Groups::contains 0x453590, unit_value 0x42fdd0 and load 0x485930 moved here, and the squadcmd.cpp helpers 0x42d180/0x42d270/0x42d300/0x42d560/0x42d5c0 (labelled UnitCmd/Squad/Obj; called on the Player this by ctrl/playerctl, call Player methods on this). The four game.cpp flag_bit functions labelled Player/Mission (0x4720d0/0x472150/0x472220/0x472370) are Game (g_a58f90, Scenario at +0x17) and moved there. RTS groups: group_counts[g] u8 at +0xf9 (12 bytes, +0x104 used as a separate count), group_units = 11 groups x 100 unit ids from +0x105. point_name char[9] at +0x1258 (Cursor::draw writes the terminator at +0x1260). Unknown/unaccessed: 0x6..0xf, 0x1c..0x43, 0x50..0x73, 0xcf..0xd2, 0xe5..0xe8, 0x1244..0x1247. Remaining check report: ArcherIcon::update 0x42a8a0 writes this-0x7ffbd57 = a misread absolute global address, not a field."
+  },
+  {
+   "class": "Mission",
+   "size": null,
+   "base": "Player",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "mission.cpp tick/rts_init use Player offsets (+0x10, +0x18 CamZones*, +0xf9 groups, +0x1236 group, +0x1265) on g_a5b9e8",
+   "confidence": "high",
+   "override": true,
+   "notes": "alias: same object as Player (g_a5b9e8); its functions are reassigned to Player"
+  },
+  {
+   "class": "UnitCtl",
+   "size": null,
+   "base": "Player",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "uinput.cpp/ctrl.cpp functions run on g_a5b9e8 (as_unit(obj(g_a5b9e8))->state_sound/finish_state) with the Player offsets",
+   "confidence": "high",
+   "override": true,
+   "notes": "alias: same object as Player (g_a5b9e8); its functions are reassigned to Player"
+  },
+  {
+   "class": "Wnd",
+   "size": "0x153",
+   "base": "SysEnWindow",
+   "vtable": "0x9d5d68",
+   "fields": [
+    {
+     "off": "0x20",
+     "name": "u8_20",
+     "type": "u8",
+     "size": 1,
+     "count": 2
+    },
+    {
+     "off": "0x22",
+     "name": "frame_count",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x26",
+     "name": "tick_count",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x2a",
+     "name": "real_time",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x2e",
+     "name": "frame_ms",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x32",
+     "name": "game_time",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x36",
+     "name": "game_dt",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x3a",
+     "name": "mode",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x3b",
+     "name": "prev_mode",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x3c",
+     "name": "next_mode",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x3d",
+     "name": "u8_3d",
+     "type": "u8",
+     "size": 1,
+     "count": 3
+    },
+    {
+     "off": "0x40",
+     "name": "frame_scale",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x44",
+     "name": "speed",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x48",
+     "name": "i16_48",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x4a",
+     "name": "u8_4a",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x4b",
+     "name": "cd_drive",
+     "type": "char",
+     "size": 1
+    },
+    {
+     "off": "0x4c",
+     "name": "music_path",
+     "type": "char",
+     "size": 1,
+     "count": 261
+    },
+    {
+     "off": "0x151",
+     "name": "u8_151",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x152",
+     "name": "music_flag",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [],
+   "evidence": "global g_game_a50088; ctor 0x4d6b90: SysEn ctor 0x6035c0, vtable 0x9d5d68, memset(this+0x20,0,0x133) -> 0x153; Game::run 0x499960 frame/tick/time fields; init_4d6c50 sets 0x40/0x44 = 1.0f, 0x48, 0x4a, 0x152",
+   "confidence": "medium",
+   "override": true,
+   "notes": "The main window / main-loop object (label Game in g11 for run/draw/tick/set_speed/on_mode). Game::run: frame_count +0x22 (set 1, ++ per frame), tick_count +0x26, real_time +0x2a, frame_ms +0x2e (clamped 1000), game_time +0x32 += game_dt +0x36 = frame_ms*speed, frame_scale +0x40 (<= 5), speed +0x44; mode +0x3a / prev +0x3b / requested +0x3c (Mode::set 0x499540). resolve_path 0x4d7bf0: CD drive letter +0x4b; init_demo 0x4d7ba0 passes this+0x4c as the path buffer (length assumed up to +0x151). Moved here: close 0x4d6ce0 (was Screen), release_globals 0x4d7890 / load_fonts 0x4d6fe0 / Music::init_demo 0x4d7ba0 (were Game; called on this by close/init), Cd::find_drive 0x4d7ca0 (+0x4b, called on this by init_demo). 0x20/0x21, 0x3d..0x3f unaccessed."
+  },
+  {
+   "class": "Collisions",
+   "size": "0x584",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "objects",
+     "type": "ptr:DynArray",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "zones",
+     "type": "RWorldCell",
+     "size": 52,
+     "count": 27
+    },
+    {
+     "off": "0x580",
+     "name": "zone_count",
+     "type": "i32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "init 0x68db80 (+0 list, +0x580 count = 0); add 0x68dbf0 writes one 0x34-byte entry at +4+i*0x34 (a, b, x, y, fx, fy, 0, info[6]); Players (g08) memsets 0x584 for its embedded Collisions",
+   "confidence": "high",
+   "override": true,
+   "notes": "zones is an embedded array of 27 RWorldCell records (g08, 0x34 bytes, same record as Players::cells); label Placement and Map::pick 0x692f40 are this object"
+  }
+ ],
+ "functions": {
+  "0x42a810": "Player",
+  "0x42ba40": "Player",
+  "0x42c260": "Player",
+  "0x42d160": "SaveMenu",
+  "0x42d180": "Player",
+  "0x42d270": "Player",
+  "0x42d300": "Player",
+  "0x42d560": "Player",
+  "0x42d5c0": "Player",
+  "0x42d810": "Player",
+  "0x42d900": "Player",
+  "0x42d980": "Player",
+  "0x42de70": "Player",
+  "0x42e040": "Player",
+  "0x42f5d0": "Player",
+  "0x42f700": "Player",
+  "0x42fd60": "Player",
+  "0x42fdd0": "Player",
+  "0x42fef0": "Player",
+  "0x4300e0": "Player",
+  "0x430110": "Player",
+  "0x430130": "Player",
+  "0x430150": "Player",
+  "0x430170": "Player",
+  "0x430440": "Player",
+  "0x431520": "Player",
+  "0x4338c0": "Player",
+  "0x433c20": "Player",
+  "0x433f40": "Player",
+  "0x434270": "Player",
+  "0x434f40": "Player",
+  "0x436250": "Player",
+  "0x4367c0": "Player",
+  "0x437b60": "Player",
+  "0x437ed0": "Player",
+  "0x438110": "Player",
+  "0x438ad0": "Player",
+  "0x438b00": "Player",
+  "0x438b30": "Player",
+  "0x439090": "Player",
+  "0x439110": "Player",
+  "0x43a3b0": "Player",
+  "0x43a650": "Player",
+  "0x43a720": "Player",
+  "0x43a740": "Player",
+  "0x43a9e0": "Player",
+  "0x43ab80": "Player",
+  "0x43ac60": "Player",
+  "0x43acb0": "Player",
+  "0x43b2d0": "Player",
+  "0x43b990": "Player",
+  "0x43be40": "Player",
+  "0x43bef0": "Player",
+  "0x43bfe0": "Player",
+  "0x43c210": "Player",
+  "0x43c480": "Player",
+  "0x43c5c0": "Player",
+  "0x43c7d0": "Player",
+  "0x43c920": "Player",
+  "0x43ca90": "Player",
+  "0x43d560": "Player",
+  "0x43dab0": "Player",
+  "0x43ef30": "Player",
+  "0x43f940": "Player",
+  "0x43fc90": "Player",
+  "0x4450f0": "Player",
+  "0x447960": "Player",
+  "0x44ac60": "Player",
+  "0x453590": "Player",
+  "0x453da0": "Player",
+  "0x4720d0": "Game",
+  "0x472150": "Game",
+  "0x472220": "Game",
+  "0x472370": "Game",
+  "0x47b2b0": "Player",
+  "0x485930": "Player",
+  "0x4d6ce0": "Wnd",
+  "0x4d6fe0": "Wnd",
+  "0x4d7890": "Wnd",
+  "0x4d7ba0": "Wnd",
+  "0x4d7ca0": "Wnd",
+  "0x503fb0": "Player",
+  "0x503fe0": "Player",
+  "0x509d40": "Player",
+  "0x51c4b0": "Player",
+  "0x603670": "SysEnWindow",
+  "0x603780": "SysEnWindow",
+  "0x6039d0": "SysEnWindow",
+  "0x603ad0": "SysEnWindow",
+  "0x603af0": "SysEnWindow",
+  "0x603b20": "SysEnWindow",
+  "0x603e90": "SysEnWindow",
+  "0x603eb0": "SysEnWindow",
+  "0x603f20": "SysEnWindow",
+  "0x603fd0": "SysEnWindow"
+ },
+ "notes": "Round 2, family player. MERGES: Player = Mission (g06) = UnitCtl (g09) = the local player controller g_a5b9e8 (0x126e bytes, gfile3 write/read of this); Mission and UnitCtl are alias classes (base Player) and all their functions moved to Player, plus Cmd::aim_unit/pick_target/follow_target/check_object_reach (g03 Cmd keeps only news.cpp 0x4ba3f0), Screen::reset 0x42de70 (g05 Screen), Mount::try_dismount 0x43c920, Groups::contains 0x453590 and the squadcmd.cpp helpers (UnitCmd 0x42d300/0x42d560/0x42d5c0/0x42d180, Obj 0x42d270). The four game.cpp flag_bit functions (0x4720d0/0x472150/0x472220/0x472370, labelled Player, mapped to Mission by g12) are Game functions (Game+0x17 Scenario: +0x17 id, +0x1b index, +0x27 entries, +0x1b5.. local entry bits) and moved to Game. WINDOW: Wnd restated with the main-loop fields g11 found (frame/tick/time counters 0x22..0x36, mode bytes 0x3a..0x3c, frame_scale/speed 0x40/0x44, CD drive 0x4b + path 0x4c); close 0x4d6ce0 (was Screen), release_globals/load_fonts/init_demo (were Game), Cd::find_drive -> Wnd; the sysen.cpp window-base methods dtor 0x603670 (g04 had it on SysEn), activate 0x603780 (g04: Screen), shutdown_managers 0x6039d0, suspend/resume 0x603eb0/0x603f20, flush_loader 0x603af0, screenshot 0x603b20, restart 0x603fd0 (label Sound), nops 0x603ad0/0x603e90 -> SysEnWindow. NAMING: the original class SysEn (en3d/sysen.cpp, ctor 0x6035c0) is the window base we call SysEnWindow; the g04 class SysEn is the D3D system object g_sysEn 0xa52420 (d3dsys.cpp). Both names are kept to avoid breaking references; a later rename SysEn -> D3DSys / SysEnWindow -> SysEn would match the original source. Collisions: zones restated as 27 x RWorldCell (g08's 0x34-byte record). FOR OTHER FAMILIES: units - UnitCmd (g04) is not an object of its own: its squadcmd.cpp functions are Player methods (moved), only Obj::byte_24 0x42d160 remains, which is SaveMenu::busy on g_a59a98 (moved to SaveMenu, ui; SaveMenu should declare a u8 at +0x24 instead of covering it with u32_1c[3]); UnitCmd can become an alias of Player. ui - Screen (g05) loses reset 0x42de70 (Player) and close 0x4d6ce0 (Wnd); its remaining fields 0x7c/0xed came only from reset. engine3d/lib - Resource (g02, 0x18 bytes) needs next/prev links at +0x10/+0x14 (SysEn::link_resource 0x5ff290 walks resources_tail +0x333 -> +0x10 -> +0x14); then SysEn +0x32f/+0x333 can become ptr:Resource. Scenario (g12, no family): +0x29a squads, ScenarioEntry +0x186.. (Game +0x1b1 local.object) are dereferenced ptr:void. Game word_set/word_stack (+0x71c/+0x728), Nation leaders/idle_units/stations and Profile list_a/list_b are u16 arrays (ptr:void kept: no element class). Light (g07): CameraFollow::update 0x5634e0 writes Light +0xc/+0x10/+0x14 as dwords (fine with position f32[3]). Camera vs ViewRect for 0x6152b0/0x615340 (Grid::to_cell/to_local) was a reconcile tie, left as ViewRect. Residue: Player 0x42a8a0 writes this-0x7ffbd57 and SysEn 0x5fa360 / 0x5ff060 write this-0x4b / this-0x33ffa010: absolute addresses misread as this-relative, not fields."
+}

@@ -1,0 +1,37 @@
+// Generated (re/layout/gen_types.py) from re/layout/layouts.json: the data members of BodyState
+// (r5_image.json, confidence medium). Do not edit; change the spec.
+    std::uint32_t vec0_x;  // 0x0
+    float vec0_y;  // 0x4
+    float vec0_z;  // 0x8
+    float vec_c[3];  // 0xc
+    float inertia[16];  // 0x18
+    float inv_inertia[16];  // 0x58
+    float angle_x;  // 0x98
+    float angle_y;  // 0x9c
+    float angle_z;  // 0xa0
+    float orient[4];  // 0xa4
+    float pos_x;  // 0xb4
+    float pos_y;  // 0xb8
+    float pos_z;  // 0xbc
+    float cell_pos[3];  // 0xc0
+    std::uint32_t zone;  // 0xcc
+    void* sub;  // 0xd0
+    std::uint16_t on_ground;  // 0xd4
+    std::uint32_t cell;  // 0xd6
+    float move_target[3];  // 0xda
+    std::uint32_t move_start;  // 0xe6
+    float move_len;  // 0xea
+    std::uint32_t move_end;  // 0xee
+    std::uint16_t move_flag;  // 0xf2
+    float goal[3];  // 0xf4
+    std::int32_t goal_start;  // 0x100
+    float goal_len;  // 0x104
+    std::uint32_t goal_end;  // 0x108
+    std::uint16_t goal_flag;  // 0x10c
+    float vel[3];  // 0x10e
+    std::uint32_t vel_start;  // 0x11a
+    std::uint32_t vel_len;  // 0x11e
+    std::uint32_t vel_end;  // 0x122
+    std::uint16_t vel_flag;  // 0x126
+    float f32_128[3];  // 0x128
+    std::uint16_t u16_134;  // 0x134

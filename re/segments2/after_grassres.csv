@@ -1,0 +1,3 @@
+start,end,name,confidence,evidence,target
+0x00488190,0x00488370,grassres_tail,high,"NameTable::find / Table::find_m / Obj::delete_23 (called by grassres delete_all) / stub: the find+delete+stub tail of a *res object.",game/grassres.cpp
+0x00488390,0x00488390,help_ctor,high,"Obj::clear_160 is the ctor of the init group 0x564880 whose dtor 0x5648f0 calls help.cpp Obj::reset_4884c0; precedes help.cpp.",game/help.cpp

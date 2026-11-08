@@ -1,0 +1,1085 @@
+{
+ "section": "s5",
+ "records": {
+  "GameFileFlags": {
+   "class": "GameFile",
+   "from": 2,
+   "size": 4,
+   "legacy": "Raw",
+   "fields": [
+    [
+     0,
+     4,
+     4,
+     "flags",
+     "U32",
+     null
+    ]
+   ]
+  },
+  "GameFileTime": {
+   "class": "GameFile",
+   "from": 264,
+   "size": 8,
+   "legacy": "Raw",
+   "fields": [
+    [
+     0,
+     8,
+     4,
+     "file_time",
+     "U32",
+     null
+    ]
+   ]
+  },
+  "GameFileLocalTime": {
+   "class": "GameFile",
+   "from": 272,
+   "size": 8,
+   "legacy": "Raw",
+   "fields": [
+    [
+     0,
+     8,
+     4,
+     "local_time",
+     "U32",
+     null
+    ]
+   ]
+  },
+  "GameFileMode": {
+   "class": "GameFile",
+   "from": 280,
+   "size": 1,
+   "legacy": "Raw",
+   "fields": [
+    [
+     0,
+     1,
+     1,
+     "mode",
+     "U8",
+     null
+    ]
+   ]
+  },
+  "GameFile119": {
+   "class": "GameFile",
+   "from": 281,
+   "size": 1,
+   "legacy": "Raw",
+   "fields": [
+    [
+     0,
+     1,
+     1,
+     "u8_119",
+     "U8",
+     null
+    ]
+   ]
+  },
+  "GameFileGameTime": {
+   "class": "GameFile",
+   "from": 415,
+   "size": 4,
+   "legacy": "Raw",
+   "fields": [
+    [
+     0,
+     4,
+     4,
+     "game_time",
+     "U32",
+     null
+    ]
+   ]
+  },
+  "GameFile1a3": {
+   "class": "GameFile",
+   "from": 419,
+   "size": 4,
+   "legacy": "Raw",
+   "fields": [
+    [
+     0,
+     4,
+     4,
+     "u32_1a3",
+     "U32",
+     null
+    ]
+   ]
+  },
+  "GameFileName": {
+   "class": "GameFile",
+   "from": 282,
+   "size": 128,
+   "legacy": "Raw",
+   "fields": [
+    [
+     0,
+     128,
+     1,
+     "name",
+     "Char",
+     null
+    ]
+   ]
+  },
+  "GameFile19a": {
+   "class": "GameFile",
+   "from": 410,
+   "size": 4,
+   "legacy": "Raw",
+   "fields": [
+    [
+     0,
+     4,
+     4,
+     "u32_19a",
+     "U32",
+     null
+    ]
+   ]
+  },
+  "GameFile19e": {
+   "class": "GameFile",
+   "from": 414,
+   "size": 1,
+   "legacy": "Raw",
+   "fields": [
+    [
+     0,
+     1,
+     1,
+     "u8_19e",
+     "U8",
+     null
+    ]
+   ]
+  },
+  "WndSpeed": {
+   "class": "Wnd",
+   "from": 68,
+   "size": 4,
+   "legacy": "Raw",
+   "fields": [
+    [
+     0,
+     4,
+     4,
+     "speed",
+     "F32",
+     null
+    ]
+   ]
+  },
+  "WndI16_48": {
+   "class": "Wnd",
+   "from": 72,
+   "size": 2,
+   "legacy": "Raw",
+   "fields": [
+    [
+     0,
+     2,
+     2,
+     "i16_48",
+     "I16",
+     null
+    ]
+   ]
+  },
+  "WndU8_4a": {
+   "class": "Wnd",
+   "from": 74,
+   "size": 1,
+   "legacy": "Raw",
+   "fields": [
+    [
+     0,
+     1,
+     1,
+     "u8_4a",
+     "U8",
+     null
+    ]
+   ]
+  },
+  "WndGameTime": {
+   "class": "Wnd",
+   "from": 50,
+   "size": 4,
+   "legacy": "Raw",
+   "fields": [
+    [
+     0,
+     4,
+     4,
+     "game_time",
+     "U32",
+     null
+    ]
+   ]
+  },
+  "Profile": {
+   "class": "Profile",
+   "from": 0,
+   "size": 72,
+   "legacy": "Raw",
+   "fields": [
+    [
+     0,
+     32,
+     1,
+     "name",
+     "Char",
+     null
+    ],
+    [
+     32,
+     4,
+     4,
+     "unit_count",
+     "I32",
+     null
+    ],
+    [
+     36,
+     4,
+     4,
+     "units",
+     "Pointer",
+     "Cleared"
+    ],
+    [
+     40,
+     4,
+     4,
+     "list_a_count",
+     "I32",
+     null
+    ],
+    [
+     44,
+     4,
+     4,
+     "list_a",
+     "Pointer",
+     "Stale"
+    ],
+    [
+     48,
+     4,
+     4,
+     "list_b_count",
+     "I32",
+     null
+    ],
+    [
+     52,
+     4,
+     4,
+     "list_b",
+     "Pointer",
+     "Stale"
+    ],
+    [
+     56,
+     4,
+     4,
+     "u32_38",
+     "U32",
+     null
+    ],
+    [
+     60,
+     4,
+     4,
+     "u32_3c",
+     "U32",
+     null
+    ],
+    [
+     64,
+     4,
+     4,
+     "i32_40",
+     "I32",
+     null
+    ],
+    [
+     68,
+     4,
+     4,
+     "i32_44",
+     "I32",
+     null
+    ]
+   ]
+  },
+  "ProfileName": {
+   "class": "Profile",
+   "from": 0,
+   "size": 32,
+   "legacy": "Raw",
+   "fields": [
+    [
+     0,
+     32,
+     1,
+     "name",
+     "Char",
+     null
+    ]
+   ]
+  },
+  "ProfileUnit": {
+   "class": "ProfileUnit",
+   "from": 0,
+   "size": 119,
+   "legacy": "Raw",
+   "fields": [
+    [
+     0,
+     33,
+     1,
+     "name",
+     "Char",
+     null
+    ],
+    [
+     33,
+     4,
+     4,
+     "leader",
+     "Pointer",
+     "Flag"
+    ],
+    [
+     37,
+     2,
+     2,
+     "member_count",
+     "I16",
+     null
+    ],
+    [
+     39,
+     80,
+     4,
+     "members",
+     "Pointer",
+     "Flag"
+    ]
+   ]
+  },
+  "EmptyRoom": {
+   "class": "EmptyRoom",
+   "from": 0,
+   "size": 8,
+   "legacy": "Raw",
+   "fields": [
+    [
+     0,
+     4,
+     4,
+     "recno",
+     "I32",
+     null
+    ],
+    [
+     4,
+     4,
+     4,
+     "deleted_date",
+     "I32",
+     null
+    ]
+   ]
+  },
+  "ConfigHead": {
+   "class": "Config",
+   "from": 0,
+   "size": 181,
+   "legacy": "Raw",
+   "fields": [
+    [
+     0,
+     4,
+     4,
+     "kind_value",
+     "I32",
+     null
+    ],
+    [
+     4,
+     1,
+     1,
+     "kind_byte",
+     "U8",
+     null
+    ],
+    [
+     5,
+     1,
+     1,
+     "u8_5",
+     "U8",
+     null
+    ],
+    [
+     6,
+     2,
+     2,
+     "u16_6",
+     "I16",
+     null
+    ],
+    [
+     8,
+     1,
+     1,
+     "u8_8",
+     "U8",
+     null
+    ],
+    [
+     9,
+     1,
+     1,
+     "u8_9",
+     "U8",
+     null
+    ],
+    [
+     10,
+     1,
+     1,
+     "kind",
+     "U8",
+     null
+    ],
+    [
+     11,
+     4,
+     4,
+     "u32_b",
+     "U32",
+     null
+    ],
+    [
+     15,
+     1,
+     1,
+     "u8_f",
+     "U8",
+     null
+    ],
+    [
+     16,
+     4,
+     4,
+     "u32_10",
+     "I32",
+     null
+    ],
+    [
+     20,
+     1,
+     1,
+     "u8_14",
+     "U8",
+     null
+    ],
+    [
+     21,
+     1,
+     1,
+     "u8_15",
+     "U8",
+     null
+    ],
+    [
+     22,
+     1,
+     1,
+     "u8_16",
+     "U8",
+     null
+    ],
+    [
+     23,
+     21,
+     1,
+     "player_name",
+     "Char",
+     null
+    ],
+    [
+     44,
+     1,
+     1,
+     "u8_2c",
+     "U8",
+     null
+    ],
+    [
+     45,
+     1,
+     1,
+     "u8_2d",
+     "U8",
+     null
+    ],
+    [
+     46,
+     4,
+     4,
+     "u32_2e",
+     "U32",
+     null
+    ],
+    [
+     50,
+     1,
+     1,
+     "u8_32",
+     "U8",
+     null
+    ],
+    [
+     51,
+     1,
+     1,
+     "u8_33",
+     "U8",
+     null
+    ],
+    [
+     52,
+     1,
+     1,
+     "u8_34",
+     "U8",
+     null
+    ],
+    [
+     53,
+     2,
+     2,
+     "u16_35",
+     "U16",
+     null
+    ],
+    [
+     55,
+     1,
+     1,
+     "u8_37",
+     "U8",
+     null
+    ],
+    [
+     56,
+     1,
+     1,
+     "u8_38",
+     "U8",
+     null
+    ],
+    [
+     57,
+     1,
+     1,
+     "u8_39",
+     "U8",
+     null
+    ],
+    [
+     58,
+     2,
+     2,
+     "u16_3a",
+     "U16",
+     null
+    ],
+    [
+     60,
+     2,
+     2,
+     "u16_3c",
+     "U16",
+     null
+    ],
+    [
+     62,
+     2,
+     2,
+     "u16_3e",
+     "U16",
+     null
+    ],
+    [
+     64,
+     1,
+     1,
+     "u8_40",
+     "U8",
+     null
+    ],
+    [
+     65,
+     2,
+     2,
+     "u16_41",
+     "U16",
+     null
+    ],
+    [
+     67,
+     1,
+     1,
+     "u8_43",
+     "U8",
+     null
+    ],
+    [
+     68,
+     1,
+     1,
+     "u8_44",
+     "U8",
+     null
+    ],
+    [
+     69,
+     1,
+     1,
+     "u8_45",
+     "U8",
+     null
+    ],
+    [
+     70,
+     1,
+     1,
+     "u8_46",
+     "U8",
+     null
+    ],
+    [
+     71,
+     1,
+     1,
+     "u8_47",
+     "U8",
+     null
+    ],
+    [
+     72,
+     1,
+     1,
+     "u8_48",
+     "U8",
+     null
+    ],
+    [
+     73,
+     1,
+     1,
+     "u8_49",
+     "U8",
+     null
+    ],
+    [
+     74,
+     1,
+     1,
+     "u8_4a",
+     "U8",
+     null
+    ],
+    [
+     75,
+     1,
+     1,
+     "u8_4b",
+     "U8",
+     null
+    ],
+    [
+     76,
+     1,
+     1,
+     "u8_4c",
+     "U8",
+     null
+    ],
+    [
+     77,
+     1,
+     1,
+     "u8_4d",
+     "U8",
+     null
+    ],
+    [
+     78,
+     1,
+     1,
+     "u8_4e",
+     "U8",
+     null
+    ],
+    [
+     79,
+     4,
+     4,
+     "u32_4f",
+     "U32",
+     null
+    ],
+    [
+     83,
+     4,
+     4,
+     "u32_53",
+     "U32",
+     null
+    ],
+    [
+     87,
+     4,
+     4,
+     "u32_57",
+     "U32",
+     null
+    ],
+    [
+     91,
+     4,
+     4,
+     "u32_5b",
+     "U32",
+     null
+    ],
+    [
+     95,
+     4,
+     4,
+     "u32_5f",
+     "U32",
+     null
+    ],
+    [
+     99,
+     4,
+     4,
+     "u32_63",
+     "U32",
+     null
+    ],
+    [
+     103,
+     4,
+     4,
+     "u32_67",
+     "U32",
+     null
+    ],
+    [
+     107,
+     4,
+     4,
+     "u32_6b",
+     "U32",
+     null
+    ],
+    [
+     111,
+     4,
+     4,
+     "u32_6f",
+     "U32",
+     null
+    ],
+    [
+     115,
+     1,
+     1,
+     "u8_73",
+     "U8",
+     null
+    ],
+    [
+     116,
+     1,
+     1,
+     "i8_74",
+     "I8",
+     null
+    ],
+    [
+     117,
+     1,
+     1,
+     "i8_75",
+     "I8",
+     null
+    ],
+    [
+     118,
+     4,
+     4,
+     "fov",
+     "F32",
+     null
+    ],
+    [
+     122,
+     4,
+     4,
+     "u32_7a",
+     "U32",
+     null
+    ],
+    [
+     126,
+     4,
+     4,
+     "u32_7e",
+     "U32",
+     null
+    ],
+    [
+     130,
+     4,
+     4,
+     "screen_width",
+     "U32",
+     null
+    ],
+    [
+     134,
+     4,
+     4,
+     "screen_height",
+     "U32",
+     null
+    ],
+    [
+     138,
+     4,
+     4,
+     "colour_depth",
+     "U32",
+     null
+    ],
+    [
+     142,
+     4,
+     4,
+     "refresh_rate",
+     "U32",
+     null
+    ],
+    [
+     146,
+     1,
+     1,
+     "u8_92",
+     "U8",
+     null
+    ],
+    [
+     147,
+     1,
+     1,
+     "u8_93",
+     "U8",
+     null
+    ],
+    [
+     148,
+     1,
+     1,
+     "u8_94",
+     "U8",
+     null
+    ],
+    [
+     149,
+     1,
+     1,
+     "u8_95",
+     "U8",
+     null
+    ],
+    [
+     150,
+     1,
+     1,
+     "u8_96",
+     "U8",
+     null
+    ],
+    [
+     151,
+     1,
+     1,
+     "u8_97",
+     "U8",
+     null
+    ],
+    [
+     152,
+     4,
+     4,
+     "u32_98",
+     "U32",
+     null
+    ],
+    [
+     156,
+     1,
+     1,
+     "detail",
+     "I8",
+     null
+    ],
+    [
+     157,
+     1,
+     1,
+     "u8_9d",
+     "I8",
+     null
+    ],
+    [
+     158,
+     1,
+     1,
+     "u8_9e",
+     "I8",
+     null
+    ],
+    [
+     159,
+     1,
+     1,
+     "u8_9f",
+     "U8",
+     null
+    ],
+    [
+     160,
+     4,
+     4,
+     "view_distance",
+     "U32",
+     null
+    ],
+    [
+     164,
+     4,
+     4,
+     "u32_a4",
+     "U32",
+     null
+    ],
+    [
+     168,
+     4,
+     4,
+     "brightness",
+     "F32",
+     null
+    ],
+    [
+     172,
+     4,
+     4,
+     "contrast",
+     "F32",
+     null
+    ],
+    [
+     176,
+     4,
+     4,
+     "gamma",
+     "F32",
+     null
+    ],
+    [
+     180,
+     1,
+     1,
+     "u8_b4",
+     "U8",
+     null
+    ]
+   ]
+  },
+  "KeyBinding": {
+   "class": "KeyBinding",
+   "from": 0,
+   "size": 48,
+   "legacy": "Raw",
+   "fields": [
+    [
+     0,
+     34,
+     1,
+     "name",
+     "Char",
+     null
+    ],
+    [
+     34,
+     1,
+     1,
+     "joy_button",
+     "U8",
+     null
+    ],
+    [
+     35,
+     1,
+     1,
+     "mouse_button",
+     "U8",
+     null
+    ],
+    [
+     36,
+     4,
+     4,
+     "key",
+     "U32",
+     null
+    ],
+    [
+     40,
+     4,
+     4,
+     "key_alt",
+     "U32",
+     null
+    ],
+    [
+     44,
+     4,
+     4,
+     "key_mouse",
+     "U32",
+     null
+    ]
+   ]
+  }
+ }
+}

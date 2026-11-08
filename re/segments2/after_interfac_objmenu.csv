@@ -1,0 +1,6 @@
+start,end,name,confidence,evidence,target
+0x0071efc0,0x0071efc0,objmenu_masks,high,"reload_masks between ObjMenu::release and Screen::free_slots_and_parts; string S8_SCR follows d:\ww\interfac\objmenu.cpp and TXT_FV.",interfac/objmenu.cpp
+0x0071f690,0x007215f0,objmenu_draw_update,high,"ObjectiveMenu::draw/update/layout_main: strings %d:%d:%d continue objmenu .rdata; callers in objmenu.",interfac/objmenu.cpp
+0x007226a0,0x007226a0,objmenu_open,high,"Menu::open_7226a0 between set_state and Dialog::close_if_open (objmenu); opens the same ObjMenu panels.",interfac/objmenu.cpp
+0x00722990,0x00723870,objmenu_draw_cbs,high,"Button draw callbacks (DIAMOND/CS_* strings 0x9def48..) between objmenu Dialog::close_if_open and Scroller::init (aw_d_* 0x9def74).",interfac/objmenu.cpp
+0x007240f0,0x00724670,objmenu_scroller,high,"draw_mask (mask 0x9defbc) / Scroller::buttons / release3 / reset_buttons all called from objmenu functions; before objmenub open_brief.",interfac/objmenu.cpp

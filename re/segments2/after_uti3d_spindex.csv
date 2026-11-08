@@ -1,0 +1,4 @@
+start,end,name,confidence,evidence,target
+0x00683d70,0x00683e10,spindex_grid,high,"Grid::at / Grid::cell between SpIndex::resize and SpIndex::set_a, called only by SpIndex functions.",uti3d/spindex.cpp
+0x00684010,0x00684590,tokenize,medium,"Tokenizer class (vtable 0x9dcd98): ctor / scalar dtor / dtor / split / StringPool forward; used by script and particle compilers.",
+0x006845d0,0x00684620,video_global,high,"Com684 ctor (CoInitialize) / shutdown (Video::close + CoUninitialize) form the init/atexit pair of the video.cpp global, directly before Video::open.",uti3d/video.cpp

@@ -1,0 +1,4 @@
+start,end,name,confidence,evidence,target
+0x004c59d0,0x004c7b70,plasma_terrain,high,"Plasma-fractal height map (seed/subdivide/smooth with rand; HeightGrid::at/sample/Terrain::height) on the HeightGrid created by plasma.cpp HeightGrid::create.",game/plasma.cpp
+0x004c7dc0,0x004c7dc0,profile_rec_ctor,medium,"Struct48::zero is the record init used by after_profile List48::add / gfile3 load; directly precedes profile.cpp X::reset_c7.",game/profile.cpp
+0x004c7e20,0x004c7e20,profile_name32,high,"Name32::set between profile.cpp X::reset_c7 and Profile::clear; called by List48::add.",game/profile.cpp

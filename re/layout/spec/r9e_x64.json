@@ -1,0 +1,107 @@
+{
+ "group": "r9e_x64",
+ "classes": [
+  {
+   "class": "UnitAttScreen",
+   "size": "0x6b3",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "tex_iunitatt",
+     "type": "ptr:Texture",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "tex_commele",
+     "type": "ptr:Texture",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "bmp_iunitatt",
+     "type": "ptr:BmpRes",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "last_mouse_x",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0xe",
+     "name": "last_mouse_y",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x10",
+     "name": "mouse_moved_ms",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "blink_ms",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "blink_on",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x19",
+     "name": "button_sprites",
+     "type": "ptr:BmpRes",
+     "size": 4
+    },
+    {
+     "off": "0x1d",
+     "name": "hover_slot",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x21",
+     "name": "show_inventory",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x6ae",
+     "name": "is_open",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x6af",
+     "name": "unit_id",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [
+    {
+     "off": "0x22",
+     "name": "add_button",
+     "class": "Button"
+    },
+    {
+     "off": "0x368",
+     "name": "cb_button",
+     "class": "Button"
+    }
+   ],
+   "evidence": "r9e_x64: the inventory / unit attributes screen b_a56398 is one object that i_unitatt.cpp read through three layouts (UnitAttScreen, the UnitAttPanel view, the AddScreen view); the two embedded Button widgets (ADD at 0x22, CB at 0x368, stride 0x346) and the button sprite holder at 0x19 come from the AddScreen view (g06), the rest from r8_x64. i8_370 dropped: it lay inside cb_button (+8) and had no user.",
+   "confidence": "medium",
+   "override": true,
+   "notes": "On x64 the two Texture pointers at +0 / +4 push every later field: the UnitAttPanel view (no pointers before +0x8) read the unit id at +0x6af from the wrong place, so Inventory::draw returned before drawing (the owner's 'inventory is not rendering')."
+  }
+ ]
+}

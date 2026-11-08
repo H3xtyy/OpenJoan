@@ -1,0 +1,7 @@
+start,end,name,confidence,evidence
+0x00674f50,0x00675430,pathsp_tree,high,"BVH/quadtree/kd-tree helpers called by Bvh::build/Path/Nav, before pathsp.cpp's PathZones::group: pathsp.cpp content, merge into pathsp.cpp"
+0x006758f0,0x0067ca60,psystem,medium,"particle system: EffectState runtime, ParticleSystem::compile/parse_block/parse_sequence (strings right after pathsp.cpp __FILE__), Token::is_*, Kind/EffectKey classes whose vtables follow the token strings"
+0x0067caa0,0x0067d890,ptoken,high,"TokenList ctor/dtor (vtable 0x9dc6c0 after FINAL..PARTICLESYSTEM keywords), Parser::range/xyz/rgba/time/color/alpha ops, Tokenizer::classify (ALPHA_/COLOR_)"
+0x0067d8c0,0x0067ef70,pgauge,medium,"Gauge base (vtable 0x9dcaa0 right after ptoken strings) and Gauge*/Emitter lerp/init + Gauge*::parse (""Expecting = after Size."" ...)"
+0x0067ef90,0x00681e70,pemitter,low,"particle emitter runtime (PartEmitter::update/spawn, PartBillboards::draw, keys, ModelHolder::load); no strings, could also be pgauge's tail"
+0x00681ea0,0x00681ea0,spindex_ctor,medium,"Grid::Grid (DynArrayB ctor) immediately before SpIndex::dtor 0x681ee0: spindex.cpp head, merge into spindex.cpp"

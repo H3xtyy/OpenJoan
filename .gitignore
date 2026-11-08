@@ -1,0 +1,104 @@
+# build trees
+/build/
+/out/
+.vs/
+.vscode/
+*.user
+compile_commands.json
+__pycache__/
+
+# never commit original game files, assets or binaries (the executable's static data is committed as typed
+# source: src/data/README.md)
+*.exe
+*.dll
+*.pdb
+*.asm
+/game/
+**/generated/
+src/loader/joan.ico
+*.SAV
+*.BMP
+*.RES
+*.res
+*.SET
+*.set
+*.wma
+*.wmv
+*.dds
+*.smo
+*.SMO
+*.am1
+*.am2
+*.am3
+*.AM1
+*.AM2
+*.AM3
+*.fin
+*.pfd
+*.pln
+*.gri
+*.jac
+*.sce
+*.uni
+*.stg
+*.STG
+*.UNI
+*.SCE
+*.bmp
+*.tga
+*.TGA
+*.wav
+*.WAV
+*.nvo
+*.NVO
+*.pso
+*.PSO
+*.jac
+*.JAC
+*.txr
+*.TXR
+*.PFD
+*.PLN
+*.GRI
+*.DDS
+*.WMA
+*.WMV
+*.ico
+*.ICO
+*.cur
+*.CUR
+*.sav
+*.dat
+*.DAT
+
+# ... except our own sources that happen to use these names
+!tools/**/*.rc
+!src/runtime/loader/openjoan.ico
+!third_party/ffmpeg-win64/bin/*.dll
+
+# RE pipeline inputs live beside the checkout (../re/joan.exe, ../re/joan.asm), never inside it
+re/functions.json
+# shader bytecode dumped from the game's shader/*.nvo by the D3D8 trace (re/vsdis.py): regenerate into JOAN_WORK_DIR
+re/shaders/*.bin
+re/thunks.json
+re/imports.json
+
+# logs and recordings
+*.log
+*.report.txt
+*.rec
+
+# release archives (tools/package_release.py)
+dist/
+
+# Local agent instructions: not part of the repository
+.claude/
+CLAUDE.md
+.mcp.json
+prompts/
+docs/DECISIONS/
+docs/BUILDING.md
+docs/SMOKE.md
+docs/re/x64/
+re/history/
+re/**/BRIEF*.md

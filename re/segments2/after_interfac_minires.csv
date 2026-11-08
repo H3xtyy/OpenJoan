@@ -1,0 +1,3 @@
+start,end,name,confidence,evidence,target
+0x0071d150,0x0071d1e0,minires_byname,medium,"set_flag_by_name/byte_by_name scan the 0xae-byte MiniRes records (count +9, ptr +0xd), right after MiniRes::read_maps",interfac/minires.cpp
+0x0071d270,0x0071d290,objmenu_ctor,medium,Obj71d290::Obj memsets 0x278 for the ObjMenu global g_a53cb0 (ObjMenu::build/release run on it); a global ctor directly before ObjMenu::build,interfac/objmenu.cpp

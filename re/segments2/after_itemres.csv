@@ -1,0 +1,2 @@
+start,end,name,confidence,evidence,target
+0x004a4bc0,0x004a4bc0,levelres_ctor,medium,"Global ctor (obj_stub_569ee0) right before levelres.cpp init_4a4bf0; same pattern as other *res globals whose inline ctor precedes the object (sdateres/sitemres/remapkey/help).",game/levelres.cpp

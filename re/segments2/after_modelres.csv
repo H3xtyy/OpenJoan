@@ -1,0 +1,4 @@
+start,end,name,confidence,evidence,target
+0x004b1e30,0x004b1e30,modelres_nametable,high,"NameTable::find (0x2b-byte entries +8, like elem_0041a180) between ModelRes::add and Table::find of modelres.cpp",game/modelres.cpp
+0x004b21a0,0x004b2730,modelres_mid,medium,"Anim::set_key and the 1-based elem getter used by ModelRes::acquire/ModelResMgr::release, sandwiched between modelres.cpp functions",game/modelres.cpp
+0x004b28a0,0x004b28a0,modelres_tail,low,dead Obj::clear_4b28a0 after AnimDb::entry (modelres.cpp) and before msglog.cpp MsgEntry::init,game/modelres.cpp

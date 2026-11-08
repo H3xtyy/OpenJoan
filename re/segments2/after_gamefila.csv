@@ -1,0 +1,4 @@
+start,end,name,confidence,evidence,target
+0x00477640,0x00477770,gamefila_t1,medium,Save path/name helpers (O%03d.SAV / _AUTO%03d.SAV) used by SaveDir/SaveGame right after gamefila.cpp GameFiles::add / GameFileList::remove.,game/gamefila.cpp
+0x00477b10,0x00477cc0,gamefila_t2,medium,Save-list renumber/quick_sort comparators / iabs / item accessor used by gamefila.cpp SaveDir::browse; between gamefila.cpp functions.,game/gamefila.cpp
+0x00477d30,0x00477d30,gamefila_t3,medium,Forwarder called by gamefila.cpp X::scalar_deleting_dtor between gamefila.cpp GameFile::clear and GameFile::ok.,game/gamefila.cpp

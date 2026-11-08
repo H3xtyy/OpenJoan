@@ -1,0 +1,34 @@
+// Generated (re/layout/gen_types.py) from re/layout/layouts.json: the data members of Cell
+// (r5_image.json, confidence high). Do not edit; change the spec.
+    World* world;  // 0x0
+    void* ptr_4;  // 0x4
+    float box[6];  // 0x8
+    char name[35];  // 0x20
+    std::uint8_t loaded;  // 0x43
+    std::int32_t origin_x;  // 0x44
+    std::int32_t origin_y;  // 0x48
+    std::int16_t sector_rows;  // 0x4c
+    std::int16_t sector_cols;  // 0x4e
+    std::int32_t i32_50;  // 0x50
+    PathSpace* path_space;  // 0x54
+    PathSpace* path_space_b;  // 0x58
+    Tracks* tracks;  // 0x5c
+    CamZones* camera_zones;  // 0x60
+    std::int32_t sector_count;  // 0x64
+    std::uint32_t u32_68;  // 0x68
+    WorldSectorPtrArray* sectors;  // 0x6c
+    char* sector_names;  // 0x70
+    Occluder* occluders;  // 0x74
+    std::int32_t occluder_count;  // 0x78
+    std::int32_t occluder_cap;  // 0x7c
+    std::int32_t p84_count;  // 0x80
+    void* p_84;  // 0x84
+    U8PtrArray* rows;  // 0x88
+    Unit* units_tail;  // 0x8c
+    Unit* units_head;  // 0x90
+    MapObject* objects_tail;  // 0x94
+    MapObject* objects_head;  // 0x98
+    WorldItem* items_tail;  // 0x9c
+    WorldItem* items_head;  // 0xa0
+    Place* places_tail;  // 0xa4
+    Place* places_head;  // 0xa8

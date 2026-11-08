@@ -1,0 +1,52 @@
+# x64 warning census, Linux x86-64, 2026-10-29 (Phase 0 step 6), full builds of the linux-x64 preset after the
+# _tiddata fix (commit bfc2cba). Counts are unique 'warning:' lines per flag (headers counted once).
+# 64-bit set: GCC -Wconversion from 64-bit sources 7 (platform/files.cpp:580 x2, platform/sdl_input.cpp:323,324,393,394,
+#   platform/sdl_window.cpp:436); Clang -Wshorten-64-to-32 7 (sdl_input.cpp 323,324,393,394; sdl_window.cpp:436;
+#   gl/device.cpp:238; game/_unplaced/vshader.cpp:876 HRESULT to int); pointer-to-int / int-to-pointer casts: 0 on both.
+
+## GCC 16.2.1 (unique warning lines)
+     65 [-Wparentheses]
+     52 [-Wpedantic]
+     24 [-Wstringop-truncation]
+     21 [-Wconversion]
+     14 [-Wunused-parameter]
+     11 [-Warray-bounds=]
+      8 [-Wrestrict]
+      6 [-Wmaybe-uninitialized]
+      4 [-Wshadow]
+      2 [-Wsequence-point]
+      2 [-Wcomment]
+      1 [-Wunused-function]
+      1 [-Wunused-but-set-variable=]
+      1 [-Wuninitialized]
+      1 [-Wformat-truncation=]
+      1 [-Wextra]
+      1 [-Waggressive-loop-optimizations]
+
+## Clang 22.1.8 (unique warning lines)
+     56 [-Wgnu-anonymous-struct]
+     28 [-Wnested-anon-types]
+     23 [-Wunused-function]
+     14 [-Wunused-parameter]
+     13 [-Wimplicit-int-float-conversion]
+      9 [-Wunused-const-variable]
+      8 [-Wshorten-64-to-32]
+      2 [-Wunsequenced]
+      2 [-Wuninitialized-const-pointer]
+      1 [-Wunused-value]
+      1 [-Wunused-lambda-capture]
+      1 [-Wuninitialized]
+
+## Clang: top files
+     22 src/lib/crt/locale.cpp
+      8 src/platform/sdl_window.cpp
+      7 src/platform/files.cpp
+      6 src/uti3d/../platform/win32_types.hpp
+      6 src/platform/win32_types.hpp
+      6 src/media/../platform/win32_types.hpp
+      6 src/loader/../platform/win32_types.hpp
+      6 src/lib/openal/../../platform/win32_types.hpp
+      6 src/lib/d3dx8/../../platform/win32_types.hpp
+      6 src/lib/crt/../../platform/win32_types.hpp
+      6 src/interfac/../platform/win32_types.hpp
+      6 src/ilib/../platform/win32_types.hpp

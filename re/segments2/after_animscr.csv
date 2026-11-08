@@ -1,0 +1,2 @@
+start,end,name,confidence,evidence,target
+0x0041a020,0x0041a020,animscr_fx_modelref,high,"ModelRef::release sits between ModelSlot::idle and NameTable::find of animscr_fx.cpp and calls ModelSlot::stream/idle; same ModelSlot run.",game/_unplaced/animscr_fx.cpp

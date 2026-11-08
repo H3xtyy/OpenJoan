@@ -1,0 +1,118 @@
+unique new diagnostics (by location): 1741 errors: 1386 warnings: 355
+   653   46f e X attribute is not supported on X
+           e.g. en2d/image2d.cpp:495: 'naked' attribute is not supported on 'x86_64'
+   524  158f e static assertion failed due to requirement X
+           e.g. ./original/file.hpp:55: static assertion failed due to requirement '__builtin_offsetof(joan::orig::File, handle_error) == 265'
+   242   55f w implicit conversion loses integer precision: X (aka X) to X (aka X) [-Wshorten-64-to-32]
+           e.g. en3d/sysen.cpp:218: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long long') to 'std::uint32_t' (aka 'unsigned int') [-Wshorten-64-to-32]
+   104   56f e static assertion failed due to requirement X: single-inheritance member pointer
+           e.g. en3d/actor.cpp:62: static assertion failed due to requirement 'sizeof(void *((anonymous namespace)::game_units4::Obj::*)(int)) == sizeof(void *)': single-inheritance memb
+    86   27f w cast to smaller integer type X from X [-Wpointer-to-int-cast]
+           e.g. en2d/txtbox2d.cpp:1612: cast to smaller integer type 'unsigned int' from '(anonymous namespace)::game_b93_03_3::H *' [-Wpointer-to-int-cast]
+    28   28f e static assertion failed due to requirement X: only plain functions / single-inheritance member functions
+           e.g. ./original/../call.hpp:27: static assertion failed due to requirement 'sizeof(void *(joan::call::(anonymous namespace)::detail::Obj::*)(unsigned int)) == sizeof(void *)':
+    17   16f e static assertion failed due to requirement X: widths
+           e.g. game/_unplaced/ctrl.cpp:2580: static assertion failed due to requirement 'sizeof(void *) == 4': widths
+    12    3f w implicit conversion loses integer precision: X (aka X) to X [-Wshorten-64-to-32]
+           e.g. elib/jpeg.cpp:67: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long long') to 'unsigned int' [-Wshorten-64-to-32]
+    12    9f w cast to smaller integer type X from X [-Wvoid-pointer-to-int-cast]
+           e.g. en3d/reorder.cpp:796: cast to smaller integer type 'unsigned int' from 'const void *' [-Wvoid-pointer-to-int-cast]
+     8    2f e static assertion failed due to requirement X: frame
+           e.g. game/_unplaced/savemenu.cpp:1489: static assertion failed due to requirement 'sizeof(Frame) == 48': frame
+     5    2f e no member named X in X; did you mean X?
+           e.g. image_runtime.cpp:125: no member named 'Esp' in '_CONTEXT'; did you mean 'Rsp'?
+     4    4f e static assertion failed due to requirement X: slide frame
+           e.g. game/_unplaced/camctl.cpp:222: static assertion failed due to requirement 'sizeof((anonymous namespace)::game_b109_15::H::SlideFrame) == 52': slide frame
+     2    1f w unused function X [-Wunused-function]
+           e.g. crash.cpp:52: unused function 'readable' [-Wunused-function]
+     2    1f e static assertion failed due to requirement X: NameSlot
+           e.g. en3d/plane.cpp:4680: static assertion failed due to requirement 'sizeof((anonymous namespace)::en3d_b85_02::NameSlot) == 28': NameSlot
+     2    1f e requested alignment is less than minimum alignment of 8 for type X
+           e.g. ilib/audio.cpp:2646: requested alignment is less than minimum alignment of 8 for type '(anonymous namespace)::game_b111_08::MixerLineControls'
+     2    2f e static assertion failed due to requirement X: Iobuf size
+           e.g. lib/crt/stdio.cpp:138: static assertion failed due to requirement 'sizeof((anonymous namespace)::Iobuf) == 32': Iobuf size
+     2    1f e static assertion failed due to requirement X: stack layout
+           e.g. lib/d3dx8/shader_assembler.cpp:236: static assertion failed due to requirement 'sizeof((anonymous namespace)::DwordStack) == 16': stack layout
+     2    2f e use of undeclared identifier X
+           e.g. platform/sdl_window.cpp:374: use of undeclared identifier 'GWL_WNDPROC'
+     1    1f w unused variable X [-Wunused-variable]
+           e.g. crash.cpp:68: unused variable 'c' [-Wunused-variable]
+     1    1f e static assertion failed due to requirement X: Blob
+           e.g. en3d/plane.cpp:5773: static assertion failed due to requirement 'sizeof((anonymous namespace)::en3d_helpers34::Blob) == 8': Blob
+     1    1f e static assertion failed due to requirement X: LockedRect
+           e.g. game/_unplaced/d3dutil.cpp:220: static assertion failed due to requirement 'sizeof((anonymous namespace)::LockedRect) == 8': LockedRect
+     1    1f e static assertion failed due to requirement X: WNDCLASSA
+           e.g. game/_unplaced/mainwnd.cpp:324: static assertion failed due to requirement 'sizeof((anonymous namespace)::game_b102_04::WndClassA) == 40': WNDCLASSA
+     1    1f e static assertion failed due to requirement X: Frame
+           e.g. game/_unplaced/objm_debrief.cpp:204: static assertion failed due to requirement 'sizeof((anonymous namespace)::game_b110_12::Frame) == 100': Frame
+     1    1f e static assertion failed due to requirement X: x86-32 only
+           e.g. game/_unplaced/sceload.cpp:2399: static assertion failed due to requirement 'sizeof(void *) == 4': x86-32 only
+     1    1f e static assertion failed due to requirement X: mixer
+           e.g. ilib/audio.cpp:2657: static assertion failed due to requirement 'sizeof((anonymous namespace)::game_b111_08::MixerLineControls) == 24': mixer
+     1    1f e static assertion failed due to requirement X: Frame71
+           e.g. interfac/objmenu.cpp:627: static assertion failed due to requirement 'sizeof((anonymous namespace)::game_b116_06::Frame71) == 344 - 4 + 4': Frame71
+     1    1f e static assertion failed due to requirement X: __lc_category entry
+           e.g. lib/crt/locale.cpp:157: static assertion failed due to requirement 'sizeof((anonymous namespace)::LcCategory) == 12': __lc_category entry
+     1    1f e static assertion failed due to requirement X: lconv
+           e.g. lib/crt/locale.cpp:200: static assertion failed due to requirement 'sizeof((anonymous namespace)::Lconv) == 48': lconv
+     1    1f e static assertion failed due to requirement X: STARTUPINFOA size
+           e.g. lib/crt/lowio.cpp:138: static assertion failed due to requirement 'sizeof((anonymous namespace)::StartupInfoA) == 68': STARTUPINFOA size
+     1    1f e static assertion failed due to requirement X: STARTUPINFOA layout
+           e.g. lib/crt/startup.cpp:211: static assertion failed due to requirement 'sizeof((anonymous namespace)::StartupInfoA) == 68': STARTUPINFOA layout
+     1    1f e static assertion failed due to requirement X: STARTUPINFOA.dwFlags
+           e.g. lib/crt/startup.cpp:212: static assertion failed due to requirement '__builtin_offsetof((anonymous namespace)::StartupInfoA, dwFlags) == 44': STARTUPINFOA.dwFlags
+     1    1f e static assertion failed due to requirement X: STARTUPINFOA.wShowWindow
+           e.g. lib/crt/startup.cpp:213: static assertion failed due to requirement '__builtin_offsetof((anonymous namespace)::StartupInfoA, wShowWindow) == 48': STARTUPINFOA.wShowWindow
+     1    1f e static assertion failed due to requirement X: VC6 descriptor layout
+           e.g. lib/crt/x87_math.cpp:321: static assertion failed due to requirement 'sizeof((anonymous namespace)::TransDesc<16>) == 80': VC6 descriptor layout
+     1    1f e static assertion failed due to requirement X: ID3DXMatrixStack object layout
+           e.g. lib/d3dx8/objects.cpp:182: static assertion failed due to requirement 'sizeof((anonymous namespace)::Stack) == 20': ID3DXMatrixStack object layout
+     1    1f e static assertion failed due to requirement X: CD3DXBuffer layout
+           e.g. lib/d3dx8/shader_assembler.cpp:170: static assertion failed due to requirement 'sizeof((anonymous namespace)::Buffer) == 16': CD3DXBuffer layout
+     1    1f e static assertion failed due to requirement X: assembler object layout
+           e.g. lib/d3dx8/shader_assembler.cpp:477: static assertion failed due to requirement 'sizeof((anonymous namespace)::Assembler) == 960': assembler object layout
+     1    1f e static assertion failed due to requirement X: assembler field offsets
+           e.g. lib/d3dx8/shader_assembler.cpp:478: static assertion failed due to requirement '__builtin_offsetof((anonymous namespace)::Assembler, failed) == 128': assembler field offs
+     1    1f e static assertion failed due to requirement X: FromFileA frame
+           e.g. lib/d3dx8/shader_assembler.cpp:1536: static assertion failed due to requirement '__builtin_offsetof((anonymous namespace)::FrameA, map) == 960': FromFileA frame
+     1    1f e static assertion failed due to requirement X: FromFileW frame
+           e.g. lib/d3dx8/shader_assembler.cpp:1542: static assertion failed due to requirement '__builtin_offsetof((anonymous namespace)::FrameW, map) == 960': FromFileW frame
+     1    1f e static assertion failed due to requirement X: CFileMapping is 16 bytes
+           e.g. lib/d3dx8/texture_from_file.cpp:55: static assertion failed due to requirement 'sizeof((anonymous namespace)::FileMapping) == 16': CFileMapping is 16 bytes
+     1    1f e static assertion failed due to requirement X: jpeg_compress_struct
+           e.g. lib/jpeg/compress_core.cpp:235: static assertion failed due to requirement 'sizeof((anonymous namespace)::Compress) == 347': jpeg_compress_struct
+     1    1f e static assertion failed due to requirement X: next_scanline
+           e.g. lib/jpeg/compress_core.cpp:236: static assertion failed due to requirement '__builtin_offsetof((anonymous namespace)::Compress, next_scanline) == 198': next_scanline
+     1    1f e static assertion failed due to requirement X: master
+           e.g. lib/jpeg/compress_core.cpp:237: static assertion failed due to requirement '__builtin_offsetof((anonymous namespace)::Compress, master) == 303': master
+     1    1f e static assertion failed due to requirement X: pool header
+           e.g. lib/jpeg/compress_core.cpp:244: static assertion failed due to requirement 'sizeof((anonymous namespace)::PoolHdr) == 12': pool header
+     1    1f e static assertion failed due to requirement X: jvirt_*array_control
+           e.g. lib/jpeg/compress_core.cpp:265: static assertion failed due to requirement 'sizeof((anonymous namespace)::VArray) == 119': jvirt_*array_control
+
+files with most:
+263 lib/imports/import_stubs.cpp
+123 lib/crt/x87_math.cpp
+77 game/_unplaced/pixfmt.cpp
+50 game/_unplaced/blit16.cpp
+40 uti3d/esstate2.cpp
+30 game/_unplaced/globals.cpp
+26 interfac/optmenui.cpp
+24 lib/jpeg/compress_core.cpp
+19 interfac/objmenu.cpp
+19 lib/crt/eh_support.cpp
+17 en3d/vgabuf.cpp
+14 lib/crt/startup.cpp
+13 interfac/i_work.cpp
+12 lib/d3dx8/math_matrix.cpp
+11 game/_unplaced/esfuncs.cpp
+11 game/_unplaced/hud.cpp
+11 interfac/i_buy.cpp
+11 lib/d3dx8/math_geometry.cpp
+10 ./original/database.hpp
+10 elib/../original/database.hpp
+10 en2d/../original/database.hpp
+10 en3d/../original/database.hpp
+10 game/_unplaced/../../original/database.hpp
+10 game/_unplaced/formmove.cpp
+10 game/_unplaced/mainmenu.cpp

@@ -1,0 +1,4 @@
+start,end,name,confidence,evidence,target
+0x0062a9a0,0x0062b620,popupwin_mid,high,"Popup frame draw (BotCe/TopLe strings in popupwin rdata), Popup::ensure_window (POPUPWIN) sandwiched between popupwin.cpp functions",en2d/popupwin.cpp
+0x0062b6a0,0x0062b6a0,popupwin_flag,medium,Overlay2D::clear_flag is the only callee of popupwin.cpp Widget::reset_child right before it,en2d/popupwin.cpp
+0x0062b6c0,0x0062d730,scroll2d,medium,"Two scroll/slider widget classes (vtables 0x9da7d4/0x9da7d8 between popupwin and txtbox2d rdata) with Scroll/EditBox/TextBox helpers, before txtbox2d.cpp",

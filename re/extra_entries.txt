@@ -1,0 +1,194 @@
+# re/extra_entries.txt - real entries functions.json misses (task 118/04; full table: scratchpad
+# w118_04/entries_missing.txt). Read by re/gen_code_slots.py (first token per line).
+0x00435280 game Action::stop_unit
+0x00438930 game Obj::set_target_438930
+0x0056f6f1 game asm sibling of blit8to16_rot 0x56f640
+0x0056f7ac game asm sibling of blit8to16_rot 0x56f640
+0x0056ff36 game asm sibling of build_shade_tables 0x56fdb0
+0x005701a8 game asm, build_shade_tables cluster
+0x00570376 game asm, build_shade_tables cluster
+0x00570425 game asm, build_shade_tables cluster
+0x005706bd game get_a15014 (sibling of set_a15014 0x5706a0)
+0x00571bd2 game asm cluster 0x5711c3..0x575140
+0x00571c65 game asm cluster
+0x00571e48 game asm cluster
+0x00572016 game asm cluster
+0x0057209d game asm cluster
+0x005721e7 game asm cluster
+0x0057229d game asm cluster
+0x0057464b game asm cluster
+0x005746b9 game asm cluster
+0x00574734 game asm cluster
+0x00574ad2 game asm cluster
+0x00575516 game asm sibling of copy_rect16_2 0x575480
+0x005755b3 game asm sibling of copy_rect16_2 0x575480
+0x0057574c game asm sibling of blit8to16_keyed 0x5756a0
+0x00575805 game asm sibling of blit8to16_keyed 0x5756a0
+0x00575b54 game asm sibling of blit8to16_diamond 0x5759a0
+0x00575d26 game asm sibling of blit8to16_diamond 0x5759a0
+0x00765e32 lib jpeg error_exit (jerror.c, D3DX copy); stored by jpeg_std_error 0x765f
+0x00765e4d lib jpeg output_message (after error_exit's noreturn exit call)
+0x00765e6a lib jpeg emit_message
+0x00765e9b lib jpeg format_message
+0x00765f32 lib jpeg reset_error_mgr
+0x00785d30 lib D3DX, called from 0x786bde (in 0x786b38, unreplaced, dead)
+0x00787313 lib D3DX LoadJPG source manager method, stored by 0x787375 (unreplaced, de
+0x0078732f lib D3DX LoadJPG source manager method = the shared `ret` byte ending 0x78
+0x00787330 lib D3DX LoadJPG source manager method
+0x0078734d lib D3DX LoadJPG source manager method (`ret`)
+0x0078734e lib D3DX LoadJPG source manager method
+0x00787363 lib D3DX LoadJPG source manager method
+0x00787374 lib D3DX LoadJPG source manager method (`ret`)
+0x0078ba2c lib D3DX shader assembler yyparse (CALL from 0x78bf93; ported as a whole, 
+0x0078bed6 lib D3DX shader assembler Assemble (CALL from 0x7691c8/0x76928b/0x7692ff =
+0x00793e9b lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x007940d7 lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x00794b70 lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x00794d64 lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x00794de2 lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x0079aedc lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x0079af6f lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x0079afa6 lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x0079b2c7 lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x0079b328 lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x0079b389 lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x0079b61b lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x0079b739 lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x0079b93d lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x0079be9d lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x0079bfca lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x0079df29 lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x0079df91 lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x0079e099 lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x0079e0bc lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x0079e236 lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x0079e246 lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x0079e420 lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x0079e423 lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x0079e5c2 lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x0079e80b lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x0079ed23 lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x0079f227 lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x0079f5f4 lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x0079f7b8 lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x0079f9b5 lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x0079fbe2 lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x0079fcc4 lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x007a0032 lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x007a0336 lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x007a0561 lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x007a05c6 lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x007a0656 lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x007a06e2 lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x007a080b lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x007a0825 lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x007a08eb lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x007a08f6 lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x007a08fe lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x007a09dd lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x007a0a34 lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x007a0a9e lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x007a0b41 lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x007a0eb9 lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x007a0f23 lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x007a0f46 lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x007a1078 lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x007a142c lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x007a181b lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x007a1830 lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x007a18d6 lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x007a1907 lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x007a1a5d lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x007a1cb8 lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x007a26f1 lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x007a279a lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x007a2a98 lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x007a2aba lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x007a2abb lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x007a2bbd lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x007a30cf lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x007a3157 lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x007a31e4 lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x007a32cf lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x007a33ce lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x007a3588 lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x007a3650 lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x007a3651 lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x007a429f lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x007a42af lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x007a42ba lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x007a45cf lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x007a478d lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x007a47ca lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x007a4816 lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x007a4862 lib D3DX IJG jpeg decompressor method (stored by its unreplaced init routi
+0x007aaa20 lib already replaced (lib_b114_17.cpp)
+0x007aaa50 lib already replaced (lib_b114_17.cpp)
+0x007aaaa0 lib already replaced (lib_b114_17.cpp)
+0x007aafa0 lib already replaced (lib_b115_05.cpp)
+0x007ab010 lib already replaced (lib_b115_05.cpp)
+0x007ab080 lib already replaced (lib_b115_05.cpp)
+0x007ab210 lib already replaced (lib_b115_05.cpp)
+0x007ab400 lib already replaced (lib_b115_05.cpp)
+0x007ab6f0 lib already replaced (lib_b115_05.cpp)
+0x007ab790 lib already replaced (lib_b115_06.cpp)
+0x007ab860 lib already replaced (lib_b115_06.cpp)
+0x007ab870 lib already replaced (lib_b115_06.cpp)
+0x007aba10 lib already replaced (lib_b115_06.cpp)
+0x007abca0 lib already replaced (lib_b115_06.cpp)
+0x007abf60 lib already replaced (lib_b115_06.cpp)
+0x007abf80 lib already replaced (lib_b115_06.cpp)
+0x007ac2b0 lib already replaced (lib_b115_05.cpp)
+0x007ac300 lib already replaced (lib_b115_05.cpp)
+0x007ac480 lib already replaced (lib_b115_05.cpp)
+0x007ac580 lib already replaced (lib_b115_05.cpp)
+0x007ac7d0 lib already replaced (lib_b115_05.cpp)
+0x007ac9e0 lib already replaced (lib_b115_05.cpp)
+0x007ad000 lib already replaced (lib_b115_06.cpp)
+0x007ad170 lib already replaced (lib_b115_06.cpp)
+0x007ad5f0 lib already replaced (lib_b115_06.cpp)
+0x007ad670 lib already replaced (lib_b115_06.cpp)
+0x007ad820 lib already replaced (lib_b115_06.cpp)
+0x007ad950 lib already replaced (lib_b115_06.cpp)
+0x007adad0 lib already replaced (lib_b115_06.cpp)
+0x007adf20 lib already replaced (lib_b115_06.cpp)
+0x007ae0e0 lib already replaced (lib_b115_06.cpp)
+0x007ae1a0 lib already replaced (lib_b115_06.cpp)
+0x007ae3b0 lib already replaced (lib_b115_06.cpp)
+0x007ae3f0 lib already replaced (lib_b115_06.cpp)
+0x007ae570 lib already replaced (lib_b115_06.cpp)
+0x007ae720 lib already replaced (lib_b115_06.cpp)
+0x007ae890 lib already replaced (lib_b115_06.cpp)
+0x007aeae0 lib already replaced (lib_b115_05.cpp)
+0x007aeb30 lib already replaced (lib_b115_05.cpp)
+0x007aecf0 lib already replaced (lib_b115_05.cpp)
+0x007af180 lib already replaced (lib_b115_05.cpp)
+0x007af190 lib already replaced (lib_b115_05.cpp)
+0x007af220 lib already replaced (lib_b115_05.cpp)
+0x007af3a0 lib already replaced (lib_b115_05.cpp)
+0x007af3f0 lib already replaced (lib_b115_05.cpp)
+0x007af4a0 lib already replaced (lib_b115_05.cpp)
+0x007af570 lib already replaced (lib_b115_05.cpp)
+0x007af860 lib already replaced (lib_b115_05.cpp)
+0x007afc30 lib already replaced (lib_b115_05.cpp)
+0x007afd10 lib already replaced (lib_b115_05.cpp)
+0x007afe40 lib already replaced (lib_b115_05.cpp)
+0x007afef0 lib already replaced (lib_b115_05.cpp)
+0x007b0060 lib already replaced (lib_b115_05.cpp)
+0x007b00d0 lib already replaced (lib_b115_05.cpp)
+0x007b0160 lib already replaced (lib_b115_05.cpp)
+0x007b07a0 lib already replaced (lib_b115_05.cpp)
+0x007b0c10 lib already replaced (lib_b115_05.cpp)
+0x007b0c40 lib already replaced (lib_b115_05.cpp)
+0x007b0cc0 lib already replaced (lib_b115_06.cpp)
+0x007b10c0 lib already replaced (lib_b115_06.cpp)
+0x007b1310 lib already replaced (lib_b115_06.cpp)
+0x007b1a70 lib C++ EH runtime SEH handler stored in a registration record by 0x7b1a1c
+0x007b1b4b lib C++ EH runtime SEH handler stored in a registration record by 0x7b1a95
+0x007b8e7c lib already replaced (lib_b114_08.cpp)
+0x007b8ed6 lib already replaced (lib_b114_08.cpp)
+0x007b8f24 lib already replaced (lib_b114_08.cpp)
+0x007b8f3c lib already replaced (lib_b114_09.cpp)
+0x007b922c lib already replaced (lib_b114_08.cpp)
+0x007bbd84 lib CRT output.c write_char (CALL from _output 0x7bb643 [replaced, lib_b11
+0x007c0081 lib CRT, stored into [0xa6b428] by 0x7bf93c (in 0x7bf91a, unreplaced, dead

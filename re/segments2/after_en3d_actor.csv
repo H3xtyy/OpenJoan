@@ -1,0 +1,7 @@
+start,end,name,confidence,evidence,target
+0x005ae220,0x005ae360,actor_g0a,high,Named morph call helpers between actor.cpp Actor::add_child and Actor::attach.,en3d/actor.cpp
+0x005aec90,0x005aed20,actor_g0b,high,Between actor.cpp Actor::set_faded and Actor::layer.,en3d/actor.cpp
+0x005aedb0,0x005aedb0,actor_g0c,high,Plane::skin_owner (callers Actor::draw) between actor.cpp accessors.,en3d/actor.cpp
+0x005aee40,0x005aee80,actor_g0d,medium,"Attachment position getters used by Actor::bounding_sphere, right after actor.cpp accessors.",en3d/actor.cpp
+0x005aeec0,0x005af360,actorlst,low,"Only PI static-init set of the en3d range (bss 0xa6763c..) opening a TU with an actor-pointer list (add creates SceneObject, each draws Actor); may be the head of actordef.cpp.",
+0x005afd50,0x005afd50,actordef_g0,high,FileLoader scalar dtor between actordef.cpp poll_load and loaded.,en3d/actordef.cpp

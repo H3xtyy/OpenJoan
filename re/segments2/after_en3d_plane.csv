@@ -1,0 +1,6 @@
+start,end,name,confidence,evidence,target
+0x005dc400,0x005dc400,plane_t1,high,Helper of plane.cpp Mesh::load_any between plane.cpp loaders.,en3d/plane.cpp
+0x005dde60,0x005dde60,plane_t2,high,Forwarder to Mesh::save between plane.cpp Plane::load and Plane::load_v0.,en3d/plane.cpp
+0x005df6a0,0x005df6a0,plane_t3,high,Mesh::save between plane.cpp Plane::load_v50 and load_v100 (writer counterpart of the loaders).,en3d/plane.cpp
+0x005e2380,0x005e2380,plane_t4,high,Mesh::write right before plane.cpp Mesh::read.,en3d/plane.cpp
+0x005e2a90,0x005e2b70,plane_t5,high,Material::write/read called by Mesh::write/read; after plane.cpp Mesh::read and before plane_sh.cpp.,en3d/plane.cpp

@@ -1,0 +1,7 @@
+start,end,name,confidence,evidence,target
+0x00534880,0x00534880,ur_orders_a,high,"UnitAI::think twin of AiState::think_534090: same ACTIVE/ATTACK/IDLE strings, Order::flee_a, caller Order::run_1",game/_unplaced/ur_orders.cpp
+0x00538730,0x00538730,ur_orders_b,high,"Ai::state sibling of the ur_orders Order::run_2 handlers (voice_react_538340), sandwiched in ur_orders.cpp",game/_unplaced/ur_orders.cpp
+0x0053beb0,0x0053beb0,ur_orders_c,high,"Order::run_4 handler using Order::flee_b, sandwiched in ur_orders.cpp",game/_unplaced/ur_orders.cpp
+0x00541300,0x00541300,ur_orders_d,high,"Order::run_6 handler using Order::run_a, sandwiched in ur_orders.cpp",game/_unplaced/ur_orders.cpp
+0x00543800,0x00543800,us_tactics_a,high,After the ur_orders.cpp end-of-object init group; uses Order::run_c and is called by Order::run_8 like us_tactics.cpp Ai::attack_or_idle next to it,game/_unplaced/us_tactics.cpp
+0x005442d0,0x005442d0,us_tactics_b,high,"Order::run_8 handler using Order::run_c, sandwiched in us_tactics.cpp",game/_unplaced/us_tactics.cpp

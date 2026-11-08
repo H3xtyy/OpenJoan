@@ -1,0 +1,9 @@
+start,end,name,confidence,evidence
+0x004df9f0,0x004dff70,t_scrres_texop,medium,Texture-op parser called only from t_scrres.cpp Formation::parse_4ded90 plus TextureList::find; tail of t_scrres.cpp.
+0x004dfff0,0x004e3670,diplo_text,high,String global init + Diplomacy::dispatch and all Treaty::*_text message builders sharing one contiguous string family (.rdata 0x9d65d0..0x9d70e4) and the Ref/Throne helpers they call.
+0x004e36b0,0x004e4610,talk,medium,"Static array/DynArrayB globals then Diplomacy::test / Order::dispatch / Msg::post / Talk::get_msg (""get_talk_msg()"") message-queue logic; ai_task_from_name (strings 0x9d713c+) attached at its end."
+0x004e48f0,0x004e59d0,zones,medium,DynArray global ctor/dtor + named-table add/remove/find_by_name + Zones::update + territory index sort.
+0x004e5a40,0x004eb410,game_tick,low,Game::tick_4e5fc0 with Music::update / Marker / aim helpers and the missile block list (global array ctor/dtor + delete_4ea370); closed by the PI static-init block 0xa3cac8 just before trackres.cpp; may be two objects.
+0x004eb520,0x004eb520,trackres_fwd,high,Forwarder to trackres.cpp Obj::destroy_c sitting between trackres.cpp functions; belongs to trackres.cpp.
+0x004eb5f0,0x004eb5f0,trackres_sdd,high,Scalar deleting dtor used by trackres.cpp destroy_c/Tracks::load; belongs to trackres.cpp.
+0x004eb760,0x004eb9a0,trackres_path,medium,Path/track test helpers and TrackRes::TrackRes between trackres.cpp functions; belongs to trackres.cpp.

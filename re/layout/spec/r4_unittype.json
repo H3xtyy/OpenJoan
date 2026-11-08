@@ -1,0 +1,503 @@
+{
+ "group": "r4_unittype",
+ "classes": [
+  {
+   "class": "UnitType",
+   "size": "0x203",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x2",
+     "name": "unit_class",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x4",
+     "name": "name",
+     "type": "char",
+     "size": 1,
+     "count": 32
+    },
+    {
+     "off": "0x25",
+     "name": "anim_name",
+     "type": "char",
+     "size": 1,
+     "count": 32
+    },
+    {
+     "off": "0x46",
+     "name": "anim_name_b",
+     "type": "char",
+     "size": 1,
+     "count": 32
+    },
+    {
+     "off": "0x68",
+     "name": "model_a",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x6c",
+     "name": "model_b",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x70",
+     "name": "anim_id_b",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x74",
+     "name": "extra_model_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x78",
+     "name": "model_refs",
+     "type": "i32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x84",
+     "name": "model_ids",
+     "type": "i32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x90",
+     "name": "model_flags",
+     "type": "i32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x9c",
+     "name": "speed_walk",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0xa0",
+     "name": "speed_run",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0xa4",
+     "name": "speed_strafe",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0xa8",
+     "name": "speed_strafe_b",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0xac",
+     "name": "speed_back",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0xb0",
+     "name": "refcount",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xb4",
+     "name": "title_b4",
+     "type": "char",
+     "size": 1,
+     "count": 40
+    },
+    {
+     "off": "0xde",
+     "name": "text_de",
+     "type": "char",
+     "size": 1,
+     "count": 32
+    },
+    {
+     "off": "0x100",
+     "name": "portrait",
+     "type": "char",
+     "size": 1,
+     "count": 8
+    },
+    {
+     "off": "0x109",
+     "name": "height",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x10b",
+     "name": "body_type",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x10d",
+     "name": "str_10d",
+     "type": "char",
+     "size": 1,
+     "count": 8
+    },
+    {
+     "off": "0x117",
+     "name": "gender",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x118",
+     "name": "kind",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x11c",
+     "name": "trigger_flags",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x120",
+     "name": "is_hero",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x121",
+     "name": "idle_delay",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x125",
+     "name": "script_id",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x129",
+     "name": "str_129",
+     "type": "char",
+     "size": 1,
+     "count": 32
+    },
+    {
+     "off": "0x149",
+     "name": "rank",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x14b",
+     "name": "i16_14b",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x14d",
+     "name": "race",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x151",
+     "name": "hit_points",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x155",
+     "name": "u32_155",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x159",
+     "name": "u32_159",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x15d",
+     "name": "xp_value",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x161",
+     "name": "cost",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x165",
+     "name": "siege_165",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x169",
+     "name": "u32_169",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x16d",
+     "name": "i16_16d",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x16f",
+     "name": "armor_code",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x171",
+     "name": "item_weapon",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x173",
+     "name": "item_weapon_b",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x175",
+     "name": "item_shield",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x177",
+     "name": "item_stack",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x179",
+     "name": "treasure_list",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x17b",
+     "name": "strength",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x17d",
+     "name": "dexterity",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x17f",
+     "name": "defense",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x181",
+     "name": "leadership",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x183",
+     "name": "i16_183",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x185",
+     "name": "i16_185",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x187",
+     "name": "i16_187",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x189",
+     "name": "i16_189",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x18b",
+     "name": "i16_18b",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x18d",
+     "name": "i16_18d",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x18f",
+     "name": "i16_18f",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x191",
+     "name": "i16_191",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x193",
+     "name": "i16_193",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x195",
+     "name": "i16_195",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x197",
+     "name": "i16_197",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x199",
+     "name": "level",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x19b",
+     "name": "i16_19b",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x19d",
+     "name": "i16_19d",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x19f",
+     "name": "i16_19f",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x1a1",
+     "name": "i16_1a1",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x1a3",
+     "name": "idle_kind",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x1a5",
+     "name": "i16_1a5",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x1a7",
+     "name": "i16_1a7",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x1a9",
+     "name": "morale",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x1ab",
+     "name": "i16_1ab",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x1ad",
+     "name": "slot_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x1b1",
+     "name": "buffers",
+     "type": "ptr:void",
+     "size": 4,
+     "count": 4
+    },
+    {
+     "off": "0x1c3",
+     "name": "shape_kind",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1c7",
+     "name": "shape_sphere",
+     "type": "f32",
+     "size": 4,
+     "count": 4
+    },
+    {
+     "off": "0x1d7",
+     "name": "shape_box",
+     "type": "f32",
+     "size": 4,
+     "count": 6
+    },
+    {
+     "off": "0x1ef",
+     "name": "shape_cylinder",
+     "type": "f32",
+     "size": 4,
+     "count": 5
+    }
+   ],
+   "members": [],
+   "evidence": "unit.res records of 0x203 bytes (UnitRes::load memsets count*0x203, UnitTypes::find stricmp at +4); the full layout follows UnitRes::parse_525080 (unitres.cpp: strncpy sizes, atoi/atof loops 0x9c..0xac f32, 0x151..0x161 i32, 0x17b..0x1ab i16, shape kind 1/2/3 -> 4/6/5 floats at 0x1c7/0x1d7/0x1ef); Unit::init 0x4f8550 for stat names; free_buffers 0x5273b0",
+   "confidence": "medium",
+   "override": true,
+   "notes": "unit_class 0x2 = class_of_name (CITIZEN 0 .. SIEGE_WEAPON 8, CART 9); kind 0x118 = NORMAL 0/MAIN 1/HORSE 2/.../CART 0xd/SPECIAL 0xe; rank 0x149 = rank_of_name (INFANTRY 0 .. KING 5); trigger_flags 0x11c = TRIGGER_* bits; shape_kind 0x1c3 = Shape::kind_from_name (None 0, Sphere 1, Box3d 2, Cylinder 3), sphere = centre xyz + radius ([3] = 0x1d3), box = min xyz / max xyz, cylinder [3] = 0x1fb; script_id 0x125 is also read as i16 (low half); cost 0x161 read as i16 in f_work.cpp; speed_* by Unit anim kinds 10/11/14/15/16 (names medium); 0x165 only parsed for unit_class 8; buffers[0..3] = slot_count * {f32[3], f32, u8 'M'/'F'/'B' gender, i16 item}; 0x19b not parsed by the original. model_flags[] actually holds the unit_id (anim index) of each model and model_ids[] the model resource handle (names kept). Gaps 0x0, 0x24, 0x45, 0x66, 0xdc, 0xfe, 0x115, 0x11a, 0x14f, 0x1c1 are string terminators / unused."
+  }
+ ],
+ "functions": {},
+ "notes": ""
+}

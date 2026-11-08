@@ -1,0 +1,74 @@
+// Generated (re/layout/gen_types.py) from re/layout/layouts.json: the data members of Player
+// (r5_image.json, confidence medium). Do not edit; change the spec.
+    std::int32_t unit_id_;  // 0x0
+    std::int16_t i16_4;  // 0x4
+    std::int16_t slot;  // 0x6
+    std::int32_t i32_8;  // 0x8
+    std::uint8_t gap_c[0x4];
+    std::int32_t mode;  // 0x10
+    std::int32_t prev_mode;  // 0x14
+    CamZones* cam_zones;  // 0x18
+    float view_quad[10];  // 0x1c
+    float rally_pos[2];  // 0x44
+    CamParams camera;  // 0x4c
+    std::uint8_t follow_mode;  // 0x74
+    float follow_param;  // 0x75
+    std::uint8_t u8_79;  // 0x79
+    std::uint16_t u16_7a;  // 0x7a
+    std::uint8_t u8_7c;  // 0x7c
+    std::int32_t cursor_mode;  // 0x7d
+    std::uint8_t blocked;  // 0x81
+    std::int32_t last_dir_key;  // 0x82
+    std::uint32_t last_dir_key_ms;  // 0x86
+    std::int32_t dir_tap_armed;  // 0x8a
+    std::uint8_t button_down[4];  // 0x8e
+    std::uint8_t button_up[4];  // 0x92
+    std::uint8_t order_state;  // 0x96
+    std::uint32_t press_time;  // 0x97
+    std::int16_t combo_step;  // 0x9b
+    std::int8_t combo_count;  // 0x9d
+    std::int32_t jump_hold_ms;  // 0x9e
+    std::int32_t attack_target_id;  // 0xa2
+    std::int16_t turn;  // 0xa6
+    std::uint32_t u32_a8;  // 0xa8
+    std::uint8_t riding;  // 0xac
+    float aim_yaw_rad;  // 0xad
+    float aim_yaw_deg;  // 0xb1
+    float aim_pitch_deg;  // 0xb5
+    std::int16_t manual_aim;  // 0xb9
+    std::int32_t aim_lock_id;  // 0xbb
+    std::uint8_t aiming;  // 0xbf
+    std::uint32_t aim_time;  // 0xc0
+    std::uint8_t mounted;  // 0xc4
+    float mount_heading;  // 0xc5
+    float mount_heading_deg;  // 0xc9
+    std::int16_t squad_mode;  // 0xcd
+    std::uint8_t gap_cf[0x4];
+    std::int32_t goto_target_;  // 0xd3
+    std::int32_t goto_kind;  // 0xd7
+    std::int16_t goto_active;  // 0xdb
+    std::uint32_t goto_time;  // 0xdd
+    float f32_e1;  // 0xe1
+    std::uint8_t gap_e5[0x4];
+    float pan_speed;  // 0xe9
+    float zoom_dist;  // 0xed
+    std::uint32_t prev_rts_active;  // 0xf1
+    std::uint32_t rts_active;  // 0xf5
+    std::uint8_t group_counts[12];  // 0xf9
+    std::uint32_t group_units[1100];  // 0x105
+    std::uint8_t dragging;  // 0x1235
+    std::int8_t group;  // 0x1236
+    std::uint8_t selected_hero;  // 0x1237
+    std::uint32_t selected_commander_id;  // 0x1238
+    float drag_x;  // 0x123c
+    float drag_y;  // 0x1240
+    std::uint8_t gap_1244[0x4];
+    std::uint32_t pick_kind;  // 0x1248
+    std::uint32_t click_time;  // 0x124c
+    std::uint32_t pick_id;  // 0x1250
+    std::uint32_t point_kind;  // 0x1254
+    char point_name[9];  // 0x1258
+    BmpRes* rtsicon_res;  // 0x1261
+    void* rts_icon;  // 0x1265
+    std::uint8_t castle_popup_open;  // 0x1269
+    float prev_move_angle;  // 0x126a

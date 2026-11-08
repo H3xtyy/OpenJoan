@@ -1,0 +1,19 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# Doxygen over the hand-written headers (skill oj-documentation, section 4). Run from the repository root:
+#   doxygen docs/Doxyfile
+# Generated files (src/original/gen, src/data) and the ported game functions are left out: those are documented by
+# address and by their module README. Output goes to build/doxygen; the warnings go to stderr and must be empty.
+PROJECT_NAME           = OpenJoan
+OUTPUT_DIRECTORY       = build/doxygen
+INPUT                  = src/runtime src/platform src/gl src/render src/media src/original
+FILE_PATTERNS          = *.hpp
+RECURSIVE              = YES
+EXCLUDE_PATTERNS       = */gen/*
+EXTENSION_MAPPING      = inc=C++
+EXTRACT_ALL            = NO
+WARN_IF_UNDOCUMENTED   = YES
+WARN_IF_DOC_ERROR      = YES
+WARN_NO_PARAMDOC       = NO
+GENERATE_HTML          = YES
+GENERATE_LATEX         = NO
+QUIET                  = YES

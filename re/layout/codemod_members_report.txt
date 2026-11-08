@@ -1,0 +1,19 @@
+stats: {"through a typed pointer": 29, "left: no member at the offset": 17, "converted (view)": 1, "converted": 11}
+
+uti3d/pathsp.cpp:160: PfdZone+0x0 (4 B int) not on a member
+uti3d/pathsp.cpp:164: PfdZone+0x4 (4 B int) not on a member
+uti3d/pathsp.cpp:166: PfdZone+0x4 (4 B int) not on a member
+uti3d/pathsp.cpp:177: PfdZone+0x24 (4 B int) not on a member
+uti3d/pathsp.cpp:1473: PfdZone+0x70 (4 B int) not on a member
+uti3d/pathsp.cpp:1474: PfdZone+0x44 (4 B void *) not on a member
+uti3d/pathsp.cpp:1482: PfdZone+0x70 (4 B int) not on a member
+uti3d/pathsp.cpp:1483: PfdZone+0x44 (4 B void *) not on a member
+uti3d/pathsp.cpp:1486: PfdZone+0x70 (4 B int) not on a member
+uti3d/pathsp.cpp:1491: PfdZone+0x44 (4 B void *) not on a member
+uti3d/pathsp.cpp:1492: PfdZone+0x44 (4 B void *) not on a member
+uti3d/pathsp.cpp:1492: PfdZone+0x44 (4 B void *) not on a member
+uti3d/pathsp.cpp:1493: PfdZone+0x44 (4 B void *) not on a member
+uti3d/pathsp.cpp:1495: PfdZone+0x44 (4 B joan::orig::PfdZone *) not on a member
+uti3d/pathsp.cpp:3436: PfdZone+0x4 (4 B int) not on a member
+uti3d/pathsp.cpp:3486: PfdZone+0x0 (4 B int) not on a member
+uti3d/pathsp.cpp:3489: PfdZone+0x0 (4 B int) not on a member

@@ -1,0 +1,6 @@
+start,end,name,confidence,evidence,target
+0x00425a40,0x00425cb0,camman_t1,medium,square / vec_lerp / angle_lerp / lerp_float / state_same are static helpers of camman.cpp CameraMotion::update; run sits between camman.cpp sweep_tracked and its inline accessors (0x425ce0..).,game/camman.cpp
+0x00425dc0,0x00425e20,camzone_a,medium,"CamZones ctor + init (CamRes::CamRes, set_first): start of a camera-zone object after camman's inline accessors; continues as camzone_b/c and is closed by the PI init block 0xa33698 at 0x428ba0 (camres.cpp has no PI family)."
+0x00425f70,0x00426300,camzone_b,medium,CamZones element delete + CameraZone::update (SAMPLE) + a global dtor and PI init stub; between the camres-registered CamZones helpers 0x425ef0 / 0x426330 which probably belong here too.
+0x00426420,0x00428cc0,camzone_c,medium,"CameraZone::inside / enter / scripted with hermite_b / lerp_b, CamMotion::start, Track helpers, Tracks::get and stray Unit helpers, closed by the PI static-init block (.bss a33698..a336a4)."
+0x00428cf0,0x00428cf0,camres_ctor,high,CamRes memset ctor (called by CamZones::init/load) immediately before camres.cpp Obj::forward_428d50 / CamRes::free: head of camres.cpp.,game/camres.cpp

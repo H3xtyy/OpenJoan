@@ -1,0 +1,7 @@
+start,end,name,confidence,evidence,target
+0x004c91c0,0x004c93e0,profile_t1,high,MapUnits::load_unit (uses profile.cpp Table::find_name) + accessors + Key::read paired with profile.cpp Key::write; right after profile.cpp X::attach.,game/profile.cpp
+0x004c9460,0x004c9460,profile_t2,high,Record::write called by Profile::save_4c8810 between profile.cpp Key::write and Obj::load_4c9530.,game/profile.cpp
+0x004c96f0,0x004c9c60,profile_t3,high,Unit::copy_to (X::attach) / record save+Hero::load (profile.cpp Obj::load_4c9530) / UnitList global ctor+dtor before profile.cpp SaveList::refresh.,game/profile.cpp
+0x004c9f00,0x004ca180,profile_t4,high,UnitList clear / delete / List48 add / find_name used by profile.cpp SaveList::refresh and UnitList::select.,game/profile.cpp
+0x004ca290,0x004ca290,profile_t5,medium,List lookup after profile.cpp UnitList::select_4ca210 (same List::at / is_empty_at pattern).,game/profile.cpp
+0x004ca2e0,0x004ca2e0,raceres_ctor,high,memset ctor of the global built by init 0x569e00 whose atexit dtor 0x569e50 -> RaceRes::free: RaceRes ctor heading raceres.cpp (next function).,game/raceres.cpp

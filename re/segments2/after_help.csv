@@ -1,0 +1,5 @@
+start,end,name,confidence,evidence,target
+0x00488ac0,0x00489d90,help_menu_g0,medium,Menu/tooltip/HelpBox code sandwiched between help.cpp functions (Help::load at 0x488590 and its helper Obj::field_196 at 0x489e70); Tree::layout/Anim::start are relocated strays.,game/help.cpp
+0x00489ea0,0x0048c0e0,i_obj0b,medium,"Item class Order0b (ctor/scalar dtor/init/on_event/is_idle + stubs, vtable 0x9d37cc, strings s7_food/unique_random_list 0x9d3868..74) whose .rdata lies between help.cpp FILE 0x9d37b8 and the i_gate vtable 0x9d388c: own TU.",
+0x0048c100,0x0048c2a0,i_gate_head_g0,high,"Math static-init set (bss 0xa39bf8..) opening the i_gate TU, then Order19 (Gate) ctor and scalar dtor (vtable 0x9d388c) calling i_gate.cpp dtor 0x48c2f0.",game/i_gate.cpp
+0x0048c360,0x0048c360,i_gate_init_g0,high,Gate init (vtable 0x9d3894) right after i_gate.cpp dtor 0x48c2f0.,game/i_gate.cpp

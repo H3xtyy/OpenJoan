@@ -1,0 +1,1659 @@
+{
+ "_doc": "Save record schemas (re/a6/SAVES_PLAN.md 3.2). One section per batch; re/save/gen_save.py turns every record without \"todo\" into src/save/gen/records_<section>.hpp (field table + put_<name> / get_<name>) and re/save/gen/schema_<section>.json (savecmp.py). Keys: class = joan::orig C++ class (its real layout, read with libclang); from/size = the chunk = bytes [from, from+size) of the object; legacy = raw | image_words (what the old raw path did, for SaveCompare); image_words = every 4-byte scalar at a chunk dword offset carried under Ptr::Image; ptr = {member path: Flag|Cleared|Kept|Image|Stale} (every pointer member in the range needs one); opaque = [[from, size]] byte-array ranges kept verbatim on purpose (SaveAudit=2 labels them); todo = not converted yet (inventory of SAVES_PLAN 2.2, notes = the reader's pointer handling).",
+ "sav": {
+  "_doc": ".SAV layout for savecmp.py: \"RSav\" chunk, header chunks (GameFile::write_header 0x478cc0), marker chunk 0x2facebee, then 20 steps each followed by the marker. A step grammar is a list of items: \"chunk:<record>\" | \"chunk:<n>\" | \"long\" | \"short\"; steps without one are compared as bytes.",
+  "header": [
+   [
+    "0x002",
+    4
+   ],
+   [
+    "0x108",
+    8
+   ],
+   [
+    "0x110",
+    8
+   ],
+   [
+    "0x118",
+    1
+   ],
+   [
+    "0x119",
+    1
+   ],
+   [
+    "0x19f",
+    4
+   ],
+   [
+    "0x1a3",
+    4
+   ],
+   [
+    "0x11a",
+    128
+   ],
+   [
+    "0x19a",
+    4
+   ],
+   [
+    "0x19e",
+    1
+   ]
+  ],
+  "header_ignore": [
+   1,
+   2
+  ],
+  "marker": "0x2facebee",
+  "steps": {
+   "1": [
+    "chunk:Calendar"
+   ],
+   "2": [
+    "chunk:WndSpeed",
+    "chunk:WndI16_48",
+    "chunk:WndU8_4a",
+    "chunk:WndGameTime"
+   ]
+  }
+ },
+ "sections": {
+  "s0": [
+   {
+    "name": "PathPoint",
+    "class": "PathPoint",
+    "from": "0x0",
+    "size": "0x24",
+    "writer": [
+     "0x0047f1e0 gfile3.cpp Obj::write_list (PointList +0x1d start, then each element)"
+    ],
+    "reader": [
+     "0x0047f290 gfile3.cpp PointList::load"
+    ],
+    "legacy": "image_words",
+    "image_words": true,
+    "ptr": {},
+    "opaque": [],
+    "notes": "No pointer members; SaveAudit B0 found image addresses (vtable 0x009d9a2c, 0x00a403a0) in stale bytes, so every dword is carried under Ptr::Image exactly as img::save_words / load_words did (SAVES_PLAN 2.4)."
+   },
+   {
+    "name": "Calendar",
+    "class": "Calendar",
+    "from": "0x0",
+    "size": "0x50",
+    "writer": [
+     "0x00476890 gamefil2.cpp Sub::save_50 (.SAV step 1)"
+    ],
+    "reader": [
+     "0x004767c0 gamefil2.cpp Sub::load_50"
+    ],
+    "legacy": "raw",
+    "ptr": {},
+    "opaque": []
+   }
+  ],
+  "s1": [
+   {
+    "name": "Unit",
+    "class": "Unit",
+    "from": "0x0",
+    "size": "0x432",
+    "writer": [
+     "0x0047dbe0 gfile3.cpp Obj::save_47dbe0 (UnitManager list, .SAV step 13; Scenario squads 0x00483e00)"
+    ],
+    "reader": [
+     "0x0047de30 gfile3.cpp Obj::load_47de30"
+    ],
+    "legacy": "raw",
+    "ptr": {
+     "group": "Flag",
+     "modifiers": "Flag",
+     "script": "Cleared",
+     "orders": "Flag",
+     "anim_set": "Cleared",
+     "actor": "Cleared",
+     "actor_b": "Cleared",
+     "u32_2fd": "Cleared",
+     "u32_301": "Cleared",
+     "actor_c": "Cleared",
+     "u32_30d": "Cleared",
+     "u32_311": "Cleared",
+     "model": "Cleared",
+     "draw": "Cleared",
+     "model_b": "Cleared",
+     "weapon_model": "Cleared",
+     "trail_a": "Cleared",
+     "trail_b": "Cleared",
+     "world": "Flag",
+     "cell": "Cleared",
+     "cell_prev": "Cleared",
+     "cell_next": "Cleared",
+     "scene": "Cleared",
+     "mask_slots": "Stale",
+     "mask_slots_b": "Stale",
+     "upgrades.list": "Flag"
+    },
+    "opaque": [],
+    "notes": "load_47de30: group (Group 0x58), modifiers (UnitData 0x1e), orders (Order list) tested and re-allocated + loaded; world (kind I) tested, replaced by the id word written after the int tables (World +2) - it can hold an image address (Game::init_sample_world passes 0x00a39670), written raw (x86 identity; joan.exe would have the original VA there, only the null test matters); script (re-derived) and +0x2f1..+0x331, cell, cell_prev, cell_next, scene zeroed by Unit::reset_links 0x0047e300; mask_slots / mask_slots_b re-allocated when the type's count (+0x1ad) > 0, else carried and never dereferenced (all loops are bounded by that count). The int tables follow as put_long (count from the type)."
+   },
+   {
+    "name": "ProfileHero",
+    "class": "Unit",
+    "from": "0x0",
+    "size": "0x432",
+    "writer": [
+     "0x004c9880 profile.cpp Obj::load_4c9880 (misnamed: the hero writer)"
+    ],
+    "reader": [
+     "0x004c9930 profile.cpp Hero::load"
+    ],
+    "legacy": "raw",
+    "ptr": {
+     "group": "Stale",
+     "modifiers": "Flag",
+     "script": "Cleared",
+     "orders": "Cleared",
+     "anim_set": "Cleared",
+     "actor": "Cleared",
+     "actor_b": "Cleared",
+     "u32_2fd": "Cleared",
+     "u32_301": "Cleared",
+     "actor_c": "Cleared",
+     "u32_30d": "Cleared",
+     "u32_311": "Cleared",
+     "model": "Cleared",
+     "draw": "Cleared",
+     "model_b": "Cleared",
+     "weapon_model": "Cleared",
+     "trail_a": "Cleared",
+     "trail_b": "Cleared",
+     "world": "Stale",
+     "cell": "Cleared",
+     "cell_prev": "Cleared",
+     "cell_next": "Cleared",
+     "scene": "Cleared",
+     "mask_slots": "Cleared",
+     "mask_slots_b": "Cleared",
+     "upgrades.list": "Flag"
+    },
+    "opaque": [],
+    "notes": "Same bytes as Unit, other reader: only modifiers is tested (UnitData re-allocated + loaded); reset_links clears script / +0x2f1..+0x331 / cell* / scene, Hero::load then zeroes mask_slots, mask_slots_b, orders. group and world are neither tested nor cleared by Hero::load (Stale): a profile hero carries the saved values (x86 raw; x64 a token) - SaveAudit=2 / x64 check that nothing dereferences them before set_group / Unit::init."
+   },
+   {
+    "name": "Group",
+    "class": "Group",
+    "from": "0x0",
+    "size": "0x58",
+    "writer": [
+     "0x0047e540 gfile3.cpp Obj::write_58"
+    ],
+    "reader": [
+     "0x0047e580 gfile3.cpp Sub::load_58"
+    ],
+    "legacy": "raw",
+    "ptr": {},
+    "opaque": []
+   },
+   {
+    "name": "UnitStats",
+    "class": "UnitStats",
+    "from": "0x0",
+    "size": "0x3b",
+    "writer": [
+     "0x0047e5c0 gfile3.cpp Rec3b::read (misnamed: writes)"
+    ],
+    "reader": [
+     "0x0047e600 gfile3.cpp Rec3b::write (misnamed: reads)"
+    ],
+    "legacy": "raw",
+    "ptr": {},
+    "opaque": [],
+    "notes": "Unit +0x16f. gap_2c (15 bytes) copied verbatim: no pointer-sized aligned use known; SaveAudit=2 labels it."
+   },
+   {
+    "name": "UpgradeList",
+    "class": "UpgradeList",
+    "from": "0x0",
+    "size": "0x4",
+    "writer": [
+     "0x0047e640 gfile3.cpp IdList::write"
+    ],
+    "reader": [
+     "0x0047e700 gfile3.cpp IdList::read"
+    ],
+    "legacy": "raw",
+    "ptr": {
+     "list": "Flag"
+    },
+    "opaque": [],
+    "notes": "Unit +0x1aa. list tested: then put_long count + count x UpgradeListEntry chunks; the reader re-allocates the DynArray (8, 0x1e)."
+   },
+   {
+    "name": "UpgradeListEntry",
+    "class": "UpgradeListEntry",
+    "from": "0x0",
+    "size": "0x8",
+    "writer": [
+     "0x0047e640 gfile3.cpp IdList::write (elements)"
+    ],
+    "reader": [
+     "0x0047e700 gfile3.cpp IdList::read (elements)"
+    ],
+    "legacy": "raw",
+    "ptr": {},
+    "opaque": []
+   },
+   {
+    "name": "UnitData",
+    "class": "UnitData",
+    "from": "0x0",
+    "size": "0x1e",
+    "writer": [
+     "0x0047e850 gfile3.cpp Obj::save_47e850"
+    ],
+    "reader": [
+     "0x0047e9f0 gfile3.cpp Sub::load_parts"
+    ],
+    "legacy": "raw",
+    "ptr": {
+     "hands": "Flag",
+     "equipped": "Flag",
+     "extra_item": "Flag",
+     "list_12": "Flag",
+     "grid_16": "Flag",
+     "grid_1a": "Flag"
+    },
+    "opaque": [],
+    "notes": "Unit.modifiers. hands[0..1], equipped, extra_item: new(0x12) + ItemStack chunk; list_12 / grid_16 / grid_1a: new Grid, alloc(1, 4, 1) / (1, 6, 8) / (1, 6, 4), Grid::load."
+   },
+   {
+    "name": "ItemStack",
+    "class": "HeldItem",
+    "from": "0x0",
+    "size": "0x12",
+    "writer": [
+     "0x0047ed60 gfile3.cpp Rec12::read (misnamed: writes)"
+    ],
+    "reader": [
+     "0x0047eda0 gfile3.cpp Rec12::write (misnamed: reads)"
+    ],
+    "legacy": "raw",
+    "ptr": {},
+    "opaque": []
+   },
+   {
+    "name": "InvItem",
+    "class": "InvItem",
+    "from": "0x0",
+    "size": "0x18",
+    "writer": [
+     "0x0047ede0 gfile3.cpp Grid::save (elements)"
+    ],
+    "reader": [
+     "0x0047ef30 gfile3.cpp Grid::load (elements)"
+    ],
+    "legacy": "raw",
+    "ptr": {},
+    "opaque": [],
+    "notes": "Grid::save first writes rows x cols cell chunks of cell_size bytes (occupancy bytes, Grid::fill / find_place: no pointers; schema-less chunk \"GridCell\"), then put_long count, per element a put_short tag (0 = empty slot) and this record, then DynArrayB::write_empty_room (S5)."
+   },
+   {
+    "name": "OrderEntry",
+    "class": "OrderEntry",
+    "from": "0x0",
+    "size": "0x21",
+    "writer": [
+     "0x0047f080 gfile3.cpp List::save_21 (Order.current +0x1d, then each element)"
+    ],
+    "reader": [
+     "0x0047f130 gfile3.cpp List21::load"
+    ],
+    "legacy": "raw",
+    "ptr": {},
+    "opaque": []
+   }
+  ],
+  "s2": [
+   {
+    "name": "Place",
+    "class": "Place",
+    "from": "0x0",
+    "size": "0x1f6",
+    "writer": [
+     "0x0047fc80 gfile3.cpp ObjC::save (.SAV step 8, per place), then the World id word"
+    ],
+    "reader": [
+     "0x0047fd00 gfile3.cpp Unit::load (misnamed: Place), clear 0x0047fdf0"
+    ],
+    "legacy": "raw",
+    "ptr": {
+     "model": "Cleared",
+     "world": "Flag",
+     "cell": "Cleared",
+     "cell_prev": "Cleared",
+     "cell_next": "Cleared",
+     "facility_tail": "Cleared",
+     "facility_head_": "Cleared"
+    },
+    "opaque": [],
+    "notes": "world: kind I (tested, then replaced by the id word lookup 0x00420240). T1 '+0x4 image address' = kind byte + name[0..2] (text). gap_1d2 (4 bytes, never accessed) copied verbatim."
+   },
+   {
+    "name": "FacilityBase",
+    "class": "Facility",
+    "from": "0x4",
+    "size": "0x75",
+    "writer": [
+     "0x004800a0 gfile3.cpp Record::load (misnamed: Facility::save_base)"
+    ],
+    "reader": [
+     "0x00480110 gfile3.cpp Sub::load_75, clear 0x004801d0"
+    ],
+    "legacy": "raw",
+    "ptr": {
+     "owner": "Flag",
+     "prev": "Cleared",
+     "next": "Cleared"
+    },
+    "opaque": [],
+    "notes": "vtable (+0) not saved. owner: kind I (Place id word after the record; the reader nulls it and links the facility into the Place again)."
+   },
+   {
+    "name": "BuildingTail",
+    "class": "Building",
+    "from": "0x79",
+    "size": "0xc7",
+    "writer": [
+     "0x00480200 gfile3.cpp Obj::save_480200 = save_79<0xc7> (barracks, vtable 0x9d0780)"
+    ],
+    "reader": [
+     "0x00480260 gfile3.cpp Obj::load_480260 = load_79<0xc7>"
+    ],
+    "legacy": "raw",
+    "ptr": {},
+    "opaque": [],
+    "notes": "FacilityTail for Building (0x140 = 0x79 + 0xc7). No pointers."
+   },
+   {
+    "name": "SiegeTail",
+    "class": "Siege",
+    "from": "0x79",
+    "size": "0x2e9b",
+    "writer": [
+     "0x004802f0 gfile3.cpp Obj::save_4802f0 = save_79<0x2e9b> (workshop, vtable 0x9d0980)"
+    ],
+    "reader": [
+     "0x00480350 gfile3.cpp Obj::load_480350 = load_79<0x2e9b>; vtable slot 0x5c = Obj::reset_4803c0 0x004803c0 nulls life_bar and creates a new one"
+    ],
+    "legacy": "raw",
+    "ptr": {
+     "life_bar": "Cleared"
+    },
+    "opaque": [],
+    "notes": "FacilityTail for Siege (0x2f14 = 0x79 + 0x2e9b). queue (0x2df0 bytes = 80 x 0x93 records {i16, i8, u32 ...}) and gap_96 copied verbatim."
+   },
+   {
+    "name": "ShopTail",
+    "class": "Shop",
+    "from": "0x79",
+    "size": "0x15",
+    "writer": [
+     "0x00480410 gfile3.cpp Obj::save_480410"
+    ],
+    "reader": [
+     "0x004804f0 gfile3.cpp Obj::load_4804f0"
+    ],
+    "legacy": "raw",
+    "ptr": {
+     "stock": "Flag"
+    },
+    "opaque": [],
+    "notes": "stock: tested, then a new DynArray(0xe) is loaded (count + ShopStock records)."
+   },
+   {
+    "name": "ShopStock",
+    "class": "ShopStock",
+    "from": "0x0",
+    "size": "0xe",
+    "writer": [
+     "0x00480410 gfile3.cpp Obj::save_480410 (each stock element)"
+    ],
+    "reader": [
+     "0x004804f0 gfile3.cpp Obj::load_4804f0"
+    ],
+    "legacy": "raw",
+    "ptr": {},
+    "opaque": []
+   },
+   {
+    "name": "FlagFacilityTail",
+    "class": "FlagFacility",
+    "from": "0x79",
+    "size": "0x20",
+    "writer": [
+     "0x00480690 gfile3.cpp Obj::save_480690"
+    ],
+    "reader": [
+     "0x00480880 gfile3.cpp Obj::load_480880"
+    ],
+    "legacy": "raw",
+    "ptr": {
+     "list_79": "Flag",
+     "list_7d": "Flag",
+     "list_89": "Flag"
+    },
+    "opaque": [],
+    "notes": "each list: tested, then a new DynArray(0xa) is loaded (count + 10-byte FlagRow records)."
+   },
+   {
+    "name": "FlagRow",
+    "class": "RecruitRow",
+    "from": "0x0",
+    "size": "0xa",
+    "writer": [
+     "0x00480690 gfile3.cpp Obj::save_480690 (elements of list_79 / list_7d / list_89)"
+    ],
+    "reader": [
+     "0x00480880 gfile3.cpp Obj::load_480880"
+    ],
+    "legacy": "raw",
+    "ptr": {},
+    "opaque": [],
+    "notes": "list_79 / list_7d hold RecruitRow copies (load_flag_groups 0x00468790: i16 +0, 4 bytes +2, 4 bytes +6); list_89 (created empty by 0x00468410) assumed the same 10-byte shape. All scalars: same bytes on every target."
+   },
+   {
+    "name": "MapObjectBase",
+    "class": "MapObject",
+    "from": "0x4",
+    "size": "0xbe",
+    "writer": [
+     "0x00481ba0 gfile3.cpp Obj::save_481ba0, then type name, WorldItem, World id word"
+    ],
+    "reader": [
+     "0x00481cd0 gfile3.cpp Obj::load_481cd0, clear 0x00481ed0 (ObjD::reset)"
+    ],
+    "legacy": "raw",
+    "ptr": {
+     "actor": "Cleared",
+     "actor_b": "Cleared",
+     "world_item": "Flag",
+     "world": "Flag",
+     "cell": "Cleared",
+     "cell_prev": "Cleared",
+     "cell_next": "Cleared",
+     "scene": "Cleared"
+    },
+    "opaque": [],
+    "notes": "vtable (+0) not saved. world_item: tested, then a new WorldItem is loaded; world: kind I. T1 dwords at chunk +0xa8/+0xac (object +0xac/+0xb0) lie inside cell/cell_prev/cell_next (+0xaa..+0xb5), all zeroed by 0x00481ed0 before use: harmless whatever their real boundaries. gap_c (0x42 bytes) copied verbatim."
+   },
+   {
+    "name": "Order0bTail",
+    "class": "Order0b",
+    "from": "0xc2",
+    "size": "0xb",
+    "writer": [
+     "0x00481290 gfile3.cpp save_c2<0xb>"
+    ],
+    "reader": [
+     "0x004812f0 gfile3.cpp load_c2<0xb>"
+    ],
+    "legacy": "raw",
+    "ptr": {},
+    "opaque": [],
+    "notes": "MapObjectTail, vtable 0x9d37cc (0xcd = 0xc2 + 0xb)."
+   },
+   {
+    "name": "GateTail",
+    "class": "Gate",
+    "from": "0xc2",
+    "size": "0x19",
+    "writer": [
+     "0x00481470 gfile3.cpp save_c2<0x19>"
+    ],
+    "reader": [
+     "0x004814d0 gfile3.cpp load_c2<0x19>; vtable slot 0x78 = Obj::reset_481540 0x00481540 nulls blocked_cells"
+    ],
+    "legacy": "raw",
+    "ptr": {
+     "blocked_cells": "Cleared"
+    },
+    "opaque": [],
+    "notes": "MapObjectTail, vtable 0x9d388c (0xdb = 0xc2 + 0x19). gap_ca copied verbatim."
+   },
+   {
+    "name": "Order0cTail",
+    "class": "Order0c_a",
+    "from": "0xc2",
+    "size": "0xc",
+    "writer": [
+     "0x004815c0 / 0x004816b0 / 0x004817a0 gfile3.cpp save_c2<0xc> (Order0c_a 0x9d3ab4, Order0c_c 0x9d397c, Order0c_b 0x9d3b50)"
+    ],
+    "reader": [
+     "0x00481620 / 0x00481710 / 0x00481800 gfile3.cpp load_c2<0xc>"
+    ],
+    "legacy": "raw",
+    "ptr": {},
+    "opaque": [],
+    "notes": "MapObjectTail of the three 0xce classes, one template instance: their tails are all three 32-bit scalars (Order0c_a amount/u32_c6/u32_ca, Order0c_b u32 x3, Order0c_c durability/u32_c6[2]), so Order0c_a's schema writes the same bytes for each."
+   },
+   {
+    "name": "Order45Tail",
+    "class": "Order45",
+    "from": "0xc2",
+    "size": "0x45",
+    "writer": [
+     "0x00481980 gfile3.cpp save_c2<0x45>"
+    ],
+    "reader": [
+     "0x004819e0 gfile3.cpp load_c2<0x45>"
+    ],
+    "legacy": "raw",
+    "ptr": {},
+    "opaque": [],
+    "notes": "MapObjectTail, vtable 0x9d3bec (0x107 = 0xc2 + 0x45)."
+   },
+   {
+    "name": "WallTail",
+    "class": "Wall",
+    "from": "0xc2",
+    "size": "0x2d",
+    "writer": [
+     "0x00481a70 gfile3.cpp save_c2<0x2d>"
+    ],
+    "reader": [
+     "0x00481ad0 gfile3.cpp load_c2<0x2d>; vtable slot 0x78 = Obj::reset_d2_da_e7_eb 0x00481b40 nulls actor_a / actor_b"
+    ],
+    "legacy": "raw",
+    "ptr": {
+     "actor_a": "Cleared",
+     "actor_b": "Cleared",
+     "u32_eb": "Cleared"
+    },
+    "opaque": [],
+    "notes": "MapObjectTail, vtable 0x9d3c88 (0xef = 0xc2 + 0x2d). gap_c2 copied verbatim. Other tails: Order00 (0x00481380, N = 0: an empty chunk) and the class of 0x00481890 (N = 0x18, vtable not referenced, no C++ class: 0x18 bytes without schema)."
+   },
+   {
+    "name": "WorldItem",
+    "class": "WorldItem",
+    "from": "0x12",
+    "size": "0x40",
+    "writer": [
+     "0x004810b0 gfile3.cpp Obj40::save (after the HeldItem 0x0047ed60), then the World id word"
+    ],
+    "reader": [
+     "0x00481140 gfile3.cpp Obj::load_481140, clear 0x00481220"
+    ],
+    "legacy": "raw",
+    "ptr": {
+     "world": "Flag",
+     "cell": "Cleared",
+     "cell_prev": "Cleared",
+     "cell_next": "Cleared",
+     "sector": "Cleared",
+     "sector_prev": "Cleared",
+     "sector_next": "Cleared"
+    },
+    "opaque": [],
+    "notes": "world: kind I (id word; its high half is never written: put_short). gap_1e copied verbatim."
+   },
+   {
+    "name": "Order",
+    "class": "Missile",
+    "from": "0x0",
+    "size": "0x6c",
+    "writer": [
+     "0x00482dc0 gfile3.cpp Obj::write_6c (.SAV step 12, per element of g_orders)"
+    ],
+    "reader": [
+     "0x00482e00 gfile3.cpp Rec6c::load, clear 0x00482e50"
+    ],
+    "legacy": "raw",
+    "ptr": {
+     "trail": "Cleared"
+    },
+    "opaque": [],
+    "notes": "index (+0) is a list handle (u32), not a pointer. +0x56..+0x65: shot_start, shot_end, hit_time (u32), hit_object (i32)."
+   }
+  ],
+  "s3": [
+   {
+    "name": "WorldArray",
+    "class": null,
+    "from": "0x2e",
+    "size": "?",
+    "writer": [
+     "0x004854c0 gfile3.cpp List::save_4854c0 (.SAV step 3)"
+    ],
+    "reader": [
+     "0x004855b0 gfile3.cpp List::load_4855b0"
+    ],
+    "todo": true,
+    "notes": "No raw chunk: put_long active (+0x2e), selected (+0x32), count, then per slot put_short 0/1 + World (0x00485070), write_empty_room. Already field-wise; the reader re-derives u32_36 (World*) from selected."
+   },
+   {
+    "name": "World",
+    "class": "World",
+    "from": "0x0",
+    "size": "0x92",
+    "writer": [
+     "0x00485070 gfile3.cpp Obj::save_485070"
+    ],
+    "reader": [
+     "0x00485130 gfile3.cpp Rec92::load"
+    ],
+    "legacy": "raw",
+    "ptr": {
+     "bitmaps.entries": "Stale",
+     "path_space": "Cleared",
+     "scene": "Flag",
+     "cells": "Cleared",
+     "box_tree": "Cleared",
+     "cell_query": "Cleared",
+     "entries": "Cleared"
+    },
+    "opaque": [],
+    "notes": "scene: tested, then a Scene chunk follows (its first 0x18 bytes go to a new Scene); path_space, box_tree, entries zeroed by 0x00485450; cells (+0x7a) and cell_query (+0x82) overwritten by new allocations; bitmaps.entries neither tested nor cleared by the reader (BmpRes reloaded / cleared by the world (un)load code)."
+   },
+   {
+    "name": "Scene",
+    "class": "Scene",
+    "from": "0x0",
+    "size": "0xd5",
+    "writer": [
+     "0x00484ad0 gfile3.cpp Recd5::save"
+    ],
+    "reader": [
+     "0x00484b10 gfile3.cpp Sub::load_d5"
+    ],
+    "legacy": "raw",
+    "ptr": {
+     "sky": "Cleared",
+     "plane_1c": "Cleared",
+     "sectors": "Cleared",
+     "tree": "Cleared",
+     "visible": "Cleared",
+     "list_40": "Cleared",
+     "lights": "Cleared",
+     "occluders": "Cleared",
+     "plane_71": "Cleared",
+     "actors": "Cleared",
+     "plane_81": "Cleared",
+     "camera": "Cleared",
+     "ptr_b9": "Cleared",
+     "materials": "Cleared",
+     "region_buffer": "Cleared",
+     "buffer_d1": "Cleared"
+    },
+    "opaque": [],
+    "notes": "Every pointer is zeroed by 0x00484b60 (23 offsets); the reader (Rec92::load) keeps only params[6] (+0..0x18)."
+   },
+   {
+    "name": "Cell",
+    "class": "Cell",
+    "from": "0x0",
+    "size": "0xac",
+    "writer": [
+     "0x00484e00 gfile3.cpp Recac::save"
+    ],
+    "reader": [
+     "0x00484e40 gfile3.cpp Sub::load_ac"
+    ],
+    "legacy": "raw",
+    "ptr": {
+     "world": "Kept",
+     "ptr_4": "Cleared",
+     "path_space": "Cleared",
+     "path_space_b": "Cleared",
+     "tracks": "Cleared",
+     "camera_zones": "Cleared",
+     "sectors": "Cleared",
+     "sector_names": "Cleared",
+     "occluders": "Cleared",
+     "p_84": "Cleared",
+     "rows": "Cleared",
+     "units_tail": "Cleared",
+     "units_head": "Cleared",
+     "objects_tail": "Cleared",
+     "objects_head": "Cleared",
+     "items_tail": "Cleared",
+     "items_head": "Cleared",
+     "places_tail": "Cleared",
+     "places_head": "Cleared"
+    },
+    "opaque": [],
+    "notes": "world restored by the reader; sectors / sector_names / occluders re-allocated, the rest zeroed by 0x00484f50. gap_10 (0x33 bytes) copied verbatim (gap check, SaveAudit=2)."
+   },
+   {
+    "name": "SceneNode",
+    "class": "SceneS",
+    "from": "0x0",
+    "size": "0xe4",
+    "writer": [
+     "0x00484cc0 gfile3.cpp Obj::save_484cc0 (unreferenced in joan.exe)"
+    ],
+    "reader": [
+     "0x00484d00 gfile3.cpp Obj::load_484d00 (unreferenced in joan.exe)"
+    ],
+    "legacy": "raw",
+    "ptr": {
+     "scene": "Stale",
+     "node": "Cleared",
+     "plane": "Cleared",
+     "object": "Cleared",
+     "plane2": "Cleared",
+     "items": "Cleared",
+     "ptr_50": "Cleared",
+     "nodes": "Cleared",
+     "nodes_tail": "Cleared",
+     "nodes_head": "Cleared",
+     "lights": "Cleared"
+    },
+    "opaque": [],
+    "notes": "Neither function nor its thunk (0x00401be5 / 0x00409692) is referenced in joan.exe (no call, no absolute address): never in a save. Converted anyway; the reader zeroes +4, +0x38..+0x44, +0x50, +0xc6..+0xce, +0xda (0x00484d50). The 0xe4-byte record is the sector SceneS (round P8: ctor 0x005ef800, attachments 0x005efff0 = nodes_head; the reader clears exactly its pointers)."
+   },
+   {
+    "name": "PlayerHead",
+    "class": "Player",
+    "from": "0x0",
+    "size": "0x1261",
+    "writer": [
+     "0x004857c0 gfile3.cpp GameFile::write_camera_4857c0 (.SAV step 15)"
+    ],
+    "reader": [
+     "0x00485930 gfile3.cpp Obj::load_485930"
+    ],
+    "legacy": "raw",
+    "ptr": {
+     "cam_zones": "Cleared"
+    },
+    "opaque": [],
+    "notes": "Player chunk 0x126e = PlayerHead [0, 0x1261) + u32_1261 (Ptr::Image word) + PlayerTail [0x1265, 0x126e), joined in src/save/records_s3.hpp (kPlayer). cam_zones zeroed by X::reset_state 0x00485990."
+   },
+   {
+    "name": "PlayerTail",
+    "class": "Player",
+    "from": "0x1265",
+    "size": "0x9",
+    "writer": [
+     "0x004857c0"
+    ],
+    "reader": [
+     "0x00485930"
+    ],
+    "legacy": "raw",
+    "ptr": {
+     "rts_icon": "Cleared"
+    },
+    "opaque": [],
+    "notes": "rts_icon (TextureManager handle) zeroed by X::reset_state. u32_1261 (data image address of 0x00a48f50 in RTS mode, zeroed by reset_state): written as the original address (D1, SAVES_PLAN 2.4), read back without relocation (= the raw read, cleared right after)."
+   },
+   {
+    "name": "Camera",
+    "class": "CamPose",
+    "from": "0x0",
+    "size": "0x28",
+    "writer": [
+     "0x004857c0 (copy of CameraMotion::to by 0x00423fe0; zeroed for mode 3, fix/uninit)"
+    ],
+    "reader": [
+     "0x00485930 (into 0x00a5ba34 = Player +0x4c)"
+    ],
+    "legacy": "raw",
+    "ptr": {},
+    "opaque": []
+   },
+   {
+    "name": "LightSysCurrent",
+    "class": "LightSys",
+    "from": "0xc",
+    "size": "0x18c",
+    "writer": [
+     "0x00485ab0 gfile3.cpp ObjH::save (.SAV step 16, g_a47e08)"
+    ],
+    "reader": [
+     "0x00485bf0 gfile3.cpp Obj::read_485bf0"
+    ],
+    "legacy": "raw",
+    "ptr": {},
+    "opaque": []
+   },
+   {
+    "name": "LightSysStateA",
+    "class": "LightSys",
+    "from": "0x198",
+    "size": "0x194",
+    "writer": [
+     "0x00485ab0"
+    ],
+    "reader": [
+     "0x00485bf0"
+    ],
+    "legacy": "raw",
+    "ptr": {},
+    "opaque": [],
+    "notes": "state_a: a LightState (0x004a4f80) = LightPreset 0x18c + fade time (+0x18c) + fade scale (+0x190), floats / bytes only (lightsys.cpp 0x004a7f70 fade blocks, memset 0x194); typed as u8[404] in layouts.json (layout change requested: LightState struct)."
+   },
+   {
+    "name": "LightSysStateB",
+    "class": "LightSys",
+    "from": "0x32c",
+    "size": "0x194",
+    "writer": [
+     "0x00485ab0"
+    ],
+    "reader": [
+     "0x00485bf0"
+    ],
+    "legacy": "raw",
+    "ptr": {},
+    "opaque": [],
+    "notes": "state_b: as state_a."
+   },
+   {
+    "name": "LightSysEventAChance",
+    "class": "LightSys",
+    "from": "0x58c",
+    "size": "0x4",
+    "writer": [
+     "0x00485ab0 (8 chunks of 4: +0x58c..+0x5a8)"
+    ],
+    "reader": [
+     "0x00485bf0"
+    ],
+    "legacy": "raw",
+    "ptr": {},
+    "opaque": []
+   },
+   {
+    "name": "LightSysEventARate",
+    "class": "LightSys",
+    "from": "0x590",
+    "size": "0x4",
+    "writer": [
+     "0x00485ab0"
+    ],
+    "reader": [
+     "0x00485bf0"
+    ],
+    "legacy": "raw",
+    "ptr": {},
+    "opaque": []
+   },
+   {
+    "name": "LightSysEventATime",
+    "class": "LightSys",
+    "from": "0x594",
+    "size": "0x4",
+    "writer": [
+     "0x00485ab0"
+    ],
+    "reader": [
+     "0x00485bf0"
+    ],
+    "legacy": "raw",
+    "ptr": {},
+    "opaque": []
+   },
+   {
+    "name": "LightSysEventAState",
+    "class": "LightSys",
+    "from": "0x598",
+    "size": "0x4",
+    "writer": [
+     "0x00485ab0"
+    ],
+    "reader": [
+     "0x00485bf0"
+    ],
+    "legacy": "raw",
+    "ptr": {},
+    "opaque": []
+   },
+   {
+    "name": "LightSysEventBChance",
+    "class": "LightSys",
+    "from": "0x59c",
+    "size": "0x4",
+    "writer": [
+     "0x00485ab0"
+    ],
+    "reader": [
+     "0x00485bf0"
+    ],
+    "legacy": "raw",
+    "ptr": {},
+    "opaque": []
+   },
+   {
+    "name": "LightSysEventBRate",
+    "class": "LightSys",
+    "from": "0x5a0",
+    "size": "0x4",
+    "writer": [
+     "0x00485ab0"
+    ],
+    "reader": [
+     "0x00485bf0"
+    ],
+    "legacy": "raw",
+    "ptr": {},
+    "opaque": []
+   },
+   {
+    "name": "LightSysEventBTime",
+    "class": "LightSys",
+    "from": "0x5a4",
+    "size": "0x4",
+    "writer": [
+     "0x00485ab0"
+    ],
+    "reader": [
+     "0x00485bf0"
+    ],
+    "legacy": "raw",
+    "ptr": {},
+    "opaque": []
+   },
+   {
+    "name": "LightSysEventBState",
+    "class": "LightSys",
+    "from": "0x5a8",
+    "size": "0x4",
+    "writer": [
+     "0x00485ab0"
+    ],
+    "reader": [
+     "0x00485bf0"
+    ],
+    "legacy": "raw",
+    "ptr": {},
+    "opaque": []
+   }
+  ],
+  "s4": [
+   {
+    "name": "Game",
+    "class": "Game",
+    "from": "0x0",
+    "size": "0x745",
+    "writer": [
+     "0x00484780 gfile3.cpp Obj::save_484780 (.SAV step 4: this, then Scenario +0x17, the EndCons, the two word arrays)"
+    ],
+    "reader": [
+     "0x004848a0 gfile3.cpp Obj::save_4848a0 (the load counterpart despite the name)"
+    ],
+    "legacy": "raw",
+    "ptr": {
+     "scenario.entries": "Cleared",
+     "scenario.local.script": "Cleared",
+     "scenario.local.name": "Cleared",
+     "scenario.local.name2": "Cleared",
+     "scenario.types": "Cleared",
+     "scenario.items": "Cleared",
+     "scenario.squads": "Cleared",
+     "word_set": "Cleared",
+     "word_stack": "Cleared",
+     "end_conditions[0].text": "Stale",
+     "end_conditions[0].text2": "Stale",
+     "end_conditions[1].text": "Stale",
+     "end_conditions[1].text2": "Stale",
+     "end_conditions[2].text": "Stale",
+     "end_conditions[2].text2": "Stale",
+     "end_conditions[3].text": "Stale",
+     "end_conditions[3].text2": "Stale",
+     "end_conditions[4].text": "Stale",
+     "end_conditions[4].text2": "Stale",
+     "end_conditions[5].text": "Stale",
+     "end_conditions[5].text2": "Stale",
+     "end_conditions[6].text": "Stale",
+     "end_conditions[6].text2": "Stale",
+     "end_conditions[7].text": "Stale",
+     "end_conditions[7].text2": "Stale",
+     "end_conditions[8].text": "Stale",
+     "end_conditions[8].text2": "Stale",
+     "end_conditions[9].text": "Stale",
+     "end_conditions[9].text2": "Stale",
+     "end_conditions[10].text": "Stale",
+     "end_conditions[10].text2": "Stale",
+     "end_conditions[11].text": "Stale",
+     "end_conditions[11].text2": "Stale",
+     "end_conditions[12].text": "Stale",
+     "end_conditions[12].text2": "Stale",
+     "end_conditions[13].text": "Stale",
+     "end_conditions[13].text2": "Stale",
+     "end_conditions[14].text": "Stale",
+     "end_conditions[14].text2": "Stale",
+     "end_conditions[15].text": "Stale",
+     "end_conditions[15].text2": "Stale",
+     "end_conditions[16].text": "Stale",
+     "end_conditions[16].text2": "Stale",
+     "end_conditions[17].text": "Stale",
+     "end_conditions[17].text2": "Stale",
+     "end_conditions[18].text": "Stale",
+     "end_conditions[18].text2": "Stale",
+     "end_conditions[19].text": "Stale",
+     "end_conditions[19].text2": "Stale",
+     "end_conditions[20].text": "Stale",
+     "end_conditions[20].text2": "Stale",
+     "end_conditions[21].text": "Stale",
+     "end_conditions[21].text2": "Stale",
+     "end_conditions[22].text": "Stale",
+     "end_conditions[22].text2": "Stale",
+     "end_conditions[23].text": "Stale",
+     "end_conditions[23].text2": "Stale",
+     "end_conditions[24].text": "Stale",
+     "end_conditions[24].text2": "Stale",
+     "end_conditions[25].text": "Stale",
+     "end_conditions[25].text2": "Stale",
+     "end_conditions[26].text": "Stale",
+     "end_conditions[26].text2": "Stale",
+     "end_conditions[27].text": "Stale",
+     "end_conditions[27].text2": "Stale",
+     "end_conditions[28].text": "Stale",
+     "end_conditions[28].text2": "Stale",
+     "end_conditions[29].text": "Stale",
+     "end_conditions[29].text2": "Stale",
+     "end_conditions[30].text": "Stale",
+     "end_conditions[30].text2": "Stale",
+     "end_conditions[31].text": "Stale",
+     "end_conditions[31].text2": "Stale",
+     "end_conditions[32].text": "Stale",
+     "end_conditions[32].text2": "Stale",
+     "end_conditions[33].text": "Stale",
+     "end_conditions[33].text2": "Stale",
+     "end_conditions[34].text": "Stale",
+     "end_conditions[34].text2": "Stale",
+     "end_conditions[35].text": "Stale",
+     "end_conditions[35].text2": "Stale",
+     "end_conditions[36].text": "Stale",
+     "end_conditions[36].text2": "Stale",
+     "end_conditions[37].text": "Stale",
+     "end_conditions[37].text2": "Stale",
+     "end_conditions[38].text": "Stale",
+     "end_conditions[38].text2": "Stale",
+     "end_conditions[39].text": "Stale",
+     "end_conditions[39].text2": "Stale"
+    },
+    "opaque": [],
+    "notes": "The chunk holds the embedded Scenario (+0x17) and the 40 EndCons (+0x30b) once more: the reader reads them here, then the Scenario chunk (0x00483f10) and the EndCon chunks (0x004842c0, i < end_condition_count) overwrite them, so every scenario.* pointer of this chunk is Cleared (overwritten) and end_conditions[i].text/text2 are Stale: overwritten for i < count, zero in unused slots (add_slot memset 0x1a, EndCon::release) and only freed when non-null. word_set / word_stack: freed before the read, re-allocated after it (Cleared). gap_2a0 (0x14): only +0x2b0..+0x2b3 is accessed, as the [0] element of the script value table +0x2b0 + mode*0x14 + i*4 (0x00659fd2 / 0x0065a09f, script int arguments): pointer-free (see Scenario for +0x248)."
+   },
+   {
+    "name": "Scenario",
+    "class": "Scenario",
+    "from": "0x0",
+    "size": "0x289",
+    "writer": [
+     "0x00483e00 gfile3.cpp Obj::save_483e00 (this, entries, local, squads)"
+    ],
+    "reader": [
+     "0x00483f10 gfile3.cpp Obj::load_483f10"
+    ],
+    "legacy": "raw",
+    "ptr": {
+     "entries": "Stale",
+     "local.script": "Cleared",
+     "local.name": "Cleared",
+     "local.name2": "Cleared",
+     "types": "Cleared",
+     "items": "Cleared",
+     "squads": "Cleared"
+    },
+    "opaque": [],
+    "notes": "entries: re-allocated when entry_count > 0, else never used (Scenario::reset 0x004cc850 frees it only inside the entry loop) - Stale. local.*: overwritten by the local entry's own chunk (0x00483ca0), which clears script (0x00483dd0). types / items / squads: zeroed by clear_277 0x00484160 (with type_count / item_count), squads re-allocated when squad_count != 0. Gaps: gap_1d6 (4) and gap_273 (2) have no access in the binary (asm_facts this / Game+0x17 paths, absolute 0xa58fa7+off) nor in the C++; gap_231 (2) + id_list_pad (+0x233) are one i32 script counter (Game +0x248 = 0xa591d8: 0x00659a60 add, 0x00659a90 set, 0x00659ac0 get, 0x006f9af5 printed as a number): integers, pointer-free."
+   },
+   {
+    "name": "ScenarioEntry",
+    "class": "ScenarioEntry",
+    "from": "0x0",
+    "size": "0x1b2",
+    "writer": [
+     "0x00483b90 gfile3.cpp Rec1b2::save (then name and - sic - name's bytes for name2, length-prefixed)"
+    ],
+    "reader": [
+     "0x00483ca0 gfile3.cpp Obj::read_1b2"
+    ],
+    "legacy": "raw",
+    "ptr": {
+     "script": "Cleared",
+     "name": "Flag",
+     "name2": "Flag"
+    },
+    "opaque": [],
+    "notes": "Fully typed. script zeroed after the read (clear_186 0x00483dd0); name / name2 tested, then re-allocated and read."
+   },
+   {
+    "name": "EndCon",
+    "class": "EndCon",
+    "from": "0x0",
+    "size": "0x1a",
+    "writer": [
+     "0x004841d0 gfile3.cpp Rec1a::read_strings (misnamed: the writer)"
+    ],
+    "reader": [
+     "0x004842c0 gfile3.cpp ObjF::load"
+    ],
+    "legacy": "raw",
+    "ptr": {
+     "text": "Flag",
+     "text2": "Flag"
+    },
+    "opaque": [],
+    "notes": "Fully typed. text / text2 tested, then re-allocated and read."
+   },
+   {
+    "name": "BattleState",
+    "class": "BattleState",
+    "from": "0x0",
+    "size": "0x4",
+    "writer": [
+     "0x00483b10 gfile3.cpp Sub::save_4 (.SAV step 5, g_scenarios 0xa51294)"
+    ],
+    "reader": [
+     "0x00483b50 gfile3.cpp Sub::load_4"
+    ],
+    "legacy": "raw",
+    "ptr": {},
+    "opaque": [],
+    "notes": "SAVES_PLAN 'Sub_4': one i32 (Battle::start_scenario writes it, Counter::at_least_10 0x0041c7e0 reads it)."
+   },
+   {
+    "name": "Nation",
+    "class": "Nation",
+    "from": "0x0",
+    "size": "0x1545",
+    "writer": [
+     "0x0047f660 gfile3.cpp Sub::save_1545 (this, 20 Rel, then the three word lists)",
+     "0x0047fa50 ListB::save (step 7)"
+    ],
+    "reader": [
+     "0x0047f800 gfile3.cpp Campaign::load",
+     "0x0047fb30 List::load_4b3db0 (step 7)"
+    ],
+    "legacy": "raw",
+    "ptr": {
+     "leaders": "Flag",
+     "idle_units": "Flag",
+     "stations": "Flag"
+    },
+    "opaque": [],
+    "notes": "The 20 Rel members are written here and again as their own chunks (0x0047f5e0); the reader's Rel chunks overwrite them. Gaps gap_136b (2), gap_1379 (0xc), gap_14e9 (0x10): no access in the binary (asm_facts of the Nation / Economy functions) nor in the C++ (no raw access at these offsets in the files using Nation) - zero from Nation::init / construct, pointer-free."
+   },
+   {
+    "name": "Rel",
+    "class": "Rel",
+    "from": "0x0",
+    "size": "0xf4",
+    "writer": [
+     "0x0047f5e0 gfile3.cpp RecF4::read (misnamed: the writer)"
+    ],
+    "reader": [
+     "0x0047f620 gfile3.cpp Sub::load_f4"
+    ],
+    "legacy": "raw",
+    "ptr": {},
+    "opaque": [],
+    "notes": "No pointers. gap_0 byte +1 is an i8 (Nation 0x004b52e0 / set_byte1 nation2.cpp:373 via relation(i)); the other gap bytes (+0, +4, +6..+7, +0xc..+0x13, +0x2c..+0x77) have no access in the binary (Rel functions, Nation+0x55+i*0xf4 incl. indexed) nor through relation(i) pointers in the C++: memset by clear_f4 0x004b8c60, pointer-free. pa[c + 0xcf] (i_wall.cpp:194) reads bytes of deadlines[]."
+   },
+   {
+    "name": "NewsItem",
+    "class": "NewsItem",
+    "from": "0x0",
+    "size": "0x52",
+    "writer": [
+     "0x004830b0 gfile3.cpp ObjE::save",
+     "0x00483130 List::save_483130 (step 6)"
+    ],
+    "reader": [
+     "0x004830f0 gfile3.cpp Rec52::load",
+     "0x004831c0 List::load_4831c0 (step 6)"
+    ],
+    "legacy": "raw",
+    "ptr": {},
+    "opaque": [],
+    "notes": "No pointers. Gaps gap_1, gap_3 (9), gap_20 (0xc), gap_40: no access in the binary nor in news.cpp (every NewsItem access there is a typed member or +0x18/+0x1c/+0x41..+0x4e) - in-place DynArray records (0x52) never written there, pointer-free."
+   },
+   {
+    "name": "ZoneDef",
+    "class": "ZoneDef",
+    "from": "0x0",
+    "size": "0xe0",
+    "writer": [
+     "0x00485d30 gfile3.cpp List::save_e0 (.SAV step 18, g_a52940 territory_array)"
+    ],
+    "reader": [
+     "0x00485dc0 gfile3.cpp List::load_e0"
+    ],
+    "legacy": "raw",
+    "ptr": {},
+    "opaque": [],
+    "notes": "SAVES_PLAN '0xe0 record': the zone / territory records (ZoneDef, r4_r2; 0xe0 = its size). gap_0 (4) is the record's own u32 key (X::new_e0 0x004e4a50: memset 0, *p = DynArray cursor) - not a pointer; gap_24 / gap_44: no access (zones.cpp, unit_a.cpp loader, objm_*, minires, game_tick), memset 0. Pointer-free."
+   },
+   {
+    "name": "Trigger",
+    "class": "Trigger",
+    "from": "0x0",
+    "size": "0x43",
+    "writer": [
+     "0x00486090 gfile3.cpp Sub::save_43 (ListC::save 0x00485e70, step 19)"
+    ],
+    "reader": [
+     "0x004860d0 gfile3.cpp Rec43::load (List::load_485f50)"
+    ],
+    "legacy": "raw",
+    "ptr": {
+     "scene": "Stale"
+    },
+    "opaque": [],
+    "notes": "SAVES_PLAN 'SaveEntry': the g_a5ccd0 records are Trigger objects (ctor 0x004eff60 memset 0x43; SaveEntry::set 0x0047e200 is the same record, typed lower). scene +0x3f is a heap pointer (Scene::create_trigger 0x00450ea0: find_sector result for types 4 / 8) that nobody re-derives after a load and Triggers::update dereferences for types 4 / 8 (set_casts_shadows): a genuinely stale pointer in joan.exe too; carried raw on x86, an x64 blocker (token). Gaps gap_12, gap_23 (SaveEntry u8_12 / u8_23, set by SaveEntry::set from byte args) and gap_33 (0xc, no access anywhere): pointer-free."
+   },
+   {
+    "name": "MsgEntry",
+    "class": "MsgEntry",
+    "from": "0x0",
+    "size": "0x1f",
+    "writer": [
+     "0x00486420 gfile3.cpp Rec::write (List::save_486110, step 20)"
+    ],
+    "reader": [
+     "0x004864b0 gfile3.cpp ObjI::load (Gfile3Rec::load_486280)"
+    ],
+    "legacy": "raw",
+    "ptr": {
+     "text": "Cleared",
+     "extra": "Cleared"
+    },
+    "opaque": [],
+    "notes": "SAVES_PLAN 'LogMessage' (the facade name; MsgEntry is the same 0x1f record, fully typed): prev / next / rec_no are record numbers. text / extra zeroed by clear_17_1b 0x004865c0 and re-allocated (text always, extra when extra_len > 0)."
+   }
+  ],
+  "s5": [
+   {
+    "name": "GameFileFlags",
+    "class": "GameFile",
+    "from": "0x2",
+    "size": "0x4",
+    "writer": [
+     "0x00478cc0 gamefile.cpp GameFile::write_header (.SAV header, after the \"RSav\" chunk)"
+    ],
+    "reader": [
+     "0x00478520 gamefile.cpp GameFile::read_header"
+    ],
+    "legacy": "raw",
+    "ptr": {},
+    "opaque": [],
+    "notes": "written as 4 bytes, read back as 1 (read_header: the low byte of flags, a one-byte In chunk; the vary-size reader skips the other 3)"
+   },
+   {
+    "name": "GameFileTime",
+    "class": "GameFile",
+    "from": "0x108",
+    "size": "0x8",
+    "writer": [
+     "0x00478cc0 gamefile.cpp GameFile::write_header (.SAV header, after the \"RSav\" chunk)"
+    ],
+    "reader": [
+     "0x00478520 gamefile.cpp GameFile::read_header"
+    ],
+    "legacy": "raw",
+    "ptr": {},
+    "opaque": [],
+    "notes": "FILETIME (GetSystemTimeAsFileTime, stamp 0x478480); savecmp header_ignore"
+   },
+   {
+    "name": "GameFileLocalTime",
+    "class": "GameFile",
+    "from": "0x110",
+    "size": "0x8",
+    "writer": [
+     "0x00478cc0 gamefile.cpp GameFile::write_header (.SAV header, after the \"RSav\" chunk)"
+    ],
+    "reader": [
+     "0x00478520 gamefile.cpp GameFile::read_header"
+    ],
+    "legacy": "raw",
+    "ptr": {},
+    "opaque": [],
+    "notes": "FILETIME (FileTimeToLocalFileTime); savecmp header_ignore"
+   },
+   {
+    "name": "GameFileMode",
+    "class": "GameFile",
+    "from": "0x118",
+    "size": "0x1",
+    "writer": [
+     "0x00478cc0 gamefile.cpp GameFile::write_header (.SAV header, after the \"RSav\" chunk)"
+    ],
+    "reader": [
+     "0x00478520 gamefile.cpp GameFile::read_header"
+    ],
+    "legacy": "raw",
+    "ptr": {},
+    "opaque": []
+   },
+   {
+    "name": "GameFile119",
+    "class": "GameFile",
+    "from": "0x119",
+    "size": "0x1",
+    "writer": [
+     "0x00478cc0 gamefile.cpp GameFile::write_header (.SAV header, after the \"RSav\" chunk)"
+    ],
+    "reader": [
+     "0x00478520 gamefile.cpp GameFile::read_header"
+    ],
+    "legacy": "raw",
+    "ptr": {},
+    "opaque": []
+   },
+   {
+    "name": "GameFileGameTime",
+    "class": "GameFile",
+    "from": "0x19f",
+    "size": "0x4",
+    "writer": [
+     "0x00478cc0 gamefile.cpp GameFile::write_header (.SAV header, after the \"RSav\" chunk)"
+    ],
+    "reader": [
+     "0x00478520 gamefile.cpp GameFile::read_header"
+    ],
+    "legacy": "raw",
+    "ptr": {},
+    "opaque": []
+   },
+   {
+    "name": "GameFile1a3",
+    "class": "GameFile",
+    "from": "0x1a3",
+    "size": "0x4",
+    "writer": [
+     "0x00478cc0 gamefile.cpp GameFile::write_header (.SAV header, after the \"RSav\" chunk)"
+    ],
+    "reader": [
+     "0x00478520 gamefile.cpp GameFile::read_header"
+    ],
+    "legacy": "raw",
+    "ptr": {},
+    "opaque": []
+   },
+   {
+    "name": "GameFileName",
+    "class": "GameFile",
+    "from": "0x11a",
+    "size": "0x80",
+    "writer": [
+     "0x00478cc0 gamefile.cpp GameFile::write_header (.SAV header, after the \"RSav\" chunk)"
+    ],
+    "reader": [
+     "0x00478520 gamefile.cpp GameFile::read_header"
+    ],
+    "legacy": "raw",
+    "ptr": {},
+    "opaque": [],
+    "notes": "char[128]: bytes after the NUL are whatever the buffer held (char tail)"
+   },
+   {
+    "name": "GameFile19a",
+    "class": "GameFile",
+    "from": "0x19a",
+    "size": "0x4",
+    "writer": [
+     "0x00478cc0 gamefile.cpp GameFile::write_header (.SAV header, after the \"RSav\" chunk)"
+    ],
+    "reader": [
+     "0x00478520 gamefile.cpp GameFile::read_header"
+    ],
+    "legacy": "raw",
+    "ptr": {},
+    "opaque": []
+   },
+   {
+    "name": "GameFile19e",
+    "class": "GameFile",
+    "from": "0x19e",
+    "size": "0x1",
+    "writer": [
+     "0x00478cc0 gamefile.cpp GameFile::write_header (.SAV header, after the \"RSav\" chunk)"
+    ],
+    "reader": [
+     "0x00478520 gamefile.cpp GameFile::read_header"
+    ],
+    "legacy": "raw",
+    "ptr": {},
+    "opaque": []
+   },
+   {
+    "name": "WndSpeed",
+    "class": "Wnd",
+    "from": "0x44",
+    "size": "0x4",
+    "writer": [
+     "0x00476c40 gamefil2.cpp GameFile::write_header_476c40 on g_game_a50088 (.SAV step 2)"
+    ],
+    "reader": [
+     "0x00476990 gamefil2.cpp Sub::load_44"
+    ],
+    "legacy": "raw",
+    "ptr": {},
+    "opaque": []
+   },
+   {
+    "name": "WndI16_48",
+    "class": "Wnd",
+    "from": "0x48",
+    "size": "0x2",
+    "writer": [
+     "0x00476c40 gamefil2.cpp GameFile::write_header_476c40 on g_game_a50088 (.SAV step 2)"
+    ],
+    "reader": [
+     "0x00476990 gamefil2.cpp Sub::load_44"
+    ],
+    "legacy": "raw",
+    "ptr": {},
+    "opaque": []
+   },
+   {
+    "name": "WndU8_4a",
+    "class": "Wnd",
+    "from": "0x4a",
+    "size": "0x1",
+    "writer": [
+     "0x00476c40 gamefil2.cpp GameFile::write_header_476c40 on g_game_a50088 (.SAV step 2)"
+    ],
+    "reader": [
+     "0x00476990 gamefil2.cpp Sub::load_44"
+    ],
+    "legacy": "raw",
+    "ptr": {},
+    "opaque": [],
+    "notes": "the reader sets it to 1 after the read"
+   },
+   {
+    "name": "WndGameTime",
+    "class": "Wnd",
+    "from": "0x32",
+    "size": "0x4",
+    "writer": [
+     "0x00476c40 gamefil2.cpp GameFile::write_header_476c40 on g_game_a50088 (.SAV step 2)"
+    ],
+    "reader": [
+     "0x00476990 gamefil2.cpp Sub::load_44"
+    ],
+    "legacy": "raw",
+    "ptr": {},
+    "opaque": []
+   },
+   {
+    "name": "Profile",
+    "class": "Profile",
+    "from": "0x0",
+    "size": "0x48",
+    "writer": [
+     "0x00483250 gfile3.cpp Obj::save_483250 (.SAV step 14, per SaveList item)",
+     "0x004c8810 profile.cpp Profile::save_4c8810 (SAVE\\<name>.dat)",
+     "0x004c8220 profile.cpp Profile::save (SAVE\\<name>.dat, keys only)"
+    ],
+    "reader": [
+     "0x00483430 gfile3.cpp Obj::load_483430",
+     "0x004c8bb0 profile.cpp Profile::load",
+     "0x004c8490 profile.cpp Profile::load (keys only)"
+    ],
+    "legacy": "raw",
+    "ptr": {
+     "units": "Cleared",
+     "list_a": "Stale",
+     "list_b": "Stale"
+    },
+    "opaque": [],
+    "notes": "Followed by ProfileName (the same first 0x20 bytes again). units: every reader replaces it (alloc when unit_count != 0, else nullptr). list_a / list_b: 0x483430 and 0x4c8490 replace them (alloc or 0); 0x4c8bb0 replaces them only when the count read from the file is != 0, else the stored value stays (as on x86: a stale token, the writers store null with a count of 0 in practice)."
+   },
+   {
+    "name": "ProfileName",
+    "class": "Profile",
+    "from": "0x0",
+    "size": "0x20",
+    "writer": [
+     "0x00483250",
+     "0x004c8810",
+     "0x004c8220"
+    ],
+    "reader": [
+     "0x00483430",
+     "0x004c8bb0",
+     "0x004c8490"
+    ],
+    "legacy": "raw",
+    "ptr": {},
+    "opaque": [],
+    "notes": "the Profile name written a second time (quirk kept)"
+   },
+   {
+    "name": "ProfileUnit",
+    "class": "ProfileUnit",
+    "from": "0x0",
+    "size": "0x77",
+    "writer": [
+     "0x00483740 gfile3.cpp Obj::save_483740 (unreferenced)"
+    ],
+    "reader": [
+     "0x00483800 gfile3.cpp Obj::load_483800 (unreferenced)"
+    ],
+    "legacy": "raw",
+    "ptr": {
+     "leader": "Flag",
+     "members": "Flag"
+    },
+    "opaque": [],
+    "notes": "leader / members: kind I (tested != 0, then an id word written after the record is looked up). Both functions have no caller in joan.exe; the live profile records are ProfileUnit.name chunks (0x20 bytes of name[33], Key::read 0x4c93e0 / Key::write 0x4c9420 - names swapped - and Record::write 0x4c9460 / Obj::load_4c9530) written as an ad-hoc chunk (a record cannot cut name[33])."
+   },
+   {
+    "name": "EmptyRoom",
+    "class": "EmptyRoom",
+    "from": "0x0",
+    "size": "0x8",
+    "writer": [
+     "0x00585b40 dynarr.cpp DynArrayB::write_empty_room (u32 count + count x 8 in one chunk)"
+    ],
+    "reader": [
+     "0x00585bb0 dynarr.cpp DynArrayB::read_empty_room"
+    ],
+    "legacy": "raw",
+    "ptr": {},
+    "opaque": [],
+    "notes": "deleted_date is never set by this build: the bytes are whatever the resized block held (stale heap bytes, as joan.exe)."
+   },
+   {
+    "name": "ConfigHead",
+    "class": "Config",
+    "from": "0x0",
+    "size": "0xb5",
+    "writer": [
+     "0x0045ad80 config.cpp Obj::write_b05 (CONFIG.DAT, one 0xb05 chunk: ConfigHead + 55 KeyBinding)"
+    ],
+    "reader": [
+     "0x0045adc0 config.cpp Obj::save_restore_45adc0"
+    ],
+    "legacy": "raw",
+    "ptr": {},
+    "opaque": [],
+    "notes": "Config +0xb4 (u8_b4) = key snapshot valid (X::save_snapshot 0x4cc380 sets it, RemapKeys::load 0x4cc220 tests it); +0xb5..+0xb05 = KeyBinding[55] (the RemapKeys bindings copied by 0x4cc380, read back by 0x4cc220). The C++ Config is 0x16a bytes (saved[181] at +0xb5) until the layout gets the 0xb05 record (layout change listed in the S5 report)."
+   },
+   {
+    "name": "KeyBinding",
+    "class": "KeyBinding",
+    "from": "0x0",
+    "size": "0x30",
+    "writer": [
+     "0x0045ad80 config.cpp (Config +0xb5 + i * 0x30, i < 55)",
+     "X::save_snapshot 0x4cc380 (memcpy from RemapKeys.bindings)"
+    ],
+    "reader": [
+     "0x0045adc0 config.cpp",
+     "RemapKeys::load 0x4cc220 (+0x22..+0x30 of each)"
+    ],
+    "legacy": "raw",
+    "ptr": {},
+    "opaque": [],
+    "notes": "name[34] char tail kept verbatim"
+   }
+  ],
+  "s6": [
+   {
+    "name": "Material",
+    "class": "Material",
+    "from": "0x0",
+    "size": "0x54",
+    "writer": [
+     "0x005e2a90 plane.cpp Material::write (mesh / ground cache, then per stage usage + 0x21 name)"
+    ],
+    "reader": [
+     "0x005e2b70 plane.cpp Material::read"
+    ],
+    "legacy": "raw",
+    "ptr": {
+     "textures": "Cleared"
+    },
+    "opaque": [],
+    "notes": "Material::read zeroes textures[4] right after the read (then reloads them by name) and runtime[4] after the stages: the texture pointers are only carried (x64: 0 iff null)."
+   },
+   {
+    "name": "AnimKey",
+    "class": "AnimKey",
+    "from": "0x0",
+    "size": "0x20",
+    "writer": [
+     "0x005b7810 animdef.cpp AnimDef::write_cache (ANIM_TMP\\*.amt, file_write_array count x 0x20)"
+    ],
+    "reader": [
+     "0x005b7930 animdef.cpp AnimDef::read_cache (FileMem file_read_array)"
+    ],
+    "legacy": "raw",
+    "ptr": {},
+    "opaque": [],
+    "notes": "Floats only, the same 32 bytes on x86 and x64: the key arrays stay one file_write_array / file_read_array (save::write_array / read_array); the schema proves the layout (re/save/test/test_s6.cpp)."
+   },
+   {
+    "name": "DbfHeader",
+    "class": "DbfHeader",
+    "from": "0x0",
+    "size": "0x20",
+    "writer": [
+     "0x00581250 db.cpp Database::write",
+     "0x005815d0 DataBase::append_record",
+     "0x00581a00 DataBase::delete_record",
+     "0x00581df0 DataBase::add_field"
+    ],
+    "reader": [
+     "0x00580880 database.cpp Database::open (raw read into the pointer-free header)"
+    ],
+    "legacy": "raw",
+    "ptr": {},
+    "opaque": [],
+    "notes": "dBase III header (Database +0x10e on x86); the writers took it as this + 0x10e, which is not the member on x64."
+   }
+  ]
+ }
+}

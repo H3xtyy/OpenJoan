@@ -1,0 +1,120 @@
+{
+ "w01": [
+  "en3d/actor.cpp",
+  "game/_unplaced/syswnd.cpp",
+  "game/msglog.cpp",
+  "uti3d/esstate2.cpp"
+ ],
+ "w02": [
+  "game/_unplaced/mission.cpp",
+  "game/_unplaced/uinput.cpp",
+  "game/battle.cpp",
+  "game/i_gate.cpp",
+  "lib/crt/string.cpp"
+ ],
+ "w03": [
+  "en3d/morph.cpp",
+  "game/_unplaced/glowmark.cpp",
+  "game/_unplaced/mbtext.cpp",
+  "game/_unplaced/samplew.cpp",
+  "ilib/resdb.cpp"
+ ],
+ "w04": [
+  "game/_unplaced/ctrl.cpp",
+  "game/_unplaced/game_tick.cpp",
+  "game/_unplaced/i_msglog.cpp",
+  "game/_unplaced/rts2.cpp",
+  "game/_unplaced/vtrail.cpp",
+  "game/dyngrass.cpp",
+  "interfac/objmenub.cpp"
+ ],
+ "w05": [
+  "en3d/sysen.cpp",
+  "game/_unplaced/ai_behav.cpp",
+  "game/_unplaced/news.cpp",
+  "game/nation2.cpp",
+  "lib/d3dx8/objects.cpp",
+  "uti3d/video.cpp"
+ ],
+ "w06": [
+  "en3d/plane_sh.cpp",
+  "game/_unplaced/mainwnd.cpp",
+  "game/_unplaced/mlight.cpp",
+  "ilib/audio.cpp",
+  "ilib/txtres.cpp",
+  "interfac/i_buy.cpp",
+  "uti3d/lflare.cpp"
+ ],
+ "w07": [
+  "game/_unplaced/errhand.cpp",
+  "game/_unplaced/i_igmenu.cpp",
+  "game/_unplaced/i_vict.cpp",
+  "game/_unplaced/misc_52f930.cpp",
+  "game/_unplaced/objm_debrief.cpp",
+  "game/remapkey.cpp",
+  "interfac/optmenui.cpp"
+ ],
+ "w08": [
+  "game/_unplaced/angle8.cpp",
+  "game/_unplaced/animscr_fx.cpp",
+  "game/_unplaced/gamedraw.cpp",
+  "game/_unplaced/misc_004944c0.cpp",
+  "game/_unplaced/rts.cpp",
+  "game/game.cpp",
+  "game/i_wall.cpp"
+ ],
+ "w09": [
+  "game/_unplaced/dispdlg.cpp",
+  "game/_unplaced/hud.cpp",
+  "game/_unplaced/mainmenu.cpp",
+  "game/_unplaced/objm_map.cpp",
+  "game/_unplaced/shot.cpp",
+  "game/end_con.cpp",
+  "game/gfile3.cpp"
+ ],
+ "w10": [
+  "en3d/texturea.cpp",
+  "game/_unplaced/f_work.cpp",
+  "game/_unplaced/i_attcmb.cpp",
+  "game/_unplaced/msgbox.cpp",
+  "game/_unplaced/music.cpp",
+  "game/_unplaced/savemenu.cpp",
+  "lib/crt/startup.cpp"
+ ],
+ "w11": [
+  "game/_unplaced/camera3d.cpp",
+  "game/_unplaced/f_barr.cpp",
+  "game/_unplaced/sndplay.cpp",
+  "game/_unplaced/tfanim.cpp",
+  "game/_unplaced/unitupd.cpp",
+  "ilib/misc.cpp",
+  "uti3d/pathsp.cpp"
+ ],
+ "w12": [
+  "game/_unplaced/camctl.cpp",
+  "game/_unplaced/d3dsys.cpp",
+  "game/_unplaced/esfuncs.cpp",
+  "game/_unplaced/misc_004994b0.cpp",
+  "game/_unplaced/musicstr.cpp",
+  "ilib/sound3d.cpp",
+  "lib/crt/locale.cpp"
+ ],
+ "w13": [
+  "en3d/reorder.cpp",
+  "game/_unplaced/dlgtext.cpp",
+  "game/_unplaced/gameover.cpp",
+  "game/_unplaced/units_mgr.cpp",
+  "game/_unplaced/vshader.cpp",
+  "ilib/file.cpp",
+  "lib/crt/scanf.cpp"
+ ],
+ "w14": [
+  "en3d/plane.cpp",
+  "en3d/scene.cpp",
+  "game/_unplaced/colgrid.cpp",
+  "game/_unplaced/fx_registry.cpp",
+  "game/_unplaced/objm_reward.cpp",
+  "ilib/mousecr.cpp",
+  "interfac/minires.cpp"
+ ]
+}

@@ -1,0 +1,6 @@
+start,end,name,confidence,evidence,target
+0x006e5ec0,0x006e6010,i_sms_tail,medium,"Sms::load_sound (QSAVE, called by Sms::show) and Res1::free right after i_sms.cpp Sms::show",interfac/i_sms.cpp
+0x006e6050,0x006e6810,i_roster,medium,"Own global ctor (init_obj_56bb30) + load/reset stubs, Roster::draw (Game::draw), Shop::hover (process_input), tick stubs: one UI-panel object",
+0x006e6830,0x006e80b0,i_vict,medium,"Global Screen ctor (ctor_56c3a0), Menu4::init (Vict::open_*), Glory::draw (G100), win screen (Yow win!), load_vict (VICT), MBUT draw",
+0x006e88d0,0x006e8e40,i_endscr,medium,"Global Screen ctor (init_obj_56c310), EndScreen::ctor (NEXT/ES buttons), Overlay::tick, load_victory (VICTORY*) and release_textures4",
+0x006e8f10,0x006e8f10,i_work_ctor,medium,Obj6e8f10::Obj global ctor (init_obj_56c770) directly before i_work.cpp WorkInterface::WorkInterface,interfac/i_work.cpp

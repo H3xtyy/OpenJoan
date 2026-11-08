@@ -1,0 +1,7 @@
+start,end,name,confidence,evidence,target
+0x00527500,0x00527690,unitres_t1,medium,Unit-type model activation / release (ModelRes acquire+release) right after unitres.cpp UnitRes::free_buffers and before unitres-registered nop_527770.,game/unitres.cpp
+0x00527790,0x00527790,unitres_t2,medium,Unit rank lookup from the unit-type records (a48d88) between unitres.cpp nop_527770 and Shape::kind_from_name.,game/unitres.cpp
+0x00527dd0,0x00527e60,unitres_t3,low,unit_class / character_class (JOAN_OF_ARC) record lookups on the unit-type table right after unitres.cpp Shape::kind_from_name.,game/unitres.cpp
+0x00527f10,0x0052b7c0,unittask,low,"Unit task / poke / release_slot + Group ctor/add/remove + IdList purge run closed by a header PI static-init block (.bss a3cd8c..a3cd98); could equally be unitres.cpp's own tail."
+0x0052b8c0,0x0052f900,unitupd,medium,"CellObject::create_scene_objects / Unit::update (BAT_TRK) / Unit::move_update with the a3cda0..a3cdac PI-family init stubs interleaved: one unit-update object."
+0x0052f930,0x00530c60,misc_52f930,low,"Game::process_input (debug keys, super_cheat_mode.sys, logs) + a dead byte-0x34 reset just before unitures.cpp; no own .bss/strings to tie it to unitupd or unitures."

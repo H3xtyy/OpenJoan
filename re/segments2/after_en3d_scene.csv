@@ -1,0 +1,3 @@
+start,end,name,confidence,evidence,target
+0x005ef3d0,0x005ef430,scene_g0a,high,Setters and Shadow::draw_list between scene.cpp occluder_count and nodes_in_box.,en3d/scene.cpp
+0x005ef760,0x005ef760,scene_g0b,high,Getter between scene.cpp set_mode and Object::radius_a.,en3d/scene.cpp

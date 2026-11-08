@@ -1,0 +1,29 @@
+// Generated (re/layout/gen_types.py) from re/layout/layouts.json: the data members of SceneS
+// (r5_image.json, confidence medium). Do not edit; change the spec.
+    Scene* scene;  // 0x0
+    SectorNode* node;  // 0x4
+    std::uint32_t desc[6];  // 0x8
+    float inner_box[6];  // 0x20
+    Plane* plane;  // 0x38
+    SceneObject* object;  // 0x3c
+    Plane* plane2;  // 0x40
+    PtrSlot* items;  // 0x44
+    std::int32_t item_count;  // 0x48
+    std::int32_t item_cap;  // 0x4c
+    void* ptr_50;  // 0x50
+    std::int32_t portal_refs;  // 0x54
+    std::uint8_t u8_58;  // 0x58
+    std::uint8_t planes_ready;  // 0x59
+    float clip_planes[24];  // 0x5a
+    std::uint32_t u32_ba;  // 0xba
+    std::int32_t node_cap;  // 0xbe
+    std::int32_t node_count;  // 0xc2
+    SceneNodePtr* nodes;  // 0xc6
+    SceneNode* nodes_tail;  // 0xca
+    SceneNode* nodes_head;  // 0xce
+    std::int32_t light_count;  // 0xd2
+    std::int32_t light_cap;  // 0xd6
+    LightPtr* lights;  // 0xda
+    std::uint8_t lit_;  // 0xde
+    std::uint8_t casts_shadows_;  // 0xdf
+    std::uint32_t u32_e0;  // 0xe0

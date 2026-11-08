@@ -1,0 +1,2 @@
+start,end,name,confidence,evidence,target
+0x004ca5e0,0x004ca5e0,recrures_ctor,high,memset ctor run by static-init stub 0x56a280 whose atexit partner 0x56a2d0 calls RecruitRes::dtor: the RecruitRes global's ctor heading recrures.cpp (next function).,game/recrures.cpp

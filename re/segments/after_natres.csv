@@ -1,0 +1,4 @@
+start,end,name,confidence,evidence
+0x004b91a0,0x004b91a0,natres_names,low,Lone name-table lookup right after natres.cpp and before the next object's global ctor; probably the tail of natres.cpp.
+0x004b9220,0x004bab00,news,medium,Message log / news object: DynArray global ctor+reset then Messages::post / News::post / Orders::add_* and the String-global news text builders (strings 0x9d53cc..0x9d5518); its statics 0xa39e20..0xa39e88 are contiguous.
+0x004bab50,0x004c1940,ai_behav,medium,Unit AI behaviour object: EventList global + Ai::update_4baf80 with Combo/Action dispatch tables and every step/predicate/finish handler they call (all callers are Ai::update / Combo::dispatch / Action::dispatch); Ballista::reset and Obj::attach_4c0680 are unexplained guests.

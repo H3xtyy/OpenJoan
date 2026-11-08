@@ -1,0 +1,177 @@
+{
+ "round": "p4",
+ "source": "re/a4/p4_sites.py + p4_fields.py",
+ "fields": [
+  {
+   "class": "Anim",
+   "off": "0x4a",
+   "name": "i16_4a",
+   "type": "i16",
+   "size": 2,
+   "why": "1 raw sites: game/trackres.cpp:1156"
+  },
+  {
+   "class": "Billboard",
+   "off": "0x2b",
+   "name": "f32_2b",
+   "type": "f32",
+   "size": 4,
+   "why": "4 raw sites (binary confirms): game/_unplaced/billboard.cpp:222, game/_unplaced/billboard.cpp:362, game/_unplaced/billboard.cpp:366"
+  },
+  {
+   "class": "Button",
+   "off": "0x8",
+   "name": "u8_8",
+   "type": "u8",
+   "size": 1,
+   "why": "11 raw sites (binary confirms): game/_unplaced/button2d.cpp:159, game/_unplaced/button2d.cpp:257, game/_unplaced/button2d.cpp:321"
+  },
+  {
+   "class": "Button",
+   "off": "0x8b",
+   "name": "u8_8b",
+   "type": "u8",
+   "size": 1,
+   "why": "25 raw sites: game/_unplaced/button2d.cpp:80, game/_unplaced/savemenu.cpp:1724, game/_unplaced/savemenu.cpp:1739"
+  },
+  {
+   "class": "Button",
+   "off": "0x8e",
+   "name": "i8_8e",
+   "type": "i8",
+   "size": 1,
+   "why": "13 raw sites (binary confirms): game/_unplaced/button2d.cpp:163, game/_unplaced/button2d.cpp:261, game/_unplaced/button2d.cpp:324"
+  },
+  {
+   "class": "Marker",
+   "off": "0x2a",
+   "name": "u32_2a",
+   "type": "u32",
+   "size": 4,
+   "why": "3 raw sites: game/_unplaced/formmove.cpp:997, game/_unplaced/formmove.cpp:998, game/_unplaced/playerctl.cpp:496"
+  },
+  {
+   "class": "Marker",
+   "off": "0x2e",
+   "name": "u32_2e",
+   "type": "u32",
+   "size": 4,
+   "why": "1 raw sites: game/_unplaced/formmove.cpp:989"
+  },
+  {
+   "class": "ModelSlot",
+   "off": "0x48",
+   "name": "u32_48",
+   "type": "u32",
+   "size": 4,
+   "why": "2 raw sites: game/animscr.cpp:349, game/animscr.cpp:377"
+  },
+  {
+   "class": "ModelSlot",
+   "off": "0x4c",
+   "name": "u32_4c",
+   "type": "u32",
+   "size": 4,
+   "why": "2 raw sites: game/animscr.cpp:350, game/animscr.cpp:386"
+  },
+  {
+   "class": "ModelSlot",
+   "off": "0x50",
+   "name": "u32_50",
+   "type": "u32",
+   "size": 4,
+   "why": "2 raw sites: game/animscr.cpp:351, game/animscr.cpp:390"
+  },
+  {
+   "class": "Path",
+   "off": "0x39",
+   "name": "i32_39",
+   "type": "i32",
+   "size": 4,
+   "why": "2 raw sites: game/_unplaced/pathzone.cpp:672, game/_unplaced/pathzone.cpp:673"
+  },
+  {
+   "class": "Path",
+   "off": "0x3d",
+   "name": "i32_3d",
+   "type": "i32",
+   "size": 4,
+   "why": "2 raw sites: game/_unplaced/pathzone.cpp:675, game/_unplaced/pathzone.cpp:676"
+  },
+  {
+   "class": "TokenList",
+   "off": "0x0",
+   "name": "vtable",
+   "type": "ptr:vtable",
+   "size": 4,
+   "why": "2 raw sites: game/_unplaced/ptoken.cpp:108, game/_unplaced/ptoken.cpp:63"
+  },
+  {
+   "class": "Treaty",
+   "off": "0x12",
+   "name": "u32_12",
+   "type": "u32",
+   "size": 4,
+   "why": "1 raw sites: game/gfile3.cpp:3334"
+  },
+  {
+   "class": "UnitType",
+   "off": "0x0",
+   "name": "u16_0",
+   "type": "u16",
+   "size": 2,
+   "why": "1 raw sites: game/unitres.cpp:170"
+  }
+ ],
+ "deferred": [
+  {
+   "class": "Cell",
+   "off": "0x14",
+   "name": "ptr_14",
+   "type": "ptr:void",
+   "size": 4,
+   "why": "1 raw sites: game/_unplaced/rworld.cpp:218"
+  },
+  {
+   "class": "GameFile",
+   "off": "0x0",
+   "name": "i16_0",
+   "type": "i16",
+   "size": 2,
+   "why": "2 raw sites: game/gamefila.cpp:65, game/gamefila.cpp:66"
+  },
+  {
+   "class": "SceneNode",
+   "off": "0x38",
+   "name": "ptr_38",
+   "type": "ptr:void",
+   "size": 4,
+   "why": "1 raw sites: game/_unplaced/rts2.cpp:4106"
+  },
+  {
+   "class": "Unit",
+   "off": "0x56",
+   "name": "u32_56",
+   "type": "u32",
+   "size": 4,
+   "why": "2 raw sites: en3d/actor.cpp:1002, en3d/actor.cpp:1015"
+  },
+  {
+   "class": "Unit",
+   "off": "0x5a",
+   "name": "u32_5a",
+   "type": "u32",
+   "size": 4,
+   "why": "2 raw sites: en3d/actor.cpp:1003, en3d/actor.cpp:1016"
+  },
+  {
+   "class": "Unit",
+   "off": "0x5e",
+   "name": "u32_5e",
+   "type": "u32",
+   "size": 4,
+   "why": "2 raw sites: en3d/actor.cpp:1004, en3d/actor.cpp:1017"
+  }
+ ],
+ "deferred_why": "classes serialized gap by gap by the field-wise saves (src/save/gen/records_*.hpp): move into \"fields\" when the save records are regenerated"
+}

@@ -1,0 +1,9 @@
+start,end,name,confidence,evidence
+0x005ba910,0x005ba9e0,bonetree_tail,high,Name compare helpers using the bonetree name table a67698: tail of ww/en3d/bonetree.cpp.
+0x005baa20,0x005bd220,d3dfont,high,"DX8 SDK CD3DFont (ctor/dtor, Init/Restore/Invalidate/DeleteDeviceObjects, GetTextExtent, DrawTextScaled, DrawText, Render3DText) plus D3DX inline helpers."
+0x005bd270,0x005bf0d0,d3dutil,high,"DX8 SDK d3dutil.cpp in source order (InitMaterial, InitLight, CreateTexture, SetColorKey, CreateVertexShader, GetCubeMapViewMatrix, GetRotationFromCursor, SetDeviceCursor, CD3DArcBall, CD3DCamera)."
+0x005bf130,0x005bfcb0,dxutil,high,"DX8 SDK dxutil.cpp in source order (GetDXSDKMediaPath, FindMediaFile, registry helpers, DXUtil_Timer, string conversions, DXUtil_Trace)."
+0x005bfd60,0x005c0e50,fog,medium,"Fog/texture-cache code (TexCache::init, Fog range/height textures, Fog::apply/set); game code after the DX sample files."
+0x005c0ec0,0x005c5560,mdl,medium,"Model/.SMO shadow-volume loader (Model::load, ShadowModel::begin/poll_load, bound_sphere, load_bones), strings 9d956c..9d95b4."
+0x005c56d0,0x005c5800,mdl_b,medium,"Model::link_bones and String::left/right helpers used by Model::load; the same model object, split only by the bonetree-registered 0x5c5610."
+0x005c5830,0x005c6790,mlight,medium,"Light class (ctor, release, update, enable/disable, ambient) with .bss a67858..a6789c; ends right before the morph.cpp ctor."

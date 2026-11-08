@@ -1,0 +1,3 @@
+start,end,name,confidence,evidence
+0x004b38c0,0x004b3c70,musicres_tbl,medium,Music track table lookups (find by name / pick random / range find) used only by Music::update; no data refs; most likely the tail of musicres.cpp.
+0x004b3db0,0x004b8f20,nation2_body,high,One Nation/Player/Town/Economy/Calendar object: its .rdata constants run monotonically 0x9d52ec..0x9d5388 and contain the "d:\ww\nation2.cpp" __FILE__ string (used by the moved nation2 anchor grow_array called from Nation::update_unit): this is the body of nation2.cpp.

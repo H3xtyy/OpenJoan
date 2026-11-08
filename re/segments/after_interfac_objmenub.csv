@@ -1,0 +1,8 @@
+start,end,name,confidence,evidence
+0x00724e00,0x00729590,objm_army,medium,Sub-screen built like the others (scene + aw_* widget build / free / draw / update / layout) showing unit groups and the ENGLISH/FRENCH/MERCEN roster; Cine::idle_camera and ItemView::refresh are helpers of its Bar::update.
+0x0072a180,0x0072d120,objm_debrief,medium,Results/debrief sub-screen: panel build (joan_1) / free / draw_results (grade_* strings) / hero portrait / Debrief::setup / Images4::release; unreferenced smith-frame drawer at the end attached by string order.
+0x0072d380,0x00731ff0,objm_map,high,Objective-map sub-screen: create_camera / free / init_map (SCRIPT\SCENARI) / draw / pan_zoom / hero models plus its private map-file parser (CreateMapActor / parse_light / parse_model).
+0x00732580,0x00735550,objm_reward,high,Complete sub-screen cycle: create_widgets (aw_*) / release / set_camera / nop / draw_black / RewardScreen::draw (fc_pass/fail) / scroll / update / reset_buttons / build_list / layout / reset.
+0x00735680,0x00736900,objm_strat,high,Strategic sub-screen cycle: Panel::build (aw_*) / release / draw / StrategicDlg::update (DES\strategic_) / page+items layout / reset / load+free STRATEGY textures.
+0x007369c0,0x00738d00,objm_shop,high,Complete sub-screen cycle identical in shape to objm_reward: ShopScreen::build (aw_*) / release / set_camera / nop / draw_bg / MapPanel::draw / handle_buttons / update / reset_buttons / fill_list / layout / reset.
+0x00738e30,0x00739540,objm_cannon,medium,Start of the next sub-screen: CannonScreen::build (cann) / free_scene / Panel9::draw (siege engine names); probably continues into the following file.

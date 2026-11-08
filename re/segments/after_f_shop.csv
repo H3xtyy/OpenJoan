@@ -1,0 +1,7 @@
+start,end,name,confidence,evidence
+0x00469d10,0x00469e40,f_shop_acc,medium,"accessors used by Shop/BuyScreen ending with the facility self() stub, between f_shop anchor 0x4699f0 and f_shop's Table1c::slot 0x469e60: f_shop.cpp content"
+0x00469e90,0x0046cb90,f_work,medium,"siege workshop facility: ctor/sdd/dtor + vtable 0x9d0980 (parse_recruit_list RECRUIT_LIST, Siege::update RTS_SIEGE_*, bar_workshop life bar) ending with its self() slot-7 stub 0x46cb90"
+0x0046cbb0,0x0046da90,facility,medium,"new TU (pi + 3 header-constant initialisers); global facility list, FacilityFactory/BuildingFactory::create, facility base Record (vtable 0x9d0a80), facility_kind BARRACK..WORKSHOP"
+0x0046db80,0x0046db80,flock_x1,low,stub between flocksys.cpp accessors 0x46db60/0x46dba0: probably flocksys.cpp
+0x0046dc20,0x0046dc20,flock_x2,medium,"called only by Flock::update_members, between flocksys.cpp accessors: flocksys.cpp content"
+0x0046dd30,0x0046dd50,flock_x3,medium,accessors between Chain::append and Chain::remove (both flocksys.cpp): flocksys.cpp content

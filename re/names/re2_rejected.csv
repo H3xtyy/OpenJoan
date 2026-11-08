@@ -1,0 +1,4 @@
+# Renames of re/names/re2_*.csv undone: RE2 matches shown wrong later. 0x006032d0 (step 3, 2026-11-07): joan calls it
+# with `this` = the Sys3D object (sys3d), and it lies inside sys3d.cpp's stretch, so it is not ObjectGlow's method.
+address,old_name,new_name,evidence
+0x006032d0,ObjectGlow::init_depth_buffer,RenderTarget::create_depth,"rejected RE2 match: called with this = sys3d (2 calls); in sys3d.cpp's address stretch"

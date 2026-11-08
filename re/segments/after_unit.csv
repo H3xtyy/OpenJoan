@@ -1,0 +1,11 @@
+start,end,name,confidence,evidence
+0x004f9220,0x004fe4f0,unit_a,low,Unit/missile run (Hero::special / UnitDraw::plate / hit_effects / Unit::mount / Missile::update / use_spiritual_item) between unit.cpp functions with unit-family strings 0x9d7214..; Settlement::load (strings 0x9d8064 near world.cpp's) looks displaced by incremental linking.
+0x004fe6a0,0x004fe6a0,unit_set_a,high,Unit field setter interleaved with unit.cpp's own setter run; belongs to unit.cpp.
+0x004fe830,0x004feb60,unit_set_b,high,Unit field setters + roll/set_morale interleaved with unit.cpp setter run; belongs to unit.cpp.
+0x004fed00,0x00511060,unit_core,medium,Unit method core (position / anim state / set_action / targets / damage / heal / sounds / stats) between unit.cpp functions; strings 0x9d74f8..0x9d7558 grow monotonically; likely unit.cpp itself.
+0x00511f80,0x0051c680,unit_c,medium,More Unit methods after unit.cpp recruit_delay (speech / formation slot / Missile::launch / zones / links / weapon model / mount / rider) ending with load_unit_constants (ini keys 0x9d75c4+); continuation of unit.cpp string family.
+0x0051dbe0,0x0051df00,units_sel,low,Global Obj51d ctor/dtor + Selection::init (select models) + Mgr51df00::clear_all just before unit.cpp Units::create; small unit-manager globals block.
+0x0051e1f0,0x0051ff00,units_mgr,medium,Units list manager: remove / UnitManager::update_units / list finders / collect directly after unit.cpp Units::create.
+0x00520170,0x00522940,unitdraw,high,Object53 + UnitDraw plate/label create/show/hide/delete + Billboard::set_plane: one unit-overhead-display class run (strings LifeBarre / bar_french 0x9d7a54).
+0x005229a0,0x00523190,unit_xp,medium,Unit::add_experience (EXPUP) / level_up (LEVELUP flash.txt) / set_level run just before unit.cpp apply_kind_links.
+0x00523320,0x00524c50,unit_stats,medium,Unit stat getters via Modifiers::sum + Table::slot used by unit.cpp apply_kind_links; trailing header static-init stubs and Struct7::reset.

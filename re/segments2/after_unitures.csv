@@ -1,0 +1,2 @@
+start,end,name,confidence,evidence,target
+0x00530eb0,0x005315f0,unitures_tail_g0,medium,"Ends with X::clear_10, the ctor (obj_stub_56a3a0) of global a56a50 that unitures.cpp UnitTable::load uses; the run before it (occluder/quad/upgrade-list helpers) is unitures.cpp up to upgrares.cpp.",game/unitures.cpp

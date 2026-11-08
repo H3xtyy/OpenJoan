@@ -1,0 +1,5 @@
+start,end,name,confidence,evidence,target
+0x00548430,0x00549f90,world_t1,medium,Map::build_tree (+ remove_matching / cmp_center_x/y/z) shares .bss a3ce04/a3ce0c with world.cpp World::build_tree; follows world.cpp NodeList::add.,game/world.cpp
+0x0054a0e0,0x0054a2c0,world_t2,medium,Map::find_cell / name lookup between world-registered release_7e and world_s-registered read_nodes; spatial lookups of the same Map tree.,game/world.cpp
+0x0054a8a0,0x0054dab0,world_t3,medium,"Water/sector helpers + BoxTree::collect + displaced Unit::find_target, closed by the PI init block .bss a3ce08..a3ce14 whose family (a3ce04..a3ce18) world.cpp's World::build_tree also uses; world_s has its own family a3ce20..",game/world.cpp
+0x0054dba0,0x0054e080,world_s_t1,low,"Inline accessors/forwarders used by world_s.cpp World::build_grid_4f6eb0 and World::release; after world.cpp's init block and the world_s-registered Obj::zero_66, before world_s World::sector.",game/world_s.cpp

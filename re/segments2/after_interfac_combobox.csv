@@ -1,0 +1,8 @@
+start,end,name,confidence,evidence,target
+0x006b3d90,0x006b4280,combobox_t1,medium,Popup::name_string (only caller combobox.cpp Popup::set_text) / combo scroll-button draw / Menu::step calling set_text; strings 0x9dd8c8..0x9dd8f0 directly follow combobox's __FILE__ 0x9dd8a4.,interfac/combobox.cpp
+0x006b4700,0x006b4dd0,combobox_t2,medium,Combo list item/list drawing + byte_66c accessor used by Menu::step; between combobox.cpp Popup::set_text and the credits global ctor.,interfac/combobox.cpp
+0x006b4e00,0x006b5e60,credits,high,"Global a52968 ctor/dtor (images release) then Credits load/setup/update/draw + Screen::create_backgrounds; strings bg1/t1..t5/credits_* 0x9dd8fc..0x9dda30 ascending."
+0x006b6b70,0x006b8cf0,gameover,medium,"Opens with the a53ff8 global ctor; Screen::create_buttons (gameover_1..3) / GameOver::load / Panel53ff8::draw (G100 GGLOW .SAV) / Menu::handle (reload save) / MenuButton::draw (MBUT_*) / Screen::close; strings 0x9dda3c..0x9dda80."
+0x006b8d20,0x006b9490,descbox,low,"Global a59780 ctor + description frame Frame::draw_box (des_p_* 0x9dda8c..0x9ddaec, used by Shop/Inventory) + HelpBox::load_sprite (helpbox 0x9ddaf8) and its texture release; between the gameover and armory global ctors."
+0x006b94e0,0x006bbcd0,armory,medium,"Global a54c20 ItemScreen ctor/dtor then ItemScreen setup/open/hide/close + ArmoryPanel::refresh (armory_*) + Panel54c20 draw + item MARK draw; strings 0x9ddb04..0x9ddb9c ascending."
+0x006bc4f0,0x006bc4f0,ibarr_ctor,high,memset(0x82) ctor of global a48920 whose atexit dtor calls Barracks::release: the i_barr.cpp global's constructor heading that object.,interfac/i_barr.cpp

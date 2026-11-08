@@ -1,0 +1,3299 @@
+{
+ "group": "g06",
+ "classes": [
+  {
+   "class": "Marker",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x8",
+     "name": "pos",
+     "type": "f32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x44",
+     "name": "lit",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x45",
+     "name": "alpha",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x49",
+     "name": "target_alpha",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x4d",
+     "name": "fade_time",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x51",
+     "name": "billboard",
+     "type": "ptr:Billboard",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "glowmark.cpp draw / update_fade / line_of_sight (pos = sphere centre for Camera::sphere_visible) / destroy_51",
+   "confidence": "medium",
+   "notes": "0x0..0x7 and 0x14..0x43 not accessed by its functions. Marker::position (game_tick, player +4 / unit +8) belongs to Missile; Marker::update / visible (interfac/minires.cpp) belong to MiniMap: reassigned."
+  },
+  {
+   "class": "ComboCounter",
+   "size": null,
+   "base": "Hud",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "its only function is called with ecx = the Hud this (Hud::draw / track / draw_objectives) and uses Hud fields",
+   "confidence": "medium",
+   "notes": "not a separate object: an alias label of Hud; its function was reassigned to Hud."
+  },
+  {
+   "class": "ExpCounter",
+   "size": null,
+   "base": "Hud",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "its only function is called with ecx = the Hud this (Hud::draw / track / draw_objectives) and uses Hud fields",
+   "confidence": "medium",
+   "notes": "not a separate object: an alias label of Hud; its function was reassigned to Hud."
+  },
+  {
+   "class": "Fade",
+   "size": null,
+   "base": "Hud",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "its only function is called with ecx = the Hud this (Hud::draw / track / draw_objectives) and uses Hud fields",
+   "confidence": "medium",
+   "notes": "not a separate object: an alias label of Hud; its function was reassigned to Hud."
+  },
+  {
+   "class": "Hud",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "tex_maingame",
+     "type": "ptr:Texture",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "tex_mgexp",
+     "type": "ptr:Texture",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "tex_08",
+     "type": "ptr:Texture",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "tex_tui",
+     "type": "ptr:Texture",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "sprites",
+     "type": "ptr:BmpRes",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "exp_sprites",
+     "type": "ptr:BmpRes",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "sprites_18",
+     "type": "ptr:BmpRes",
+     "size": 4
+    },
+    {
+     "off": "0x1c",
+     "name": "target_sprites",
+     "type": "ptr:BmpRes",
+     "size": 4
+    },
+    {
+     "off": "0x20",
+     "name": "shown_hp",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x24",
+     "name": "shown_145",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x28",
+     "name": "shown_126",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x2c",
+     "name": "target_hp",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x30",
+     "name": "health_state",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x31",
+     "name": "health_state_31",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x32",
+     "name": "u8_32",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x33",
+     "name": "target_id",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x37",
+     "name": "target_is_unit",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x38",
+     "name": "target_time",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x3c",
+     "name": "exp_target",
+     "type": "i32",
+     "size": 4,
+     "count": 9
+    },
+    {
+     "off": "0x60",
+     "name": "u32_60",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x69",
+     "name": "exp_shown",
+     "type": "i32",
+     "size": 4,
+     "count": 9
+    },
+    {
+     "off": "0x8d",
+     "name": "exp_state",
+     "type": "i8",
+     "size": 1,
+     "count": 9
+    },
+    {
+     "off": "0x96",
+     "name": "exp_time",
+     "type": "u32",
+     "size": 4,
+     "count": 9
+    },
+    {
+     "off": "0xba",
+     "name": "exp_start",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xbe",
+     "name": "exp_count",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0xc0",
+     "name": "exp_on",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0xc1",
+     "name": "level_on",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0xc2",
+     "name": "level_state",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0xc3",
+     "name": "level_c3",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0xc4",
+     "name": "level_time",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xcc",
+     "name": "combo_on",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0xcd",
+     "name": "combo_state",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0xce",
+     "name": "combo_count",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0xd0",
+     "name": "combo_time",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xd5",
+     "name": "slot_unit",
+     "type": "u32",
+     "size": 4,
+     "count": 8
+    },
+    {
+     "off": "0xf5",
+     "name": "slot_flag",
+     "type": "u8",
+     "size": 1,
+     "count": 8
+    },
+    {
+     "off": "0xfd",
+     "name": "slot_time",
+     "type": "u32",
+     "size": 4,
+     "count": 8
+    },
+    {
+     "off": "0x11d",
+     "name": "slot_state",
+     "type": "u8",
+     "size": 1,
+     "count": 8
+    },
+    {
+     "off": "0x125",
+     "name": "arrow_unit",
+     "type": "u32",
+     "size": 4,
+     "count": 8
+    },
+    {
+     "off": "0x145",
+     "name": "arrow_count",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x147",
+     "name": "u32_147",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x14b",
+     "name": "u16_14b",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x14d",
+     "name": "blink_on",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x14e",
+     "name": "blink_state",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x14f",
+     "name": "blink_time",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x153",
+     "name": "blink_start",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x157",
+     "name": "obj_alpha",
+     "type": "u16",
+     "size": 2,
+     "count": 40
+    },
+    {
+     "off": "0x1a7",
+     "name": "obj_1a7",
+     "type": "u16",
+     "size": 2,
+     "count": 40
+    },
+    {
+     "off": "0x1f7",
+     "name": "obj_count",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x1f9",
+     "name": "obj_time",
+     "type": "u32",
+     "size": 4,
+     "count": 40
+    },
+    {
+     "off": "0x299",
+     "name": "obj_id",
+     "type": "u32",
+     "size": 4,
+     "count": 40
+    },
+    {
+     "off": "0x21ed",
+     "name": "portrait_actor",
+     "type": "ptr:Actor",
+     "size": 4
+    }
+   ],
+   "members": [
+    {
+     "off": "0x339",
+     "name": "squad_button0",
+     "class": "Button"
+    },
+    {
+     "off": "0x67f",
+     "name": "squad_button1",
+     "class": "Button"
+    },
+    {
+     "off": "0x9c5",
+     "name": "squad_button2",
+     "class": "Button"
+    },
+    {
+     "off": "0xd0b",
+     "name": "squad_button3",
+     "class": "Button"
+    },
+    {
+     "off": "0x1051",
+     "name": "squad_button4",
+     "class": "Button"
+    },
+    {
+     "off": "0x1397",
+     "name": "squad_button5",
+     "class": "Button"
+    },
+    {
+     "off": "0x16dd",
+     "name": "squad_button6",
+     "class": "Button"
+    },
+    {
+     "off": "0x1a23",
+     "name": "squad_button7",
+     "class": "Button"
+    },
+    {
+     "off": "0x1d69",
+     "name": "minimap",
+     "class": "MiniMap"
+    }
+   ],
+   "evidence": "hud.cpp: Hud::draw calls ExpCounter/LevelBanner/ComboCounter/Squad/... with ecx = this; texture slots 0..0xc (load/free_resources); minimap at +0x1d69 (MiniMap)",
+   "confidence": "medium",
+   "notes": "The objective arrays (0x157/0x1a7/0x1f9/0x299, count at 0x1f7) have length 40 assumed (parallel arrays; no bound seen). The exp arrays (0x3c/0x69/0x8d/0x96) are 9-element parallel arrays inferred from the spacing. Functions labelled ExpCounter/ComboCounter/LevelBanner/Fade/SlotList/State/ItemPortrait/UnitPortrait/UnitPanel are Hud members (reassigned). Members: 8 Buttons (stride 0x346) at 0x339 (Hud init 0x6f94f0, labelled Panel) and the MiniMap (g14) at 0x1d69, so size >= 0x1d69 + sizeof(MiniMap). 0x21ed (= 0x1d69 + 0x484, right after the MiniMap) is the actor read by 0x707230 (assigned to Hud by g04)."
+  },
+  {
+   "class": "ItemPortrait",
+   "size": null,
+   "base": "Hud",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "its only function is called with ecx = the Hud this (Hud::draw / track / draw_objectives) and uses Hud fields",
+   "confidence": "medium",
+   "notes": "not a separate object: an alias label of Hud; its function was reassigned to Hud."
+  },
+  {
+   "class": "LevelBanner",
+   "size": null,
+   "base": "Hud",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "its only function is called with ecx = the Hud this (Hud::draw / track / draw_objectives) and uses Hud fields",
+   "confidence": "medium",
+   "notes": "not a separate object: an alias label of Hud; its function was reassigned to Hud."
+  },
+  {
+   "class": "SlotList",
+   "size": null,
+   "base": "Hud",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "its only function is called with ecx = the Hud this (Hud::draw / track / draw_objectives) and uses Hud fields",
+   "confidence": "medium",
+   "notes": "not a separate object: an alias label of Hud; its function was reassigned to Hud."
+  },
+  {
+   "class": "State",
+   "size": null,
+   "base": "Hud",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "its only function is called with ecx = the Hud this (Hud::draw / track / draw_objectives) and uses Hud fields",
+   "confidence": "medium",
+   "notes": "not a separate object: an alias label of Hud; its function was reassigned to Hud."
+  },
+  {
+   "class": "UnitPanel",
+   "size": null,
+   "base": "Hud",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "its only function is called with ecx = the Hud this (Hud::draw / track / draw_objectives) and uses Hud fields",
+   "confidence": "medium",
+   "notes": "not a separate object: an alias label of Hud; its function was reassigned to Hud."
+  },
+  {
+   "class": "UnitPortrait",
+   "size": null,
+   "base": "Hud",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "its only function is called with ecx = the Hud this (Hud::draw / track / draw_objectives) and uses Hud fields",
+   "confidence": "medium",
+   "notes": "not a separate object: an alias label of Hud; its function was reassigned to Hud."
+  },
+  {
+   "class": "CombatPanel",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "tex_iattcomb",
+     "type": "ptr:Texture",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "tex_commele",
+     "type": "ptr:Texture",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "i_attcmb.cpp load_sprites (IATTCOMB / COMMELE) and free (labelled Res2, 0x6ef970)",
+   "confidence": "medium",
+   "notes": "Size unknown."
+  },
+  {
+   "class": "Res2",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x1b3",
+     "name": "tex_1b3",
+     "type": "ptr:Texture",
+     "size": 4
+    },
+    {
+     "off": "0x1b7",
+     "name": "tex_1b7",
+     "type": "ptr:Texture",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "objmenuw.cpp free_1b3 (callers Screen / CampScreen)",
+   "confidence": "low",
+   "notes": "Only free_1b3 is left (Res2::free 0x6ef970 is CombatPanel's). Probably a screen object of objmenuw.cpp; 0..0x1b2 unknown."
+  },
+  {
+   "class": "IGameBg",
+   "size": null,
+   "base": "SlideMenu",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "IGameBg::load is called by SlideMenu::start with ecx = this",
+   "confidence": "medium",
+   "notes": "not a separate object: an alias label of SlideMenu; its functions were reassigned to SlideMenu."
+  },
+  {
+   "class": "SlideMenu",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "open",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x1",
+     "name": "sliding",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x20",
+     "name": "background",
+     "type": "ptr:Texture",
+     "size": 4,
+     "count": 4
+    }
+   ],
+   "members": [
+    {
+     "off": "0x30",
+     "name": "slider0",
+     "class": "Image2D"
+    },
+    {
+     "off": "0xe7",
+     "name": "slider1",
+     "class": "Image2D"
+    },
+    {
+     "off": "0x19e",
+     "name": "slider2",
+     "class": "Image2D"
+    },
+    {
+     "off": "0x255",
+     "name": "slider3",
+     "class": "Image2D"
+    },
+    {
+     "off": "0x30c",
+     "name": "slider4",
+     "class": "Image2D"
+    },
+    {
+     "off": "0x3c3",
+     "name": "slider5",
+     "class": "Image2D"
+    },
+    {
+     "off": "0x47a",
+     "name": "slider6",
+     "class": "Image2D"
+    },
+    {
+     "off": "0x531",
+     "name": "slider7",
+     "class": "Image2D"
+    },
+    {
+     "off": "0x5e8",
+     "name": "slider8",
+     "class": "Image2D"
+    },
+    {
+     "off": "0x69f",
+     "name": "slider9",
+     "class": "Image2D"
+    },
+    {
+     "off": "0x756",
+     "name": "slider10",
+     "class": "Image2D"
+    },
+    {
+     "off": "0x80d",
+     "name": "slider11",
+     "class": "Image2D"
+    }
+   ],
+   "evidence": "i_igframe.cpp start / init_sliders / IGameBg::load (igamebg1..4 at 0x20..0x2c); 12 widgets (stride 0xb7) moved / scaled with ecx = this+0x30+k*0xb7",
+   "confidence": "medium",
+   "notes": "Widget stride 0xb7 (an Image2d / Label sized widget). Size >= 0x8c4. 0x2..0x1f not accessed."
+  },
+  {
+   "class": "Images5",
+   "size": null,
+   "base": "IngameMenu",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "init_6f2d70 / release5 (i_igmenu.cpp) set up / free the IngameMenu textures 0..0x10 and its buttons at 0x28",
+   "confidence": "medium",
+   "notes": "not a separate object: an alias label of IngameMenu; its functions were reassigned to IngameMenu."
+  },
+  {
+   "class": "IngameMenu",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "texture",
+     "type": "ptr:Texture",
+     "size": 4,
+     "count": 5
+    },
+    {
+     "off": "0x14",
+     "name": "font_14",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "font_18",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x1c",
+     "name": "font_1c",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x20",
+     "name": "font_20",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x24",
+     "name": "open",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x25",
+     "name": "dialog",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x26",
+     "name": "u8_26",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x27",
+     "name": "u8_27",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x1238",
+     "name": "u32_1238",
+     "type": "i32",
+     "size": 4
+    }
+   ],
+   "members": [
+    {
+     "off": "0x28",
+     "name": "button0",
+     "class": "Button"
+    },
+    {
+     "off": "0x36e",
+     "name": "button1",
+     "class": "Button"
+    },
+    {
+     "off": "0x6b4",
+     "name": "button2",
+     "class": "Button"
+    },
+    {
+     "off": "0x9fa",
+     "name": "button3",
+     "class": "Button"
+    },
+    {
+     "off": "0xd40",
+     "name": "button4",
+     "class": "Button"
+    },
+    {
+     "off": "0x1086",
+     "name": "button5",
+     "class": "Button"
+    },
+    {
+     "off": "0x13cc",
+     "name": "button6",
+     "class": "Button"
+    },
+    {
+     "off": "0x1712",
+     "name": "button7",
+     "class": "Button"
+    },
+    {
+     "off": "0x1a58",
+     "name": "back_button",
+     "class": "Button"
+    },
+    {
+     "off": "0x1d9e",
+     "name": "title",
+     "class": "Label"
+    },
+    {
+     "off": "0x1e55",
+     "name": "caption",
+     "class": "Label"
+    }
+   ],
+   "evidence": "i_igmenu.cpp draw / init_6f2d70 (labelled LoadScreen) / release5 (labelled Images5): 8 Buttons stride 0x346 at 0x28",
+   "confidence": "medium",
+   "notes": "Size >= 0x1f0c. 0x1238 (get_1238 0x6f5ed0) lies inside button 5 (0x1086 + 0x1b2) but is declared here as an own field because Button does not declare +0x1b2 -- if it does, drop it. Panel::update_6f43e0 (assigned to IngameMenu by another group) reads +0x35 / +0x5e of the buttons and labels (Widget moving / scaling): covered once Button (g03) / Label (g01) declare them."
+  },
+  {
+   "class": "LoadScreen",
+   "size": null,
+   "base": "IngameMenu",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "init_6f2d70 / release5 (i_igmenu.cpp) set up / free the IngameMenu textures 0..0x10 and its buttons at 0x28",
+   "confidence": "medium",
+   "notes": "not a separate object: an alias label of IngameMenu; its functions were reassigned to IngameMenu."
+  },
+  {
+   "class": "Book",
+   "size": null,
+   "base": "MessageLog",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "called with ecx = the MessageLog this (MessageLog::draw -> draw_page; capture -> draw); same fields",
+   "confidence": "medium",
+   "notes": "not a separate object: an alias label of MessageLog; its functions were reassigned to MessageLog."
+  },
+  {
+   "class": "LongBar",
+   "size": null,
+   "base": "MessageLog",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "called with ecx = the MessageLog this (MessageLog::draw -> draw_page; capture -> draw); same fields",
+   "confidence": "medium",
+   "notes": "not a separate object: an alias label of MessageLog; its functions were reassigned to MessageLog."
+  },
+  {
+   "class": "MessageLog",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "open",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x11",
+     "name": "sprites",
+     "type": "ptr:BmpRes",
+     "size": 4
+    },
+    {
+     "off": "0x15",
+     "name": "font",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x19",
+     "name": "icons",
+     "type": "ptr:BmpRes",
+     "size": 4
+    },
+    {
+     "off": "0x1d",
+     "name": "prev_button",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0x21",
+     "name": "next_button",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0x25",
+     "name": "turn_kind",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x31",
+     "name": "page_texture",
+     "type": "ptr:Texture",
+     "size": 4
+    },
+    {
+     "off": "0x39",
+     "name": "close_button",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0x3d",
+     "name": "title",
+     "type": "ptr:Label",
+     "size": 4
+    },
+    {
+     "off": "0x45",
+     "name": "u16_45",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x47",
+     "name": "page",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x4b",
+     "name": "page_count",
+     "type": "i16",
+     "size": 2
+    }
+   ],
+   "members": [],
+   "evidence": "i_msglog.cpp draw / draw_page (labelled Book) / init (labelled LongBar) / page_capture (labelled PageTurn)",
+   "confidence": "medium",
+   "notes": "Pointee checks through title (Label +0x9) and page_texture (Texture +0x58) depend on the Label (g01) / Texture (g03) specs."
+  },
+  {
+   "class": "PageTurn",
+   "size": null,
+   "base": "MessageLog",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "called with ecx = the MessageLog this (MessageLog::draw -> draw_page; capture -> draw); same fields",
+   "confidence": "medium",
+   "notes": "not a separate object: an alias label of MessageLog; its functions were reassigned to MessageLog."
+  },
+  {
+   "class": "Order0c_c",
+   "size": "0xce",
+   "base": "Unit",
+   "vtable": "0x9d397c",
+   "fields": [
+    {
+     "off": "0xc2",
+     "name": "durability",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xc6",
+     "name": "u32_c6",
+     "type": "u32",
+     "size": 4,
+     "count": 2
+    }
+   ],
+   "members": [],
+   "evidence": "ctor 0x48ea70: Unit ctor, vtable 0x9d397c, memset(this+0xc2, 0, 0xc); new(0xce); consume_* (i_obj03.cpp) decrement +0xc2",
+   "confidence": "high",
+   "notes": "0xc6..0xcd only zeroed by the ctor. Remaining check problems are accesses to the Unit base (0..0xc1) until g09 declares them."
+  },
+  {
+   "class": "Order0b",
+   "size": "0xcd",
+   "base": "Unit",
+   "vtable": "0x9d37cc",
+   "fields": [
+    {
+     "off": "0xc2",
+     "name": "u8_c2",
+     "type": "u8",
+     "size": 1,
+     "count": 6
+    },
+    {
+     "off": "0xc8",
+     "name": "state",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0xc9",
+     "name": "active",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "ctor 0x489ea0: Unit ctor, vtable 0x9d37cc, memset(this+0xc2, 0, 0xb); new(0xcd); init_489fb0 sets 0xc8 / 0xc9 from the type record",
+   "confidence": "high",
+   "notes": "0xc2..0xc7 only zeroed by the ctor. Remaining check problems are accesses to the Unit base (0..0xc1) until g09 declares them."
+  },
+  {
+   "class": "Order45",
+   "size": "0x107",
+   "base": "Unit",
+   "vtable": "0x9d3bec",
+   "fields": [
+    {
+     "off": "0xc2",
+     "name": "ext",
+     "type": "u8",
+     "size": 1,
+     "count": 69
+    }
+   ],
+   "members": [],
+   "evidence": "ctor 0x434040: Unit ctor, vtable 0x9d3bec, memset(this+0xc2, 0, 0x45); new(0x107)",
+   "confidence": "high",
+   "notes": "None of its functions touches the 0x45-byte extension; declared as raw bytes. Remaining check problems are accesses to the Unit base (0..0xc1) until g09 declares them."
+  },
+  {
+   "class": "Res13",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x4",
+     "name": "u32_4",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "u32_8",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "u32_c",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "u32_10",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "binary accesses of its functions (q.py class)",
+   "confidence": "low",
+   "notes": ""
+  },
+  {
+   "class": "Order00",
+   "size": "0xc2",
+   "base": "Unit",
+   "vtable": "0x9d3a18",
+   "fields": [],
+   "members": [],
+   "evidence": "ctor 0x48f740: Unit ctor 0x416a50, vtable 0x9d3a18, memset(this+0xc2, 0, 0); new(0xc2)",
+   "confidence": "high",
+   "notes": "No own fields: every access (0..0x86) is in the Unit base. Remaining check problems are accesses to the Unit base (0..0xc1) until g09 declares them."
+  },
+  {
+   "class": "Tower",
+   "size": null,
+   "base": "Unit",
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0xc2",
+     "name": "u32_c2",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xc6",
+     "name": "fire_time",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xca",
+     "name": "fire_delay",
+     "type": "i32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "i_obj12.cpp update_fire: base fields 0xa / 0x62 / 0x86 (Unit) and 0xc6 / 0xca",
+   "confidence": "low",
+   "notes": "Probably one of the 0xce-byte Unit subclasses (Order0c_a / Order0c_b, g04): 0xc6 / 0xca end exactly at 0xce. 0xc2 not accessed. Remaining check problems are accesses to the Unit base (0..0xc1) until g09 declares them."
+  },
+  {
+   "class": "PopupHost",
+   "size": null,
+   "base": "QuickBar",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "PopupHost::set_open (i_qsave.cpp) writes +0x458 of the quick save bar",
+   "confidence": "medium",
+   "notes": "not a separate object: an alias label of QuickBar; its functions were reassigned to QuickBar."
+  },
+  {
+   "class": "QuickBar",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "texture",
+     "type": "ptr:Texture",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "sprites",
+     "type": "ptr:BmpRes",
+     "size": 4
+    },
+    {
+     "off": "0x452",
+     "name": "u16_452",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x454",
+     "name": "u32_454",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x458",
+     "name": "popup_open",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x45d",
+     "name": "u8_45d",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x45e",
+     "name": "u8_45e",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [
+    {
+     "off": "0x8",
+     "name": "save_text",
+     "class": "Widget"
+    },
+    {
+     "off": "0xbf",
+     "name": "save_bar",
+     "class": "Widget"
+    },
+    {
+     "off": "0x2e4",
+     "name": "load_text",
+     "class": "Widget"
+    },
+    {
+     "off": "0x39b",
+     "name": "load_bar",
+     "class": "Widget"
+    }
+   ],
+   "evidence": "i_qsave.cpp init_6e33e0 (qs_bar / qlc_bar bitmaps and texts at 0x8 / 0xbf / 0x2e4 / 0x39b), set_open (labelled PopupHost)",
+   "confidence": "medium",
+   "notes": "Widget kinds (text / bitmap) of the members not resolved; 0x176..0x2e3 unknown."
+  },
+  {
+   "class": "QuestionMark",
+   "size": null,
+   "base": "QuitPopup",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "QuestionMark::init (i_quit.cpp) initialises the QuitPopup fields 0 / 0xbb / 0xbd and its Label at +4",
+   "confidence": "medium",
+   "notes": "not a separate object: an alias label of QuitPopup; its functions were reassigned to QuitPopup."
+  },
+  {
+   "class": "QuitPopup",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "texture",
+     "type": "ptr:Texture",
+     "size": 4
+    },
+    {
+     "off": "0xbb",
+     "name": "step",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0xbd",
+     "name": "question",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0xbe",
+     "name": "open",
+     "type": "i8",
+     "size": 1
+    }
+   ],
+   "members": [
+    {
+     "off": "0x4",
+     "name": "background",
+     "class": "Label"
+    }
+   ],
+   "evidence": "i_quit.cpp init (labelled QuestionMark) creates the Label bg_qm at +4; draw reads its scale +0x15 = Label+0x11",
+   "confidence": "medium",
+   "notes": "Size >= 0xbf. The 0x15 read is covered only once Label (g01) declares +0x11 (Widget scale)."
+  },
+  {
+   "class": "AddScreen",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "texture_0",
+     "type": "ptr:Texture",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "texture_4",
+     "type": "ptr:Texture",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "sprites",
+     "type": "ptr:BmpRes",
+     "size": 4
+    },
+    {
+     "off": "0x19",
+     "name": "button_sprites",
+     "type": "ptr:BmpRes",
+     "size": 4
+    },
+    {
+     "off": "0x1d",
+     "name": "selected",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x21",
+     "name": "u8_21",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [
+    {
+     "off": "0x22",
+     "name": "add_button",
+     "class": "Button"
+    },
+    {
+     "off": "0x368",
+     "name": "cb_button",
+     "class": "Button"
+    }
+   ],
+   "evidence": "i_unitatt.cpp ctor: ADD / CB buttons at 0x22 / 0x368 (stride 0x346)",
+   "confidence": "medium",
+   "notes": "0xc..0x18 not accessed. Size >= 0x6ae."
+  },
+  {
+   "class": "Ui",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "tex_iunitatt",
+     "type": "ptr:Texture",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "tex_commele",
+     "type": "ptr:Texture",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "i_unitatt.cpp load_shared_textures (IUNITATT / COMMELE) and release (labelled Hud, 0x6f61e0)",
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "class": "BlinkD28",
+   "size": null,
+   "base": "Glory",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "i_vict.cpp functions on the same victory screen object (fields 0xd18..0xd32)",
+   "confidence": "medium",
+   "notes": "not a separate object: an alias label of Glory; its functions were reassigned to Glory."
+  },
+  {
+   "class": "Glory",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0xd18",
+     "name": "u32_d18",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xd1c",
+     "name": "u32_d1c",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xd20",
+     "name": "sprites",
+     "type": "ptr:BmpRes",
+     "size": 4
+    },
+    {
+     "off": "0xd24",
+     "name": "button_sprites",
+     "type": "ptr:BmpRes",
+     "size": 4
+    },
+    {
+     "off": "0xd28",
+     "name": "blink_on",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0xd29",
+     "name": "blink_state",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0xd2a",
+     "name": "blink_time",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xd2e",
+     "name": "u32_d2e",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xd32",
+     "name": "done",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [
+    {
+     "off": "0x0",
+     "name": "button0",
+     "class": "Button"
+    },
+    {
+     "off": "0x346",
+     "name": "button1",
+     "class": "Button"
+    },
+    {
+     "off": "0x68c",
+     "name": "button2",
+     "class": "Button"
+    },
+    {
+     "off": "0x9d2",
+     "name": "button3",
+     "class": "Button"
+    }
+   ],
+   "evidence": "i_vict.cpp init (labelled Menu4): 4 Buttons at 0 / 0x346 / 0x68c / 0x9d2; draw / blink step (labelled BlinkD28)",
+   "confidence": "medium",
+   "notes": "Glory::draw reads byte +8 of each Button (0x8 / 0x34e / 0x694 / 0x9da): covered by Button's layout. The blink fields 0xd28.. may be a small blink struct (blink_step(this+0xd28))."
+  },
+  {
+   "class": "Menu4",
+   "size": null,
+   "base": "Glory",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "i_vict.cpp functions on the same victory screen object (fields 0xd18..0xd32)",
+   "confidence": "medium",
+   "notes": "not a separate object: an alias label of Glory; its functions were reassigned to Glory."
+  },
+  {
+   "class": "Grid",
+   "size": "0x3e",
+   "base": "DynArrayB",
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x2e",
+     "name": "cells",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x32",
+     "name": "rows",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x36",
+     "name": "cell_size",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x3a",
+     "name": "cols",
+     "type": "i32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "new(0x3e) before ctor 0x4571e0, which constructs DynArrayB(0x18, 0x1e) at +0 and clears +0x2e; alloc: cells[rows][cols] of cell_size bytes",
+   "confidence": "high",
+   "notes": "cells is void*** (row pointers -> cell pointers -> cell_size bytes). Records are InvItem (0x18 bytes). The other functions labelled Grid were reassigned: plasma.cpp -> Plasma, spindex.cpp -> SpIndex, interfac/list.cpp -> List, camera3d.cpp -> ViewRect, quat.cpp / misc.cpp helpers -> null."
+  },
+  {
+   "class": "Lookup",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "u32_0",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "entries",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "playing",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x50",
+     "name": "u32_50",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x54",
+     "name": "loaded",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x58",
+     "name": "shared_base",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x5c",
+     "name": "count_ext",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x60",
+     "name": "u32_60",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x64",
+     "name": "owner",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x19d",
+     "name": "shared_index",
+     "type": "ptr:ResourceIdxL",
+     "size": 4
+    }
+   ],
+   "members": [
+    {
+     "off": "0x68",
+     "name": "index",
+     "class": "ResourceIdxL"
+    }
+   ],
+   "evidence": "inventory.cpp init_457ad0 (constructs the index at +0x68, +0x19d = owner + 0x14c) and find (get_index on +0x68 then on *+0x19d)",
+   "confidence": "medium",
+   "notes": "0x68 + 0x135 (ResourceIdx size) = 0x19d. Size >= 0x1a1. 0xc..0x4f not accessed."
+  },
+  {
+   "class": "ItemList",
+   "size": null,
+   "base": "Units",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "ItemList::clear / find_by_name (itemres_head.cpp) use the DynArrayB at +4 of the Units object",
+   "confidence": "medium",
+   "notes": "not a separate object: an alias label of Units; its functions were reassigned to Units."
+  },
+  {
+   "class": "Units",
+   "size": null,
+   "base": null,
+   "vtable": "0x9d4090",
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "vtable",
+     "type": "ptr:vtable",
+     "size": 4
+    }
+   ],
+   "members": [
+    {
+     "off": "0x4",
+     "name": "list",
+     "class": "DynArrayB"
+    }
+   ],
+   "evidence": "ctor 0x49e8d0 (itemres_head.cpp): DynArrayB(4, 0x14) at +4, vtable 0x9d4090; clear / find_by_name use the list at +4 (as_units(this)->list)",
+   "confidence": "medium",
+   "notes": "Size >= 0x32. The many Units::get / empty_at wrappers are list accessors with no own field access. Reassigned: load_record 0x42e160 -> LightSys (its callers pass their own this; +2 table / +0xc record), remove 0x51e1f0 -> UnitManager (DynArrayB at +0, +0x2e), ItemList::remove 0x458430 -> Grid (calls Grid::fill_from on this)."
+  },
+  {
+   "class": "Interface",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x13",
+     "name": "flag_13",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x14",
+     "name": "flag_14",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x15",
+     "name": "sounds",
+     "type": "ptr:void",
+     "size": 4,
+     "count": 7
+    },
+    {
+     "off": "0x3412",
+     "name": "u8_3412",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x3413",
+     "name": "u8_3413",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x3414",
+     "name": "u8_3414",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x3415",
+     "name": "u8_3415",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x3416",
+     "name": "u8_3416",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x3417",
+     "name": "u8_3417",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x3418",
+     "name": "u8_3418",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x3419",
+     "name": "u8_3419",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x341a",
+     "name": "u8_341a",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x341b",
+     "name": "u8_341b",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x341c",
+     "name": "u8_341c",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x341d",
+     "name": "u8_341d",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x341e",
+     "name": "u8_341e",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x341f",
+     "name": "u32_341f",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x342a",
+     "name": "u32_342a",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "mainmenu.cpp free_sounds (0x15..0x2d), reset_widgets, clear_flags / set_13",
+   "confidence": "low",
+   "notes": "free_sounds releases 7 resources at 0x15..0x2d; 0x3412..0x341e are separate byte flags reset one by one. Size >= 0x342e."
+  },
+  {
+   "class": "Cd",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x3",
+     "name": "u8_3",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x6",
+     "name": "u8_6",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x4b",
+     "name": "u8_4b",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [],
+   "evidence": "mainwnd.cpp find_drive (+0x4b) and audio.cpp stop (+3 / +6)",
+   "confidence": "low",
+   "notes": "The two functions are probably different objects (find_drive is called from Music::init_demo)."
+  },
+  {
+   "class": "Wnd",
+   "size": "0x153",
+   "base": "SysEnWindow",
+   "vtable": "0x9d5d68",
+   "fields": [
+    {
+     "off": "0x20",
+     "name": "u8_20",
+     "type": "u8",
+     "size": 1,
+     "count": 32
+    },
+    {
+     "off": "0x40",
+     "name": "scale_x",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x44",
+     "name": "scale_y",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x48",
+     "name": "u16_48",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x4a",
+     "name": "active",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x4b",
+     "name": "u8_4b",
+     "type": "u8",
+     "size": 1,
+     "count": 263
+    },
+    {
+     "off": "0x152",
+     "name": "u8_152",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [],
+   "evidence": "ctor 0x4d6b90: SysEn ctor 0x6035c0, vtable 0x9d5d68, memset(this+0x20, 0, 0x133) -> size 0x153; init_4d6c50 sets 0x40..0x4a / 0x152",
+   "confidence": "medium",
+   "notes": "0x20..0x3f and 0x4b..0x151 are only zeroed by the ctor (declared as raw bytes); SysEn (g04) covers 0..0x1f. Unlabelled mainwnd.cpp getters 0x4d84e0 / 0x4d8520 / 0x4d8560 / 0x4d8bb0 / 0x4d8be0 left unassigned (objects unknown). Base chain: Dev (g08, ctor 0x5a1b60, vtable + 0x10 bytes) <- SysEnWindow (ctor 0x6035c0 labelled SysEn) <- Wnd. g04's SysEn spec describes the D3D system object 0xa52420 (>= 0x337 bytes), which is not this base."
+  },
+  {
+   "class": "BBox",
+   "size": null,
+   "base": "Box",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "BBox::merge / Box6::clip read the same min xyz / max xyz floats (0..0x14)",
+   "confidence": "medium",
+   "notes": "not a separate object: an alias label of Box; its functions were reassigned to Box."
+  },
+  {
+   "class": "Bone",
+   "size": "0xa0",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "local",
+     "type": "f32",
+     "size": 4,
+     "count": 16
+    },
+    {
+     "off": "0x40",
+     "name": "parent",
+     "type": "ptr:Bone",
+     "size": 4
+    },
+    {
+     "off": "0x44",
+     "name": "prev",
+     "type": "ptr:Bone",
+     "size": 4
+    },
+    {
+     "off": "0x48",
+     "name": "next",
+     "type": "ptr:Bone",
+     "size": 4
+    },
+    {
+     "off": "0x4c",
+     "name": "first_child",
+     "type": "ptr:Bone",
+     "size": 4
+    },
+    {
+     "off": "0x50",
+     "name": "last_child",
+     "type": "ptr:Bone",
+     "size": 4
+    },
+    {
+     "off": "0x54",
+     "name": "dirty",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x58",
+     "name": "world",
+     "type": "f32",
+     "size": 4,
+     "count": 16
+    },
+    {
+     "off": "0x98",
+     "name": "callback",
+     "type": "ptr:fn",
+     "size": 4
+    },
+    {
+     "off": "0x9c",
+     "name": "owner",
+     "type": "ptr:void",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "new(0xa0); ctors 0x60eae0 / 0x60eb90 (identity into 0 and 0x58, links cleared); set_parent sibling list; original/en3d.hpp matrix at 0x58",
+   "confidence": "high",
+   "notes": "vector_delete 0x5cca00 reads the array count at this-4 (MSVC new[] header), not a field."
+  },
+  {
+   "class": "Box",
+   "size": "0x18",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "min",
+     "type": "f32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0xc",
+     "name": "max",
+     "type": "f32",
+     "size": 4,
+     "count": 3
+    }
+   ],
+   "members": [],
+   "evidence": "mathlib.cpp empty / set_point / extend / contains / overlaps (Aabb in original/vecmath.hpp)",
+   "confidence": "high",
+   "notes": "Box::from_minmax 0x6a2a70 builds a 3x3 axes + centre box: OrientedBox."
+  },
+  {
+   "class": "Box6",
+   "size": null,
+   "base": "Box",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "BBox::merge / Box6::clip read the same min xyz / max xyz floats (0..0x14)",
+   "confidence": "medium",
+   "notes": "not a separate object: an alias label of Box; its functions were reassigned to Box."
+  },
+  {
+   "class": "Sphere",
+   "size": "0x10",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "centre",
+     "type": "f32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0xc",
+     "name": "radius",
+     "type": "f32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "mathlib.cpp contains / touches: |p - this| vs +0xc",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "class": "Str",
+   "size": "0x4",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "p",
+     "type": "ptr:char",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "mbtext.cpp lwr / upr: +0 is the string pointer",
+   "confidence": "medium",
+   "notes": "Only +0 is accessed; size 4 assumed (a one-pointer wrapper). Str::cut 0x4a9aa0 / upr 0x58e510 / fill_spaces 0x58f7f0 have no own accesses."
+  },
+  {
+   "class": "StrIt",
+   "size": "0x4",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "p",
+     "type": "ptr:char",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "mbtext.cpp iterator: +0 is the current character pointer",
+   "confidence": "medium",
+   "notes": "Only +0 is accessed; size 4 assumed (a one-pointer wrapper)."
+  },
+  {
+   "class": "TextBuffer",
+   "size": "0x4",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "p",
+     "type": "ptr:char",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "mbtext.cpp assign / end_of: +0 text pointer",
+   "confidence": "medium",
+   "notes": "Only +0 is accessed; size 4 assumed (a one-pointer wrapper)."
+  },
+  {
+   "class": "TextIter",
+   "size": "0x4",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "p",
+     "type": "ptr:char",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "mbtext.cpp: +0 position pointer",
+   "confidence": "medium",
+   "notes": "Only +0 is accessed; size 4 assumed (a one-pointer wrapper)."
+  },
+  {
+   "class": "Model",
+   "size": "0x69",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "loaded",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x2",
+     "name": "u16_2",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x4",
+     "name": "u8_4",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x28",
+     "name": "mesh",
+     "type": "ptr:Plane",
+     "size": 4
+    },
+    {
+     "off": "0x2c",
+     "name": "skin",
+     "type": "ptr:Skin",
+     "size": 4
+    },
+    {
+     "off": "0x30",
+     "name": "has_sphere",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x34",
+     "name": "sphere",
+     "type": "f32",
+     "size": 4,
+     "count": 4
+    },
+    {
+     "off": "0x44",
+     "name": "bones",
+     "type": "ptr:BoneTree",
+     "size": 4
+    },
+    {
+     "off": "0x48",
+     "name": "u32_48",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "new(0x69) before ctor 0x5c0ec0 (memset 0x69); create / unload / bound_sphere / link_bones (mdl.cpp)",
+   "confidence": "medium",
+   "notes": "Reassigned: actor.cpp getters (0x8c bone matrix, 0x102, 0x106) -> Actor, plane.cpp copy ctor 0x5cbb60 (0x11c) -> Plane, animdef.cpp update_parts -> AnimDef, camera3d.cpp release_parts -> RenderView. copy_sphere reads +0x2c as a sphere source (ptr:Skin may be wrong)."
+  },
+  {
+   "class": "ShadowModel",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "bytes_0",
+     "type": "u8",
+     "size": 1,
+     "count": 8
+    },
+    {
+     "off": "0x24",
+     "name": "u32_24",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x28",
+     "name": "ptr_28",
+     "type": "ptr:Plane",
+     "size": 4
+    },
+    {
+     "off": "0x2c",
+     "name": "ptr_2c",
+     "type": "ptr:Skin",
+     "size": 4
+    },
+    {
+     "off": "0x30",
+     "name": "u32_30",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4c",
+     "name": "ptr_4c",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x60",
+     "name": "ptr_60",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x64",
+     "name": "ptr_64",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x68",
+     "name": "u32_68",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "mdl.cpp loaded (+1 byte)",
+   "confidence": "low",
+   "notes": "begin_load / poll_load (not thiscall: this on the stack) supply most offsets; 0..7 is read with mixed widths (declared as bytes)."
+  },
+  {
+   "class": "Message",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "list_index",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "state",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "has_pic",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x9",
+     "name": "x",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0xd",
+     "name": "y",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x11",
+     "name": "u8_11",
+     "type": "u8",
+     "size": 1,
+     "count": 4
+    },
+    {
+     "off": "0x15",
+     "name": "shown_len",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x17",
+     "name": "len",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x19",
+     "name": "sound_id",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1d",
+     "name": "sound_started",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x21",
+     "name": "text",
+     "type": "ptr:char",
+     "size": 4
+    },
+    {
+     "off": "0x25",
+     "name": "u8_25",
+     "type": "u8",
+     "size": 1,
+     "count": 9
+    },
+    {
+     "off": "0x2e",
+     "name": "pic",
+     "type": "char",
+     "size": 1,
+     "count": 13
+    },
+    {
+     "off": "0x3b",
+     "name": "revealed_chars",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x3f",
+     "name": "priority",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x43",
+     "name": "start_time",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x47",
+     "name": "colour",
+     "type": "f32",
+     "size": 4,
+     "count": 5
+    }
+   ],
+   "members": [],
+   "evidence": "message.cpp init (labelled Message and Speaker::setup): text copy +0x21 (len +0x17), picture name +0x2e (strcmp), priority +0x3f",
+   "confidence": "medium",
+   "notes": "Size unknown (>= 0x5b). 0x47..0x57 are five floats (0x57 = 255.0 alpha). Gap fields 0x11 / 0x25 are not accessed."
+  },
+  {
+   "class": "Messages",
+   "size": null,
+   "base": "DynArray",
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x3a",
+     "name": "hidden",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x44",
+     "name": "dirty",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [],
+   "evidence": "message.cpp update / is_best and misc bump_oldest (labelled Timers): DynArray of Message* (size / at_4af2d0) at +0",
+   "confidence": "low",
+   "notes": "Base may be DynArrayB (0x2e) rather than DynArray. Messages::post 0x4b9a90 (news.cpp, +0x1f / +0x20) reassigned to News."
+  },
+  {
+   "class": "Speaker",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x7",
+     "name": "lines",
+     "type": "ptr:void",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "dlgtext.cpp say_63d120 (+7)",
+   "confidence": "low",
+   "notes": "Speaker::setup was Message's; Speaker::init / ResourceDb::deinit (resdb.cpp, 0x10e..0x123 = ResourceIdx fields) reassigned to ResourceDb."
+  },
+  {
+   "class": "LodQueue",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "u32_0",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "entries",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "ptr_8",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "active_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "arr_10",
+     "type": "u16",
+     "size": 2,
+     "count": 34
+    },
+    {
+     "off": "0x54",
+     "name": "enabled",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x60",
+     "name": "entry_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x64",
+     "name": "audio",
+     "type": "ptr:Audio",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "misc_00490eb0.cpp update: entries of 0x28 bytes at +4 (count +0x60), Audio at +0x64",
+   "confidence": "low",
+   "notes": "0x10 i16[] lod list (max 0x20)."
+  },
+  {
+   "class": "Rules",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "u16_0",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x1371",
+     "name": "f32_1371",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x14dd",
+     "name": "f32_14dd",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x14e1",
+     "name": "f32_14e1",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x1521",
+     "name": "f32_1521",
+     "type": "f32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "nation2.cpp scan and its time_score / rank helpers (called with this)",
+   "confidence": "low",
+   "notes": "Very large object (>= 0x1525); only five offsets known."
+  },
+  {
+   "class": "SoundSlots",
+   "size": "0xb8",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "u32_0",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "u32_4",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x48",
+     "name": "u32_48",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x50",
+     "name": "slots",
+     "type": "u8",
+     "size": 1,
+     "count": 104
+    }
+   ],
+   "members": [],
+   "evidence": "audio.cpp ctor 0x578ce0: +4 = +0x48 = -1, memset(this+0x50, 0, 0x68)",
+   "confidence": "low",
+   "notes": "size = 0x50 + 0x68 assumed. SoundSlots::play 0x4991e0 (+0x86 actor / +0x9a sound ids) is a Unit member: reassigned."
+  },
+  {
+   "class": "UnitType",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "",
+   "confidence": "low",
+   "notes": "Its only function load_stats 0x498e90 is a Missile member (called by Missile::launch on this; +0xc kind, stats 0x32..0x52): reassigned."
+  },
+  {
+   "class": "Mode",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "",
+   "confidence": "low",
+   "notes": "Label split: set_499540 (mode bytes 0x3a..0x3c, called by Game::run) -> Game; check_6f5a70 (calls Menu::set_state on this) -> Menu."
+  },
+  {
+   "class": "Timers",
+   "size": null,
+   "base": "Messages",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "Timers::bump_oldest walks the Message list at +0 and uses the +0x44 flag of Messages",
+   "confidence": "medium",
+   "notes": "not a separate object: an alias label of Messages; its functions were reassigned to Messages."
+  },
+  {
+   "class": "Callback",
+   "size": "0x10",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "fn",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "arg",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "arg2",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "state",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "set 0x5e9010 (a, b, c, 0); embedded at Plane+0x98 (set_callback(0, 0, 0))",
+   "confidence": "low",
+   "notes": ""
+  },
+  {
+   "class": "Cycler",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "items",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "count",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x6",
+     "name": "u16_6",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x8",
+     "name": "sorted",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x9",
+     "name": "prev_key",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0xa",
+     "name": "next_key",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0xb",
+     "name": "current",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "misc_634e40.cpp step: cycles current through items[count] with the prev / next keys",
+   "confidence": "medium",
+   "notes": "items is u32*."
+  },
+  {
+   "class": "Member",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "u16_0",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x2",
+     "name": "u16_2",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x20",
+     "name": "ptr_20",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x2f",
+     "name": "u8_2f",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x31",
+     "name": "u16_31",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x37",
+     "name": "u16_37",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x3c",
+     "name": "ptr_3c",
+     "type": "ptr:void",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "mission.cpp release, i_obj0b.cpp / pathmesh.cpp set_group",
+   "confidence": "low",
+   "notes": "The three functions may belong to different classes (release: callers Unit; set_group i_obj0b: group at +0x20; pathmesh: group at +0x3c)."
+  },
+  {
+   "class": "Mission",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "bytes_0",
+     "type": "u8",
+     "size": 1,
+     "count": 4
+    },
+    {
+     "off": "0x10",
+     "name": "u32_10",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "u32_14",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "camera_zones",
+     "type": "ptr:CameraZones",
+     "size": 4
+    },
+    {
+     "off": "0x7a",
+     "name": "u16_7a",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x81",
+     "name": "flag_81",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x8e",
+     "name": "u8_8e",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x8f",
+     "name": "u8_8f",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x90",
+     "name": "u8_90",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x91",
+     "name": "u8_91",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x92",
+     "name": "u8_92",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x93",
+     "name": "u8_93",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x94",
+     "name": "u8_94",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x95",
+     "name": "u8_95",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0xa8",
+     "name": "u32_a8",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xac",
+     "name": "u8_ac",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0xbf",
+     "name": "u8_bf",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0xc4",
+     "name": "u8_c4",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0xcd",
+     "name": "u16_cd",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0xdb",
+     "name": "u16_db",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0xdd",
+     "name": "u32_dd",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xed",
+     "name": "track_data",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0xf1",
+     "name": "u32_f1",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xf5",
+     "name": "u32_f5",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xf9",
+     "name": "counts",
+     "type": "u8",
+     "size": 1,
+     "count": 16
+    },
+    {
+     "off": "0x1235",
+     "name": "u8_1235",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x1236",
+     "name": "count_index",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x1237",
+     "name": "u8_1237",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x1238",
+     "name": "saved_0",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1254",
+     "name": "u32_1254",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1261",
+     "name": "u32_1261",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1265",
+     "name": "rts_icon",
+     "type": "ptr:Texture",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "mission.cpp tick_42f700 calls the other members on this",
+   "confidence": "low",
+   "notes": "game.cpp tick_471620 and get_byte_744 0x4301c0 (Game::flag_744 in Hud::draw) moved to Game. counts (0xf9) is indexed by the byte at 0x1236; its length (16) is a guess."
+  },
+  {
+   "class": "SmsBar",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "texture",
+     "type": "ptr:Texture",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "sprites",
+     "type": "ptr:BmpRes",
+     "size": 4
+    },
+    {
+     "off": "0x176",
+     "name": "u16_176",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x178",
+     "name": "start_time",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x17c",
+     "name": "duration",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x184",
+     "name": "u32_184",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x188",
+     "name": "u32_188",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x18c",
+     "name": "u32_18c",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [
+    {
+     "off": "0x8",
+     "name": "text",
+     "class": "Image2d"
+    },
+    {
+     "off": "0xbf",
+     "name": "bar",
+     "class": "Label"
+    }
+   ],
+   "evidence": "interfac/i_sms.cpp init (labelled QuickBar::init 0x6e4f10): Image2d at +8, Label at +0xbf",
+   "confidence": "low",
+   "notes": "new class for the SMS bar of i_sms.cpp"
+  },
+  {
+   "class": "ViewRect",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x10",
+     "name": "x0",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "y0",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "x1",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x1c",
+     "name": "y1",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x20",
+     "name": "w",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x24",
+     "name": "h",
+     "type": "i32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "camera3d.cpp to_cell / to_local (labelled Grid): integer rectangle at 0x10..0x24",
+   "confidence": "low",
+   "notes": "New class for the two camera3d.cpp functions; no callers / ctor known. 0x20 / 0x24 meaning (size or second corner) unclear."
+  },
+  {
+   "class": "InvItem",
+   "size": "0x18",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "type",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x2",
+     "name": "count",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x4",
+     "name": "level",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x6",
+     "name": "u32_6",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xa",
+     "name": "u32_a",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xe",
+     "name": "u32_e",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x12",
+     "name": "w",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x13",
+     "name": "h",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x14",
+     "name": "u8_14",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x15",
+     "name": "x",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x16",
+     "name": "y",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x17",
+     "name": "placed",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [],
+   "evidence": "inventory.cpp init / set_12_13 / set_bytes_14; record size 0x18 of the Grid DynArrayB; Grid::find_at reads w/h +0x12/+0x13, x/y +0x15/+0x16",
+   "confidence": "medium",
+   "notes": "New class: the inventory item record."
+  },
+  {
+   "class": "WorldItem",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x12",
+     "name": "pos",
+     "type": "f32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x2e",
+     "name": "value",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x36",
+     "name": "state",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x3a",
+     "name": "cell",
+     "type": "ptr:WorldCell",
+     "size": 4
+    },
+    {
+     "off": "0x46",
+     "name": "sector",
+     "type": "ptr:Sector",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "inventory.cpp set_pos / get_pos / set_state / detach (unlinks from Sector +0x46 and WorldCell +0x3a)",
+   "confidence": "low",
+   "notes": "New class for an item object lying in the world (an Effect cast is used on it once; caller Unit 0x41ff50). Size unknown."
+  },
+  {
+   "class": "OrientedBox",
+   "size": "0x30",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "axes",
+     "type": "f32",
+     "size": 4,
+     "count": 9
+    },
+    {
+     "off": "0x24",
+     "name": "centre",
+     "type": "f32",
+     "size": 4,
+     "count": 3
+    }
+   ],
+   "members": [],
+   "evidence": "collide.cpp from_minmax: 3x3 extents matrix (diagonal = max - min) + centre",
+   "confidence": "medium",
+   "notes": "New class."
+  },
+  {
+   "class": "RenderView",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "bone",
+     "type": "ptr:Bone",
+     "size": 4
+    },
+    {
+     "off": "0x54",
+     "name": "fog",
+     "type": "ptr:Fog",
+     "size": 4
+    },
+    {
+     "off": "0xdc",
+     "name": "reorder",
+     "type": "ptr:Reorder",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "camera3d.cpp release_parts (labelled Model): deletes Bone +0, Fog +0x54, Reorder +0xdc",
+   "confidence": "low",
+   "notes": "New class; probably the camera3d.cpp scene view object (ctor 0x613650 unlabelled)."
+  },
+  {
+   "class": "SysEnWindow",
+   "size": "0x20",
+   "base": "Dev",
+   "vtable": "0x9d99b0",
+   "fields": [
+    {
+     "off": "0x14",
+     "name": "u8_14",
+     "type": "u8",
+     "size": 1,
+     "count": 8
+    },
+    {
+     "off": "0x1c",
+     "name": "heap",
+     "type": "ptr:void",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "ctor 0x6035c0 (en3d/sysen.cpp): Dev ctor 0x5a1b60, vtable 0x9d99b0, memset(this+0x14, 0, 0xc), +0x1c = Mem::add(0x10000); Wnd memsets from +0x20",
+   "confidence": "medium",
+   "notes": "New class: the window base of Wnd. Its ctor carries the label SysEn, but g04 uses SysEn for the D3D system object. sysen.cpp open 0x603710 (unlabelled, other group) reads +0x15 / +0x18."
+  }
+ ],
+ "functions": {
+  "0x6fe660": "Hud",
+  "0x702740": "Hud",
+  "0x6ffed0": "Hud",
+  "0x7078c0": "Hud",
+  "0x707960": "Hud",
+  "0x7072c0": "Hud",
+  "0x703680": "Hud",
+  "0x6fe280": "Hud",
+  "0x6fe340": "Hud",
+  "0x703750": "Hud",
+  "0x6f28c0": "SlideMenu",
+  "0x70e1d0": "MiniMap",
+  "0x714040": "MiniMap",
+  "0x717650": "MiniMap",
+  "0x4e5d90": "Missile",
+  "0x4c5a70": "Plasma",
+  "0x4c67e0": "Plasma",
+  "0x681ea0": "SpIndex",
+  "0x6822d0": "SpIndex",
+  "0x682410": "SpIndex",
+  "0x6824a0": "SpIndex",
+  "0x6834c0": "SpIndex",
+  "0x6836b0": "SpIndex",
+  "0x683d70": "SpIndex",
+  "0x683e10": "SpIndex",
+  "0x6f80c0": "List",
+  "0x6f8e40": "List",
+  "0x6accf0": null,
+  "0x590450": null,
+  "0x6f94f0": "Hud",
+  "0x4866b0": "Marker",
+  "0x486910": "Marker",
+  "0x6f1ff0": "SlideMenu",
+  "0x6f2d70": "IngameMenu",
+  "0x6f3630": "IngameMenu",
+  "0x6f5ed0": "IngameMenu",
+  "0x6e22e0": "MessageLog",
+  "0x6e0e40": "MessageLog",
+  "0x6e1ea0": "MessageLog",
+  "0x6e1070": "MessageLog",
+  "0x6e13c0": "MessageLog",
+  "0x6e1550": "MessageLog",
+  "0x6ef970": "CombatPanel",
+  "0x6f61e0": "Ui",
+  "0x6e4650": "QuitPopup",
+  "0x6e4600": "QuitPopup",
+  "0x6e4770": "QuitPopup",
+  "0x6e4d30": "QuitPopup",
+  "0x6e4420": "QuickBar",
+  "0x6e4510": "QuickBar",
+  "0x6e4f10": "SmsBar",
+  "0x6e68f0": "Glory",
+  "0x6e7cf0": "Glory",
+  "0x6e7b50": "Glory",
+  "0x70db10": "Interface",
+  "0x70dcb0": "Interface",
+  "0x48ba00": "Order0b",
+  "0x48ed60": "Order0c_c",
+  "0x48edf0": "Order0c_c",
+  "0x6fe240": "Hud",
+  "0x6fe4a0": "Hud",
+  "0x6ffd90": "Hud",
+  "0x7036f0": "Hud",
+  "0x707df0": "Hud",
+  "0x6152b0": "ViewRect",
+  "0x615340": "ViewRect",
+  "0x456cd0": "InvItem",
+  "0x456e40": "InvItem",
+  "0x456e70": "InvItem",
+  "0x456f20": "WorldItem",
+  "0x456fe0": "WorldItem",
+  "0x457030": "WorldItem",
+  "0x457120": "WorldItem",
+  "0x457190": "WorldItem",
+  "0x4571b0": "WorldItem",
+  "0x457ad0": "Lookup",
+  "0x59b390": "ResourceDb",
+  "0x59b440": "ResourceDb",
+  "0x6fe520": "Hud",
+  "0x6ff950": "Hud",
+  "0x6ffb40": "Hud",
+  "0x49e9c0": "Units",
+  "0x49f420": "Units",
+  "0x458430": "Grid",
+  "0x42e160": "LightSys",
+  "0x51e1f0": "UnitManager",
+  "0x4d6c50": "Wnd",
+  "0x60d030": "Box",
+  "0x60d210": "Box",
+  "0x6a2a70": "OrientedBox",
+  "0x60efb0": "Bone",
+  "0x58b990": "StrIt",
+  "0x58bfe0": "StrIt",
+  "0x5ac2b0": "Actor",
+  "0x5ac650": "Actor",
+  "0x5ac950": "Actor",
+  "0x5acac0": "Actor",
+  "0x5acde0": "Actor",
+  "0x5cbb60": "Plane",
+  "0x5b77b0": "AnimDef",
+  "0x613a10": "RenderView",
+  "0x4ab330": "Message",
+  "0x4aef10": "Message",
+  "0x4af040": "Message",
+  "0x4af070": "Message",
+  "0x4af140": "Message",
+  "0x4ae710": "Messages",
+  "0x4af2b0": "Messages",
+  "0x499e40": "Messages",
+  "0x4b9a90": "News",
+  "0x498e90": "Missile",
+  "0x4991e0": "Unit",
+  "0x499540": "Game",
+  "0x471620": "Game",
+  "0x4301c0": "Game",
+  "0x6f5a70": "Menu",
+  "0x42d810": "Mission",
+  "0x42d900": "Mission",
+  "0x42f5d0": "Mission",
+  "0x6b7160": "GameOver",
+  "0x6b7f20": "GameOver",
+  "0x6b8260": "GameOver",
+  "0x6e8c50": "EndScreen",
+  "0x6e8c80": "EndScreen",
+  "0x6e8cf0": "EndScreen",
+  "0x6e8d20": "EndScreen",
+  "0x6e8d50": "EndScreen",
+  "0x498d30": "Unit",
+  "0x499fd0": "Unit",
+  "0x49ad10": "Unit",
+  "0x49adc0": "Unit",
+  "0x49ca90": "Unit",
+  "0x49cac0": "Unit"
+ },
+ "notes": "g06 (UI / hud / misc). Many labels of this group were alias labels of one object; their functions were reassigned to the real object and the label kept as an empty class with base = that object: ExpCounter/ComboCounter/LevelBanner/Fade/SlotList/State/ItemPortrait/UnitPortrait/UnitPanel -> Hud, IGameBg -> SlideMenu, LoadScreen/Images5 -> IngameMenu, Book/LongBar/PageTurn -> MessageLog, QuestionMark -> QuitPopup, PopupHost -> QuickBar, Menu4/BlinkD28 -> Glory, ItemList -> Units, BBox/Box6 -> Box, Timers -> Messages. Functions given to other groups' classes: Missile (0x4e5d90, 0x498e90), MiniMap (0x70e1d0, 0x714040, 0x717650), Plasma (0x4c5a70, 0x4c67e0), SpIndex (spindex.cpp ones labelled Grid), List (0x6f80c0, 0x6f8e40), ResourceDb (0x59b390, 0x59b440), Actor (actor.cpp getters labelled Model), Plane (0x5cbb60), AnimDef (0x5b77b0), LightSys (0x42e160), UnitManager (0x51e1f0), News (0x4b9a90), Game (0x499540, 0x471620, 0x4301c0), Menu (0x6f5a70), Unit (0x4991e0 and the unlabelled 0x498d30 / 0x499fd0 / 0x49ad10 / 0x49adc0 / 0x49ca90 / 0x49cac0: offsets < 0xc2 with the actor at +0x86), GameOver (gameover.cpp 0x6b7160 / 0x6b7f20 / 0x6b8260: fields 0x9d2..0x9ec as GameOver::load), EndScreen (i_endscr.cpp 0x6e8c50..0x6e8d50). Taken from other labels into g06 classes: Panel::init_6f94f0, NameList::add 0x6fe520, Squad::collect_slots 0x6ff950, Units::group_average -> Hud (hud.cpp, Hud fields). Order00/0b/0c_c/45 and Tower derive from Unit (g09, ctor 0x416a50, 0xc2 bytes): their remaining check problems are Unit base offsets until g09 declares them. g04's SysEn spec describes the D3D system object; the real SysEn ctor 0x6035c0 builds a 0x20-byte window base (new class SysEnWindow here, base Dev). Hud contains 8 Buttons at 0x339 (stride 0x346) and the MiniMap (g14) at 0x1d69, so MiniMap is 0x484 bytes (Hud+0x21ed follows it). Unlabelled left without a class: 0x6b7d30, 0x56dd30, 0x56ddc0, 0x6e67d0, 0x6e6810, 0x4d84e0, 0x4d8520, 0x4d8560, 0x4d8bb0, 0x4d8be0, 0x4af410, 0x4af4c0, 0x4af4f0, 0x4af5d0, 0x4af820, 0x49c240, 0x49e500, 0x530c60, 0x635130, 0x42fdd0 (objects not identifiable from their few accesses)."
+}

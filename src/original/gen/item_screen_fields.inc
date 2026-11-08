@@ -1,0 +1,30 @@
+// Generated (re/layout/gen_types.py) from re/layout/layouts.json: the data members of ItemScreen
+// (r3_A.json, confidence medium). Do not edit; change the spec.
+    std::uint8_t open;  // 0x0
+    std::uint8_t shown;  // 0x1
+    std::int16_t item_id;  // 0x2
+    std::uint32_t u32_4;  // 0x4
+    std::uint32_t u32_8;  // 0x8
+    Texture* image_a;  // 0xc
+    Texture* image_b;  // 0x10
+    Texture* image_c;  // 0x14
+    Camera* camera;  // 0x18
+    Scene* scene;  // 0x1c
+    SceneS* shadow_scene;  // 0x20
+    Actor* actor;  // 0x24
+    Label label0;  // 0x28
+    Label label1;  // 0xdf
+    Label label2;  // 0x196
+    Label label3;  // 0x24d
+    Label label4;  // 0x304
+    Label label5;  // 0x3bb
+    Label label6;  // 0x472
+    Label label7;  // 0x529
+    Label label8;  // 0x5e0
+    Button button;  // 0x697
+    Label label9;  // 0x9dd
+    Label label10;  // 0xa94
+    Label label11;  // 0xb4b
+    Label label12;  // 0xc02
+    Label label13;  // 0xcb9
+    Label label14;  // 0xd70

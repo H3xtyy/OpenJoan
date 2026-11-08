@@ -1,0 +1,5 @@
+start,end,name,confidence,evidence
+0x00467420,0x004682e0,f_barr,low,Facility type 1 (BuildingFactory::create) class vtable 0x9d0780 right after end_con.cpp's __FILE__ string: ctor/dtors/Building::spawn unit-queue helpers and the family's zero/self vtable stubs; no TU-start marker so it may still be end_con.cpp.
+0x00468300,0x004693b0,f_flag,low,Facility type 3 class vtable 0x9d07f8: flag groups / English-French flag models and their list/Unit accessors; ends right before the static-init set that opens f_shop.cpp; no TU-start marker of its own.
+0x004693d0,0x004696a0,f_shop_head,high,Math-constant static-init set (opens a TU) + Shop class (type 2 vtable 0x9d08f8) ctor/dtors immediately before f_shop.cpp's Shop::tick: the start of f_shop.cpp.
+0x004697c0,0x004697c0,f_shop_tail,high,Shop Obj::load_group (+0x79 0xe-element arrays) between f_shop.cpp's Shop::tick and Shop::refresh_stock: part of f_shop.cpp.

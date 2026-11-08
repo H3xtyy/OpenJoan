@@ -1,0 +1,51 @@
+dir                     ok  ok (pointer)        hazard       dynamic       at(obj)
+lib                     76            28             3             0             0
+game                  4468           531             1            39             0
+ilib                   131            20             1            11             0
+(src)                   10             1             0             0             0
+uti3d                   65            55             0             0             0
+elib                     4             1             0             0             0
+original                 4             1             0             0             0
+en3d                   331           118             0             2             0
+en2d                    57             1             0             0             0
+interfac               725            35             0             0             0
+TOTAL                 5871           791             5            52             0
+src/game/remapkey.cpp:404: global<i8>(d::g_a51da4 + b)  [dynamic, pointers nearby]
+src/game/remapkey.cpp:627: global<u8>(d::g_a51700 + key)  [dynamic, pointers nearby]
+src/game/battle.cpp:1245: global<u32>(d::g_a48394 + 4 * i)  [dynamic, pointers nearby]
+src/game/nation2.cpp:1409: global<float>(d::g_a017b4 + i * 4)  [dynamic, pointers nearby]
+src/game/nation2.cpp:1410: global<float>(d::g_a01794 + i * 4)  [dynamic, pointers nearby]
+src/game/nation2.cpp:1411: global<float>(d::g_a01774 + i * 4)  [dynamic, pointers nearby]
+src/game/_unplaced/esfuncs.cpp:2075: global<i16>(d::g_a592aa + off)  [dynamic, pointers nearby]
+src/game/_unplaced/esfuncs.cpp:3384: global<u8>(d::g_a5929b + off)  [dynamic, pointers nearby]
+src/game/_unplaced/esfuncs.cpp:3391: global<i16>(d::g_a592aa + off)  [dynamic, pointers nearby]
+src/game/_unplaced/esfuncs.cpp:4104: global<i16>(d::g_a592a4 + off)  [dynamic, pointers nearby]
+src/game/_unplaced/shot.cpp:307: global<std::uint32_t>(d::g_identity + i * 4)  [dynamic, pointers nearby]
+src/game/_unplaced/misc_004994b0.cpp:259: global<u64>(d::g_a485c8)
+src/game/_unplaced/objm_debrief.cpp:333: global<i16>(d::g_a592aa + o)  [dynamic, pointers nearby]
+src/game/_unplaced/objm_debrief.cpp:334: global<char*>(d::g_a5929c + o)  [dynamic, pointers nearby]
+src/game/_unplaced/objm_debrief.cpp:335: global<i8>(d::g_a5929b + o)  [dynamic, pointers nearby]
+src/game/_unplaced/objm_debrief.cpp:337: global<i16>(d::g_a592a4 + o)  [dynamic, pointers nearby]
+src/game/_unplaced/news.cpp:930: global<std::uintptr_t>(d::fns_Cmd + idx)  [dynamic, pointers nearby]
+src/game/_unplaced/i_msglog.cpp:735: global<u32>(d::g_a53c62 + 4 * i)  [dynamic, pointers nearby]
+src/game/_unplaced/angle8.cpp:443: global<float>(d::g_a640ec + i * 4)  [dynamic, pointers nearby]
+src/game/_unplaced/angle8.cpp:449: global<float>(d::g_a641f0 + i * 4)  [dynamic, pointers nearby]
+src/game/_unplaced/game_tick.cpp:421: global<u32>(d::g_a5cd98 + i * 4)  [dynamic, pointers nearby]
+src/game/_unplaced/game_tick.cpp:570: global<i32>(d::g_a5cd80 + i * 4)  [dynamic, pointers nearby]
+src/game/_unplaced/game_tick.cpp:573: global<i32>(d::g_a5cd74 + i * 4)  [dynamic, pointers nearby]
+src/ilib/txtres.cpp:79: global<void*>(d::g_a673b8 + i * 4)  [dynamic, pointers nearby]
+src/ilib/txtres.cpp:333: global<u8*>(d::g_a673b8 + block * 4)  [dynamic, pointers nearby]
+src/ilib/txtres.cpp:336: global<u8*>(d::g_a673b8 + block * 4)  [dynamic, pointers nearby]
+src/ilib/txtres.cpp:521: global<const char*>(d::g_a167d4 + c * 4u)  [dynamic, pointers nearby]
+src/ilib/txtres.cpp:522: global<const char*>(d::g_a167fc + c * 4u)  [dynamic, pointers nearby]
+src/ilib/txtres.cpp:523: global<const char*>(d::g_a16824 + c * 4u)  [dynamic, pointers nearby]
+src/ilib/txtres.cpp:524: global<const char*>(d::g_a1684c + c * 4u)  [dynamic, pointers nearby]
+src/ilib/txtres.cpp:1686: global<u8>(d::g_a6cc21 + s[k])  [dynamic, pointers nearby]
+src/ilib/file.cpp:56: global<const char* const[kSearchDirCount]>(d::ptrs_a1579c)
+src/ilib/misc.cpp:697: global<u32>(d::g_a15850 + i * 4)  [dynamic, pointers nearby]
+src/ilib/misc.cpp:862: global<const char*>(d::strs_a1589c + n * 4)  [dynamic, pointers nearby]
+src/en3d/scene.cpp:1216: global<std::uint32_t>(d::g_a69a98 + i * 4)  [dynamic, pointers nearby]
+src/en3d/actor.cpp:873: global<u8>(d::g_a67640 + c)  [dynamic, pointers nearby]
+src/lib/crt/locale.cpp:160: global<LcCategory>(d::strs_a30c48)
+src/lib/crt/locale.cpp:203: global<Lconv>(d::g_lconv_c)
+src/lib/crt/locale.cpp:249: global<GetLocaleInfoAFn>(d::g_pfn_get_locale_info_a)

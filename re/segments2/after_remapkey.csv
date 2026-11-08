@@ -1,0 +1,4 @@
+start,end,name,confidence,evidence,target
+0x004cb410,0x004cba40,remapkey_g0a,high,Key binding restore/lookup/test between remapkey.cpp RemapKeys::free and RemapKeys::load.,game/remapkey.cpp
+0x004cc380,0x004cc7c0,remapkey_g0b,medium,"Key snapshot and Keys::state/is_down (callees of Bindings::state / RaceRes::test) after RemapKeys::load, before scenario.cpp.",game/remapkey.cpp
+0x004cc830,0x004cc830,scenario_g0,high,Stub between scenario.cpp Obj::forward_4cc850 and Scenario::reset.,game/scenario.cpp

@@ -1,0 +1,5 @@
+start,end,name,confidence,evidence,target
+0x0058b080,0x0058b080,gameset_open_set,high,"open_set (.SET / RESOURCE\) between load_set_header and close_set of gameset.cpp.",ilib/gameset.cpp
+0x0058b180,0x0058b250,gameset_db,high,"open_db / get_db / find_set follow close_set and work on the same SET archive list.",ilib/gameset.cpp
+0x0058b990,0x0058b990,mbtext_ptr,high,"Ptr::Ptr text-iterator ctor among mbtext TextCursor/TextIter ctors; same callers (Strings::format, Text::draw).",game/_unplaced/mbtext.cpp
+0x0058bbf0,0x0058bbf0,mbtext_postinc,high,"TextCursor::postinc between TextCursor::next and StrIt::inc inside mbtext.",game/_unplaced/mbtext.cpp

@@ -1,0 +1,2 @@
+start,end,name,confidence,evidence,target
+0x00587f60,0x00587f60,file_delete,high,"delete_file sits between File::file_size and filemem.cpp; plain file-system helper of the File API.",ilib/file.cpp

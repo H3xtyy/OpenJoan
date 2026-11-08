@@ -1,0 +1,28 @@
+# d:: data names from the Restaurant Empire 2 engine globals (step 3, $JOAN_WORK_DIR/re2/README-step3.txt: RE2.pdb
+# publics and dynamic initialisers calibrated onto the Steam re2.exe, paired with joan.exe through the globals the
+# matched functions reference). Applied by re/rename_data_names.py. RE2's `m` (class Misc) is named g_misc.
+address,old_name,new_name,evidence
+0x00a18a78,g_identity,g_identity_matrix,RE2 engine global identity_matrix : _D3DMATRIX (probable): only 6; pdb-public/verified; via Frame::Frame; Plane::line_seg_intersect; Plane::transform_to_world_space ...; 1 votes elsewhere
+0x00a391c0,g_a391c0,g_test_game_animation_def,"RE2 engine global test_game_animation_def : AnimationDef (certain): class 1, init 1; dyninit/ecx/atexit-aligned+same-global; via AnimationDef; AnimationDef ctor/dtor; joan ctor call AnimationDef::AnimationDef"
+0x00a39350,g_a39350,g_test_game_skin,"RE2 engine global test_game_skin : Skin (certain): class 1, init 1; dyninit/ecx/atexit-aligned+same-global; via Skin; Skin ctor/dtor; joan ctor call Skin::Skin,Skin::~Skin"
+0x00a403a0,g_a403a0,g_texture_array,"RE2 engine global texture_array : TextureArray (certain): class 1, init 1, this 32; dyninit/ecx/atexit-aligned+same-global; via Material::read_file->TextureArray::read_texture; Material::read_file->TextureArr"
+0x00a45fa8,g_a45fa8,g_misc,"RE2 engine global m : Misc (certain): classdom 1, this 74; dyninit/ecx/no-atexit; via ActorDef::load_bone_hierarchy->Misc::is_file_exist; ActorDef::process_async_init->Misc::get_time; Anim"
+0x00a46600,g_cam,g_view3d,"RE2 engine global view3d : View3D (certain): classdom 1, init 1; dyninit/ecx/atexit-aligned+same-global; via View3D 12/12 vs 14/17; View3D ctor/dtor; joan ctor call View3D::View3D,View3D::~View3D"
+0x00a47c01,g_animDb,g_texture_effect_res,"RE2 engine global texture_effect_res : TextureEffectRes (probable): class 1, init 1; dyninit/ecx/atexit-aligned+same-global; via TextureEffectRes; TextureEffectRes ctor/dtor; joan ctor call TextureEffectRes::~TextureEf"
+0x00a47d78,g_log,g_err,"RE2 engine global err : Error (certain): class 1, this 5; dyninit/ecx/no-atexit; via Error; Mem::add->Error::mem; Mem::add_clear->Error::mem ...; 1 votes elsewhere"
+0x00a485a8,g_timer,g_cpu_usage,"RE2 engine global cpu_usage : CpuUsage (certain): class 1, init 1, this 2; dyninit/ecx/atexit-aligned+same-global; via CpuUsage; CpuUsage ctor/dtor; CpuUsageCallStackInfo::dump->CpuUsage::precision_ti"
+0x00a48838,g_a48838,g_mem,"RE2 engine global mem : Mem (certain): class 1, this 127; dyninit/ecx/atexit-aligned+same-global; via Actor::create_morph_control->Mem::resize; Actor::deinit->Mem::del; ActorDef::create_gro"
+0x00a4f888,g_a4f888,g_vga,RE2 engine global vga : Vga (probable): class 1; dyninit/ecx/atexit-aligned+same-global; via Vga
+0x00a52420,g_sysEn,g_sys3d,"RE2 engine global sys3d : Sys3D (certain): classdom 1, only 1, this 19; dyninit/ecx/atexit-aligned+same-global; via Plane::Plane->Sys3D::linkin_resource; Plane::deinit->Sys3D::linkout_resource;"
+0x00a527c8,g_tracks,g_water_array,RE2 engine global water_array : WaterArray (probable): class 1; dyninit/ecx/atexit-aligned+same-global; via WaterArray
+0x00a56a68,g_a56a68,g_bone_name_res,"RE2 engine global bone_name_res : BoneNameRes (certain): class 1, init 1, this 2; dyninit/ecx/atexit-aligned+same-global; via BoneHierarchy::find_bone->BoneNameRes::search_name; BoneHierarchy::read_file->Bon"
+0x00a57078,g_a57078,g_particle_effect_array,"RE2 engine global particle_effect_array : ParticleEffectArray (certain): class 1, init 1; dyninit/ecx/atexit-aligned+same-global; via ParticleEffectArray; ParticleEffectArray ctor/dtor; joan ctor call ParticleEffectArray::~"
+0x00a570a8,g_a570a8,g_physic_sys,"RE2 engine global physic_sys : PhysicSystem (probable): class 1, init 1, this 3; dyninit/ecx/atexit-aligned+same-global; via PhysicSystem; PhysicSystem ctor/dtor; PhysicSystem::set_object_physic_enabled->Ph"
+0x00a59718,g_a59718,g_texture_dir,"RE2 engine global texture_dir : TextureDirectory (certain): class 1, init 1, this 4; dyninit/ecx/atexit-aligned+same-global; via TextureArray::init->TextureDirectory::add_extension; TextureArray::init->TextureD"
+0x00a5cc58,g_canvas,g_vga_back,RE2 engine global vga_back : VgaBuf (probable): this 1; dyninit/ecx/atexit-aligned+same-global; via MouseDispCount::MouseDispCount->VgaBuf::temp_unlock
+0x00a5ce00,g_streamer,g_async_file_loader,"RE2 engine global async_file_loader : AsyncFileLoader (certain): class 1, init 1, this 2; dyninit/ecx/atexit-aligned+same-global; via AsyncFile::file_close->AsyncFileLoader::remove_queue; AsyncFile::file_read->Async"
+0x00a5d2f0,g_video,g_video_file,"RE2 engine global video_file : VideoFile (certain): class 1, init 1; dyninit/ecx/atexit-aligned+same-global; via VideoFile; VideoFile ctor/dtor; joan ctor call VideoFile::~VideoFile"
+0x00a640ec,g_a640ec,g_angle_sin_table,RE2 engine global AngleI::sin_table : float* (probable): role 2; pdb-public/verified; via AngleI::cos(rd); AngleI::sin(rd)
+0x00a64274,g_a64274,g_angle_init_table_flag,RE2 engine global AngleI::init_table_flag : int (probable): only 2; pdb-public/verified; via AngleI::cos; AngleI::sin
+0x00a69cd0,g_white,g_init_white,RE2 engine global init_white : BGRAColor (certain): only 3; dyninit/write/no-atexit(first write; start approximate)+pdb-public/verified; via Light::init; Material::init; Scene::turn_on_occluder
+0x00a69cd4,g_a69cd4,g_init_black,RE2 engine global init_black : BGRAColor (probable): this 1; dyninit/write/no-atexit(first write; start approximate)+pdb-public/verified; via Light::recalc_change->BGRAColor::export_to; 2 votes elsewhere

@@ -1,0 +1,3 @@
+start,end,name,confidence,evidence,target
+0x005b0a10,0x005b0a30,actordef_stubs,medium,"Two empty uncalled stubs between ActorDef::setup_bones and ActorDef::~ActorDef inside actordef.cpp.",en3d/actordef.cpp
+0x005b0a80,0x005b0a80,actordef_fileloader,medium,"Inline FileLoader::ok emitted after ~ActorDef and before actordeg.cpp; first caller ActorDef::poll_load.",en3d/actordef.cpp

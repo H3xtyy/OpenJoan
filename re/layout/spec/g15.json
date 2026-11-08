@@ -1,0 +1,1959 @@
+{
+ "group": "g15",
+ "classes": [
+  {
+   "class": "Panel",
+   "size": null,
+   "base": "OptMenu",
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x34",
+     "name": "tab_buttons",
+     "type": "ptr:void",
+     "size": 4,
+     "count": 5
+    },
+    {
+     "off": "0x115",
+     "name": "bottom_buttons",
+     "type": "ptr:void",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x122",
+     "name": "slide_state",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x123",
+     "name": "slide_flag",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [],
+   "evidence": "optmenui.cpp handlers called with the OptMenu this (callers Opt/Settings/OptionMenu/SlidePanel/OptMenu pass this+0)",
+   "confidence": "medium",
+   "notes": "Panel = the options screen object = OptMenu (g08) + the fields the g08 OptMenu spec lacks (computed from all optmenui labels Panel/Opt/OptPanel/OptionMenu/OptionsMenu/OptionsPage/Settings/SlidePanel/CreditsScreen; these should move into OptMenu when merging); label Panel was a catch-all of 79 functions from ~30 files; the optmenui.cpp part (incl. unlabelled 0x73c410) is kept here as the options-screen object; the others are reassigned per source object (see functions/notes)"
+  },
+  {
+   "class": "Opt",
+   "size": null,
+   "base": "Panel",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "optmenui.cpp; called by Settings with this; casts this->OptMenu/Panel",
+   "confidence": "medium",
+   "notes": "same object as OptMenu (g08) / Panel: an options-screen handler label; alias with base Panel (whose own fields are computed from these functions too)"
+  },
+  {
+   "class": "OptPanel",
+   "size": null,
+   "base": "Panel",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "optmenui.cpp; casts this->OptMenu x4",
+   "confidence": "medium",
+   "notes": "same object as OptMenu (g08) / Panel: an options-screen handler label; alias with base Panel (whose own fields are computed from these functions too)"
+  },
+  {
+   "class": "OptionMenu",
+   "size": null,
+   "base": "Panel",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "optmenui.cpp; casts this->OptMenu/Panel",
+   "confidence": "medium",
+   "notes": "same object as OptMenu (g08) / Panel: an options-screen handler label; alias with base Panel (whose own fields are computed from these functions too)"
+  },
+  {
+   "class": "OptionsMenu",
+   "size": null,
+   "base": "Panel",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "optmenui.cpp list_keys; called by OptMenu with this (+0x10c/+0x110 key list = OptMenu fields)",
+   "confidence": "medium",
+   "notes": "same object as OptMenu (g08) / Panel: an options-screen handler label; alias with base Panel (whose own fields are computed from these functions too)"
+  },
+  {
+   "class": "OptionsPage",
+   "size": null,
+   "base": "Panel",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "optmenui.cpp build_748b10 (no binary this-accesses)",
+   "confidence": "low",
+   "notes": "same object as OptMenu (g08) / Panel: an options-screen handler label; alias with base Panel (whose own fields are computed from these functions too)"
+  },
+  {
+   "class": "Settings",
+   "size": null,
+   "base": "Panel",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "optmenui.cpp; casts this->OptMenu x6",
+   "confidence": "medium",
+   "notes": "same object as OptMenu (g08) / Panel: an options-screen handler label; alias with base Panel (whose own fields are computed from these functions too)"
+  },
+  {
+   "class": "SlidePanel",
+   "size": null,
+   "base": "Panel",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "optmenui.cpp; casts this->OptMenu x5",
+   "confidence": "medium",
+   "notes": "same object as OptMenu (g08) / Panel: an options-screen handler label; alias with base Panel (whose own fields are computed from these functions too)"
+  },
+  {
+   "class": "CreditsScreen",
+   "size": null,
+   "base": "Panel",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "optmenui.cpp layout; +0xf4..+0x108 = OptMenu fields",
+   "confidence": "medium",
+   "notes": "same object as OptMenu (g08) / Panel: an options-screen handler label; alias with base Panel (whose own fields are computed from these functions too)"
+  },
+  {
+   "class": "ArrowList",
+   "size": null,
+   "base": "ScrollBox",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "init_760050 casts this->ScrollBox (no binary this-accesses)",
+   "confidence": "low",
+   "notes": "alias of ScrollBox (g08); its only function is reassigned to ScrollBox"
+  },
+  {
+   "class": "Images6",
+   "size": "0x18",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "images",
+     "type": "ptr:void",
+     "size": 4,
+     "count": 6
+    }
+   ],
+   "members": [],
+   "evidence": "release 0x73c8a0 frees 6 image handles at +0..+0x14; called with the OptMenu this (OptMenu::load reads/writes the same 6 dwords)",
+   "confidence": "medium",
+   "notes": "first 0x18 bytes of OptMenu (g08) could be declared as this member"
+  },
+  {
+   "class": "Scroller",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x70",
+     "name": "background",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x81",
+     "name": "text",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x85",
+     "name": "btn_up",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x89",
+     "name": "btn_down",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x8d",
+     "name": "scroll_line",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x8f",
+     "name": "scroll_px",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x91",
+     "name": "hold_ms",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x269",
+     "name": "mission",
+     "type": "i16",
+     "size": 2
+    }
+   ],
+   "members": [],
+   "evidence": "objmenu.cpp/objmenub.cpp mission-briefing text scroller page: init 0x723c80 creates +0x81 text, +0x85/+0x89 buttons; buttons 0x724210; release 0x723f90",
+   "confidence": "medium",
+   "notes": "label Scroller mixed 4 objects: scroll2d update -> Scroll, scrlbar step -> ScrollBar, objm_shop handle_buttons -> ShopPage (new); kept: the briefing page. +0x0..+0x70 is the campaign Screen header (not accessed here)"
+  },
+  {
+   "class": "Briefing",
+   "size": null,
+   "base": "Scroller",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "Briefing::start 0x724bf0 animates +0x70/+0x81/+0x85/+0x89 and resets +0x8d/+0x8f of the briefing page",
+   "confidence": "medium",
+   "notes": "same object as Scroller; the savemenu.cpp Briefing::start 0x74da40 is a SaveMenu method (reassigned)"
+  },
+  {
+   "class": "ShopPage",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x50",
+     "name": "items",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x70",
+     "name": "p_70",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0xdb",
+     "name": "btn_prev",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0xdf",
+     "name": "btn_next",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x101",
+     "name": "page",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x105",
+     "name": "page_count",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "objm_shop.cpp handle_buttons: +0xdb/+0xdf page buttons, +0x101 page, +0x105 page count; calls Screen::fill_list on this",
+   "confidence": "low",
+   "notes": "new class for the shop page of the campaign screen; other methods are labelled Screen (0x7388a0, 0x738920, 0x738d00)"
+  },
+  {
+   "class": "SiegeDebrief",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x17d",
+     "name": "model",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x195",
+     "name": "engines",
+     "type": "ptr:void",
+     "size": 4,
+     "count": 6
+    },
+    {
+     "off": "0x1ad",
+     "name": "u8_1ad",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x1ae",
+     "name": "u8_1ae",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x1af",
+     "name": "u8_1af",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x1b0",
+     "name": "u8_1b0",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x1b1",
+     "name": "u8_1b1",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x1b2",
+     "name": "u8_1b2",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x1b3",
+     "name": "u32_1b3",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1b7",
+     "name": "u32_1b7",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1bb",
+     "name": "spin_sel",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x1bf",
+     "name": "spin_ms",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "objmenuw.cpp (siege workshop page): init 0x73b2e0, Spinner::tick 0x73b040 on the same object (+0x17d model, +0x1bb/+0x1bf)",
+   "confidence": "low",
+   "notes": "arr_195: length 6 assumed (up to the next field)"
+  },
+  {
+   "class": "Spinner",
+   "size": null,
+   "base": "SiegeDebrief",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "tick 0x73b040 = SiegeDebrief page fields",
+   "confidence": "low",
+   "notes": "alias of SiegeDebrief; its function is reassigned there"
+  },
+  {
+   "class": "FlagFacility",
+   "size": "0x99",
+   "base": null,
+   "vtable": "0x9d07f8",
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "vtable",
+     "type": "ptr:vtable",
+     "size": 4
+    },
+    {
+     "off": "0x29",
+     "name": "f32_29",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x2d",
+     "name": "f32_2d",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x31",
+     "name": "f32_31",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x6d",
+     "name": "p_6d",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x79",
+     "name": "list_79",
+     "type": "ptr:DynArray",
+     "size": 4
+    },
+    {
+     "off": "0x7d",
+     "name": "list_7d",
+     "type": "ptr:DynArray",
+     "size": 4
+    },
+    {
+     "off": "0x89",
+     "name": "list_89",
+     "type": "ptr:DynArray",
+     "size": 4
+    },
+    {
+     "off": "0x91",
+     "name": "i16_91",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x93",
+     "name": "i32_93",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x97",
+     "name": "flag_97",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x98",
+     "name": "flag_98",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [],
+   "evidence": "new(0x99) before ctor 0x468300 (vtable 0x9d07f8); f_flag.cpp + gfile3 save/load; casts Facility/RecruitFacility",
+   "confidence": "low",
+   "notes": "new class (functions were labelled Panel/Obj); probably derives from Facility (g05) / Sub (load calls Sub::load_75 first), base not declared because the base size is unknown"
+  },
+  {
+   "class": "ArmoryScreen",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "u8_0",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x1",
+     "name": "u8_1",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x24",
+     "name": "p_24",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x5d",
+     "name": "u8_5d",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x114",
+     "name": "u8_114",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x1f4",
+     "name": "u8_1f4",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x2ab",
+     "name": "u8_2ab",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x362",
+     "name": "u8_362",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x419",
+     "name": "u8_419",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x483",
+     "name": "f32_483",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x4d0",
+     "name": "u8_4d0",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x587",
+     "name": "u8_587",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x615",
+     "name": "u8_615",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x6cc",
+     "name": "u8_6cc",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0xa3b",
+     "name": "u8_a3b",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0xaf2",
+     "name": "u8_af2",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0xb80",
+     "name": "u8_b80",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0xc37",
+     "name": "u8_c37",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0xcee",
+     "name": "u8_cee",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0xda5",
+     "name": "u8_da5",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [],
+   "evidence": "armory.cpp 0x6ba810 / 0x6bb750, casts this->ArmoryScreen",
+   "confidence": "low",
+   "notes": "new class (was Panel); widgets embedded at many offsets (update_6bb750 calls Widget::update on this+0x28 ... this+0xd70)"
+  },
+  {
+   "class": "VictoryScreen",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0xd18",
+     "name": "tex_a",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0xd1c",
+     "name": "tex_b",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0xd2e",
+     "name": "p_d2e",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0xd32",
+     "name": "u8_d32",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [],
+   "evidence": "i_vict.cpp release_textures2 (+0xd18/+0xd1c) and its dtor 0x421420 (calls Screen::shutdown_6e6d20)",
+   "confidence": "low",
+   "notes": "new class (was Panel)"
+  },
+  {
+   "class": "CombatScreen",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "u32_0",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "u32_4",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "u32_8",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "u32_c",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4460",
+     "name": "stat_ids",
+     "type": "i16",
+     "size": 2,
+     "count": 10
+    },
+    {
+     "off": "0x44d8",
+     "name": "item_ids",
+     "type": "i16",
+     "size": 2,
+     "count": 3
+    },
+    {
+     "off": "0x44de",
+     "name": "sel",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x44e0",
+     "name": "scroll",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x44e2",
+     "name": "row_count",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x44e4",
+     "name": "i16_44e4",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x44e6",
+     "name": "dirty",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [
+    {
+     "off": "0x10",
+     "name": "buttons_0",
+     "class": "Button"
+    },
+    {
+     "off": "0x356",
+     "name": "buttons_1",
+     "class": "Button"
+    },
+    {
+     "off": "0x69c",
+     "name": "buttons_2",
+     "class": "Button"
+    },
+    {
+     "off": "0x9e2",
+     "name": "buttons_3",
+     "class": "Button"
+    },
+    {
+     "off": "0xd28",
+     "name": "buttons_4",
+     "class": "Button"
+    },
+    {
+     "off": "0x106e",
+     "name": "buttons_5",
+     "class": "Button"
+    },
+    {
+     "off": "0x13b4",
+     "name": "buttons_6",
+     "class": "Button"
+    },
+    {
+     "off": "0x16fa",
+     "name": "buttons_7",
+     "class": "Button"
+    },
+    {
+     "off": "0x1a40",
+     "name": "buttons_8",
+     "class": "Button"
+    },
+    {
+     "off": "0x1d86",
+     "name": "buttons_9",
+     "class": "Button"
+    },
+    {
+     "off": "0x20cc",
+     "name": "buttons_10",
+     "class": "Button"
+    },
+    {
+     "off": "0x2412",
+     "name": "buttons_11",
+     "class": "Button"
+    },
+    {
+     "off": "0x2758",
+     "name": "buttons_12",
+     "class": "Button"
+    },
+    {
+     "off": "0x2a9e",
+     "name": "buttons_13",
+     "class": "Button"
+    },
+    {
+     "off": "0x2de4",
+     "name": "buttons_14",
+     "class": "Button"
+    },
+    {
+     "off": "0x312a",
+     "name": "buttons_15",
+     "class": "Button"
+    },
+    {
+     "off": "0x3470",
+     "name": "buttons_16",
+     "class": "Button"
+    },
+    {
+     "off": "0x37b6",
+     "name": "buttons_17",
+     "class": "Button"
+    },
+    {
+     "off": "0x3afc",
+     "name": "buttons_18",
+     "class": "Button"
+    },
+    {
+     "off": "0x3e42",
+     "name": "buttons_19",
+     "class": "Button"
+    }
+   ],
+   "evidence": "i_attcmb.cpp init/draw/handle_buttons; casts this->CombatScreen; draw/handle use Buttons at this+0x10+i*0x346 (0x9e2+i*0x346 stat buttons, 0x2a9e+i*0x346 item buttons, 0x3470/0x37b6/0x3afc/0x3e42)",
+   "confidence": "low",
+   "notes": "new class (was Panel); 20 embedded Buttons (0x346 bytes, g03) from +0x10: [0..2] item, [3..12] stat, [13..15] item, [16] 0x3470, [17] 0x37b6, [18] 0x3afc, [19] 0x3e42"
+  },
+  {
+   "class": "IngameFrame",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "u8_0",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x1",
+     "name": "u8_1",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x20",
+     "name": "u32_20",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x24",
+     "name": "u32_24",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x28",
+     "name": "u32_28",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x2c",
+     "name": "u32_2c",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x31d",
+     "name": "f32_31d",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x3d4",
+     "name": "f32_3d4",
+     "type": "f32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "i_igframe.cpp 0x6f20f0 / 0x6f2340; casts this->IngameFrame",
+   "confidence": "low",
+   "notes": "new class (was Panel)"
+  },
+  {
+   "class": "QuickSaveScreen",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x452",
+     "name": "u16_452",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x454",
+     "name": "u32_454",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x458",
+     "name": "u8_458",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x45d",
+     "name": "u8_45d",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x45e",
+     "name": "u8_45e",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [],
+   "evidence": "i_qsave.cpp reset/refresh_buttons; casts this->QuickSaveScreen",
+   "confidence": "low",
+   "notes": "new class (was Panel)"
+  },
+  {
+   "class": "UnitAttScreen",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x8",
+     "name": "u32_8",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "i16_c",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0xe",
+     "name": "i16_e",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x10",
+     "name": "u32_10",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "u32_14",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "u8_18",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x1d",
+     "name": "u32_1d",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x21",
+     "name": "u8_21",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x370",
+     "name": "i8_370",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x6ae",
+     "name": "u8_6ae",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x6af",
+     "name": "u32_6af",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "i_unitatt.cpp reset/close/set_mode/update_6f7780",
+   "confidence": "low",
+   "notes": "new class (was Panel); reset calls Hud::release on this, so it may share a header with Hud (g06)"
+  },
+  {
+   "class": "WeatherSystem",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "initialised",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x20",
+     "name": "active",
+     "type": "u16",
+     "size": 2
+    }
+   ],
+   "members": [],
+   "evidence": "weather.cpp init_once casts this->WeatherSystem",
+   "confidence": "low",
+   "notes": "new class (was Panel)"
+  },
+  {
+   "class": "Cell",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "world",
+     "type": "ptr:World",
+     "size": 4
+    },
+    {
+     "off": "0x43",
+     "name": "loaded",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x44",
+     "name": "origin_x",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x48",
+     "name": "origin_y",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4c",
+     "name": "sector_rows",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x4e",
+     "name": "sector_cols",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x54",
+     "name": "pfd_a",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x58",
+     "name": "pfd_b",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x5c",
+     "name": "tracks",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x60",
+     "name": "camera_zones",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x64",
+     "name": "sector_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x68",
+     "name": "u32_68",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x6c",
+     "name": "sectors",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x70",
+     "name": "sector_names",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x74",
+     "name": "occluders",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x78",
+     "name": "occluder_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x7c",
+     "name": "occluder_cap",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x84",
+     "name": "p_84",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x88",
+     "name": "rows",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x8c",
+     "name": "objects_tail",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x90",
+     "name": "objects_head",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x94",
+     "name": "units_head",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x98",
+     "name": "units_tail",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x9c",
+     "name": "items_tail",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0xa0",
+     "name": "items_head",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0xa4",
+     "name": "list_a4",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0xa8",
+     "name": "list_a8",
+     "type": "ptr:void",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "world_s.cpp level cell (sectors, occluders, object lists); World::release 0x43d340 calls Cell::unload/unload_files on this; +0x0 -> World (+0x6e Scene)",
+   "confidence": "medium",
+   "notes": "world_s.cpp World::* methods, WorldS/WorldCell/WorldShape/Occluders and the world_s getters (unlabelled) all use this object and are reassigned here; 0x6c = WorldSector*[sector_count], 0x70 = 0x21-byte names, 0x74 = 0x74-byte occluder records"
+  },
+  {
+   "class": "WorldS",
+   "size": null,
+   "base": "Cell",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "add_entry 0x42b270 uses Cell +0x0/+0x64..+0x70",
+   "confidence": "medium",
+   "notes": "alias of Cell; function reassigned there"
+  },
+  {
+   "class": "WorldCell",
+   "size": null,
+   "base": "Cell",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "grid 0x5600c0 reads Cell +0x54/+0x58",
+   "confidence": "medium",
+   "notes": "alias of Cell; function reassigned there"
+  },
+  {
+   "class": "WorldShape",
+   "size": null,
+   "base": "Cell",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "read_corners 0x559a90 reads Cell +0x44/+0x48 and calls Occluders::add on this",
+   "confidence": "medium",
+   "notes": "alias of Cell; function reassigned there"
+  },
+  {
+   "class": "Occluders",
+   "size": null,
+   "base": "Cell",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "add/get use Cell +0x74/+0x78/+0x7c (callers World/WorldShape pass this+0)",
+   "confidence": "medium",
+   "notes": "alias of Cell; functions reassigned there"
+  },
+  {
+   "class": "BoxNode",
+   "size": null,
+   "base": "BoxTree",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "collect 0x54ff30 is the BoxTree recursion (+0x4/+0x8 children, +0x34), src calls as_box_tree",
+   "confidence": "medium",
+   "notes": "alias of BoxTree (g12); function reassigned there with 0x54fdb0 clear_34_4"
+  },
+  {
+   "class": "WorldSector",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x8",
+     "name": "box",
+     "type": "f32",
+     "size": 4,
+     "count": 6
+    },
+    {
+     "off": "0x24",
+     "name": "id",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4e",
+     "name": "u32_4e",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x52",
+     "name": "u32_52",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x5e",
+     "name": "nodes_tail",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x62",
+     "name": "nodes_head",
+     "type": "ptr:void",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "world_s.cpp sector: set 0x54dbd0 (24-byte box at +0x8), set_24 = set_id, attach 0x54dce0 (node list +0x5e/+0x62)",
+   "confidence": "medium",
+   "notes": "new class (unlabelled functions); +0x38/+0x3c/+0x40 texture/model pointers are read by Cell code through Cell::sectors. Possibly the same as Sector (g02) - not merged, g02 Sector is the en3d render sector"
+  },
+  {
+   "class": "World",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "u8_0",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x1",
+     "name": "u8_1",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x60",
+     "name": "u8_60",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x6a",
+     "name": "path_space",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x6e",
+     "name": "scene",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x72",
+     "name": "cell_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x76",
+     "name": "i32_76",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x7a",
+     "name": "cells",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x7e",
+     "name": "box_tree",
+     "type": "ptr:BoxTree",
+     "size": 4
+    },
+    {
+     "off": "0x82",
+     "name": "p_82",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x86",
+     "name": "entry_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x8a",
+     "name": "entry_cap",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x8e",
+     "name": "entries",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0xf5",
+     "name": "u8_f5",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x1fd",
+     "name": "u32_1fd",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "rts.cpp/world.cpp world: +0x6e Scene, +0x72 cell count, +0x7a cells, +0x7e BoxTree",
+   "confidence": "low",
+   "notes": "world_s.cpp methods moved to Cell; Player methods (leave_mode, siege_*, nop leave_modeN) moved to Player; +0xf5/+0x1fd (state, flag_1fd) kept but may belong to Player"
+  },
+  {
+   "class": "ResourceIdx",
+   "size": "0x135",
+   "base": "File",
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x10e",
+     "name": "index_buf",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x112",
+     "name": "data_buf",
+     "type": "ptr:char",
+     "size": 4
+    },
+    {
+     "off": "0x116",
+     "name": "data_buf_size",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x11a",
+     "name": "sorted_index",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x11e",
+     "name": "init_flag",
+     "type": "char",
+     "size": 1
+    },
+    {
+     "off": "0x11f",
+     "name": "read_all",
+     "type": "char",
+     "size": 1
+    },
+    {
+     "off": "0x120",
+     "name": "use_common_buf",
+     "type": "char",
+     "size": 1
+    },
+    {
+     "off": "0x121",
+     "name": "rec_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x125",
+     "name": "cur_rec_no",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x129",
+     "name": "user_buf",
+     "type": "ptr:char",
+     "size": 4
+    },
+    {
+     "off": "0x12d",
+     "name": "user_buf_size",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x131",
+     "name": "user_skip",
+     "type": "i32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "src/original/res_idx.hpp (static_asserts: sizeof 0x135, File base 0x10e); resx.cpp",
+   "confidence": "high",
+   "notes": "index records: 13 bytes (char name[9]; i32 pointer)"
+  },
+  {
+   "class": "ResourceIdxL",
+   "size": "0x135",
+   "base": "File",
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x10e",
+     "name": "index_buf",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x112",
+     "name": "data_buf",
+     "type": "ptr:char",
+     "size": 4
+    },
+    {
+     "off": "0x116",
+     "name": "data_buf_size",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x11a",
+     "name": "sorted_index",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x11e",
+     "name": "init_flag",
+     "type": "char",
+     "size": 1
+    },
+    {
+     "off": "0x11f",
+     "name": "read_all",
+     "type": "char",
+     "size": 1
+    },
+    {
+     "off": "0x120",
+     "name": "use_common_buf",
+     "type": "char",
+     "size": 1
+    },
+    {
+     "off": "0x121",
+     "name": "rec_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x125",
+     "name": "cur_rec_no",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x129",
+     "name": "user_buf",
+     "type": "ptr:char",
+     "size": 4
+    },
+    {
+     "off": "0x12d",
+     "name": "user_buf_size",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x131",
+     "name": "user_skip",
+     "type": "i32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "src/original/res_idx.hpp (static_asserts: sizeof 0x135, File base 0x10e); reslx.cpp",
+   "confidence": "high",
+   "notes": "index records: 38 bytes (char name[34]; i32 pointer)"
+  },
+  {
+   "class": "BlockArray",
+   "size": "0x24",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "blocks",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "block_cap",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "ele_size",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "per_block",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "block_num",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "free_ids",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x1c",
+     "name": "free_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x20",
+     "name": "free_cap",
+     "type": "i32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "ctor 0x637520 initialises +0x0..+0x20 (9 dwords); alloc/free_all/at",
+   "confidence": "high",
+   "notes": "Pool::set 0x637980 (blkarrb.cpp, element copy by 1-based id) reassigned here"
+  },
+  {
+   "class": "BlkArr",
+   "size": "0x30",
+   "base": "BlockArray",
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x24",
+     "name": "ids",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x28",
+     "name": "id_cap",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x2c",
+     "name": "id_count",
+     "type": "i32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "ctor 0x637aa0 = BlockArray ctor + zero +0x24/+0x28/+0x2c; add 0x637cb0",
+   "confidence": "high",
+   "notes": "BlockArray::add 0x637be0, Pool::copy_637de0 and 0x637da0 (labelled Billboard::item, g03 maps it to BlockArray: it reads ids at +0x24 then BlockArray::at) use +0x24..+0x2c and are reassigned here"
+  },
+  {
+   "class": "DlgRes",
+   "size": "0xf",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "loaded",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x1",
+     "name": "count",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x3",
+     "name": "entries",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x7",
+     "name": "data",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0xb",
+     "name": "data_size",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "init 0x637ec0 / release 0x637f60 / add_string 0x6388b0: +0 loaded flag, +1 i16 count, +3 16-byte entry table, +7/+0xb data block",
+   "confidence": "medium",
+   "notes": "size = end of the last field (no new/memset seen); unlabelled Table16::entry 0x638150 assigned here; entries are 16 bytes: u16 id, u8 kind, char* text (+4), u16 len (+0xc)"
+  },
+  {
+   "class": "TextCursor",
+   "size": "0x4",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "p",
+     "type": "ptr:char",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "mbtext.cpp: every method reads/writes only the char pointer at +0 (multibyte string cursor)",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "class": "Textures",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x8",
+     "name": "table",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x30",
+     "name": "mode",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "texturea.cpp find (+0x8 table, 1-based) / mode / set_mode (+0x30); casts this->TextureManager",
+   "confidence": "medium",
+   "notes": "same object as TextureManager (g03, global 0xa403a0); kept separate because these three functions carry this label"
+  },
+  {
+   "class": "ScriptIf",
+   "size": null,
+   "base": null,
+   "vtable": "0x9db69c",
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "vtable",
+     "type": "ptr:vtable",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "kind",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "children",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x20",
+     "name": "else_branch",
+     "type": "ptr:void",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "esstate2.cpp: ctor 0x648770 (script-block ctor 0x63e6e0, vtable 0x9db69c, kind 0xc at +8, +0x20 = 0), parse_if, size",
+   "confidence": "low",
+   "notes": "derives from the script block constructed by 0x63e6e0 (unlabelled); ScriptNode (g16) is a multi-object label, so no base is declared"
+  },
+  {
+   "class": "Pool",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x4",
+     "name": "count",
+     "type": "i16",
+     "size": 2
+    }
+   ],
+   "members": [],
+   "evidence": "only dlgtable.cpp sweep 0x6393e0 is left: reads i16 +0x4 as the last sorted-names slot",
+   "confidence": "low",
+   "notes": "label Pool was a catch-all: date.cpp + 0x495840 -> DateInfo (new, stateless), DynArray cursor getter 0x4b9c30 -> DynArray, 0x4aede0 -> SlotPool, mem.cpp init 0x58e650 -> MemHeader (g13), blkarrb set/copy -> BlockArray/BlkArr, esstate2 pool_alloc/free are cdecl -> null"
+  },
+  {
+   "class": "DateInfo",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "src/original/date.hpp DateInfo (global date 0xa52928): methods use no instance data",
+   "confidence": "high",
+   "notes": "empty class"
+  }
+ ],
+ "functions": {
+  "0x421420": "VictoryScreen",
+  "0x42b270": "Cell",
+  "0x42c6b0": "Cell",
+  "0x42df50": "Player",
+  "0x430460": "Player",
+  "0x432d10": "Player",
+  "0x4343c0": "Player",
+  "0x43d340": "Cell",
+  "0x43f7c0": "Player",
+  "0x44eb80": "Player",
+  "0x44f1f0": "Player",
+  "0x45b590": "ChatBox",
+  "0x468300": "FlagFacility",
+  "0x468350": "FlagFacility",
+  "0x4683a0": "FlagFacility",
+  "0x468410": "FlagFacility",
+  "0x4684e0": "FlagFacility",
+  "0x468600": "FlagFacility",
+  "0x468d20": "FlagFacility",
+  "0x468d70": "FlagFacility",
+  "0x469310": "FlagFacility",
+  "0x47ad40": "Cell",
+  "0x480690": "FlagFacility",
+  "0x480880": "FlagFacility",
+  "0x480be0": "FlagFacility",
+  "0x4818f0": "Unit",
+  "0x495840": "DateInfo",
+  "0x4aede0": "SlotPool",
+  "0x4b9c30": "DynArray",
+  "0x50c430": "CellObject",
+  "0x527520": "UnitRes",
+  "0x54a6c0": "Cell",
+  "0x54dbd0": "WorldSector",
+  "0x54dc50": "WorldSector",
+  "0x54dce0": "WorldSector",
+  "0x54dfe0": "WorldSector",
+  "0x54e020": "WorldSector",
+  "0x54e1b0": "Cell",
+  "0x54e220": "Cell",
+  "0x54e6a0": "Cell",
+  "0x54e930": "Cell",
+  "0x54ee10": "Cell",
+  "0x54eec0": "Cell",
+  "0x54f290": "Cell",
+  "0x54f460": "Cell",
+  "0x54f510": "Cell",
+  "0x54f700": "Cell",
+  "0x54f890": "Cell",
+  "0x54f960": "Cell",
+  "0x54fb20": "Cell",
+  "0x54fc80": "Cell",
+  "0x54fd40": "Cell",
+  "0x54fdb0": "BoxTree",
+  "0x54ff30": "BoxTree",
+  "0x551440": "Cell",
+  "0x551930": "Cell",
+  "0x553aa0": "Cell",
+  "0x558890": "Cell",
+  "0x558a60": "Cell",
+  "0x5593e0": "Cell",
+  "0x559470": "Cell",
+  "0x559a90": "Cell",
+  "0x559ff0": "Cell",
+  "0x55a090": "Cell",
+  "0x55ae40": "Cell",
+  "0x55f2c0": null,
+  "0x55f320": "Cell",
+  "0x55f9b0": "Cell",
+  "0x55fa40": "Cell",
+  "0x560060": "Cell",
+  "0x5600c0": "Cell",
+  "0x560120": "Cell",
+  "0x560c70": "Cell",
+  "0x560d30": "Cell",
+  "0x560d60": "Cell",
+  "0x57fa80": "DateInfo",
+  "0x57fff0": "DateInfo",
+  "0x580060": "DateInfo",
+  "0x58e650": "MemHeader",
+  "0x625490": "Font",
+  "0x626260": "Text",
+  "0x62a9a0": "PopupWin",
+  "0x62b050": "PopupWin",
+  "0x62c930": "Scroll",
+  "0x6317e0": "Sprite2D",
+  "0x637980": "BlockArray",
+  "0x637be0": "BlkArr",
+  "0x637da0": "BlkArr",
+  "0x637de0": "BlkArr",
+  "0x638150": "DlgRes",
+  "0x63b390": "Dialogue",
+  "0x63c1c0": "Dialogue",
+  "0x63e450": null,
+  "0x63e4f0": null,
+  "0x67bdc0": "ParticleSystem",
+  "0x67ef90": "PartEmitter",
+  "0x689ca0": "WeatherSystem",
+  "0x6b7cf0": "GameOver",
+  "0x6ba810": "ArmoryScreen",
+  "0x6bb750": "ArmoryScreen",
+  "0x6ce100": "BuyScreen",
+  "0x6d50e0": "BuyScreen",
+  "0x6e0dc0": "MiniMap",
+  "0x6e1810": "MsgLog",
+  "0x6e19b0": "MsgLog",
+  "0x6e1c60": "MsgLog",
+  "0x6e37d0": "QuickSaveScreen",
+  "0x6e39a0": "QuickSaveScreen",
+  "0x6e44b0": "QuickSaveScreen",
+  "0x6e4720": "QuitPopup",
+  "0x6e50c0": "Sms",
+  "0x6e5280": "Sms",
+  "0x6e5e00": "Sms",
+  "0x6e7c60": "VictoryScreen",
+  "0x6e8e40": "EndScreen",
+  "0x6ef3d0": "CombatScreen",
+  "0x6ef9e0": "CombatScreen",
+  "0x6f0a90": "CombatScreen",
+  "0x6f20f0": "IngameFrame",
+  "0x6f2340": "IngameFrame",
+  "0x6f43e0": "IngameMenu",
+  "0x6f4a10": "IngameMenu",
+  "0x6f60d0": "UnitAttScreen",
+  "0x6f7780": "UnitAttScreen",
+  "0x6f7e90": "UnitAttScreen",
+  "0x6f7f20": "UnitAttScreen",
+  "0x6f94f0": "Hud",
+  "0x6fd670": "Hud",
+  "0x70f9b0": "MiniMap",
+  "0x715d50": "MiniMap",
+  "0x718010": "MiniMap",
+  "0x71e800": "CampScreen",
+  "0x71f690": "CampScreen",
+  "0x720bc0": "CampScreen",
+  "0x721270": "CampScreen",
+  "0x723f90": "Scroller",
+  "0x724bf0": "Scroller",
+  "0x728230": "GroupPanel",
+  "0x72a180": "Debrief",
+  "0x7343b0": "RewardScreen",
+  "0x734a30": "RewardScreen",
+  "0x735680": "StrategicDlg",
+  "0x7380b0": "ShopPage",
+  "0x73b040": "SiegeDebrief",
+  "0x73c410": "Panel",
+  "0x74d790": "SaveMenu",
+  "0x74da40": "SaveMenu",
+  "0x74dbc0": "SaveMenu",
+  "0x760050": "ScrollBox",
+  "0x762a00": "ScrollBar"
+ },
+ "notes": "g15: most labels of this group were catch-alls. Functions were moved to the object their source file / this-calls / facade casts show. Reassigned to other groups: Font, Text, PopupWin (g01), ChatBox, Dialogue, GameOver, Hud, IngameMenu, MsgLog, QuitPopup, EndScreen, PartEmitter, ParticleSystem, Sprite2D, SaveMenu, MiniMap, UnitRes, BuyScreen, Sms, Player (rts leave_mode/siege), Debrief, StrategicDlg, GroupPanel, RewardScreen, CampScreen (4 unlabelled objmenu.cpp fns, same +0x44..+0x7c/+0x171/+0x20d pattern as CampScreen::set_state_721a60), Scroll, ScrollBar, ScrollBox, CellObject, BoxTree, Unit, DynArray, SlotPool (unowned label), TextureManager-alias Textures kept here. The options-screen labels (Panel part, Opt, OptPanel, OptionMenu, OptionsMenu, OptionsPage, Settings, SlidePanel, CreditsScreen) all take the OptMenu (g08) this and are declared with base OptMenu; Overrides of other specs: 0x637da0 (g03 -> BlockArray) is BlkArr (reads ids +0x24); 0x47ad40 (g02 -> World) is Cell (called by read_nodes on the Cell this, no field accesses). g08 should make sure OptMenu covers +0x121..+0x123 (page/slide bytes) and +0xec/+0xf0/+0x115/+0x119/+0x11d (button pointers)."
+}

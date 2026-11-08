@@ -1,0 +1,4 @@
+start,end,name,confidence,evidence,target
+0x005e4320,0x005e4430,plane_sh_g0,low,Plane/stencil accessors and VbAlloc reset right after plane_sh.cpp ShadowPlane::build.,en3d/plane_sh.cpp
+0x005e4460,0x005e54b0,portal,medium,"Portal culling run (Portal::other_side/facing/clip/inside/set_sides, Tetra, CamSet) used by Scene::render.",
+0x005e5540,0x005e5930,projshad,low,"SceneObject/SceneNode texture helpers and TexGen::matrix for projective shadows (Scene::create_projective_shadow, SceneS::draw_projected) before pshader.cpp.",

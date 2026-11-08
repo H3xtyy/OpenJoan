@@ -1,0 +1,14 @@
+// Freestanding <cstring> for the i686 save test (re/d3dx_harness/rt.c provides the functions).
+#pragma once
+#include <stddef.h>
+extern "C" {
+void* memcpy(void* d, const void* s, size_t n);
+void* memmove(void* d, const void* s, size_t n);
+void* memset(void* d, int c, size_t n);
+int memcmp(const void* a, const void* b, size_t n);
+int strcmp(const char* a, const char* b);
+size_t strlen(const char* s);
+}
+namespace std {
+using ::memcmp; using ::memcpy; using ::memmove; using ::memset; using ::strcmp; using ::strlen; using ::size_t;
+}  // namespace std

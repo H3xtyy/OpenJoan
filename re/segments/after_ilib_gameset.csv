@@ -1,0 +1,5 @@
+start,end,name,confidence,evidence
+0x0058b080,0x0058b080,gameset_a,high,"open_set ("".SET"" 9d8ac8, right after the gameset strings) next to gameset close_set: ww/ilib/gameset.cpp."
+0x0058b180,0x0058b250,gameset_b,medium,open_db/get_db/find_set; strings 9d8ad0/9d8ae4 continue the gameset run: probably ww/ilib/gameset.cpp.
+0x0058b2d0,0x0058e5d0,mbtext,medium,Code-page / multibyte text cursor library: CodePage::setup fills the dispatch table a157d4..a15838 that every following TextCursor/StrIt function reads.
+0x0058e770,0x0058e770,mem_a,medium,Heap-object ctor used by init_heap_a48838 right after the mem.cpp functions: ww/ilib/mem.cpp.

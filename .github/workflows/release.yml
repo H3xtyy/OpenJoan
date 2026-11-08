@@ -1,0 +1,55 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# Builds the release-flavour archives when a tag v* is pushed and attaches them to a DRAFT GitHub release, which a
+# maintainer publishes by hand after the checks of docs/RELEASING.md. No game file is ever in an archive.
+name: release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  linux:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Packages
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ninja-build pkg-config libopenal-dev \
+            libavformat-dev libavcodec-dev libswscale-dev libswresample-dev libavutil-dev \
+            libx11-dev libxext-dev libxrandr-dev libxcursor-dev libxi-dev libxfixes-dev libxss-dev \
+            libxtst-dev libxkbcommon-dev libwayland-dev libegl-dev libgl-dev libasound2-dev libpulse-dev libudev-dev \
+            libdbus-1-dev libdecor-0-dev libdrm-dev libgbm-dev
+      - run: cmake --preset linux-x64-release -DJOAN_SDL3_SYSTEM=OFF
+      - run: cmake --build --preset linux-x64-release -j4
+      - run: python3 tools/package_release.py build/linux-x64-release ${{ github.ref_name }}
+      - uses: actions/upload-artifact@v4
+        with: { name: linux, path: dist/*, if-no-files-found: error }
+
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ilammy/msvc-dev-cmd@v1
+        with: { arch: x64 }
+      - name: Ninja
+        shell: pwsh
+        run: if (-not (Get-Command ninja -ErrorAction SilentlyContinue)) { choco install ninja -y }
+      - run: cmake --preset windows-hook-x64-release
+      - run: cmake --build --preset windows-hook-x64-release -j4
+      - run: python tools/package_release.py build/windows-hook-x64-release ${{ github.ref_name }}
+      - uses: actions/upload-artifact@v4
+        with: { name: windows, path: dist/*, if-no-files-found: error }
+
+  draft:
+    needs: [linux, windows]
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/download-artifact@v4
+        with: { path: dist, merge-multiple: true }
+      - env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "${{ github.ref_name }}" dist/* --repo "${{ github.repository }}" --draft --title "OpenJoan ${{ github.ref_name }}" --generate-notes

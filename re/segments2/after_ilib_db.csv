@@ -1,0 +1,4 @@
+start,end,name,confidence,evidence,target
+0x005823e0,0x00582500,db_tail,high,"Array getters and DataBase::delete_field (Cannot write DataBase, same as delete_record/add_field) right after db.cpp",ilib/db.cpp
+0x00582b00,0x00582bf0,dir,medium,"Directory::read + its quick_sort stricmp comparator right after Directory::Directory (0x582ad0, registered under key ilib/dir.cpp but attributed to dynarr.cpp)",
+0x00582c20,0x00584370,dxmusic,medium,"COM/DirectX audio wrapper: ComInit (CoInitialize, init_56dc10), DSound::shutdown (term_56dc50), DirectMusic Music/Segment/MediaSample/DP classes with ansi_to_wide helpers",

@@ -1,0 +1,968 @@
+# Engine functions of joan.exe matched to the Restaurant Empire 2 engine symbols (Phase 3, docs/MIGRATION_PLAN.md
+# "Engine names from Restaurant Empire 2"; method: $JOAN_WORK_DIR/re2/README*.txt, outside the repository).
+# Names and source files only (nothing of the RE2 binaries or symbol files). re2_file is the 2008 engine's file;
+# joan's 2004 file can differ (plane.cpp -> plane_a / plane_s): re/attribute.py uses the certain rows as manual
+# anchors, below a function's own __FILE__ / private-data evidence.
+# confidence: certain / probable-enclosed (a probable match between two certain matches of the same RE2 file in
+# joan.exe's address order) / probable / rejected (shown wrong later: re/names/re2_rejected.csv). re/attribute.py and
+# the renames use certain and probable-enclosed.
+address,re2_name,re2_file,confidence,evidence
+0x0041a1f0,ParticleEffect::~ParticleEffect,enparticle/PEffect.cpp,probable,calls 2/callers 0 matched; order at chain end
+0x0041a260,ParticleEffect::deinit,enparticle/PEffect.cpp,certain,calls 2/callers 1 matched; order between matched
+0x0041a2a0,ParticleEffect::init,enparticle/PEffect.cpp,certain,calls 7/callers 0 matched; globals 1; order between matched
+0x0041a740,ParticleEffect::reinit,enparticle/PEffect.cpp,certain,calls 6/callers 0 matched; globals 1; order between matched
+0x0041a930,ParticleEffect::load,enparticle/PEffect.cpp,certain,calls 7/callers 1 matched; order between matched
+0x0041ab50,ParticleEffect::process,enparticle/PEffect.cpp,probable,calls 9/callers 1 matched; globals 1; order at chain end
+0x0041b0d0,ParticleEffect::set_parent_pos,enparticle/PEffect.cpp,probable,calls 1/callers 1 matched; ORDER-CROSS
+0x0041b1e0,Actor::get_h_dir,en3d/actor.cpp,probable,calls 0/callers 2 matched; ORDER-CROSS
+0x0041b4a0,ParticleEffectArray::~ParticleEffectArray,enparticle/PEffectA.cpp,certain,calls 2/callers 0 matched; order between matched
+0x0041b530,ParticleEffectArray::deinit,enparticle/PEffectA.cpp,certain,calls 2/callers 1 matched; order between matched
+0x0041bc60,ParticleEffectArray::process,enparticle/PEffectA.cpp,probable,calls 3/callers 0 matched; order at chain end
+0x00424010,Actor::get_bounding_box,en3d/actor.cpp,probable,calls 3/callers 0 matched; ORDER-CROSS
+0x00425fc0,PathSystem::find_path,enpath/pathsys.cpp,probable,calls 2/callers 0 matched
+0x0044e5f0,SpriteInfo::create_sprite_info_from_file,en3d/spritdef.cpp,probable,calls 2/callers 0 matched
+0x00459cd0,Scene::render_skybox,en3d/Scene.cpp,probable,calls 5/callers 0 matched; ORDER-CROSS
+0x0045c010,CpuUsage::~CpuUsage,enlink/cpuUsage.cpp,probable,calls 1/callers 0 matched; order at chain end; file attr class
+0x0045c040,CpuUsage::init,enlink/cpuUsage.cpp,certain,calls 6/callers 0 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x0045c5c0,CpuUsage::deinit,enlink/cpuUsage.cpp,certain,calls 1/callers 2 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x0045c990,CpuUsage::default_timer,enlink/cpuUsage.cpp,certain,calls 1/callers 3 matched; order between matched; file attr class
+0x0045c9c0,CpuUsage::start_check_time,enlink/cpuUsage.cpp,certain,tokens 2.1; calls 4/callers 0 matched; globals 1; order between matched; file attr guess
+0x0045cce0,CpuUsage::get_name,enlink/cpuUsage.cpp,certain,calls 0/callers 2 matched; order between matched; file attr guess
+0x0045cec0,CpuUsageIDPool::id_to_usage_name,enlink/cpuUsage.cpp,certain,string 'Grand total'; ORDER-CROSS; file attr guess
+0x0045cef0,CpuUsage::next_frame,enlink/cpuUsage.cpp,certain,calls 2/callers 0 matched; globals 1; order between matched; file attr guess
+0x0045d1f0,CpuUsage::calculate_average_percentage,enlink/cpuUsage.cpp,probable-enclosed,calls 0/callers 2 matched; ORDER-CROSS; between certain matches of its file
+0x0045d330,CpuUsage::dump,enlink/cpuUsage.cpp,certain,string 'last records\n'; calls 9/callers 0 matched; globals 1; order between matched
+0x0045e140,CpuUsage::dump,enlink/cpuUsage.cpp,certain,rare tokens 8.7; calls 4/callers 0 matched; globals 1; order between matched
+0x0045e750,CpuUsage::precision_timer,enlink/cpuUsage.cpp,certain,calls 0/callers 2 matched; order between matched; file attr class
+0x0045e7f0,CpuUsage::precision_timer_to_ms,enlink/cpuUsage.cpp,probable-enclosed,calls 0/callers 4 matched; order at chain end; between certain matches of its file
+0x0045ec60,CpuUsageCallStackInfo::CpuUsageCallStackInfo,enlink/cpuUsage.cpp,certain,calls 0/callers 2 matched; ORDER-CROSS; file attr class
+0x0045f0f0,CpuUsageCallStackInfo::start_check_time,enlink/cpuUsage.cpp,certain,calls 0/callers 3 matched; ORDER-CROSS; file attr class
+0x0045f270,CpuUsageCallStackInfo::dump,enlink/cpuUsage.cpp,certain,rare tokens 3.6; calls 5/callers 2 matched; globals 1; ORDER-CROSS
+0x0045f4c0,CpuUsageCallStackInfo::dump,enlink/cpuUsage.cpp,certain,rare tokens 3.6; calls 4/callers 2 matched; globals 1; ORDER-CROSS
+0x00474df0,WaterArray::add_water,uti3d/watera.cpp,probable,calls 2/callers 0 matched
+0x0047cf60,gen_dir_amt,en3d/Genamt.cpp,probable,calls 3/callers 2 matched; order at chain end
+0x0047d290,gen_reslx_amt,en3d/Genamt.cpp,certain,calls 5/callers 1 matched; order between matched
+0x0047d550,gen_amt_main,en3d/Genamt.cpp,certain,string '*.AM2'; calls 3/callers 0 matched; globals 1; order at chain end
+0x004b27b0,Sys3D::set_texcoordinex,en3d/SYS3D.H,probable,calls 0/callers 2 matched
+0x004c1d80,ParticleEmitterRes::deinit,enparticle/PEMIRES.CPP,certain,calls 2/callers 0 matched; globals 1; file attr anchor+__FILE__
+0x004c56b0,Plasma::Plasma,ilib/plasma.cpp,probable,calls 0/callers 1 matched; order at chain end; file attr guess
+0x004c56f0,Plasma::Plasma,ilib/plasma.cpp,probable,calls 1/callers 0 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x004c57b0,Plasma::operator=,ilib/plasma.cpp,certain,calls 2/callers 0 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x004c5870,Plasma::~Plasma,ilib/plasma.cpp,probable-enclosed,calls 1/callers 0 matched; order between matched; file attr range; between certain matches of its file
+0x004c58a0,Plasma::init,ilib/plasma.cpp,certain,calls 3/callers 1 matched; globals 2; order between matched; file attr anchor+__FILE__
+0x004c5960,Plasma::deinit,ilib/plasma.cpp,certain,calls 1/callers 3 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x004c59d0,Plasma::get_pix,ilib/plasma.cpp,certain,calls 0/callers 7 matched; order between matched; file attr guess
+0x004c5a20,Plasma::plot,ilib/plasma.cpp,certain,calls 0/callers 4 matched; order between matched; file attr guess
+0x004c5a70,Plasma::generate,ilib/plasma.cpp,certain,calls 2/callers 0 matched; globals 1; ORDER-CROSS; file attr guess
+0x004c6530,Plasma::adjust,ilib/plasma.cpp,certain,calls 3/callers 0 matched; globals 1; ORDER-CROSS; file attr guess
+0x004c68d0,Plasma::shuffle_level,ilib/plasma.cpp,certain,calls 2/callers 0 matched; order between matched
+0x004c6cd0,Plasma::gradient_x,ilib/plasma.cpp,certain,calls 1/callers 2 matched; order between matched
+0x004c6e40,Plasma::gradient_y,ilib/plasma.cpp,certain,calls 1/callers 1 matched; order between matched
+0x004c6fb0,Plasma::gradient_xy,ilib/plasma.cpp,certain,calls 1/callers 1 matched; order between matched
+0x004c7100,Plasma::interpolate_z,ilib/plasma.cpp,certain,rare tokens 4.5; calls 4/callers 1 matched; order between matched
+0x004c7b70,Plasma::linear_interpolate_z,ilib/plasma.cpp,probable,calls 1/callers 1 matched; order at chain end
+0x004dea20,TextureEffectRes::~TextureEffectRes,uti3d/t_scrres.cpp,probable,calls 1/callers 0 matched; order at chain end; file attr class
+0x004dea50,TextureEffectRes::deinit,uti3d/t_scrres.cpp,certain,calls 1/callers 1 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x004deb70,TextureEffectRes::init_all_info,uti3d/t_scrres.cpp,certain,string 'texteff.res'; calls 3/callers 0 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x004ded90,TextureEffectRes::read_one_texture_effect_info_100,uti3d/t_scrres.cpp,certain,tokens 1.7; calls 2/callers 0 matched; globals 1; order at chain end; file attr class
+0x004df9f0,TextureEffectRes::code_to_D3D,uti3d/t_scrres.cpp,certain,string 'add'; calls 0/callers 1 matched; ORDER-CROSS; file attr guess
+0x004f3df0,SpriteInfo::load_sprite_info,en3d/spritdef.cpp,probable,calls 3/callers 1 matched; globals 2; ORDER-CROSS
+0x00546b50,Water::init,uti3d/Water.cpp,certain,registered name equal; calls 0/callers 1 matched
+0x00576120,AngleI::AngleI,ilib/angle.cpp,probable,calls 0/callers 3 matched; order at chain end
+0x00576210,AngleI::get_rev,ilib/angle.cpp,probable,tokens 1.5; order between matched
+0x00576240,AngleI::set_radian,ilib/angle.cpp,certain,tokens 1.5; calls 0/callers 2 matched; order between matched
+0x00576280,AngleI::get_radian,ilib/angle.cpp,probable-enclosed,calls 0/callers 1 matched; order between matched; between certain matches of its file
+0x005762c0,AngleI::set_degree,ilib/angle.cpp,probable-enclosed,tokens 1.5; order between matched; between certain matches of its file
+0x00576300,AngleI::get_degree,ilib/angle.cpp,probable-enclosed,tokens 1.5; calls 0/callers 1 matched; order between matched; between certain matches of its file
+0x005768d0,AngleI::sin,ilib/angle.cpp,certain,calls 1/callers 2 matched; order between matched
+0x00576ac0,AngleI::cos,ilib/angle.cpp,certain,calls 1/callers 2 matched; order between matched
+0x00576cb0,AngleI::init_tables,ilib/angle.cpp,certain,calls 0/callers 2 matched; order between matched
+0x00577be0,AsyncFile::AsyncFile,ilib/asfile.cpp,probable,calls 0/callers 2 matched; order at chain end
+0x00577c30,AsyncFile::~AsyncFile,ilib/asfile.cpp,probable,calls 1/callers 0 matched; order between matched; gap fill
+0x00577c70,AsyncFile::file_open,ilib/asfile.cpp,certain,calls 2/callers 2 matched; globals 2; order between matched
+0x00577d10,AsyncFile::file_read,ilib/asfile.cpp,certain,calls 4/callers 1 matched; order between matched
+0x00578110,AsyncFile::file_close,ilib/asfile.cpp,certain,calls 1/callers 3 matched; order between matched
+0x00578280,AsyncFile::alloc_buf,ilib/asfile.cpp,certain,calls 0/callers 3 matched; order between matched
+0x00578340,AsyncFile::set_read_status,ilib/asfile.cpp,certain,calls 0/callers 3 matched; order between matched
+0x00578540,AsyncFile::overlap_load_now,ilib/asfile.cpp,certain,string 'C:\\'; calls 3/callers 1 matched; globals 1; order between matched
+0x00578d40,AsyncFileLoader::~AsyncFileLoader,ilib/asfile.cpp,probable-enclosed,calls 1/callers 0 matched; order between matched; between certain matches of its file
+0x00578d70,AsyncFileLoader::init,ilib/asfile.cpp,probable-enclosed,calls 1/callers 0 matched; order between matched; between certain matches of its file
+0x00579040,AsyncFileLoader::deinit,ilib/asfile.cpp,certain,calls 1/callers 2 matched; order between matched
+0x00579220,AsyncFileLoader::add_queue,ilib/asfile.cpp,probable-enclosed,calls 0/callers 1 matched; order between matched; gap fill; between certain matches of its file
+0x00579440,AsyncFileLoader::remove_queue,ilib/asfile.cpp,probable-enclosed,calls 0/callers 1 matched; order between matched; gap fill; between certain matches of its file
+0x00579810,AsyncFileLoader::process_thread,ilib/asfile.cpp,certain,calls 2/callers 0 matched; order between matched
+0x00579bc0,AsyncFileLoader::read_complete,ilib/asfile.cpp,probable,calls 1/callers 1 matched; order at chain end
+0x005843d0,DynArray::DynArray,ilib/dynarr.cpp,certain,registered name equal; calls 1/callers 10 matched; globals 1; order at chain end; file attr anchor+__FILE__
+0x005844b0,DynArray::~DynArray,ilib/dynarr.cpp,certain,registered name equal; calls 1/callers 6 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x00584510,DynArray::resize,ilib/dynarr.cpp,certain,registered name equal; calls 1/callers 7 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x00584580,DynArray::zap,ilib/dynarr.cpp,certain,registered name equal; calls 1/callers 10 matched; globals 1; ORDER-CROSS; file attr anchor+__FILE__
+0x00584620,DynArray::linkin,ilib/dynarr.cpp,certain,registered name equal; calls 1/callers 18 matched; order between matched; file attr range
+0x005846f0,DynArray::linkin_unique,ilib/dynarr.cpp,certain,registered name equal; calls 1/callers 0 matched; order between matched; file attr range
+0x00584790,DynArray::insert,ilib/dynarr.cpp,certain,registered name equal; calls 2/callers 1 matched; order between matched; file attr range
+0x005848d0,DynArray::insert_at,ilib/dynarr.cpp,certain,registered name equal; calls 2/callers 1 matched; order between matched; file attr range
+0x00584a10,DynArray::linkout,ilib/dynarr.cpp,certain,registered name equal; calls 1/callers 2 matched; ORDER-CROSS; file attr range
+0x00584b30,DynArray::update,ilib/dynarr.cpp,certain,registered name equal; calls 0/callers 1 matched; ORDER-CROSS; file attr range
+0x00584bd0,DynArray::add_blank,ilib/dynarr.cpp,certain,registered name equal; calls 1/callers 1 matched; order between matched; file attr range
+0x00584d10,DynArray::read,ilib/dynarr.cpp,certain,registered name equal; order between matched; file attr range
+0x00584d60,DynArray::scan,ilib/dynarr.cpp,probable-enclosed,calls 1/callers 0 matched; order between matched; file attr range; between certain matches of its file
+0x00584e00,DynArray::compare,ilib/dynarr.cpp,certain,registered name equal; calls 1/callers 1 matched; globals 1; order between matched; file attr range
+0x00584f70,DynArray::clean_up,ilib/dynarr.cpp,certain,registered name equal; calls 2/callers 0 matched; order between matched; file attr range
+0x00585010,DynArray::free_ptr,ilib/dynarr.cpp,certain,registered name equal; calls 1/callers 1 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x005850b0,DynArray::quick_sort,ilib/dynarr.cpp,certain,registered name equal; ORDER-CROSS; file attr range
+0x00585100,DynArray::write_file,ilib/dynarr.cpp,probable-enclosed,calls 1/callers 0 matched; order between matched; file attr range; between certain matches of its file
+0x00585180,DynArray::read_file,ilib/dynarr.cpp,certain,calls 2/callers 0 matched; globals 1; order at chain end; file attr anchor+__FILE__
+0x00585250,DynArray::init_sort,ilib/dynarr.cpp,certain,registered name equal; ORDER-CROSS; file attr guess
+0x00585470,DynArray::linkin_unique_sorted,ilib/dynarr.cpp,certain,calls 2/callers 0 matched; ORDER-CROSS; file attr guess
+0x005856a0,DynArrayB::DynArrayB,ilib/dynarrb.cpp,certain,registered name equal; calls 1/callers 4 matched; order at chain end
+0x00585710,DynArrayB::~DynArrayB,ilib/dynarrb.cpp,certain,registered name equal; calls 2/callers 4 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x005857a0,DynArrayB::linkin,ilib/dynarrb.cpp,certain,registered name equal; calls 1/callers 8 matched; order between matched; file attr range
+0x005858c0,DynArrayB::linkout,ilib/dynarrb.cpp,certain,registered name equal; calls 1/callers 6 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x005859d0,DynArrayB::write_file,ilib/dynarrb.cpp,certain,calls 2/callers 0 matched; order between matched; file attr range
+0x00585a60,DynArrayB::read_file,ilib/dynarrb.cpp,certain,calls 3/callers 0 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x00585b40,DynArrayB::write_empty_room,ilib/dynarrb.cpp,certain,registered name equal; calls 2/callers 2 matched; order between matched; file attr range
+0x00585bb0,DynArrayB::read_empty_room,ilib/dynarrb.cpp,certain,registered name equal; calls 4/callers 2 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x00585d20,DynArrayB::zap,ilib/dynarrb.cpp,certain,calls 1/callers 6 matched; ORDER-CROSS; file attr guess
+0x00585d50,DynArrayB::write_ptr_array,ilib/dynarrb.cpp,certain,calls 4/callers 0 matched; order between matched
+0x00585e20,DynArrayB::read_ptr_array,ilib/dynarrb.cpp,probable,calls 6/callers 0 matched; order at chain end
+0x005869d0,Error::internal,ilib/error.cpp,probable,string 'Error : %s\nFile : %s\nLine : %d\n'; order at chain end
+0x00586af0,Error::mem,ilib/error.cpp,certain,"string 'Insufficient Memory, execution interrupt'; calls 0/callers 5 matched; order between matched"
+0x00586bc0,Error::msg,ilib/error.cpp,certain,calls 0/callers 9 matched; order between matched
+0x00586cb0,Error::run,ilib/error.cpp,probable,calls 0/callers 39 matched; order at chain end
+0x00586da0,File::file_open,ilib/file.cpp,certain,tokens 2.4; registered name equal; calls 2/callers 9 matched; globals 1; order at chain end; file attr class
+0x00586f00,File::file_create,ilib/file.cpp,certain,string 'Error creating file %s'; registered name equal; calls 1/callers 6 matched; globals 1; order between matched; file attr class
+0x00586fe0,File::file_append,ilib/file.cpp,certain,string 'Error appending file %s.'; calls 2/callers 0 matched; globals 1; order between matched; file attr class
+0x00587100,File::file_open_for_update,ilib/file.cpp,certain,tokens 2.8; calls 2/callers 0 matched; globals 1; order between matched; file attr class
+0x00587260,File::file_close,ilib/file.cpp,certain,registered name equal; calls 0/callers 15 matched; order between matched; file attr class
+0x005872b0,File::~File,ilib/file.cpp,certain,registered name equal; calls 1/callers 15 matched; ORDER-CROSS; file attr class
+0x005872e0,File::file_write,ilib/file.cpp,certain,registered name equal; calls 2/callers 12 matched; globals 1; order between matched; file attr class
+0x005873a0,File::file_read,ilib/file.cpp,certain,registered name equal; calls 3/callers 16 matched; ORDER-CROSS
+0x00587510,File::file_write_array,ilib/file.cpp,certain,registered name equal; calls 4/callers 1 matched; globals 1; order between matched; file attr class
+0x00587650,File::file_read_array,ilib/file.cpp,certain,registered name equal; calls 5/callers 3 matched; ORDER-CROSS
+0x00587ba0,File::file_put_short,ilib/file.cpp,certain,registered name equal; calls 1/callers 2 matched; globals 1; order between matched; file attr class
+0x00587c20,File::file_get_short,ilib/file.cpp,certain,registered name equal; calls 1/callers 2 matched; globals 1; ORDER-CROSS; file attr class
+0x00587ca0,File::file_put_unsigned_short,ilib/file.cpp,certain,registered name equal; calls 1/callers 2 matched; globals 1; order between matched; file attr class
+0x00587d20,File::file_get_unsigned_short,ilib/file.cpp,certain,registered name equal; calls 1/callers 3 matched; globals 1; ORDER-CROSS; file attr class
+0x00587da0,File::file_put_long,ilib/file.cpp,certain,registered name equal; calls 1/callers 7 matched; globals 1; order at chain end; file attr class
+0x00587e20,File::file_get_long,ilib/file.cpp,certain,registered name equal; calls 1/callers 7 matched; globals 1; ORDER-CROSS; file attr class
+0x00587ea0,File::file_seek,ilib/file.cpp,certain,registered name equal; calls 0/callers 8 matched; ORDER-CROSS; file attr class
+0x00587ef0,File::file_pos,ilib/file.cpp,certain,registered name equal; calls 0/callers 4 matched; ORDER-CROSS; file attr class
+0x00587f30,File::file_size,ilib/file.cpp,certain,registered name equal; calls 0/callers 5 matched; ORDER-CROSS; file attr class
+0x00587f80,FileMem::FileMem,ilib/filemem.cpp,certain,registered name equal; calls 0/callers 7 matched; order at chain end; file attr anchor
+0x00587fd0,FileMem::~FileMem,ilib/filemem.cpp,certain,registered name equal; calls 1/callers 7 matched; order between matched; file attr anchor
+0x00588000,FileMem::file_open,ilib/filemem.cpp,certain,calls 7/callers 4 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x005881c0,FileMem::file_open_mem,ilib/filemem.cpp,certain,calls 1/callers 1 matched; order between matched; file attr range
+0x00588280,FileMem::file_open_file_section,ilib/filemem.cpp,certain,calls 6/callers 0 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x00588430,FileMem::file_open_file_section,ilib/filemem.cpp,certain,calls 6/callers 0 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x005885e0,FileMem::file_open_map,ilib/filemem.cpp,certain,calls 2/callers 2 matched; order between matched; file attr range
+0x005886d0,FileMem::file_close,ilib/filemem.cpp,certain,calls 3/callers 11 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x00588830,FileMem::file_size,ilib/filemem.cpp,certain,registered name equal; calls 2/callers 3 matched; order between matched; file attr anchor
+0x005888c0,FileMem::file_seek,ilib/filemem.cpp,certain,registered name equal; calls 2/callers 9 matched; order between matched; file attr anchor
+0x005889f0,FileMem::file_pos,ilib/filemem.cpp,certain,registered name equal; calls 2/callers 5 matched; order between matched; file attr anchor
+0x00588a80,FileMem::file_read,ilib/filemem.cpp,certain,registered name equal; calls 6/callers 14 matched; order between matched; file attr anchor
+0x00588c60,FileMem::file_read_array,ilib/filemem.cpp,certain,registered name equal; calls 8/callers 2 matched; order between matched; file attr anchor
+0x00589220,FileMem::file_get_short,ilib/filemem.cpp,certain,registered name equal; calls 4/callers 2 matched; globals 1; order between matched; file attr anchor
+0x005892f0,FileMem::file_get_unsigned_short,ilib/filemem.cpp,certain,registered name equal; calls 4/callers 4 matched; globals 1; order between matched; file attr anchor
+0x005893c0,FileMem::file_get_long,ilib/filemem.cpp,certain,registered name equal; calls 4/callers 14 matched; globals 1; order between matched; file attr anchor
+0x00589490,FileMem::low_lv_read,ilib/filemem.cpp,certain,calls 1/callers 5 matched; order at chain end; file attr anchor
+0x00589550,FileTxt::FileTxt,ilib/filetxt.cpp,certain,calls 5/callers 0 matched; globals 1; order at chain end; file attr anchor+__FILE__
+0x00589680,FileTxt::FileTxt,ilib/filetxt.cpp,certain,calls 2/callers 0 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x00589780,FileTxt::FileTxt,ilib/filetxt.cpp,certain,calls 1/callers 1 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x00589890,FileTxt::~FileTxt,ilib/filetxt.cpp,certain,registered name equal; calls 2/callers 1 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x00589920,FileTxt::get_char,ilib/filetxt.cpp,certain,registered name equal; calls 1/callers 0 matched; ORDER-CROSS; file attr anchor
+0x005899b0,FileTxt::next_line,ilib/filetxt.cpp,certain,registered name equal; calls 0/callers 4 matched; order between matched; file attr anchor
+0x00589b10,FileTxt::locate_word,ilib/filetxt.cpp,certain,registered name equal; order between matched; file attr anchor
+0x00589c70,FileTxt::get_token,ilib/filetxt.cpp,certain,registered name equal; calls 1/callers 4 matched; order between matched; file attr anchor
+0x00589ee0,FileTxt::get_num,ilib/filetxt.cpp,certain,registered name equal; calls 1/callers 0 matched; order between matched; file attr anchor
+0x00589f10,FileTxt::read_line,ilib/filetxt.cpp,certain,registered name equal; calls 1/callers 1 matched; order between matched; file attr anchor
+0x0058a060,FileTxt::read_paragraph,ilib/filetxt.cpp,certain,registered name equal; calls 1/callers 0 matched; order between matched; file attr anchor
+0x0058a290,FileTxt::rewind,ilib/filetxt.cpp,certain,registered name equal; order at chain end; file attr anchor
+0x0058e650,MemInfo::init,ilib/mem.cpp,certain,calls 0/callers 2 matched; ORDER-CROSS; file attr class
+0x0058e720,MemTrailer::init,ilib/mem.cpp,certain,calls 0/callers 3 matched; ORDER-CROSS; file attr class
+0x0058e7b0,Mem::add,ilib/mem.cpp,certain,registered name equal; calls 3/callers 40 matched; globals 1; order at chain end; file attr class
+0x0058e8d0,Mem::add_clear,ilib/mem.cpp,certain,registered name equal; calls 3/callers 0 matched; globals 1; order between matched; file attr class
+0x0058eb30,Mem::resize,ilib/mem.cpp,certain,registered name equal; calls 4/callers 45 matched; globals 1; order between matched; file attr class
+0x0058ed70,Mem::del,ilib/mem.cpp,certain,"string 'Mem::del - Free value not found, File na'; registered name equal; calls 1/callers 44 matched; globals 1; order between matched; file attr class"
+0x0058ee90,Mem::get_mem_size,ilib/mem.cpp,certain,string 'Error: Mem::get_mem_size().'; registered name equal; calls 1/callers 0 matched; globals 1; order at chain end; file attr class
+0x0058f050,Misc::str_cut,ilib/misc.cpp,certain,registered name equal; calls 0/callers 2 matched; order at chain end
+0x0058f0f0,Misc::str_chr,ilib/misc.cpp,certain,registered name equal; calls 0/callers 1 matched; order between matched
+0x0058f180,Misc::str_str,ilib/misc.cpp,certain,registered name equal; order between matched
+0x0058f300,Misc::ltrim_len,ilib/misc.cpp,certain,registered name equal; order between matched
+0x0058f9f0,Misc::str_cmp,ilib/misc.cpp,probable-enclosed,registered name equal; calls 0/callers 1 matched; ORDER-CROSS; between certain matches of its file
+0x0058fca0,Misc::format,ilib/misc.cpp,certain,calls 0/callers 2 matched; order between matched
+0x0058fe20,Misc::format,ilib/misc.cpp,probable-enclosed,calls 0/callers 4 matched; globals 1; ORDER-CROSS; between certain matches of its file
+0x00590070,Misc::format,ilib/misc.cpp,certain,string '{%08LX-%04X-%04X-%02X%02X%02X%02X%02X%02'; globals 1; order between matched
+0x00590130,Misc::num_to_str,ilib/misc.cpp,certain,registered name equal; globals 1; order between matched
+0x00590410,Misc::points_distance,ilib/misc.cpp,certain,registered name equal; order between matched; file attr guess
+0x005904e0,Misc::randomize,ilib/misc.cpp,certain,registered name equal; calls 1/callers 0 matched; order between matched; file attr guess
+0x00590510,Misc::set_random_seed,ilib/misc.cpp,certain,registered name equal; calls 0/callers 1 matched; order between matched; file attr guess
+0x00590540,Misc::random,ilib/misc.cpp,certain,registered name equal; calls 0/callers 1 matched; order between matched; file attr guess
+0x005905a0,Misc::rand,ilib/misc.cpp,certain,registered name equal; calls 0/callers 6 matched; ORDER-CROSS; file attr class
+0x00590630,Misc::rand_float,ilib/misc.cpp,probable-enclosed,tokens 1.5; calls 1/callers 0 matched; order between matched; file attr class; between certain matches of its file
+0x00590660,Misc::rand_float_1,ilib/misc.cpp,probable-enclosed,tokens 1.5; calls 1/callers 0 matched; order between matched; file attr class; between certain matches of its file
+0x00590690,Misc::random_range,ilib/misc.cpp,probable-enclosed,calls 1/callers 0 matched; order between matched; file attr class; between certain matches of its file
+0x005906f0,Misc::random_range,ilib/misc.cpp,certain,calls 1/callers 3 matched; order between matched; file attr class
+0x00590a20,Misc::round,ilib/misc.cpp,certain,registered name equal; ORDER-CROSS; file attr class
+0x00590b00,Misc::bound,ilib/misc.cpp,probable-enclosed,calls 0/callers 2 matched; ORDER-CROSS; between certain matches of its file
+0x00590b80,Misc::is_file_exist,ilib/misc.cpp,certain,registered name equal; calls 0/callers 10 matched; order between matched
+0x00590c00,Misc::is_dir_exist,ilib/misc.cpp,certain,registered name equal; calls 0/callers 3 matched; order between matched
+0x00590d20,Misc::change_file_ext,ilib/misc.cpp,probable-enclosed,calls 1/callers 0 matched; order between matched; between certain matches of its file
+0x00590d90,Misc::extract_file_name,ilib/misc.cpp,certain,registered name equal; order between matched
+0x00590e20,Misc::compare_file_time,ilib/misc.cpp,certain,registered name equal; calls 0/callers 2 matched; order between matched
+0x00591050,Misc::get_time,ilib/misc.cpp,certain,registered name equal; calls 0/callers 5 matched; ORDER-CROSS
+0x00591070,Misc::del_array_rec,ilib/misc.cpp,certain,registered name equal; calls 0/callers 11 matched; order between matched
+0x005910f0,Misc::insert_array_rec,ilib/misc.cpp,certain,registered name equal; calls 0/callers 9 matched; order between matched
+0x005911a0,Misc::bsearch_array_rec,ilib/misc.cpp,certain,calls 0/callers 13 matched; order between matched
+0x005913b0,Misc::cal_move_around_a_point,ilib/misc.cpp,certain,calls 1/callers 1 matched; order between matched; file attr class
+0x00591480,Misc::cal_move_around_a_point_v2,ilib/misc.cpp,probable-enclosed,calls 0/callers 1 matched; order between matched; file attr class; between certain matches of its file
+0x00591960,Misc::memsetw,ilib/misc.cpp,probable-enclosed,calls 0/callers 2 matched; order at chain end; between certain matches of its file
+0x00591e70,Misc::area_distance,ilib/misc.cpp,certain,registered name equal; calls 0/callers 1 matched; ORDER-CROSS; file attr guess
+0x00592380,Mouse::init,ilib/mouse.cpp,certain,string 'Failed creating mouse interface from Dir'; calls 3/callers 0 matched; globals 2; order at chain end
+0x00593af0,Mouse::set_boundary,ilib/mouse.cpp,certain,registered name equal; order between matched
+0x00593f60,Mouse::reset_boundary,ilib/mouse.cpp,certain,registered name equal; calls 0/callers 2 matched; order between matched
+0x00594f90,Mouse::poll_event,ilib/mouse.cpp,probable,calls 2/callers 0 matched; globals 1; ORDER-CROSS
+0x005aab20,Actor::Actor,en3d/actor.cpp,certain,calls 0/callers 4 matched; order at chain end; file attr guess
+0x005aaf10,Actor::deinit,en3d/actor.cpp,certain,calls 2/callers 1 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x005ab620,Actor::can_render,en3d/actor.cpp,certain,calls 1/callers 5 matched; order between matched; file attr range
+0x005ab6a0,Actor::render_update,en3d/actor.cpp,certain,calls 1/callers 2 matched; order between matched; file attr range
+0x005ab6e0,Actor::render_update_alpha,en3d/actor.cpp,certain,calls 1/callers 1 matched; order between matched; file attr range
+0x005aba20,Actor::render,en3d/actor.cpp,certain,calls 3/callers 3 matched; ORDER-CROSS; file attr range
+0x005abc50,Actor::render_ordered,en3d/actor.cpp,certain,calls 2/callers 1 matched; ORDER-CROSS; file attr range
+0x005ac270,Actor::get_pos,en3d/actor.cpp,certain,calls 1/callers 7 matched; order between matched; file attr range
+0x005ac310,Actor::set_pos,en3d/actor.cpp,certain,calls 0/callers 8 matched; order between matched; file attr range
+0x005ac6a0,Actor::set_h_dir,en3d/actor.cpp,certain,calls 2/callers 4 matched; order between matched; file attr range
+0x005ac810,Actor::set_v_dir,en3d/actor.cpp,certain,calls 2/callers 2 matched; order between matched; file attr range
+0x005ac980,Actor::set_r_dir,en3d/actor.cpp,certain,calls 2/callers 2 matched; order between matched; file attr range
+0x005acaf0,Actor::set_hvr_dir,en3d/actor.cpp,certain,calls 2/callers 2 matched; order between matched; file attr range
+0x005acc30,Actor::get_hvr_dir,en3d/actor.cpp,probable-enclosed,calls 0/callers 1 matched; order between matched; file attr range; between certain matches of its file
+0x005acc80,Actor::get_bounding_sphere,en3d/actor.cpp,certain,calls 2/callers 3 matched; order between matched; file attr range
+0x005acf10,Actor::set_sector_ptr,en3d/actor.cpp,certain,calls 0/callers 3 matched; order between matched; file attr range
+0x005acf60,Actor::set_scene_ptr,en3d/actor.cpp,certain,calls 0/callers 2 matched; order between matched; file attr range
+0x005ad060,Actor::get_render_plane,en3d/actor.cpp,certain,calls 7/callers 1 matched; globals 2; ORDER-CROSS; file attr range
+0x005ad830,Actor::get_shadow_plane,en3d/actor.cpp,certain,calls 3/callers 0 matched; globals 2; ORDER-CROSS; file attr range
+0x005adf50,Actor::create_morph_control,en3d/actor.cpp,certain,calls 3/callers 0 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x005ae0c0,Actor::create_morph_control,en3d/actor.cpp,certain,calls 3/callers 0 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x005ae220,Actor::set_morph_state,en3d/actor.cpp,probable-enclosed,calls 1/callers 0 matched; order between matched; file attr guess; between certain matches of its file
+0x005ae2c0,Actor::morph_to_state,en3d/actor.cpp,probable-enclosed,calls 1/callers 0 matched; order between matched; file attr guess; between certain matches of its file
+0x005ae360,Actor::morph_to_state,en3d/actor.cpp,probable-enclosed,calls 1/callers 0 matched; order between matched; file attr guess; between certain matches of its file
+0x005ae400,Actor::load_morph_animation,en3d/actor.cpp,certain,calls 2/callers 0 matched; globals 1; order between matched; file attr class
+0x005ae590,Actor::set_tfactor_enabled,en3d/actor.cpp,certain,calls 1/callers 1 matched; order at chain end; file attr class
+0x005af390,ActorDef::ActorDef,en3d/actordef.cpp,certain,registered name equal; calls 0/callers 3 matched; order at chain end; file attr class
+0x005af3d0,ActorDef::init,en3d/actordef.cpp,certain,calls 5/callers 1 matched; order between matched; file attr class
+0x005af5d0,ActorDef::async_init,en3d/actordef.cpp,certain,tokens 1.4; calls 4/callers 0 matched; order between matched; file attr class
+0x005af890,ActorDef::process_async_init,en3d/actordef.cpp,certain,calls 8/callers 2 matched; globals 1; order between matched; file attr class
+0x005afda0,ActorDef::is_async_init_finish,en3d/actordef.cpp,certain,calls 0/callers 2 matched; order between matched; file attr class
+0x005afdd0,ActorDef::init,en3d/actordef.cpp,certain,calls 4/callers 0 matched; ORDER-CROSS; file attr class
+0x005b02f0,ActorDef::init,en3d/actordef.cpp,certain,calls 2/callers 2 matched; ORDER-CROSS; file attr class
+0x005b03d0,ActorDef::deinit,en3d/actordef.cpp,probable-enclosed,calls 1/callers 0 matched; globals 1; order between matched; file attr anchor+__FILE__; between certain matches of its file
+0x005b0620,ActorDef::load_bone_hierarchy,en3d/actordef.cpp,certain,calls 6/callers 2 matched; globals 2; order between matched; file attr anchor+__FILE__
+0x005b0850,ActorDef::load_bone_hierarchy,en3d/actordef.cpp,certain,calls 6/callers 1 matched; globals 1; order at chain end; file attr anchor+__FILE__
+0x005b0ab0,ActorDef::create_groupable_actor_plane,en3d/Actordeg.cpp,certain,calls 4/callers 1 matched; globals 1; order at chain end; file attr anchor+__FILE__
+0x005b1180,ActorDef::add_groupable_actor_plane,en3d/Actordeg.cpp,certain,calls 10/callers 1 matched; globals 2; order at chain end; file attr class
+0x005b2390,AnimationDef::AnimationDef,en3d/Animdef.cpp,probable,calls 0/callers 4 matched; order at chain end
+0x005b23d0,AnimationDef::init,en3d/Animdef.cpp,certain,rare tokens 5.5; calls 20/callers 4 matched; globals 2; order between matched; file attr class
+0x005b2aa0,AnimationDef::init,en3d/Animdef.cpp,certain,tokens 2.1; calls 16/callers 1 matched; globals 1; order between matched; file attr class
+0x005b2f70,AnimationDef::async_init,en3d/Animdef.cpp,probable-enclosed,calls 1/callers 0 matched; globals 1; order between matched; file attr class; between certain matches of its file
+0x005b4140,AnimationDef::is_async_init_finish,en3d/Animdef.cpp,certain,calls 0/callers 2 matched; order between matched; file attr class
+0x005b4170,AnimationDef::cancel_async_init,en3d/Animdef.cpp,probable-enclosed,calls 1/callers 0 matched; globals 1; order between matched; file attr anchor+__FILE__; between certain matches of its file
+0x005b5350,AnimationDef::read_file_extension,en3d/Animdef.cpp,certain,calls 2/callers 1 matched; ORDER-CROSS; file attr range
+0x005b5830,AnimationDef::read_file_am2_header,en3d/Animdef.cpp,certain,calls 3/callers 2 matched; globals 1; ORDER-CROSS; file attr anchor+__FILE__
+0x005b5a70,AnimationDef::build_sorted_anim_section,en3d/Animdef.cpp,certain,calls 1/callers 2 matched; globals 1; ORDER-CROSS; file attr anchor+__FILE__
+0x005b5dd0,AnimationDef::get_motion_info,en3d/Animdef.cpp,certain,calls 2/callers 2 matched; order between matched; file attr range
+0x005b5e40,AnimationDef::update_plane,en3d/Animdef.cpp,certain,calls 5/callers 4 matched; order between matched; file attr range
+0x005b6800,AnimationDef::read_hierarchy,en3d/Animdef.cpp,certain,calls 7/callers 1 matched; globals 1; order between matched; file attr range
+0x005b69c0,AnimationDef::read_hierarchy,en3d/Animdef.cpp,certain,calls 2/callers 1 matched; order between matched; file attr range
+0x005b6a90,AnimationDef::arrange_hierarchy,en3d/Animdef.cpp,certain,calls 1/callers 2 matched; order between matched; file attr range
+0x005b7530,AnimationDef::add_child,en3d/Animdef.cpp,certain,calls 2/callers 0 matched; order between matched; file attr range
+0x005b7650,AnimationDef::get_child,en3d/Animdef.cpp,certain,calls 0/callers 2 matched; order between matched; file attr range
+0x005b77b0,AnimationDef::compress,en3d/Animdef.cpp,certain,calls 0/callers 2 matched; ORDER-CROSS; file attr range
+0x005b7930,AnimationDef::read_file_amt,en3d/Animdef.cpp,certain,calls 1/callers 2 matched; order between matched; file attr range
+0x005b83a0,AnimationDef::read_file_amt_1,en3d/Animdef.cpp,probable,calls 1/callers 0 matched; globals 1; order at chain end; file attr anchor+__FILE__
+0x005b9790,BoneHierarchyNode::init,en3d/bonetree.cpp,probable,calls 0/callers 1 matched; order at chain end; file attr class
+0x005b9800,BoneHierarchy::BoneHierarchy,en3d/bonetree.cpp,certain,calls 0/callers 3 matched; order between matched; file attr class
+0x005b9830,BoneHierarchy::BoneHierarchy,en3d/bonetree.cpp,certain,calls 1/callers 1 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x005b9960,BoneHierarchy::~BoneHierarchy,en3d/bonetree.cpp,probable-enclosed,calls 1/callers 0 matched; order between matched; file attr range; between certain matches of its file
+0x005b9990,BoneHierarchy::init,en3d/bonetree.cpp,certain,calls 2/callers 1 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x005b9a80,BoneHierarchy::deinit,en3d/bonetree.cpp,certain,calls 1/callers 1 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x005b9af0,BoneHierarchy::read_file,en3d/bonetree.cpp,certain,calls 8/callers 3 matched; globals 1; order between matched; file attr range
+0x005b9df0,BoneHierarchy::set_parent,en3d/bonetree.cpp,probable-enclosed,calls 0/callers 1 matched; order between matched; file attr range; between certain matches of its file
+0x005b9fe0,BoneHierarchy::get_parent,en3d/bonetree.cpp,certain,calls 0/callers 2 matched; order between matched; file attr range
+0x005ba110,BoneHierarchy::find_bone,en3d/bonetree.cpp,certain,calls 2/callers 0 matched; globals 1; order between matched; file attr range
+0x005ba160,BoneHierarchy::find_bone,en3d/bonetree.cpp,certain,calls 0/callers 2 matched; order between matched; file attr range
+0x005ba1d0,BoneHierarchy::need_mapping_table,en3d/bonetree.cpp,certain,calls 0/callers 2 matched; order between matched; file attr range
+0x005ba300,BoneHierarchy::fill_mapping_table,en3d/bonetree.cpp,certain,calls 1/callers 2 matched; order between matched; file attr range
+0x005ba4b0,BoneNameRes::BoneNameRes,en3d/bonetree.cpp,probable-enclosed,calls 1/callers 0 matched; order between matched; file attr range; between certain matches of its file
+0x005ba500,BoneNameRes::~BoneNameRes,en3d/bonetree.cpp,certain,calls 2/callers 0 matched; order between matched; file attr range
+0x005ba570,BoneNameRes::init,en3d/bonetree.cpp,certain,calls 3/callers 0 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x005ba660,BoneNameRes::deinit,en3d/bonetree.cpp,certain,calls 2/callers 2 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x005ba6e0,BoneNameRes::search_name,en3d/bonetree.cpp,certain,calls 1/callers 2 matched; globals 1; order between matched; file attr range
+0x005ba760,BoneNameRes::add_name,en3d/bonetree.cpp,certain,calls 4/callers 1 matched; globals 2; order between matched; file attr anchor+__FILE__
+0x005ba8b0,BoneNameRes::get_name_id,en3d/bonetree.cpp,certain,calls 2/callers 1 matched; order at chain end; file attr class
+0x005c0ec0,GeometryDef::GeometryDef,en3d/GEODEF.CPP,probable,calls 0/callers 4 matched; order at chain end
+0x005c0ef0,GeometryDef::init,en3d/GEODEF.CPP,certain,tokens 2.1; calls 22/callers 1 matched; globals 2; order between matched
+0x005c2370,GeometryDef::async_init,en3d/GEODEF.CPP,certain,calls 3/callers 1 matched; globals 1; order between matched
+0x005c4e30,GeometryDef::is_async_init_finish,en3d/GEODEF.CPP,certain,calls 0/callers 2 matched; order between matched
+0x005c4e60,GeometryDef::init,en3d/GEODEF.CPP,probable-enclosed,calls 1/callers 1 matched; ORDER-CROSS; between certain matches of its file
+0x005c51b0,GeometryDef::plane_bounding_sphere,en3d/GEODEF.CPP,certain,calls 2/callers 2 matched; order between matched
+0x005c53b0,GeometryDef::skin_bounding_sphere,en3d/GEODEF.CPP,probable-enclosed,calls 0/callers 1 matched; order between matched; between certain matches of its file
+0x005c5560,GeometryDef::read_hierarchy,en3d/GEODEF.CPP,certain,calls 2/callers 1 matched; order between matched
+0x005c5610,GeometryDef::share_hierarchy,en3d/GEODEF.CPP,certain,calls 1/callers 2 matched; order between matched
+0x005c56d0,GeometryDef::arrange_hierarchy,en3d/GEODEF.CPP,probable,calls 2/callers 2 matched; order at chain end
+0x005c5830,Light::Light,en3d/light.cpp,certain,registered name equal; calls 0/callers 2 matched; order at chain end
+0x005c58a0,Light::init,en3d/light.cpp,certain,calls 2/callers 0 matched; globals 1; order between matched
+0x005c5be0,Light::get_frame,en3d/light.cpp,probable-enclosed,calls 0/callers 1 matched; order between matched; between certain matches of its file
+0x005c5c00,Light::mark_changed,en3d/light.cpp,certain,calls 0/callers 3 matched; order between matched
+0x005c5c30,Light::recalc_change,en3d/light.cpp,certain,calls 6/callers 2 matched; order between matched
+0x005c6070,Light::can_render,en3d/light.cpp,certain,calls 0/callers 2 matched; order between matched
+0x005c6110,Light::render_begin,en3d/light.cpp,certain,calls 3/callers 2 matched; order between matched
+0x005c6250,Light::render_end,en3d/light.cpp,certain,calls 3/callers 2 matched; globals 1; order between matched
+0x005c63c0,Light::operator=,en3d/light.cpp,probable,calls 3/callers 1 matched; ORDER-CROSS
+0x005c65e0,ambient_light_chain_sum,en3d/light.cpp,probable,calls 0/callers 2 matched; order at chain end
+0x005c67b0,MorphControl::MorphControl,en3d/MORPH.CPP,certain,calls 0/callers 2 matched; order at chain end; file attr class
+0x005c67f0,MorphControl::~MorphControl,en3d/MORPH.CPP,probable-enclosed,calls 1/callers 0 matched; order between matched; file attr class; between certain matches of its file
+0x005c6820,MorphControl::init,en3d/MORPH.CPP,certain,rare tokens 3.0; calls 12/callers 1 matched; globals 3; order between matched; file attr anchor+__FILE__
+0x005c7370,MorphControl::init,en3d/MORPH.CPP,certain,calls 5/callers 1 matched; globals 2; order between matched; file attr anchor+__FILE__
+0x005c7b80,MorphControl::deinit,en3d/MORPH.CPP,certain,calls 1/callers 1 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x005c7ff0,MorphControl::set_morph_state,en3d/MORPH.CPP,certain,calls 1/callers 7 matched; globals 1; order between matched; file attr range
+0x005c80d0,MorphControl::morph_to_state,en3d/MORPH.CPP,certain,calls 2/callers 1 matched; globals 1; order between matched; file attr range
+0x005c8360,MorphControl::morph_to_state,en3d/MORPH.CPP,certain,calls 2/callers 1 matched; globals 1; order between matched; file attr range
+0x005c8960,MorphControl::update_plane,en3d/MORPH.CPP,certain,calls 5/callers 1 matched; globals 1; order between matched; file attr range
+0x005c90a0,MorphControl::get_morph_target_id,en3d/MORPH.CPP,certain,calls 0/callers 6 matched; order between matched; file attr range
+0x005c9b10,MorphControl::append_morphable_vertex,en3d/MORPH.CPP,certain,rare tokens 3.0; calls 11/callers 0 matched; globals 3; ORDER-CROSS; file attr anchor+__FILE__
+0x005ca5d0,MorphControl::append_morphable_vertex,en3d/MORPH.CPP,certain,calls 3/callers 0 matched; globals 1; ORDER-CROSS; file attr anchor+__FILE__
+0x005cae20,MorphAnimation::MorphAnimation,en3d/MORPH.CPP,certain,calls 0/callers 2 matched; order between matched; file attr class
+0x005cae50,MorphAnimation::~MorphAnimation,en3d/MORPH.CPP,probable-enclosed,calls 1/callers 0 matched; order between matched; file attr guess; gap fill; between certain matches of its file
+0x005cae80,MorphAnimation::init,en3d/MORPH.CPP,certain,string 'Error loading Morph Animation : %1s'; calls 7/callers 1 matched; globals 2; order between matched; file attr guess
+0x005cb1d0,MorphAnimation::init,en3d/MORPH.CPP,probable,calls 0/callers 1 matched; order between matched; file attr class
+0x005cb310,MorphAnimation::deinit,en3d/MORPH.CPP,probable,calls 0/callers 1 matched; order between matched; file attr guess
+0x005cb3d0,MorphAnimation::update,en3d/MORPH.CPP,probable,calls 0/callers 1 matched; globals 1; order at chain end; file attr guess
+0x005cb8f0,Actor::set_bone_rotate,en3d/actor.cpp,probable,calls 2/callers 0 matched; ORDER-CROSS
+0x005cbaf0,Plane::Plane,en3d/Plane.cpp,certain,registered name equal; calls 1/callers 6 matched; order at chain end; file attr class
+0x005cbb60,Plane::Plane,en3d/Plane.cpp,certain,calls 1/callers 1 matched; order between matched; file attr guess
+0x005cbbf0,Plane::Plane,en3d/Plane.cpp,certain,calls 9/callers 1 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x005cc750,Plane::~Plane,en3d/Plane.cpp,certain,registered name equal; calls 3/callers 1 matched; order between matched; file attr range
+0x005cc7a0,Plane::init,en3d/Plane.cpp,certain,registered name equal; calls 6/callers 10 matched; order between matched; file attr range
+0x005cca00,Plane::deinit_frame,en3d/Plane.cpp,certain,calls 0/callers 2 matched; order between matched; file attr range
+0x005ccaa0,Plane::deinit,en3d/Plane.cpp,certain,calls 5/callers 5 matched; globals 1; ORDER-CROSS; file attr anchor+__FILE__
+0x005cd2d0,Plane::clear,en3d/Plane.cpp,certain,registered name equal; calls 2/callers 2 matched; order between matched; file attr range
+0x005cd470,Plane::add_material,en3d/Plane.cpp,certain,calls 2/callers 11 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x005cd7f0,Plane::add_vertex,en3d/Plane.cpp,certain,calls 2/callers 12 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x005cdae0,Plane::get_vertex_array_vptr,en3d/Plane.cpp,certain,calls 1/callers 12 matched; order between matched; file attr range
+0x005ce6f0,Plane::add_triangle,en3d/Plane.cpp,certain,calls 2/callers 12 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x005ce800,Plane::set_triangle,en3d/Plane.cpp,certain,registered name equal; calls 1/callers 8 matched; order between matched; file attr range
+0x005ce8a0,Plane::set_line,en3d/Plane.cpp,certain,calls 2/callers 0 matched; order between matched; file attr range
+0x005ce900,Plane::set_point,en3d/Plane.cpp,certain,calls 2/callers 0 matched; order between matched; file attr range
+0x005ce970,Plane::has_material_on_render_pass,en3d/Plane.cpp,certain,calls 0/callers 3 matched; order between matched; file attr range
+0x005cea30,Plane::merge_material_vertex_triangle,en3d/Plane.cpp,certain,calls 10/callers 1 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x005cf050,Plane::merge_tristrip,en3d/Plane.cpp,certain,calls 2/callers 1 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x005cf1d0,Plane::add_tristrip_triangle,en3d/Plane.cpp,certain,calls 2/callers 2 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x005cf920,Plane::clear_tristrip_triangle,en3d/Plane.cpp,certain,calls 1/callers 1 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x005cfa10,Plane::recalc_change,en3d/Plane.cpp,certain,rare tokens 6.0; calls 6/callers 5 matched; globals 1; ORDER-CROSS; file attr range
+0x005d0070,Plane::transform_to_world_space,en3d/Plane.cpp,certain,calls 5/callers 1 matched; order between matched; file attr range
+0x005d03f0,Plane::set_org_ptr,en3d/Plane.cpp,probable-enclosed,calls 0/callers 1 matched; order between matched; file attr range; between certain matches of its file
+0x005d0480,Plane::can_render,en3d/Plane.cpp,certain,calls 1/callers 8 matched; order between matched; file attr range
+0x005d0570,Plane::render,en3d/Plane.cpp,certain,tokens 2.7; calls 28/callers 8 matched; globals 2; order between matched; file attr range
+0x005d2aa0,get_primitive_type,en3d/Plane.cpp,certain,calls 0/callers 4 matched; ORDER-CROSS; file attr range
+0x005d2b80,Plane::render_material_fast,en3d/Plane.cpp,certain,calls 5/callers 0 matched; order between matched; file attr range
+0x005d35b0,Plane::render_ordered,en3d/Plane.cpp,certain,calls 19/callers 3 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x005d4470,Plane::add_lod,en3d/Plane.cpp,certain,calls 3/callers 3 matched; order between matched; file attr range
+0x005d4550,Plane::remove_lod,en3d/Plane.cpp,probable-enclosed,calls 0/callers 1 matched; order between matched; file attr range; between certain matches of its file
+0x005d45e0,Plane::get_lod_child,en3d/Plane.cpp,certain,calls 0/callers 5 matched; order between matched; file attr range
+0x005d4670,Plane::clear_all_lod,en3d/Plane.cpp,probable-enclosed,calls 0/callers 1 matched; ORDER-CROSS; file attr range; between certain matches of its file
+0x005d4720,Plane::set_lod_count,en3d/Plane.cpp,certain,calls 0/callers 2 matched; order between matched; file attr range
+0x005d4760,Plane::get_lod_level,en3d/Plane.cpp,certain,calls 1/callers 4 matched; order between matched; file attr range
+0x005d4880,Plane::set_lod_parent,en3d/Plane.cpp,certain,calls 0/callers 2 matched; order between matched; file attr range
+0x005d4920,Plane::copy_materials,en3d/Plane.cpp,certain,calls 2/callers 0 matched; order between matched; file attr range
+0x005d4a00,Plane::share_frame,en3d/Plane.cpp,certain,calls 1/callers 3 matched; order between matched; file attr range
+0x005d4a80,Plane::line_seg_intersect,en3d/Plane.cpp,certain,calls 4/callers 0 matched; order between matched; file attr range
+0x005d52a0,Material::init,en3d/Plane.cpp,certain,calls 1/callers 9 matched; globals 1; ORDER-CROSS; file attr range
+0x005d5360,Material::deinit,en3d/Plane.cpp,certain,calls 0/callers 7 matched; ORDER-CROSS; file attr range
+0x005d5500,Material::operator==,en3d/Plane.cpp,certain,calls 0/callers 2 matched; ORDER-CROSS; file attr range
+0x005d5650,Material::set_texture,en3d/Plane.cpp,certain,registered name equal; calls 0/callers 10 matched; ORDER-CROSS; file attr range
+0x005d5770,Plane::create_basis_vectors,en3d/Plane.cpp,certain,calls 1/callers 2 matched; ORDER-CROSS; file attr range
+0x005d5fe0,Plane::is_reflective,en3d/Plane.cpp,probable-enclosed,calls 0/callers 1 matched; order between matched; file attr range; between certain matches of its file
+0x005d6050,Plane::render_reflection,en3d/Plane.cpp,certain,calls 16/callers 1 matched; order between matched; file attr range
+0x005d72e0,Plane::get_shadow_plane,en3d/Plane.cpp,probable-enclosed,calls 0/callers 1 matched; order between matched; file attr range; between certain matches of its file
+0x005d7310,Plane::set_shadow_plane,en3d/Plane.cpp,certain,calls 0/callers 2 matched; order between matched; file attr range
+0x005d7bf0,Plane::get_effects_enabled,en3d/Plane.cpp,certain,calls 0/callers 2 matched; ORDER-CROSS; file attr range
+0x005d80d0,Plane::init_env_bump_map,en3d/Plane.cpp,certain,string '-EB'; calls 6/callers 0 matched; order between matched; file attr range
+0x005d8650,Plane::render_reflection_to_texture,en3d/Plane.cpp,certain,calls 28/callers 0 matched; ORDER-CROSS; file attr range
+0x005d9be0,Plane::init_plane_arrays,en3d/Plane.cpp,certain,calls 3/callers 11 matched; globals 1; order at chain end; file attr anchor+__FILE__
+0x005da280,Plane::read_file_amo,en3d/plane_a.cpp,probable,calls 7/callers 1 matched; order at chain end
+0x005da3d0,Plane::read_file_amo0,en3d/plane_a.cpp,certain,calls 20/callers 1 matched; globals 1; order between matched
+0x005db710,Plane::read_file_amo50,en3d/plane_a.cpp,certain,calls 20/callers 1 matched; globals 1; order between matched
+0x005dc400,Plane::read_file_amo100,en3d/plane_a.cpp,probable,calls 0/callers 1 matched; order between matched
+0x005dc420,Plane::read_file_amo500,en3d/plane_a.cpp,probable,calls 20/callers 1 matched; globals 1; order at chain end
+0x005ddd70,Plane::read_file_smo,en3d/plane_s.cpp,probable,calls 3/callers 1 matched; order at chain end
+0x005df6a0,Plane::write_file_smo50,en3d/plane_s.cpp,probable,calls 4/callers 0 matched; ORDER-CROSS
+0x005e0530,Plane::read_file_smo500,en3d/plane_s.cpp,probable,calls 22/callers 1 matched; globals 1; ORDER-CROSS
+0x005e2380,Plane::write_file,en3d/plane_s.cpp,certain,rare tokens 3.5; calls 6/callers 0 matched; order between matched
+0x005e26c0,Plane::read_file,en3d/plane_s.cpp,certain,rare tokens 3.5; calls 10/callers 0 matched; order at chain end
+0x005e2a90,Material::write_file,en3d/plane_s.cpp,probable,calls 2/callers 1 matched; ORDER-CROSS
+0x005e2b70,Material::read_file,en3d/plane_s.cpp,probable,calls 5/callers 1 matched; ORDER-CROSS
+0x005e3040,Plane::create_shadow_volume,en3d/Plane_sh.cpp,certain,tokens 1.7; calls 8/callers 0 matched; globals 1; file attr anchor+__FILE__
+0x005e4460,Portal::get_another_sector,en3d/portal.cpp,probable,calls 0/callers 2 matched; order at chain end
+0x005e44b0,Portal::can_see_another_sector,en3d/portal.cpp,certain,calls 2/callers 2 matched; order between matched
+0x005e45a0,Portal::create_view_through_portal,en3d/portal.cpp,certain,calls 14/callers 0 matched; order between matched
+0x005e4b00,Portal::is_inside_camera,en3d/portal.cpp,certain,calls 1/callers 1 matched; order between matched
+0x005e4b40,Portal::link_to_sector,en3d/portal.cpp,certain,calls 3/callers 0 matched; order between matched
+0x005e4c30,Portal::set_portal_position,en3d/portal.cpp,certain,calls 2/callers 0 matched; order between matched
+0x005e4ee0,Portal::create_clip_planes_through_portal,en3d/portal.cpp,probable,calls 6/callers 0 matched; order at chain end
+0x005e5960,PixelShaderFactory::invalidate_shader,en3d/PSHADER.CPP,probable,calls 1/callers 0 matched; globals 1; order at chain end; file attr anchor+__FILE__
+0x005e5a50,PixelShaderFactory::get_shader,en3d/PSHADER.CPP,certain,string 'SHADER\\clip_am.pso'; calls 6/callers 1 matched; globals 1; order at chain end; file attr anchor+__FILE__
+0x005e6000,RenderOrder::RenderOrder,en3d/reorder.cpp,certain,calls 1/callers 1 matched; order at chain end; file attr class
+0x005e6110,RenderOrder::~RenderOrder,en3d/reorder.cpp,certain,calls 2/callers 0 matched; order between matched; file attr class
+0x005e61a0,RenderOrder::init,en3d/reorder.cpp,certain,calls 1/callers 1 matched; order between matched; file attr guess; gap fill
+0x005e61c0,RenderOrder::deinit,en3d/reorder.cpp,certain,calls 5/callers 1 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x005e6430,RenderOrder::render_ordered_begin,en3d/reorder.cpp,certain,calls 1/callers 1 matched; order between matched; file attr range
+0x005e64e0,RenderOrder::render_ordered_end,en3d/reorder.cpp,certain,calls 3/callers 1 matched; globals 1; order between matched; file attr range
+0x005e67b0,RenderOrder::render,en3d/reorder.cpp,certain,tokens 1.9; calls 12/callers 0 matched; globals 2; order between matched
+0x005e76f0,RenderOrder::get_light_setting_id,en3d/reorder.cpp,certain,calls 2/callers 1 matched; globals 1; order between matched; file attr range
+0x005e7870,RenderOrder::get_sector_light_set_id,en3d/reorder.cpp,certain,calls 3/callers 1 matched; globals 1; order between matched; file attr range
+0x005e79f0,RenderOrder::get_material_setting_id,en3d/reorder.cpp,certain,calls 2/callers 1 matched; globals 1; order between matched; file attr range
+0x005e7b80,RenderOrder::get_cur_primitive_key,en3d/reorder.cpp,certain,calls 0/callers 2 matched; order between matched; file attr range
+0x005e7bb0,RenderOrder::set_cur_object_type,en3d/reorder.cpp,certain,calls 1/callers 1 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x005e7ce0,RenderOrder::set_cur_primitive,en3d/reorder.cpp,certain,calls 4/callers 1 matched; globals 3; order between matched; file attr anchor+__FILE__
+0x005e7e70,RenderOrder::add_vertex,en3d/reorder.cpp,certain,calls 1/callers 1 matched; order between matched; file attr range
+0x005e7ec0,RenderOrder::add_vertex_and_index,en3d/reorder.cpp,certain,calls 1/callers 1 matched; order between matched; file attr range
+0x005e7f20,RenderOrder::add_vertex_static_buffer,en3d/reorder.cpp,probable-enclosed,calls 1/callers 0 matched; order between matched; file attr range; between certain matches of its file
+0x005e7f70,RenderOrder::add_vertex_and_index_static_buffer,en3d/reorder.cpp,certain,calls 1/callers 1 matched; order between matched; file attr range
+0x005e8040,SectorLightSet::operator=,en3d/reorder.cpp,probable-enclosed,calls 0/callers 1 matched; order between matched; file attr range; between certain matches of its file
+0x005e8100,SectorLightSet::operator==,en3d/reorder.cpp,probable-enclosed,calls 0/callers 1 matched; order between matched; file attr range; between certain matches of its file
+0x005e8210,RenderPrimitive::init,en3d/reorder.cpp,probable-enclosed,calls 0/callers 1 matched; order between matched; file attr range; between certain matches of its file
+0x005e8250,RenderPrimitive::deinit,en3d/reorder.cpp,certain,calls 3/callers 2 matched; order between matched; file attr range
+0x005e8340,RenderPrimitive::clear,en3d/reorder.cpp,probable-enclosed,calls 0/callers 1 matched; order between matched; file attr range; between certain matches of its file
+0x005e8400,RenderPrimitive::add_vertex,en3d/reorder.cpp,certain,calls 2/callers 1 matched; order between matched; file attr range
+0x005e8540,RenderPrimitive::add_vertex_and_index,en3d/reorder.cpp,certain,calls 2/callers 1 matched; order between matched; file attr range
+0x005e8780,RenderPrimitive::add_vertex_static_buffer,en3d/reorder.cpp,certain,calls 2/callers 1 matched; order between matched; file attr range
+0x005e88c0,RenderPrimitive::add_vertex_and_index_static_buffer,en3d/reorder.cpp,certain,calls 2/callers 1 matched; order between matched; file attr range
+0x005e8ab0,RenderPrimitive::cache_add_ref,en3d/reorder.cpp,probable-enclosed,calls 0/callers 1 matched; order between matched; file attr range; between certain matches of its file
+0x005e8b20,RenderPrimitive::cache_release,en3d/reorder.cpp,certain,calls 1/callers 1 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x005e8c40,RenderPrimitive::alloc_vertex_group,en3d/reorder.cpp,certain,calls 1/callers 2 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x005e8d60,RenderPrimitive::free_vertex_group,en3d/reorder.cpp,certain,calls 1/callers 1 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x005e8de0,RenderPrimitive::alloc_indexed_group,en3d/reorder.cpp,certain,calls 1/callers 2 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x005e8f10,RenderPrimitive::free_indexed_group,en3d/reorder.cpp,certain,calls 1/callers 1 matched; globals 1; order at chain end; file attr anchor+__FILE__
+0x005e9010,RestoreResInfo::init,en3d/res3d.cpp,probable,calls 0/callers 4 matched
+0x005e91e0,RGBAColor::export_to,en3d/rgb.cpp,certain,calls 0/callers 2 matched; order between matched
+0x005e9260,BGRAColor::export_to,en3d/rgb.cpp,certain,calls 0/callers 2 matched; order between matched
+0x005e95b0,BGRAColor::operator=,en3d/rgb.cpp,probable,calls 0/callers 10 matched; order at chain end
+0x005e9a00,Scene::Scene,en3d/Scene.cpp,certain,registered name equal; order at chain end; file attr class
+0x005e9a90,Scene::~Scene,en3d/Scene.cpp,certain,registered name equal; calls 1/callers 0 matched; order between matched; file attr class
+0x005e9ac0,Scene::init,en3d/Scene.cpp,probable-enclosed,calls 1/callers 0 matched; order between matched; file attr class; between certain matches of its file
+0x005e9b10,Scene::deinit,en3d/Scene.cpp,certain,calls 3/callers 2 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x005e9e50,Scene::clear_scene,en3d/Scene.cpp,certain,calls 6/callers 1 matched; order between matched; file attr range
+0x005ea0d0,Scene::unset_effect_plane,en3d/Scene.cpp,probable-enclosed,calls 0/callers 1 matched; order between matched; file attr range; between certain matches of its file
+0x005ea140,Scene::set_shadow_plane,en3d/Scene.cpp,probable-enclosed,calls 1/callers 0 matched; order between matched; file attr range; between certain matches of its file
+0x005ea180,Scene::unset_shadow_plane,en3d/Scene.cpp,certain,calls 1/callers 2 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x005ea1f0,Scene::add_actor,en3d/Scene.cpp,certain,registered name equal; ORDER-CROSS; file attr anchor+__FILE__
+0x005ea2f0,Scene::remove_effect_actor,en3d/Scene.cpp,certain,calls 2/callers 0 matched; globals 1; order between matched; file attr range
+0x005ea390,Scene::remove_all_effect_actors,en3d/Scene.cpp,certain,calls 1/callers 1 matched; order between matched; file attr range
+0x005ea460,Scene::create_sector,en3d/Scene.cpp,certain,calls 2/callers 0 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x005ea5e0,Scene::del_sector,en3d/Scene.cpp,certain,calls 2/callers 0 matched; globals 1; order between matched; file attr range
+0x005ea730,Scene::build_sector_struct,en3d/Scene.cpp,certain,calls 3/callers 0 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x005ea9d0,Scene::build_sector_struct_recur,en3d/Scene.cpp,certain,calls 2/callers 2 matched; ORDER-CROSS; file attr range
+0x005eb030,Scene::invalidate_sector_struct,en3d/Scene.cpp,certain,calls 0/callers 3 matched; order between matched; file attr range
+0x005eb5d0,Scene::create_light,en3d/Scene.cpp,certain,calls 2/callers 0 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x005eb700,Scene::del_light,en3d/Scene.cpp,probable-enclosed,calls 1/callers 0 matched; globals 1; order between matched; file attr range; between certain matches of its file
+0x005eb820,Scene::del_all_light,en3d/Scene.cpp,probable-enclosed,calls 0/callers 1 matched; order between matched; file attr range; between certain matches of its file
+0x005eb8b0,Scene::can_render,en3d/Scene.cpp,certain,calls 0/callers 3 matched; order between matched; file attr range
+0x005eb8d0,Scene::add_billboard,en3d/Scene.cpp,probable-enclosed,calls 1/callers 0 matched; globals 1; ORDER-CROSS; file attr anchor+__FILE__; between certain matches of its file
+0x005ebac0,Scene::render,en3d/Scene.cpp,certain,registered name equal; calls 9/callers 3 matched; order between matched; file attr anchor+__FILE__
+0x005edfd0,Scene::remove_all_billboard,en3d/Scene.cpp,certain,calls 1/callers 1 matched; globals 1; ORDER-CROSS; file attr anchor+__FILE__
+0x005ee0d0,Scene::get_shadow_enabled,en3d/Scene.cpp,certain,calls 0/callers 3 matched; order between matched; file attr range
+0x005eeca0,Scene::create_occluder,en3d/Scene.cpp,probable-enclosed,calls 1/callers 0 matched; globals 1; order between matched; file attr anchor+__FILE__; between certain matches of its file
+0x005eed90,Scene::get_occluder,en3d/Scene.cpp,certain,calls 0/callers 2 matched; order between matched; file attr class
+0x005eedc0,Scene::del_occluder,en3d/Scene.cpp,certain,calls 1/callers 1 matched; globals 1; order between matched; file attr class
+0x005eee40,Scene::turn_on_occluder,en3d/Scene.cpp,certain,calls 11/callers 2 matched; globals 1; order between matched
+0x005ef380,Scene::turn_off_occluder,en3d/Scene.cpp,certain,calls 0/callers 2 matched; order at chain end; file attr class
+0x005ef850,SceneSector::~SceneSector,en3d/Scene_s.cpp,probable,calls 1/callers 0 matched; order between matched; file attr class
+0x005ef880,SceneSector::init,en3d/Scene_s.cpp,probable,calls 1/callers 0 matched; order between matched; file attr class
+0x005ef900,SceneSector::deinit,en3d/Scene_s.cpp,certain,calls 3/callers 2 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x005efc50,SceneSector::add_actor,en3d/Scene_s.cpp,certain,calls 1/callers 2 matched; order between matched; file attr range
+0x005efdb0,SceneSector::remove_actor,en3d/Scene_s.cpp,certain,calls 1/callers 3 matched; order between matched; file attr range
+0x005eff10,SceneSector::remove_all_actor,en3d/Scene_s.cpp,certain,calls 1/callers 1 matched; order between matched; file attr range
+0x005f0040,SceneSector::create_light,en3d/Scene_s.cpp,certain,calls 2/callers 0 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x005f0190,SceneSector::del_light,en3d/Scene_s.cpp,probable-enclosed,calls 1/callers 0 matched; globals 1; order between matched; file attr range; between certain matches of its file
+0x005f0270,SceneSector::del_all_light,en3d/Scene_s.cpp,probable-enclosed,calls 0/callers 1 matched; order between matched; file attr range; between certain matches of its file
+0x005f03b0,SceneSector::render_ordered,en3d/Scene_s.cpp,certain,calls 9/callers 0 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x005f07f0,SceneSector::render,en3d/Scene_s.cpp,certain,calls 8/callers 0 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x005f2780,SceneSector::calc_light_on_plane,en3d/Scene_s.cpp,certain,calls 5/callers 0 matched; ORDER-CROSS; file attr anchor+__FILE__
+0x005f31c0,SceneSector::render_reflection,en3d/Scene_s.cpp,certain,calls 6/callers 0 matched; order between matched; file attr range
+0x005f35f0,SceneSector::add_portal,en3d/Scene_s.cpp,certain,calls 1/callers 1 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x005f36a0,SceneSector::remove_portal,en3d/Scene_s.cpp,probable-enclosed,calls 1/callers 0 matched; globals 1; order between matched; file attr range; between certain matches of its file
+0x005f37c0,SceneSector::render_sector_plane,en3d/Scene_s.cpp,certain,calls 7/callers 0 matched; order between matched; file attr range
+0x005f39a0,SceneSector::add_reflective_plane,en3d/Scene_s.cpp,probable-enclosed,calls 1/callers 0 matched; globals 1; order at chain end; file attr anchor+__FILE__; between certain matches of its file
+0x005f3fe0,SceneSector::modify_grass_plane,en3d/Scene_s.cpp,certain,rare tokens 3.0; calls 1/callers 1 matched; ORDER-CROSS; file attr class
+0x005f41f0,SceneSector::modify_grass_actor,en3d/Scene_s.cpp,certain,rare tokens 3.0; calls 1/callers 1 matched; ORDER-CROSS; file attr class
+0x005f45f0,Skin::Skin,en3d/skin.cpp,certain,calls 0/callers 2 matched; order at chain end; file attr guess
+0x005f4620,Skin::~Skin,en3d/skin.cpp,certain,calls 3/callers 0 matched; order between matched; file attr class
+0x005f4670,Skin::init,en3d/skin.cpp,certain,calls 1/callers 1 matched; order between matched; file attr class
+0x005f46a0,Skin::deinit,en3d/skin.cpp,certain,calls 1/callers 2 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x005f47c0,Skin::add_vertex,en3d/skin.cpp,certain,calls 1/callers 3 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x005f4970,Skin::vertex_add_bone,en3d/skin.cpp,certain,calls 0/callers 3 matched; order between matched; file attr guess
+0x005f49c0,Skin::vertex_normalize,en3d/skin.cpp,certain,calls 0/callers 3 matched; order between matched; file attr guess
+0x005f4a00,Skin::estimate_bounding_sphere,en3d/skin.cpp,certain,calls 0/callers 2 matched; order between matched; file attr guess
+0x005f4c10,Skin::update_plane,en3d/skin.cpp,certain,calls 3/callers 3 matched; order between matched; file attr guess
+0x005f4dc0,Skin::add_lod,en3d/skin.cpp,certain,calls 3/callers 1 matched; order between matched; file attr guess
+0x005f4e90,Skin::remove_lod,en3d/skin.cpp,probable-enclosed,calls 0/callers 1 matched; order between matched; file attr guess; between certain matches of its file
+0x005f4f10,Skin::clear_all_lod,en3d/skin.cpp,probable-enclosed,calls 0/callers 1 matched; order between matched; file attr guess; between certain matches of its file
+0x005f4fb0,Skin::get_lod_child,en3d/skin.cpp,certain,calls 0/callers 2 matched; order between matched; file attr guess
+0x005f4fe0,Skin::set_lod_count,en3d/skin.cpp,probable-enclosed,calls 0/callers 1 matched; order between matched; file attr guess; between certain matches of its file
+0x005f5010,Skin::set_lod_parent,en3d/skin.cpp,certain,calls 0/callers 2 matched; order between matched; file attr guess
+0x005f5090,Skin::set_shadow_skin,en3d/skin.cpp,probable,calls 0/callers 1 matched; order between matched
+0x005f5100,SkyBox::SkyBox,en3d/skybox.cpp,certain,registered name equal; calls 1/callers 0 matched; order at chain end
+0x005f5140,SkyBox::~SkyBox,en3d/skybox.cpp,certain,registered name equal; calls 2/callers 0 matched; order between matched
+0x005f51b0,SkyBox::init,en3d/skybox.cpp,certain,registered name equal; calls 1/callers 0 matched; order between matched
+0x005f5210,SkyBox::deinit,en3d/skybox.cpp,certain,calls 1/callers 1 matched; order between matched
+0x005f5240,SkyBox::add_cube,en3d/skybox.cpp,probable,calls 2/callers 0 matched; order at chain end
+0x005f6c00,Sys3D::init_driver,en3d/Sys3d.cpp,certain,string 'Cannot create surface'; calls 5/callers 0 matched; globals 2; ORDER-CROSS
+0x005f7ca0,Sys3D::init_buffers,en3d/Sys3d.cpp,certain,rare tokens 3.1; calls 4/callers 1 matched; globals 1; ORDER-CROSS
+0x005fa360,Sys3D::apply_texture_stage_set,en3d/Sys3d.cpp,probable-enclosed,tokens 1.6; calls 2/callers 0 matched; ORDER-CROSS; between certain matches of its file
+0x005ff290,Sys3D::linkin_resource,en3d/Sys3d.cpp,probable-enclosed,calls 0/callers 2 matched; order at chain end; between certain matches of its file
+0x005ff380,Sys3D::linkout_resource,en3d/Sys3d.cpp,probable-enclosed,calls 0/callers 1 matched; order between matched; between certain matches of its file
+0x005ff420,Sys3D::is_device_lost,en3d/Sys3d.cpp,probable-enclosed,tokens 2.0; calls 0/callers 1 matched; order between matched; between certain matches of its file
+0x005ff9d0,Sys3D::select_back_buffer_format,en3d/Sys3d.cpp,certain,calls 2/callers 0 matched; order between matched
+0x005ffc90,Sys3D::select_depth_buffer_format,en3d/Sys3d.cpp,certain,calls 1/callers 1 matched; globals 1; order between matched
+0x005ffe60,Sys3D::get_byte_per_pixel,en3d/Sys3d.cpp,certain,tokens 1.0; calls 0/callers 4 matched; order between matched
+0x005fff90,Sys3D::convert_to_format_flag,en3d/Sys3d.cpp,certain,calls 0/callers 2 matched; order between matched
+0x00600080,Sys3D::convert_from_format_flag,en3d/Sys3d.cpp,certain,calls 0/callers 4 matched; order between matched
+0x00600200,Sys3D::get_vertex_type_info,en3d/Sys3d.cpp,certain,calls 0/callers 19 matched; globals 1; order between matched
+0x00600290,Sys3D::get_index_format,en3d/Sys3d.cpp,certain,calls 0/callers 2 matched; order between matched
+0x006002b0,Sys3D::d3d_error_string,en3d/Sys3d.cpp,probable-enclosed,calls 0/callers 9 matched; globals 1; ORDER-CROSS; between certain matches of its file
+0x00600310,Sys3D::submit_vertex,en3d/Sys3d.cpp,probable-enclosed,calls 1/callers 0 matched; order between matched; between certain matches of its file
+0x00600340,Sys3D::submit_vertex,en3d/Sys3d.cpp,probable-enclosed,calls 1/callers 0 matched; order between matched; between certain matches of its file
+0x00600370,Sys3D::submit_vertex,en3d/Sys3d.cpp,probable-enclosed,calls 1/callers 0 matched; order between matched; between certain matches of its file
+0x006003a0,Sys3D::submit_vertex,en3d/Sys3d.cpp,probable-enclosed,calls 1/callers 0 matched; order between matched; between certain matches of its file
+0x006003d0,Sys3D::submit_vertex,en3d/Sys3d.cpp,probable-enclosed,calls 1/callers 0 matched; order between matched; between certain matches of its file
+0x00600400,Sys3D::submit_vertex,en3d/Sys3d.cpp,probable-enclosed,calls 1/callers 0 matched; order between matched; between certain matches of its file
+0x00600430,Sys3D::submit_vertex,en3d/Sys3d.cpp,probable-enclosed,calls 1/callers 0 matched; order between matched; between certain matches of its file
+0x00600460,Sys3D::submit_vertex,en3d/Sys3d.cpp,probable-enclosed,calls 1/callers 0 matched; order between matched; between certain matches of its file
+0x00600490,Sys3D::submit_vertex,en3d/Sys3d.cpp,certain,calls 3/callers 10 matched; order between matched
+0x00600510,Sys3D::submit_index,en3d/Sys3d.cpp,certain,calls 2/callers 2 matched; order between matched
+0x006005b0,Sys3D::begin_submit_vertex,en3d/Sys3d.cpp,certain,tokens 2.0; calls 3/callers 1 matched; globals 1; order between matched
+0x00600740,Sys3D::end_submit_vertex,en3d/Sys3d.cpp,probable-enclosed,calls 0/callers 1 matched; order between matched; between certain matches of its file
+0x00600820,Sys3D::begin_submit_index,en3d/Sys3d.cpp,certain,tokens 2.5; calls 2/callers 1 matched; globals 1; order between matched
+0x00600980,Sys3D::end_submit_index,en3d/Sys3d.cpp,probable-enclosed,calls 0/callers 1 matched; order between matched; between certain matches of its file
+0x00600a00,Sys3D::draw_primitive,en3d/Sys3d.cpp,certain,calls 0/callers 3 matched; order between matched
+0x00600a90,Sys3D::draw_indexed_primitive,en3d/Sys3d.cpp,certain,calls 0/callers 3 matched; order between matched
+0x00600c20,Sys3D::init_profile_counts,en3d/Sys3d.cpp,probable-enclosed,calls 2/callers 1 matched; ORDER-CROSS; between certain matches of its file
+0x00601000,Sys3D::log_texture_change,en3d/Sys3d.cpp,certain,string '(unnamed)'; calls 1/callers 0 matched; order between matched
+0x006010d0,Sys3D::log_draw_primitive,en3d/Sys3d.cpp,probable-enclosed,calls 1/callers 0 matched; order between matched; between certain matches of its file
+0x00601140,Sys3D::dump_log,en3d/Sys3d.cpp,certain,string 'DrawPrimitive :'; calls 3/callers 0 matched; order between matched
+0x00602120,Sys3D::apply_shader,en3d/Sys3d.cpp,probable,calls 4/callers 0 matched; ORDER-CROSS
+0x00603140,Sys3D::init_extra_depth_buffer,en3d/Sys3d.cpp,probable,calls 0/callers 1 matched; order between matched
+0x006032d0,ObjectGlow::init_depth_buffer,en3d/glow.cpp,rejected,called with this = sys3d (step 3); tokens 2.1; calls 2/callers 0 matched; globals 1
+0x00603380,Sys3D::deinit_extra_depth_buffer,en3d/Sys3d.cpp,probable,calls 0/callers 1 matched; order between matched
+0x00603400,Sys3D::init_extra_render_target,en3d/Sys3d.cpp,certain,string 'CreateTexture fails (%s)'; calls 2/callers 0 matched; globals 1; order at chain end
+0x006040e0,TextureDirectory::~TextureDirectory,en3d/TEXDIR.CPP,probable,calls 1/callers 0 matched; order at chain end; file attr class
+0x00604110,TextureDirectory::init,en3d/TEXDIR.CPP,certain,calls 2/callers 0 matched; order between matched; file attr class
+0x00604150,TextureDirectory::deinit,en3d/TEXDIR.CPP,certain,calls 1/callers 2 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x00604310,TextureDirectory::add_extension,en3d/TEXDIR.CPP,certain,calls 1/callers 1 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x00604440,TextureDirectory::add_prefix,en3d/TEXDIR.CPP,certain,calls 2/callers 2 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x00604560,TextureDirectory::poll_files,en3d/TEXDIR.CPP,probable-enclosed,calls 0/callers 1 matched; order between matched; file attr range; between certain matches of its file
+0x00604650,TextureDirectory::add_path_internal,en3d/TEXDIR.CPP,certain,calls 1/callers 1 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x00604960,TextureDirectory::scan_files_in_path,en3d/TEXDIR.CPP,certain,calls 5/callers 1 matched; globals 2; order between matched; file attr anchor+__FILE__
+0x006051c0,TextureDirectory::find_file,en3d/TEXDIR.CPP,probable-enclosed,calls 2/callers 1 matched; globals 1; ORDER-CROSS; between certain matches of its file
+0x006054c0,TextureDirectory::find_prefix,en3d/TEXDIR.CPP,certain,calls 0/callers 2 matched; order at chain end; file attr class
+0x00605a40,TextureBase::init_existing,en3d/TEXTURE.CPP,probable,calls 0/callers 4 matched
+0x00605ad0,TextureBase::set_name,en3d/TEXTURE.CPP,probable,calls 1/callers 5 matched; ORDER-CROSS
+0x00605e20,Texture2DImage::init,en3d/TEXTURE2.CPP,probable,calls 3/callers 2 matched; globals 1; order at chain end
+0x00605f00,Texture2DImage::init_existing,en3d/TEXTURE2.CPP,probable,calls 2/callers 4 matched; globals 1; order at chain end
+0x00607030,TextureBumpEnv::init,en3d/TEXTURE4.CPP,probable,calls 3/callers 0 matched; globals 1; order at chain end
+0x00608180,TextureBumpEnv::init_existing,en3d/TEXTURE4.CPP,probable,calls 2/callers 0 matched; globals 1; order at chain end
+0x00608de0,TextureArray::~TextureArray,en3d/Texturea.cpp,probable,calls 1/callers 0 matched; order at chain end; file attr class
+0x00608e10,TextureArray::init,en3d/Texturea.cpp,certain,string '.DDS'; calls 5/callers 0 matched; globals 1; order between matched
+0x00609260,TextureArray::deinit,en3d/Texturea.cpp,certain,calls 3/callers 2 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x006094c0,TextureArray::create_Texture2DImage,en3d/Texturea.cpp,certain,calls 1/callers 6 matched; order between matched; file attr range
+0x006099c0,TextureArray::read_texture,en3d/Texturea.cpp,certain,calls 3/callers 7 matched; order between matched; file attr range
+0x0060a4b0,TextureArray::get_texture,en3d/Texturea.cpp,certain,calls 1/callers 7 matched; order between matched; file attr range
+0x0060a500,TextureArray::add_ref_texture,en3d/Texturea.cpp,certain,calls 0/callers 6 matched; order between matched; file attr range
+0x0060a550,TextureArray::release_texture,en3d/Texturea.cpp,certain,calls 4/callers 11 matched; order between matched; file attr range
+0x0060a670,TextureArray::texture_set_name,en3d/Texturea.cpp,certain,calls 4/callers 1 matched; order between matched; file attr range
+0x0060a870,TextureArray::purge_cached_texture,en3d/Texturea.cpp,certain,calls 1/callers 1 matched; order between matched; file attr range
+0x0060a990,TextureArray::process_loading_texture,en3d/Texturea.cpp,probable-enclosed,calls 1/callers 0 matched; globals 1; order between matched; file attr range; between certain matches of its file
+0x0060ac20,TextureArray::add_to_named_array,en3d/Texturea.cpp,certain,calls 3/callers 1 matched; globals 2; order between matched; file attr anchor+__FILE__
+0x0060ad40,TextureArray::add_to_unnamed_array,en3d/Texturea.cpp,certain,calls 3/callers 2 matched; globals 2; order between matched; file attr anchor+__FILE__
+0x0060ae70,TextureArray::search_texture_by_name,en3d/Texturea.cpp,certain,calls 1/callers 1 matched; globals 1; ORDER-CROSS; file attr range
+0x0060b050,TextureArray::search_loading_array,en3d/Texturea.cpp,certain,calls 1/callers 1 matched; globals 1; ORDER-CROSS; file attr range
+0x0060b0d0,TextureArray::remove_from_unnamed_array,en3d/Texturea.cpp,certain,calls 1/callers 2 matched; globals 1; order between matched; file attr range
+0x0060b140,TextureArray::search_unnamed_array,en3d/Texturea.cpp,probable-enclosed,calls 0/callers 1 matched; globals 1; order between matched; file attr range; between certain matches of its file
+0x0060b1b0,TextureArray::add_to_cached_array,en3d/Texturea.cpp,certain,calls 3/callers 1 matched; globals 2; order between matched; file attr anchor+__FILE__
+0x0060b2e0,TextureArray::add_to_loading_array,en3d/Texturea.cpp,certain,calls 3/callers 0 matched; globals 2; order between matched; file attr anchor+__FILE__
+0x0060b3e0,TextureArray::remove_from_loading_array,en3d/Texturea.cpp,certain,calls 2/callers 1 matched; globals 1; order at chain end; file attr guess
+0x0060b450,TextureArray::is_transparent,en3d/Texturea.cpp,certain,string 'DDS'; calls 5/callers 0 matched; ORDER-CROSS; file attr guess
+0x0060bc00,init_rotation_y,en3d/vertex.cpp,probable,calls 0/callers 1 matched; order between matched
+0x0060bc50,init_rotation_z,en3d/vertex.cpp,certain,calls 0/callers 5 matched; order between matched
+0x0060bca0,init_rotation_axis,en3d/vertex.cpp,certain,calls 0/callers 5 matched; order between matched
+0x0060bd00,init_rotation_hvr,en3d/vertex.cpp,certain,calls 5/callers 6 matched; order between matched
+0x0060bf40,init_rotation_actor_hvr,en3d/vertex.cpp,certain,calls 4/callers 5 matched; order between matched
+0x0060c180,matrix_get_right,en3d/vertex.cpp,certain,calls 0/callers 5 matched; order between matched
+0x0060c1d0,matrix_get_down,en3d/vertex.cpp,certain,calls 0/callers 4 matched; order between matched
+0x0060c220,matrix_get_at,en3d/vertex.cpp,certain,calls 0/callers 5 matched; order between matched
+0x0060c270,matrix_set_3x3,en3d/vertex.cpp,certain,calls 0/callers 5 matched; order between matched
+0x0060c310,matrix_get_translation,en3d/vertex.cpp,certain,calls 0/callers 11 matched; order between matched
+0x0060c3b0,matrix_query_rotation,en3d/vertex.cpp,certain,calls 0/callers 3 matched; order between matched
+0x0060c430,matrix_query_actor_hvr,en3d/vertex.cpp,certain,rare tokens 3.1; order between matched
+0x0060c8e0,AngleI_to_direction_matrix,en3d/vertex.cpp,certain,calls 4/callers 0 matched; globals 1; order between matched
+0x0060cbc0,operator-,en3d/vertex.cpp,probable-enclosed,calls 0/callers 9 matched; ORDER-CROSS; between certain matches of its file
+0x0060cc20,operator+,en3d/vertex.cpp,probable-enclosed,calls 0/callers 10 matched; ORDER-CROSS; between certain matches of its file
+0x0060cc90,operator-,en3d/vertex.cpp,probable-enclosed,calls 0/callers 15 matched; ORDER-CROSS; between certain matches of its file
+0x0060cd00,operator*,en3d/vertex.cpp,probable-enclosed,calls 0/callers 11 matched; ORDER-CROSS; between certain matches of its file
+0x0060cd60,operator*,en3d/vertex.cpp,probable-enclosed,calls 0/callers 4 matched; ORDER-CROSS; between certain matches of its file
+0x0060cdc0,operator+=,en3d/vertex.cpp,probable-enclosed,calls 0/callers 3 matched; ORDER-CROSS; between certain matches of its file
+0x0060ce20,operator-=,en3d/vertex.cpp,probable-enclosed,calls 0/callers 3 matched; ORDER-CROSS; between certain matches of its file
+0x0060ced0,operator==,en3d/vertex.cpp,probable-enclosed,calls 0/callers 3 matched; ORDER-CROSS; between certain matches of its file
+0x0060d3a0,Box3d::center,en3d/vertex.cpp,probable-enclosed,calls 0/callers 4 matched; ORDER-CROSS; between certain matches of its file
+0x0060d5f0,Box3d::is_inside,en3d/vertex.cpp,probable-enclosed,calls 0/callers 7 matched; ORDER-CROSS; between certain matches of its file
+0x0060d6b0,Box3d::is_overlap,en3d/vertex.cpp,probable-enclosed,calls 0/callers 2 matched; ORDER-CROSS; between certain matches of its file
+0x0060d890,Sphere3d::is_overlap,en3d/vertex.cpp,probable-enclosed,calls 1/callers 1 matched; ORDER-CROSS; between certain matches of its file
+0x0060d920,init_plane,en3d/vertex.cpp,certain,calls 0/callers 9 matched; order between matched
+0x0060d990,init_plane,en3d/vertex.cpp,certain,calls 0/callers 3 matched; order between matched
+0x0060d9e0,plane_get_normal,en3d/vertex.cpp,certain,calls 0/callers 4 matched; order between matched
+0x0060da30,plane_dot_product,en3d/vertex.cpp,certain,calls 0/callers 14 matched; order between matched
+0x0060dc80,plane_box_min_max_dot_product,en3d/vertex.cpp,certain,calls 0/callers 2 matched; order between matched
+0x0060de40,line_seg_division,en3d/vertex.cpp,certain,calls 3/callers 2 matched; order between matched
+0x0060df10,line_seg_find_division,en3d/vertex.cpp,certain,calls 1/callers 1 matched; order between matched
+0x0060dfd0,line_seg_box_overlap,en3d/vertex.cpp,certain,calls 6/callers 0 matched; order between matched
+0x0060e3f0,line_seg_sphere_overlap,en3d/vertex.cpp,certain,calls 3/callers 0 matched; order between matched
+0x0060e590,line_seg_plane_intersect,en3d/vertex.cpp,probable-enclosed,calls 1/callers 0 matched; order between matched; between certain matches of its file
+0x0060e6a0,line_seg_plane_xy_intersect,en3d/vertex.cpp,probable-enclosed,calls 0/callers 1 matched; order between matched; between certain matches of its file
+0x0060e720,line_seg_plane_yz_intersect,en3d/vertex.cpp,probable-enclosed,calls 0/callers 1 matched; order between matched; between certain matches of its file
+0x0060e790,line_seg_plane_zx_intersect,en3d/vertex.cpp,probable-enclosed,calls 0/callers 1 matched; order between matched; between certain matches of its file
+0x0060e810,line_seg_tri_intersect,en3d/vertex.cpp,certain,calls 1/callers 1 matched; order between matched
+0x0060eae0,Frame::Frame,en3d/vertex.cpp,certain,calls 0/callers 2 matched; order between matched
+0x0060ec40,Frame::~Frame,en3d/vertex.cpp,probable-enclosed,calls 1/callers 0 matched; order between matched; between certain matches of its file
+0x0060ec70,Frame::set_parent,en3d/vertex.cpp,certain,calls 0/callers 6 matched; order between matched
+0x0060ef80,Frame::recalc_change,en3d/vertex.cpp,probable,calls 0/callers 28 matched; order at chain end
+0x0060f5c0,Vga::init_existing,en3d/vga.cpp,certain,string 'Cannot determine the pixel format of thi'; calls 2/callers 0 matched; globals 1; order at chain end
+0x0060f760,Vga::load_pal,en3d/vga.cpp,probable,calls 5/callers 0 matched; order at chain end
+0x0060fa50,VgaBuf::buf_width,en3d/VGABUF.CPP,probable,calls 0/callers 2 matched; order at chain end
+0x0060fa70,VgaBuf::buf_height,en3d/VGABUF.CPP,certain,calls 0/callers 2 matched; order between matched
+0x0060fb60,VgaBuf::init_back,en3d/VGABUF.CPP,certain,calls 2/callers 0 matched; order between matched
+0x0060fca0,VgaBuf::update_buf_desc,en3d/VGABUF.CPP,probable-enclosed,calls 2/callers 3 matched; ORDER-CROSS; between certain matches of its file
+0x0060fd70,VgaBuf::handle_changed,en3d/VGABUF.CPP,certain,calls 3/callers 0 matched; order between matched
+0x0060fe60,VgaBuf::lock_buf,en3d/VGABUF.CPP,certain,string 'Cannot lock surface %x'; calls 2/callers 3 matched; globals 1; order between matched
+0x0060ff20,VgaBuf::unlock_buf,en3d/VGABUF.CPP,certain,calls 0/callers 3 matched; order between matched
+0x0060ff70,VgaBuf::temp_unlock,en3d/VGABUF.CPP,certain,calls 1/callers 1 matched; order between matched
+0x0060ffd0,VgaBuf::temp_restore_lock,en3d/VGABUF.CPP,probable-enclosed,calls 1/callers 0 matched; order between matched; between certain matches of its file
+0x00610040,VgaBuf::temp_lock,en3d/VGABUF.CPP,certain,calls 1/callers 1 matched; order between matched
+0x006100a0,VgaBuf::temp_restore_unlock,en3d/VGABUF.CPP,certain,calls 1/callers 1 matched; order between matched
+0x00611e70,VgaBuf::write_bmp_file,en3d/VGABUF.CPP,certain,tokens 1.0; calls 8/callers 0 matched; order at chain end; file attr guess
+0x00613270,VgaCustomPalette::~VgaCustomPalette,en3d/Vgalock.cpp,probable,calls 1/callers 0 matched; globals 1; order at chain end; file attr anchor+__FILE__
+0x00613310,VgaCustomPalette::set_custom_palette,en3d/Vgalock.cpp,certain,calls 5/callers 0 matched; order between matched; file attr guess
+0x006134d0,MouseDispCount::MouseDispCount,en3d/Vgalock.cpp,probable,calls 1/callers 0 matched; order at chain end; file attr guess
+0x00613650,View3D::View3D,en3d/View3d.cpp,probable,calls 0/callers 2 matched; order at chain end
+0x00613700,View3D::~View3D,en3d/View3d.cpp,certain,calls 0/callers 2 matched; order between matched
+0x00613730,View3D::init,en3d/View3d.cpp,certain,calls 2/callers 3 matched; order between matched
+0x00613ba0,View3D::is_inited,en3d/View3d.cpp,probable-enclosed,calls 0/callers 1 matched; order between matched; between certain matches of its file
+0x00613bf0,View3D::set_view_area,en3d/View3d.cpp,certain,calls 1/callers 3 matched; order between matched
+0x00613ca0,View3D::set_clip_distance,en3d/View3d.cpp,certain,calls 1/callers 2 matched; order between matched
+0x00613d30,View3D::set_clear_type,en3d/View3d.cpp,certain,calls 0/callers 3 matched; order between matched
+0x00613db0,View3D::set_scene,en3d/View3d.cpp,certain,calls 0/callers 3 matched; order between matched
+0x00613de0,View3D::get_frame,en3d/View3d.cpp,certain,calls 1/callers 2 matched; order between matched
+0x00613e10,View3D::validate_cam_setting,en3d/View3d.cpp,certain,rare tokens 6.0; order between matched
+0x00614110,View3D::set_cam_setting,en3d/View3d.cpp,certain,calls 0/callers 3 matched; order between matched
+0x00614170,View3D::mark_changed,en3d/View3d.cpp,certain,calls 0/callers 3 matched; order between matched
+0x006141a0,View3D::recalc_change,en3d/View3d.cpp,certain,calls 3/callers 15 matched; order between matched
+0x00614630,View3D::can_render,en3d/View3d.cpp,certain,calls 3/callers 0 matched; order between matched
+0x006146e0,View3D::render_ordered,en3d/View3d.cpp,certain,calls 3/callers 0 matched; order between matched
+0x00614760,View3D::render,en3d/View3d.cpp,certain,calls 3/callers 0 matched; order between matched
+0x00615190,View3D::enable_render_order,en3d/View3d.cpp,certain,calls 2/callers 0 matched; order between matched
+0x006153c0,View3D::calc_zoom_pos,en3d/View3d.cpp,probable-enclosed,calls 1/callers 0 matched; order between matched; between certain matches of its file
+0x006154d0,View3D::pixel_ray,en3d/View3d.cpp,certain,calls 2/callers 0 matched; order between matched
+0x006156b0,View3D::is_inside_view,en3d/View3d.cpp,certain,calls 1/callers 1 matched; order between matched
+0x00615ba0,View3D::is_inside_view,en3d/View3d.cpp,certain,calls 3/callers 1 matched; order between matched
+0x00615d70,View3D::is_near_camera,en3d/View3d.cpp,certain,calls 3/callers 1 matched; order between matched
+0x00615e10,View3D::is_near_camera,en3d/View3d.cpp,probable-enclosed,calls 1/callers 1 matched; ORDER-CROSS; between certain matches of its file
+0x00615ed0,View3D::is_occluded,en3d/View3d.cpp,probable-enclosed,calls 1/callers 0 matched; order between matched; between certain matches of its file
+0x00616030,View3D::is_occluded,en3d/View3d.cpp,certain,calls 2/callers 0 matched; order between matched
+0x00616150,View3D::calc_occluded_plane,en3d/View3d.cpp,certain,calls 7/callers 1 matched; order between matched
+0x00616460,View3D::calc_view_frustrum,en3d/View3d.cpp,probable,calls 2/callers 1 matched; order at chain end
+0x00616e90,View3D::get_camera_matrix,en3d/View3d.cpp,probable,calls 2/callers 3 matched; ORDER-CROSS
+0x00616f20,View3D::get_inv_camera_matrix_lh,en3d/View3d.cpp,probable,calls 1/callers 3 matched; ORDER-CROSS
+0x00616f80,View3D::get_projection_matrix_lh,en3d/View3d.cpp,probable,calls 1/callers 1 matched; ORDER-CROSS
+0x00616fe0,View3D::get_effects_enabled,en3d/View3d.cpp,probable,calls 0/callers 2 matched; ORDER-CROSS
+0x00617220,View3D::is_in_front_camera,en3d/View3d.cpp,probable,calls 2/callers 1 matched; ORDER-CROSS
+0x00618200,VertexShaderFactory::get_shader,en3d/VShader2.cpp,probable,calls 2/callers 1 matched; order at chain end
+0x00618590,VertexShaderFactory::create_shader,en3d/VShader2.cpp,certain,calls 3/callers 1 matched; globals 1; order between matched
+0x00618bb0,VertexShaderFactory::generate_declaration,en3d/VShader2.cpp,probable-enclosed,calls 0/callers 1 matched; order between matched; between certain matches of its file
+0x00618e40,VertexShaderFactory::get_required_fragments,en3d/VShader2.cpp,certain,string 'write_fog_to_texture_coordinate_2'; calls 0/callers 1 matched; order between matched
+0x0061a8c0,VertexShaderFactory::set_shader_constants,en3d/VShader2.cpp,probable-enclosed,calls 4/callers 1 matched; ORDER-CROSS; between certain matches of its file
+0x0061aa50,VertexShaderFactory::set_shader_common_constants,en3d/VShader2.cpp,probable-enclosed,calls 0/callers 1 matched; order between matched; between certain matches of its file
+0x0061aba0,VertexShaderFactory::set_matrix_constants,en3d/VShader2.cpp,certain,calls 1/callers 1 matched; order between matched
+0x0061c390,VertexShaderFactory::set_shader_light_constants,en3d/VShader2.cpp,certain,calls 3/callers 1 matched; order between matched
+0x0061d240,VertexShaderFactory::set_scattering_shader_constant,en3d/VShader2.cpp,certain,tokens 1.5; calls 4/callers 1 matched; order at chain end
+0x00628ed0,Icon3D::init,en2d/icon3d.cpp,certain,tokens 1.7; calls 5/callers 0 matched
+0x00635760,Scene::sort_scene_sectors,en3d/Scene.cpp,probable,calls 2/callers 1 matched; ORDER-CROSS
+0x00637520,BlockedArrayB::BlockedArrayB,enpath/blkarrb.cpp,probable,calls 0/callers 1 matched; order at chain end; file attr class
+0x006375b0,BlockedArrayB::~BlockedArrayB,enpath/blkarrb.cpp,certain,calls 1/callers 1 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x006376d0,BlockedArrayB::zap,enpath/blkarrb.cpp,probable-enclosed,calls 0/callers 1 matched; order between matched; file attr range; between certain matches of its file
+0x00637700,BlockedArrayB::linkin,enpath/blkarrb.cpp,certain,calls 2/callers 2 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x00637920,BlockedArrayB::get,enpath/blkarrb.cpp,probable-enclosed,calls 0/callers 1 matched; order between matched; file attr range; between certain matches of its file
+0x00637980,BlockedArrayB::update,enpath/blkarrb.cpp,probable-enclosed,calls 0/callers 1 matched; order between matched; file attr range; gap fill; between certain matches of its file
+0x006379f0,BlockedArrayB::linkout,enpath/blkarrb.cpp,certain,calls 1/callers 1 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x00637aa0,BlockedArray::BlockedArray,enpath/blkarrb.cpp,certain,calls 1/callers 9 matched; order between matched; file attr range
+0x00637b00,BlockedArray::~BlockedArray,enpath/blkarrb.cpp,certain,calls 2/callers 0 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x00637bb0,BlockedArray::zap,enpath/blkarrb.cpp,certain,calls 1/callers 5 matched; order between matched; file attr range
+0x00637be0,BlockedArray::linkin,enpath/blkarrb.cpp,certain,calls 2/callers 8 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x00637cb0,BlockedArray::add_blank,enpath/blkarrb.cpp,certain,calls 2/callers 1 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x00637da0,BlockedArray::get,enpath/blkarrb.cpp,certain,calls 1/callers 55 matched; order between matched; file attr guess
+0x00637de0,BlockedArray::update,enpath/blkarrb.cpp,probable-enclosed,calls 1/callers 0 matched; order between matched; file attr guess; between certain matches of its file
+0x00637e20,BlockedArray::linkout,enpath/blkarrb.cpp,certain,calls 2/callers 3 matched; globals 1; order at chain end; file attr class
+0x00662ed0,Particle::remove_from_sector,enparticle/Particle.cpp,probable,calls 1/callers 1 matched; order at chain end
+0x00662f60,Particle::update,enparticle/Particle.cpp,certain,registered name equal; calls 5/callers 1 matched; globals 1; order between matched
+0x00663800,ParticleArray::add_particle,enparticle/Particle.cpp,certain,calls 1/callers 1 matched; order between matched
+0x00663850,ParticleArray::remove_particle_from_sector,enparticle/Particle.cpp,probable-enclosed,calls 1/callers 1 matched; ORDER-CROSS; between certain matches of its file
+0x006638b0,ParticleArray::size,enparticle/Particle.cpp,certain,calls 0/callers 3 matched; order between matched
+0x006638e0,ParticleArray::packed_size,enparticle/Particle.cpp,probable,calls 0/callers 3 matched; order at chain end
+0x00663990,operator+,enpath/pathsp.cpp,probable,calls 0/callers 2 matched; order at chain end
+0x006639e0,operator-,enpath/pathsp.cpp,certain,calls 0/callers 13 matched; order between matched
+0x00663a30,operator*,enpath/pathsp.cpp,certain,calls 0/callers 2 matched; order between matched
+0x00663c00,PathSearchNode::deinit,enpath/pathsp.cpp,probable-enclosed,calls 0/callers 1 matched; order between matched; between certain matches of its file
+0x00663c50,PathPolygon::PathPolygon,enpath/pathsp.cpp,certain,calls 0/callers 2 matched; order between matched
+0x00663cb0,PathPolygon::init,enpath/pathsp.cpp,certain,calls 0/callers 3 matched; order between matched; file attr class
+0x00663f70,PathPolygon::deinit,enpath/pathsp.cpp,certain,calls 1/callers 2 matched; order between matched
+0x00663ff0,PathPolygon::is_depend,enpath/pathsp.cpp,certain,calls 0/callers 3 matched; order between matched; gap fill
+0x00664080,PathPolygon::enum_adj_polygon,enpath/pathsp.cpp,probable-enclosed,calls 0/callers 1 matched; order between matched; between certain matches of its file
+0x006640d0,PathPolygon::find_adj_polygon_edge,enpath/pathsp.cpp,certain,calls 0/callers 2 matched; order between matched
+0x00664130,PathPolygon::connect_polygon,enpath/pathsp.cpp,certain,calls 0/callers 4 matched; order between matched; file attr class
+0x00664180,PathPolygon::calc_polygon_z,enpath/pathsp.cpp,certain,calls 2/callers 8 matched; order between matched
+0x006645b0,PathPolygon::calc_polygon_pos_normal,enpath/pathsp.cpp,certain,calls 5/callers 4 matched; order between matched
+0x00664920,PathPolygon::init_search_node,enpath/pathsp.cpp,certain,calls 1/callers 1 matched; order between matched
+0x00664b70,SPointInt::line_segment_intersection,enpath/pathsp.cpp,probable-enclosed,calls 0/callers 2 matched; ORDER-CROSS; between certain matches of its file
+0x00664c60,SPointInt::line_segment_intersection2,enpath/pathsp.cpp,probable-enclosed,calls 0/callers 2 matched; ORDER-CROSS; between certain matches of its file
+0x00664d70,SPointInt::rect_dist2_to_line_segment,enpath/pathsp.cpp,probable-enclosed,calls 0/callers 5 matched; ORDER-CROSS; between certain matches of its file
+0x00664eb0,PathPolygon::set_path_parent,enpath/pathsp.cpp,certain,calls 1/callers 2 matched; globals 1; order between matched
+0x00665000,PathSpace::~PathSpace,enpath/pathsp.cpp,certain,calls 2/callers 0 matched; order between matched
+0x00665260,PathSpace::deinit,enpath/pathsp.cpp,certain,calls 2/callers 0 matched; order between matched
+0x00665290,PathSpace::clear_path_list,enpath/pathsp.cpp,certain,calls 2/callers 2 matched; order between matched
+0x00665480,PathSpace::add_point,enpath/pathsp.cpp,certain,calls 2/callers 0 matched; order between matched
+0x00665570,PathSpace::can_del_point,enpath/pathsp.cpp,certain,calls 2/callers 0 matched; order between matched
+0x00665940,PathSpace::find_point,enpath/pathsp.cpp,probable-enclosed,calls 1/callers 3 matched; ORDER-CROSS; between certain matches of its file
+0x00665a00,PathSpace::get_point,enpath/pathsp.cpp,probable-enclosed,calls 1/callers 0 matched; order between matched; between certain matches of its file
+0x00665aa0,PathSpace::move_point,enpath/pathsp.cpp,probable-enclosed,calls 1/callers 0 matched; order between matched; between certain matches of its file
+0x00665b20,PathSpace::add_path_line,enpath/pathsp.cpp,certain,calls 3/callers 0 matched; order between matched
+0x00665c60,PathSpace::can_del_path_line,enpath/pathsp.cpp,certain,calls 2/callers 0 matched; order between matched
+0x00665ed0,PathSpace::del_path_line,enpath/pathsp.cpp,probable-enclosed,calls 1/callers 0 matched; order between matched; gap fill; between certain matches of its file
+0x00665f70,PathSpace::get_path_line,enpath/pathsp.cpp,certain,calls 2/callers 0 matched; order between matched
+0x00666010,PathSpace::get_path_line_pos,enpath/pathsp.cpp,probable-enclosed,calls 1/callers 0 matched; order between matched; between certain matches of its file
+0x006660e0,PathSpace::reverse_path_line,enpath/pathsp.cpp,probable-enclosed,calls 1/callers 0 matched; order between matched; between certain matches of its file
+0x00666160,PathSpace::add_assist_line,enpath/pathsp.cpp,certain,calls 3/callers 0 matched; order between matched
+0x00666590,PathSpace::get_assist_line,enpath/pathsp.cpp,certain,calls 2/callers 0 matched; order between matched
+0x00666630,PathSpace::get_assist_line_pos,enpath/pathsp.cpp,probable-enclosed,calls 1/callers 0 matched; order between matched; between certain matches of its file
+0x00666700,PathSpace::reverse_assist_line,enpath/pathsp.cpp,probable-enclosed,calls 1/callers 0 matched; order between matched; between certain matches of its file
+0x00666780,PathSpace::add_sub_path_line,enpath/pathsp.cpp,certain,calls 3/callers 0 matched; order between matched
+0x00666880,PathSpace::can_del_sub_path_line,enpath/pathsp.cpp,certain,calls 2/callers 0 matched; order between matched
+0x00666af0,PathSpace::del_sub_path_line,enpath/pathsp.cpp,probable-enclosed,calls 1/callers 0 matched; order between matched; gap fill; between certain matches of its file
+0x00666b90,PathSpace::get_sub_path_line,enpath/pathsp.cpp,certain,calls 2/callers 0 matched; order between matched
+0x00666c30,PathSpace::get_sub_path_line_pos,enpath/pathsp.cpp,probable-enclosed,calls 1/callers 0 matched; order between matched; between certain matches of its file
+0x00666d00,PathSpace::reverse_sub_path_line,enpath/pathsp.cpp,probable-enclosed,calls 1/callers 0 matched; order between matched; between certain matches of its file
+0x00666d80,PathSpace::clear_obstacle_polygon,enpath/pathsp.cpp,probable-enclosed,calls 1/callers 2 matched; ORDER-CROSS; between certain matches of its file
+0x00666db0,PathSpace::add_obstacle_polygon,enpath/pathsp.cpp,certain,calls 2/callers 0 matched; order between matched
+0x00666ed0,PathSpace::add_obstacle_vertex,enpath/pathsp.cpp,probable-enclosed,calls 1/callers 0 matched; order between matched; between certain matches of its file
+0x00666f70,PathSpace::del_obstacle_polygon,enpath/pathsp.cpp,certain,calls 2/callers 0 matched; order between matched
+0x00666fc0,PathSpace::get_obstacle_count,enpath/pathsp.cpp,probable-enclosed,calls 0/callers 1 matched; order between matched; between certain matches of its file
+0x00667000,PathSpace::get_obstacle_vertex_count,enpath/pathsp.cpp,certain,calls 1/callers 1 matched; order between matched
+0x00667040,PathSpace::get_obstacle_vertex,enpath/pathsp.cpp,probable-enclosed,calls 1/callers 0 matched; order between matched; between certain matches of its file
+0x006670e0,PathSpace::clear_path_polygons,enpath/pathsp.cpp,certain,calls 4/callers 1 matched; order between matched
+0x00667190,PathSpace::gen_path_triangles_unassisted,enpath/pathsp.cpp,certain,"string 'Assist Line : (%d,%d)-(%d,%d)'; calls 24/callers 0 matched; globals 2; order between matched"
+0x00669cc0,point_to_line_segment_dist2,enpath/pathsp.cpp,probable-enclosed,calls 1/callers 1 matched; ORDER-CROSS; between certain matches of its file
+0x00669e50,line_segment_overlap_triangle,enpath/pathsp.cpp,probable-enclosed,calls 3/callers 1 matched; ORDER-CROSS; between certain matches of its file
+0x0066a640,PathSpace::merge_convex_polygons,enpath/pathsp.cpp,certain,calls 9/callers 0 matched; order between matched
+0x0066b7c0,PathSpace::link_gen_path_polygon,enpath/pathsp.cpp,probable-enclosed,calls 2/callers 1 matched; ORDER-CROSS; between certain matches of its file
+0x0066b9f0,PathSpace::get_polygon_count,enpath/pathsp.cpp,certain,calls 0/callers 4 matched; order between matched; file attr class
+0x0066ba30,PathSpace::get_polygon_priority,enpath/pathsp.cpp,probable-enclosed,calls 1/callers 0 matched; order between matched; between certain matches of its file
+0x0066baa0,PathSpace::get_adjacent_polygon,enpath/pathsp.cpp,probable-enclosed,calls 1/callers 0 matched; order between matched; between certain matches of its file
+0x0066bb40,PathSpace::find_polygon,enpath/pathsp.cpp,certain,calls 6/callers 0 matched; order between matched; file attr class
+0x0066c020,PathSpace::find_polygon,enpath/pathsp.cpp,certain,calls 7/callers 0 matched; order between matched; file attr class
+0x0066c710,PathSpace::find_nearest_polygon,enpath/pathsp.cpp,certain,calls 6/callers 2 matched; order between matched; file attr class
+0x0066c900,PathSpace::find_nearest_polygon,enpath/pathsp.cpp,certain,calls 6/callers 1 matched; order between matched; file attr class
+0x0066cae0,PathSpace::calc_polygon_z,enpath/pathsp.cpp,certain,calls 2/callers 4 matched; order between matched
+0x0066cb40,PathSpace::find_path,enpath/pathsp.cpp,certain,calls 6/callers 0 matched; order between matched
+0x0066ce30,find_path2,enpath/pathsp.cpp,probable-enclosed,calls 9/callers 1 matched; ORDER-CROSS; between certain matches of its file
+0x0066dd30,pfind_f_dist,enpath/pathsp.cpp,probable-enclosed,calls 0/callers 2 matched; globals 1; ORDER-CROSS; between certain matches of its file
+0x0066ddb0,propagate_update,enpath/pathsp.cpp,probable-enclosed,calls 2/callers 2 matched; ORDER-CROSS; between certain matches of its file
+0x0066e010,PathSpace::test_detect,enpath/pathsp.cpp,probable-enclosed,calls 2/callers 0 matched; ORDER-CROSS; between certain matches of its file
+0x0066e2a0,PathLine::detect_select,enpath/pathsp.cpp,probable-enclosed,calls 3/callers 1 matched; ORDER-CROSS; between certain matches of its file
+0x0066e640,PathResult2::set_start,enpath/pathsp.cpp,probable-enclosed,calls 2/callers 1 matched; ORDER-CROSS; between certain matches of its file
+0x0066e720,PathResult2::set_actual_dest,enpath/pathsp.cpp,probable-enclosed,calls 1/callers 2 matched; ORDER-CROSS; between certain matches of its file
+0x0066e870,PathResult2::append_path_point,enpath/pathsp.cpp,probable-enclosed,calls 1/callers 1 matched; ORDER-CROSS; between certain matches of its file
+0x0066ece0,PathResult2::smooth_path,enpath/pathsp.cpp,certain,tokens 1.5; calls 2/callers 1 matched; globals 1; ORDER-CROSS; file attr guess
+0x0066fb40,add_line_to_spatial_index,enpath/pathsp.cpp,certain,calls 1/callers 1 matched; ORDER-CROSS; file attr guess
+0x0066fc50,compare_rational,enpath/pathsp.cpp,certain,calls 0/callers 2 matched; ORDER-CROSS; file attr guess
+0x0066fcd0,PathSpace::save_path_polygon,enpath/pathsp.cpp,certain,calls 6/callers 0 matched; ORDER-CROSS; file attr guess
+0x00670980,PathSpace::load_path_polygon,enpath/pathsp.cpp,certain,calls 15/callers 0 matched; globals 1; ORDER-CROSS; file attr anchor+__FILE__
+0x006718c0,PathPolygon::is_inside_polygon,enpath/pathsp.cpp,certain,calls 2/callers 6 matched; ORDER-CROSS; file attr range
+0x00671cb0,PathPolygon::is_inside_polygon2,enpath/pathsp.cpp,certain,calls 2/callers 2 matched; ORDER-CROSS; file attr range
+0x00671fb0,PathPolygon::is_inside_polygon3,enpath/pathsp.cpp,certain,calls 3/callers 0 matched; ORDER-CROSS; file attr range
+0x00672500,PathPolygon::is_inside_polygon4,enpath/pathsp.cpp,certain,calls 4/callers 2 matched; ORDER-CROSS; file attr range
+0x00672e40,PathPolygon::calculate_along_edge_direction,enpath/pathsp.cpp,certain,calls 0/callers 2 matched; ORDER-CROSS; file attr range
+0x006730d0,PathPolygon::find_min_dist2,enpath/pathsp.cpp,certain,calls 1/callers 5 matched; ORDER-CROSS; file attr range
+0x006731d0,PathSpace::generate_offsetted_path,enpath/pathsp.cpp,certain,calls 5/callers 0 matched; ORDER-CROSS; file attr range
+0x006736e0,PathSpace::get_polygon_exit,enpath/pathsp.cpp,certain,calls 5/callers 2 matched; order between matched; file attr range
+0x006739c0,PathSpace::get_polygon_exit2,enpath/pathsp.cpp,certain,calls 5/callers 0 matched; order between matched; file attr range
+0x00673d00,PathSpace::find_polygon_from_cur,enpath/pathsp.cpp,certain,calls 3/callers 1 matched; order between matched; file attr range
+0x00673e20,PathSpace::find_nearest_polygon_from_cur,enpath/pathsp.cpp,certain,calls 3/callers 1 matched; order between matched; file attr range
+0x00673f30,PathSpace::find_polygon,enpath/pathsp.cpp,certain,calls 2/callers 0 matched; ORDER-CROSS; file attr range
+0x00674590,PathSpace::invalidate_polygon_tree_struct,enpath/pathsp.cpp,certain,calls 1/callers 2 matched; order between matched; file attr range
+0x006745e0,PathSpace::build_polygon_tree_struct,enpath/pathsp.cpp,certain,calls 7/callers 4 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x006747a0,PathSpace::build_polygon_tree_struct_recur,enpath/pathsp.cpp,certain,calls 5/callers 2 matched; order at chain end; file attr class
+0x00674f50,PathSearchNode::~PathSearchNode,enpath/pathsp.cpp,certain,calls 0/callers 2 matched; ORDER-CROSS; file attr guess
+0x006751a0,PathResult2::insert_check_point,enpath/pathsp.cpp,certain,calls 1/callers 1 matched; ORDER-CROSS; file attr guess
+0x00675430,PathPolygonTree::search_nearest_polygon_xy,enpath/pathsp.cpp,certain,calls 2/callers 3 matched; ORDER-CROSS; file attr guess
+0x00675660,PathSpace::calc_connectivity,enpath/pathsp.cpp,certain,calls 4/callers 3 matched; ORDER-CROSS; file attr class
+0x00675930,ParticleEmitter::~ParticleEmitter,enparticle/PEmitter.cpp,probable,calls 1/callers 1 matched; order at chain end
+0x006759a0,ParticleEmitter::init,enparticle/PEmitter.cpp,certain,calls 4/callers 1 matched; globals 1; order between matched
+0x00675b30,ParticleEmitter::deinit,enparticle/PEmitter.cpp,certain,calls 4/callers 2 matched; order between matched
+0x00675e90,ParticleEmitter::update,enparticle/PEmitter.cpp,certain,calls 17/callers 1 matched; order between matched
+0x006771c0,ParticleEmitter::stop_emit,enparticle/PEmitter.cpp,certain,calls 1/callers 1 matched; order between matched
+0x00677250,ParticleEmitter::start_emit,enparticle/PEmitter.cpp,certain,calls 1/callers 1 matched; globals 1; order between matched
+0x006772f0,ParticleEmitter::get_num_of_active_particles,enparticle/PEmitter.cpp,certain,calls 1/callers 1 matched; order between matched
+0x00677390,ParticleEmitter::compile,enparticle/PEmitter.cpp,certain,string '1.00'; calls 5/callers 0 matched; globals 2; order between matched
+0x00677730,ParticleEmitter::event_factory,enparticle/PEmitter.cpp,certain,rare tokens 16.5; calls 0/callers 1 matched; order between matched
+0x00677e00,ParticleEmitter::deinit_event_sequences,enparticle/PEmitter.cpp,certain,calls 2/callers 3 matched; order between matched
+0x00677f00,ParticleEmitter::process_particle_system_block,enparticle/PEmitter.cpp,certain,string 'Cannot specify any particle system prope'; calls 7/callers 1 matched; globals 1; order between matched
+0x00678320,ParticleEmitter::process_event_sequence_block,enparticle/PEmitter.cpp,certain,string 'Unknown sequence alpha op mode property!'; calls 9/callers 1 matched; globals 2; order at chain end
+0x00679300,ParticleEmitter::copy_sequence_array,enparticle/PEmitter.cpp,probable,calls 4/callers 1 matched; ORDER-CROSS
+0x0067a1c0,ParticleEmitter::set_emitter_name,enparticle/PEmitter.cpp,probable,calls 0/callers 2 matched; ORDER-CROSS
+0x0067a240,ParticleEmitter::enable_create_particle,enparticle/PEmitter.cpp,probable,calls 0/callers 3 matched; ORDER-CROSS
+0x0067acb0,ParticleEmitterTokenizer::get_next_token,enparticle/PETOKEN.H,certain,tokens 1.5; calls 0/callers 20 matched; globals 1
+0x0067cb70,ParticleEmitterTokenizer::~ParticleEmitterTokenizer,enparticle/PEToken.cpp,probable,calls 1/callers 0 matched; globals 1; order between matched
+0x0067cbf0,ParticleEmitterTokenizer::process_number,enparticle/PEToken.cpp,certain,string 'Expecting either Random(...) or a number'; calls 1/callers 14 matched; globals 1; order between matched
+0x0067cdf0,ParticleEmitterTokenizer::process_vector,enparticle/PEToken.cpp,certain,rare tokens 5.5; calls 2/callers 3 matched; globals 1; order between matched
+0x0067d050,ParticleEmitterTokenizer::process_color,enparticle/PEToken.cpp,certain,string 'Expecting RGBA(...)!'; calls 2/callers 1 matched; globals 1; order between matched
+0x0067d340,ParticleEmitterTokenizer::process_time,enparticle/PEToken.cpp,certain,"string 'Expected time specifier: ""[fade so] at"",'; calls 2/callers 1 matched; globals 1; order between matched"
+0x0067d490,ParticleEmitterTokenizer::process_color_op_mode,enparticle/PEToken.cpp,certain,string 'Invalid color op mode!'; calls 1/callers 1 matched; globals 1; order between matched
+0x0067d590,ParticleEmitterTokenizer::process_alpha_op_mode,enparticle/PEToken.cpp,certain,string 'ALPHA_TEXTURE'; calls 1/callers 1 matched; globals 1; order between matched
+0x0067d690,ParticleEmitterTokenizer::add_token,enparticle/PEToken.cpp,certain,calls 2/callers 0 matched; order between matched
+0x0067d6f0,ParticleEmitterTokenizer::set_token_type,enparticle/PEToken.cpp,certain,string 'COLOR_'; calls 0/callers 1 matched; order at chain end
+0x0067e730,ParticleEventSize::process_token_stream,enparticle/PEvent.cpp,certain,string 'Expecting Size!'; calls 2/callers 0 matched; globals 1; order between matched
+0x0067e7f0,ParticleEventColor::process_token_stream,enparticle/PEvent.cpp,certain,string 'Expecting Color!'; calls 2/callers 0 matched; globals 1; order between matched
+0x0067e8b0,ParticleEventColorRed::process_token_stream,enparticle/PEvent.cpp,certain,string 'Expecting = after ColorRed.'; calls 2/callers 0 matched; globals 1; order between matched
+0x0067e970,ParticleEventColorGreen::process_token_stream,enparticle/PEvent.cpp,certain,string 'Expecting ColorGreen!'; calls 2/callers 0 matched; globals 1; order between matched
+0x0067ea30,ParticleEventColorBlue::process_token_stream,enparticle/PEvent.cpp,certain,string 'Expecting = after ColorBlue.'; calls 2/callers 0 matched; globals 1; order between matched
+0x0067eaf0,ParticleEventColorAlpha::process_token_stream,enparticle/PEvent.cpp,certain,string 'Expecting = after ColorAlpha.'; calls 2/callers 0 matched; globals 1; order between matched
+0x0067ebb0,ParticleEventVelocity::process_token_stream,enparticle/PEvent.cpp,certain,string 'Expecting Velocity!'; calls 2/callers 0 matched; globals 1; order between matched
+0x0067ec70,ParticleEventVelocityX::process_token_stream,enparticle/PEvent.cpp,certain,string 'Expecting = after VelocityX.'; calls 2/callers 0 matched; globals 1; order between matched
+0x0067ed30,ParticleEventVelocityY::process_token_stream,enparticle/PEvent.cpp,certain,string 'Expecting = after VelocityY.'; calls 2/callers 0 matched; globals 1; order between matched
+0x0067edf0,ParticleEventVelocityZ::process_token_stream,enparticle/PEvent.cpp,certain,string 'Expecting = after VelocityZ.'; calls 2/callers 0 matched; globals 1; order between matched
+0x0067eeb0,ParticleEventEventTimer::process_token_stream,enparticle/PEvent.cpp,certain,string 'Expecting EventTimer!'; calls 2/callers 0 matched; globals 1; order at chain end
+0x0067ef90,ParticleEventSequence::ParticleEventSequence,enparticle/PEventSq.cpp,probable,calls 1/callers 2 matched; globals 1; order at chain end
+0x0067f210,ParticleEventSequence::init,enparticle/PEventSq.cpp,certain,calls 0/callers 2 matched; order between matched
+0x0067f250,ParticleEventSequence::deinit,enparticle/PEventSq.cpp,certain,calls 1/callers 1 matched; order between matched
+0x0067f380,ParticleEventSequence::update_particles,enparticle/PEventSq.cpp,certain,calls 12/callers 1 matched; globals 2; order between matched
+0x0067faf0,ParticleEventSequence::append_particles_to_plane,enparticle/PEventSq.cpp,certain,calls 18/callers 1 matched; globals 1; order between matched
+0x00680eb0,ParticleEventSequence::process_random_time_events,enparticle/PEventSq.cpp,probable,calls 1/callers 0 matched; globals 1; order between matched
+0x00681070,ParticleEventSequence::create_particle,enparticle/PEventSq.cpp,probable,calls 9/callers 1 matched; globals 1; order at chain end
+0x00681ea0,SpatialIndex::SpatialIndex,enpath/spindex.cpp,certain,calls 1/callers 1 matched; order at chain end; file attr guess
+0x00681ee0,SpatialIndex::~SpatialIndex,enpath/spindex.cpp,certain,calls 4/callers 1 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x00681fe0,SpatialIndex::init,enpath/spindex.cpp,certain,calls 3/callers 1 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x006820d0,SpatialIndex::deinit,enpath/spindex.cpp,certain,calls 4/callers 1 matched; globals 1; order between matched; file attr anchor+__FILE__
+0x006821d0,SpatialIndex::add_obj,enpath/spindex.cpp,certain,calls 4/callers 1 matched; order between matched; file attr range
+0x006822d0,SpatialIndex::del_obj,enpath/spindex.cpp,certain,calls 4/callers 0 matched; order between matched; file attr range
+0x00682370,SpatialIndex::del_obj,enpath/spindex.cpp,certain,calls 2/callers 1 matched; order between matched; file attr range
+0x00682410,SpatialIndex::del_obj,enpath/spindex.cpp,certain,calls 3/callers 2 matched; order between matched; file attr range
+0x006824a0,SpatialIndex::change_pos,enpath/spindex.cpp,certain,calls 4/callers 0 matched; order between matched; file attr range
+0x00682560,SpatialIndex::change_pos,enpath/spindex.cpp,certain,calls 2/callers 1 matched; order between matched; file attr range
+0x00682610,SpatialIndex::change_pos,enpath/spindex.cpp,certain,calls 4/callers 2 matched; order between matched; file attr range
+0x006827a0,SpatialIndex::operator[],enpath/spindex.cpp,certain,string 'SpatialIndex::operator[]'; registered name equal; calls 1/callers 0 matched; globals 1; order between matched; file attr range
+0x00682800,SpatialIndex::search_obj,enpath/spindex.cpp,certain,calls 4/callers 1 matched; order between matched; file attr range
+0x00682a90,SpatialIndex::search_nearest_obj,enpath/spindex.cpp,certain,calls 8/callers 0 matched; globals 1; order between matched; file attr range
+0x00683110,SpatialIndex::calc_zone,enpath/spindex.cpp,certain,calls 0/callers 6 matched; order between matched; file attr range
+0x00683280,SpatialIndex::get_zone_info,enpath/spindex.cpp,certain,calls 0/callers 5 matched; order between matched; file attr range
+0x006832c0,SpatialIndex::find_from_zone,enpath/spindex.cpp,certain,calls 2/callers 2 matched; order between matched; file attr range
+0x00683350,SpatialIndex::add_to_zone,enpath/spindex.cpp,certain,calls 1/callers 2 matched; order between matched; file attr range
+0x006834c0,SpatialIndex::remove_from_zone,enpath/spindex.cpp,certain,calls 3/callers 2 matched; order between matched; file attr range
+0x00683650,SpatialIndex::is_deleted,enpath/spindex.cpp,certain,calls 0/callers 6 matched; ORDER-CROSS; file attr range
+0x006836b0,SpatialIndex::validate_zone,enpath/spindex.cpp,certain,calls 3/callers 0 matched; order at chain end; file attr range
+0x00683910,SpatialIndex::SPObjRefStore::init,enpath/spindex.cpp,certain,calls 1/callers 1 matched; globals 1; ORDER-CROSS; file attr anchor+__FILE__
+0x00683b00,SpatialIndex::SPObjRefStore::deinit,enpath/spindex.cpp,certain,calls 1/callers 3 matched; globals 1; ORDER-CROSS; file attr anchor+__FILE__
+0x00683bb0,SpatialIndex::SPObjRefStore::change_pos,enpath/spindex.cpp,certain,calls 1/callers 1 matched; globals 1; ORDER-CROSS; file attr anchor+__FILE__
+0x00683d70,SpatialIndex::SPObjRefStore::get_next_obj,enpath/spindex.cpp,certain,calls 0/callers 5 matched; ORDER-CROSS; file attr guess
+0x00683e10,SpatialIndex::SPObjRefStore::get_prev_obj,enpath/spindex.cpp,certain,calls 0/callers 2 matched; ORDER-CROSS; file attr guess
+0x00684620,VideoFile::~VideoFile,uti3d/Video.cpp,probable,calls 1/callers 0 matched; order at chain end; file attr guess
+0x00684650,VideoFile::init,uti3d/Video.cpp,certain,string 'WMCreateSyncReader'; calls 8/callers 0 matched; globals 2; order between matched; file attr anchor+__FILE__
+0x00685940,VideoFile::has_input_video,uti3d/Video.cpp,probable-enclosed,calls 0/callers 1 matched; order between matched; file attr guess; between certain matches of its file
+0x00685990,VideoFile::has_input_audio,uti3d/Video.cpp,probable-enclosed,calls 0/callers 1 matched; order between matched; file attr guess; between certain matches of its file
+0x006859e0,VideoFile::is_output_video,uti3d/Video.cpp,certain,calls 0/callers 2 matched; order between matched; file attr guess
+0x00685a30,VideoFile::is_output_audio,uti3d/Video.cpp,certain,calls 0/callers 3 matched; order between matched; file attr class
+0x00685a80,VideoFile::get_next,uti3d/Video.cpp,certain,calls 6/callers 0 matched; globals 1; order between matched; file attr guess
+0x00685dd0,VideoFile::get_sample,uti3d/Video.cpp,probable-enclosed,calls 2/callers 1 matched; order at chain end; between certain matches of its file
+0x00686160,VideoFile::deinit,uti3d/Video.cpp,certain,calls 1/callers 2 matched; ORDER-CROSS; file attr class
+0x00686350,VideoCapture::init,uti3d/VIDEOCAP.CPP,certain,string 'WMCreateWriter'; calls 5/callers 0 matched; globals 2; file attr anchor+__FILE__
+0x00687cc0,ObjectGlow::set_up_blur_3d_icon,en3d/glow.cpp,probable,calls 11/callers 0 matched; ORDER-CROSS
+0x0068c440,Scene::render_background_billboard,en3d/Scene.cpp,probable,calls 1/callers 1 matched; ORDER-CROSS
+0x00692f40,CollisionManager::check_valid_position2,enphysic/collimgr.cpp,probable,calls 4/callers 0 matched; ORDER-CROSS
+0x00693170,CollisionManager::check_valid_position,enphysic/collimgr.cpp,certain,calls 3/callers 0 matched; order between matched
+0x00693580,CollisionManager::check_valid_position,enphysic/collimgr.cpp,probable,calls 2/callers 0 matched; order at chain end
+0x00694fc0,box_box_collision2,enphysic/collis_b.cpp,probable,calls 2/callers 3 matched; ORDER-CROSS
+0x00695950,box_box_collision,enphysic/collis_b.cpp,probable,calls 2/callers 0 matched; ORDER-CROSS
+0x00695d90,cylinder_box_collision,enphysic/collis_b.cpp,probable,calls 4/callers 3 matched; order at chain end
+0x00697140,sphere_box_collision,enphysic/collis_b.cpp,certain,calls 2/callers 3 matched; order between matched
+0x00698cb0,box_box_collision,enphysic/collis_b.cpp,probable,calls 3/callers 1 matched; ORDER-CROSS
+0x00699090,box_box_collision,enphysic/collis_b.cpp,probable,calls 4/callers 0 matched; order at chain end
+0x006994d0,cylinder_cylinder_collision,enphysic/collis_c.cpp,probable,calls 1/callers 1 matched; ORDER-CROSS
+0x006998b0,box_cylinder_collision,enphysic/collis_c.cpp,probable,calls 2/callers 0 matched; order at chain end
+0x00699940,box_cylinder_collision,enphysic/collis_c.cpp,certain,calls 2/callers 0 matched; order between matched
+0x00699a20,sphere_cylinder_collision,enphysic/collis_c.cpp,certain,calls 3/callers 2 matched; order between matched
+0x0069a300,box_square_intersection,enphysic/collis_i.cpp,probable,calls 6/callers 1 matched; order at chain end
+0x0069b390,cylinder_cylinder_intersection,enphysic/collis_i.cpp,probable,calls 1/callers 0 matched; order between matched
+0x0069bd60,cylinder_sphere_intersection,enphysic/collis_i.cpp,probable,calls 1/callers 0 matched; order between matched
+0x0069c0f0,cylinder_box_intersection,enphysic/collis_i.cpp,certain,calls 4/callers 0 matched; order between matched
+0x0069d160,cylinder_cylinder_intersection,enphysic/collis_i.cpp,certain,calls 0/callers 2 matched; order between matched
+0x0069d210,cylinder_sphere_intersection,enphysic/collis_i.cpp,probable-enclosed,calls 0/callers 1 matched; order between matched; between certain matches of its file
+0x0069d390,cylinder_box_intersection,enphysic/collis_i.cpp,probable-enclosed,calls 0/callers 1 matched; order between matched; between certain matches of its file
+0x0069d540,sphere_sphere_intersection,enphysic/collis_i.cpp,certain,calls 0/callers 2 matched; order between matched
+0x0069d5d0,sphere_box_intersection,enphysic/collis_i.cpp,probable,calls 0/callers 1 matched; order between matched
+0x0069d7d0,box_box_intersection2,enphysic/collis_i.cpp,probable,calls 5/callers 1 matched; order at chain end
+0x0069e4e0,box_box_intersection,enphysic/collis_i.cpp,probable,calls 2/callers 1 matched; ORDER-CROSS
+0x0069e640,point_plane_collision,enphysic/collis_o.cpp,probable,calls 2/callers 2 matched; order at chain end
+0x0069e720,point_torus_collision,enphysic/collis_o.cpp,certain,calls 1/callers 1 matched; order between matched
+0x0069e970,sphere_plane_collision,enphysic/collis_o.cpp,certain,calls 0/callers 2 matched; order between matched
+0x0069ea70,box_square_collision,enphysic/collis_o.cpp,probable,calls 2/callers 1 matched; order at chain end
+0x006a09e0,point_tube_collision,enphysic/collis_o.cpp,probable,calls 0/callers 2 matched; ORDER-CROSS
+0x006a0bd0,cylinder_sphere_collision,enphysic/collis_s.cpp,probable,calls 2/callers 0 matched; ORDER-CROSS
+0x006a0c70,box_sphere_collision,enphysic/collis_s.cpp,probable,calls 2/callers 0 matched; order at chain end
+0x006a0d20,box_sphere_collision,enphysic/collis_s.cpp,certain,calls 2/callers 0 matched; order between matched
+0x006a0d80,sphere_sphere_collision,enphysic/collis_s.cpp,probable,calls 0/callers 7 matched; order at chain end
+0x006a1460,solve_order4_equ,enphysic/Collisio.cpp,probable,tokens 1.3; calls 1/callers 2 matched; ORDER-CROSS
+0x006a1bb0,collide,enphysic/Collisio.cpp,probable,calls 8/callers 1 matched; order at chain end
+0x006a3040,transform_obb,enphysic/Collisio.cpp,probable,calls 0/callers 4 matched; ORDER-CROSS
+0x006a30c0,transform_aabb_to_obb,enphysic/Collisio.cpp,probable,calls 1/callers 2 matched; ORDER-CROSS
+0x006a31d0,intersect,enphysic/Collisio.cpp,certain,calls 8/callers 1 matched; order between matched
+0x006a8060,transform_obb_to_aabb,enphysic/Collisio.cpp,probable,calls 4/callers 0 matched; order at chain end
+0x006aac10,PathSpaceRec::get_path_space,enpath/pathspr.cpp,probable,calls 0/callers 11 matched; order at chain end
+0x006aac70,point_box_dist2,enpath/pathspr.cpp,certain,registered name equal; calls 0/callers 1 matched; order between matched
+0x006aae70,path_space_rec_array_find_polygon,enpath/pathspr.cpp,certain,calls 1/callers 4 matched; order between matched
+0x006ab1b0,path_space_rec_array_find_nearest_polygon,enpath/pathspr.cpp,certain,calls 6/callers 0 matched; order between matched
+0x006ab4e0,path_space_rec_array_find_polygon,enpath/pathspr.cpp,certain,calls 9/callers 1 matched; order between matched
+0x006ac050,path_space_rec_array_generate_offsetted_path,enpath/pathspr.cpp,probable,calls 6/callers 0 matched; order at chain end
+0x006accf0,PhysicMath::vector_tan_z_xy,enphysic/physmath.cpp,certain,tokens 1.5; calls 0/callers 3 matched; order at chain end
+0x006acf80,PhysicSystem::~PhysicSystem,enphysic/PhySys.cpp,certain,calls 2/callers 0 matched; order between matched
+0x006ad020,PhysicSystem::init,enphysic/PhySys.cpp,certain,calls 2/callers 1 matched; globals 1; order between matched
+0x006ad170,PhysicSystem::deinit,enphysic/PhySys.cpp,certain,calls 2/callers 2 matched; order between matched
+0x006ad950,PhysicSystem::reset,enphysic/PhySys.cpp,certain,calls 2/callers 0 matched; order between matched
+0x006ad980,PhysicSystem::set_object_physic_enabled,enphysic/PhySys.cpp,probable-enclosed,calls 3/callers 3 matched; ORDER-CROSS; between certain matches of its file
+0x006adbf0,PhysicSystem::add_object,enphysic/PhySys.cpp,probable-enclosed,calls 3/callers 0 matched; ORDER-CROSS; between certain matches of its file
+0x006adfd0,PathSystem::get_slope_and_floor_height,enpath/pathsys.cpp,probable,calls 5/callers 1 matched; ORDER-CROSS
+0x006ae2a0,PhysicSystem::get_slope_and_floor_height2,enphysic/PhySys.cpp,certain,calls 4/callers 0 matched; order between matched
+0x006ae500,PhysicSystem::get_true_slope,enphysic/PhySys.cpp,certain,calls 2/callers 0 matched; order between matched
+0x006ae610,PhysicSystem::check_path_pass_through,enphysic/PhySys.cpp,certain,calls 1/callers 1 matched; order between matched
+0x006ae670,PhysicSystem::check_path_pass_through2,enphysic/PhySys.cpp,certain,calls 2/callers 0 matched; order between matched
+0x006ae8e0,PathSystem::find_polygon_by_pos,enpath/pathsys.cpp,probable,calls 6/callers 2 matched; ORDER-CROSS
+0x006aee40,PhysicSystem::move_actor,enphysic/PhySys.cpp,probable-enclosed,calls 4/callers 0 matched; ORDER-CROSS; between certain matches of its file
+0x006af190,PhysicSystem::update,enphysic/PhySys.cpp,probable-enclosed,calls 2/callers 0 matched; ORDER-CROSS; between certain matches of its file
+0x006af310,PhysicSystem::get_rigid_object_ptr,enphysic/PhySys.cpp,probable-enclosed,calls 0/callers 3 matched; ORDER-CROSS; between certain matches of its file
+0x006af370,PhysicSystem::reinit_object,enphysic/PhySys.cpp,certain,calls 3/callers 0 matched; order between matched
+0x006af710,PhysicSystem::set_path_polygon_blocked,enphysic/PhySys.cpp,probable,calls 4/callers 0 matched; ORDER-CROSS
+0x006afb10,PhysicSystem::set_path_polygon_blocked,enphysic/PhySys.cpp,probable,calls 9/callers 0 matched; ORDER-CROSS
+0x006b0450,PhysicSystem::set_object_state,enphysic/PhySys.cpp,probable,calls 5/callers 0 matched; order at chain end
+0x006b08e0,RigidBody::init,enphysic/rbody.cpp,certain,tokens 1.5; calls 3/callers 2 matched; order between matched
+0x006b12a0,RigidBody::push,enphysic/rbody.cpp,probable-enclosed,calls 1/callers 0 matched; order between matched; between certain matches of its file
+0x006b1350,RigidBody::set_object_state,enphysic/rbody.cpp,certain,calls 4/callers 1 matched; order between matched
+0x006b18a0,RigidBody::get_object_state,enphysic/rbody.cpp,certain,calls 3/callers 2 matched; order between matched
+0x006b1dd0,RigidBody::is_unit_ai,enphysic/rbody.cpp,certain,calls 0/callers 4 matched; order between matched
+0x006b1e70,RigidBodyArray::RigidBodyArray,enphysic/rbody.cpp,probable-enclosed,calls 1/callers 0 matched; order between matched; between certain matches of its file
+0x006b1ea0,RigidBodyArray::~RigidBodyArray,enphysic/rbody.cpp,certain,calls 2/callers 1 matched; order between matched
+0x006b1f10,RigidBodyArray::init,enphysic/rbody.cpp,probable-enclosed,calls 0/callers 1 matched; order between matched; between certain matches of its file
+0x006b1f30,RigidBodyArray::deinit,enphysic/rbody.cpp,certain,calls 2/callers 2 matched; order between matched
+0x006b2040,RigidBodyArray::add_rigid_body,enphysic/rbody.cpp,probable,calls 2/callers 1 matched; order at chain end

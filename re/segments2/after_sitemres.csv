@@ -1,0 +1,5 @@
+start,end,name,confidence,evidence,target
+0x004ce900,0x004ce9f0,sitemres_tail,high,"Table::find_name / X::delete_13 (called by sitemres List::update_all) / nop: the find+delete+nop tail of a *res object.",game/sitemres.cpp
+0x004cea10,0x004d0b10,sndplay,medium,"Sound playback/slot manager: global ctor Struct134::zero + atexit reset (init 0x5670c0/0x567110), play_def / play_sound / pause / cache refresh / SoundList::entry / WaveRes::open; the sound-event name table (WinScenario... MusicTitleTrack) sits in .rdata between sitemres and WAVE.RES.",
+0x004d0b90,0x004d14c0,soundres,medium,"SOUND resource db: global ctor Struct6::zero + dtor call (0x56a430/0x56a480), fwd -> SoundRes::load (SOUND), Array::clear, SortedNames bsearch/find, TS_ prefix; ends before speech_s.cpp.",
+0x004d15b0,0x004d15b0,speech_s_rec,high,"Struct138::zero between speech_s str_token and Obj::call_4d15f0; called by speech panels.",game/speech_s.cpp

@@ -1,0 +1,2077 @@
+{
+ "group": "i1",
+ "symbols": {
+  "g_a01894": {
+   "type": "ptr:Font2d",
+   "count": 1,
+   "evidence": "4b934f stores eax; value passed as this to Font::measure (2) and Text::draw/draw_line (2); Font and Text are both Font2d facades with no own fields (news.cpp as_font/as_text)",
+   "confidence": "high"
+  },
+  "g_a157d4": {
+   "type": "u32",
+   "evidence": "character width (1 or 2) stored by the 26-entry StrIt dispatch tables (mbtext.cpp kCase0..3), added to sizes",
+   "confidence": "high"
+  },
+  "kFormatTable_a2dcb0": {
+   "type": "obj:D3dxFormatEntry",
+   "count": 29,
+   "evidence": "D3DX format table, 0x488 = 29 entries of 0x28 bytes walked by format_entry 0x763fc0 (p += 0x28), all-dword entries (import_stubs.cpp)",
+   "confidence": "high"
+  },
+  "s_atan_a30960": {
+   "type": "char",
+   "count": 5,
+   "evidence": "CRT math-error function name string, only lea (address taken for _matherr records)",
+   "confidence": "high"
+  },
+  "s_acos_a30970": {
+   "type": "char",
+   "count": 5,
+   "evidence": "CRT math-error function name string, only lea (address taken for _matherr records)",
+   "confidence": "high"
+  },
+  "s_sqrt_a30980": {
+   "type": "char",
+   "count": 5,
+   "evidence": "CRT math-error function name string, only lea (address taken for _matherr records)",
+   "confidence": "high"
+  },
+  "s_sin_a30990": {
+   "type": "char",
+   "count": 4,
+   "evidence": "CRT math-error function name string, only lea (address taken for _matherr records)",
+   "confidence": "high"
+  },
+  "s_cos_a309a0": {
+   "type": "char",
+   "count": 4,
+   "evidence": "CRT math-error function name string, only lea (address taken for _matherr records)",
+   "confidence": "high"
+  },
+  "s_asin_a309b0": {
+   "type": "char",
+   "count": 5,
+   "evidence": "CRT math-error function name string, only lea (address taken for _matherr records)",
+   "confidence": "high"
+  },
+  "s_pow_a309c8": {
+   "type": "char",
+   "count": 4,
+   "evidence": "CRT math-error function name string, only lea (address taken for _matherr records)",
+   "confidence": "high"
+  },
+  "s_tan_a30a30": {
+   "type": "char",
+   "count": 4,
+   "evidence": "CRT math-error function name string, only lea (address taken for _matherr records)",
+   "confidence": "high"
+  },
+  "s_log_a30c90": {
+   "type": "char",
+   "count": 4,
+   "evidence": "CRT math-error function name string, only lea (address taken for _matherr records)",
+   "confidence": "high"
+  },
+  "kPctype_a30cc4": {
+   "type": "ptr:void",
+   "count": 1,
+   "evidence": "_pctype (const unsigned short*): deref [p+c*2] byte/word reads x49; locale.cpp u16*& pctype()",
+   "confidence": "high"
+  },
+  "pwctype_a30cc8": {
+   "type": "ptr:void",
+   "count": 1,
+   "evidence": "_pwctype (const unsigned short*): deref word reads; locale.cpp u16*& pwctype()",
+   "confidence": "high"
+  },
+  "kNullString_a31320": {
+   "type": "ptr:char",
+   "evidence": "__nullstring char* -> \"(null)\", deref byte read (printf.cpp)",
+   "confidence": "high"
+  },
+  "kWNullString_a31324": {
+   "type": "ptr:void",
+   "evidence": "__wnullstring wchar_t* -> L\"(null)\", deref word read (printf.cpp); pointee u16[]",
+   "confidence": "high"
+  },
+  "kIob_a314a0": {
+   "type": "obj:CrtFile",
+   "count": 1,
+   "evidence": "_iob[0] (stdin), VC6 FILE 0x20 bytes = gap to kStdout (stdio.cpp header comment); this of crt stream functions",
+   "confidence": "high"
+  },
+  "strs_a31834": {
+   "type": "ptr:char",
+   "count": 2,
+   "evidence": "_tzname[2] (char*): indexed read r[], deref writes +0/+3/+0x3f (tzset copies names); time.cpp g_tzname(i) = *(char**)(sym + 4*i)",
+   "confidence": "high"
+  },
+  "lc_time_curr_a32150": {
+   "type": "ptr:LcTimeData",
+   "count": 1,
+   "evidence": "__lc_time_curr: deref reads +0x0/+0x1c/+0x98..+0xa8 = struct __lc_time_data (wday_abbr/wday/month_abbr/month/ampm/date+time formats)",
+   "confidence": "high"
+  },
+  "lconv_ptr_a32240": {
+   "type": "ptr:Lconv",
+   "count": 1,
+   "evidence": "__lconv: deref reads/writes +0/+4/+8 (decimal_point/thousands_sep/grouping); locale.cpp Lconv*& lconv_ptr()",
+   "confidence": "high"
+  },
+  "b_a37a28": {
+   "type": "u32",
+   "evidence": "IDirect3D8::GetAdapterCount result clamped to 16, loop bound (dispdlg.cpp)",
+   "confidence": "high"
+  },
+  "b_a37a2c": {
+   "type": "u32",
+   "evidence": "scalar: direct 0x0/4/w,0x0/4/r; C++ u32,i32",
+   "confidence": "high"
+  },
+  "b_a37a30": {
+   "type": "i32",
+   "evidence": "selected display mode index (CB_GETITEMDATA result, *out_mode) (dispdlg.cpp); only +0 accessed",
+   "confidence": "high"
+  },
+  "b_a38f90": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w,0x0/4/r; C++ f32",
+   "confidence": "high"
+  },
+  "b_a38f94": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a38f98": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a38f9c": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ -",
+   "confidence": "high"
+  },
+  "b_a38fa0": {
+   "type": "i32",
+   "evidence": "one-shot init flag in dyngrass.cpp (==0 then =1); only +0 accessed",
+   "confidence": "high"
+  },
+  "b_a39144": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w,0x0/4/r; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39148": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ -",
+   "confidence": "high"
+  },
+  "b_a3914c": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39150": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ -; declared float[2] but only +0 accessed",
+   "confidence": "high"
+  },
+  "b_a39158": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w,0x0/4/r; C++ f32",
+   "confidence": "high"
+  },
+  "b_a3915c": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39160": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ -",
+   "confidence": "high"
+  },
+  "b_a39164": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32; declared float[2] but only +0 accessed",
+   "confidence": "high"
+  },
+  "b_a3916c": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w,0x0/4/r; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39170": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39174": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ -",
+   "confidence": "high"
+  },
+  "b_a39178": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32; declared float[2] but only +0 accessed",
+   "confidence": "high"
+  },
+  "b_a39180": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/w,0x0/4/r; C++ i32",
+   "confidence": "high"
+  },
+  "b_a39184": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39188": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a3918c": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39190": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39194": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39198": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a3919c": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a391a0": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a391a4": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a391a8": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a391ac": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a391b0": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32; declared float[4] but only +0 accessed",
+   "confidence": "high"
+  },
+  "b_a391c0": {
+   "type": "obj:AnimDef",
+   "evidence": "static ctor AnimLoader::AnimLoader 0x5b2390 (sizes 0x18b, = AnimDef layout end 0x18b) and dtor AnimDef::release 0x5b4170 on its address; fits gap 0x190",
+   "confidence": "high"
+  },
+  "b_a39350": {
+   "type": "obj:Skin",
+   "evidence": "ctor 0x5f45f0 (labelled Shadow, layout Skin) and Skin::reset/clear on its address; Skin size 0x3e fits gap 0x40",
+   "confidence": "high"
+  },
+  "b_a39390": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w,0x0/4/r; C++ f32; declared float[2] but only +0 accessed",
+   "confidence": "high"
+  },
+  "b_a39398": {
+   "type": "obj:ActorDef",
+   "evidence": "ActorDef::ActorDef 0x5af390 / release 0x5b03d0 on its address; ActorDef size 0x2d8 = gap",
+   "confidence": "high"
+  },
+  "b_a39670": {
+   "type": "obj:World",
+   "evidence": "ctor 0x41ea20 (labelled Battle, size 0x92) + World::init/setup_sky/cleanup on its address (samplew.cpp sample world); gap 0x98",
+   "confidence": "medium"
+  },
+  "b_a39708": {
+   "type": "obj:ActorDef",
+   "evidence": "ActorDef::ActorDef 0x5af390 / release on its address; size 0x2d8 = gap",
+   "confidence": "high"
+  },
+  "b_a399e0": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a399e4": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a399e8": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32; declared float[2] but only +0 accessed",
+   "confidence": "high"
+  },
+  "b_a399f0": {
+   "type": "ptr:Unit",
+   "count": 1,
+   "evidence": "value = units list entry (addr_of(unit(..))), passed as this to Unit methods x7, deref +0x2f5 (actor) / +0x33 (group) = Unit fields",
+   "confidence": "high"
+  },
+  "b_a399f8": {
+   "type": "ptr:MapObject",
+   "evidence": "value = Units::create(1) list entry (samplew.cpp), deref +0x86 -> +0x90 -> +0x6c; MapObject+0x86 = ptr:Actor",
+   "confidence": "medium"
+  },
+  "b_a399fc": {
+   "type": "ptr:CameraMotion",
+   "evidence": "new(0xc8)+Obj_clear_c8 stored here, then CameraMotion::init/free_list as this (samplew.cpp)",
+   "confidence": "high"
+  },
+  "b_a39a00": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/w; C++ i32",
+   "confidence": "high"
+  },
+  "b_a39a04": {
+   "type": "u8",
+   "evidence": "byte flag set to 1 (samplew.cpp)",
+   "confidence": "high"
+  },
+  "b_a39a06": {
+   "type": "i16",
+   "evidence": "scalar: direct 0x0/2/r; C++ i16",
+   "confidence": "high"
+  },
+  "b_a39a08": {
+   "type": "ptr:PathSpace",
+   "evidence": "new(0x38)+PfdData ctor stored here, PathSpace::load as this, deleted on cleanup (samplew.cpp)",
+   "confidence": "high"
+  },
+  "b_a39a0c": {
+   "type": "ptr:SceneSource",
+   "evidence": "Scene::add_node result, SceneSource::reset/set_38 as this, Scene::remove_group arg (gamedraw.cpp); SceneSource base SceneS",
+   "confidence": "high"
+  },
+  "b_a39a10": {
+   "type": "u32",
+   "evidence": "scalar: direct 0x0/4/r; C++ u32",
+   "confidence": "high"
+  },
+  "b_a39a14": {
+   "type": "u32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ i32,u32",
+   "confidence": "high"
+  },
+  "b_a39a18": {
+   "type": "ptr:Scroll",
+   "evidence": "camctl.cpp slider(): new(0x92) + Scroll ctor 0x62b6c0 stored here; Scroll methods x8 on the value, deref +0x79/+0x81 (Scroll fields)",
+   "confidence": "high"
+  },
+  "b_a39a1c": {
+   "type": "ptr:Scroll",
+   "evidence": "camctl.cpp slider(): new(0x92) + Scroll ctor 0x62b6c0 stored here; Scroll methods x8 on the value, deref +0x79/+0x81 (Scroll fields)",
+   "confidence": "high"
+  },
+  "b_a39a20": {
+   "type": "ptr:Scroll",
+   "evidence": "camctl.cpp slider(): new(0x92) + Scroll ctor 0x62b6c0 stored here; Scroll methods x8 on the value, deref +0x79/+0x81 (Scroll fields)",
+   "confidence": "high"
+  },
+  "b_a39a24": {
+   "type": "ptr:Scroll",
+   "evidence": "camctl.cpp slider(): new(0x92) + Scroll ctor 0x62b6c0 stored here; Scroll methods x8 on the value, deref +0x79/+0x81 (Scroll fields)",
+   "confidence": "high"
+  },
+  "b_a39a28": {
+   "type": "ptr:Scroll",
+   "evidence": "camctl.cpp slider(): new(0x92) + Scroll ctor 0x62b6c0 stored here; Scroll methods x8 on the value, deref +0x79/+0x81 (Scroll fields)",
+   "confidence": "high"
+  },
+  "b_a39a2c": {
+   "type": "ptr:Scroll",
+   "evidence": "camctl.cpp slider(): new(0x92) + Scroll ctor 0x62b6c0 stored here; Scroll methods x8 on the value, deref +0x79/+0x81 (Scroll fields)",
+   "confidence": "high"
+  },
+  "b_a39a30": {
+   "type": "ptr:Scroll",
+   "evidence": "camctl.cpp slider(): new(0x92) + Scroll ctor 0x62b6c0 stored here; Scroll methods x8 on the value, deref +0x79/+0x81 (Scroll fields)",
+   "confidence": "high"
+  },
+  "b_a39a34": {
+   "type": "ptr:Scroll",
+   "evidence": "camctl.cpp slider(): new(0x92) + Scroll ctor 0x62b6c0 stored here; Scroll methods x8 on the value, deref +0x79/+0x81 (Scroll fields)",
+   "confidence": "high"
+  },
+  "b_a39a38": {
+   "type": "ptr:Scroll",
+   "evidence": "camctl.cpp slider(): new(0x92) + Scroll ctor 0x62b6c0 stored here; Scroll methods x8 on the value, deref +0x79/+0x81 (Scroll fields)",
+   "confidence": "high"
+  },
+  "b_a39a3c": {
+   "type": "ptr:Scroll",
+   "evidence": "camctl.cpp slider(): new(0x92) + Scroll ctor 0x62b6c0 stored here; Scroll methods x8 on the value, deref +0x79/+0x81 (Scroll fields)",
+   "confidence": "high"
+  },
+  "b_a39a40": {
+   "type": "ptr:Scroll",
+   "evidence": "camctl.cpp slider(): new(0x92) + Scroll ctor 0x62b6c0 stored here; Scroll methods x8 on the value, deref +0x79/+0x81 (Scroll fields)",
+   "confidence": "high"
+  },
+  "b_a39bf8": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w,0x0/4/r; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39bfc": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39c00": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39c04": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32; declared float[2] but only +0 accessed",
+   "confidence": "high"
+  },
+  "b_a39c0c": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w,0x0/4/r; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39c10": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ -",
+   "confidence": "high"
+  },
+  "b_a39c14": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39c18": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32; declared float[2] but only +0 accessed",
+   "confidence": "high"
+  },
+  "b_a39c20": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w,0x0/4/r; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39c24": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ -",
+   "confidence": "high"
+  },
+  "b_a39c28": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39c2c": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32; declared float[2] but only +0 accessed",
+   "confidence": "high"
+  },
+  "b_a39c34": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w,0x0/4/r; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39c38": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39c3c": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39c40": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32; declared float[2] but only +0 accessed",
+   "confidence": "high"
+  },
+  "b_a39c48": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w,0x0/4/r; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39c4c": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39c50": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39c54": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32; declared float[2] but only +0 accessed",
+   "confidence": "high"
+  },
+  "b_a39c5c": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w,0x0/4/r; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39c60": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ -",
+   "confidence": "high"
+  },
+  "b_a39c64": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39c68": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32; declared float[2] but only +0 accessed",
+   "confidence": "high"
+  },
+  "b_a39c70": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w,0x0/4/r; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39c74": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39c78": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ -",
+   "confidence": "high"
+  },
+  "b_a39c7c": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32; declared float[2] but only +0 accessed",
+   "confidence": "high"
+  },
+  "b_a39c84": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w,0x0/4/r; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39c88": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39c8c": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39c90": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32; declared float[2] but only +0 accessed",
+   "confidence": "high"
+  },
+  "b_a39c98": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w,0x0/4/r; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39c9c": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ -",
+   "confidence": "high"
+  },
+  "b_a39ca0": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39ca4": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32; declared float[2] but only +0 accessed",
+   "confidence": "high"
+  },
+  "b_a39cac": {
+   "type": "u32",
+   "evidence": "scalar: direct 0x0/4/w,0x0/4/r; C++ u32",
+   "confidence": "high"
+  },
+  "b_a39cb0": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ -",
+   "confidence": "high"
+  },
+  "b_a39cb4": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ i32",
+   "confidence": "high"
+  },
+  "b_a39cb8": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39cbc": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39cc0": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ i32",
+   "confidence": "high"
+  },
+  "b_a39cc4": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ -",
+   "confidence": "high"
+  },
+  "b_a39cc8": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39ccc": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w,0x0/4/r; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39cd0": {
+   "type": "u32",
+   "evidence": "scalar: direct 0x0/4/w,0x0/4/r; C++ u32",
+   "confidence": "high"
+  },
+  "b_a39cd4": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39cd8": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39cdc": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39ce0": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39ce4": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ i32",
+   "confidence": "high"
+  },
+  "b_a39ce8": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39cec": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39cf0": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39cf4": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ i32",
+   "confidence": "high"
+  },
+  "b_a39cf8": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39cfc": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39d00": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ i32",
+   "confidence": "high"
+  },
+  "b_a39d04": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39d08": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ i32",
+   "confidence": "high"
+  },
+  "b_a39d0c": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ i32",
+   "confidence": "high"
+  },
+  "b_a39d10": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ i32",
+   "confidence": "high"
+  },
+  "b_a39d14": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w,0x0/4/r; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39d18": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39d1c": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ i32",
+   "confidence": "high"
+  },
+  "b_a39d20": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39d24": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ i32",
+   "confidence": "high"
+  },
+  "b_a39d28": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39d2c": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39d30": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w,0x0/4/r; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39d34": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39d38": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ i32",
+   "confidence": "high"
+  },
+  "b_a39d3c": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ i32",
+   "confidence": "high"
+  },
+  "b_a39d40": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w,0x0/4/r; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39d44": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39d48": {
+   "type": "u32",
+   "evidence": "scalar: direct 0x0/4/w,0x0/4/r; C++ u32",
+   "confidence": "high"
+  },
+  "b_a39d4c": {
+   "type": "u32",
+   "evidence": "scalar: direct 0x0/4/w,0x0/4/r; C++ u32",
+   "confidence": "high"
+  },
+  "b_a39d50": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39d54": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ i32",
+   "confidence": "high"
+  },
+  "b_a39d58": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ i32",
+   "confidence": "high"
+  },
+  "b_a39d5c": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39d60": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39d64": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ i32",
+   "confidence": "high"
+  },
+  "b_a39d68": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ i32",
+   "confidence": "high"
+  },
+  "b_a39d6c": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39d70": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ i32",
+   "confidence": "high"
+  },
+  "b_a39d74": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ i32",
+   "confidence": "high"
+  },
+  "b_a39d78": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39d7c": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ i32",
+   "confidence": "high"
+  },
+  "b_a39d80": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ i32",
+   "confidence": "high"
+  },
+  "b_a39d84": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ i32",
+   "confidence": "high"
+  },
+  "b_a39d88": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ i32",
+   "confidence": "high"
+  },
+  "b_a39d8c": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39d90": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/w,0x0/4/r; C++ i32",
+   "confidence": "high"
+  },
+  "b_a39d94": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ i32",
+   "confidence": "high"
+  },
+  "b_a39d98": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ -",
+   "confidence": "high"
+  },
+  "b_a39d9c": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ -",
+   "confidence": "high"
+  },
+  "b_a39da0": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39da4": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ i32",
+   "confidence": "high"
+  },
+  "b_a39da8": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ i32",
+   "confidence": "high"
+  },
+  "b_a39dac": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39db0": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w,0x0/4/r; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39db4": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ i32",
+   "confidence": "high"
+  },
+  "b_a39db8": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ i32",
+   "confidence": "high"
+  },
+  "b_a39dbc": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39dc0": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ i32",
+   "confidence": "high"
+  },
+  "b_a39dc4": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ i32",
+   "confidence": "high"
+  },
+  "b_a39dc8": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39dcc": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ i32",
+   "confidence": "high"
+  },
+  "b_a39dd0": {
+   "type": "u32",
+   "evidence": "scalar: direct 0x0/4/w,0x0/4/r; C++ u32",
+   "confidence": "high"
+  },
+  "b_a39dd4": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a39dd8": {
+   "type": "f32",
+   "evidence": "EXPL_GL ini float; only +0 accessed",
+   "confidence": "high"
+  },
+  "b_a39e18": {
+   "type": "ptr:ItemRes",
+   "evidence": "= this of ItemRes (itemres.cpp) for the qsort comparators; as_records_2bf(value)->get",
+   "confidence": "high"
+  },
+  "b_a39e20": {
+   "type": "obj:NewsItem",
+   "evidence": "Messages::post 0x4b9a90 fills a scratch news record here (+0 kind, +1, +2 side, +3, +4/+8 Colour, +0xc/+0x10 ids, +0x14 date, +0x41 arg_b) and DynArray::linkin copies it; returned as record address; NewsItem 0x52 fits gap 0x68",
+   "confidence": "high"
+  },
+  "b_a39e21": {
+   "part_of": "b_a39e20",
+   "evidence": "field +0x1 of the NewsItem scratch record b_a39e20 (Messages::post)",
+   "confidence": "high"
+  },
+  "b_a39e22": {
+   "part_of": "b_a39e20",
+   "evidence": "field +0x2 of the NewsItem scratch record b_a39e20 (Messages::post)",
+   "confidence": "high"
+  },
+  "b_a39e23": {
+   "part_of": "b_a39e20",
+   "evidence": "field +0x3 of the NewsItem scratch record b_a39e20 (Messages::post)",
+   "confidence": "high"
+  },
+  "b_a39e24": {
+   "part_of": "b_a39e20",
+   "evidence": "field +0x4 of the NewsItem scratch record b_a39e20 (Messages::post)",
+   "confidence": "high"
+  },
+  "b_a39e28": {
+   "part_of": "b_a39e20",
+   "evidence": "field +0x8 of the NewsItem scratch record b_a39e20 (Messages::post)",
+   "confidence": "high"
+  },
+  "b_a39e2c": {
+   "part_of": "b_a39e20",
+   "evidence": "field +0xc of the NewsItem scratch record b_a39e20 (Messages::post)",
+   "confidence": "high"
+  },
+  "b_a39e30": {
+   "part_of": "b_a39e20",
+   "evidence": "field +0x10 of the NewsItem scratch record b_a39e20 (Messages::post)",
+   "confidence": "high"
+  },
+  "b_a39e34": {
+   "part_of": "b_a39e20",
+   "evidence": "field +0x14 of the NewsItem scratch record b_a39e20 (Messages::post)",
+   "confidence": "high"
+  },
+  "b_a39e61": {
+   "part_of": "b_a39e20",
+   "evidence": "field +0x41 of the NewsItem scratch record b_a39e20 (Messages::post)",
+   "confidence": "high"
+  },
+  "b_a39e88": {
+   "type": "obj:String",
+   "evidence": "String::construct/c_str/assign on its address x46 (news.cpp kMsg); String 0x191 fits gap 0x1e4",
+   "confidence": "high"
+  },
+  "b_a3a06c": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a3a070": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a3a074": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a3a078": {
+   "type": "f32",
+   "evidence": "pi/4 written by camman init 0x425810 (fstp DWORD PTR ds:0xa3a078); declared u8[1] is wrong, b_a3a079 overlaps it",
+   "confidence": "high"
+  },
+  "b_a3a079": {
+   "part_of": "b_a3a078",
+   "evidence": "alias base = b_a3a081 - 8, only used as [b_a3a079 + idx*4] with idx>=2 (S1[idx-2], plasma.cpp); no own storage, its first 3 bytes overlap the f32 b_a3a078",
+   "confidence": "high"
+  },
+  "b_a3a07d": {
+   "type": "bytes",
+   "count": 3,
+   "evidence": "alias base = b_a3a081 - 4 used as [b_a3a07d + idx*4] with idx>=1 (S1[idx-1]); its own 3 bytes are padding before the index byte b_a3a080",
+   "confidence": "medium"
+  },
+  "b_a3a080": {
+   "type": "u8",
+   "evidence": "stack index of Terrain::subdivide first loop (plasma.cpp st8/ld8)",
+   "confidence": "high"
+  },
+  "b_a3a081": {
+   "type": "i32",
+   "count": 16,
+   "evidence": "Terrain::subdivide value stack S1 (i32[16]: [b_a3a081 + idx*4], ends exactly at the depth stack b_a3a0c1)",
+   "confidence": "high"
+  },
+  "b_a3a085": {
+   "part_of": "b_a3a081",
+   "evidence": "S1[1] of the plasma value stack",
+   "confidence": "high"
+  },
+  "b_a3a089": {
+   "part_of": "b_a3a081",
+   "evidence": "S1[2] of the plasma value stack",
+   "confidence": "high"
+  },
+  "b_a3a0bf": {
+   "part_of": "b_a3a081",
+   "evidence": "alias base D1-2 of the byte depth stack b_a3a0c1 (used as [sym+idx], idx>=2); lies in the last bytes of S1",
+   "confidence": "high"
+  },
+  "b_a3a0c0": {
+   "part_of": "b_a3a081",
+   "evidence": "alias base D1-1 of the byte depth stack b_a3a0c1 (used as [sym+idx], idx>=2); lies in the last bytes of S1",
+   "confidence": "high"
+  },
+  "b_a3a0c1": {
+   "type": "u8",
+   "count": 23,
+   "evidence": "Terrain::subdivide depth stack D1 ([b_a3a0c1 + idx] bytes); length up to the second index byte b_a3a0d8",
+   "confidence": "high"
+  },
+  "b_a3a0c2": {
+   "part_of": "b_a3a0c1",
+   "evidence": "D1[1]",
+   "confidence": "high"
+  },
+  "b_a3a0c3": {
+   "part_of": "b_a3a0c1",
+   "evidence": "D1[2]",
+   "confidence": "high"
+  },
+  "b_a3a0d1": {
+   "part_of": "b_a3a0c1",
+   "evidence": "alias base S2-8 of the second value stack b_a3a0d9 ([sym+idx*4], idx>=2); its bytes lie in the tail of D1",
+   "confidence": "high"
+  },
+  "b_a3a0d5": {
+   "part_of": "b_a3a0c1",
+   "evidence": "alias base S2-4 of the second value stack b_a3a0d9 ([sym+idx*4], idx>=1); its bytes lie in the tail of D1",
+   "confidence": "high"
+  },
+  "b_a3a0d8": {
+   "type": "u8",
+   "evidence": "stack index of Terrain::subdivide second loop",
+   "confidence": "high"
+  },
+  "b_a3a0d9": {
+   "type": "i32",
+   "count": 16,
+   "evidence": "second plasma value stack S2 (i32[16], ends at D2 b_a3a119)",
+   "confidence": "high"
+  },
+  "b_a3a0dd": {
+   "part_of": "b_a3a0d9",
+   "evidence": "S2[1]",
+   "confidence": "high"
+  },
+  "b_a3a0e1": {
+   "part_of": "b_a3a0d9",
+   "evidence": "S2[2]",
+   "confidence": "high"
+  },
+  "b_a3a117": {
+   "part_of": "b_a3a0d9",
+   "evidence": "alias base D2-2 of b_a3a119 ([sym+idx], idx>=2); lies in the last bytes of S2",
+   "confidence": "high"
+  },
+  "b_a3a118": {
+   "part_of": "b_a3a0d9",
+   "evidence": "alias base D2-1 of b_a3a119 ([sym+idx], idx>=2); lies in the last bytes of S2",
+   "confidence": "high"
+  },
+  "b_a3a119": {
+   "type": "u8",
+   "count": 51,
+   "evidence": "second plasma depth stack D2 (bytes, up to b_a3a14c)",
+   "confidence": "high"
+  },
+  "b_a3a11a": {
+   "part_of": "b_a3a119",
+   "evidence": "D2[1]",
+   "confidence": "high"
+  },
+  "b_a3a11b": {
+   "part_of": "b_a3a119",
+   "evidence": "D2[2]",
+   "confidence": "high"
+  },
+  "b_a3a14c": {
+   "type": "char",
+   "count": 264,
+   "evidence": "text buffer: strcpy target returned as char* (sndplay.cpp); gap 0x108",
+   "confidence": "high"
+  },
+  "b_a3a254": {
+   "type": "i32",
+   "evidence": "wrapping counter (++, reset above 0x190) (soundres.cpp); only +0 accessed",
+   "confidence": "high"
+  },
+  "b_a3a290": {
+   "type": "ptr:char",
+   "evidence": "char*& next (speech_s.cpp strtok-like cursor)",
+   "confidence": "high"
+  },
+  "b_a3a294": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a3a298": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a3a29c": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ -",
+   "confidence": "high"
+  },
+  "b_a3a2a0": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32; declared float[3] but only +0 accessed",
+   "confidence": "high"
+  },
+  "b_a3a2ac": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ i32",
+   "confidence": "high"
+  },
+  "b_a3a2b0": {
+   "type": "obj:VideoCapture",
+   "evidence": "VideoCapture ctor 0x6862d0/shutdown/init/release/write_frame on its address; size 0x28 = gap to b_a3a2d8",
+   "confidence": "high"
+  },
+  "b_a3a2b4": {
+   "part_of": "b_a3a2b0",
+   "evidence": "VideoCapture field bpp (+0x4) read by video_copy_frame (mainwnd.cpp)",
+   "confidence": "high"
+  },
+  "b_a3a2b8": {
+   "part_of": "b_a3a2b0",
+   "evidence": "VideoCapture field width (+0x8) read by video_copy_frame (mainwnd.cpp)",
+   "confidence": "high"
+  },
+  "b_a3a2bc": {
+   "part_of": "b_a3a2b0",
+   "evidence": "VideoCapture field height (+0xc) read by video_copy_frame (mainwnd.cpp)",
+   "confidence": "high"
+  },
+  "b_a3a2c0": {
+   "part_of": "b_a3a2b0",
+   "evidence": "VideoCapture field buffer (+0x10, u8*) read by video_copy_frame (mainwnd.cpp)",
+   "confidence": "high"
+  },
+  "b_a3a2d8": {
+   "type": "obj:Surface",
+   "evidence": "Surface ctor 0x60fad0/dtor/create/release on its address x11 (C++ as_image; Image = Surface); size 0x34 = gap",
+   "confidence": "high"
+  },
+  "b_a3a30c": {
+   "type": "u32",
+   "evidence": "video capture active flag (misc_52f930.cpp)",
+   "confidence": "high"
+  },
+  "b_a3a310": {
+   "type": "u32",
+   "evidence": "captured frame counter (mainwnd.cpp); only +0 accessed",
+   "confidence": "high"
+  },
+  "b_a3a328": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w,0x0/4/r; C++ f32",
+   "confidence": "high"
+  },
+  "b_a3a32c": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a3a330": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a3a334": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32; declared float[3] but only +0 accessed",
+   "confidence": "high"
+  },
+  "me_a3a340": {
+   "type": "i16",
+   "evidence": "current player id, movsx word reads x47 (diplo_text.cpp)",
+   "confidence": "high"
+  },
+  "b_a3a342": {
+   "type": "i8",
+   "evidence": "scalar: direct 0x0/1/w,0x0/1/r; C++ u8,i8",
+   "confidence": "high"
+  },
+  "b_a3a343": {
+   "type": "i8",
+   "evidence": "reply flag (diplo_text.cpp); only +0 accessed",
+   "confidence": "high"
+  },
+  "b_a3a348": {
+   "type": "obj:String",
+   "evidence": "String methods on its address x344 (diplo_text.cpp kMsg); 0x191 fits gap 0x1e8",
+   "confidence": "high"
+  },
+  "b_a3a530": {
+   "type": "obj:String",
+   "count": 20,
+   "evidence": "StaticInit 0x4e36d0: vector ctor(this, 0x191, 0x14, String::String) = String[20]",
+   "confidence": "high"
+  },
+  "b_a3cac8": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w,0x0/4/r; C++ f32",
+   "confidence": "high"
+  },
+  "b_a3cacc": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a3cad0": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a3cad4": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32; declared float[3] but only +0 accessed",
+   "confidence": "high"
+  },
+  "b_a3cae0": {
+   "type": "obj:PointList",
+   "evidence": "function-static path (guard bit 2 in b_a3cb70): Path::construct 0x66e4b0 + atexit Wrap::f_4f0500 (= Unit PointList@0x432/0x473 dtor); PointList 0x41 fits gap 0x48",
+   "confidence": "high"
+  },
+  "b_a3cb28": {
+   "type": "obj:PointList",
+   "evidence": "function-static path (guard bit 1 in b_a3cb70), same construct/atexit pair as b_a3cae0; 0x41 fits gap 0x44",
+   "confidence": "high"
+  },
+  "b_a3cb6c": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a3cb70": {
+   "type": "u8",
+   "evidence": "guard bits of the two function-static PointLists (unit_core.cpp replan)",
+   "confidence": "high"
+  },
+  "b_a3cb74": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ -",
+   "confidence": "high"
+  },
+  "b_a3cb78": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a3cb7c": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ -; declared float[9] but only +0 accessed",
+   "confidence": "high"
+  },
+  "b_a3cba0": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w,0x0/4/r; C++ f32",
+   "confidence": "high"
+  },
+  "b_a3cba4": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a3cba8": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a3cbac": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32; declared float[2] but only +0 accessed",
+   "confidence": "high"
+  },
+  "b_a3cbb4": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a3cbb8": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a3cbbc": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a3cbc0": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32; declared float[2] but only +0 accessed",
+   "confidence": "high"
+  },
+  "b_a3cbc8": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/w; C++ i32; declared u8[4] but only +0 accessed",
+   "confidence": "high"
+  },
+  "b_a3cbcc": {
+   "type": "i16",
+   "evidence": "scalar: direct 0x0/2/r,0x0/4/w; C++ i16; declared u8[4] but only +0 accessed",
+   "confidence": "high"
+  },
+  "b_a3cbd0": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/w; C++ i32; declared u8[4] but only +0 accessed",
+   "confidence": "high"
+  },
+  "b_a3cbd4": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w,0x0/4/r; C++ f32",
+   "confidence": "high"
+  },
+  "b_a3cbd8": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/w; C++ i32; declared u8[4] but only +0 accessed",
+   "confidence": "high"
+  },
+  "b_a3cbdc": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ i32",
+   "confidence": "high"
+  },
+  "b_a3cbe0": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/w; C++ i32; declared u8[4] but only +0 accessed",
+   "confidence": "high"
+  },
+  "b_a3cbe4": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ i32",
+   "confidence": "high"
+  },
+  "b_a3cbe8": {
+   "type": "i16",
+   "evidence": "scalar: direct 0x0/2/r,0x0/4/w; C++ i16; declared u8[4] but only +0 accessed",
+   "confidence": "high"
+  },
+  "b_a3cbec": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a3cbf0": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a3cbf4": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ i32",
+   "confidence": "high"
+  },
+  "b_a3cbf8": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ i32",
+   "confidence": "high"
+  },
+  "b_a3cbfc": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ i32",
+   "confidence": "high"
+  },
+  "b_a3cc00": {
+   "type": "u32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ u32,i32",
+   "confidence": "high"
+  },
+  "b_a3cc04": {
+   "type": "u32",
+   "evidence": "scalar: direct 0x0/4/w,0x0/4/r; C++ u32,i32",
+   "confidence": "high"
+  },
+  "b_a3cc08": {
+   "type": "u32",
+   "evidence": "scalar: direct 0x0/4/w,0x0/4/r; C++ u32,i32",
+   "confidence": "high"
+  },
+  "b_a3cc0c": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ i32",
+   "confidence": "high"
+  },
+  "b_a3cc10": {
+   "type": "i16",
+   "evidence": "scalar: direct 0x0/2/r,0x0/4/w; C++ i16; declared i16[2] but only +0 accessed",
+   "confidence": "high"
+  },
+  "b_a3cc14": {
+   "type": "u32",
+   "evidence": "scalar: direct 0x0/4/w; C++ u32,i32",
+   "confidence": "high"
+  },
+  "b_a3cc18": {
+   "type": "i16",
+   "evidence": "scalar: direct 0x0/2/r,0x0/4/w; C++ i16",
+   "confidence": "high"
+  },
+  "b_a3cc1a": {
+   "type": "i16",
+   "evidence": "scalar: direct 0x0/2/r,0x0/4/w; C++ i16; declared u8[2] but only +0 accessed",
+   "confidence": "high"
+  },
+  "b_a3cc1c": {
+   "type": "i16",
+   "evidence": "scalar: direct 0x0/2/r,0x0/4/w; C++ i16",
+   "confidence": "high"
+  },
+  "b_a3cc1e": {
+   "type": "i16",
+   "evidence": "scalar: direct 0x0/2/r,0x0/4/w; C++ i16",
+   "confidence": "high"
+  },
+  "b_a3cc20": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a3cc24": {
+   "type": "u32",
+   "evidence": "scalar: direct 0x0/4/w,0x0/4/r; C++ u32,i32",
+   "confidence": "high"
+  },
+  "b_a3cc28": {
+   "type": "u32",
+   "evidence": "UNIT REACH_DT ini value used in arithmetic (unitupd.cpp); the 2 ptr_this_of hits are scan noise",
+   "confidence": "high"
+  },
+  "b_a3cc2c": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ i32",
+   "confidence": "high"
+  },
+  "b_a3cc30": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a3cc34": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/w; C++ i32",
+   "confidence": "high"
+  },
+  "b_a3cc38": {
+   "type": "i16",
+   "evidence": "scalar: direct 0x0/2/r,0x0/4/w; C++ i16; declared u8[4] but only +0 accessed",
+   "confidence": "high"
+  },
+  "b_a3cc3c": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/w,0x0/4/r; C++ i32",
+   "confidence": "high"
+  },
+  "b_a3cc40": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/w; C++ i32; declared u8[4] but only +0 accessed",
+   "confidence": "high"
+  },
+  "b_a3cc44": {
+   "type": "u32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ u32,i32",
+   "confidence": "high"
+  },
+  "b_a3cc48": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/w,0x0/4/r; C++ i32",
+   "confidence": "high"
+  },
+  "b_a3cc4c": {
+   "type": "i16",
+   "evidence": "scalar: direct 0x0/2/r,0x0/4/w; C++ i16; declared i16[2] but only +0 accessed",
+   "confidence": "high"
+  },
+  "b_a3cc50": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/w,0x0/4/r; C++ i32",
+   "confidence": "high"
+  },
+  "b_a3cc54": {
+   "type": "u32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ u32,i32",
+   "confidence": "high"
+  },
+  "b_a3cc58": {
+   "type": "u32",
+   "evidence": "scalar: direct 0x0/4/w,0x0/4/r; C++ u32,i32",
+   "confidence": "high"
+  },
+  "b_a3cc5c": {
+   "type": "i16",
+   "evidence": "scalar: direct 0x0/2/r,0x0/4/w; C++ i16; declared u8[4] but only +0 accessed",
+   "confidence": "high"
+  },
+  "b_a3cc60": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/w,0x0/4/r; C++ i32",
+   "confidence": "high"
+  },
+  "b_a3cc64": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ u32,i32",
+   "confidence": "high"
+  },
+  "b_a3cc68": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/w; C++ i32; declared u8[4] but only +0 accessed",
+   "confidence": "high"
+  },
+  "b_a3cc6c": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ i32",
+   "confidence": "high"
+  },
+  "b_a3cc70": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a3cc74": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ i32",
+   "confidence": "high"
+  },
+  "b_a3cc78": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ i32",
+   "confidence": "high"
+  },
+  "b_a3cc7c": {
+   "type": "i16",
+   "evidence": "scalar: direct 0x0/2/r,0x0/4/w; C++ i16; declared u8[2] but only +0 accessed",
+   "confidence": "high"
+  },
+  "b_a3cc7e": {
+   "type": "i16",
+   "evidence": "scalar: direct 0x0/2/r,0x0/4/w; C++ i16",
+   "confidence": "high"
+  },
+  "b_a3cc80": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a3cc84": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/w,0x0/4/r; C++ i32",
+   "confidence": "high"
+  },
+  "b_a3cc88": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ i32",
+   "confidence": "high"
+  },
+  "b_a3cc8c": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ i32,u32",
+   "confidence": "high"
+  },
+  "b_a3cc90": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ i32,i16",
+   "confidence": "high"
+  },
+  "b_a3cc94": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a3cc98": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/w; C++ i32; declared u8[4] but only +0 accessed",
+   "confidence": "high"
+  },
+  "b_a3cc9c": {
+   "type": "u32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ u32,i32",
+   "confidence": "high"
+  },
+  "b_a3cca0": {
+   "type": "i16",
+   "evidence": "scalar: direct 0x0/2/r,0x0/4/w; C++ i16; declared u8[2] but only +0 accessed",
+   "confidence": "high"
+  },
+  "b_a3cca2": {
+   "type": "i16",
+   "evidence": "scalar: direct 0x0/2/r,0x0/4/w; C++ i16; declared u8[2] but only +0 accessed",
+   "confidence": "high"
+  },
+  "b_a3cca4": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ i32",
+   "confidence": "high"
+  },
+  "b_a3cca8": {
+   "type": "i16",
+   "evidence": "scalar: direct 0x0/2/r,0x0/4/w; C++ i16; declared i16[2] but only +0 accessed",
+   "confidence": "high"
+  },
+  "b_a3ccac": {
+   "type": "u32",
+   "evidence": "scalar: direct 0x0/4/w,0x0/4/r; C++ u32,i32",
+   "confidence": "high"
+  },
+  "b_a3ccb0": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/r,0x0/4/w; C++ i32",
+   "confidence": "high"
+  },
+  "b_a3ccb4": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/w,0x0/4/r; C++ i32",
+   "confidence": "high"
+  },
+  "b_a3ccb8": {
+   "type": "i16",
+   "evidence": "scalar: direct 0x0/2/r,0x0/4/w; C++ i16; declared u8[2] but only +0 accessed",
+   "confidence": "high"
+  },
+  "b_a3ccba": {
+   "type": "i16",
+   "evidence": "scalar: direct 0x0/2/r,0x0/4/w; C++ i16",
+   "confidence": "high"
+  },
+  "b_a3ccbc": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32",
+   "confidence": "high"
+  },
+  "b_a3ccc0": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/w,0x0/4/r; C++ i32",
+   "confidence": "high"
+  },
+  "b_a3ccc4": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/w; C++ i32; declared u8[4] but only +0 accessed",
+   "confidence": "high"
+  },
+  "b_a3ccc8": {
+   "type": "i16",
+   "evidence": "scalar: direct 0x0/2/r,0x0/4/w; C++ i16",
+   "confidence": "high"
+  },
+  "b_a3ccca": {
+   "type": "i16",
+   "evidence": "scalar: direct 0x0/2/r,0x0/4/w; C++ i16; declared u8[2] but only +0 accessed",
+   "confidence": "high"
+  },
+  "b_a3cccc": {
+   "type": "i32",
+   "evidence": "scalar: direct 0x0/4/w; C++ i32",
+   "confidence": "high"
+  },
+  "b_a3ccd0": {
+   "type": "f32",
+   "evidence": "scalar: direct 0x0/4/w; C++ f32",
+   "confidence": "high"
+  }
+ },
+ "classes": [
+  {
+   "class": "D3dxFormatEntry",
+   "size": "0x28",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "format",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "kind",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "bits_per_pixel",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "channel_bits",
+     "type": "u32",
+     "size": 4,
+     "count": 5
+    },
+    {
+     "off": "0x20",
+     "name": "convertible",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x24",
+     "name": "listed",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "import_stubs.cpp format table comment: +0 format, +4 type, +8 bpp, +0xc..+0x1c five channel widths, +0x20 convertible, +0x24 listed; stride 0x28",
+   "confidence": "high",
+   "notes": "D3DX8 static format descriptor; no pointers"
+  },
+  {
+   "class": "CrtFile",
+   "size": "0x20",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "ptr",
+     "type": "ptr:char",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "cnt",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "base",
+     "type": "ptr:char",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "flag",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "file",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "charbuf",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "bufsiz",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x1c",
+     "name": "tmpfname",
+     "type": "ptr:char",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "VC6 FILE (stdio.cpp header: _iob[20] of 0x20 bytes, +0 _ptr, +4 _cnt, +8 _base, +0xc _flag)",
+   "confidence": "high",
+   "notes": "malloc-ed streams >= 20 are _FILEX = CrtFile + CRITICAL_SECTION at +0x20"
+  },
+  {
+   "class": "LcTimeData",
+   "size": "0xac",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "wday_abbr",
+     "type": "ptr:char",
+     "size": 4,
+     "count": 7
+    },
+    {
+     "off": "0x1c",
+     "name": "wday",
+     "type": "ptr:char",
+     "size": 4,
+     "count": 7
+    },
+    {
+     "off": "0x38",
+     "name": "month_abbr",
+     "type": "ptr:char",
+     "size": 4,
+     "count": 12
+    },
+    {
+     "off": "0x68",
+     "name": "month",
+     "type": "ptr:char",
+     "size": 4,
+     "count": 12
+    },
+    {
+     "off": "0x98",
+     "name": "ampm",
+     "type": "ptr:char",
+     "size": 4,
+     "count": 2
+    },
+    {
+     "off": "0xa0",
+     "name": "ww_sdatefmt",
+     "type": "ptr:char",
+     "size": 4
+    },
+    {
+     "off": "0xa4",
+     "name": "ww_ldatefmt",
+     "type": "ptr:char",
+     "size": 4
+    },
+    {
+     "off": "0xa8",
+     "name": "ww_timefmt",
+     "type": "ptr:char",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "VC6 struct __lc_time_data; derefs of __lc_time_curr at +0/+0x1c/+0x98/+0x9c/+0xa0/+0xa4/+0xa8 match",
+   "confidence": "medium",
+   "notes": "__lc_time_c (static instance, another group) should be obj:LcTimeData"
+  },
+  {
+   "class": "Lconv",
+   "size": "0x30",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "decimal_point",
+     "type": "ptr:char",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "thousands_sep",
+     "type": "ptr:char",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "grouping",
+     "type": "ptr:char",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "int_curr_symbol",
+     "type": "ptr:char",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "currency_symbol",
+     "type": "ptr:char",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "mon_decimal_point",
+     "type": "ptr:char",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "mon_thousands_sep",
+     "type": "ptr:char",
+     "size": 4
+    },
+    {
+     "off": "0x1c",
+     "name": "mon_grouping",
+     "type": "ptr:char",
+     "size": 4
+    },
+    {
+     "off": "0x20",
+     "name": "positive_sign",
+     "type": "ptr:char",
+     "size": 4
+    },
+    {
+     "off": "0x24",
+     "name": "negative_sign",
+     "type": "ptr:char",
+     "size": 4
+    },
+    {
+     "off": "0x28",
+     "name": "int_frac_digits",
+     "type": "char",
+     "size": 1
+    },
+    {
+     "off": "0x29",
+     "name": "frac_digits",
+     "type": "char",
+     "size": 1
+    },
+    {
+     "off": "0x2a",
+     "name": "p_cs_precedes",
+     "type": "char",
+     "size": 1
+    },
+    {
+     "off": "0x2b",
+     "name": "p_sep_by_space",
+     "type": "char",
+     "size": 1
+    },
+    {
+     "off": "0x2c",
+     "name": "n_cs_precedes",
+     "type": "char",
+     "size": 1
+    },
+    {
+     "off": "0x2d",
+     "name": "n_sep_by_space",
+     "type": "char",
+     "size": 1
+    },
+    {
+     "off": "0x2e",
+     "name": "p_sign_posn",
+     "type": "char",
+     "size": 1
+    },
+    {
+     "off": "0x2f",
+     "name": "n_sign_posn",
+     "type": "char",
+     "size": 1
+    }
+   ],
+   "members": [],
+   "evidence": "struct lconv, src/lib/crt/locale.cpp (static_assert 0x30)",
+   "confidence": "high",
+   "notes": "__lconv_c (static instance, another group) should be obj:Lconv"
+  }
+ ],
+ "notes": "Scalar counts: symbols declared as arrays whose trailing bytes are never accessed (no indexed access, no other symbol, no C++ pointer arithmetic) are typed with count 1: b_a37a30 (0xd60 gap), b_a38fa0 (0x1a4), b_a3a254 (0x3c), b_a3a310, b_a39dd8 (float[16]), the float[2]/[3]/[9] pi-fraction slots, i16[2] ini shorts, g_a01894 (u32[10] -> one pointer, 0x24 bytes after it unreferenced), lc_time_curr/lconv_ptr second dword. gscan reports `mov ds:X, ax/al` as 4-byte writes: the u8[4]/u8[2] ini globals written by load_unit_constants as kShort are i16, kInt are i32 (unit_c.cpp IniEntry table). b_a39a18..b_a39a40 are 11 consecutive ptr:Scroll slots that camctl.cpp also walks as an array (`for g = a39a18; g <= a39a40; g += 4`): in the 64-bit build they must stay contiguous and the loop stride must become sizeof(void*). NewsItem (layouts) lacks fields at +0x1 (u8 b), +0x3 (u8 race2), +0x4/+0x8 (Colour colour1/colour2) that Messages::post writes. World size is unset in layouts; the global sample world b_a39670 is built by ctor 0x41ea20 (labelled Battle, size 0x92) so World is 0x92 and its +0xf5/+0x1fd fields belong elsewhere (gap 0x98). b_a3a530: String[20] constructed, but the gap is 0x2598 = 24*0x191; the last 4*0x191 bytes are never referenced. Plasma stacks (Terrain::subdivide 0x4c5f10): idx byte, i32 S[16], u8 D[] twice; b_a3a079/07d/0bf/0c0/0d1/0d5/117/118 are alias bases (S-8, S-4, D-2, D-1) the original uses for [base+idx*k] with idx>=1/2, not objects. kIob is only _iob[0]; _iob[20] continues through kStdout/kStderr (other groups) to 0xa31720."
+}

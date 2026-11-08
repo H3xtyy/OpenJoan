@@ -1,0 +1,4 @@
+start,end,name,confidence,evidence,target
+0x0059d160,0x0059d160,resx_cmp,high,strcmp qsort comparator right after resx.cpp build_sorted_index (qsort user),ilib/resx.cpp
+0x0059d190,0x0059dc10,rle,medium,Rle encode/decode family (mem/file) with its self/empty helpers used together by World::build_grid/WorldS::load_grid,
+0x0059dd30,0x0059ded0,top4list,low,"Top4 insert/clear and PairList::remove (Effects::trigger, Array28::each) before se.cpp; no strings",

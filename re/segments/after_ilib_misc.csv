@@ -1,0 +1,8 @@
+start,end,name,confidence,evidence
+0x005908b0,0x00590960,misc_rnd,high,"rounding helpers between misc.cpp round_decimals and round: misc.cpp content, merge into misc.cpp"
+0x00590aa0,0x005911a0,misc_util,high,"limit/file-exists/path/ordinal/array helpers between misc.cpp round and move_around_a_point: misc.cpp content, merge into misc.cpp"
+0x005917d0,0x00591960,misc_say,high,"Bits::set, say_number, fill_word between misc_more and fill_except: misc.cpp content, merge into misc.cpp"
+0x00591ce0,0x00592290,misc_math,medium,small math/compass/timer helpers after Misc() with no init boundary; probably misc.cpp tail
+0x005922d0,0x00596310,mousecr_in,medium,"global Input ctor/dtor, DirectInput init/poll, event queues, hit tests; DirectInput strings precede mousecr.cpp __FILE__ in .rdata: probably mousecr.cpp (whose MouseCursor::load/release were moved by incremental linking)"
+0x00596760,0x0059a540,mousecr_kb,medium,"cursor dtors (called by MouseCursor::release), canvas callbacks, joystick/pad, keyboard translate + key names (strings right after mousecr.cpp __FILE__): probably mousecr.cpp; '=' 0x596380 (resdb guess) splits it"
+0x0059acd0,0x0059b330,music,medium,"static-init clear + music/stream slot (MUSIC\, Music::play, SoundStream, set_volume) before resdb.cpp; alphabetical slot mousecr<music<resdb"

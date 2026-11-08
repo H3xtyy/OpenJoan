@@ -1,0 +1,139 @@
+{
+  "version": 6,
+  "configurePresets": [
+    {
+      "name": "linux",
+      "displayName": "Linux / macOS (Ninja)",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/linux",
+      "cacheVariables": { "CMAKE_BUILD_TYPE": "RelWithDebInfo" },
+      "condition": { "type": "notEquals", "lhs": "${hostSystemName}", "rhs": "Windows" }
+    },
+    {
+      "name": "linux-hook-base",
+      "hidden": true,
+      "generator": "Ninja",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "RelWithDebInfo",
+        "JOAN_BUILD_HOOK": "ON",
+        "JOAN_BUILD_ENGINE": "OFF",
+        "JOAN_BUILD_TOOLS": "OFF",
+        "JOAN_BUILD_TESTS": "OFF"
+      },
+      "condition": { "type": "equals", "lhs": "${hostSystemName}", "rhs": "Linux" }
+    },
+    {
+      "name": "linux-x64",
+      "displayName": "Linux, 64-bit openjoan debug build (system SDL3 / OpenAL / FFmpeg): the playable one",
+      "inherits": "linux-hook-base",
+      "binaryDir": "${sourceDir}/build/linux-x64",
+      "cacheVariables": { "JOAN_WARNINGS_AS_ERRORS": "ON" }
+    },
+    {
+      "name": "linux-x64-release",
+      "displayName": "Linux, 64-bit openjoan release (player) build: debug settings and tools compiled out",
+      "inherits": "linux-x64",
+      "binaryDir": "${sourceDir}/build/linux-x64-release",
+      "cacheVariables": { "JOAN_RELEASE": "ON" }
+    },
+    {
+      "name": "mingw-x64",
+      "displayName": "Windows x86-64 cross build on Linux (llvm-mingw in $JOAN_MINGW; SDL3 / OpenAL Soft from source, FFmpeg from third_party/ffmpeg-win64)",
+      "inherits": "linux-hook-base",
+      "binaryDir": "${sourceDir}/build/mingw-x64",
+      "toolchainFile": "${sourceDir}/cmake/llvm-mingw-x64.cmake",
+      "cacheVariables": { "JOAN_SDL3_SYSTEM": "OFF", "JOAN_OPENAL_SYSTEM": "OFF", "JOAN_WARNINGS_AS_ERRORS": "ON" }
+    },
+    {
+      "name": "mingw-x64-release",
+      "displayName": "Windows x64 cross-build, release flavour",
+      "inherits": "mingw-x64",
+      "binaryDir": "${sourceDir}/build/mingw-x64-release",
+      "cacheVariables": { "JOAN_RELEASE": "ON" }
+    },
+    {
+      "name": "windows-base",
+      "hidden": true,
+      "generator": "Ninja",
+      "cacheVariables": { "CMAKE_BUILD_TYPE": "RelWithDebInfo", "CMAKE_C_COMPILER": "cl", "CMAKE_CXX_COMPILER": "cl" },
+      "condition": { "type": "equals", "lhs": "${hostSystemName}", "rhs": "Windows" },
+      "vendor": { "microsoft.com/VisualStudioSettings/CMake/1.0": { "hostOS": [ "Windows" ] } }
+    },
+    {
+      "name": "windows-x64",
+      "displayName": "Windows x64 - engine, tools, tests (any Visual Studio version)",
+      "inherits": "windows-base",
+      "binaryDir": "${sourceDir}/build/windows-x64",
+      "architecture": { "value": "x64", "strategy": "external" },
+      "toolset": { "value": "host=x64", "strategy": "external" }
+    },
+    {
+      "name": "windows-hook-x64",
+      "displayName": "Windows x64 - openjoan.exe debug build (any Visual Studio version)",
+      "inherits": "windows-base",
+      "binaryDir": "${sourceDir}/build/windows-hook-x64",
+      "architecture": { "value": "x64", "strategy": "external" },
+      "toolset": { "value": "host=x64", "strategy": "external" },
+      "cacheVariables": {
+        "JOAN_BUILD_HOOK": "ON",
+        "JOAN_BUILD_ENGINE": "OFF",
+        "JOAN_BUILD_TOOLS": "OFF",
+        "JOAN_BUILD_TESTS": "OFF"
+      }
+    },
+    {
+      "name": "windows-hook-x64-release",
+      "displayName": "Windows x64 MSVC, release flavour",
+      "inherits": "windows-hook-x64",
+      "binaryDir": "${sourceDir}/build/windows-hook-x64-release",
+      "cacheVariables": { "JOAN_RELEASE": "ON" }
+    },
+    {
+      "name": "vs2026-x64",
+      "displayName": "Visual Studio 2026 solution, x64",
+      "generator": "Visual Studio 18 2026",
+      "architecture": "x64",
+      "binaryDir": "${sourceDir}/build/vs2026-x64",
+      "condition": { "type": "equals", "lhs": "${hostSystemName}", "rhs": "Windows" }
+    },
+    {
+      "name": "vs2026-hook-x64",
+      "displayName": "Visual Studio 2026 solution, x64 openjoan.exe debug build: every openjoan.ini setting, logs and debug tools",
+      "generator": "Visual Studio 18 2026",
+      "architecture": "x64",
+      "binaryDir": "${sourceDir}/build/vs2026-hook-x64",
+      "cacheVariables": {
+        "JOAN_BUILD_HOOK": "ON",
+        "JOAN_BUILD_ENGINE": "OFF",
+        "JOAN_BUILD_TOOLS": "OFF",
+        "JOAN_BUILD_TESTS": "OFF"
+      },
+      "condition": { "type": "equals", "lhs": "${hostSystemName}", "rhs": "Windows" }
+    },
+    {
+      "name": "vs2026-hook-x64-release",
+      "displayName": "Visual Studio 2026 solution, x64 openjoan.exe release (player) build: debug settings and tools compiled out",
+      "inherits": "vs2026-hook-x64",
+      "binaryDir": "${sourceDir}/build/vs2026-hook-x64-release",
+      "cacheVariables": { "JOAN_RELEASE": "ON" }
+    }
+  ],
+  "buildPresets": [
+    { "name": "linux", "configurePreset": "linux" },
+    { "name": "linux-x64", "configurePreset": "linux-x64" },
+    { "name": "mingw-x64", "configurePreset": "mingw-x64" },
+    { "name": "mingw-x64-release", "configurePreset": "mingw-x64-release" },
+    { "name": "windows-x64", "configurePreset": "windows-x64" },
+    { "name": "vs2026-x64", "configurePreset": "vs2026-x64", "configuration": "Release" },
+    { "name": "windows-hook-x64", "configurePreset": "windows-hook-x64" },
+    { "name": "windows-hook-x64-release", "configurePreset": "windows-hook-x64-release" },
+    { "name": "vs2026-hook-x64", "configurePreset": "vs2026-hook-x64", "configuration": "Release" },
+    { "name": "linux-x64-release", "configurePreset": "linux-x64-release" },
+    { "name": "vs2026-hook-x64-release", "configurePreset": "vs2026-hook-x64-release", "configuration": "Release" }
+  ],
+  "testPresets": [
+    { "name": "linux", "configurePreset": "linux", "output": { "outputOnFailure": true } },
+    { "name": "windows-x64", "configurePreset": "windows-x64", "output": { "outputOnFailure": true } },
+    { "name": "vs2026-x64", "configurePreset": "vs2026-x64", "configuration": "Release", "output": { "outputOnFailure": true } }
+  ]
+}

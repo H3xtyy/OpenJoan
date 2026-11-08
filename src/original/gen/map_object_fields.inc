@@ -1,0 +1,37 @@
+// Generated (re/layout/gen_types.py) from re/layout/layouts.json: the data members of MapObject
+// (r5_image.json, confidence medium). Do not edit; change the spec.
+    void* vtable;  // 0x0
+    std::int16_t index;  // 0x4
+    std::int16_t portrait_unit;  // 0x6
+    std::int16_t side;  // 0x8
+    std::int16_t type_id;  // 0xa
+    char name[66];  // 0xc
+    std::int16_t class_id;  // 0x4e
+    std::int16_t item_type;  // 0x50
+    std::uint32_t busy;  // 0x52
+    float pos[3];  // 0x56
+    float yaw_;  // 0x62
+    float pitch;  // 0x66
+    float roll_;  // 0x6a
+    std::uint32_t scale;  // 0x6e
+    std::uint32_t damage;  // 0x72
+    std::uint32_t defense;  // 0x76
+    std::uint32_t duration;  // 0x7a
+    std::uint32_t interact_trigger;  // 0x7e
+    std::uint8_t active;  // 0x82
+    std::uint8_t refresh_depth;  // 0x83
+    std::uint16_t u16_84;  // 0x84
+    Actor* actor;  // 0x86
+    std::uint32_t u32_8a;  // 0x8a
+    Actor* actor_b;  // 0x8e
+    std::int16_t light_slot;  // 0x92
+    std::int16_t glow_slot;  // 0x94
+    std::int16_t sound_slots[6];  // 0x96
+    WorldItem* world_item;  // 0xa2
+    World* world;  // 0xa6
+    Cell* cell;  // 0xaa
+    MapObject* cell_prev;  // 0xae
+    MapObject* cell_next;  // 0xb2
+    Scene* scene;  // 0xb6
+    std::uint32_t u32_ba;  // 0xba
+    std::uint32_t u32_be;  // 0xbe

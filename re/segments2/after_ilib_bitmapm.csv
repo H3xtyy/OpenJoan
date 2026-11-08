@@ -1,0 +1,2 @@
+start,end,name,confidence,evidence,target
+0x0057f410,0x0057f4b0,bitmapt_g0,high,Bitmap24 accessors between bitmapt.cpp Point16::set and bitmap_bytes24.,ilib/bitmapt.cpp

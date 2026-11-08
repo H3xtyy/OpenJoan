@@ -1,0 +1,1730 @@
+{
+ "group": "g16",
+ "classes": [
+  {
+   "class": "ScriptNode",
+   "size": "0x14",
+   "base": null,
+   "vtable": "0x9da944",
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "vtable",
+     "type": "ptr:vtable",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "parent",
+     "type": "ptr:ScriptBlock",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "kind",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "value_type",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "value",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "base ctor 0x63e550 (vt, memset +4..+0x14, kind=-1, type=0x22); size_14 0x641a40 returns 0x14; every node ctor calls it or ScriptBlock ctor",
+   "confidence": "high",
+   "notes": "vtable: 0 sdtor, 4 set_parent, 8 free_value/clear, 0xc run, 0x10 parse, 0x14 find_by_id, 0x18 find_by_name, 0x1c data, 0x20 value_type, 0x24 as_block, 0x28 as_label, 0x2c byte_size (+0x30 exec, +0x34 check for ScriptFuncCall). value: inline for value_type 1/2, else an owned pointer (free_value 0x63e660). Former Reader/Ctrl/Leaf labels."
+  },
+  {
+   "class": "ScriptBlock",
+   "size": "0x20",
+   "base": "ScriptNode",
+   "vtable": "0x9da980",
+   "fields": [
+    {
+     "off": "0x14",
+     "name": "statements",
+     "type": "ptr:DynArray",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "vars",
+     "type": "ptr:DynArray",
+     "size": 4
+    },
+    {
+     "off": "0x1c",
+     "name": "labels",
+     "type": "ptr:DynArray",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "ctor 0x63e6e0 = node ctor + vt 0x9da980 + memset(+0x14, 0, 0xc); clear 0x63e7f0 frees the 3 lists; size 0x641a60 walks +0x14..+0x1c; kind 13 ctor 0x642c60 size 0x20 adds nothing",
+   "confidence": "high",
+   "notes": "lists are DynArrays of node pointers (+0x14 child statements, +0x18 ScriptVarDecl vars, +0x1c labels searched by ScriptGoto::select). New class name (facade as_script_block); Script (g05, 0x70) derives from it."
+  },
+  {
+   "class": "ScriptId",
+   "size": "0x25",
+   "base": "ScriptBlock",
+   "vtable": "0x9dad34",
+   "fields": [
+    {
+     "off": "0x20",
+     "name": "active",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x21",
+     "name": "label_id",
+     "type": "i32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "kind 2: new(0x25) + ctor 0x6424f0 (ScriptBlock ctor, kind 2, +0x20=0); get21/set_21 0x642540/0x642560; ScriptGoto::select compares get_21 with its target",
+   "confidence": "high",
+   "notes": "a labelled block (target of ScriptGoto); run_seq 0x63f790"
+  },
+  {
+   "class": "ScriptInit",
+   "size": "0x71",
+   "base": "Script",
+   "vtable": "0x9dad70",
+   "fields": [
+    {
+     "off": "0x70",
+     "name": "done",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [],
+   "evidence": "kind 3: new(0x71) + ctor 0x642630 (Script ctor 0x63f190 first, vt 0x9dad70); run_once 0x63fb80 tests/sets +0x70; parse 0x63fca0 in its vtable",
+   "confidence": "high",
+   "notes": "ctor/dtor labelled Widget/ScriptNode; reassigned. Base Script is g05's class: until its spec exists (base ScriptBlock, 0x70 bytes) the checker reports +0/+8/+0x14 as uncovered."
+  },
+  {
+   "class": "ScriptReset",
+   "size": "0x71",
+   "base": "Script",
+   "vtable": "0x9dadac",
+   "fields": [
+    {
+     "off": "0x70",
+     "name": "done",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [],
+   "evidence": "kind 4: new(0x71) + ctor 0x642700 (Script ctor, vt 0x9dadac, kind 4, +0x70=0); run_once 0x63fde0",
+   "confidence": "high",
+   "notes": "base Script is g05's class: until its spec exists (base ScriptBlock, 0x70 bytes) the checker reports +0/+8/+0x14 as uncovered."
+  },
+  {
+   "class": "ScriptSpeaker",
+   "size": "0x18",
+   "base": "ScriptNode",
+   "vtable": "0x9dade8",
+   "fields": [
+    {
+     "off": "0x14",
+     "name": "speaker",
+     "type": "i32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "kind 5: new(0x18) + ctor 0x6427d0 (node ctor, kind 5); parse 0x640060 writes +0x14",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "class": "ScriptUnit",
+   "size": "0x18",
+   "base": "ScriptNode",
+   "vtable": "0x9dae24",
+   "fields": [
+    {
+     "off": "0x14",
+     "name": "unit",
+     "type": "i32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "kind 6: new(0x18) + ctor 0x642890; parse 0x640170 writes +0x14",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "class": "ScriptObject",
+   "size": "0x18",
+   "base": "ScriptNode",
+   "vtable": "0x9dae60",
+   "fields": [
+    {
+     "off": "0x14",
+     "name": "object",
+     "type": "i32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "kind 7: new(0x18) + ctor 0x642950; parse 0x640280 writes +0x14",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "class": "ScriptGoto",
+   "size": "0x18",
+   "base": "ScriptNode",
+   "vtable": "0x9daed8",
+   "fields": [
+    {
+     "off": "0x14",
+     "name": "target_label",
+     "type": "i32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "kind 9: new(0x18) + ctor 0x642ae0; select 0x640690 (vt slot 0xc) finds the ScriptId whose +0x21 == +0x14",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "class": "ScriptWait",
+   "size": "0x21",
+   "base": "ScriptBlock",
+   "vtable": "0x9dae9c",
+   "fields": [
+    {
+     "off": "0x20",
+     "name": "waiting",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [],
+   "evidence": "kind 8: new(0x21) + ctor 0x642a10 (ScriptBlock ctor, +0x20=0); run_until 0x640370 tests/sets +0x20",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "class": "ScriptChoice",
+   "size": "0x18",
+   "base": "ScriptNode",
+   "vtable": "0x9dac7c",
+   "fields": [
+    {
+     "off": "0x14",
+     "name": "options",
+     "type": "ptr:DynArray",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "kind 11: new(0x18) + ctor 0x640a50; size 0x641e30 adds +0x14 ele_num*ele_size",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "class": "ScriptElse",
+   "size": "0x20",
+   "base": "ScriptBlock",
+   "vtable": "0x9daf50",
+   "fields": [],
+   "members": [],
+   "evidence": "kind 13: new(0x20) + ctor 0x642c60 (ScriptBlock ctor, vt 0x9daf50); parse 0x648630 / run 0x648560 in its vtable",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "class": "ScriptCond",
+   "size": "0x20",
+   "base": "ScriptNode",
+   "vtable": "0x9daf8c",
+   "fields": [
+    {
+     "off": "0x14",
+     "name": "op",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "lhs",
+     "type": "ptr:ScriptNode",
+     "size": 4
+    },
+    {
+     "off": "0x1c",
+     "name": "rhs",
+     "type": "ptr:ScriptNode",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "kind 14: new(0x20) + ctor 0x642d20; logic_op 0x6453a0 reads +0x18/+0x1c values; dtor_body 0x6452f0 deletes both",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "class": "Expr",
+   "size": "0x20",
+   "base": "ScriptNode",
+   "vtable": "0x9dafc8",
+   "fields": [
+    {
+     "off": "0x14",
+     "name": "op",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "lhs",
+     "type": "ptr:ScriptNode",
+     "size": 4
+    },
+    {
+     "off": "0x1c",
+     "name": "rhs",
+     "type": "ptr:ScriptNode",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "kind 15: new(0x20) + ctor 0x642e20; compare 0x644d80 / release 0x644cd0 / parse 0x645210 (ScriptCompare label) all in vt 0x9dafc8",
+   "confidence": "high",
+   "notes": "comparison expression; ScriptCompare label is the same class"
+  },
+  {
+   "class": "ScriptCompare",
+   "size": "0x20",
+   "base": "Expr",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "its only function 0x645210 is slot 0x10 of Expr's vtable 0x9dafc8",
+   "confidence": "medium",
+   "notes": "label alias of Expr; function reassigned to Expr"
+  },
+  {
+   "class": "ScriptExpr",
+   "size": "0x1c",
+   "base": "ScriptNode",
+   "vtable": "0x9db3bc",
+   "fields": [
+    {
+     "off": "0x14",
+     "name": "lhs",
+     "type": "ptr:ScriptNode",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "rhs",
+     "type": "ptr:ScriptNode",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "kind 16: new(0x1c) + ctor 0x6447a0 (+0x14/+0x18 = 0); parse_operand 0x644b10 and assign 0x644900 in vt 0x9db3bc; size 0x642070 asks both children",
+   "confidence": "high",
+   "notes": "ctor/dtor were labelled Value"
+  },
+  {
+   "class": "ScriptVarDecl",
+   "size": "0x48",
+   "base": "ScriptNode",
+   "vtable": "0x9db004",
+   "fields": [
+    {
+     "off": "0x14",
+     "name": "name",
+     "type": "char",
+     "size": 1,
+     "count": 52
+    }
+   ],
+   "members": [],
+   "evidence": "kind 17: new(0x48) + ctor 0x642f20; size 0x642040 = 0x14+0x34; parse strcpy's the name to +0x14; name() 0x642f60 returns this+0x14",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "class": "ScriptAssign",
+   "size": "0x1c",
+   "base": "ScriptNode",
+   "vtable": "0x9db318",
+   "fields": [
+    {
+     "off": "0x14",
+     "name": "target",
+     "type": "ptr:ScriptNode",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "expr",
+     "type": "ptr:ScriptNode",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "kind 18: new(0x1c) + ctor 0x6443d0; assign 0x644530 copies expr value into target (+0x10); dtor 0x644480 deletes +0x18",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "class": "ScriptConst",
+   "size": "0x14",
+   "base": "ScriptNode",
+   "vtable": "0x9db150",
+   "fields": [],
+   "members": [],
+   "evidence": "kind 19: new(0x14) + ctor 0x643300; parse 0x643820 stores into the base value (+0xc/+0x10)",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "class": "Value",
+   "size": "0x18",
+   "base": "ScriptNode",
+   "vtable": "0x9db25c",
+   "fields": [
+    {
+     "off": "0x14",
+     "name": "ref",
+     "type": "ptr:ScriptNode",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "kind 20: new(0x18) + ctor 0x643e30 (+0x14=0); data 0x644330 / kind 0x644360 forward to +0x14; parse 0x644190 (ScriptFunc label) in vt 0x9db25c",
+   "confidence": "high",
+   "notes": "reference to a variable / function node"
+  },
+  {
+   "class": "ScriptFunc",
+   "size": "0x18",
+   "base": "Value",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "its only function 0x644190 is slot 0x10 of Value's vtable 0x9db25c",
+   "confidence": "medium",
+   "notes": "label alias of Value; function reassigned"
+  },
+  {
+   "class": "ScriptFuncCall",
+   "size": "0x22",
+   "base": "ScriptBlock",
+   "vtable": "0x9db040",
+   "fields": [
+    {
+     "off": "0x20",
+     "name": "func_id",
+     "type": "i16",
+     "size": 2
+    }
+   ],
+   "members": [],
+   "evidence": "kind 21: new(0x22) + ctor 0x643000 (ScriptBlock ctor, vt 0x9db040, kind 0x15); size 0x642190 = block size + 2; parse 0x643c00 / cond_cmd 0x6509e0 use +0x20 (2 bytes)",
+   "confidence": "high",
+   "notes": "statement calling a game function (+0x20 id); params are the block's statements. Extra virtuals +0x30 exec / +0x34 check. Facade name as_script_func_call."
+  },
+  {
+   "class": "ScriptCheckCall",
+   "size": "0x22",
+   "base": "ScriptFuncCall",
+   "vtable": "0x9db084",
+   "fields": [],
+   "members": [],
+   "evidence": "kind 22: new(0x22) + ctor 0x6430c0 (ScriptFuncCall ctor, kind 0x16); check_cmd 0x660e60 at vt +0x34",
+   "confidence": "medium",
+   "notes": "slot 0x30 is ScriptCmd::exec_65fd70 (g05 label)"
+  },
+  {
+   "class": "ScriptCall",
+   "size": "0x24",
+   "base": "ScriptFuncCall",
+   "vtable": "0x9db10c",
+   "fields": [
+    {
+     "off": "0x22",
+     "name": "arg_id",
+     "type": "i16",
+     "size": 2
+    }
+   ],
+   "members": [],
+   "evidence": "kind 24: new(0x24) + ctor 0x643240 (ScriptFuncCall ctor); parse 0x643d40 writes +0x22; area_cmd 0x661060 / check_143 0x6612e0 read +0x20/+0x22",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "class": "ScriptLoad",
+   "size": "0x18",
+   "base": "ScriptNode",
+   "vtable": "0x9db1c8",
+   "fields": [
+    {
+     "off": "0x14",
+     "name": "script",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "kind 26: new(0x18) + ctor 0x643480 (+0x14=0); parse 0x645de0 stores the script-cache key in +0x14; call_func 0x645d40 runs it",
+   "confidence": "high",
+   "notes": "+0x14 is a key into the script cache 0xa50460 (NameList), not a pointer"
+  },
+  {
+   "class": "MathExpr",
+   "size": "0x24",
+   "base": "ScriptBlock",
+   "vtable": "0x9db578",
+   "fields": [
+    {
+     "off": "0x20",
+     "name": "rpn",
+     "type": "ptr:DynArray",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "kind 27: new(0x24) + ctor 0x646290 (ScriptBlock ctor, +0x20); size 0x642310 adds +0x20 ele_num*ele_size; evaluate 0x6463f0",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "class": "StackNode",
+   "size": "0x8",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "value",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "next",
+     "type": "ptr:StackNode",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "PtrStack::push 0x648f60 allocates 8 bytes {value, next}",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "class": "Stack",
+   "size": "0x8",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "top",
+     "type": "ptr:StackNode",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "count",
+     "type": "i32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "d:\\ww\\stackt.h template: push 0x648f60 / pop 0x648fd0 / free_nodes 0x648ee0; ctor 0x648ea0 zeroes both; count 0x648f40; top value 0x649040",
+   "confidence": "high",
+   "notes": "Stack::take 0x456d60 (inventory.cpp) is an item stack, moved to ItemStack"
+  },
+  {
+   "class": "PtrStack",
+   "size": "0x8",
+   "base": "Stack",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "push 0x648f60 uses the Stack layout",
+   "confidence": "medium",
+   "notes": "label alias of Stack; function reassigned"
+  },
+  {
+   "class": "ItemStack",
+   "size": "0x4",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "item",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x2",
+     "name": "count",
+     "type": "u16",
+     "size": 2
+    }
+   ],
+   "members": [],
+   "evidence": "Stack::take 0x456d60: +0 item record id (0x425ce0), +2 count capped by the item's +0x2c",
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "class": "Reader",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x1",
+     "name": "state",
+     "type": "i8",
+     "size": 1
+    }
+   ],
+   "members": [],
+   "evidence": "only Reader::done 0x5b4140 (en3d/animdef.cpp, +1 signed byte == 0) is left",
+   "confidence": "low",
+   "notes": "Reader::Reader 0x63e550 is the ScriptNode ctor, list_get/count are ScriptBlock, Reader::next 0x63ee20 is DynArray (cur_pos +8 < last_ele +0xc). The animdef reader class is unknown."
+  },
+  {
+   "class": "Leaf",
+   "size": "0x14",
+   "base": "ScriptNode",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "find_by_name 0x63edd0 / find_by_id 0x6436b0 are slots 0x18/0x14 of the base node vtable 0x9da944",
+   "confidence": "medium",
+   "notes": "label alias of ScriptNode; functions reassigned"
+  },
+  {
+   "class": "Ctrl",
+   "size": null,
+   "base": "Player",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "ctrl.cpp/uinput.cpp functions read the Player layout (+0x74/+0x82/+0x9e/+0xac/+0xc4/+0xcd), cast this->Player",
+   "confidence": "low",
+   "notes": "label dissolved: 0x432d30/0x4352f0/0x43a7d0 -> Player (g12); 0x63f190 -> Script ctor; 0x63e600/0x63e5b0 -> ScriptNode dtor; 0x643000/0x642190 -> ScriptFuncCall"
+  },
+  {
+   "class": "ScriptStatementCompile",
+   "size": null,
+   "base": "Script",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "0x649280 is Script::compile (as_script(script)->compile in ScriptLoad::parse)",
+   "confidence": "low",
+   "notes": "label alias; function reassigned to Script (g05)"
+  },
+  {
+   "class": "ScriptTokenList",
+   "size": null,
+   "base": null,
+   "vtable": "0x9dbb54",
+   "fields": [],
+   "members": [],
+   "evidence": "vt 0x9dbb54 {deleting_dtor 0x661f20, add_token 0x6622d0} (eslexer.cpp)",
+   "confidence": "low",
+   "notes": "0x661f20 / 0x661f70 were labelled ScriptNode; no field accesses seen"
+  },
+  {
+   "class": "OwnerRecord",
+   "size": "0x12",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "a",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x2",
+     "name": "c",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x4",
+     "name": "b",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x6",
+     "name": "d",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xa",
+     "name": "e",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xe",
+     "name": "f",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "new(0x12) in Owner::new_record 0x4973a0",
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "class": "Owner",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0xe",
+     "name": "record",
+     "type": "ptr:OwnerRecord",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "new_record 0x4973a0 (unitdata.cpp) allocates the 0x12-byte record at +0xe",
+   "confidence": "low",
+   "notes": "label mixed unrelated code: remove_a/item/remove_b -> ScriptBlock; clear_54df60 -> ObjChain; release_24 -> PlaneHolder; release -> EmitterSlot"
+  },
+  {
+   "class": "ObjChain",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x5e",
+     "name": "tail",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x62",
+     "name": "head",
+     "type": "ptr:void",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "0x54df60 (world_s.cpp) walks head +0x62 via node +0x4e, clears node +0x46/+0x4a/+0x4e, then zeroes +0x62/+0x5e",
+   "confidence": "low",
+   "notes": ""
+  },
+  {
+   "class": "PlaneHolder",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x24",
+     "name": "plane",
+     "type": "ptr:Plane",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "0x675e10 (psystem.cpp) releases and deletes the Plane at +0x24",
+   "confidence": "low",
+   "notes": ""
+  },
+  {
+   "class": "EmitterSlot",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "active",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x141",
+     "name": "def",
+     "type": "ptr:ActorDef",
+     "size": 4
+    }
+   ],
+   "members": [
+    {
+     "off": "0x145",
+     "name": "children",
+     "class": "DynArray"
+    }
+   ],
+   "evidence": "0x67f250 (pemitter.cpp): +0 flag, deletes DynArray +0x145 elements and the ActorDef at +0x141",
+   "confidence": "low",
+   "notes": ""
+  },
+  {
+   "class": "FlareEntry",
+   "size": "0x19b",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "colour",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "size",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x6",
+     "name": "scale",
+     "type": "f32",
+     "size": 4
+    }
+   ],
+   "members": [
+    {
+     "off": "0xa",
+     "name": "texture",
+     "class": "String"
+    }
+   ],
+   "evidence": "LensFlares::add stride 0x19b; ctor 0x662800 constructs String at +0xa (0x191 bytes); operator= 0x662830; copy ctor 0x662cb0",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "class": "LensFlares",
+   "size": "0x14",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "entries",
+     "type": "ptr:FlareEntry",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "count",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x6",
+     "name": "steps",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x8",
+     "name": "fade_min",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "fade_max",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "centre_x",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x12",
+     "name": "centre_y",
+     "type": "i16",
+     "size": 2
+    }
+   ],
+   "members": [],
+   "evidence": "init 0x662640 sets +6..+0x12; add/clear manage +0/+4; draw 0x6628a0 reads them (fld DWORD +8/+0xc); Struct14::zero 0x6625f0 memsets 0x14",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "class": "LensFlare",
+   "size": "0x14",
+   "base": "LensFlares",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "draw 0x6628a0 uses the LensFlares layout",
+   "confidence": "medium",
+   "notes": "label alias; function reassigned"
+  },
+  {
+   "class": "PfdZone",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x8",
+     "name": "bbox_min",
+     "type": "i32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x14",
+     "name": "bbox_max",
+     "type": "i32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x20",
+     "name": "blocked",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x28",
+     "name": "point_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x2c",
+     "name": "visit_stamp",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x30",
+     "name": "points",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x34",
+     "name": "links",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x38",
+     "name": "search_stamp",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x3c",
+     "name": "came_from",
+     "type": "ptr:PfdZone",
+     "size": 4
+    },
+    {
+     "off": "0x64",
+     "name": "flags",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x6c",
+     "name": "map_rect",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "ctor 0x663c50 (Triple ctors at +8/+0x14, 0x34-byte search member 0x663b90 at +0x38); set_points 0x663cb0; contains 0x6718c0 doc comment",
+   "confidence": "medium",
+   "notes": "points = new int*[point_count] (each -> x,y,z ints), links = PfdZone*[point_count]. +0x38..+0x6b is a member (0x663b90, A* state; only +0x38/+0x3c/+0x64 seen). Size >= 0x70 (frame slot 0x74)."
+  },
+  {
+   "class": "Zone",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x14",
+     "name": "x",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "y",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x20",
+     "name": "left_btn",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x24",
+     "name": "right_btn",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "Zone::hit 0x593a50 (ilib/mousecr.cpp)",
+   "confidence": "low",
+   "notes": "mouse hot-zone; the pathsp Zone:: functions are PfdZone. vector_deleting_destructor 0x675d70 (psystem.cpp, count at -4) left here, element class unknown; its read of the array count at this-4 cannot be declared"
+  },
+  {
+   "class": "Polygon",
+   "size": null,
+   "base": "PfdZone",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "min_distance 0x6730d0 uses PfdZone +0x28/+0x30",
+   "confidence": "medium",
+   "notes": "alias of PfdZone; segment_cut 0x6736e0 reads PathSpace +0x14 -> PathSpace"
+  },
+  {
+   "class": "PathSpace",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x14",
+     "name": "zones",
+     "type": "ptr:BlkArr",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "tree",
+     "type": "ptr:BlkArr",
+     "size": 4
+    },
+    {
+     "off": "0x20",
+     "name": "search_stamp",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x2c",
+     "name": "map_id",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "find_zone/zone_count/find_best/clear_children read the zone block array +0x14; flush 0x674590 / PathTree::nearest use +0x18; Nav::find_path increments +0x20 and passes +0x2c",
+   "confidence": "medium",
+   "notes": "get_2c 0x66b7a0 is BlkArr's count (+0x2c), reassigned to BlkArr; flood/find_crossing are PfdZone methods. Size unknown."
+  },
+  {
+   "class": "PathSp",
+   "size": null,
+   "base": "PathSpace",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "cross_segment/flush use PathSpace +0x14/+0x18",
+   "confidence": "medium",
+   "notes": "alias; functions reassigned"
+  },
+  {
+   "class": "Nav",
+   "size": null,
+   "base": "PathSpace",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "find_path 0x66cb40 uses PathSpace +0x14/+0x20/+0x2c",
+   "confidence": "medium",
+   "notes": "alias; function reassigned"
+  },
+  {
+   "class": "PathTree",
+   "size": null,
+   "base": "PathSpace",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "nearest 0x66c710 uses PathSpace +0x14/+0x18",
+   "confidence": "medium",
+   "notes": "alias; function reassigned"
+  },
+  {
+   "class": "PathZones",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "only PathZones::group 0x675660 (not thiscall, no accesses)",
+   "confidence": "low",
+   "notes": ""
+  },
+  {
+   "class": "ScenarioSaver",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "only write 0x66fcd0 (not thiscall, no accesses)",
+   "confidence": "low",
+   "notes": ""
+  },
+  {
+   "class": "KdTree",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x4",
+     "name": "left",
+     "type": "ptr:KdTree",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "right",
+     "type": "ptr:KdTree",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "min",
+     "type": "i32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x1c",
+     "name": "max",
+     "type": "i32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x34",
+     "name": "zone",
+     "type": "ptr:PfdZone",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "nearest 0x675430 / query 0x6751a0: children +4/+8, int box +0x10..+0x28, leaf zone +0x34 (min_distance)",
+   "confidence": "medium",
+   "notes": "BVH node (facade as_bvh_node); QuadNode is the same class"
+  },
+  {
+   "class": "QuadNode",
+   "size": null,
+   "base": "KdTree",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "query 0x6751a0 uses the KdTree layout",
+   "confidence": "medium",
+   "notes": "alias; function reassigned"
+  },
+  {
+   "class": "PathPoint",
+   "size": "0x24",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "pos",
+     "type": "f32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0xc",
+     "name": "a",
+     "type": "i32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x18",
+     "name": "b",
+     "type": "i32",
+     "size": 4,
+     "count": 3
+    }
+   ],
+   "members": [],
+   "evidence": "Box9 in PathBox::set 0x66e640 (3 floats + 2x3 ints), PointList::assign copies 9 dwords",
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "class": "PointList",
+   "size": "0x41",
+   "base": "DynArray",
+   "vtable": null,
+   "fields": [],
+   "members": [
+    {
+     "off": "0x1d",
+     "name": "start",
+     "class": "PathPoint"
+    }
+   ],
+   "evidence": "PathBox::set 0x66e640 zaps the DynArray and memcpy's a 0x24 Box9 to +0x1d; assign 0x66e5b0 copies +0x1d..+0x41 and the records",
+   "confidence": "medium",
+   "notes": "records are PathPoints too (linkin of Box9). PathBox label is the same class"
+  },
+  {
+   "class": "PathBox",
+   "size": "0x41",
+   "base": "PointList",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "set/set_end operate on the PointList layout",
+   "confidence": "medium",
+   "notes": "alias; functions reassigned (DynArray::update 0x584b30 -> DynArray)"
+  },
+  {
+   "class": "SpEntry",
+   "size": "0x58",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "key",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "key_flag",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x8",
+     "name": "active",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "a",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "b",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "c",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "d",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x1c",
+     "name": "x0",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x20",
+     "name": "y0",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x24",
+     "name": "x1",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x28",
+     "name": "y1",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x2c",
+     "name": "grid_a",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x30",
+     "name": "inline_a",
+     "type": "i32",
+     "size": 4,
+     "count": 4
+    },
+    {
+     "off": "0x40",
+     "name": "grid_b",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x44",
+     "name": "inline_b",
+     "type": "i32",
+     "size": 4,
+     "count": 4
+    },
+    {
+     "off": "0x54",
+     "name": "capacity",
+     "type": "i32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "SpIndex entries DynArrayB(0x58) at +0x18 (ctor 0x681ea0); init 0x683910 / resize 0x683bb0 / free_buffers 0x683b00 / set_a / set_b / at 0x683d70 / cell 0x683e10",
+   "confidence": "medium",
+   "notes": "two per-cell dword grids over (x0,y0)-(x1,y1); capacity starts at 4 (inline arrays when the heap pointer is null). Key = {u32, u8} (Key::equals 0x683850, g12). slot_free tests +8."
+  },
+  {
+   "class": "SpIndex",
+   "size": "0x46",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "cell_size",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "width",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "height",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "cols",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "rows",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "cells",
+     "type": "u8*",
+     "size": 4
+    }
+   ],
+   "members": [
+    {
+     "off": "0x18",
+     "name": "entries",
+     "class": "DynArrayB"
+    }
+   ],
+   "evidence": "ctor 0x681ea0 (DynArrayB(0x58) at +0x18, +0x14=0); init 0x681fe0; cells_for_rect 0x683110 / cell 0x683280 (8-byte cells) doc comments",
+   "confidence": "high",
+   "notes": "size = 0x18 + DynArrayB 0x2e. SpatialIndex functions reassigned here; Grid:: functions on it were reassigned by g06"
+  },
+  {
+   "class": "SpatialIndex",
+   "size": null,
+   "base": "SpIndex",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "cells_for_rect/cell/slot_free use the SpIndex layout",
+   "confidence": "medium",
+   "notes": "alias; operator[] 0x6827a0 (generic array accessor, no field accesses) left here"
+  },
+  {
+   "class": "Video",
+   "size": "0x30",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "open",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "texture",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "sound",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "video_stream",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0xe",
+     "name": "audio_stream",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x10",
+     "name": "width",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "height",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "channels",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x1a",
+     "name": "bits",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x1c",
+     "name": "sample_rate",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x20",
+     "name": "start_time",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x24",
+     "name": "reader",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x28",
+     "name": "video_time",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x2c",
+     "name": "audio_time",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "ctor 0x6845d0 memsets 0x30; open 0x684650 / close 0x686160 / update 0x685a80 comments",
+   "confidence": "high",
+   "notes": "reader = IWMSyncReader*, texture from TextureManager, sound = Sound3D"
+  },
+  {
+   "class": "VideoCapture",
+   "size": "0x28",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "active",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "bpp",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "width",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "height",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "buffer",
+     "type": "u8*",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "input",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "module",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x1c",
+     "name": "writer",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x20",
+     "name": "writer_adv",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x24",
+     "name": "sample",
+     "type": "ptr:void",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "ComInit::ctor 0x6862d0 memsets 0x28; init 0x686350 / release 0x686f50",
+   "confidence": "high",
+   "notes": "module = wmvcore.dll HMODULE, writer = IWMWriter, writer_adv = QI result, sample = INSSBuffer. 0x6862d0 (ComInit, g05 label) is this class's ctor"
+  }
+ ],
+ "functions": {
+  "0x63e550": "ScriptNode",
+  "0x63e5b0": "ScriptNode",
+  "0x63e600": "ScriptNode",
+  "0x63e630": "ScriptNode",
+  "0x63e660": "ScriptNode",
+  "0x6436b0": "ScriptNode",
+  "0x63edd0": "ScriptNode",
+  "0x63f140": "ScriptNode",
+  "0x642470": "ScriptNode",
+  "0x642490": "ScriptNode",
+  "0x6424b0": "ScriptNode",
+  "0x641a40": "ScriptNode",
+  "0x660ff0": "ScriptNode",
+  "0x63e6e0": "ScriptBlock",
+  "0x63e730": "ScriptBlock",
+  "0x63e780": "ScriptBlock",
+  "0x63e7f0": "ScriptBlock",
+  "0x643700": "ScriptBlock",
+  "0x63ee70": "ScriptBlock",
+  "0x6424d0": "ScriptBlock",
+  "0x641a60": "ScriptBlock",
+  "0x63e9f0": "ScriptBlock",
+  "0x63ecd0": "ScriptBlock",
+  "0x63ed10": "ScriptBlock",
+  "0x63ed40": "ScriptBlock",
+  "0x63ed70": "ScriptBlock",
+  "0x63eda0": "ScriptBlock",
+  "0x63eb00": "ScriptBlock",
+  "0x63ef20": "ScriptBlock",
+  "0x63f080": "ScriptBlock",
+  "0x63f100": "ScriptBlock",
+  "0x6424f0": "ScriptId",
+  "0x6425b0": "ScriptId",
+  "0x642600": "ScriptId",
+  "0x63f790": "ScriptId",
+  "0x63f8a0": "ScriptId",
+  "0x641c80": "ScriptId",
+  "0x642590": "ScriptId",
+  "0x642540": "ScriptId",
+  "0x642560": "ScriptId",
+  "0x642630": "ScriptInit",
+  "0x642680": "ScriptInit",
+  "0x6426d0": "ScriptInit",
+  "0x63fb80": "ScriptInit",
+  "0x63fca0": "ScriptInit",
+  "0x641cb0": "ScriptInit",
+  "0x63fde0": "ScriptReset",
+  "0x6429e0": "ScriptObject",
+  "0x640690": "ScriptGoto",
+  "0x640370": "ScriptWait",
+  "0x640a50": "ScriptChoice",
+  "0x642c60": "ScriptElse",
+  "0x642ca0": "ScriptElse",
+  "0x642cf0": "ScriptElse",
+  "0x648560": "ScriptElse",
+  "0x641e90": "ScriptElse",
+  "0x642d20": "ScriptCond",
+  "0x642d60": "ScriptCond",
+  "0x642db0": "ScriptCond",
+  "0x6453a0": "ScriptCond",
+  "0x6452f0": "ScriptCond",
+  "0x641f20": "ScriptCond",
+  "0x642e20": "Expr",
+  "0x645210": "Expr",
+  "0x641fb0": "Expr",
+  "0x6447a0": "ScriptExpr",
+  "0x644800": "ScriptExpr",
+  "0x644850": "ScriptExpr",
+  "0x644900": "ScriptExpr",
+  "0x642070": "ScriptExpr",
+  "0x642f60": "ScriptVarDecl",
+  "0x6443d0": "ScriptAssign",
+  "0x644430": "ScriptAssign",
+  "0x644480": "ScriptAssign",
+  "0x644530": "ScriptAssign",
+  "0x642100": "ScriptAssign",
+  "0x644190": "Value",
+  "0x644390": "Value",
+  "0x643000": "ScriptFuncCall",
+  "0x643040": "ScriptFuncCall",
+  "0x643090": "ScriptFuncCall",
+  "0x643b60": "ScriptFuncCall",
+  "0x643c00": "ScriptFuncCall",
+  "0x642190": "ScriptFuncCall",
+  "0x649920": "ScriptFuncCall",
+  "0x6509e0": "ScriptFuncCall",
+  "0x6430c0": "ScriptCheckCall",
+  "0x643100": "ScriptCheckCall",
+  "0x643150": "ScriptCheckCall",
+  "0x6421c0": "ScriptCheckCall",
+  "0x660e60": "ScriptCheckCall",
+  "0x643240": "ScriptCall",
+  "0x661060": "ScriptCall",
+  "0x645d40": "ScriptLoad",
+  "0x6463f0": "MathExpr",
+  "0x648f60": "Stack",
+  "0x648ea0": "Stack",
+  "0x648f40": "Stack",
+  "0x649040": "Stack",
+  "0x456d60": "ItemStack",
+  "0x661f20": "ScriptTokenList",
+  "0x661f70": "ScriptTokenList",
+  "0x54df60": "ObjChain",
+  "0x675e10": "PlaneHolder",
+  "0x67f250": "EmitterSlot",
+  "0x662cb0": "FlareEntry",
+  "0x6628a0": "LensFlares",
+  "0x6625f0": "LensFlares",
+  "0x662d20": null,
+  "0x662db0": null,
+  "0x663c50": "PfdZone",
+  "0x663cb0": "PfdZone",
+  "0x664130": "PfdZone",
+  "0x671cb0": "PfdZone",
+  "0x672500": "PfdZone",
+  "0x6730d0": "PfdZone",
+  "0x66dd00": "PfdZone",
+  "0x66cb40": "PathSpace",
+  "0x6739c0": "PathSpace",
+  "0x674590": "PathSpace",
+  "0x66c710": "PathSpace",
+  "0x6736e0": "PathSpace",
+  "0x66b7a0": "BlkArr",
+  "0x6751a0": "KdTree",
+  "0x66e640": "PointList",
+  "0x66e720": "PointList",
+  "0x584b30": "DynArray",
+  "0x63ee20": "DynArray",
+  "0x683910": "SpEntry",
+  "0x683b00": "SpEntry",
+  "0x683bb0": "SpEntry",
+  "0x683eb0": "SpEntry",
+  "0x683f60": "SpEntry",
+  "0x683d70": "SpEntry",
+  "0x683e10": "SpEntry",
+  "0x683110": "SpIndex",
+  "0x683280": "SpIndex",
+  "0x683650": "SpIndex",
+  "0x66fc20": "Key",
+  "0x6845d0": "Video",
+  "0x686320": "VideoCapture",
+  "0x63f190": "Script",
+  "0x649060": "Script",
+  "0x649280": "Script",
+  "0x63f200": "Script",
+  "0x6456f0": "ScriptIf",
+  "0x432d30": "Player",
+  "0x4352f0": "Player",
+  "0x43a7d0": "Player"
+ },
+ "notes": "Script node hierarchy rebuilt from the factory table 0x640db0 (27 kinds, size+ctor) and the node vtables. For g05: Script (0x70, vt 0x9da9c8) should take base ScriptBlock (g16); its ctor is 0x63f190 (was Ctrl), compile 0x649280, run 0x649060, scalar dtor 0x63f200 reassigned to Script; Gadget::destroy_tree 0x63f2c0 / Obj641::size 0x641c30 / Script::clear 0x63e7f0 (moved to ScriptBlock) are Script-vtable slots; Widget-labelled ctors 0x642630/0x640a50/0x642e20/0x6443d0/0x643240/0x6429e0 reassigned to node classes; 0x642ba0 (kind 10, 0x14, vt 0x9daf14 ScriptExit), 0x643180 (kind 23, 0x22, vt 0x9db0c8, base ScriptFuncCall), 0x6433c0 (kind 25, 0x20, vt 0x9db18c ScriptInt) are further nodes, not Widget. ComInit::ctor 0x6862d0 is VideoCapture's ctor (memset 0x28). For g12: Ctrl ctrl.cpp/uinput.cpp functions reassigned to Player; Pair::set 0x66fc20 to Key. For g15: PathSpace::get_2c 0x66b7a0 -> BlkArr, ScriptNode::run_block 0x6456f0 -> ScriptIf (kind 12, 0x24). For g13: Reader::next 0x63ee20 and PathBox 0x584b30 -> DynArray."
+}

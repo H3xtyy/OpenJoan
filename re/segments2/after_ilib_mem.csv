@@ -1,0 +1,4 @@
+start,end,name,confidence,evidence,target
+0x0058eee0,0x0058ef00,mem_tail,medium,"Empty dtor of the mem.cpp heap global (atexit 0x563e90 paired with init_heap -> mem Obj::ctor_58e770) + free stub right after get_mem_size.",ilib/mem.cpp
+0x0058ef30,0x00590540,misc_strings,medium,"Misc:: string/number/field/random utilities (str_cut/trim/format/copy_field/random) running straight into misc.cpp rand (0x5905a0); functions.csv places the neighbours in ww/ilib/misc.cpp.",ilib/misc.cpp
+0x005905f0,0x005905f0,misc_rand_next,high,"Rand::next between misc.cpp rand and rand_unit.",ilib/misc.cpp

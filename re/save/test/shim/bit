@@ -1,0 +1,9 @@
+// Freestanding <bit> for the i686 save test: std::bit_cast only.
+#pragma once
+namespace std {
+template <class To, class From>
+constexpr To bit_cast(const From& from) noexcept {
+    static_assert(sizeof(To) == sizeof(From));
+    return __builtin_bit_cast(To, from);
+}
+}  // namespace std

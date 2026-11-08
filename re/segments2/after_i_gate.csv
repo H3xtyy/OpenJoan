@@ -1,0 +1,17 @@
+start,end,name,confidence,evidence,target
+0x0048ea40,0x0048ea40,i_obj03_g0,high,"init_a39c18 of the i_obj03 init set, between i_obj03 inits.",game/_unplaced/i_obj03.cpp
+0x0048f8d0,0x0048f8d0,i_obj12_g0,high,Unit::time_left (only caller i_obj12 is_idle_4902c0) between i_obj12 functions.,game/_unplaced/i_obj12.cpp
+0x00490470,0x00490470,i_obj02_g0,high,init_a39c38 of the i_obj02 init set (caller init_490450).,game/_unplaced/i_obj02.cpp
+0x00490b90,0x00490b90,i_obj0e_a_g0,high,init_a39c50 called by init_490ad0 of the i_obj0e_a init set.,game/_unplaced/i_obj0e_a.cpp
+0x00491c40,0x00491c40,i_obj0e_g0,medium,MouseCursor::set_mode sandwiched between i_obj0e functions (relocated stray).,game/_unplaced/i_obj0e.cpp
+0x004926f0,0x004926f0,i_wall_g0,high,init_a39c7c (caller init_4926c0) inside i_wall.cpp init set.,game/i_wall.cpp
+0x004944c0,0x004944c0,misc_4944c0_g0,medium,Rules time_score (caller Rules::scan) opening the scrambled Rules/Army run misc_004944c0.,game/_unplaced/misc_004944c0.cpp
+0x004956a0,0x004956a0,calendar_g0,medium,Track::wrap_delta sandwiched between calendar.cpp functions.,game/_unplaced/calendar.cpp
+0x004975a0,0x004975d0,unitdata_g0a,high,Holder::add_list12 cluster between unitdata.cpp functions.,game/_unplaced/unitdata.cpp
+0x004976e0,0x004976e0,unitdata_g0b,high,Holder::add_list16_1a between unitdata.cpp functions.,game/_unplaced/unitdata.cpp
+0x004985f0,0x004985f0,unitdata_g0c,high,Holder::count_of between unitdata.cpp functions.,game/_unplaced/unitdata.cpp
+0x00498970,0x00498970,unitdata_g0d,high,Holder::remove_type calls unitdata Slots::free/free_0a/free_e; follows unitdata.cpp.,game/_unplaced/unitdata.cpp
+0x0049b7a0,0x0049b7a0,misc_4994b0_g0,medium,"Unit::setup_light after misc_004994b0 (whose evidence already lists setup_light), before world_s.cpp.",game/_unplaced/misc_004994b0.cpp
+0x0049c710,0x0049c710,misc_49c080_g0,high,Unit::setup_glow sandwiched in misc_0049c080 (its evidence names setup_glow).,game/_unplaced/misc_0049c080.cpp
+0x0049d390,0x0049d390,misc_49cc10_g0,high,init_a39ca0 of the 0xa39c98 init set sandwiched in misc_0049cc10.,game/_unplaced/misc_0049cc10.cpp
+0x0049f570,0x0049f570,itemres_g0,high,Ctor directly before itemres.cpp Obj49f::dtor_49f5b0.,game/itemres.cpp

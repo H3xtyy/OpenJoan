@@ -1,0 +1,7 @@
+// Freestanding <cstddef> for the i686 save test.
+#pragma once
+#include <stddef.h>
+namespace std {
+using ::size_t;
+using ::ptrdiff_t;
+}  // namespace std

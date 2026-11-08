@@ -1,0 +1,21 @@
+start,end,name,confidence,evidence
+0x0048dfb0,0x0048e900,i_gate_tail,medium,Gate-class methods (can_act vtable 0x9d38d0 next to the gate vtable 0x9d388c) and its zero/self stubs right after i_gate.cpp's anchor and before the next TU's static-init set.
+0x0048e920,0x0048f5d0,i_obj03,medium,TU opened by a math static-init set (bss 0xa39c0c): item kind 3 class (Order0c_c ctor/dtor/init/on_event/can_act/stubs vtable 0x9d397c); Army::morale_term (nation2 .rdata 0x9d525c/0x9d5384) looks incrementally relocated here.
+0x0048f5f0,0x004903d0,i_obj12,medium,Next init set (bss 0xa39c20) + item kind 0x12 class (Order00 ctor/dtor/init/on_event/is_idle vtable 0x9d3a18); Tower::update_fire (slot of the tower vtable 0x9d3c88 / i_wall strings) is relocated into it.
+0x004903f0,0x004907c0,i_obj02,medium,Init set (bss 0xa39c34) + deleting dtor and empty vtable methods of the item kind 2 class (vtable 0x9d3ab4; its ctor/dtor 0x434380/0x43c750 sit far away).
+0x00490930,0x00490b90,i_obj0e_a,low,Self stub + part of the init set with bss 0xa39c48 (kind 0x0e TU) cut by the relocated ilib/sound3d.cpp '=' functions.
+0x00490eb0,0x004915d0,misc_00490eb0,low,LodQueue::update / List::expire (sound and unit-expiry code) between the relocated sound3d/se/mousecr '=' functions; one stray init of the 0xa39c48 set - incremental-link scramble.
+0x00491770,0x00491e00,i_obj0e,medium,Rest of the 0xa39c48 init set + item kind 0x0e class (deleting dtor -> 0x462b30, init vtable 0x9d3b58, empty slots of vtable 0x9d3b50); Res13::free_all / MouseCursor::move are relocated strays.
+0x00491e50,0x004925c0,i_obj0d,medium,Init set (bss 0xa39c5c) + item kind 0x0d class (Order45 scalar dtor -> 0x43a980, init, stubs, self; vtable 0x9d3bec) with Cursor::place.
+0x004925e0,0x00493340,i_wall_body,medium,Init set (bss 0xa39c70) + tower class (item kind 4 deleting dtor -> 0x4380a0; vtable 0x9d3c88 directly followed in .rdata by "d:\ww\i_wall.cpp" / towerfire / "default" strings used by attach_model): part of i_wall.cpp.
+0x00493450,0x00493680,misc_00493450,low,Start of the init set with bss 0xa39c84 (its other members are scattered to 0x4949a0/0x494da0/0x495070) and MouseCr::on_event (a slot of the kind-2 vtable 0x9d3ab4): relocated mix.
+0x00493eb0,0x00493eb0,mousecr_init,high,MouseCursor::init ("I_CURSOR.RES"/"RESOURCE\PAL_STD.RES", .rdata next to mousecr.cpp's) directly before ilib/mousecr.cpp's '=' release: part of ilib/mousecr.cpp.
+0x004944c0,0x00495070,misc_004944c0,low,Scrambled run: nation2-style Rules/Army code (.rdata/.data of nation2), effect spawning, Unit::use_item, trigger_type_from_name (.rdata 0x9d72fc, far later) and stray inits of the 0xa39c84 set.
+0x00495230,0x004958f0,calendar,low,Calendar/date code (open with time(), next_day, get_date forwarders, Pool::alloc44, Table51) with global init helpers; Track::wrap_delta / release_321 are strays.
+0x00495950,0x00498970,unitdata,medium,Coherent unit-data/inventory cluster: UnitData copy/release, Sounds::create, Inventory::add, Names/Slots/Owner records, Modifiers::sum, Holder add/count/remove (aim_velocity and Obj::rank are strays).
+0x00498b30,0x004991e0,misc_00498b30,low,Unrelated leftovers before nation.cpp's '=': base scalar dtor, Nation::toggle_station, UnitType::load_stats (bss of the 0xa39c98 TU), SoundSlots::play.
+0x004994b0,0x0049b7a0,misc_004994b0,low,Unrelated mix between nation.cpp and world_s.cpp '=' functions: Mode::set, Game::run, unit angle/position accessors, can_reach, setup_sky, sound pause, setup_light - no consistent data/class run.
+0x0049c080,0x0049cac0,misc_0049c080,low,Group sound pause / light release / unit search / setup_glow ("glow2dlight" in i_wall-area .rdata) / date table lookups after world_s.cpp's '=' function.
+0x0049cc10,0x0049d420,misc_0049cc10,low,Init set with bss 0xa39c98 interleaved with relocated methods (update_49cc30 is a kind-0x0e vtable slot; X::check_target).
+0x0049d490,0x0049e500,misc_0049d490,low,Next init set (bss 0xa39d14..0xa39da0) followed by unit trade/idle/pickup ("S7_GOLDBAR" .rdata far later) and count code.
+0x0049e8d0,0x0049f570,itemres_head,medium,Item/unit manager (ObjJ vtable 0x9d4090 immediately before "d:\ww\itemres.cpp" in .rdata; Units::create builds objects by item-record kind, remove, find_by_name) directly before itemres.cpp's first anchor: probably the start of itemres.cpp.

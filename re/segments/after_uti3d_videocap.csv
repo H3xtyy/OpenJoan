@@ -1,0 +1,14 @@
+start,end,name,confidence,evidence
+0x00687060,0x00687060,vidcap_tail,low,"Only caller is video_copy_frame (video capture sound buffer); probably the tail of ww/uti3d/videocap.cpp, kept separate."
+0x00687130,0x00689af0,vtrail,medium,"Weapon-trail/attach/mesh-deform run (Trail, TrailNode(s), ""SLASH_02"" 9dd6c4); helpers sit next to their callers; no data shared with the weather code after it."
+0x00689b10,0x0068ca80,weather,high,"Weather/rain/snow/ripple/thunder/lightning manager, monotone strings 9dd6d0..9dd734, ends with its header static-init group 0x68c960 (pi at a6a3d0; inits close an object)."
+0x0068cab0,0x0068d760,clip,low,"Pure 2D/3D clipping math (outcodes, clip_line, polygon_overlaps_rect, clip_segment_3d) between the weather init group and the collision-grid code; no init group of its own."
+0x0068db10,0x00694b50,colgrid,medium,"Collision cell grid / placement checks (Collisions add/remove, Players::collide, Placement::check_move, Projectile::hit_test) closed by header init group 0x694a30 (pi a6a3e4)."
+0x00694b80,0x006a3d10,collide,medium,"Shape sweep/overlap geometry library (box/sphere/cylinder/capsule sweeps, quartic solver); its local statics a6a3f8..a6a4bc follow colgrid header globals in .bss; called from colgrid and formmove."
+0x006a45a0,0x006aabe0,formmove,medium,"FormMove::step/Ballistic::step/Unit::steer movement physics; steer reads this object own pi copy a6a4e8 whose init group 0x6aaa60 follows, then the two accessors only FormMove uses."
+0x006aac10,0x006acb10,pathzone,medium,"Zone/path lookup helpers (GridCell::layer, find_zone_pair, Zones::find_path, Players::find_match, route_around) closed by header init group 0x6ac9f0 (a6a4fc)."
+0x006acb40,0x006acea0,quat,low,"Tiny math object (Quadratic::solve, Quat::from_rotvec, Grid::slope) closed by its own header init group 0x6acd80 (a6a510)."
+0x006aced0,0x006b08c0,rworld,medium,"Physics-world singleton (Global::ctor_6aced0/dtor, add/remove_cell, Formation::update, set_active, find_slot, place, assign_matches) closed by init group 0x6b05d0 plus its trailing inline list accessors."
+0x006b08e0,0x006b22c0,shot,medium,"Rigid-body records (Shot::init, Camera::reset_state inertia, Record::sync_position, OwnerList/RecordList) closed by header init group 0x6b21a0 (a6a538)."
+0x006b22f0,0x006b22f0,combobox_a,medium,"Widget ctor with vtable 0x9dd7a0, the same vtable as the combobox.cpp function 0x6b2340 right after it: start of ww/interfac/combobox.cpp."
+0x006b23b0,0x006b29b0,combobox_b,medium,PageButton/OptBox UI builders (strings 9dd7a4.. right after the 9dd7a0 vtable) before the combobox.cpp anchor 0x6b3130: very likely ww/interfac/combobox.cpp.

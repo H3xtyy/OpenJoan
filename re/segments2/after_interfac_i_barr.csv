@@ -1,0 +1,4 @@
+start,end,name,confidence,evidence,target
+0x006bd490,0x006c0400,ibarr_recruit,high,"Barracks recruit screen (count/commit units, ArmyPanel/RecruitPanel, load_barr BARR_BG 0x9ddc70 after d:\ww\interfac\i_barr.cpp 0x9ddbac) before i_barr Res3::free.",interfac/i_barr.cpp
+0x006c0570,0x006c2030,ibarr_draw,high,"Draw callbacks with strings CROSS..TITLE (0x9ddc7c..0x9ddcf8) continuing i_barr .rdata, then the dynamic init of a Colour global closing the object.",interfac/i_barr.cpp
+0x006c2070,0x006c2070,ibuy_scene_ctor,medium,"Obj6c2070::Obj (Scene) is the ctor of init group 0x56be30 whose atexit CamMan::dtor_423d20 calls i_buy Shop::release; precedes i_buy.cpp Shop::camera_setup.",interfac/i_buy.cpp

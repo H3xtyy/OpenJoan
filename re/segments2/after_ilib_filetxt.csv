@@ -1,0 +1,2 @@
+start,end,name,confidence,evidence,target
+0x0058a2c0,0x0058a2c0,flc_reset,high,Flc::reset directly precedes Flc::dtor/Flc::open of flc.cpp (Flc ctor-like +0x1d reset),ilib/flc.cpp

@@ -1,0 +1,5 @@
+start,end,name,confidence,evidence,target
+0x00585cb0,0x00585d20,dynarrb_tail,medium,"Keys::count_below / Sound::reset_585d20 (zap) right after dynarrb read_empty_room.",ilib/dynarrb.cpp
+0x00585f20,0x00585f20,file_list_last,low,"Table::last directly after List::load (attributed file.cpp) and called by it; ends the object before the music-stream global ctor.",ilib/file.cpp
+0x00585f70,0x005868f0,musicstr,medium,"Streamed music/video sound object: global ctor clear_50 + atexit call_586010 (init group 0x566ef0) open it; Music::play / SoundStreams3 / Volume::set / channel mode.",
+0x00586950,0x00586bc0,errhand,medium,"Heap ctor (_set_new_handler) + fatal_error / mem_error / warning_box; strings Error on File / Insufficient Memory follow dynarrb strings and precede file.cpp Error opening file.",

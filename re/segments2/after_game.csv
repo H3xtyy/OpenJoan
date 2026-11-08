@@ -1,0 +1,4 @@
+start,end,name,confidence,evidence,target
+0x00472d10,0x00472e80,game_tail,high,play_sound (Game::draw) then the header PI static-init block (.bss a3916c..a39178) closing game.cpp.,game/game.cpp
+0x00472ee0,0x00472ee0,game_diff,medium,load_difficulty_settings: only caller Game::init_once; its .bss a39180..a391b0 directly follows game.cpp's PI .bss and its strings 0x9d34b8.. directly follow game.cpp's Loading strings (..0x9d3498).,game/game.cpp
+0x00473140,0x00473550,misc_473140,low,"Sound-slot test + GameFile save_preview / preview_name (.BMP) + List::clear; strings 0x9d351c..0x9d353c directly precede gamefil2.cpp's 0x9d3544 — either game.cpp tail or gamefil2.cpp head, unresolved."

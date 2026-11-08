@@ -1,0 +1,6 @@
+start,end,name,confidence,evidence,target
+0x006e0dc0,0x006e0df0,i_letter_t1,high,Panel flag / byte accessors used by Letter::open / Letter::close right after i_letter.cpp Letter::load.,interfac/i_letter.cpp
+0x006e0e20,0x006e2ab0,i_msglog,medium,"Global ctor (dtor -> release_children 0x6e1070) heads a message-log book panel: LongBar init / MessageLog::draw (cover) / MsgLog::load (MSGLOG_B) / PageTurn capture (Page1/2) / Book::draw_page (page_l/r) / MARK draw; own strings 0x9de1fc..0x9de228."
+0x006e32d0,0x006e45b0,i_qsave,medium,"Global ctor (init 0x56bf90) heads the quick-save bar: QuickBar::init (ql_bar/qlc_bar/qs_bar 0x9de230..0x9de244) / Intro::animate (0x9de250..0x9de280) / PopupHost::set_open / QSAVE image load+free."
+0x006e4600,0x006e4dd0,i_quit,medium,"Global ctor (init 0x56c020) heads the question-mark / quit popup: QuestionMark::init + QuitPopup draw/show/hide/load (bg_qm bg_qw 0x9de28c..0x9de294 / QUIT) and its texture release."
+0x006e4e20,0x006e5140,i_sms_head,medium,"Global ctor (init 0x56c150) + SMS bar init (QLC_BAR 0x9de29c just before i_sms's __FILE__ 0x9de2b4) + reset calling i_sms.cpp Obj::repeat_step + PickupNotice::draw; directly precedes i_sms.cpp Panel::slide.",interfac/i_sms.cpp

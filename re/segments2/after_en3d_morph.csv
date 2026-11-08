@@ -1,0 +1,6 @@
+start,end,name,confidence,evidence,target
+0x005cadf0,0x005cadf0,morph_t1,high,Accessor between morph.cpp Morph::merge and MorphAnim::MorphAnim.,en3d/morph.cpp
+0x005cae50,0x005cae80,morph_t2,high,MorphAnim dtor / load (Error loading Morph Animation) right after morph.cpp's MorphAnim ctor.,en3d/morph.cpp
+0x005cb310,0x005cb3d0,morph_t3,high,Table::clear (MorphAnim dtor helper) + MorphController::evaluate (Morph::set_weights) after morph.cpp Arr::copy_from.,en3d/morph.cpp
+0x005cb860,0x005cba40,antiport,low,"One small quad class (4 vec3 corners + fields 0x30/0x34; set_corner / transform / translate) used by World::read_anti_portal, between morph.cpp and plane.cpp; possibly a tiny anti-portal object or the tail of morph.cpp."
+0x005cbb60,0x005cbb60,plane_t6,high,Model ctor called by Plane::add_child between plane.cpp Plane::Plane and Plane::Plane(copy).,en3d/plane.cpp

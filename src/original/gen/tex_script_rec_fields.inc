@@ -1,0 +1,37 @@
+// Generated (re/layout/gen_types.py) from re/layout/layouts.json: the data members of TexScriptRec
+// (r4_r1.json, confidence medium). Do not edit; change the spec.
+    std::int16_t id;  // 0x0
+    char name[33];  // 0x2
+    std::uint16_t layer_count;  // 0x23
+    std::uint16_t material_indices[6];  // 0x25
+    std::uint16_t stage_count[6];  // 0x31
+    std::uint16_t tfactor_alphas[6];  // 0x3d
+    float f32_49[6];  // 0x49
+    std::uint32_t tex_op_61[24];  // 0x61
+    std::uint32_t tex_op_c1[24];  // 0xc1
+    std::uint32_t tex_op_121[24];  // 0x121
+    std::uint32_t tex_op_181[24];  // 0x181
+    std::uint32_t tex_op_1e1[24];  // 0x1e1
+    std::uint32_t tex_op_241[24];  // 0x241
+    std::uint32_t tex_op_2a1[24];  // 0x2a1
+    float f32_301[24];  // 0x301
+    std::int32_t i32_361[24];  // 0x361
+    char stage_names[792];  // 0x3c1
+    std::uint8_t object_mode[24];  // 0x6d9
+    float scroll_speeds_u[24];  // 0x6f1
+    std::uint32_t address_modes_u[24];  // 0x751
+    float scroll_speeds_v[24];  // 0x7b1
+    std::uint32_t address_modes_v[24];  // 0x811
+    std::uint32_t has_extra[24];  // 0x871
+    std::uint32_t sphere_map_flags[24];  // 0x8d1
+    std::uint32_t projected_flags[24];  // 0x931
+    float bump_env_mat00s[24];  // 0x991
+    float bump_env_mat01s[24];  // 0x9f1
+    float bump_env_mat10s[24];  // 0xa51
+    float bump_env_mat11s[24];  // 0xab1
+    float bump_env_lscales[24];  // 0xb11
+    float bump_env_loffsets[24];  // 0xb71
+    float scroll_offsets_u[24];  // 0xbd1
+    float scroll_offsets_v[24];  // 0xc31
+    float scales_u[24];  // 0xc91
+    float scales_v[24];  // 0xcf1

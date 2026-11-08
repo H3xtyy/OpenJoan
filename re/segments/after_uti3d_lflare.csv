@@ -1,0 +1,9 @@
+start,end,name,confidence,evidence
+0x006628a0,0x00662d20,lflare_tail,high,"LensFlare::draw/acquire_texture (""LFlare"" 9dbc38, globals a6a26c/a6a270 shared with lflare.cpp release_texture): tail of ww/uti3d/lflare.cpp."
+0x00662e20,0x00663960,partslot,medium,"Particle slot pool (Particle::reset/update, PartSlot, SlotPool); its own topic, called only from the effect particle emitter code."
+0x00663990,0x00663c50,pathmesh_a,medium,2D point/buffer helpers used by the path-mesh builder; opens the path-mesh object (split here only by the pathsp-registered 0x663cb0).
+0x00663f30,0x006640d0,pathmesh_b,medium,"Path-mesh small helpers (Obj663f30::assign, contains, IntArray) between pathsp-registered 0x663cb0 and 0x664130."
+0x00664180,0x0066b770,pathmesh,medium,"PfdData/Regions/LinkSet tables and PathMesh::build (strings 9dbc40..9dbe64), closed by header init group 0x66b650 (pi a6a274)."
+0x0066b7c0,0x0066b7c0,pathsp_a,low,"PolySet::link_edges, after the pathmesh init group, calls pathsp Zone::link; probably the start of ww/uti3d/pathsp.cpp."
+0x0066ba30,0x0066baa0,pathsp_b,low,Table::row_word/cell_word between pathsp-registered functions; probably ww/uti3d/pathsp.cpp.
+0x0066cae0,0x0066fcd0,pathsp_c,medium,Nav::find_path/A*/Path::smooth/ScenarioSaver; strings 9dbe90/9dbe94 run straight into the pathsp __FILE__ 9dbe98 at 0x670980: probably ww/uti3d/pathsp.cpp.

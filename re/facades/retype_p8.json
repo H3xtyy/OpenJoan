@@ -1,0 +1,229 @@
+{
+ "_doc": "Round P8: facade declarations (src/original/gen/*_methods.inc) whose pointer parameters / results were carried as 32-bit integers. Applied by re/facades/retype.py (declaration line after the `/// 0xaddr` comment; param = index or \"ret\"), then re/bind/sync_bridges.py re-syncs the bridge definitions.",
+ "retypes": [
+  {
+   "inc": "table_methods.inc",
+   "addr": "0x00585f20",
+   "param": "ret",
+   "from": "std::uint32_t",
+   "to": "void*",
+   "why": "Table::last: the last record's address"
+  },
+  {
+   "inc": "table_methods.inc",
+   "addr": "0x004cb5b0",
+   "param": "ret",
+   "from": "std::int32_t",
+   "to": "const char*",
+   "why": "Table::lookup: the key name (optmenui.cpp)"
+  },
+  {
+   "inc": "script_block_methods.inc",
+   "addr": "0x00643550",
+   "param": "ret",
+   "from": "std::uint32_t",
+   "to": "void*",
+   "why": "make_statement: the new statement node"
+  },
+  {
+   "inc": "script_methods.inc",
+   "addr": "0x006488d0",
+   "param": "ret",
+   "from": "std::uint32_t",
+   "to": "ScriptNode*",
+   "why": "statement_6488d0: a ScriptNode"
+  },
+  {
+   "inc": "script_cache_methods.inc",
+   "addr": "0x00648ce0",
+   "param": "ret",
+   "from": "std::uint32_t",
+   "to": "void*",
+   "why": "compiled_at: the compiled script"
+  },
+  {
+   "inc": "zone_methods.inc",
+   "addr": "0x00664080",
+   "param": "ret",
+   "from": "std::int32_t",
+   "to": "void*",
+   "why": "Zone::link_at: the linked zone"
+  },
+  {
+   "inc": "sound3dbuffer_methods.inc",
+   "addr": "0x0059f1a0",
+   "param": 0,
+   "from": "std::uint32_t",
+   "to": "const void*",
+   "why": "set_data: the sample buffer (video.cpp)"
+  },
+  {
+   "inc": "text_box_methods.inc",
+   "addr": "0x0062b8d0",
+   "param": 5,
+   "from": "std::uint32_t",
+   "to": "std::uintptr_t",
+   "why": "TextBox::init: the draw callback (a code address, Scroll+0x8e)"
+  },
+  {
+   "inc": "text_box_methods.inc",
+   "addr": "0x0062c750",
+   "param": 5,
+   "from": "std::uint32_t",
+   "to": "std::uintptr_t",
+   "why": "TextBox::setup: the draw callback (Scroll+0x8e)"
+  },
+  {
+   "inc": "sp_index_methods.inc",
+   "addr": "0x00682370",
+   "param": 0,
+   "from": "std::uint32_t",
+   "to": "const void*",
+   "why": "remove_matching: the key (a Key*)"
+  },
+  {
+   "inc": "sp_index_methods.inc",
+   "addr": "0x006832c0",
+   "param": 0,
+   "from": "std::uint32_t",
+   "to": "const void*",
+   "why": "walk_chain: the key"
+  },
+  {
+   "inc": "sp_index_methods.inc",
+   "addr": "0x00682560",
+   "param": 0,
+   "from": "std::uint32_t",
+   "to": "const void*",
+   "why": "move_by_key: the key"
+  },
+  {
+   "inc": "actor_methods.inc",
+   "addr": "0x005ae0c0",
+   "param": 0,
+   "from": "std::uint32_t",
+   "to": "void*",
+   "why": "add_child: the morph / child (armory.cpp)"
+  },
+  {
+   "inc": "block_array_methods.inc",
+   "addr": "0x00637920",
+   "param": "ret",
+   "from": "std::uint32_t",
+   "to": "void*",
+   "why": "BlockArray::at: the element address (blkarrb.cpp)"
+  },
+  {
+   "inc": "map_object_methods.inc",
+   "addr": "0x004991e0",
+   "param": 0,
+   "from": "std::uint32_t",
+   "to": "const void*",
+   "why": "play_sound: the PemiScript effect (unit_core.cpp)"
+  },
+  {
+   "inc": "sound_effects_methods.inc",
+   "addr": "0x00457e00",
+   "param": 0,
+   "from": "std::int32_t",
+   "to": "const char*",
+   "why": "SoundEffects::find (Lookup::find): the sound name"
+  },
+  {
+   "inc": "sound_effects_methods.inc",
+   "addr": "0x0059ebd0",
+   "param": 0,
+   "from": "std::uint32_t",
+   "to": "const char*",
+   "why": "SoundEffects::play: the sound name (button2d.cpp passes Button::i8_e3)"
+  },
+  {
+   "inc": "script_tokenizer_methods.inc",
+   "addr": "0x00684590",
+   "param": 0,
+   "from": "std::uint32_t",
+   "to": "const char*",
+   "why": "add_string: the token text"
+  },
+  {
+   "inc": "ini_methods.inc",
+   "addr": "0x0047cca0",
+   "param": "ret",
+   "from": "const char*",
+   "to": "void*",
+   "why": "intern_section: the section record (Ini, its name first)"
+  },
+  {
+   "inc": "scene_methods.inc",
+   "addr": "0x005eeb50",
+   "param": "ret",
+   "from": "std::uint32_t",
+   "to": "std::uintptr_t",
+   "why": "get_5eeb50: a Light* (the replacement returns uintptr_t)"
+  },
+  {
+   "inc": "texture_manager_methods.inc",
+   "addr": "0x0060ac20",
+   "param": 0,
+   "from": "std::uint32_t",
+   "to": "std::uintptr_t",
+   "why": "insert_named: a Texture*"
+  },
+  {
+   "inc": "texture_manager_methods.inc",
+   "addr": "0x0060ac20",
+   "param": 1,
+   "from": "std::uint32_t",
+   "to": "std::uintptr_t",
+   "why": "insert_named: its name"
+  },
+  {
+   "inc": "texture_manager_methods.inc",
+   "addr": "0x0060ad40",
+   "param": 0,
+   "from": "std::uint32_t",
+   "to": "std::uintptr_t",
+   "why": "add_sorted: a Texture*"
+  },
+  {
+   "inc": "texture_manager_methods.inc",
+   "addr": "0x0060b000",
+   "param": 0,
+   "from": "std::uint32_t",
+   "to": "std::uintptr_t",
+   "why": "find_sorted: a Texture*"
+  },
+  {
+   "inc": "mesh_edge_methods.inc",
+   "addr": "0x0066a320",
+   "param": 0,
+   "from": "std::int32_t",
+   "to": "void*",
+   "why": "MeshEdge::set (Rec::set): PathRec::a (a MeshVertex*; MeshEdge is a facade-only class, gen3.py)"
+  },
+  {
+   "inc": "mesh_edge_methods.inc",
+   "addr": "0x0066a320",
+   "param": 1,
+   "from": "std::int32_t",
+   "to": "void*",
+   "why": "PathRec::b (a MeshVertex*)"
+  },
+  {
+   "inc": "mesh_edge_methods.inc",
+   "addr": "0x0066a320",
+   "param": 3,
+   "from": "std::int32_t",
+   "to": "void*",
+   "why": "PathRec::d (the triangle zone)"
+  },
+  {
+   "inc": "mesh_vertex_methods.inc",
+   "addr": "0x0066a280",
+   "param": 0,
+   "from": "std::int32_t",
+   "to": "void*",
+   "why": "MeshVertex::construct: the point (a PfdPoint*)"
+  }
+ ]
+}

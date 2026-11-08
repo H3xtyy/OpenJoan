@@ -1,0 +1,3248 @@
+{
+ "group": "g13",
+ "classes": [
+  {
+   "class": "File",
+   "size": "0x10e",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "file_name",
+     "type": "char",
+     "size": 1,
+     "count": 261
+    },
+    {
+     "off": "0x105",
+     "name": "file_handle",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x109",
+     "name": "handle_error",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x10d",
+     "name": "allow_vary_size",
+     "type": "char",
+     "size": 1
+    }
+   ],
+   "members": [],
+   "evidence": "new(0x10e) before File::File 0x4179c0; src/original/file.hpp",
+   "confidence": "high",
+   "notes": "file_handle is a Win32 HANDLE (INVALID_HANDLE_VALUE when closed); on x64 it widens to 8 bytes."
+  },
+  {
+   "class": "FileMem",
+   "size": "0x11c",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "file_name",
+     "type": "char",
+     "size": 1,
+     "count": 261
+    },
+    {
+     "off": "0x105",
+     "name": "allow_vary_size",
+     "type": "char",
+     "size": 1
+    },
+    {
+     "off": "0x106",
+     "name": "handle_error",
+     "type": "char",
+     "size": 1
+    },
+    {
+     "off": "0x107",
+     "name": "own_buf",
+     "type": "char",
+     "size": 1
+    },
+    {
+     "off": "0x108",
+     "name": "cur",
+     "type": "u8*",
+     "size": 4
+    },
+    {
+     "off": "0x10c",
+     "name": "buf",
+     "type": "u8*",
+     "size": 4
+    },
+    {
+     "off": "0x110",
+     "name": "size",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x114",
+     "name": "sync_file",
+     "type": "ptr:File",
+     "size": 4
+    },
+    {
+     "off": "0x118",
+     "name": "sync_mem",
+     "type": "ptr:FileMem",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "src/original/file_mem.hpp; every FileMem method agrees",
+   "confidence": "high",
+   "notes": "Not derived from File (different layout after file_name). size 0x11c = end of sync_mem (no operator new seen)."
+  },
+  {
+   "class": "FileTxt",
+   "size": "0x19a",
+   "base": "File",
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x10e",
+     "name": "ptr",
+     "type": "u8*",
+     "size": 4
+    },
+    {
+     "off": "0x112",
+     "name": "data_buf",
+     "type": "u8*",
+     "size": 4
+    },
+    {
+     "off": "0x116",
+     "name": "token",
+     "type": "char",
+     "size": 1,
+     "count": 128
+    },
+    {
+     "off": "0x196",
+     "name": "data_size",
+     "type": "i32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "new(0x19a) before FileTxt ctor; src/original/file_txt.hpp",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "class": "Blob",
+   "size": "0x8",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "data",
+     "type": "u8*",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "size",
+     "type": "i32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "src/original/blob.hpp; Blob ctors write +0/+4",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "class": "Mem",
+   "size": "0xc",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "head",
+     "type": "ptr:MemHeader",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "tail",
+     "type": "ptr:MemHeader",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "src/original/mem.hpp; ctor 0x58e770 zeroes +0/+4/+8; global at 0xa48838",
+   "confidence": "high",
+   "notes": "new+ctor size 0x8 attributed to Mem::resize is a misattribution (resize is called on a Mem* argument)."
+  },
+  {
+   "class": "DynArray",
+   "size": "0x1d",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "ele_num",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "block_num",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "cur_pos",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "last_ele",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "ele_size",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "sort_offset",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "sort_type",
+     "type": "char",
+     "size": 1
+    },
+    {
+     "off": "0x19",
+     "name": "body_buf",
+     "type": "u8*",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "new(0x1d) before DynArray::DynArray 0x5843d0; write_file saves 0x1d header bytes; src/original/dynarray.hpp",
+   "confidence": "high",
+   "notes": "Records are 1-based. Persisted header (write_file/read_file write the raw 0x1d bytes incl. body_buf) - the x64 port must keep a 0x1d-byte on-disk header separate from the in-memory struct."
+  },
+  {
+   "class": "EmptyRoom",
+   "size": "0x8",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "recno",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "deleted_date",
+     "type": "i32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "src/original/dynarray.hpp; DynArrayB indexes empty_room_array with stride 8",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "class": "DynArrayB",
+   "size": "0x2e",
+   "base": "DynArray",
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x1d",
+     "name": "empty_room_array",
+     "type": "ptr:EmptyRoom",
+     "size": 4
+    },
+    {
+     "off": "0x21",
+     "name": "empty_room_num",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x25",
+     "name": "empty_room_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x29",
+     "name": "reuse_interval_days",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x2d",
+     "name": "flag_2d",
+     "type": "char",
+     "size": 1
+    }
+   ],
+   "members": [],
+   "evidence": "new(0x2e) before DynArrayB::DynArrayB 0x5856a0; src/original/dynarray.hpp",
+   "confidence": "high",
+   "notes": "0x1d+-0x8 accesses are empty_room_array[count-1] (indexed, 1-based count)."
+  },
+  {
+   "class": "SortedArray",
+   "size": "0xc",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "capacity",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "items",
+     "type": "ptr:void",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "TextureManager::insert_named 0x60ac20 (+0/+4/+8) and add_sorted 0x60ad40 (+0xc/+0x10/+0x14): two {count, capacity, u32 items[]} vectors grown by 0x40 through Mem::resize, searched with Misc::bin_search",
+   "confidence": "medium",
+   "notes": "All functions labelled SortedArray belong elsewhere: 0x584510/0x584790/0x585470/0x585630 are DynArray methods (dynarr.cpp), 0x60ac20/0x60ad40/0x60b000 are TextureManager methods. This spec keeps the name for the embedded sorted u32 vector TextureManager has at +0x0 and +0xc (members for g03)."
+  },
+  {
+   "class": "SortedList",
+   "size": null,
+   "base": "DynArray",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "label alias of DynArray",
+   "confidence": "high",
+   "notes": "Not a separate class: 0x585280 SortedList::insert is DynArray::sorted_insert (uses sort_offset/sort_type); reassigned to DynArray."
+  },
+  {
+   "class": "Pager",
+   "size": null,
+   "base": "DynArray",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "label alias of DynArray",
+   "confidence": "high",
+   "notes": "Not a separate class: 0x585660 Pager::set_page is DynArray::go(n) (cur_pos = n if 1..last_ele); reassigned to DynArray."
+  },
+  {
+   "class": "FileInfo",
+   "size": "0x111",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "name",
+     "type": "char",
+     "size": 1,
+     "count": 261
+    },
+    {
+     "off": "0x105",
+     "name": "size",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x109",
+     "name": "time_lo",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x10d",
+     "name": "time_hi",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "src/original/gameset.hpp (Directory record, WIN32_FIND_DATA digest)",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "class": "Directory",
+   "size": "0x1d",
+   "base": "DynArray",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "new(0x1d) before Directory::Directory 0x582ad0 which calls DynArray::DynArray(sizeof FileInfo); src/original/gameset.hpp",
+   "confidence": "high",
+   "notes": "A DynArray of FileInfo records (0x111 bytes). 0x5843d0 (labelled Directory) is DynArray::DynArray, reassigned."
+  },
+  {
+   "class": "Array",
+   "size": null,
+   "base": "DynArrayB",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "0x4e8a50 / 0x5af010 only call DynArrayB::DynArrayB(4, n, 0, 0) on this",
+   "confidence": "low",
+   "notes": "Label is a grab-bag. Kept for the two DynArrayB-of-pointers constructors (0x4e8a50 game_tick, 0x5af010 actorlst). Reassigned: 0x5823e0/0x582420/0x582490 -> Database (field_count / field desc #i), 0x4d0c20 -> SortedNames (calls SortedNames::get on this; +0 items, +4 i16 count), 0x6390f0 / 0x639190 -> WaveRes (vector deleting dtor of a 0x93-byte element; the -4 read is the new[] count cookie). Unresolved: 0x5ea410 Array::at1 (en3d/scene.cpp) reads a {count +0x75, items +0x7d} vector of an object at Screen+0x1c8 - not an Array; left labelled, its 2 accesses are reported by check_spec."
+  },
+  {
+   "class": "DbfHeader",
+   "size": "0x20",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "version",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x1",
+     "name": "date",
+     "type": "u8",
+     "size": 1,
+     "count": 3
+    },
+    {
+     "off": "0x4",
+     "name": "rec_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "header_size",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0xa",
+     "name": "rec_size",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0xc",
+     "name": "reserved",
+     "type": "u8",
+     "size": 1,
+     "count": 20
+    }
+   ],
+   "members": [],
+   "evidence": "src/original/database.hpp; first 32 bytes of a .dbf copied verbatim",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "class": "DbfFieldDesc",
+   "size": "0x20",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "name",
+     "type": "char",
+     "size": 1,
+     "count": 11
+    },
+    {
+     "off": "0xb",
+     "name": "type",
+     "type": "char",
+     "size": 1
+    },
+    {
+     "off": "0xc",
+     "name": "offset",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "length",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x12",
+     "name": "reserved",
+     "type": "u8",
+     "size": 1,
+     "count": 14
+    }
+   ],
+   "members": [],
+   "evidence": "src/original/database.hpp; field_type/offset/len/dec index fields[] with stride 0x20",
+   "confidence": "high",
+   "notes": "dBase: low byte of `length` = field length, high byte (+0x11) = decimals; 'C' fields use the whole u16 as length (field_len reads it as u16, field_dec reads +0x11 as a byte)."
+  },
+  {
+   "class": "Database",
+   "size": "0x147",
+   "base": "File",
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x12e",
+     "name": "rec_buf",
+     "type": "u8*",
+     "size": 4
+    },
+    {
+     "off": "0x132",
+     "name": "cur_rec_no",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x136",
+     "name": "last_read_no",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x13a",
+     "name": "db_buf",
+     "type": "u8*",
+     "size": 4
+    },
+    {
+     "off": "0x13e",
+     "name": "db_buf_allocated",
+     "type": "char",
+     "size": 1
+    },
+    {
+     "off": "0x13f",
+     "name": "fields",
+     "type": "ptr:DbfFieldDesc",
+     "size": 4
+    },
+    {
+     "off": "0x143",
+     "name": "field_count",
+     "type": "i32",
+     "size": 4
+    }
+   ],
+   "members": [
+    {
+     "off": "0x10e",
+     "name": "header",
+     "class": "DbfHeader"
+    }
+   ],
+   "evidence": "src/original/database.hpp; GameSet embeds it at 0x13e..0x285 (= 0x147 bytes)",
+   "confidence": "high",
+   "notes": "Also owns the db.cpp writer functions labelled DataBase/DbFile/Array (reassigned here)."
+  },
+  {
+   "class": "DataBase",
+   "size": null,
+   "base": "Database",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "label alias of Database",
+   "confidence": "high",
+   "notes": "Not a separate class: same class as Database (db.cpp writer half: append_record, delete_record, add_field, delete_field); reassigned."
+  },
+  {
+   "class": "DbFile",
+   "size": null,
+   "base": "Database",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "label alias of Database",
+   "confidence": "high",
+   "notes": "Not a separate class: 0x582350 add_field reads header.rec_size (+0x118); reassigned to Database."
+  },
+  {
+   "class": "ResourceDb",
+   "size": "0x124",
+   "base": "File",
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x10e",
+     "name": "init_flag",
+     "type": "char",
+     "size": 1
+    },
+    {
+     "off": "0x10f",
+     "name": "db",
+     "type": "ptr:Database",
+     "size": 4
+    },
+    {
+     "off": "0x113",
+     "name": "index_offset",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x117",
+     "name": "use_common_buf",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x11b",
+     "name": "data_buf",
+     "type": "u8*",
+     "size": 4
+    },
+    {
+     "off": "0x11f",
+     "name": "data_buf_size",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x123",
+     "name": "read_all",
+     "type": "char",
+     "size": 1
+    }
+   ],
+   "members": [],
+   "evidence": "src/original/database.hpp; MouseCursor embeds one at +0xd8 followed by a field at +0x1fc (0x124 bytes)",
+   "confidence": "high",
+   "notes": "Reassigned to it: 0x59b390 (Speaker::init = ResourceDb::init: deinit, file_open, +0x10f/+0x113/+0x117/+0x11b), 0x59b440 ResourceDb::deinit (labelled Speaker), 0x596310 ctor (File ctor + init_flag = 0)."
+  },
+  {
+   "class": "SetInfo",
+   "size": "0x46",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "code",
+     "type": "char",
+     "size": 1,
+     "count": 9
+    },
+    {
+     "off": "0x9",
+     "name": "des",
+     "type": "char",
+     "size": 1,
+     "count": 61
+    }
+   ],
+   "members": [],
+   "evidence": "src/original/gameset.hpp",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "class": "GameSet",
+   "size": "0x286",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "init_flag",
+     "type": "char",
+     "size": 1
+    },
+    {
+     "off": "0x1",
+     "name": "cur_set_id",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x3",
+     "name": "set_count",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x5",
+     "name": "set_info_array",
+     "type": "ptr:SetInfo",
+     "size": 4
+    },
+    {
+     "off": "0x285",
+     "name": "set_opened_flag",
+     "type": "char",
+     "size": 1
+    }
+   ],
+   "members": [
+    {
+     "off": "0x9",
+     "name": "set_res",
+     "class": "ResourceIdx"
+    },
+    {
+     "off": "0x13e",
+     "name": "set_db",
+     "class": "Database"
+    }
+   ],
+   "evidence": "src/original/gameset.hpp; calls ResourceIdx methods on this+9 and Database on this+0x13e",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "class": "String",
+   "size": "0x191",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "str_buf",
+     "type": "char",
+     "size": 1,
+     "count": 401
+    }
+   ],
+   "members": [],
+   "evidence": "new(0x191) before String::String(); src/original/gameset.hpp",
+   "confidence": "high",
+   "notes": "400 chars + NUL. 0x5c57c0 / 0x5c5800 right/left (mdl.cpp) operate on a String too."
+  },
+  {
+   "class": "Misc",
+   "size": "0x86",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "str_buf",
+     "type": "char",
+     "size": 1,
+     "count": 121
+    },
+    {
+     "off": "0x79",
+     "name": "flag_79",
+     "type": "char",
+     "size": 1
+    },
+    {
+     "off": "0x7a",
+     "name": "random_seed",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x7e",
+     "name": "random_limit",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x82",
+     "name": "random_count",
+     "type": "i32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "src/original/misc.hpp; global misc 0xa45fa8; Misc::Misc writes +0x79",
+   "confidence": "medium",
+   "notes": "+0x7e/+0x82 come from the dead misc.cpp pair 0x591f20 (limit = random(100)+1, count = 0) / 0x591f70 (count += d; return limit < count), labelled Timer; reassigned here (same file, adjacent to random_seed). Size 0x86 assumes nothing follows them. Misc::fill_except 0x5919a0 is cdecl with `this` = destination buffer (its +0/+4 accesses are not Misc fields)."
+  },
+  {
+   "class": "Rand",
+   "size": null,
+   "base": "Misc",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "label alias of Misc",
+   "confidence": "high",
+   "notes": "Not a separate class: 0x5905f0 Rand::next steps Misc::random_seed (+0x7a); reassigned to Misc."
+  },
+  {
+   "class": "Bitmap",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "width",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x2",
+     "name": "height",
+     "type": "i16",
+     "size": 2
+    }
+   ],
+   "members": [],
+   "evidence": "bitmap*.cpp: create = Mem.add(w*h*bpp + 4) then ctor(w, h) writing +0/+2; pixels follow at +4",
+   "confidence": "high",
+   "notes": "Variable-size: {i16 width; i16 height; pixels[]} (8/16/24/32 bpp and 1-bit variants share the header). Bitmap::address 0x5a93b0 (jpeg.cpp, +0xc/+0x10/+0x28) is Image (g08), 0x58a730 copy_rect is Flc; reassigned. word0/word2 0x5979a0/0x5979c0 (mousecr) are Bitmap::width/height."
+  },
+  {
+   "class": "Bitmap8",
+   "size": null,
+   "base": "Bitmap",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "8-bit bitmap, bitmap.cpp (bytes = w*h + 4)",
+   "confidence": "high",
+   "notes": "ctor 0x57ef20 (labelled Point16::set) and width/height getters 0x57ef60/0x57ef80 reassigned here."
+  },
+  {
+   "class": "Bitmap16",
+   "size": null,
+   "base": "Bitmap",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "16-bit bitmap, bitmapw.cpp (bytes = w*h*2 + 4)",
+   "confidence": "high",
+   "notes": "ctor 0x57f590, getter 0x57f5d0, pixel_ptr 0x57f620 / byte_size 0x57f660 (labelled Bitmap) reassigned here."
+  },
+  {
+   "class": "Bitmap24",
+   "size": null,
+   "base": "Bitmap",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "24-bit bitmap, bitmapt.cpp",
+   "confidence": "high",
+   "notes": "ctor 0x57f3d0 and getter 0x57f410 reassigned here."
+  },
+  {
+   "class": "Bitmap32",
+   "size": null,
+   "base": "Bitmap",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "32-bit bitmap, bitmapd.cpp",
+   "confidence": "high",
+   "notes": "ctor 0x57f0f0 (Size16::set) and getter 0x57f130 reassigned here."
+  },
+  {
+   "class": "Bitmap1",
+   "size": null,
+   "base": "Bitmap",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "1-bit mask bitmap, bitmapm.cpp",
+   "confidence": "high",
+   "notes": "ctor 0x57f2a0 reassigned here."
+  },
+  {
+   "class": "Point16",
+   "size": "0x4",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "x",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x2",
+     "name": "y",
+     "type": "i16",
+     "size": 2
+    }
+   ],
+   "members": [],
+   "evidence": "generic {i16, i16}",
+   "confidence": "low",
+   "notes": "All four Point16::set functions are the Bitmap constructors (width, height) and are reassigned to Bitmap8/1/24/16; the struct is kept only as a name."
+  },
+  {
+   "class": "FlcHeader",
+   "size": "0x11",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "width",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x2",
+     "name": "height",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x4",
+     "name": "u8_4",
+     "type": "u8",
+     "size": 1,
+     "count": 13
+    }
+   ],
+   "members": [],
+   "evidence": "TFAnimation export (0x5a99e0) fills Flc+0xc..+0x1d; width/height getters read +0xc/+0xe",
+   "confidence": "low",
+   "notes": "Only width/height are read; the remaining 13 bytes are opaque."
+  },
+  {
+   "class": "Flc",
+   "size": "0x21",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "animation",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "frame_buf",
+     "type": "u8*",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "palette",
+     "type": "u8*",
+     "size": 4
+    },
+    {
+     "off": "0x1d",
+     "name": "opened",
+     "type": "i32",
+     "size": 4
+    }
+   ],
+   "members": [
+    {
+     "off": "0xc",
+     "name": "header",
+     "class": "FlcHeader"
+    }
+   ],
+   "evidence": "flc.cpp open/close: +0 TFAnimation handle, +4 w*h frame buffer, +8 0x300-byte palette, +0x1d open flag",
+   "confidence": "medium",
+   "notes": "Size 0x21 = end of `opened` (no operator new seen). The six timer.cpp functions labelled Flc (0x58a920..0x58aa40) are Timer methods; reassigned. 0x58a730 Bitmap::copy_rect reads frame_buf -> Flc."
+  },
+  {
+   "class": "Timer",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "u32_0",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "rate",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "rate_ms",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "rate2",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "rate2_ms",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "paused",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "time_offset",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1c",
+     "name": "u32_1c",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x20",
+     "name": "u32_20",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x24",
+     "name": "u32_24",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x28",
+     "name": "u32_28",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x2c",
+     "name": "u32_2c",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x30",
+     "name": "pause_marked",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x34",
+     "name": "pause_start",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x38",
+     "name": "u32_38",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x3c",
+     "name": "u32_3c",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x40",
+     "name": "u32_40",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "Timer::init 0x58a830 (gameset.cpp) writes +0..+0x40 (rate_ms = 1000 / rate); set_rate/pause/mark 0x58a920..0x58aa40",
+   "confidence": "medium",
+   "notes": "Size unknown (>= 0x44). The rest of the label is a grab-bag of unrelated game objects, left labelled Timer and reported by check_spec: 0x41b090 running (+0x23 end time), 0x41d280 / 0x7294b0 remaining (anim player pointer at +0x86 / +0x159 of a unit-like object), 0x4cd5d0 tick (Mission+0x17 member, 0x1b2-byte records at +0x10, +0x1ba..; the caller's ecx = Mission+0x17 does not match g06's Mission layout, so the owner is unclear). 0x761630 expire -> new class Expiry. 0x45e7f0 elapsed_ms (i64 frequency at +0x44, called by Profiler::report) reassigned to Profiler; 0x58ef30 wait / 0x591f20 / 0x591f70 (misc.cpp) reassigned to Misc."
+  },
+  {
+   "class": "Expiry",
+   "size": "0x9",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "active",
+     "type": "char",
+     "size": 1
+    },
+    {
+     "off": "0x1",
+     "name": "start",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x5",
+     "name": "duration",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "0x761630 (fadetitl.cpp, labelled Timer::expire): if active and now > start + duration, active = 0",
+   "confidence": "low",
+   "notes": "New name for a small timed flag; no callers, size = end of duration."
+  },
+  {
+   "class": "Audio",
+   "size": "0x3aa",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "init_flag",
+     "type": "char",
+     "size": 1
+    },
+    {
+     "off": "0x1",
+     "name": "mid_init_flag",
+     "type": "char",
+     "size": 1
+    },
+    {
+     "off": "0x2",
+     "name": "wav_init_flag",
+     "type": "char",
+     "size": 1
+    },
+    {
+     "off": "0x3",
+     "name": "cd_init_flag",
+     "type": "char",
+     "size": 1
+    },
+    {
+     "off": "0x4",
+     "name": "mid_flag",
+     "type": "char",
+     "size": 1
+    },
+    {
+     "off": "0x5",
+     "name": "wav_flag",
+     "type": "char",
+     "size": 1
+    },
+    {
+     "off": "0x6",
+     "name": "cd_flag",
+     "type": "char",
+     "size": 1
+    },
+    {
+     "off": "0x7",
+     "name": "mid_buf",
+     "type": "u8*",
+     "size": 4
+    },
+    {
+     "off": "0xb",
+     "name": "wav_buf",
+     "type": "u8*",
+     "size": 4
+    },
+    {
+     "off": "0xf",
+     "name": "mid_buf_size",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x13",
+     "name": "wav_buf_size",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x281",
+     "name": "direct_sound",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x285",
+     "name": "wav_dsb",
+     "type": "ptr:void",
+     "size": 4,
+     "count": 8
+    },
+    {
+     "off": "0x2a5",
+     "name": "wav_serial_no",
+     "type": "i32",
+     "size": 4,
+     "count": 8
+    },
+    {
+     "off": "0x2c5",
+     "name": "max_wav_serial_no",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x2c9",
+     "name": "wav_start_time",
+     "type": "u32",
+     "size": 4,
+     "count": 8
+    },
+    {
+     "off": "0x2e9",
+     "name": "wav_duration",
+     "type": "u32",
+     "size": 4,
+     "count": 8
+    },
+    {
+     "off": "0x309",
+     "name": "lwav_dsb",
+     "type": "ptr:void",
+     "size": 4,
+     "count": 4
+    },
+    {
+     "off": "0x319",
+     "name": "lwav_serial_no",
+     "type": "i32",
+     "size": 4,
+     "count": 4
+    },
+    {
+     "off": "0x329",
+     "name": "max_lwav_serial_no",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x32d",
+     "name": "lwav_file",
+     "type": "ptr:void",
+     "size": 4,
+     "count": 4
+    },
+    {
+     "off": "0x33d",
+     "name": "lwav_bank",
+     "type": "i16",
+     "size": 2,
+     "count": 4
+    },
+    {
+     "off": "0x345",
+     "name": "lwav_bank_size",
+     "type": "u16",
+     "size": 2,
+     "count": 4
+    },
+    {
+     "off": "0x34d",
+     "name": "wav_volume",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x351",
+     "name": "stream_pending",
+     "type": "char",
+     "size": 1
+    },
+    {
+     "off": "0x352",
+     "name": "loop_dsb",
+     "type": "ptr:void",
+     "size": 4,
+     "count": 4
+    },
+    {
+     "off": "0x362",
+     "name": "loop_file",
+     "type": "ptr:void",
+     "size": 4,
+     "count": 4
+    },
+    {
+     "off": "0x372",
+     "name": "loop_start",
+     "type": "i32",
+     "size": 4,
+     "count": 4
+    },
+    {
+     "off": "0x382",
+     "name": "loop_bank",
+     "type": "u16",
+     "size": 2,
+     "count": 4
+    },
+    {
+     "off": "0x38a",
+     "name": "loop_fade_time",
+     "type": "u32",
+     "size": 4,
+     "count": 4
+    },
+    {
+     "off": "0x39a",
+     "name": "loop_fade_volume",
+     "type": "u32",
+     "size": 4,
+     "count": 4
+    }
+   ],
+   "members": [
+    {
+     "off": "0x17",
+     "name": "wav_res",
+     "class": "ResourceIdx"
+    },
+    {
+     "off": "0x14c",
+     "name": "wav_res2",
+     "class": "ResourceIdxL"
+    }
+   ],
+   "evidence": "Audio::init 0x57a440 (zeroes 8-slot +0x285/+0x2a5 and 4-slot +0x309/+0x319/+0x32d/+0x352/+0x362 arrays), ~Audio destroys ResourceIdxL +0x14c and ResourceIdx +0x17; global 0xa50ec8; Seven Kingdoms Audio layout",
+   "confidence": "medium",
+   "notes": "Size 0x3aa = end of loop_fade_volume[4] (no operator new; global). Merged here: CdAudio, DSound (create, is_playing), SoundSys, SoundStreams, SoundSet (ilib), AudioStream, Mixer::get_volume and the ilib Sound volume functions (0x57c960, 0x57c9c0, 0x57e4c0, 0x57e780), all on the same object (same offsets). wav_buf is the 0x8000-byte wave scratch buffer (+0x18/+0x1c/+0x22 of it are WAVE header reads). lwav_file / loop_file are heap File-like objects deleted through 0x57c700 (scalar deleting dtor)."
+  },
+  {
+   "class": "CdAudio",
+   "size": null,
+   "base": "Audio",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "label alias of Audio",
+   "confidence": "high",
+   "notes": "Not a separate class: CD-audio methods of Audio (+1/+3/+4/+6/+7 flags and mid buffer); reassigned."
+  },
+  {
+   "class": "DSound",
+   "size": null,
+   "base": "Audio",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "label alias of Audio",
+   "confidence": "high",
+   "notes": "Not a separate class: 0x57a740 create / 0x57c8b0 is_playing are Audio methods (+2, +0x281, +0x309/+0x319). 0x582c60 shutdown (dxmusic.cpp, +0/+4 COM pointers) reassigned to ComInit (g05)."
+  },
+  {
+   "class": "SoundSys",
+   "size": null,
+   "base": "Audio",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "label alias of Audio",
+   "confidence": "high",
+   "notes": "Not a separate class: Audio methods (+2, +0xb, +0x281, +0x285 slots); reassigned."
+  },
+  {
+   "class": "SoundStreams",
+   "size": null,
+   "base": "Audio",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "label alias of Audio",
+   "confidence": "high",
+   "notes": "Not a separate class: 0x57d4d0 refill is an Audio method (+0x309..+0x39a); reassigned."
+  },
+  {
+   "class": "AudioStream",
+   "size": null,
+   "base": "Audio",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "label alias of Audio",
+   "confidence": "high",
+   "notes": "Not a separate class: 0x57bca0 open is an Audio helper (Audio facade cast); reassigned."
+  },
+  {
+   "class": "Mixer",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "label alias of several classes",
+   "confidence": "high",
+   "notes": "Not a separate class: 0x57ebf0 get_volume -> Audio; 0x597bd0 attach is Joystick::attach (mousecr.cpp: device +0, +8/+9, memset +0xb2/+0xb8) -> Joystick."
+  },
+  {
+   "class": "SoundSet",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "label alias",
+   "confidence": "low",
+   "notes": "0x57de40 / 0x57df80 (audio.cpp) are Audio methods; reassigned. Residual 0x6adf70 SoundSet::remove (game/_unplaced/rworld.cpp) has no this-relative accesses; its class is unknown."
+  },
+  {
+   "class": "FileLoader",
+   "size": "0x164",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "path",
+     "type": "char",
+     "size": 1,
+     "count": 261
+    },
+    {
+     "off": "0x105",
+     "name": "u8_105",
+     "type": "u8",
+     "size": 1,
+     "count": 2
+    },
+    {
+     "off": "0x107",
+     "name": "status",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x108",
+     "name": "disabled",
+     "type": "char",
+     "size": 1
+    },
+    {
+     "off": "0x109",
+     "name": "done",
+     "type": "char",
+     "size": 1
+    },
+    {
+     "off": "0x10a",
+     "name": "error_code",
+     "type": "char",
+     "size": 1
+    },
+    {
+     "off": "0x10b",
+     "name": "own_buffer",
+     "type": "char",
+     "size": 1
+    },
+    {
+     "off": "0x10c",
+     "name": "buffer",
+     "type": "u8*",
+     "size": 4
+    },
+    {
+     "off": "0x110",
+     "name": "offset",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x114",
+     "name": "size",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x118",
+     "name": "bytes_read",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x11c",
+     "name": "priority",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x120",
+     "name": "callback",
+     "type": "ptr:fn",
+     "size": 4
+    },
+    {
+     "off": "0x124",
+     "name": "context",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x128",
+     "name": "ovl_internal",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x12c",
+     "name": "ovl_internal_high",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x130",
+     "name": "ovl_offset",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x134",
+     "name": "ovl_offset_high",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x138",
+     "name": "ovl_event",
+     "type": "ptr:FileLoader",
+     "size": 4
+    },
+    {
+     "off": "0x13c",
+     "name": "handle",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x140",
+     "name": "sector_size",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x144",
+     "name": "raw_buf",
+     "type": "u8*",
+     "size": 4
+    },
+    {
+     "off": "0x148",
+     "name": "aligned_buf",
+     "type": "u8*",
+     "size": 4
+    },
+    {
+     "off": "0x14c",
+     "name": "aligned_offset",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x150",
+     "name": "aligned_size",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x154",
+     "name": "u32_154",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x158",
+     "name": "prev",
+     "type": "ptr:FileLoader",
+     "size": 4
+    },
+    {
+     "off": "0x15c",
+     "name": "next",
+     "type": "ptr:FileLoader",
+     "size": 4
+    },
+    {
+     "off": "0x160",
+     "name": "queued",
+     "type": "i32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "new(0x164) before Loader::Loader 0x577be0 (memset 0x164, handle = -1); FileLoader::start comment (+0x107 status 2 queued / 4 done, +0x10c buffer, +0x110 offset, +0x114 size, +0x120 callback, +0x124 context); begin_read passes &this+0x128 as OVERLAPPED to ReadFileEx with hEvent (+0x138) = this",
+   "confidence": "high",
+   "notes": "Background file loader queued on the Streamer (prio-sorted doubly linked list prev/next). Merged here: Loader::Loader (ctor), FilePath::set 0x577c70 (path), reset_138, Stream::read_done 0x578410 (ReadFileEx completion, this = OVERLAPPED.hEvent), Sound::set_11c 0x578390 (priority). handle is a Win32 HANDLE (-1 = closed). Texture (g03) holds a FileLoader* at +0x50."
+  },
+  {
+   "class": "Loader",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x1c8",
+     "name": "scene",
+     "type": "ptr:Scene",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "residual: map-script loader (game/_unplaced/objm_map.cpp parse_map 0x731a60; g02 moved parse_light 0x731b00 here, reading a Scene* at +0x1c8)",
+   "confidence": "low",
+   "notes": "0x577be0 Loader::Loader (audio.cpp, new 0x164) is the FileLoader constructor and is reassigned to FileLoader; what remains is an unrelated game-side map loader whose only known field is +0x1c8."
+  },
+  {
+   "class": "FilePath",
+   "size": null,
+   "base": "FileLoader",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "label alias of FileLoader",
+   "confidence": "high",
+   "notes": "Not a separate class: 0x577c70 set copies the path to FileLoader+0 and sets status; reassigned."
+  },
+  {
+   "class": "Streamer",
+   "size": "0xb8",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "mode",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "thread",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "lock",
+     "type": "u8",
+     "size": 1,
+     "count": 24
+    },
+    {
+     "off": "0x20",
+     "name": "tail",
+     "type": "ptr:FileLoader",
+     "size": 4
+    },
+    {
+     "off": "0x24",
+     "name": "head",
+     "type": "ptr:FileLoader",
+     "size": 4
+    },
+    {
+     "off": "0x28",
+     "name": "current",
+     "type": "ptr:FileLoader",
+     "size": 4
+    },
+    {
+     "off": "0x2c",
+     "name": "u32_2c",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x30",
+     "name": "event_wake",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x34",
+     "name": "event_done",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x38",
+     "name": "event_38",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x3c",
+     "name": "event_3c",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x40",
+     "name": "event_finished",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x44",
+     "name": "u32_44",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x48",
+     "name": "file",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x4c",
+     "name": "active_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x50",
+     "name": "sector_size_cache",
+     "type": "u32",
+     "size": 4,
+     "count": 26
+    }
+   ],
+   "members": [],
+   "evidence": "ctor 0x578ce0 (labelled SoundSlots::ctor): +4 = +0x48 = -1, memset(+0x50, 0, 0x68), +0 = 0; global 0xa5ce00; EnterCriticalSection(this+8); pending list +0x20/+0x24 of FileLoader",
+   "confidence": "medium",
+   "notes": "lock is a Win32 CRITICAL_SECTION (0x18 bytes on x86, 0x28 on x64 - must become a real type). thread / events / file are HANDLEs. sector_size_cache: bytes per sector per drive letter. Merged here: PalStream, Stream (requeue, take_pending), SoundStream::thread_loop 0x579810, SoundThread::finish 0x579bc0, Obj::dec_4c 0x579f70, dtor 0x578d40."
+  },
+  {
+   "class": "PalStream",
+   "size": null,
+   "base": "Streamer",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "label alias of Streamer",
+   "confidence": "high",
+   "notes": "Not a separate class: 0x578d70 init / 0x579fa0 pump are Streamer methods (same +0x20.. layout); reassigned."
+  },
+  {
+   "class": "SoundThread",
+   "size": null,
+   "base": "Streamer",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "label alias of Streamer",
+   "confidence": "high",
+   "notes": "Not a separate class: 0x579bc0 finish is a Streamer method (+0x28 current loader, events); reassigned."
+  },
+  {
+   "class": "Stream",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "label alias",
+   "confidence": "low",
+   "notes": "0x5795b0 requeue / 0x579ce0 take_pending -> Streamer, 0x578410 read_done -> FileLoader, 0x5939f0 forward (mouse x/y +0x14/+0x18) -> Input, 0x583670 call14 (dxmusic.cpp, +8 COM ptr like Music::get_port) -> Music (g05). Residual 0x580730 Stream::Stream (db.cpp, not thiscall, no accesses)."
+  },
+  {
+   "class": "SoundStream",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "label alias",
+   "confidence": "low",
+   "notes": "0x579810 thread_loop -> Streamer; 0x59b070 running / 0x59b1c0 update (music.cpp, the music player at 0xa5d0d0: +0 init, +4 tag, +8 mode, +0x10 start, +0x18, +0x1c, +0x20 Video*) -> Slot (g08), same object as Slot::release. Residual 0x57ca30 (audio.cpp, not thiscall) moved to Audio."
+  },
+  {
+   "class": "Sound",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "u32_0",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "residual: game sound-effect player (sndplay.cpp / i_wall / i_gate) reading +0",
+   "confidence": "low",
+   "notes": "Label is a grab-bag. Reassigned: ilib volume functions -> Audio, 0x578390 -> FileLoader, 0x585d20 -> DynArrayB (zap + empty_room_count = 0), 0x592ae0 pause_all / 0x593190 queue_event -> Input, 0x59b150 -> Slot, 0x59ebd0 (se.cpp +4/+0x64) -> Se (g14), 0x59f620 / 0x59f650 (sound3d.cpp, +0 AL source id) -> AlSource (g14), 0x454000 set_distance_model (caller Sound3D::init) -> Sound3D (g14), 0x456900 set_id (+4 shape, +0x38, calls MouseCursor::set) -> MouseCursor, 0x68ae90 release (weather.cpp +0x14/+0x18 res ids) -> Weather (g10). Residual game functions 0x492c40, 0x4950a0, 0x4ceef0, 0x4cf290, 0x603fd0, 0x755d80 call Party/SoundList helpers on this; only +0 (4-byte) is read directly."
+  },
+  {
+   "class": "MouseClick",
+   "size": "0x1c",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "x",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "y",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "release_x",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "release_y",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "time",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "release_time",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "InputQueue::pop 0x5932e0: p = this+0x672 + button*0x1c; +0/+4 press pos, +0x10 click count (double click when within time and 5 px), +0x14 press time; release (kind 4/5) writes +8/+0xc/+0x18",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "class": "Pad",
+   "size": "0x39",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "joystick",
+     "type": "ptr:Joystick",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "axis",
+     "type": "i32",
+     "size": 4,
+     "count": 10
+    },
+    {
+     "off": "0x2c",
+     "name": "button",
+     "type": "u8",
+     "size": 1,
+     "count": 13
+    }
+   ],
+   "members": [],
+   "evidence": "Input::init: Input+0x156+i*0x39 = &joystick[i]; Pad::axis 0x597c80: axis k>0 -> *(i32*)(this+k*4), button k<0 -> *(i8*)(this+0x2b-k)",
+   "confidence": "medium",
+   "notes": "Per-frame joystick state (57 bytes, copied into every InputEvent). axis[] is indexed 1-based (this+k*4, k = mapped axis 1..10); button[] is indexed by -k. Exact axis/button split is inferred."
+  },
+  {
+   "class": "Joystick",
+   "size": "0xc6",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "device",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "index",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "u8_8",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x9",
+     "name": "u8_9",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0xa",
+     "name": "u8_a",
+     "type": "u8",
+     "size": 1,
+     "count": 84
+    },
+    {
+     "off": "0x5e",
+     "name": "axis_min",
+     "type": "i32",
+     "size": 4,
+     "count": 10
+    },
+    {
+     "off": "0x86",
+     "name": "axis_max",
+     "type": "i32",
+     "size": 4,
+     "count": 11
+    },
+    {
+     "off": "0xb2",
+     "name": "axis_map",
+     "type": "i8",
+     "size": 1,
+     "count": 6
+    },
+    {
+     "off": "0xb8",
+     "name": "button_map",
+     "type": "i8",
+     "size": 1,
+     "count": 14
+    }
+   ],
+   "members": [],
+   "evidence": "Input+0x31e + i*0xc6 (4 slots, memset 4*0x39.. / index at +4 = i); Joystick::attach 0x597bd0 sets +0, +8, +9 and clears +0xb2 (6) / +0xb8 (0xe); Pad::axis_range reads +0x5e+k*4 / +0x86+k*4",
+   "confidence": "medium",
+   "notes": "device is an IDirectInputDevice8 (COM). axis_min/axis_max are indexed by the 1-based mapped axis (k*4), so axis_min[0] is unused; the split +0xa..+0x5e is not accessed in this group. Joystick::in_rect 0x594360 / pressed_kind 0x594a10 (+0x66c..) are Input methods; reassigned."
+  },
+  {
+   "class": "InputEvent",
+   "size": "0x51",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "type",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "time",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "skey_state",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0xa",
+     "name": "x",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xe",
+     "name": "y",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x12",
+     "name": "scan_code",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x16",
+     "name": "joy_index",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x17",
+     "name": "joy_arg",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [
+    {
+     "off": "0x18",
+     "name": "joy_state",
+     "class": "Pad"
+    }
+   ],
+   "evidence": "queue writers 0x592d00/0x592dc0/0x593040/0x593190 fill a 0x51-byte record at Input+0x70d+head*0x51 (0x14 records); pop 0x5932e0 reads it back",
+   "confidence": "high",
+   "notes": "type: 0/1 button press, 2 key, 3/7 joystick, 4/5 button release, 6 key release."
+  },
+  {
+   "class": "Input",
+   "size": "0xd69",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "init_flag",
+     "type": "char",
+     "size": 1
+    },
+    {
+     "off": "0x1",
+     "name": "u8_1",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x2",
+     "name": "inactive",
+     "type": "char",
+     "size": 1
+    },
+    {
+     "off": "0x3",
+     "name": "skey_changed",
+     "type": "char",
+     "size": 1
+    },
+    {
+     "off": "0x4",
+     "name": "u32_4",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "direct_input",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "di_mouse",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "di_keyboard",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "cur_x",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "cur_y",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x1c",
+     "name": "cur_z",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x20",
+     "name": "left_down",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x24",
+     "name": "right_down",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x28",
+     "name": "middle_down",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x2c",
+     "name": "delta_x",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x30",
+     "name": "delta_y",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x34",
+     "name": "delta_z",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x38",
+     "name": "u32_38",
+     "type": "u32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x44",
+     "name": "acc_x",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x48",
+     "name": "acc_y",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4c",
+     "name": "acc_z",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x50",
+     "name": "key_state",
+     "type": "u8",
+     "size": 1,
+     "count": 256
+    },
+    {
+     "off": "0x150",
+     "name": "skey_state",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x152",
+     "name": "prev_skey_state",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x154",
+     "name": "key_flags",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x636",
+     "name": "bound_x1",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x63a",
+     "name": "bound_y1",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x63e",
+     "name": "bound_x2",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x642",
+     "name": "bound_y2",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x646",
+     "name": "bound_z1",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x64a",
+     "name": "bound_z2",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x64e",
+     "name": "i32_64e",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x652",
+     "name": "u32_652",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x656",
+     "name": "u32_656",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x65a",
+     "name": "key_repeat_delay",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x65e",
+     "name": "key_repeat_rate",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x662",
+     "name": "saved_x",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x666",
+     "name": "saved_y",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x66a",
+     "name": "event_skey_state",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x66c",
+     "name": "has_mouse_event",
+     "type": "char",
+     "size": 1
+    },
+    {
+     "off": "0x66d",
+     "name": "has_joy_event",
+     "type": "char",
+     "size": 1
+    },
+    {
+     "off": "0x66e",
+     "name": "mouse_event_type",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x6aa",
+     "name": "scan_code",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x6ae",
+     "name": "key_code",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x6b2",
+     "name": "event_time",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x6b6",
+     "name": "init_time",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x6ba",
+     "name": "event_joy_index",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x6bb",
+     "name": "event_joy_arg",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x6f5",
+     "name": "button_down",
+     "type": "bool8",
+     "size": 1,
+     "count": 2
+    },
+    {
+     "off": "0x6f7",
+     "name": "u8_6f7",
+     "type": "u8",
+     "size": 1,
+     "count": 2
+    },
+    {
+     "off": "0x6f9",
+     "name": "button_press_time",
+     "type": "u32",
+     "size": 4,
+     "count": 2
+    },
+    {
+     "off": "0x701",
+     "name": "last_scan_code",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x705",
+     "name": "last_key_code",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x709",
+     "name": "last_key_time",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xd61",
+     "name": "queue_head",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xd65",
+     "name": "queue_tail",
+     "type": "i32",
+     "size": 4
+    }
+   ],
+   "members": [
+    {
+     "off": "0x156",
+     "name": "joy_state[0]",
+     "class": "Pad"
+    },
+    {
+     "off": "0x18f",
+     "name": "joy_state[1]",
+     "class": "Pad"
+    },
+    {
+     "off": "0x1c8",
+     "name": "joy_state[2]",
+     "class": "Pad"
+    },
+    {
+     "off": "0x201",
+     "name": "joy_state[3]",
+     "class": "Pad"
+    },
+    {
+     "off": "0x23a",
+     "name": "prev_joy_state[0]",
+     "class": "Pad"
+    },
+    {
+     "off": "0x273",
+     "name": "prev_joy_state[1]",
+     "class": "Pad"
+    },
+    {
+     "off": "0x2ac",
+     "name": "prev_joy_state[2]",
+     "class": "Pad"
+    },
+    {
+     "off": "0x2e5",
+     "name": "prev_joy_state[3]",
+     "class": "Pad"
+    },
+    {
+     "off": "0x31e",
+     "name": "joystick[0]",
+     "class": "Joystick"
+    },
+    {
+     "off": "0x3e4",
+     "name": "joystick[1]",
+     "class": "Joystick"
+    },
+    {
+     "off": "0x4aa",
+     "name": "joystick[2]",
+     "class": "Joystick"
+    },
+    {
+     "off": "0x570",
+     "name": "joystick[3]",
+     "class": "Joystick"
+    },
+    {
+     "off": "0x672",
+     "name": "click[0]",
+     "class": "MouseClick"
+    },
+    {
+     "off": "0x68e",
+     "name": "click[1]",
+     "class": "MouseClick"
+    },
+    {
+     "off": "0x6bc",
+     "name": "event_joy_state",
+     "class": "Pad"
+    },
+    {
+     "off": "0x70d",
+     "name": "event_queue[0]",
+     "class": "InputEvent"
+    },
+    {
+     "off": "0x75e",
+     "name": "event_queue[1]",
+     "class": "InputEvent"
+    },
+    {
+     "off": "0x7af",
+     "name": "event_queue[2]",
+     "class": "InputEvent"
+    },
+    {
+     "off": "0x800",
+     "name": "event_queue[3]",
+     "class": "InputEvent"
+    },
+    {
+     "off": "0x851",
+     "name": "event_queue[4]",
+     "class": "InputEvent"
+    },
+    {
+     "off": "0x8a2",
+     "name": "event_queue[5]",
+     "class": "InputEvent"
+    },
+    {
+     "off": "0x8f3",
+     "name": "event_queue[6]",
+     "class": "InputEvent"
+    },
+    {
+     "off": "0x944",
+     "name": "event_queue[7]",
+     "class": "InputEvent"
+    },
+    {
+     "off": "0x995",
+     "name": "event_queue[8]",
+     "class": "InputEvent"
+    },
+    {
+     "off": "0x9e6",
+     "name": "event_queue[9]",
+     "class": "InputEvent"
+    },
+    {
+     "off": "0xa37",
+     "name": "event_queue[10]",
+     "class": "InputEvent"
+    },
+    {
+     "off": "0xa88",
+     "name": "event_queue[11]",
+     "class": "InputEvent"
+    },
+    {
+     "off": "0xad9",
+     "name": "event_queue[12]",
+     "class": "InputEvent"
+    },
+    {
+     "off": "0xb2a",
+     "name": "event_queue[13]",
+     "class": "InputEvent"
+    },
+    {
+     "off": "0xb7b",
+     "name": "event_queue[14]",
+     "class": "InputEvent"
+    },
+    {
+     "off": "0xbcc",
+     "name": "event_queue[15]",
+     "class": "InputEvent"
+    },
+    {
+     "off": "0xc1d",
+     "name": "event_queue[16]",
+     "class": "InputEvent"
+    },
+    {
+     "off": "0xc6e",
+     "name": "event_queue[17]",
+     "class": "InputEvent"
+    },
+    {
+     "off": "0xcbf",
+     "name": "event_queue[18]",
+     "class": "InputEvent"
+    },
+    {
+     "off": "0xd10",
+     "name": "event_queue[19]",
+     "class": "InputEvent"
+    }
+   ],
+   "evidence": "ctor 0x5922d0 memset(this, 0, 0xd69) and sets +0x652..+0x65e; Input::init 0x592380 (DirectInput8 +8, mouse +0xc, keyboard +0x10, cursor +0x14/+0x18, 4 joystick slots +0x31e*0xc6, joystick states +0x156*0x39, queue head/tail); InputQueue::pop 0x5932e0",
+   "confidence": "high",
+   "notes": "The engine's mouse/keyboard/joystick manager (7K MouseInfo + DirectInput). One object: the labels Mouse, InputQueue, EventQueue, Buttons, Parser (ilib part), Joystick (in_rect, pressed_kind), Cursor (set_pos, reset_pos), Log (0x593040), Stream::forward, Sound (pause_all, queue_event) and Point/Zone/Region/Key hit tests in mousecr.cpp all address it; their functions are reassigned here. Mouse::update_cursor 0x45b4c0 (+0x16/+0x1a/+0x26/+0x2a) is MouseCursor, reassigned. DirectInput pointers are COM interfaces. check_spec reports a 4-byte read at +0 in 0x5932e0: it is a read through a computed pointer (this+0x70d+i*0x51 event / this+0x672+k*0x1c click, `mov edx,[ecx]`) that the access scan attributes to this+0, not a field access."
+  },
+  {
+   "class": "Mouse",
+   "size": null,
+   "base": "Input",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "label alias of Input",
+   "confidence": "high",
+   "notes": "Not a separate class: mousecr.cpp Mouse:: functions use Input offsets (+0x14 cursor, +0x636 bounds, +0x672 clicks); reassigned to Input. 0x45b4c0 update_cursor -> MouseCursor; residual 0x613580 hide (vgalock_mb.cpp, reads +0) -> Cursor."
+  },
+  {
+   "class": "InputQueue",
+   "size": null,
+   "base": "Input",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "label alias of Input",
+   "confidence": "high",
+   "notes": "Not a separate class: 0x5932e0 pop is an Input method; reassigned."
+  },
+  {
+   "class": "EventQueue",
+   "size": null,
+   "base": "Input",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "label alias of Input",
+   "confidence": "high",
+   "notes": "Not a separate class: push2/push6 write Input's event queue; reassigned."
+  },
+  {
+   "class": "Buttons",
+   "size": null,
+   "base": "Input",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "label alias of Input",
+   "confidence": "high",
+   "notes": "Not a separate class: 0x595aa0 state reads Input::button_down (+0x6f5/+0x6f6); reassigned."
+  },
+  {
+   "class": "Parser",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "residual: particle-script token parser (game/_unplaced/ptoken.cpp, psystem.cpp)",
+   "confidence": "low",
+   "notes": "The six mousecr.cpp functions labelled Parser (rect_mode, rect_value, value, rect_mode2, drain, reset) read Input clicks / queue and are reassigned to Input. The ptoken.cpp ones (0x67cbf0.., 0x67ac80) have no this-relative accesses."
+  },
+  {
+   "class": "Log",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x14d",
+     "name": "visible",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x14e",
+     "name": "u8_14e",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x14f",
+     "name": "fade_state",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x153",
+     "name": "fade_time",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x157",
+     "name": "msg_len",
+     "type": "u16",
+     "size": 2,
+     "count": 40
+    },
+    {
+     "off": "0x1a7",
+     "name": "msg_kind",
+     "type": "u16",
+     "size": 2,
+     "count": 40
+    },
+    {
+     "off": "0x1f7",
+     "name": "msg_count",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x1f9",
+     "name": "msg_time",
+     "type": "u32",
+     "size": 4,
+     "count": 40
+    },
+    {
+     "off": "0x299",
+     "name": "msg_id",
+     "type": "u32",
+     "size": 4,
+     "count": 40
+    }
+   ],
+   "members": [],
+   "evidence": "0x707400 Log::push (hud.cpp): shifts four parallel arrays by one (i-1 -> i) up to msg_count, stores id+1, len+1, now, 2",
+   "confidence": "low",
+   "notes": "HUD message log. Array length 40 is inferred from the spacing (0x157->0x1a7 = 40 u16, 0x1f9->0x299 = 40 u32); the tail of msg_id is unknown. The indexed reads at +0x155/+0x1a5/+0x1f5/+0x295 are element [i-1]. The mousecr.cpp Log::push 0x593040 writes Input's event queue and is reassigned to Input."
+  },
+  {
+   "class": "CursorShape",
+   "size": "0x16",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "buf",
+     "type": "u8*",
+     "size": 4,
+     "count": 5
+    },
+    {
+     "off": "0x14",
+     "name": "u16_14",
+     "type": "u16",
+     "size": 2
+    }
+   ],
+   "members": [],
+   "evidence": "MouseCursor::release frees five buffers +0x7c..+0x8c of each 0x16-byte entry (count = byte +1)",
+   "confidence": "low",
+   "notes": ""
+  },
+  {
+   "class": "MouseCursor",
+   "size": "0x204",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "init_flag",
+     "type": "char",
+     "size": 1
+    },
+    {
+     "off": "0x1",
+     "name": "shape_count",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x2",
+     "name": "hide_flag",
+     "type": "char",
+     "size": 1
+    },
+    {
+     "off": "0x3",
+     "name": "frozen",
+     "type": "char",
+     "size": 1
+    },
+    {
+     "off": "0x4",
+     "name": "cur_shape",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x6",
+     "name": "old_x1",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xa",
+     "name": "old_y1",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xe",
+     "name": "old_x2",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x12",
+     "name": "old_y2",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x16",
+     "name": "x1",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x1a",
+     "name": "y1",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x1e",
+     "name": "x2",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x22",
+     "name": "y2",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x26",
+     "name": "hot_spot_x",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x2a",
+     "name": "hot_spot_y",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x2e",
+     "name": "width",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x32",
+     "name": "height",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x36",
+     "name": "processing",
+     "type": "char",
+     "size": 1
+    },
+    {
+     "off": "0x37",
+     "name": "u8_37",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x38",
+     "name": "icon_bitmap",
+     "type": "ptr:Bitmap",
+     "size": 4
+    },
+    {
+     "off": "0x3c",
+     "name": "u32_3c",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x40",
+     "name": "cursor_image",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x44",
+     "name": "default_bitmap",
+     "type": "ptr:Bitmap",
+     "size": 4
+    },
+    {
+     "off": "0x48",
+     "name": "default_hot_x",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4c",
+     "name": "default_hot_y",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x50",
+     "name": "clip_flag",
+     "type": "char",
+     "size": 1
+    },
+    {
+     "off": "0x51",
+     "name": "dirty_valid",
+     "type": "char",
+     "size": 1
+    },
+    {
+     "off": "0x52",
+     "name": "dirty_x1",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x56",
+     "name": "dirty_y1",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x5a",
+     "name": "dirty_x2",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x5e",
+     "name": "dirty_y2",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x62",
+     "name": "dirty_last_x",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x66",
+     "name": "dirty_last_y",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x6a",
+     "name": "clip_x1",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x6e",
+     "name": "clip_y1",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x72",
+     "name": "clip_x2",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x76",
+     "name": "clip_y2",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xc2",
+     "name": "u32_c2",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xc6",
+     "name": "mode",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xca",
+     "name": "mode_value",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xd2",
+     "name": "i16_d2",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0xd4",
+     "name": "shape_table",
+     "type": "u8*",
+     "size": 4
+    },
+    {
+     "off": "0x1fc",
+     "name": "vga_buf",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x200",
+     "name": "show_count",
+     "type": "i32",
+     "size": 4
+    }
+   ],
+   "members": [
+    {
+     "off": "0x7c",
+     "name": "shape[0]",
+     "class": "CursorShape"
+    },
+    {
+     "off": "0x92",
+     "name": "shape[1]",
+     "class": "CursorShape"
+    },
+    {
+     "off": "0xa8",
+     "name": "shape[2]",
+     "class": "CursorShape"
+    },
+    {
+     "off": "0xd8",
+     "name": "res_cursor",
+     "class": "ResourceDb"
+    }
+   ],
+   "evidence": "ctor 0x596210 memset(this, 0, 0x204) + ResourceDb ctor on +0xd8; release 0x4941b0 (+0x40 image, +0x1fc vga buf, +0xd4, +0x200 ShowCursor balance, shapes +0x7c*0x16); set 0x596db0 / move 0x4918d0",
+   "confidence": "medium",
+   "notes": "shape_table entries are 8 bytes {i16 hot_x, i16 hot_y, u32 bitmap}. The CursorShape array length 3 (0x7c..0xbe) is inferred from the fields at +0xc2.. (game code set_mode 0x491c40 writes +0xc6/+0xca). Reassigned here: 0x596210 ctor (labelled Input), 0x596db0 set (Cursor), 0x45b4c0 update_cursor (Mouse), 0x456900 set_id (Sound), 0x597130 set_50, 0x597190 set_rect_6a, the Canvas callbacks 0x597200..0x597390 (this = MouseCursor). g05 moved Rect::extend 0x488ac0 (dirty rect +0x51..+0x66) and Rect::overlaps 0x45c7f0 here. Unresolved: 0x4928f0 is_idle (i_wall.cpp: +0xa as i16 type id, +0x52, +0x86 pointer, +0xc2) operates on a game object, not the cursor; left labelled and reported by check_spec."
+  },
+  {
+   "class": "Cursor",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "u32_0",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "ptr_4",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "i16_8",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0xe",
+     "name": "u8_e",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x2f5",
+     "name": "ptr_2f5",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x319",
+     "name": "ptr_319",
+     "type": "ptr:void",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "residual game-code cursor helpers",
+   "confidence": "low",
+   "notes": "Label is a grab-bag. Reassigned: 0x592bd0 set_pos / 0x592c30 reset_pos -> Input (+0x14/+0x18, +0x662/+0x666), 0x596db0 -> MouseCursor, 0x4450f0 draw (caller Game::update_mode, +0xf9.., +0x1235..+0x1269) and 0x44ac60 pick (same +0x1236/+0x1254 fields) -> Game (g11). Residual (likely three different objects): 0x6134d0 restore and 0x613580 hide (vgalock_mb.cpp, +0), 0x717910 can_drop_at (minires.cpp, +4 ptr, +8, +0xe), 0x492180 place (i_obj0d.cpp, +0x2f5/+0x319 pointers)."
+  }
+ ],
+ "functions": {
+  "0x57f730": "Blob",
+  "0x58e6a0": "MemHeader",
+  "0x58e770": "Mem",
+  "0x5843d0": "DynArray",
+  "0x5844b0": "DynArray",
+  "0x584510": "DynArray",
+  "0x584790": "DynArray",
+  "0x584b30": "DynArray",
+  "0x585280": "DynArray",
+  "0x585470": "DynArray",
+  "0x585630": "DynArray",
+  "0x585660": "DynArray",
+  "0x585f20": "DynArray",
+  "0x585cb0": "DynArrayB",
+  "0x585d20": "DynArrayB",
+  "0x60ac20": "TextureManager",
+  "0x60ad40": "TextureManager",
+  "0x60b000": "TextureManager",
+  "0x5823e0": "Database",
+  "0x582420": "Database",
+  "0x582490": "Database",
+  "0x4d0c20": "SortedNames",
+  "0x6390f0": "WaveRes",
+  "0x639190": "WaveRes",
+  "0x5815d0": "Database",
+  "0x581a00": "Database",
+  "0x581df0": "Database",
+  "0x582500": "Database",
+  "0x582350": "Database",
+  "0x59b390": "ResourceDb",
+  "0x59b440": "ResourceDb",
+  "0x596310": "ResourceDb",
+  "0x5904c0": "Misc",
+  "0x591ce0": "Misc",
+  "0x591d00": "Misc",
+  "0x591d20": "Misc",
+  "0x5905f0": "Misc",
+  "0x591f20": "Misc",
+  "0x591f70": "Misc",
+  "0x58ef30": "Misc",
+  "0x5a93b0": "Image",
+  "0x5979a0": "Bitmap",
+  "0x5979c0": "Bitmap",
+  "0x57ef20": "Bitmap8",
+  "0x57ef60": "Bitmap8",
+  "0x57ef80": "Bitmap8",
+  "0x57f590": "Bitmap16",
+  "0x57f5d0": "Bitmap16",
+  "0x57f620": "Bitmap16",
+  "0x57f660": "Bitmap16",
+  "0x57f3d0": "Bitmap24",
+  "0x57f410": "Bitmap24",
+  "0x57f0f0": "Bitmap32",
+  "0x57f130": "Bitmap32",
+  "0x57f2a0": "Bitmap1",
+  "0x58a480": "Flc",
+  "0x58a730": "Flc",
+  "0x58a920": "Timer",
+  "0x58a960": "Timer",
+  "0x58a9a0": "Timer",
+  "0x58a9d0": "Timer",
+  "0x58aa00": "Timer",
+  "0x58aa40": "Timer",
+  "0x45e7f0": "Profiler",
+  "0x761630": "Expiry",
+  "0x57a340": "Audio",
+  "0x57a740": "Audio",
+  "0x57c8b0": "Audio",
+  "0x57a7d0": "Audio",
+  "0x57a810": "Audio",
+  "0x57a8d0": "Audio",
+  "0x57a9c0": "Audio",
+  "0x57ab20": "Audio",
+  "0x57e9d0": "Audio",
+  "0x57a920": "Audio",
+  "0x57b9c0": "Audio",
+  "0x57dd30": "Audio",
+  "0x57d4d0": "Audio",
+  "0x57de40": "Audio",
+  "0x57df80": "Audio",
+  "0x57bca0": "Audio",
+  "0x57ebf0": "Audio",
+  "0x57c960": "Audio",
+  "0x57c9c0": "Audio",
+  "0x57e4c0": "Audio",
+  "0x57e780": "Audio",
+  "0x57e200": "Audio",
+  "0x57e3e0": "Audio",
+  "0x57e420": "Audio",
+  "0x57e460": "Audio",
+  "0x57e1a0": "Audio",
+  "0x57ca30": "Audio",
+  "0x57e4a0": "Audio",
+  "0x582c60": "ComInit",
+  "0x597bd0": "Joystick",
+  "0x577be0": "FileLoader",
+  "0x577c70": "FileLoader",
+  "0x578410": "FileLoader",
+  "0x578390": "FileLoader",
+  "0x577c30": "FileLoader",
+  "0x578ce0": "Streamer",
+  "0x578d40": "Streamer",
+  "0x578d70": "Streamer",
+  "0x579fa0": "Streamer",
+  "0x5795b0": "Streamer",
+  "0x579ce0": "Streamer",
+  "0x579810": "Streamer",
+  "0x579bc0": "Streamer",
+  "0x579f70": "Streamer",
+  "0x5939f0": "Input",
+  "0x583670": "Music",
+  "0x59b070": "Slot",
+  "0x59b1c0": "Slot",
+  "0x59b150": "Slot",
+  "0x592ae0": "Input",
+  "0x593190": "Input",
+  "0x59ebd0": "Se",
+  "0x59f620": "AlSource",
+  "0x59f650": "AlSource",
+  "0x454000": "Sound3D",
+  "0x456900": "MouseCursor",
+  "0x68ae90": "Weather",
+  "0x597ed0": "Pad",
+  "0x5922d0": "Input",
+  "0x592350": "Input",
+  "0x593af0": "Input",
+  "0x593f60": "Input",
+  "0x594220": "Input",
+  "0x594bd0": "Input",
+  "0x594e20": "Input",
+  "0x595b10": "Input",
+  "0x595cc0": "Input",
+  "0x595e40": "Input",
+  "0x596040": "Input",
+  "0x5932e0": "Input",
+  "0x592dc0": "Input",
+  "0x592f00": "Input",
+  "0x593040": "Input",
+  "0x595aa0": "Input",
+  "0x5940f0": "Input",
+  "0x5945d0": "Input",
+  "0x594700": "Input",
+  "0x594900": "Input",
+  "0x5959c0": "Input",
+  "0x595a20": "Input",
+  "0x594360": "Input",
+  "0x594a10": "Input",
+  "0x592bd0": "Input",
+  "0x592c30": "Input",
+  "0x594490": "Input",
+  "0x5947c0": "Input",
+  "0x593980": "Input",
+  "0x593a50": "Input",
+  "0x594ab0": "Input",
+  "0x595fb0": "Input",
+  "0x45b4c0": "MouseCursor",
+  "0x613580": "Cursor",
+  "0x596210": "MouseCursor",
+  "0x596db0": "MouseCursor",
+  "0x597130": "MouseCursor",
+  "0x597190": "MouseCursor",
+  "0x597200": "MouseCursor",
+  "0x597250": "MouseCursor",
+  "0x5972e0": "MouseCursor",
+  "0x597350": "MouseCursor",
+  "0x597390": "MouseCursor",
+  "0x4918d0": "MouseCursor",
+  "0x4450f0": "Game",
+  "0x44ac60": "Game"
+ },
+ "notes": "Engine library (ilib) classes. Many labels in this group were grab-bags over a few real objects; the real objects are: Audio (global 0xa50ec8), Streamer (0xa5ce00) + FileLoader (0x164), Input (0xd69, mouse/keyboard/joystick), MouseCursor (0x204), plus the hand-typed File/FileMem/FileTxt/Database/ResourceDb/DynArray/DynArrayB/GameSet/String/Mem/Misc/Blob. Label aliases (Mouse, InputQueue, EventQueue, Buttons, CdAudio, DSound, SoundSys, SoundStreams, AudioStream, PalStream, SoundThread, Loader, FilePath, DataBase, DbFile, Rand, Pager, SortedList) are kept as classes with base = the real class and no fields. Arrays of embedded structs are spelled as one member per element (e.g. Input event_queue[0..19]). Persisted/OS-sized fields to watch on x64: DynArray header (0x1d bytes written raw), Win32 HANDLEs (File::file_handle, FileLoader::handle, Streamer events), Streamer::lock (CRITICAL_SECTION), COM pointers in Audio/Input/Joystick."
+}

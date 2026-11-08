@@ -1,0 +1,4 @@
+start,end,name,confidence,evidence
+0x00479270,0x00479420,gamefile_tail,low,Unit::on_message (vtable override) and the +0x11a name accessors precede the next TU's global-object initialisers; no data refs - most likely the tail of gamefile.cpp.
+0x00479450,0x0047b600,samplew,medium,TU opening with dynamic initialisers of its global objects (Shadow/AnimLoader/Battle/ActorDef) that Mission::teardown frees; Game::reset/init_sample_world ("sampleW"/"SKY1"/"map\sample.pfd" right after gamefile.cpp's strings) and Scene::create_node.
+0x0047b630,0x0047c050,gamemode,medium,Math-constant static-init set (which elsewhere opens a TU a few functions before its first anchor) followed by the per-mode screen stubs used only by Mode::set/Game::draw/Game::process_input (ending, loading, credits, video, objectives); unrelated to gameplay.cpp's ini parser that follows.

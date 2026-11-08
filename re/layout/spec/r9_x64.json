@@ -1,0 +1,133 @@
+{
+ "group": "r9_x64",
+ "classes": [
+  {
+   "class": "CriticalHud",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "tex_critical",
+     "type": "ptr:Texture",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "tex_4",
+     "type": "ptr:Texture",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "tex_criti_k",
+     "type": "ptr:Texture",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "sheet_a",
+     "type": "ptr:BmpRes",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "sheet_b",
+     "type": "ptr:BmpRes",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "sheet_c",
+     "type": "ptr:BmpRes",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "combo_active",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x19",
+     "name": "combo_success",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x1a",
+     "name": "i8_1a",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x1b",
+     "name": "i8_1b",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x1c",
+     "name": "u8_1c",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x1d",
+     "name": "progress",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x1f",
+     "name": "keys",
+     "type": "i8",
+     "size": 1,
+     "count": 6
+    },
+    {
+     "off": "0x25",
+     "name": "key_count",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x27",
+     "name": "start_time",
+     "type": "f64",
+     "size": 8
+    },
+    {
+     "off": "0x2f",
+     "name": "success_time",
+     "type": "f64",
+     "size": 8
+    },
+    {
+     "off": "0x37",
+     "name": "done",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x38",
+     "name": "enabled",
+     "type": "i8",
+     "size": 1
+    }
+   ],
+   "members": [
+    {
+     "off": "0x39",
+     "name": "slots",
+     "class": "DynArray"
+    }
+   ],
+   "evidence": "crithud.cpp: ctor 0x45f7a0 builds a DynArray at +0x39; release 0x45fa30 frees textures +0/+4/+8; draw 0x45fae0, input 0x462810, start 0x462970 | r9_x64: +0/+4/+8 are Texture* (crithud.cpp 0x45fae0 stores TextureManager::load's result, 0x45fa30 passes them to Textures::release); the x86 dwords truncated the x64 pointers and the typed hash took them raw (state diff of the x64 replay, frame 3790)",
+   "confidence": "medium",
+   "notes": "keys length 6 = gap up to +0x25 (the key string read at +0x1f + progress); size probably 0x39 + sizeof(DynArray) = 0x56. Labels Buffers and CritCombo are this object. r3: sheets are BmpRes (BmpRes::find calls).",
+   "override": true
+  }
+ ]
+}

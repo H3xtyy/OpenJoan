@@ -1,0 +1,185 @@
+{
+ "group": "r7_x64",
+ "classes": [
+  {
+   "class": "QuickBar",
+   "size": "0x45f",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "texture",
+     "type": "ptr:Texture",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "sprites",
+     "type": "ptr:BmpRes",
+     "size": 4
+    },
+    {
+     "off": "0x452",
+     "name": "state",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x454",
+     "name": "timer",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x458",
+     "name": "popup_open",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x459",
+     "name": "u32_459",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x45d",
+     "name": "u8_45d",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x45e",
+     "name": "active",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [
+    {
+     "off": "0x8",
+     "name": "save_text",
+     "class": "Image2D"
+    },
+    {
+     "off": "0xbf",
+     "name": "save_bar",
+     "class": "Image2D"
+    },
+    {
+     "off": "0x176",
+     "name": "load_text",
+     "class": "Image2D"
+    },
+    {
+     "off": "0x22d",
+     "name": "load_bar",
+     "class": "Image2D"
+    },
+    {
+     "off": "0x2e4",
+     "name": "loadc_text",
+     "class": "Image2D"
+    },
+    {
+     "off": "0x39b",
+     "name": "loadc_bar",
+     "class": "Image2D"
+    }
+   ],
+   "evidence": "ctor 0x6e32d0 constructs 6 Image2D (0xb7) at +8..+0x39b and zeroes +0/+4/+0x452/+0x454/+0x45d; init 0x6e33e0 (qs_bar / ql_bar / qlc_bar bitmaps + texts) | r5: data-image review (re/image/spec, to_layout.py) | r7_x64: +0 is the texture handle freed through TextureManager::release 0x0060a550 (Res1::free_6e45b0 = QuickSaveScreen::free_sprite), a pointer",
+   "confidence": "medium",
+   "notes": "The i_qsave.cpp quick-save / quick-load bar. Same object as g15 QuickSaveScreen (reset / refresh_buttons / set_mode use +0x452..+0x45e): its functions are moved here; QuickSaveScreen should become an alias (base QuickBar). The members are bitmaps (Label::create) at 0xbf/0x22d/0x39b and texts (Image2D::create) at 0x8/0x176/0x2e4, all Image2D. +0 is written 0 and released through Res1 / QuitPopup-labelled helpers (texture handle); size 0x45f = end of +0x45e (no new seen).",
+   "override": true
+  },
+  {
+   "class": "Glory",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0xd18",
+     "name": "u32_d18",
+     "type": "ptr:Texture",
+     "size": 4
+    },
+    {
+     "off": "0xd1c",
+     "name": "u32_d1c",
+     "type": "ptr:Texture",
+     "size": 4
+    },
+    {
+     "off": "0xd20",
+     "name": "sprites",
+     "type": "ptr:BmpRes",
+     "size": 4
+    },
+    {
+     "off": "0xd24",
+     "name": "button_sprites",
+     "type": "ptr:BmpRes",
+     "size": 4
+    },
+    {
+     "off": "0xd28",
+     "name": "blink_on",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0xd29",
+     "name": "blink_state",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0xd2a",
+     "name": "blink_time",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xd2e",
+     "name": "text",
+     "type": "ptr:char",
+     "size": 4
+    },
+    {
+     "off": "0xd32",
+     "name": "done",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [
+    {
+     "off": "0x0",
+     "name": "button0",
+     "class": "Button"
+    },
+    {
+     "off": "0x346",
+     "name": "button1",
+     "class": "Button"
+    },
+    {
+     "off": "0x68c",
+     "name": "button2",
+     "class": "Button"
+    },
+    {
+     "off": "0x9d2",
+     "name": "button3",
+     "class": "Button"
+    }
+   ],
+   "evidence": "i_vict.cpp init (labelled Menu4): 4 Buttons at 0 / 0x346 / 0x68c / 0x9d2; draw / blink step (labelled BlinkD28) | r5: data-image review (re/image/spec, to_layout.py) | r7_x64: +0xd2e is the screen text, operator new(strlen+1) + strcpy in 0x006e8010 and operator delete in 0x006e6d20 (was the VictoryScreen view p_d2e), a pointer",
+   "confidence": "medium",
+   "notes": "Glory::draw reads byte +8 of each Button (0x8 / 0x34e / 0x694 / 0x9da): covered by Button's layout. The blink fields 0xd28.. may be a small blink struct (blink_step(this+0xd28)).",
+   "override": true
+  }
+ ]
+}

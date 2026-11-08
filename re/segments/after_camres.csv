@@ -1,0 +1,22 @@
+start,end,name,confidence,evidence
+0x00429a60,0x00429d00,camres_tail,medium,Spline::point / Zones::find / CamTracks::find+prepare continue camres.cpp's CameraTracks run (0x428d20..0x429980); tail of camres.cpp.
+0x00429ec0,0x0042ad50,camcmd_a,low,Mixed unit-command / beam+light billboard / ArcherIcon / Order::update run with no internal boundary; probably the same object as camcmd_b/c (no static-init block until 0x42cf50).
+0x0042b350,0x0042cb20,camcmd_b,medium,Order::start / Player::switch_unit / Cmd::aim_unit / Camera::move / Follow+Aim camera updates; four of them read the PI static 0xa336ac whose initialiser block closes the object at 0x42cf50.
+0x0042ced0,0x0042d070,camcmd_c,medium,Small accessors + header PI static-init block (0xa336ac family) that ends the camcmd object.
+0x0042d0a0,0x0042d7e0,squadcmd,medium,Squad rejoin / UnitRef::try_stop / UnitCmd::reset / act helpers closed by its own PI static-init block (0xa336c0 family).
+0x0042d810,0x00430310,mission,medium,Mission object: global ctor/atexit; Unit::finish_state (reads 0xa336d4); Screen::reset / World::leave_mode / Player::on_key (debug keys) / Mission::tick / set_speed / Player::set_unit / is_hero; closed by PI block 0xa336d4.
+0x00430340,0x00432ce0,playerctl,medium,PlayerCtl::update_430480 + mouse_look / UnitView::update / Trigger::update_units / Player::select_hero / Cell::load; closed by PI block 0xa336e8.
+0x00432d10,0x00438aa0,ctrl,medium,Pad/keyboard control: Ctrl::update / joystick+pad angles / Player::handle_input_4343e0 / Ctrl::turn / UnitCtl::order_update / Mission::unit_order / Player::update_camera / try_rally; closed by PI block 0xa336fc.
+0x00438ad0,0x0043ca90,uinput_a,medium,Mouse unit input: Unit::input / Picker::pick / pick_ray / move_to / follow_target / consume / dispatch_43c5c0 / promotion_update; same object continues after the world_s.cpp singleton.
+0x0043d560,0x0043f780,uinput_b,medium,throw_to / Order::apply / UnitCtl::steer_update / Camera::terrain_clamp then PI block 0xa33710 + colour global 0xa33724 initialiser closing the uinput object.
+0x0043f7c0,0x0043fbe0,rts_a,medium,Panel::load_cursor (rts.cm) / Obj::reset_43f940 (RTSICON): head of the RTS-mode object (strings 0x9cfc80+) right after the previous object's static-init block.
+0x0043fc90,0x0043fc90,rts_b,medium,Obj::rts_init (RTSICON / rts_play / rts_init strings) between nation2.cpp and world.cpp singletons; same RTS object.
+0x004404c0,0x00448310,rts_c,medium,Game::start_rts / Player::handle_input / Game::rts_mode / Cursor::draw / Camera::update_follow / World helpers (strings 0x9cfccc..0x9cff30 ascending); closed by PI block 0xa33728.
+0x00448340,0x00449b30,rts2_a,medium,Pick::object / Viewer::cull_visible / Cell::unload_files / Group::select: start of the next object (RTS group selection/picking).
+0x0044a430,0x0044cfb0,rts2_b,medium,PickCursor::use / siege_release / select_slot / Cursor::pick / World::draw / RtsGroup::move_formation between world.cpp and world_s.cpp singletons; same RTS-group object.
+0x0044e8c0,0x00454090,rts2_c,medium,World::init / siege board+attack / Leader::assign_troops / Army::select_hero_group / pick+cull helpers ending with load_charmove_params whose globals 0xa3373c.. follow PI family 0xa33728 in .bss.
+0x00454210,0x00456ca0,cheats,high,Console tokenizer + Console::execute and Cheats::dispatch sharing one command-name string family (0x9d0160..) with all the cheat handlers they call.
+0x00456cd0,0x00458530,inventory,high,Item stacks + inventory grid (Grid alloc/free/find_place/fill / Inventory::add / find / count / ItemList::remove / Grid::assign).
+0x004586c0,0x00459cd0,clouds,low,Global ctor/dtor stubs + CloudLayers::build (cloud_layer_*) / lerp / Pair::release / FollowPlanes::draw; with two unexplained Unit helpers.
+0x00459e30,0x0045b4c0,config,medium,Config/Options defaults + CONFIG.DAT load/save + Wave::load + D3DSetup::check_caps (geforce3) + Mouse::update_cursor (strings 0x9d0354..0x9d036c).
+0x0045b550,0x0045bfe0,chatbox,medium,Chat/console input box: global stubs / Panel::init (> ) / ChatBox::draw / Menu::key / TextRing::push / query_70 -> Console::execute.

@@ -1,0 +1,221 @@
+{
+ "section": "s6",
+ "records": {
+  "Material": {
+   "class": "Material",
+   "from": 0,
+   "size": 84,
+   "legacy": "Raw",
+   "fields": [
+    [
+     0,
+     4,
+     4,
+     "diffuse",
+     "U32",
+     null
+    ],
+    [
+     4,
+     4,
+     4,
+     "ambient",
+     "U32",
+     null
+    ],
+    [
+     8,
+     4,
+     4,
+     "specular",
+     "U32",
+     null
+    ],
+    [
+     12,
+     4,
+     4,
+     "emissive",
+     "U32",
+     null
+    ],
+    [
+     16,
+     4,
+     4,
+     "power",
+     "U32",
+     null
+    ],
+    [
+     20,
+     4,
+     4,
+     "u32_14",
+     "U32",
+     null
+    ],
+    [
+     24,
+     4,
+     4,
+     "u32_18",
+     "U32",
+     null
+    ],
+    [
+     28,
+     4,
+     4,
+     "colour",
+     "U32",
+     null
+    ],
+    [
+     32,
+     4,
+     4,
+     "raster",
+     "U32",
+     null
+    ],
+    [
+     36,
+     16,
+     4,
+     "textures",
+     "Pointer",
+     "Cleared"
+    ],
+    [
+     52,
+     4,
+     4,
+     "texture_mode",
+     "U32",
+     null
+    ],
+    [
+     56,
+     4,
+     4,
+     "blend",
+     "U32",
+     null
+    ],
+    [
+     60,
+     4,
+     4,
+     "filter",
+     "U32",
+     null
+    ],
+    [
+     64,
+     4,
+     4,
+     "pass_mask",
+     "U32",
+     null
+    ],
+    [
+     68,
+     16,
+     4,
+     "runtime",
+     "U32",
+     null
+    ]
+   ]
+  },
+  "AnimKey": {
+   "class": "AnimKey",
+   "from": 0,
+   "size": 32,
+   "legacy": "Raw",
+   "fields": [
+    [
+     0,
+     4,
+     4,
+     "time",
+     "F32",
+     null
+    ],
+    [
+     4,
+     16,
+     4,
+     "rot",
+     "F32",
+     null
+    ],
+    [
+     20,
+     12,
+     4,
+     "pos",
+     "F32",
+     null
+    ]
+   ]
+  },
+  "DbfHeader": {
+   "class": "DbfHeader",
+   "from": 0,
+   "size": 32,
+   "legacy": "Raw",
+   "fields": [
+    [
+     0,
+     1,
+     1,
+     "version",
+     "U8",
+     null
+    ],
+    [
+     1,
+     3,
+     1,
+     "date",
+     "Bytes",
+     null
+    ],
+    [
+     4,
+     4,
+     4,
+     "rec_count",
+     "I32",
+     null
+    ],
+    [
+     8,
+     2,
+     2,
+     "header_size",
+     "U16",
+     null
+    ],
+    [
+     10,
+     2,
+     2,
+     "rec_size",
+     "U16",
+     null
+    ],
+    [
+     12,
+     20,
+     1,
+     "reserved_",
+     "Bytes",
+     null
+    ]
+   ]
+  }
+ }
+}

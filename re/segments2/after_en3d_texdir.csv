@@ -1,0 +1,9 @@
+start,end,name,confidence,evidence,target
+0x00605190,0x00605190,texdir_cmp,medium,_stricmp comparator after texdir.cpp TexDir::scan (bin_search/sort user),en3d/texdir.cpp
+0x00605540,0x00605540,texdir_find,low,TexturePaths::find (recursive _findfirst) follows texdir.cpp TexturePaths::dir_index; same TexturePaths class split by edge guesses,en3d/texdir.cpp
+0x006058f0,0x00605a40,texturea_base,medium,Texture base ctor/dtor/attach before texturea.cpp Texture::set_name; texture class hierarchy interleaved with texturea.cpp attach functions,en3d/texturea.cpp
+0x00605b30,0x00605e20,texturea_2d,medium,Texture ready/idle and Texture2D ctor/dtor/create between texturea.cpp Texture::set_name and Texture2D::attach,en3d/texturea.cpp
+0x00605ff0,0x00606ac0,texturea_cube,medium,Texture2D alpha/memory_size and TextureCube ctor/dtor/create between texturea.cpp Texture2D::attach and TextureCube::attach,en3d/texturea.cpp
+0x00606c80,0x00607030,texturea_bump,medium,TextureCube alpha/memory_size and TextureBump ctor/dtor/create before texturea.cpp TextureBump::attach,en3d/texturea.cpp
+0x00607200,0x00607200,texturea_bump_alpha,medium,Texture::alpha_state between texturea.cpp TextureBump::attach and make_du_dv,en3d/texturea.cpp
+0x00607cd0,0x00608db0,texturea_rt,medium,"TextureBump/RenderTexture/TextureX methods and Obj::clear_3c (global ctor, init_564250; its atexit term_5642b0 is texturea.cpp Obj::call_609260 next)",en3d/texturea.cpp

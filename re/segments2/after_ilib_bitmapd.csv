@@ -1,0 +1,2 @@
+start,end,name,confidence,evidence,target
+0x0057f2e0,0x0057f2e0,bitmapm_bytes,high,Bitmap1::bytes between bitmapm.cpp Point16::set and bitmap_bytes/Bitmap1::create (same Bitmap1 class),ilib/bitmapm.cpp

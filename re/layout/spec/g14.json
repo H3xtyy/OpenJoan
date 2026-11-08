@@ -1,0 +1,3210 @@
+{
+ "group": "g14",
+ "classes": [
+  {
+   "class": "Sound3D",
+   "size": "0x53",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "al_source",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "pitch",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "gain",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "min_gain",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "max_gain",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "cone_outer_gain",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "cone_inner_angle",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x1c",
+     "name": "cone_outer_angle",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x20",
+     "name": "max_distance",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x24",
+     "name": "reference_distance",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x28",
+     "name": "rolloff",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x2c",
+     "name": "muted",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x2d",
+     "name": "looping",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x2e",
+     "name": "relative",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x2f",
+     "name": "position",
+     "type": "f32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x3b",
+     "name": "velocity",
+     "type": "f32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x47",
+     "name": "direction",
+     "type": "f32",
+     "size": 4,
+     "count": 3
+    }
+   ],
+   "members": [],
+   "evidence": "OpenAL source: Sound3d::alloc_source news it (0x59f2e0 clears 0x53 bytes), 0x59f340 sets every AL param; setters store +off then alSourcef/alSource3f",
+   "confidence": "high",
+   "notes": "One class for the labels Sound3D/AlSource/Source/Sound3d (source setters). +0x14/+0x18/+0x1c are the AL cone params (0x1022/0x1001/0x1002), named by the AL enum; the labels say rolloff/angle/distance."
+  },
+  {
+   "class": "Sound3DSystem",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "distance_model",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0xa",
+     "name": "doppler_factor",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0xe",
+     "name": "doppler_velocity",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x12",
+     "name": "device",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x16",
+     "name": "u16_16",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x18",
+     "name": "buffers",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x1c",
+     "name": "buffer_count",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x1e",
+     "name": "buffer_capacity",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x20",
+     "name": "sources",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x24",
+     "name": "source_count",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x26",
+     "name": "source_capacity",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x28",
+     "name": "listener",
+     "type": "ptr:Listener",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "init 0x5a0330 (+0x12 alloc 10, +0x28 = new Listener(0x35)), create_buffer/alloc_source grow the sorted pointer arrays +0x18/+0x20 by 0x20 (count/capacity words), release 0x5a04e0",
+   "confidence": "medium",
+   "notes": "Global OpenAL system object (facade as_sound3dsystem). Bytes 0x1..0x9 unseen; size unknown (>= 0x2c). Buffers/sources are arrays of Sound3DBuffer* / Sound3D* (ptr:void because they are pointer arrays). Cache::find 0x5a0870 (bsearch of +0x18) also belongs here (g08 maps it to Sound3D)."
+  },
+  {
+   "class": "Sound3DBuffer",
+   "size": "0x11a",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "al_buffer",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "refs",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x6",
+     "name": "loaded",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x7",
+     "name": "u8_7",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x10c",
+     "name": "format",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x110",
+     "name": "size",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x114",
+     "name": "frequency",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x118",
+     "name": "loop",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x119",
+     "name": "release_unused",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [],
+   "evidence": "create_buffer: new(0x11a) + 0x59ed50 (zero 0x11a), +0 = alGenBuffers id; set_data/load_wav fill +0x10c..+0x114 for alBufferData, alutLoadWAVMemory writes +0x118",
+   "confidence": "high",
+   "notes": "Bytes 0x8..0x10b never accessed by these functions (probably a file name buffer). AlBuffer::load_wav and Sound3d::load/load_wav are its methods."
+  },
+  {
+   "class": "Listener",
+   "size": "0x35",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "gain",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "muted",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x5",
+     "name": "position",
+     "type": "f32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x11",
+     "name": "velocity",
+     "type": "f32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x1d",
+     "name": "at",
+     "type": "f32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x29",
+     "name": "up",
+     "type": "f32",
+     "size": 4,
+     "count": 3
+    }
+   ],
+   "members": [],
+   "evidence": "Sound3DSystem::init news 0x35 + 0x59fde0 (memset 0x35); setters copy vectors then alListener3f/fv",
+   "confidence": "high",
+   "notes": "AlListener functions merged here. Listener::set_doppler 0x5a06f0/0x5a0790 operate on Sound3DSystem (they test is_initialized on this) and were moved."
+  },
+  {
+   "class": "AlBuffer",
+   "size": null,
+   "base": "Sound3DBuffer",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "alias",
+   "confidence": "low",
+   "notes": "No functions left: same object as Sound3DBuffer (all functions reassigned)."
+  },
+  {
+   "class": "AlListener",
+   "size": null,
+   "base": "Listener",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "alias",
+   "confidence": "low",
+   "notes": "No functions left: same object as Listener (all functions reassigned)."
+  },
+  {
+   "class": "AlSource",
+   "size": null,
+   "base": "Sound3D",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "alias",
+   "confidence": "low",
+   "notes": "No functions left: same object as Sound3D (all functions reassigned)."
+  },
+  {
+   "class": "Source",
+   "size": null,
+   "base": "Sound3D",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "alias",
+   "confidence": "low",
+   "notes": "No functions left: same object as Sound3D (all functions reassigned)."
+  },
+  {
+   "class": "Sound3d",
+   "size": null,
+   "base": "Sound3D",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "alias",
+   "confidence": "low",
+   "notes": "No functions left: same object as Sound3D (all functions reassigned). Sound3d mixed system / buffer / source methods and unrelated ones (dxmusic -> Music, d3dsys -> SysEn, camera3d -> Camera)."
+  },
+  {
+   "class": "Se",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x4",
+     "name": "entries",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "playing",
+     "type": "u8*",
+     "size": 4
+    },
+    {
+     "off": "0x50",
+     "name": "loaded",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x54",
+     "name": "enabled",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x58",
+     "name": "count_main",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x5c",
+     "name": "count_ext",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x60",
+     "name": "count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x64",
+     "name": "audio",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x19d",
+     "name": "ext_archive",
+     "type": "ptr:ResourceIdxL",
+     "size": 4
+    }
+   ],
+   "members": [
+    {
+     "off": "0x68",
+     "name": "archive",
+     "class": "ResourceIdxL"
+    }
+   ],
+   "evidence": "build_tables: +0x58 = archive(+0x68).rec_count (+0x189), +0x5c = ext(+0x19d)->rec_count, entries +4 = alloc(count*0x28), flags +8 = alloc(count); holder dtor 0x59dfa0 = free + archive dtor on +0x68",
+   "confidence": "medium",
+   "notes": "Sound effect table (facade as_sound_effects). entries: count x 0x28-byte Top4 lists {u32 data, u16 id, ..}. Effects::trigger x2 and 0x59e550 / Sound::play_59ebd0 / Array28::each are its methods. +0x0..+0x3 and +0xc..+0x4f unseen."
+  },
+  {
+   "class": "Effects",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x8",
+     "name": "shaders",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "shader_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x1c",
+     "name": "library",
+     "type": "ptr:void",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "vshader.cpp release_all / release_61c280: +8 array of count (+0x10) shader records {+0xc iface, +0x10 handle}, +0x1c FreeLibrary handle",
+   "confidence": "low",
+   "notes": "Vertex shader set of the renderer (pointer at Display+0x177). The se.cpp Effects::trigger functions are Se; rts2 Effects::cleanup is MissileList."
+  },
+  {
+   "class": "MissileList",
+   "size": null,
+   "base": "DynArrayB",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "0x44cdd0 iterates this as List/DynArrayB of missiles, linkout",
+   "confidence": "low",
+   "notes": "rts2.cpp list of missiles (was Effects::cleanup); no own fields seen."
+  },
+  {
+   "class": "TextRes",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "loaded",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x1",
+     "name": "count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x5",
+     "name": "entries",
+     "type": "ptr:TxtEntry",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "free_all destroys count (+1) entries of 0x15 at +5; TxtTable::find bsearches the same array, KeyTable::find scans it",
+   "confidence": "medium",
+   "notes": "KeyTable and TxtTable are the same object (functions moved here). Strings::get/format (not thiscall) take it."
+  },
+  {
+   "class": "TxtEntry",
+   "size": "0x15",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "id",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "key",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "name",
+     "type": "char",
+     "size": 1,
+     "count": 9
+    },
+    {
+     "off": "0x11",
+     "name": "text",
+     "type": "ptr:char",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "stride 0x15 in TextRes find functions: +0 id (bsearch key), +4 key, +8 name (strcmp), +0x11 result",
+   "confidence": "medium",
+   "notes": "pointee of TextRes::entries (destroyed by 0x5a2190)."
+  },
+  {
+   "class": "KeyTable",
+   "size": null,
+   "base": "TextRes",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "alias",
+   "confidence": "low",
+   "notes": "No functions left: same object as TextRes."
+  },
+  {
+   "class": "TxtTable",
+   "size": null,
+   "base": "TextRes",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "alias",
+   "confidence": "low",
+   "notes": "No functions left: same object as TextRes."
+  },
+  {
+   "class": "Strings",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x9",
+     "name": "items",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0xd",
+     "name": "count",
+     "type": "u16",
+     "size": 2
+    }
+   ],
+   "members": [],
+   "evidence": "gameplay.cpp clear/add: +9 realloc array of count (+0xd) pointers to 0x109-byte records",
+   "confidence": "low",
+   "notes": "Only +9/+0xd seen. Strings::text_13/14 and the non-thiscall get/format/find_sorted pass their object to txtres helpers; they probably operate on TextRes."
+  },
+  {
+   "class": "VQueue",
+   "size": "0x10",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "data",
+     "type": "u8*",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "capacity",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "length",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "cursor",
+     "type": "u8*",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "ctors zero 4 dwords; reserve rounds +4 to 0x1000 and rebases +0xc; consume memmoves +0 by n",
+   "confidence": "high",
+   "notes": "Buf is the same object (rewind/copy_from moved here)."
+  },
+  {
+   "class": "Buf",
+   "size": null,
+   "base": "VQueue",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "alias",
+   "confidence": "low",
+   "notes": "No functions left: same object as VQueue."
+  },
+  {
+   "class": "ComboBox",
+   "size": "0xad",
+   "base": "Gadget",
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x70",
+     "name": "created",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x74",
+     "name": "style",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x78",
+     "name": "last_x",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x7c",
+     "name": "last_y",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x80",
+     "name": "selected",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x84",
+     "name": "font",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x88",
+     "name": "u32_88",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x8c",
+     "name": "button",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0x90",
+     "name": "arrow_up",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0x94",
+     "name": "arrow_down",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0x98",
+     "name": "slider",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0x9c",
+     "name": "items",
+     "type": "u8*",
+     "size": 4
+    },
+    {
+     "off": "0xa0",
+     "name": "item_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xa4",
+     "name": "pressed",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0xa5",
+     "name": "list",
+     "type": "ptr:List",
+     "size": 4
+    },
+    {
+     "off": "0xa9",
+     "name": "open",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "ctor 0x6b22f0: Gadget ctor, vtable, memset(+0x70, 0, 0x3d) -> 0xad; free_parts deletes +0x8c..+0x98/+0xa5",
+   "confidence": "medium",
+   "notes": "style 2 keeps items as 0x191-byte strings at +0x9c, else in the List +0xa5. SpellBtn::draw is its draw. ComboBox::set_b2 0x6b33f0 writes +0xb2 (past 0xad): belongs to another widget class (left as labelled). Checker problems left: set_b2 (+0xb2) and Obj6b3::set_flag writing Button+0x8b (g03 Button has no +0x8b field yet). The two scalar_dtor labels (0x6b33a0 Widget dtor, 0x6b3420 List dtor) are generic deleting dtors."
+  },
+  {
+   "class": "SpellBtn",
+   "size": null,
+   "base": "ComboBox",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "alias",
+   "confidence": "low",
+   "notes": "No functions left: draw 0x6b3ec0 is ComboBox::draw."
+  },
+  {
+   "class": "OptBox",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "only init 0x6b29b0 (not thiscall, no this accesses)",
+   "confidence": "low",
+   "notes": "Nothing to lay out."
+  },
+  {
+   "class": "Barracks",
+   "size": "0x82",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "tex_barr",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "tex_bg",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "tex_commele",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "row_frames",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "row_icons",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "add_buttons",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "remove_buttons",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x1c",
+     "name": "ok_button",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0x20",
+     "name": "cancel_button",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0x24",
+     "name": "background",
+     "type": "ptr:Image2d",
+     "size": 4
+    },
+    {
+     "off": "0x28",
+     "name": "info_frame",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0x2c",
+     "name": "title_frame",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0x30",
+     "name": "open",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x31",
+     "name": "hover_row",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x33",
+     "name": "state",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x35",
+     "name": "place",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x39",
+     "name": "army",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x3d",
+     "name": "u8_3d",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x3e",
+     "name": "gold",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x42",
+     "name": "type_counts",
+     "type": "u32",
+     "size": 4,
+     "count": 6
+    },
+    {
+     "off": "0x5a",
+     "name": "orders",
+     "type": "u32",
+     "size": 4,
+     "count": 6
+    },
+    {
+     "off": "0x72",
+     "name": "pool",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x76",
+     "name": "recruited",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x7a",
+     "name": "army_size",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x7e",
+     "name": "cost",
+     "type": "i32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "init 0x6bc530 builds +0xc..+0x2c (arrays of 6 buttons via Mem::add(0x18)), memsets +0x42/+0x5a (0x18); release 0x6bcf00; load_barr fills the three textures",
+   "confidence": "medium",
+   "notes": "Barracks recruit screen (facade as_barracks_screen). ArmyPanel/BarrackInterface/RecruitPanel/Res3 and Intro::update_6bfe00, BuyScreen::commit_units, Unit::refresh_6bda00 are its methods. Size 0x82 = end of the last field seen (not proven). row_* are pointers to arrays of 6 Button*."
+  },
+  {
+   "class": "ArmyPanel",
+   "size": null,
+   "base": "Barracks",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "alias",
+   "confidence": "low",
+   "notes": "No functions left: same object as Barracks."
+  },
+  {
+   "class": "BarrackInterface",
+   "size": null,
+   "base": "Barracks",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "alias",
+   "confidence": "low",
+   "notes": "No functions left: same object as Barracks."
+  },
+  {
+   "class": "RecruitPanel",
+   "size": null,
+   "base": "Barracks",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "alias",
+   "confidence": "low",
+   "notes": "No functions left: same object as Barracks."
+  },
+  {
+   "class": "Res3",
+   "size": null,
+   "base": "Barracks",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "alias",
+   "confidence": "low",
+   "notes": "No functions left: same object as Barracks."
+  },
+  {
+   "class": "BuyScreen",
+   "size": "0x259",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "tex",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "sheet",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "panel_a",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "panel_b",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "open",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x11",
+     "name": "dragging",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x12",
+     "name": "place",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x16",
+     "name": "unit",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x30",
+     "name": "player_grid",
+     "type": "ptr:Grid",
+     "size": 4
+    },
+    {
+     "off": "0x4e",
+     "name": "shop_grid",
+     "type": "ptr:Grid",
+     "size": 4
+    },
+    {
+     "off": "0x56",
+     "name": "u8_56",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x57",
+     "name": "gold",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x5b",
+     "name": "prices",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x231",
+     "name": "drag_state",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x235",
+     "name": "i32_235",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x239",
+     "name": "drag_item",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x23d",
+     "name": "drag_index",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x241",
+     "name": "drag_from_shop",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x245",
+     "name": "i32_245",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x249",
+     "name": "i16_249",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x24b",
+     "name": "i16_24b",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x24d",
+     "name": "u32_24d",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x251",
+     "name": "u32_251",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x255",
+     "name": "u32_255",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [
+    {
+     "off": "0x5f",
+     "name": "stage_player",
+     "class": "ShopStage"
+    },
+    {
+     "off": "0x148",
+     "name": "stage_shop",
+     "class": "ShopStage"
+    }
+   ],
+   "evidence": "0x6c2b70 memset(this, 0, 0x259); release/set_open free +8/+0xc, +0x5b, +0x30, the two model slots in the scenes +0x5f/+0x148 (stride 0xe9)",
+   "confidence": "medium",
+   "notes": "Shop (buy/sell) screen. All i_buy Shop:: functions and Backpack::* (they use +0x4e) moved here, plus Cutscene::setup_cameras. Bytes 0x1a..0x2f, 0x34..0x4d (0x38: a UnitData-like record copied by apply), 0x52..0x55 not seen directly. 0x231..0x258 typed from the C++ (drag state). Buy::load 0x6c9060 (g08) loads +0 and is also a BuyScreen method. Checker problems left: g15 maps 0x6d50e0 Panel::set_pos (writes +0x44c/+0x44e = the message box, PopupScreen) and 0x6ce100 Panel::init_good_fin (+0x231 u16/+0x233 = Ending) to BuyScreen; both belong elsewhere."
+  },
+  {
+   "class": "ShopStage",
+   "size": "0xe9",
+   "base": "Scene",
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0xd5",
+     "name": "camera",
+     "type": "ptr:Camera",
+     "size": 4
+    },
+    {
+     "off": "0xd9",
+     "name": "model",
+     "type": "ptr:Actor",
+     "size": 4
+    },
+    {
+     "off": "0xdd",
+     "name": "u32_dd",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xe1",
+     "name": "u32_e1",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xe5",
+     "name": "model_res",
+     "type": "i32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "BuyScreen +0x5f/+0x148 get Scene::clear and List::remove(model); model slot fields at scene+0xd5..+0xe8 (Scene size 0xd5 in g02)",
+   "confidence": "medium",
+   "notes": "Scene plus the screen's camera / model slot. model_res is released through 0x4b16a0 when > 0."
+  },
+  {
+   "class": "Shop",
+   "size": "0x8e",
+   "base": "Facility",
+   "vtable": "0x9d08f8",
+   "fields": [
+    {
+     "off": "0x79",
+     "name": "stock",
+     "type": "ptr:DynArray",
+     "size": 4
+    },
+    {
+     "off": "0x7d",
+     "name": "stock_kind",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x81",
+     "name": "i32_81",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x85",
+     "name": "restock_timer",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x89",
+     "name": "shop_id",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x8d",
+     "name": "fixed_stock",
+     "type": "i8",
+     "size": 1
+    }
+   ],
+   "members": [],
+   "evidence": "new(0x8e) before ctor 0x469560 (Facility base ctor + memset(+0x79, 0, 0x15)); tick restocks every 0x36ee80 ms",
+   "confidence": "high",
+   "notes": "Shop facility (f_shop.cpp/gfile3.cpp). The i_buy Shop:: functions are BuyScreen; Shop::hover (i_roster) moved to Roster."
+  },
+  {
+   "class": "Backpack",
+   "size": null,
+   "base": "BuyScreen",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "alias",
+   "confidence": "low",
+   "notes": "No functions left: methods of BuyScreen (grid +0x4e)."
+  },
+  {
+   "class": "CutScene",
+   "size": "0x48",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "target",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "active",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x5",
+     "name": "mode",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x6",
+     "name": "mode_prev",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x7",
+     "name": "duration",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0xb",
+     "name": "elapsed",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xf",
+     "name": "state",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x13",
+     "name": "u8_13",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x14",
+     "name": "zones",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "cam_pos",
+     "type": "f32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x24",
+     "name": "cam_dist",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x28",
+     "name": "cam_pitch",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x2c",
+     "name": "cam_yaw",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x30",
+     "name": "follow_target",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x34",
+     "name": "bar_size",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x36",
+     "name": "i32_36",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x3a",
+     "name": "bar_tex",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x3e",
+     "name": "bar_on",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x3f",
+     "name": "started",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x40",
+     "name": "u8_40",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x41",
+     "name": "hud_a",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x42",
+     "name": "hud_b",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x43",
+     "name": "hud_c",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x44",
+     "name": "scene_flag",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "init 0x6ca040 memset 0x48 + flags 0x41..0x43; reset 0x6ca170; start functions; Fader::update 0x6ca660 (g07 label) is its state machine on +0xf",
+   "confidence": "medium",
+   "notes": "Cinematic::draw_bars (bars texture +0x3a), Shop::leave and Obj6ca* moved here. zones is a CameraZones* (deleted through 0x420150). Flag3 (+3) is a different object."
+  },
+  {
+   "class": "Cinematic",
+   "size": null,
+   "base": "CutScene",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "alias",
+   "confidence": "low",
+   "notes": "No functions left: draw_bars is CutScene."
+  },
+  {
+   "class": "Cutscene",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "alias",
+   "confidence": "low",
+   "notes": "No functions left: setup_cameras -> BuyScreen, load_camera -> CutScene, update_6ece80 -> WorkScreen."
+  },
+  {
+   "class": "Flag3",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x3",
+     "name": "flag",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [],
+   "evidence": "set/clear write byte +3",
+   "confidence": "low",
+   "notes": "Unknown owner; only +3 seen."
+  },
+  {
+   "class": "TalkPrompt",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "tex",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "sheet",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "visible",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x9",
+     "name": "u32_9",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xd",
+     "name": "object",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x11",
+     "name": "near_a",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x15",
+     "name": "near_b",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x19",
+     "name": "near_c",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1d",
+     "name": "leader",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x21",
+     "name": "enemy_of",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x25",
+     "name": "enemy",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x29",
+     "name": "zone",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x2d",
+     "name": "u32_2d",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "ctor 0x6d2330 (+4 sheet, +0, +9, +8 = 1); Quest::check fills the target ids +0xd..+0x29 that draw reads; load_gmsg loads \"GMSG\" into +0",
+   "confidence": "medium",
+   "notes": "Quest and the GMSG TexHandle::release_6d3540 are this object. Size unknown (>= 0x31)."
+  },
+  {
+   "class": "Quest",
+   "size": null,
+   "base": "TalkPrompt",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "alias",
+   "confidence": "low",
+   "notes": "No functions left: same object as TalkPrompt."
+  },
+  {
+   "class": "VideoPlayer",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "tex",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "sheet",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "stage",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x9",
+     "name": "u8_9",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0xa",
+     "name": "playing",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0xb",
+     "name": "start_time",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "ctor 0x6d5a70 (+4 sheet, +0, +0xa); start/reset/tick step +8 and time +0xb",
+   "confidence": "medium",
+   "notes": "Movie::tick and TexHandle::release_and_reset are its methods; Talk::load_image 0x6d62a0 (g09 label) loads +0."
+  },
+  {
+   "class": "Movie",
+   "size": null,
+   "base": "VideoPlayer",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "alias",
+   "confidence": "low",
+   "notes": "No functions left: same object as VideoPlayer."
+  },
+  {
+   "class": "Res1",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "tex",
+     "type": "i32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "free functions release the texture handle at +0",
+   "confidence": "low",
+   "notes": "Per-screen \"free texture +0\" helpers (i_buy 0x6d66f0, i_qsave, i_quit, i_sms); the owners are the screens calling them (QuitPopup, qsave/sms panels). The BuyScreen copy 0x6c90e0 moved to BuyScreen."
+  },
+  {
+   "class": "TexHandle",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "alias",
+   "confidence": "low",
+   "notes": "No functions left: 0x6d3540 -> TalkPrompt, 0x6d6310 -> VideoPlayer, 0x6e0440 -> GoalPanel."
+  },
+  {
+   "class": "EndScreen",
+   "size": "0x1084",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "u32_0",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "u32_4",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "u32_8",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "u32_c",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "sheet_a",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "sheet_b",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "sheet_c",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x1c",
+     "name": "font",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x107e",
+     "name": "open",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x107f",
+     "name": "u8_107f",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x1080",
+     "name": "u32_1080",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [
+    {
+     "off": "0x20",
+     "name": "next_button",
+     "class": "Button"
+    },
+    {
+     "off": "0x366",
+     "name": "next1_button",
+     "class": "Button"
+    },
+    {
+     "off": "0x6ac",
+     "name": "quit_button",
+     "class": "Button"
+    },
+    {
+     "off": "0x9f2",
+     "name": "es_button",
+     "class": "Button"
+    },
+    {
+     "off": "0xd38",
+     "name": "joan_button",
+     "class": "Button"
+    }
+   ],
+   "evidence": "ctor 0x6e89a0 (i_endscr.cpp): five 0x346-byte buttons at +0x20 + k*0x346 (end 0x107e), +0x107f = 0; open_1080 0x6e8c80 writes +0x107e/+0x107f/+0x1080",
+   "confidence": "medium",
+   "notes": "EndScreen::open 0x6d19e0 (i_buy) is the ending picture screen = g08 class Ending (moved there, with 0x6ce390/0x6ce410/0x6d1980/0x6d1ef0): it embeds Image2d at +8/+0xbf/+0x176 and has +0x22d u32, +0x231 u16, +0x233 i8 kind, +0x234 u8 open; open writes +0x14f (= Image2d@+0xbf +0x90)."
+  },
+  {
+   "class": "Inventory",
+   "size": null,
+   "base": "Grid",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "inventory.cpp add/find/count call Grid::find_place / List on this",
+   "confidence": "low",
+   "notes": "Item grid (Grid, g06); no own fields seen. Inventory::add 0x495f40 and Holder::add_list* operate on UnitData (+0x16/+0x1a grids) and moved there; the i_buy Inventory:: functions are InventoryScreen; Inventory::draw (i_unitatt) is UnitAttPanel."
+  },
+  {
+   "class": "InventoryScreen",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "tex",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "sheet",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "open",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x9",
+     "name": "u32_9",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xd",
+     "name": "u32_d",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x11",
+     "name": "u8_11",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x12",
+     "name": "i16_12",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x14",
+     "name": "u8_14",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x15",
+     "name": "u8_15",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x16",
+     "name": "u8_16",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x17",
+     "name": "i32_17",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x1b",
+     "name": "u32_1b",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1f",
+     "name": "u32_1f",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x23",
+     "name": "i32_23",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x27",
+     "name": "u16_27",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x29",
+     "name": "u32_29",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x2d",
+     "name": "u16_2d",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x2f",
+     "name": "u16_2f",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x31",
+     "name": "i16_31",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x33",
+     "name": "i16_33",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x35",
+     "name": "u32_35",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "init 0x6d65d0 (+4 sheet, +0, +0x11..+0x23), update 0x6d8ac0 / draw_items 0x6d6740",
+   "confidence": "low",
+   "notes": "Pickup/inventory panel of i_buy.cpp (was Inventory::*). Meanings not resolved; size unknown (>= 0x39)."
+  },
+  {
+   "class": "UnitAttPanel",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x8",
+     "name": "u32_8",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "u32_10",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1d",
+     "name": "u32_1d",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x21",
+     "name": "u8_21",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x6af",
+     "name": "u32_6af",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "0x6f6280 (i_unitatt.cpp, was Inventory::draw)",
+   "confidence": "low",
+   "notes": "Only one function; +0x6af read as in Obj6e::get_6af 0x6e0df0 (i_letter)."
+  },
+  {
+   "class": "PopupScreen",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x44c",
+     "name": "box_w",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x44e",
+     "name": "box_h",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x450",
+     "name": "u32_450",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x454",
+     "name": "u32_454",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "init_buttons 0x6d3940 writes the box size words",
+   "confidence": "low",
+   "notes": "Message box object (global 0xa52df8, MessageBox::draw reads +0x44c/+0x44e). Bytes below 0x44c unknown."
+  },
+  {
+   "class": "GoalPanel",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "tex",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "sheet",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "show_main",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x9",
+     "name": "show_side",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0xa",
+     "name": "goal_main",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xe",
+     "name": "goal_side",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x12",
+     "name": "kind_main",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x13",
+     "name": "kind_side",
+     "type": "i8",
+     "size": 1
+    }
+   ],
+   "members": [],
+   "evidence": "ctor 0x6df0f0 (+0, +4, +0xa, +0xe), draw reads the two panels (+8/+0x12/+0xa and +9/+0x13/+0xe)",
+   "confidence": "medium",
+   "notes": "UnitMarkers::refresh_a/b and TexHandle::release_6e0440 are its methods. Size >= 0x14."
+  },
+  {
+   "class": "UnitMarkers",
+   "size": null,
+   "base": "GoalPanel",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "alias",
+   "confidence": "low",
+   "notes": "No functions left: same object as GoalPanel."
+  },
+  {
+   "class": "Letter",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "tex",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "sheet",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "open",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x9",
+     "name": "timer",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xd",
+     "name": "i16_d",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0xf",
+     "name": "text",
+     "type": "ptr:char",
+     "size": 4
+    },
+    {
+     "off": "0x13",
+     "name": "i32_13",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x17",
+     "name": "seal",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x19",
+     "name": "u16_19",
+     "type": "u16",
+     "size": 2
+    }
+   ],
+   "members": [],
+   "evidence": "init 0x6e04c0 (+0, +4, +0xd, +0xf, +0x13); free releases the text buffer +0xf; draw",
+   "confidence": "medium",
+   "notes": "Size >= 0x1b."
+  },
+  {
+   "class": "PickupNotice",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x184",
+     "name": "item",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x18c",
+     "name": "count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x190",
+     "name": "u8_190",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [],
+   "evidence": "draw 0x6e5140 / 0x6e5f20 / 0x6e6010",
+   "confidence": "low",
+   "notes": "Only the tail of the object is seen; +0x188 not accessed directly."
+  },
+  {
+   "class": "WorkScreen",
+   "size": "0x72",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "tex_a",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "tex_b",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "tex_c",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "row_frames",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "row_icons",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "add_buttons",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "remove_buttons",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x1c",
+     "name": "ok_button",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0x20",
+     "name": "cancel_button",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0x24",
+     "name": "button_24",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0x28",
+     "name": "background",
+     "type": "ptr:Image2d",
+     "size": 4
+    },
+    {
+     "off": "0x2c",
+     "name": "info_frame",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0x30",
+     "name": "title_frame",
+     "type": "ptr:Button",
+     "size": 4
+    },
+    {
+     "off": "0x34",
+     "name": "open",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x35",
+     "name": "hover_row",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x37",
+     "name": "state",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x39",
+     "name": "place",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x3d",
+     "name": "u32_3d",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x41",
+     "name": "gold",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x45",
+     "name": "cost",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x49",
+     "name": "total",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4d",
+     "name": "loaded",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x51",
+     "name": "u8_51",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x52",
+     "name": "stock",
+     "type": "u32",
+     "size": 4,
+     "count": 4
+    },
+    {
+     "off": "0x62",
+     "name": "orders",
+     "type": "u32",
+     "size": 4,
+     "count": 4
+    }
+   ],
+   "members": [],
+   "evidence": "Workshop::release 0x6e9a50 (like Barracks::release: arrays +0xc..+0x18 of 4, singles +0x1c..+0x30, +0x4d = 0, +0x35 = -1); refresh 0x6ea020 copies 4 stock dwords to +0x52, zeroes +0x62",
+   "confidence": "medium",
+   "notes": "Workshop screen, Barracks layout shifted by 4. Images3/Work/WorkInterface/WorkshopPanel and Cutscene::update_6ece80 are its methods. g08 class Workshop (release 0x6e9a50 / update 0x6ec480) is the same object; its t_interf text getters are a different object. Size 0x72 = end of +0x62[4] (not proven)."
+  },
+  {
+   "class": "Images3",
+   "size": null,
+   "base": "WorkScreen",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "alias",
+   "confidence": "low",
+   "notes": "No functions left: same object as WorkScreen."
+  },
+  {
+   "class": "Work",
+   "size": null,
+   "base": "WorkScreen",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "alias",
+   "confidence": "low",
+   "notes": "No functions left: same object as WorkScreen."
+  },
+  {
+   "class": "WorkInterface",
+   "size": null,
+   "base": "WorkScreen",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "alias",
+   "confidence": "low",
+   "notes": "No functions left: same object as WorkScreen."
+  },
+  {
+   "class": "WorkshopPanel",
+   "size": null,
+   "base": "WorkScreen",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "alias",
+   "confidence": "low",
+   "notes": "No functions left: same object as WorkScreen."
+  },
+  {
+   "class": "Intro",
+   "size": "0x45f",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x452",
+     "name": "state",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x454",
+     "name": "u32_454",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x458",
+     "name": "i8_458",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x459",
+     "name": "i32_459",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x45d",
+     "name": "i8_45d",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x45e",
+     "name": "i8_45e",
+     "type": "i8",
+     "size": 1
+    }
+   ],
+   "members": [
+    {
+     "off": "0x0",
+     "name": "image_0",
+     "class": "Image2d"
+    },
+    {
+     "off": "0xb7",
+     "name": "image_1",
+     "class": "Image2d"
+    },
+    {
+     "off": "0x16e",
+     "name": "image_2",
+     "class": "Image2d"
+    },
+    {
+     "off": "0x225",
+     "name": "image_3",
+     "class": "Image2d"
+    },
+    {
+     "off": "0x2dc",
+     "name": "image_4",
+     "class": "Image2d"
+    },
+    {
+     "off": "0x393",
+     "name": "image_5",
+     "class": "Image2d"
+    }
+   ],
+   "evidence": "animate 0x6e3a90 (i_qsave.cpp) reads +0x11 of six 0xb7-strided images, then own fields from 0x452",
+   "confidence": "low",
+   "notes": "Only Intro::animate_6e3a90 left (quick-save panel). Intro::update_6bfe00 -> Barracks, Intro::step_6e4a20 (i_quit, fields +0x15/+0xbb..+0xbe) -> QuitPopup. Size = end of last field seen."
+  },
+  {
+   "class": "MiniMap",
+   "size": "0x480",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "icons",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "view",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "x",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0xa",
+     "name": "width",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0xc",
+     "name": "height",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0xe",
+     "name": "u8_e",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0xf",
+     "name": "visible",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x11",
+     "name": "i16_11",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x13",
+     "name": "unit_id",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x15",
+     "name": "unit",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x19",
+     "name": "nation",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x1d",
+     "name": "scale_x",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x21",
+     "name": "scale_y",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x25",
+     "name": "u32_25",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x29",
+     "name": "key_down",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x2b",
+     "name": "i16_2b",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x2d",
+     "name": "u8_2d",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x2e",
+     "name": "mode",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x32",
+     "name": "blink_rate",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x34",
+     "name": "blink_time",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x38",
+     "name": "blink_on",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x39",
+     "name": "blink_rate_b",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x3b",
+     "name": "blink_time_b",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x3f",
+     "name": "blink_on_b",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x40",
+     "name": "frame",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x42",
+     "name": "frame_time",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x46",
+     "name": "marker_on",
+     "type": "u8",
+     "size": 1,
+     "count": 30
+    },
+    {
+     "off": "0x64",
+     "name": "marker_unit",
+     "type": "u32",
+     "size": 4,
+     "count": 30
+    },
+    {
+     "off": "0x244",
+     "name": "marker_kind",
+     "type": "u8",
+     "size": 1,
+     "count": 30
+    },
+    {
+     "off": "0x262",
+     "name": "marker_frame",
+     "type": "u8",
+     "size": 1,
+     "count": 30
+    },
+    {
+     "off": "0x280",
+     "name": "marker_time",
+     "type": "u32",
+     "size": 4,
+     "count": 30
+    },
+    {
+     "off": "0x2f8",
+     "name": "slot_used",
+     "type": "u8",
+     "size": 1,
+     "count": 10
+    },
+    {
+     "off": "0x302",
+     "name": "slot_kind",
+     "type": "u8",
+     "size": 1,
+     "count": 10
+    },
+    {
+     "off": "0x30c",
+     "name": "slot_a",
+     "type": "u32",
+     "size": 4,
+     "count": 10
+    },
+    {
+     "off": "0x334",
+     "name": "slot_b",
+     "type": "u32",
+     "size": 4,
+     "count": 10
+    },
+    {
+     "off": "0x35c",
+     "name": "slot_c",
+     "type": "u32",
+     "size": 4,
+     "count": 10
+    },
+    {
+     "off": "0x384",
+     "name": "slot_d",
+     "type": "u32",
+     "size": 4,
+     "count": 10
+    },
+    {
+     "off": "0x3ac",
+     "name": "slot_e",
+     "type": "u32",
+     "size": 4,
+     "count": 10
+    },
+    {
+     "off": "0x3d4",
+     "name": "slot_f",
+     "type": "u32",
+     "size": 4,
+     "count": 10
+    },
+    {
+     "off": "0x3fc",
+     "name": "slot_g",
+     "type": "u32",
+     "size": 4,
+     "count": 10
+    },
+    {
+     "off": "0x424",
+     "name": "slot_h",
+     "type": "u32",
+     "size": 4,
+     "count": 10
+    },
+    {
+     "off": "0x44c",
+     "name": "slot_i",
+     "type": "u32",
+     "size": 4,
+     "count": 10
+    },
+    {
+     "off": "0x474",
+     "name": "u32_474",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x478",
+     "name": "fog",
+     "type": "u8*",
+     "size": 4
+    },
+    {
+     "off": "0x47c",
+     "name": "texture",
+     "type": "ptr:void",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "hud_init 0x70e1d0 (all scalar fields, loops of 0x1e markers, new(0x9c40) fog +0x478, texture +0x47c, memset(+0x2f8, 0, 10)); set_slot functions write 1-based slots i*4 + 0x308..0x448",
+   "confidence": "medium",
+   "notes": "Minimap HUD. Minimap/MapButton/MapMarker/MapOverlay/UnitMarker and MapView::to_screen/fill_rect are its methods. Slot arrays are 1-based (slot k at 0x30c + 4*(k-1)); the slot_* columns would read better as an array of 10 structs but are stored column-wise. view (+4) points to a rect object (+0x21..+0x2d floats). Size 0x480 = end of +0x47c (not proven)."
+  },
+  {
+   "class": "Minimap",
+   "size": null,
+   "base": "MiniMap",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "alias",
+   "confidence": "low",
+   "notes": "No functions left: same object as MiniMap."
+  },
+  {
+   "class": "MapButton",
+   "size": null,
+   "base": "MiniMap",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "alias",
+   "confidence": "low",
+   "notes": "No functions left: same object as MiniMap."
+  },
+  {
+   "class": "MapMarker",
+   "size": null,
+   "base": "MiniMap",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "alias",
+   "confidence": "low",
+   "notes": "No functions left: same object as MiniMap."
+  },
+  {
+   "class": "MapOverlay",
+   "size": null,
+   "base": "MiniMap",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "alias",
+   "confidence": "low",
+   "notes": "No functions left: same object as MiniMap."
+  },
+  {
+   "class": "UnitMarker",
+   "size": null,
+   "base": "MiniMap",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "alias",
+   "confidence": "low",
+   "notes": "No functions left: same object as MiniMap."
+  },
+  {
+   "class": "MapView",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x50",
+     "name": "u32_50",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x70",
+     "name": "u32_70",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x80",
+     "name": "u8_80",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0xd7",
+     "name": "u32_d7",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xdb",
+     "name": "u32_db",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xdf",
+     "name": "u32_df",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xed",
+     "name": "u16_ed",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x109",
+     "name": "u32_109",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1cc",
+     "name": "u32_1cc",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x1d0",
+     "name": "u32_1d0",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x1d4",
+     "name": "u32_1d4",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x1d8",
+     "name": "u32_1d8",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x1dc",
+     "name": "u32_1dc",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x1e0",
+     "name": "u8_1e0",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x1e1",
+     "name": "u32_1e1",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x1e5",
+     "name": "u32_1e5",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x1e9",
+     "name": "u32_1e9",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x1ed",
+     "name": "u32_1ed",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x1f1",
+     "name": "u32_1f1",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x1f5",
+     "name": "u32_1f5",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x201",
+     "name": "u32_201",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x205",
+     "name": "u32_205",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x209",
+     "name": "u32_209",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x20d",
+     "name": "u32_20d",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x26c",
+     "name": "u16_26c",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x26e",
+     "name": "u16_26e",
+     "type": "i16",
+     "size": 2
+    }
+   ],
+   "members": [],
+   "evidence": "objm_map 0x730150 pan_zoom / objm_shop 0x738340 update",
+   "confidence": "low",
+   "notes": "3D map view of the objm screens (the minires MapView functions moved to MiniMap). Fields auto-named."
+  },
+  {
+   "class": "MiniRes",
+   "size": "0x31",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "loaded",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x1",
+     "name": "frame_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x5",
+     "name": "frames",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x9",
+     "name": "map_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xd",
+     "name": "maps",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x11",
+     "name": "i32_11",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x15",
+     "name": "ptr_15",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x19",
+     "name": "rect",
+     "type": "i16",
+     "size": 2,
+     "count": 4
+    },
+    {
+     "off": "0x21",
+     "name": "i32_21",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x25",
+     "name": "i32_25",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x29",
+     "name": "i32_29",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x2d",
+     "name": "i32_2d",
+     "type": "i32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "new(0x31) before MiniRes::MiniRes; maps are 0xae-byte records (set_flag_by_name), frames scanned by find_frame",
+   "confidence": "medium",
+   "notes": "+0x19..+0x1f read/written as four words (kept as an array)."
+  }
+ ],
+ "functions": {
+  "0x44cdd0": "MissileList",
+  "0x454000": "Sound3DSystem",
+  "0x48d120": "Sound3DSystem",
+  "0x4907e0": "Sound3DSystem",
+  "0x490bc0": "Sound3DSystem",
+  "0x495f40": "UnitData",
+  "0x4975d0": "UnitData",
+  "0x4976e0": "UnitData",
+  "0x582fa0": "Music",
+  "0x59e220": "Se",
+  "0x59e400": "Se",
+  "0x59e460": "Se",
+  "0x59e550": "Se",
+  "0x59ebd0": "Se",
+  "0x59ed50": "Sound3DBuffer",
+  "0x59edc0": "Sound3DBuffer",
+  "0x59ede0": "Sound3DBuffer",
+  "0x59ee00": "Sound3DBuffer",
+  "0x59ef00": "Sound3DBuffer",
+  "0x59f0b0": "Sound3DBuffer",
+  "0x59f2e0": "Sound3D",
+  "0x59f310": "Sound3D",
+  "0x59f340": "Sound3D",
+  "0x59f400": "Sound3D",
+  "0x59f5f0": "Sound3D",
+  "0x59f620": "Sound3D",
+  "0x59f650": "Sound3D",
+  "0x59f6b0": "Sound3D",
+  "0x59f770": "Sound3D",
+  "0x59f7c0": "Sound3D",
+  "0x59f810": "Sound3D",
+  "0x59f860": "Sound3D",
+  "0x59f8c0": "Sound3D",
+  "0x59fa10": "Sound3D",
+  "0x59fbb0": "Sound3D",
+  "0x59fc20": "Sound3D",
+  "0x59fde0": "Listener",
+  "0x59fe10": "Listener",
+  "0x59fe40": "Listener",
+  "0x59fe90": "Listener",
+  "0x59feb0": "Listener",
+  "0x59ffe0": "Listener",
+  "0x5a0110": "Listener",
+  "0x5a0300": "Sound3DSystem",
+  "0x5a0330": "Sound3DSystem",
+  "0x5a04e0": "Sound3DSystem",
+  "0x5a06f0": "Sound3DSystem",
+  "0x5a0790": "Sound3DSystem",
+  "0x5a0830": "Sound3DSystem",
+  "0x5a0870": "Sound3DSystem",
+  "0x5a0cf0": "Sound3DSystem",
+  "0x5a0e90": "Sound3D",
+  "0x5a1060": null,
+  "0x5a10b0": null,
+  "0x5a1110": "Sound3DSystem",
+  "0x5a2fd0": "TextRes",
+  "0x5a3140": "TextRes",
+  "0x5a8880": "VQueue",
+  "0x5a89c0": "VQueue",
+  "0x5a8ac0": "VQueue",
+  "0x5f7f60": "SysEn",
+  "0x616a90": "Camera",
+  "0x689d00": "Weather",
+  "0x68aa10": "Weather",
+  "0x6b22f0": "ComboBox",
+  "0x6b3470": "ComboBox",
+  "0x6b3e50": "ComboBox",
+  "0x6b3ec0": "ComboBox",
+  "0x6bc530": "Barracks",
+  "0x6bda00": "Barracks",
+  "0x6bdc00": "Barracks",
+  "0x6bdea0": "Barracks",
+  "0x6bf630": "Barracks",
+  "0x6bfe00": "Barracks",
+  "0x6c0310": "Barracks",
+  "0x6c03e0": "Barracks",
+  "0x6c0400": "Barracks",
+  "0x6c04d0": "Barracks",
+  "0x6c2120": "BuyScreen",
+  "0x6c27c0": "BuyScreen",
+  "0x6c2b70": "BuyScreen",
+  "0x6c2ba0": "BuyScreen",
+  "0x6c2dd0": "BuyScreen",
+  "0x6c3690": "BuyScreen",
+  "0x6c4070": "BuyScreen",
+  "0x6c5a00": "BuyScreen",
+  "0x6c5f10": "BuyScreen",
+  "0x6c6550": "BuyScreen",
+  "0x6c9040": "BuyScreen",
+  "0x6c90e0": "BuyScreen",
+  "0x6c92e0": "BuyScreen",
+  "0x6c99e0": "BuyScreen",
+  "0x6c9c40": "BuyScreen",
+  "0x6c9d20": "BuyScreen",
+  "0x6c9f10": "BuyScreen",
+  "0x6ca040": "CutScene",
+  "0x6ca090": "CutScene",
+  "0x6ca0d0": "CutScene",
+  "0x6ca170": "CutScene",
+  "0x6ca230": "CutScene",
+  "0x6cabd0": "CutScene",
+  "0x6cdfa0": "CutScene",
+  "0x6ce390": "Ending",
+  "0x6ce410": "Ending",
+  "0x6d1980": "Ending",
+  "0x6d19e0": "Ending",
+  "0x6d1ef0": "Ending",
+  "0x6d2330": "TalkPrompt",
+  "0x6d2380": "TalkPrompt",
+  "0x6d3410": "TalkPrompt",
+  "0x6d3450": "TalkPrompt",
+  "0x6d3480": "TalkPrompt",
+  "0x6d34b0": "TalkPrompt",
+  "0x6d34d0": "TalkPrompt",
+  "0x6d3540": "TalkPrompt",
+  "0x6d3590": "TalkPrompt",
+  "0x6d5a70": "VideoPlayer",
+  "0x6d6130": "VideoPlayer",
+  "0x6d61d0": "VideoPlayer",
+  "0x6d6230": "VideoPlayer",
+  "0x6d6280": "VideoPlayer",
+  "0x6d6310": "VideoPlayer",
+  "0x6d6370": "VideoPlayer",
+  "0x6d65d0": "InventoryScreen",
+  "0x6d6680": "InventoryScreen",
+  "0x6d6740": "InventoryScreen",
+  "0x6d8ac0": "InventoryScreen",
+  "0x6ddf10": "InventoryScreen",
+  "0x6de1d0": "TalkPrompt",
+  "0x6de4d0": "InventoryScreen",
+  "0x6df0f0": "GoalPanel",
+  "0x6df140": "GoalPanel",
+  "0x6dfdd0": "GoalPanel",
+  "0x6dfe10": "GoalPanel",
+  "0x6dff10": "GoalPanel",
+  "0x6e00b0": "GoalPanel",
+  "0x6e01d0": "GoalPanel",
+  "0x6e0380": "GoalPanel",
+  "0x6e0440": "GoalPanel",
+  "0x6e04c0": "Letter",
+  "0x6e4a20": "QuitPopup",
+  "0x6e5f20": "PickupNotice",
+  "0x6e6010": "PickupNotice",
+  "0x6e6490": "Roster",
+  "0x6e8f40": "WorkScreen",
+  "0x6ea1a0": "WorkScreen",
+  "0x6ea310": "WorkScreen",
+  "0x6ece80": "WorkScreen",
+  "0x6ed4c0": "WorkScreen",
+  "0x6ed5b0": "WorkScreen",
+  "0x6f6280": "UnitAttPanel",
+  "0x70e500": "MiniMap",
+  "0x70eb20": "MiniMap",
+  "0x70f9e0": "MiniMap",
+  "0x70fb70": "MiniMap",
+  "0x70fbe0": "MiniMap",
+  "0x7141a0": "MiniMap",
+  "0x716010": "MiniMap",
+  "0x717220": "MiniMap",
+  "0x717240": "MiniMap",
+  "0x717700": "MiniMap",
+  "0x717a90": "MiniMap",
+  "0x717ba0": "MiniMap",
+  "0x7180f0": "MiniMap",
+  "0x7190b0": "MiniMap",
+  "0x7196e0": "MiniMap",
+  "0x719770": "MiniMap",
+  "0x7197f0": "MiniMap",
+  "0x719900": "MiniMap",
+  "0x719b40": "MiniMap",
+  "0x719e60": "MiniMap",
+  "0x71d150": "MiniRes"
+ },
+ "notes": "Most labels of this group were per-function guesses; several labels name the same object and were merged (alias entries with no fields list where the functions went). Other groups' classes that are the same objects: g08 Workshop (= WorkScreen; release 0x6e9a50/update 0x6ec480), g08 Ending (got EndScreen::open and the +0x234 helpers), g08 Buy::load 0x6c9060 (BuyScreen +0), g09 Talk::load_image 0x6d62a0 (VideoPlayer +0), g07 Fader::update 0x6ca660 (CutScene state machine), g08 Cache::find 0x5a0870 (Sound3DSystem, overridden here). QuitPopup (g06) got Intro::step_6e4a20. Unassigned unlabelled: 0x6b3900 (+0x33a), 0x6b4dd0 (+0x66c), 0x6d37c0 (+0xac), 0x6d5340/0x6d5370 (+0/+0x444), 0x6e0df0 (+0x6af), 0x6f93b0 (list.cpp +0x50) - owners unknown."
+}

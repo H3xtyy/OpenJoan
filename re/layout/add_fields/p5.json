@@ -1,0 +1,1412 @@
+{
+ "round": "p5",
+ "source": "P6 phase A: re/a4/p5_requests/p01..p12.json + `// x64: needs` markers, decided from joan.exe",
+ "classes": [
+  {
+   "class": "LightState",
+   "size": "0x194",
+   "base": null,
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "LightSys +0x198 / +0x32c blend states (0x194 bytes): a LightPreset + fade / scale (tick_4a7f70, set_key_4b21a0)",
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "class": "SiegeOrder",
+   "size": "0x93",
+   "base": null,
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "Siege +0x114 queue of 80 0x93-byte records (take_item 0x0046ae20, siege_update 0x0046a040)",
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "class": "UnitScript",
+   "size": "0x28",
+   "base": null,
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "UScrRes +4: count * 0x28 records (uscrres.cpp 0x005467b0 / 0x00546970); UScrEntry requests = this record",
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "class": "QueuePair",
+   "size": "0x8",
+   "base": null,
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "Queue +0x249 pairs (animgrp push3 0x00414f50 / find_pair 0x00414fe0)",
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "class": "CursorRec",
+   "size": "0x8",
+   "base": null,
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "MouseCursor +0xd4 table of 8-byte records (mousecr.cpp 0x00491xxx: i16_d2 << 3 bytes)",
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "class": "ItemType",
+   "size": "0x25",
+   "base": null,
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "ItemRes +0xc: type_count * 0x25 records (ItemRes::load 0x0049f970)",
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "class": "Territory",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "records of the territory list g_a52940 (List420ff0::get 0x00420ff0; objm_shop.cpp / objm_reward.cpp)",
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "class": "UnitTableEntry",
+   "size": "0x4",
+   "base": null,
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "UnitTable +0x30: count << 2 bytes",
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "class": "LightSlot",
+   "size": "0xd6",
+   "base": null,
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "the 0xd6-byte DynArrayB entries of the Reorder (reorder.cpp 0x005xxxxx)",
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "class": "MaterialSlot",
+   "size": "0x5c",
+   "base": null,
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "the 0x5c-byte entries of Reorder::materials (reorder.cpp, plane.cpp Reorder draw)",
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "class": "ScriptKeyword",
+   "size": "0x8",
+   "base": null,
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "keyword table strs_a214c8 (eslexer classify: qsort / bsearch size 8)",
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "class": "RecruitOrder",
+   "size": "0xa",
+   "base": null,
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "FlagFacility::list_89 entries (f_flag.cpp update_468600)",
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "class": "RecruitRowItem",
+   "size": "0xa",
+   "base": null,
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "RecruitEntry::rows entries (f_work.cpp load_group 0x0046b730)",
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "class": "UnitUpgradeSlot",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "UnitUpgradeList::slot 0x005239e0 record",
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "class": "ScriptNamed",
+   "size": null,
+   "base": "ScriptNode",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "Speaker / Unit / Object script nodes store the looked-up id after the ScriptNode base (esstate2.cpp)",
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "class": "LodLevel",
+   "size": "0x8",
+   "base": null,
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "LodEntry +0x8: 4 levels of 8 bytes (cheats.cpp lod pick 0x...: +0x8 + i * 8)",
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "class": "Body",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "facade class (methods only) given its first data members (round P6)",
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "class": "BoneNameTable",
+   "size": null,
+   "base": "DynArray",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "facade class (methods only) given its first data members (round P6)",
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "class": "CameraParams",
+   "size": "0x28",
+   "base": null,
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "facade class (methods only) given its first data members (round P6)",
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "class": "ErrorLog",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "facade class (methods only) given its first data members (round P6)",
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "class": "MapNode",
+   "size": "0xac",
+   "base": null,
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "facade class (methods only) given its first data members (round P6)",
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "class": "MeshVertex",
+   "size": "0x14",
+   "base": null,
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "facade class (methods only) given its first data members (round P6)",
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "class": "NextObjectivesScreen",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "facade class (methods only) given its first data members (round P6)",
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "class": "SellItemRes",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "facade class (methods only) given its first data members (round P6)",
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "class": "SoundList",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "facade class (methods only) given its first data members (round P6)",
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "class": "SoundSlot",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "facade class (methods only) given its first data members (round P6)",
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "class": "TexProjector",
+   "size": "0x30",
+   "base": null,
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "facade class (methods only) given its first data members (round P6)",
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "class": "Types",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "facade class (methods only) given its first data members (round P6)",
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "class": "UnitUpgradeList",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "facade class (methods only) given its first data members (round P6)",
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "class": "WidgetChild",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "facade class (methods only) given its first data members (round P6)",
+   "confidence": "medium",
+   "notes": ""
+  }
+ ],
+ "fields": [
+  {
+   "class": "AnimSet",
+   "off": "0x0",
+   "name": "id",
+   "type": "u16",
+   "size": 2,
+   "why": "animres_load 0x004172a0 numbers the records at +0; 2 sites: game/animres.cpp:187, game/animres.cpp:animres_load"
+  },
+  {
+   "class": "Cell",
+   "off": "0x20",
+   "name": "name",
+   "type": "char",
+   "size": 1,
+   "count": 35,
+   "why": "0x20..0x43 up to Cell::loaded; World::find_by_name stricmp, MiniRes::read_maps; 4 sites: game/world_s.cpp:63, game/world.cpp:727, interfac/minires.cpp:314, game/world.cpp:732"
+  },
+  {
+   "class": "CombatScreen",
+   "off": "0x4188",
+   "name": "scroll_bar",
+   "type": "ScrollBar",
+   "why": "ScrollBar::reset/draw/update on this+0x4188; 6 sites: game/_unplaced/camzone.cpp:762, game/_unplaced/i_attcmb.cpp:180, game/_unplaced/i_attcmb.cpp:357, game/_unplaced/i_attcmb.cpp:550, game/_unplaced/i_attcmb.cpp:641, game/_unplaced/i_attcmb.cpp:free_buttons/draw_panel/handle_buttons",
+   "member": true
+  },
+  {
+   "class": "Config",
+   "off": "0x17",
+   "name": "player_name",
+   "type": "char",
+   "size": 1,
+   "count": 21,
+   "why": "the 21-byte gap of the CONFIG.DAT head record; 1 sites: game/_unplaced/config.cpp:337"
+  },
+  {
+   "class": "Dialogue",
+   "off": "0x337",
+   "name": "portrait",
+   "type": "char",
+   "size": 1,
+   "count": 9,
+   "why": "3 sites: game/_unplaced/dlgtext.cpp:189, game/_unplaced/dlgtext.cpp:472, game/_unplaced/dlgtext.cpp:1138"
+  },
+  {
+   "class": "EffectKey",
+   "off": "0x61",
+   "name": "range_61",
+   "type": "FloatRange",
+   "why": "FloatRange ctor/dtor on +0x61 (gap_61[8]); 2 sites: game/_unplaced/pemitter.cpp:70, game/_unplaced/pemitter.cpp:102",
+   "member": true
+  },
+  {
+   "class": "EffectKey",
+   "off": "0xc0",
+   "name": "model_name",
+   "type": "char",
+   "size": 1,
+   "count": 33,
+   "why": "gap_c0[99] = three 33-byte names; 2 sites: game/_unplaced/pemitter.cpp:828, game/_unplaced/pemitter.cpp:845"
+  },
+  {
+   "class": "EffectKey",
+   "off": "0xe1",
+   "name": "texture_name",
+   "type": "char",
+   "size": 1,
+   "count": 33,
+   "why": "3 sites: game/_unplaced/pemitter.cpp:138, game/_unplaced/pemitter.cpp:484, game/_unplaced/psystem.cpp:1186"
+  },
+  {
+   "class": "EffectKey",
+   "off": "0x102",
+   "name": "name_102",
+   "type": "char",
+   "size": 1,
+   "count": 33,
+   "why": "1 sites: game/_unplaced/pemitter.cpp:140"
+  },
+  {
+   "class": "Flock",
+   "off": "0x3b",
+   "name": "box",
+   "type": "f32",
+   "size": 4,
+   "count": 6,
+   "why": "min xyz, max xyz; 2 sites: game/_unplaced/boids.cpp:1015, game/_unplaced/boids.cpp:1118"
+  },
+  {
+   "class": "GameFile",
+   "off": "0x0",
+   "name": "index",
+   "type": "i16",
+   "size": 2,
+   "why": "SaveDir::add stores the list cursor at +0, read back as i16; 3 sites: game/gamefila.cpp:65, game/gamefila.cpp:66, game/gamefila.cpp:files_add"
+  },
+  {
+   "class": "Hud",
+   "off": "0x21e9",
+   "name": "portrait_plane",
+   "type": "ptr:Plane",
+   "size": 4,
+   "why": "2 sites: game/_unplaced/hud.cpp:2694, game/_unplaced/hud.cpp:build_test_quad"
+  },
+  {
+   "class": "MapObject",
+   "off": "0xc",
+   "name": "name",
+   "type": "char",
+   "size": 1,
+   "count": 66,
+   "why": "0xc..0x4e (gap_c); strncpy 0x40 / stricmp \"s7_food\" / \"s7_goldbag\"; 9 sites: game/world_s.cpp:816, game/world_s.cpp:818, game/_unplaced/esfuncs.cpp:1749, game/_unplaced/i_obj0b.cpp:409, game/_unplaced/itemres_head.cpp:146, interfac/minires.cpp:2608 ..."
+  },
+  {
+   "class": "MessageIndicator",
+   "off": "0x5",
+   "name": "texture",
+   "type": "ptr:Texture",
+   "size": 4,
+   "why": "released through TextureManager::release; 3 sites: game/_unplaced/message.cpp:1137, game/_unplaced/message.cpp:1323, game/_unplaced/message.cpp:free_4af820/release_05"
+  },
+  {
+   "class": "Messages",
+   "off": "0x3f",
+   "name": "flag_3f",
+   "type": "u8",
+   "size": 1,
+   "why": "byte_3f 0x004d6a10; 2 sites: game/_unplaced/gamedraw.cpp:1087, src/game/_unplaced/gamedraw.cpp:1080"
+  },
+  {
+   "class": "MessageList",
+   "off": "0x3f",
+   "name": "flag_3f",
+   "type": "u8",
+   "size": 1,
+   "why": "MessageList::init 0x0046c360 (on 0xa55a88) writes the byte; 0 sites: "
+  },
+  {
+   "class": "Place",
+   "off": "0x1d2",
+   "name": "angle",
+   "type": "f32",
+   "size": 4,
+   "why": "script_group_angle 0x006547a0 / set_angle 0x006547e0; 3 sites: game/_unplaced/esfuncs.cpp:1114, game/_unplaced/esfuncs.cpp:1122, src/game/_unplaced/esfuncs.cpp:1114"
+  },
+  {
+   "class": "Player",
+   "off": "0x6",
+   "name": "slot",
+   "type": "i16",
+   "size": 2,
+   "why": "1 sites: game/_unplaced/ai_behav.cpp:1700"
+  },
+  {
+   "class": "Player",
+   "off": "0x1c",
+   "name": "view_quad",
+   "type": "f32",
+   "size": 4,
+   "count": 10,
+   "why": "map_quad 0x00452320 output; 2 sites: game/_unplaced/rts.cpp:1369, game/_unplaced/rts.cpp:1372"
+  },
+  {
+   "class": "Portal",
+   "off": "0x0",
+   "name": "corners",
+   "type": "f32",
+   "size": 4,
+   "count": 12,
+   "why": "4 corner points +0/+0xc/+0x18/+0x24; 6 sites: game/_unplaced/portal.cpp:129, game/_unplaced/portal.cpp:130, game/_unplaced/portal.cpp:131, game/_unplaced/portal.cpp:134, game/_unplaced/portal.cpp:250, game/_unplaced/portal.cpp:319"
+  },
+  {
+   "class": "Portal",
+   "off": "0x40",
+   "name": "box",
+   "type": "f32",
+   "size": 4,
+   "count": 6,
+   "why": "min / max box used by box_visible / portal_inside / tetra_set; 3 sites: game/_unplaced/portal.cpp:56, game/_unplaced/portal.cpp:176, game/_unplaced/portal.cpp"
+  },
+  {
+   "class": "Quad",
+   "off": "0x40",
+   "name": "edges",
+   "type": "f32",
+   "size": 4,
+   "count": 12,
+   "why": "4 Vec3 edge vectors (gap_40); 2 sites: game/unitures.cpp:262, game/unitures.cpp:265"
+  },
+  {
+   "class": "ShadowModel",
+   "off": "0x50",
+   "name": "lod_streams",
+   "type": "ptr:FileLoader",
+   "size": 4,
+   "count": 4,
+   "why": "the same object as Model::lod_streams; 1 sites: game/_unplaced/mdl.cpp:begin_load/poll_load"
+  },
+  {
+   "class": "Shot",
+   "off": "0x28c",
+   "name": "inertia_scale",
+   "type": "f32",
+   "size": 4,
+   "count": 3,
+   "why": "Camera::reset_state 0x006b0d10; 3 sites: game/_unplaced/shot.cpp:209, game/_unplaced/shot.cpp:210, game/_unplaced/shot.cpp"
+  },
+  {
+   "class": "SlideMenu",
+   "off": "0x2",
+   "name": "title",
+   "type": "char",
+   "size": 1,
+   "count": 30,
+   "why": "strncpy 0x1d bytes; 3 sites: game/_unplaced/i_igframe.cpp:265, game/_unplaced/i_igframe.cpp:319, game/_unplaced/i_igframe.cpp:set_title/menu_reset"
+  },
+  {
+   "class": "UnitStats",
+   "off": "0x38",
+   "name": "u16_38",
+   "type": "u16",
+   "size": 2,
+   "why": "1 sites: game/_unplaced/crithud.cpp:405"
+  },
+  {
+   "class": "UpgradeItem",
+   "off": "0x2",
+   "name": "id",
+   "type": "u16",
+   "size": 2,
+   "why": "UPITEM record; 1 sites: game/upgrares.cpp:126"
+  },
+  {
+   "class": "UpgradeItem",
+   "off": "0x4",
+   "name": "name",
+   "type": "char",
+   "size": 1,
+   "count": 33,
+   "why": "2 sites: game/upgrares.cpp:127, game/upgrares.cpp:126"
+  },
+  {
+   "class": "UpgradeItem",
+   "off": "0x25",
+   "name": "description",
+   "type": "char",
+   "size": 1,
+   "count": 33,
+   "why": "5 sites: game/upgrares.cpp:128, game/_unplaced/i_attcmb.cpp:371, game/_unplaced/i_attcmb.cpp:388, game/_unplaced/i_attcmb.cpp:draw_panel/ability_row, game/upgrares.cpp:126"
+  },
+  {
+   "class": "UpgradeItem",
+   "off": "0x5d",
+   "name": "required",
+   "type": "char",
+   "size": 1,
+   "count": 7,
+   "why": "compared with another item's bonus_text; 5 sites: game/upgrares.cpp:133, game/_unplaced/i_attcmb.cpp:622, game/unitlvl.cpp:77, game/_unplaced/i_attcmb.cpp:build_6f0fe0, game/unitlvl.cpp:79"
+  },
+  {
+   "class": "Weather",
+   "off": "0x1",
+   "name": "slot_flags",
+   "type": "u8",
+   "size": 1,
+   "count": 3,
+   "why": "0x00689fb0 sets byte 1+n, 0x00689d00 clears bytes 1..3; 3 sites: game/_unplaced/weather.cpp:259, game/_unplaced/weather.cpp:407, game/_unplaced/weather.cpp:flag_slot"
+  },
+  {
+   "class": "VsCache",
+   "off": "0x50",
+   "name": "slider_factors",
+   "type": "f32",
+   "size": 4,
+   "count": 12,
+   "why": "field20() + 0x30..0x5c (camera sliders; +0x5c written 1.0f); 3 sites: game/_unplaced/samplew.cpp:439, en3d/plane.cpp:2044, en3d/plane.cpp:4104"
+  },
+  {
+   "class": "SoundSlot",
+   "off": "0xc",
+   "name": "position",
+   "type": "f32",
+   "size": 4,
+   "count": 3,
+   "why": "1 sites: game/_unplaced/ctrl.cpp:1115"
+  },
+  {
+   "class": "WidgetChild",
+   "off": "0x4",
+   "name": "flag_4",
+   "type": "u8",
+   "size": 1,
+   "why": "Obj6b7d30::set_4 0x006b7d30; 2 sites: game/_unplaced/gameover.cpp:435, src/game/_unplaced/gameover.cpp:435"
+  },
+  {
+   "class": "ErrorLog",
+   "off": "0x0",
+   "name": "callback",
+   "type": "ptr:void",
+   "size": 4,
+   "why": "Obj::set_first 0x0056dd30 stores a code address; 2 sites: game/_unplaced/globals.cpp:1533, src/game/_unplaced/globals.cpp:1533"
+  },
+  {
+   "class": "SellItemRes",
+   "off": "0x0",
+   "name": "count",
+   "type": "i32",
+   "size": 4,
+   "why": "1 sites: game/sitemres.cpp:119"
+  },
+  {
+   "class": "SellItemRes",
+   "off": "0x4",
+   "name": "entries",
+   "type": "ptr:SellItemEntry",
+   "size": 4,
+   "why": "1 sites: game/sitemres.cpp:120"
+  },
+  {
+   "class": "UnitUpgradeList",
+   "off": "0x2c",
+   "name": "slot_count",
+   "type": "i32",
+   "size": 4,
+   "why": "2 sites: game/unit.cpp:544, game/unit.cpp:552"
+  },
+  {
+   "class": "Types",
+   "off": "0x4",
+   "name": "list",
+   "type": "DynArray",
+   "why": "0x004853e0 / 0x00485410 index the DynArray at +4; 3 sites: game/gfile3.cpp:3700, game/gfile3.cpp:3726, game/gfile3.cpp:list4_at",
+   "member": true
+  },
+  {
+   "class": "SoundList",
+   "off": "0x0",
+   "name": "volume",
+   "type": "i32",
+   "size": 4,
+   "why": "0x004950a0 / 0x00492c40 scale the WaveRes volume; 2 sites: game/i_gate.cpp:786, game/i_gate.cpp:sound_volume"
+  },
+  {
+   "class": "MapNode",
+   "off": "0x0",
+   "name": "map",
+   "type": "ptr:Map",
+   "size": 4,
+   "why": "the 0xac-byte node's owner; 1 sites: game/world.cpp:224"
+  },
+  {
+   "class": "NextObjectivesScreen",
+   "off": "0x0",
+   "name": "shown",
+   "type": "u8",
+   "size": 1,
+   "why": "2 sites: game/_unplaced/objscr_next.cpp:72, game/_unplaced/objscr_next.cpp:94"
+  },
+  {
+   "class": "BoneNameTable",
+   "off": "0x1d",
+   "name": "header",
+   "type": "u8",
+   "size": 1,
+   "count": 12,
+   "why": "12 bytes zeroed by Obj::ctor_5ba4b0 after the DynArray base; 1 sites: en3d/bonetree.cpp:456"
+  },
+  {
+   "class": "CameraParams",
+   "off": "0x4",
+   "name": "target",
+   "type": "f32",
+   "size": 4,
+   "count": 3,
+   "why": "the 0x28-byte local of 0x006c2dd0 built by 0x00616d50; 1 sites: interfac/i_buy.cpp:1131"
+  },
+  {
+   "class": "CameraParams",
+   "off": "0x10",
+   "name": "fov",
+   "type": "f32",
+   "size": 4,
+   "why": "1 sites: interfac/i_buy.cpp:1137"
+  },
+  {
+   "class": "CameraParams",
+   "off": "0x1c",
+   "name": "distance",
+   "type": "f32",
+   "size": 4,
+   "why": "1 sites: interfac/i_buy.cpp:1107"
+  },
+  {
+   "class": "TexProjector",
+   "off": "0x0",
+   "name": "u32_0",
+   "type": "u32",
+   "size": 4,
+   "why": "0x30-byte object built by 0x005e5540; 2 sites: game/gamefil2.cpp:196, game/gamefil2.cpp:create_projective_shadow"
+  },
+  {
+   "class": "TexProjector",
+   "off": "0x4",
+   "name": "params",
+   "type": "f32",
+   "size": 4,
+   "count": 8,
+   "why": "2 sites: game/gamefil2.cpp:197, game/gamefil2.cpp:create_projective_shadow"
+  },
+  {
+   "class": "TexProjector",
+   "off": "0x28",
+   "name": "rate",
+   "type": "f32",
+   "size": 4,
+   "why": "3 sites: game/gamefil2.cpp:201, game/gamefil2.cpp:203, game/gamefil2.cpp:create_projective_shadow"
+  },
+  {
+   "class": "TexProjector",
+   "off": "0x2c",
+   "name": "item_index",
+   "type": "i32",
+   "size": 4,
+   "why": "2 sites: game/gamefil2.cpp:205, game/gamefil2.cpp:create_projective_shadow"
+  },
+  {
+   "class": "Body",
+   "off": "0x8",
+   "name": "actor",
+   "type": "ptr:Actor",
+   "size": 4,
+   "why": "players-list record (Players::list); PlayerRec requests are this class; 3 sites: game/unit.cpp:1134, game/unit.cpp:1194, game/unit.cpp:1144"
+  },
+  {
+   "class": "Body",
+   "off": "0x20e",
+   "name": "zone",
+   "type": "i32",
+   "size": 4,
+   "why": "3 sites: game/unit.cpp:1349, game/unit.cpp:1363, game/world.cpp:899"
+  },
+  {
+   "class": "Body",
+   "off": "0x212",
+   "name": "path_space",
+   "type": "ptr:PathSpace",
+   "size": 4,
+   "why": "4 sites: game/unit.cpp:1348, game/unit.cpp:1362, game/world.cpp:893, game/world.cpp:898"
+  },
+  {
+   "class": "Body",
+   "off": "0x218",
+   "name": "f32_218",
+   "type": "f32",
+   "size": 4,
+   "why": "2 sites: game/unit.cpp:1350, game/unit.cpp:1364"
+  },
+  {
+   "class": "MeshVertex",
+   "off": "0x0",
+   "name": "point",
+   "type": "ptr:PfdPoint",
+   "size": 4,
+   "why": "0x14-byte records built by 0x0066a280; 3 sites: game/_unplaced/pathmesh.cpp:355, game/_unplaced/pathmesh.cpp:1359, game/_unplaced/pathmesh.cpp"
+  },
+  {
+   "class": "MeshVertex",
+   "off": "0x4",
+   "name": "next",
+   "type": "ptr:MeshVertex",
+   "size": 4,
+   "why": "1 sites: game/_unplaced/pathmesh.cpp"
+  },
+  {
+   "class": "MeshVertex",
+   "off": "0x8",
+   "name": "prev",
+   "type": "ptr:MeshVertex",
+   "size": 4,
+   "why": "1 sites: game/_unplaced/pathmesh.cpp"
+  },
+  {
+   "class": "MeshVertex",
+   "off": "0xc",
+   "name": "assist_next",
+   "type": "ptr:MeshVertex",
+   "size": 4,
+   "why": "1 sites: game/_unplaced/pathmesh.cpp"
+  },
+  {
+   "class": "MeshVertex",
+   "off": "0x10",
+   "name": "assist_prev",
+   "type": "ptr:MeshVertex",
+   "size": 4,
+   "why": "1 sites: game/_unplaced/pathmesh.cpp"
+  },
+  {
+   "class": "Unit",
+   "off": "0x3d",
+   "name": "name",
+   "type": "char",
+   "size": 1,
+   "count": 66,
+   "why": "0x3d / 0x7f / 0xc1 three names tile gap_3d (0xc5 bytes); 11 sites: game/unit.cpp:255, game/_unplaced/i_unitatt.cpp:416, game/_unplaced/crithud.cpp:407, game/_unplaced/unit_xp.cpp:184, interfac/i_buy.cpp:568, interfac/i_buy.cpp:1744 ..."
+  },
+  {
+   "class": "Unit",
+   "off": "0x7f",
+   "name": "name_b",
+   "type": "char",
+   "size": 1,
+   "count": 66,
+   "why": "3 sites: game/unit.cpp:256, interfac/i_buy.cpp:1741, game/unit.cpp:260"
+  },
+  {
+   "class": "Unit",
+   "off": "0xc1",
+   "name": "name_c",
+   "type": "char",
+   "size": 1,
+   "count": 65,
+   "why": "3 sites: game/unit.cpp:263, game/_unplaced/crithud.cpp:407, game/unit.cpp:267"
+  },
+  {
+   "class": "Unit",
+   "off": "0x394",
+   "name": "splash_pos",
+   "type": "f32",
+   "size": 4,
+   "count": 3,
+   "why": "1 sites: game/_unplaced/unit_core.cpp:Unit::set_action"
+  },
+  {
+   "class": "Unit",
+   "off": "0x3d9",
+   "name": "follow_target",
+   "type": "f32",
+   "size": 4,
+   "count": 3,
+   "why": "1 sites: game/_unplaced/ai_behav.cpp:1416"
+  },
+  {
+   "class": "WorldSector",
+   "off": "0x20",
+   "name": "grid_x",
+   "type": "i16",
+   "size": 2,
+   "why": "build_grid 0x004f79a2 writes word +0x20; build_ground reads it; 7 sites: game/world_s.cpp:3842, game/world.cpp:507, game/world.cpp:524, game/world.cpp:511/528, game/world_s.cpp:987, game/world_s.cpp:2159 ..."
+  },
+  {
+   "class": "WorldSector",
+   "off": "0x22",
+   "name": "grid_y",
+   "type": "i16",
+   "size": 2,
+   "why": "0 sites: "
+  },
+  {
+   "class": "WorldSector",
+   "off": "0x2c",
+   "name": "level",
+   "type": "i16",
+   "size": 2,
+   "why": "4 sites: game/world_s.cpp:3732, game/world_s.cpp:3848, game/world_s.cpp:3949, game/world_s.cpp:3753"
+  },
+  {
+   "class": "ModelSlot",
+   "off": "0x0",
+   "name": "id",
+   "type": "u16",
+   "size": 2,
+   "why": "AnimScr record 0x21b bytes; 2 sites: game/animscr.cpp:173, game/animscr.cpp:animscr_load"
+  },
+  {
+   "class": "ModelSlot",
+   "off": "0x28",
+   "name": "times",
+   "type": "i32",
+   "size": 4,
+   "count": 8,
+   "why": "11 sites: game/animscr.cpp:355, game/animscr.cpp:parse_body, game/_unplaced/unit_core.cpp:1740, game/_unplaced/unit_core.cpp:1754, game/_unplaced/unit_core.cpp:1783, game/_unplaced/unit_core.cpp:1803 ..."
+  },
+  {
+   "class": "ModelSlot",
+   "off": "0x75",
+   "name": "emitter_flag",
+   "type": "i8",
+   "size": 1,
+   "why": "5 sites: game/animscr.cpp:970, game/animgrp.cpp:947, game/animscr.cpp:parse_body/load_txt_ids, game/_unplaced/unit_core.cpp:788, game/_unplaced/unit_core.cpp:hit_value_5051e0,"
+  },
+  {
+   "class": "ModelSlot",
+   "off": "0x76",
+   "name": "emitter_default",
+   "type": "i8",
+   "size": 1,
+   "why": "4 sites: game/animscr.cpp:977, game/_unplaced/fx_spawn.cpp:237, src/game/_unplaced/fx_spawn.cpp:237, game/animscr.cpp:parse_body/load_txt_ids"
+  },
+  {
+   "class": "ModelSlot",
+   "off": "0x77",
+   "name": "emitter_names",
+   "type": "char",
+   "size": 1,
+   "count": 198,
+   "why": "3 sites: game/animscr.cpp:parse_body/load_txt_ids, game/_unplaced/unit_core.cpp:attack, game/_unplaced/unit_core.cpp:hit_value_5051e0,"
+  },
+  {
+   "class": "ModelSlot",
+   "off": "0x13d",
+   "name": "emitter_a",
+   "type": "i32",
+   "size": 4,
+   "count": 6,
+   "why": "5 sites: game/animscr.cpp:392, game/_unplaced/animscr_fx.cpp:501, game/animscr.cpp:parse_body, game/_unplaced/unit_core.cpp:1446, game/_unplaced/unit_core.cpp:hand_effect"
+  },
+  {
+   "class": "ModelSlot",
+   "off": "0x155",
+   "name": "emitter_b",
+   "type": "i32",
+   "size": 4,
+   "count": 6,
+   "why": "4 sites: game/animscr.cpp:394, game/_unplaced/animscr_fx.cpp:501, game/animscr.cpp:parse_body, game/_unplaced/unit_core.cpp:hand_effect"
+  },
+  {
+   "class": "ModelSlot",
+   "off": "0x16d",
+   "name": "emitter_c",
+   "type": "i32",
+   "size": 4,
+   "count": 6,
+   "why": "3 sites: game/animscr.cpp:397, src/game/_unplaced/fx_spawn.cpp:237, game/animscr.cpp:parse_body"
+  },
+  {
+   "class": "ModelSlot",
+   "off": "0x185",
+   "name": "emitter_pos",
+   "type": "f32",
+   "size": 4,
+   "count": 18,
+   "why": "5 sites: game/animscr.cpp:400, game/animscr.cpp:402, game/animscr.cpp:404, game/animscr.cpp:parse_body, game/_unplaced/unit_core.cpp:hand_effect"
+  },
+  {
+   "class": "ModelSlot",
+   "off": "0x1cd",
+   "name": "emitter_bytes",
+   "type": "i8",
+   "size": 1,
+   "count": 6,
+   "why": "1 sites: game/_unplaced/unit_core.cpp:hand_effect"
+  },
+  {
+   "class": "ModelSlot",
+   "off": "0x1d3",
+   "name": "emitter_sel",
+   "type": "i8",
+   "size": 1,
+   "count": 6,
+   "why": "1 sites: game/_unplaced/unit_core.cpp:hand_effect"
+  },
+  {
+   "class": "ModelSlot",
+   "off": "0x1e1",
+   "name": "anim_name",
+   "type": "char",
+   "size": 1,
+   "count": 33,
+   "why": "1 sites: game/_unplaced/unit_core.cpp:build_model"
+  },
+  {
+   "class": "ModelSlot",
+   "off": "0x202",
+   "name": "u8_202",
+   "type": "u8",
+   "size": 1,
+   "why": "1 sites: game/_unplaced/unit_core.cpp:Unit::set_action"
+  },
+  {
+   "class": "ModelSlot",
+   "off": "0x203",
+   "name": "emitter_txt_ids",
+   "type": "i32",
+   "size": 4,
+   "count": 6,
+   "why": "5 sites: game/animscr.cpp:980, game/_unplaced/animscr_fx.cpp:530, src/game/_unplaced/fx_spawn.cpp:237, game/animscr.cpp:load_txt_ids, game/_unplaced/unit_core.cpp:hand_effect"
+  },
+  {
+   "class": "LightState",
+   "off": "0x0",
+   "name": "preset",
+   "type": "LightPreset",
+   "why": "0 sites: ",
+   "member": true
+  },
+  {
+   "class": "LightState",
+   "off": "0x18c",
+   "name": "fade",
+   "type": "f32",
+   "size": 4,
+   "why": "1 sites: game/lightsys.cpp:899"
+  },
+  {
+   "class": "LightState",
+   "off": "0x190",
+   "name": "scale",
+   "type": "f32",
+   "size": 4,
+   "why": "1 sites: game/lightsys.cpp:901"
+  },
+  {
+   "class": "SiegeOrder",
+   "off": "0x0",
+   "name": "kind",
+   "type": "i16",
+   "size": 2,
+   "why": "1 sites: src/game/_unplaced/f_work.cpp:360"
+  },
+  {
+   "class": "SiegeOrder",
+   "off": "0x2",
+   "name": "started",
+   "type": "i8",
+   "size": 1,
+   "why": "1 sites: src/game/_unplaced/f_work.cpp:360"
+  },
+  {
+   "class": "SiegeOrder",
+   "off": "0x3",
+   "name": "queued_time",
+   "type": "u32",
+   "size": 4,
+   "why": "1 sites: src/game/_unplaced/f_work.cpp:360"
+  },
+  {
+   "class": "SiegeOrder",
+   "off": "0x7",
+   "name": "start_time",
+   "type": "u32",
+   "size": 4,
+   "why": "1 sites: src/game/_unplaced/f_work.cpp:360"
+  },
+  {
+   "class": "SiegeOrder",
+   "off": "0xb",
+   "name": "duration",
+   "type": "i16",
+   "size": 2,
+   "why": "1 sites: src/game/_unplaced/f_work.cpp:360"
+  },
+  {
+   "class": "SiegeOrder",
+   "off": "0x91",
+   "name": "group",
+   "type": "u16",
+   "size": 2,
+   "why": "1 sites: src/game/_unplaced/f_work.cpp:360"
+  },
+  {
+   "class": "UnitScript",
+   "off": "0x0",
+   "name": "id",
+   "type": "i16",
+   "size": 2,
+   "why": "1 sites: game/uscrres.cpp:183"
+  },
+  {
+   "class": "UnitScript",
+   "off": "0x2",
+   "name": "name",
+   "type": "char",
+   "size": 1,
+   "count": 32,
+   "why": "1 sites: game/uscrres.cpp:185"
+  },
+  {
+   "class": "UnitScript",
+   "off": "0x22",
+   "name": "object",
+   "type": "ptr:void",
+   "size": 4,
+   "why": "3 sites: game/uscrres.cpp:134, game/uscrres.cpp:135, game/uscrres.cpp:137"
+  },
+  {
+   "class": "UnitScript",
+   "off": "0x26",
+   "name": "kind",
+   "type": "i16",
+   "size": 2,
+   "why": "3 sites: game/uscrres.cpp:186, game/uscrres.cpp:322, game/uscrres.cpp:378"
+  },
+  {
+   "class": "QueuePair",
+   "off": "0x0",
+   "name": "key",
+   "type": "i32",
+   "size": 4,
+   "why": "0 sites: "
+  },
+  {
+   "class": "QueuePair",
+   "off": "0x4",
+   "name": "b",
+   "type": "i16",
+   "size": 2,
+   "why": "0 sites: "
+  },
+  {
+   "class": "QueuePair",
+   "off": "0x6",
+   "name": "c",
+   "type": "i16",
+   "size": 2,
+   "why": "0 sites: "
+  },
+  {
+   "class": "CursorRec",
+   "off": "0x0",
+   "name": "hot_x",
+   "type": "i16",
+   "size": 2,
+   "why": "1 sites: ilib/mousecr.cpp:501"
+  },
+  {
+   "class": "CursorRec",
+   "off": "0x2",
+   "name": "hot_y",
+   "type": "i16",
+   "size": 2,
+   "why": "1 sites: ilib/mousecr.cpp:502"
+  },
+  {
+   "class": "CursorRec",
+   "off": "0x4",
+   "name": "bitmap",
+   "type": "ptr:Bitmap",
+   "size": 4,
+   "why": "1 sites: ilib/mousecr.cpp:500"
+  },
+  {
+   "class": "ItemType",
+   "off": "0x0",
+   "name": "class_id",
+   "type": "u16",
+   "size": 2,
+   "why": "1 sites: game/itemres.cpp:321"
+  },
+  {
+   "class": "ItemType",
+   "off": "0x2",
+   "name": "id",
+   "type": "u16",
+   "size": 2,
+   "why": "1 sites: game/itemres.cpp:323"
+  },
+  {
+   "class": "ItemType",
+   "off": "0x4",
+   "name": "name",
+   "type": "char",
+   "size": 1,
+   "count": 33,
+   "why": "1 sites: game/itemres.cpp:322"
+  },
+  {
+   "class": "Territory",
+   "off": "0x4",
+   "name": "name",
+   "type": "char",
+   "size": 1,
+   "count": 34,
+   "why": "2 sites: game/_unplaced/objm_shop.cpp:544, game/_unplaced/objm_shop.cpp:582"
+  },
+  {
+   "class": "Territory",
+   "off": "0x26",
+   "name": "kind",
+   "type": "i8",
+   "size": 1,
+   "why": "2 sites: game/_unplaced/objm_shop.cpp:545, game/_unplaced/objm_shop.cpp:584"
+  },
+  {
+   "class": "Territory",
+   "off": "0x30",
+   "name": "map_x",
+   "type": "i32",
+   "size": 4,
+   "why": "3 sites: game/_unplaced/objm_shop.cpp:452, game/_unplaced/objm_reward.cpp:511, game/_unplaced/objm_shop.cpp:486,"
+  },
+  {
+   "class": "Territory",
+   "off": "0x34",
+   "name": "map_y",
+   "type": "i32",
+   "size": 4,
+   "why": "3 sites: game/_unplaced/objm_shop.cpp:453, game/_unplaced/objm_reward.cpp:513, game/_unplaced/objm_shop.cpp:487,"
+  },
+  {
+   "class": "Territory",
+   "off": "0x38",
+   "name": "side",
+   "type": "i32",
+   "size": 4,
+   "why": "3 sites: game/_unplaced/objm_shop.cpp:252, game/_unplaced/objm_shop.cpp:253, game/_unplaced/objm_shop.cpp:271"
+  },
+  {
+   "class": "UnitTableEntry",
+   "off": "0x0",
+   "name": "id",
+   "type": "u16",
+   "size": 2,
+   "why": "0 sites: "
+  },
+  {
+   "class": "UnitTableEntry",
+   "off": "0x2",
+   "name": "def",
+   "type": "u16",
+   "size": 2,
+   "why": "0 sites: "
+  },
+  {
+   "class": "LightSlot",
+   "off": "0x0",
+   "name": "slot",
+   "type": "i32",
+   "size": 4,
+   "why": "1 sites: en3d/reorder.cpp:185"
+  },
+  {
+   "class": "LightSlot",
+   "off": "0x4",
+   "name": "frame",
+   "type": "u32",
+   "size": 4,
+   "why": "1 sites: en3d/reorder.cpp:185"
+  },
+  {
+   "class": "LightSlot",
+   "off": "0x8",
+   "name": "light",
+   "type": "Light",
+   "why": "1 sites: en3d/reorder.cpp:185",
+   "member": true
+  },
+  {
+   "class": "MaterialSlot",
+   "off": "0x0",
+   "name": "slot",
+   "type": "i32",
+   "size": 4,
+   "why": "1 sites: en3d/reorder.cpp:105"
+  },
+  {
+   "class": "MaterialSlot",
+   "off": "0x4",
+   "name": "frame",
+   "type": "u32",
+   "size": 4,
+   "why": "1 sites: en3d/reorder.cpp:105"
+  },
+  {
+   "class": "MaterialSlot",
+   "off": "0x8",
+   "name": "material",
+   "type": "Material",
+   "why": "1 sites: en3d/reorder.cpp:105",
+   "member": true
+  },
+  {
+   "class": "ScriptKeyword",
+   "off": "0x0",
+   "name": "name",
+   "type": "ptr:char",
+   "size": 4,
+   "why": "1 sites: src/game/_unplaced/eslexer.cpp:196"
+  },
+  {
+   "class": "ScriptKeyword",
+   "off": "0x4",
+   "name": "type",
+   "type": "i32",
+   "size": 4,
+   "why": "2 sites: game/_unplaced/eslexer.cpp:196, src/game/_unplaced/eslexer.cpp:196"
+  },
+  {
+   "class": "RecruitOrder",
+   "off": "0x0",
+   "name": "kind",
+   "type": "i16",
+   "size": 2,
+   "why": "2 sites: game/_unplaced/f_flag.cpp:355, src/game/_unplaced/f_flag.cpp:355"
+  },
+  {
+   "class": "RecruitOrder",
+   "off": "0x2",
+   "name": "arg",
+   "type": "u32",
+   "size": 4,
+   "why": "1 sites: src/game/_unplaced/f_flag.cpp:355"
+  },
+  {
+   "class": "RecruitOrder",
+   "off": "0x6",
+   "name": "count",
+   "type": "i32",
+   "size": 4,
+   "why": "1 sites: src/game/_unplaced/f_flag.cpp:355"
+  },
+  {
+   "class": "RecruitRowItem",
+   "off": "0x0",
+   "name": "kind",
+   "type": "i16",
+   "size": 2,
+   "why": "2 sites: game/_unplaced/f_work.cpp:842, src/game/_unplaced/f_work.cpp:842"
+  },
+  {
+   "class": "RecruitRowItem",
+   "off": "0x2",
+   "name": "rate",
+   "type": "f32",
+   "size": 4,
+   "why": "1 sites: src/game/_unplaced/f_work.cpp:842"
+  },
+  {
+   "class": "RecruitRowItem",
+   "off": "0x6",
+   "name": "count",
+   "type": "i16",
+   "size": 2,
+   "why": "1 sites: src/game/_unplaced/f_work.cpp:842"
+  },
+  {
+   "class": "UnitUpgradeSlot",
+   "off": "0x0",
+   "name": "kind",
+   "type": "i16",
+   "size": 2,
+   "why": "1 sites: game/unit.cpp:554"
+  },
+  {
+   "class": "UnitUpgradeSlot",
+   "off": "0x2",
+   "name": "upgrade",
+   "type": "i16",
+   "size": 2,
+   "why": "1 sites: game/unit.cpp:555"
+  },
+  {
+   "class": "ScriptNamed",
+   "off": "0x14",
+   "name": "type_id",
+   "type": "u32",
+   "size": 4,
+   "why": "1 sites: uti3d/esstate2.cpp:2104:"
+  },
+  {
+   "class": "LodLevel",
+   "off": "0x0",
+   "name": "value",
+   "type": "i32",
+   "size": 4,
+   "why": "0 sites: "
+  },
+  {
+   "class": "LodLevel",
+   "off": "0x4",
+   "name": "i32_4",
+   "type": "i32",
+   "size": 4,
+   "why": "0 sites: "
+  }
+ ]
+}

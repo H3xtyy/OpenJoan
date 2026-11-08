@@ -1,0 +1,30 @@
+# Words of the hashed .data/.bss range (original x86 addresses) whose value legitimately differs between an x86 and an
+# x64 run of the same recording: they depend on the memory layout, not on the game. tools/replay_image_diff.py leaves them
+# out by default; everything else of the typed non-pointer data must be identical (the cross-architecture state check,
+# docs/X64_STATE_CHECK.md). Measured 2026-11-06 on ref-x86-2026-11-6-savetest.rec (every 25th frame, x86 vs x64).
+#
+# DynArray element sizes of pointer lists (DynArray::ele_size at +0x10, +0x14 / +0x26 in two embedding objects):
+# 4 on x86, 8 on x64.
+0x00a3cea0 0x00a45f18 0x00a460b4 0x00a47c18 0x00a47cb8 0x00a484e0 0x00a48510 0x00a48ab8 0x00a50544 0x00a506f4
+0x00a527d8 0x00a52950 0x00a53c38 0x00a549f8 0x00a55a98 0x00a56f38 0x00a57088 0x00a57bd8 0x00a57f90 0x00a5cce0
+0x00a5d110
+# A DynArray of records holding one pointer: element size 0x10c on x86, 0x110 on x64.
+0x00a50470
+# Byte sizes of buffers of pointer-sized entries (b_a502ba +0x12 / +0x2e: 0x40000 / 0x4000000 on x86, twice on x64;
+# kAnimRes +0x284: 0x130000 on x86, 0x138000 on x64).
+0x00a502cc 0x00a502e8 0x00a58f3c
+# SysEn's dynamic vertex / index ring bookkeeping (+0x1b7 dyn_vb_used[9] .. +0x1f7 index_count): the stream cache
+# ([Graphics] StreamCache, d3dsys.cpp) serves unchanged model arrays from their own buffers, keyed by their address, so
+# which fills go through the ring depends on where the arrays lie. With StreamCache=0 on both runs these match.
+0x00a525d7+0x44
+# SysEn's draw statistics (+0x21b stats[11], stats_last, stats_sum, stats_avg up to +0x2cb stats_frames): for the same
+# reason grass batching (render/grass_batch.hpp) records a patch only when its draw did not come from the ring, so a
+# patch can be drawn the normal way on one layout and replayed on the other - another draw count, the same picture.
+# Measured on ref-x86-2026-11-6j.rec from frame 47,380 (two grass patches, Grass01 / grass03, drawn normally on x64
+# only; the stats words 0x00a52638 .. 0x00a52694 differ); with StreamCache=0 on both runs 6j matches (2,792 frames).
+0x00a52638+0xb4
+# SysEn's current / pending texture factor (+0x141 cur_texture_factor, +0x157 new_texture_factor; the words holding
+# them): the state cache's last value, here the fade alpha of the last grass patch SysEn drew. A patch replayed by grass
+# batching bypasses SysEn, one drawn the normal way goes through it, so the value depends on the same address-keyed
+# choice. Measured on ref-x86-2026-11-6j.rec from frame 48,025 with StreamCache as recorded (x86 0x64 / 0xca, x64 0x9c).
+0x00a52560+0x8 0x00a52574+0x8

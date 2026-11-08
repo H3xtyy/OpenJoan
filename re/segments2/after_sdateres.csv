@@ -1,0 +1,2 @@
+start,end,name,confidence,evidence,target
+0x004ce2a0,0x004ce2a0,sitemres_ctor,high,"Struct9::zero is the ctor of the static-init group 0x56a1d0 whose atexit dtor is SellItemRes::dtor (0x56a240); i.e. the sitemres.cpp global; sits directly before sitemres code.",game/sitemres.cpp

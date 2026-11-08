@@ -1,0 +1,6 @@
+start,end,name,confidence,evidence,target
+0x0057d4d0,0x0057d4d0,audio_refill,high,SoundStreams::refill between audio.cpp Audio methods,ilib/audio.cpp
+0x0057de40,0x0057df80,audio_soundset,high,"SoundSet::release x2 called by SoundSys::release_buffers, sandwiched in audio.cpp",ilib/audio.cpp
+0x0057e200,0x0057e200,audio_zero,high,sandwiched between audio.cpp Cd::stop and Audio::any_playing,ilib/audio.cpp
+0x0057e3e0,0x0057e780,audio_volume,high,"enable_4/5/6 wrappers (CdAudio::stop, release_buffers, Cd::stop) and Sound volume/mixer setters between audio.cpp functions",ilib/audio.cpp
+0x0057ef60,0x0057f020,bitmap8_getters,high,Bitmap8 getters between bitmap.cpp Point16::set and bitmap_bytes8/Bitmap8::create,ilib/bitmap.cpp

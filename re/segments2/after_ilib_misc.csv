@@ -1,0 +1,6 @@
+start,end,name,confidence,evidence,target
+0x00590aa0,0x00590c00,misc_limit_file,high,"limit/is_file_exist/is_dir_exist between misc.cpp round and Path::replace_ext (functions.csv puts the surrounding run in ww/ilib/misc.cpp).",ilib/misc.cpp
+0x00590d90,0x00590e20,misc_fname,high,"extract_file_name / compare_file_time between Path::replace_ext and Misc::ordinal of misc.cpp.",ilib/misc.cpp
+0x00591050,0x005911a0,misc_array_rec,high,"get_time / del_array_rec / insert_array_rec / bin_search between misc.cpp atexit_empty_591030 and move_around_a_point (functions.csv: misc.cpp).",ilib/misc.cpp
+0x00591960,0x00591960,misc_fill_word,high,"fill_word right before misc.cpp fill_except (same fill family).",ilib/misc.cpp
+0x00591e70,0x00591e70,misc_area_distance,high,"area_distance among misc.cpp Compass/Timer helpers.",ilib/misc.cpp

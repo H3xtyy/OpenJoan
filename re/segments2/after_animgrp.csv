@@ -1,0 +1,7 @@
+start,end,name,confidence,evidence,target
+0x00414f50,0x00415220,animgrp_a,medium,between animgrp.cpp AnimGroup::load and get_dword_112 (edge-guessed animres); AnimSet::acquire uses elem_004168d0 of this stretch,game/animgrp.cpp
+0x004152b0,0x00415790,animgrp_b,medium,"AnimSet stream/idle/add_ref, ResLock::release between get_dword_112 and animgrp.cpp Anim::is_jump",game/animgrp.cpp
+0x00416580,0x004168d0,animgrp_c,medium,sandwiched between animgrp.cpp Anim::id_from_name and weapon_kind_from_name,game/animgrp.cpp
+0x00416a50,0x00416a50,animgrp_d,medium,sandwiched between animgrp.cpp weapon_kind_from_name and anim_kind_from_name,game/animgrp.cpp
+0x00416ca0,0x00416f20,animgrp_e,low,after animgrp.cpp anim_kind_from_name; List::index_of/AnimTable::find/ModelRefs::get use elem_004168d0 (animgrp stretch),game/animgrp.cpp
+0x00416f60,0x00416f60,animres_ctor,medium,"Obj_416f60 is the ctor of global g_a58cb8 (ANIM\ path table, init_567430) directly before animres.cpp Obj417020::init",game/animres.cpp

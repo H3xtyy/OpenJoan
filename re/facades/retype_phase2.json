@@ -1,0 +1,357 @@
+{
+ "_doc": "Phase 2 (2026-10-29): facade retypes requested by the x64-auditor groups (re/x64_census/reports/); applied by re/facades/retype.py after retype_p8.json and retype_x64b.json, bridges re-synced by re/bind/sync_bridges.py.",
+ "retypes": [
+  {
+   "inc": "vqueue_methods.inc",
+   "addr": "0x005a87b0",
+   "param": "ret",
+   "from": "std::uint32_t",
+   "to": "std::uintptr_t",
+   "why": "Phase 2 ilib-interfac-1: VQueue::free returns a pointer (eax leftover) that the replacement returns whole; callers ignore it"
+  },
+  {
+   "inc": "audio_methods.inc",
+   "addr": "0x0057a6c0",
+   "param": "ret",
+   "from": "std::uint32_t",
+   "to": "std::uintptr_t",
+   "why": "Phase 2 ilib-interfac-1: Audio::shutdown returns a pointer (eax leftover) that the replacement returns whole; callers ignore it"
+  },
+  {
+   "inc": "cursor_methods.inc",
+   "addr": "0x00596db0",
+   "param": "ret",
+   "from": "std::uint32_t",
+   "to": "std::uintptr_t",
+   "why": "Phase 2 ilib-interfac-1: Cursor::set_596db0 returns a pointer (eax leftover) that the replacement returns whole; callers ignore it"
+  },
+  {
+   "inc": "camp_screen_methods.inc",
+   "addr": "0x00721a60",
+   "param": "ret",
+   "from": "std::uint32_t",
+   "to": "std::uintptr_t",
+   "why": "Phase 2 ilib-interfac-1: CampScreen::set_state_721a60 returns a pointer (eax leftover) that the replacement returns whole; callers ignore it"
+  },
+  {
+   "inc": "sound3dbuffer_methods.inc",
+   "addr": "0x0059ef00",
+   "param": "ret",
+   "from": "std::uint32_t",
+   "to": "std::uintptr_t",
+   "why": "Phase 2 ilib-interfac-1: Sound3d::load returns a pointer (eax leftover) that the replacement returns whole; callers ignore it"
+  },
+  {
+   "inc": "texture_manager_methods.inc",
+   "addr": "0x0060ae70",
+   "param": "ret",
+   "from": "void*",
+   "to": "std::int32_t",
+   "why": "Phase 2 engine-1: TextureManager::find returns an index (en3d/texturea.cpp as_index)"
+  },
+  {
+   "inc": "texture_manager_methods.inc",
+   "addr": "0x0060b0d0",
+   "param": "ret",
+   "from": "void*",
+   "to": "std::int32_t",
+   "why": "Phase 2 engine-1: TextureManager::remove_a returns an index (en3d/texturea.cpp as_index)"
+  },
+  {
+   "inc": "texture_manager_methods.inc",
+   "addr": "0x0060b140",
+   "param": "ret",
+   "from": "void*",
+   "to": "std::int32_t",
+   "why": "Phase 2 engine-1: TextureManager::remove_b returns an index (en3d/texturea.cpp as_index)"
+  },
+  {
+   "inc": "scene_s_methods.inc",
+   "addr": "0x005f3a70",
+   "param": 1,
+   "from": "void*",
+   "to": "std::int32_t",
+   "why": "Phase 2 engine-2: SceneS::draw_projected a1 is the pass number"
+  },
+  {
+   "inc": "script_value_methods.inc",
+   "addr": "0x00644390",
+   "param": 0,
+   "from": "std::uint32_t",
+   "to": "std::uintptr_t",
+   "why": "Phase 2 engine-3: the script evaluator context pointer (uti3d/esstate2.cpp)"
+  },
+  {
+   "inc": "tex_dir_methods.inc",
+   "addr": "0x00604560",
+   "param": 2,
+   "from": "std::int32_t",
+   "to": "std::uintptr_t",
+   "why": "Phase 2 engine-4: TexDir::add_path key is a string pointer"
+  },
+  {
+   "inc": "scene_methods.inc",
+   "addr": "0x005e9b10",
+   "param": "ret",
+   "from": "std::uint32_t",
+   "to": "std::uintptr_t",
+   "why": "Phase 2 engine-6: Scene::clear returns this / a pointer"
+  },
+  {
+   "inc": "scene_methods.inc",
+   "addr": "0x005e9e50",
+   "param": "ret",
+   "from": "std::uint32_t",
+   "to": "std::uintptr_t",
+   "why": "Phase 2 engine-6: Scene::setup returns this / a pointer"
+  },
+  {
+   "inc": "scene_methods.inc",
+   "addr": "0x005ea0d0",
+   "param": "ret",
+   "from": "std::uint32_t",
+   "to": "std::uintptr_t",
+   "why": "Phase 2 engine-6: Scene::set_1c returns this / a pointer"
+  },
+  {
+   "inc": "scene_methods.inc",
+   "addr": "0x005ea180",
+   "param": "ret",
+   "from": "std::uint32_t",
+   "to": "std::uintptr_t",
+   "why": "Phase 2 engine-6: Scene::free_71 returns this / a pointer"
+  },
+  {
+   "inc": "scene_methods.inc",
+   "addr": "0x005ed9d0",
+   "param": "ret",
+   "from": "std::uint32_t",
+   "to": "std::uintptr_t",
+   "why": "Phase 2 engine-6: Scene::set_camera returns this / a pointer"
+  },
+  {
+   "inc": "popup_methods.inc",
+   "addr": "0x0062b510",
+   "param": "ret",
+   "from": "std::uint32_t",
+   "to": "std::uintptr_t",
+   "why": "Phase 2 engine-6: Popup::ensure_window returns a pointer"
+  },
+  {
+   "inc": "sys_en_methods.inc",
+   "addr": "0x00603670",
+   "param": "ret",
+   "from": "std::uint32_t",
+   "to": "std::uintptr_t",
+   "why": "Phase 2 engine-6: SysEn::dtor returns this"
+  },
+  {
+   "inc": "window_methods.inc",
+   "addr": "0x00603780",
+   "param": "ret",
+   "from": "std::uint32_t",
+   "to": "std::uintptr_t",
+   "why": "Phase 2 engine-6: Window::activate returns this"
+  },
+  {
+   "inc": "waters_methods.inc",
+   "addr": "0x00474df0",
+   "param": 5,
+   "from": "std::uint32_t",
+   "to": "void*",
+   "why": "Phase 2 game-4: Waters::add a5 is the Sector pointer (game/world_s.cpp create_water)"
+  },
+  {
+   "inc": "water_methods.inc",
+   "addr": "0x00546b50",
+   "param": 5,
+   "from": "std::uint32_t",
+   "to": "void*",
+   "why": "Phase 2 game-4: Water::init a5 is the Sector pointer stored in Water::u32_30"
+  },
+  {
+   "inc": "free_functions.hpp",
+   "addr": "0x00654560",
+   "param": 1,
+   "from": "std::uint32_t",
+   "to": "const char*",
+   "why": "Phase 2 unplaced-a-8: Script::place_set_side name is a script string value (esfuncs.cpp)"
+  },
+  {
+   "inc": "free_functions.hpp",
+   "addr": "0x00655750",
+   "param": 1,
+   "from": "std::uint32_t",
+   "to": "const char*",
+   "why": "Phase 2 unplaced-a-8: Script::unit_set_side name is a script string value"
+  },
+  {
+   "inc": "free_functions.hpp",
+   "addr": "0x006582f0",
+   "param": 1,
+   "from": "std::uint32_t",
+   "to": "const char*",
+   "why": "Phase 2 unplaced-a-8: Script::group_set_side side_name is a script string value"
+  },
+  {
+   "inc": "free_functions.hpp",
+   "addr": "0x00653df0",
+   "param": 0,
+   "from": "std::uint32_t",
+   "to": "const char*",
+   "why": "Phase 2 unplaced-a-8: Script::set_side_relation name1 is a script string value"
+  },
+  {
+   "inc": "free_functions.hpp",
+   "addr": "0x00653df0",
+   "param": 1,
+   "from": "std::uint32_t",
+   "to": "const char*",
+   "why": "Phase 2 unplaced-a-8: Script::set_side_relation name2 is a script string value"
+  },
+  {
+   "inc": "place_methods.inc",
+   "addr": "0x0042acd0",
+   "param": 0,
+   "from": "std::int32_t",
+   "to": "const char*",
+   "why": "Phase 2 unplaced-a-8: Place::join_group takes the group name (esfuncs.cpp:4229)"
+  },
+  {
+   "inc": "triple_methods.inc",
+   "addr": "0x0066a5e0",
+   "param": 0,
+   "from": "std::uint32_t",
+   "to": "void*",
+   "why": "Phase 2 unplaced-b-2: Triple::ret0_66a5e0 takes a pointer (pathmesh.cpp x3)"
+  },
+  {
+   "inc": "list_methods.inc",
+   "addr": "0x004c5530",
+   "param": 0,
+   "from": "std::uint32_t",
+   "to": "const void*",
+   "why": "Phase 2 unplaced-b-4: List::find_owned a0 is a pointer (facility.cpp:444)"
+  },
+  {
+   "inc": "list_methods.inc",
+   "addr": "0x004c5530",
+   "param": 1,
+   "from": "std::uint32_t",
+   "to": "void*",
+   "why": "Phase 2 unplaced-b-4: List::find_owned a1 is the World pointer"
+  },
+  {
+   "inc": "army_methods.inc",
+   "addr": "0x004c2b50",
+   "param": 0,
+   "from": "std::int32_t",
+   "to": "const char*",
+   "why": "Phase 2 unplaced-b-4: Army::count_in_range takes a name (esfuncs.cpp:1497)"
+  },
+  {
+   "inc": "scene_methods.inc",
+   "addr": "0x005eb590",
+   "param": 0,
+   "from": "std::int32_t",
+   "to": "void*",
+   "why": "Phase 2 unplaced-b-5: Scene::nop takes a pointer (playerctl.cpp:822)"
+  },
+  {
+   "inc": "free_functions.hpp",
+   "addr": "0x00654160",
+   "param": 1,
+   "from": "std::uint32_t",
+   "to": "const char*",
+   "why": "Phase 2 unplaced-b-4: script_654160 passes the owner name to Army::count_in_range (esfuncs.cpp)"
+  },
+  {
+   "inc": "vs_cache_methods.inc",
+   "addr": "0x0061c250",
+   "param": 0,
+   "from": "void*",
+   "to": "std::int32_t",
+   "why": "Phase 2 views-unplaced-2-3 (declined as a layout change): VsCache::set_tint_source stores a light id / index compared with the light loop counter (vshader.cpp 0x0061b9a0 branch type 3); every caller passes an integer (scene.cpp 0x005ed9d0 c6(), scan_list ids)"
+  },
+  {
+   "inc": "scroll_bar_methods.inc",
+   "addr": "0x00761ae0",
+   "param": 1,
+   "from": "std::int32_t",
+   "to": "void*",
+   "why": "Phase 2 r8 round: ScrollBar::build's second argument is the texture handle init stores at +4 (CombatScreen passes its COMMELE texture, i_attcmb.cpp)"
+  },
+  {
+   "inc": "scroll_bar_methods.inc",
+   "addr": "0x007620c0",
+   "param": 1,
+   "from": "std::uint32_t",
+   "to": "void*",
+   "why": "Phase 2 r8 round: ScrollBar::init stores its second argument in ScrollBar::texture (+4), a pointer"
+  },
+  {
+   "inc": "free_functions.hpp",
+   "addr": "0x00655200",
+   "param": 0,
+   "from": "std::int32_t",
+   "to": "const char*",
+   "why": "Phase 2 abi scan (pointer vs int32): script_load_unit (esfuncs.cpp) takes two script strings (profile name, unit name) that the facade passed as int32 - the compiled script's string pointers truncated on x64 (escomp.cpp case 86)"
+  },
+  {
+   "inc": "free_functions.hpp",
+   "addr": "0x00655200",
+   "param": 1,
+   "from": "std::int32_t",
+   "to": "const char*",
+   "why": "Phase 2 abi scan (pointer vs int32): script_load_unit (esfuncs.cpp) takes two script strings (profile name, unit name) that the facade passed as int32 - the compiled script's string pointers truncated on x64 (escomp.cpp case 86)"
+  },
+  {
+   "inc": "world_cell_methods.inc",
+   "addr": "0x0054f890",
+   "param": "ret",
+   "from": "std::uint32_t",
+   "to": "std::uintptr_t",
+   "why": "Phase 2 crutch removal: Cell::get_9c returns a WorldItem* (items list end) that the callers walk; the 32-bit result cut it once the heap lay above 4 GB (tools/x64_scan_facade_returns.py)"
+  },
+  {
+   "inc": "world_cell_methods.inc",
+   "addr": "0x0054f960",
+   "param": "ret",
+   "from": "std::uint32_t",
+   "to": "std::uintptr_t",
+   "why": "Phase 2 crutch removal: Cell::get_a0 returns a WorldItem* (items list end) that the callers walk; the 32-bit result cut it once the heap lay above 4 GB (tools/x64_scan_facade_returns.py)"
+  },
+  {
+   "inc": "shop_facility_methods.inc",
+   "addr": "0x00469e10",
+   "param": "ret",
+   "from": "std::uint32_t",
+   "to": "std::uintptr_t",
+   "why": "Phase 2 crutch removal: Shop::stock_at returns the stock entry (DynArray::get), a pointer the buy screens read; the 32-bit result cut it above 4 GB (tools/x64_scan_u32_to_ptr.py)"
+  },
+  {
+   "inc": "table_methods.inc",
+   "addr": "0x005af330",
+   "param": "ret",
+   "from": "std::uint32_t",
+   "to": "std::uintptr_t",
+   "why": "Phase 2 crutch removal: Table::get returns the element pointer (DynArray::ptr_at) the actor lists walk; the 32-bit result cut it above 4 GB (tools/x64_scan_u32_to_ptr.py)"
+  },
+  {
+   "inc": "treaty_methods.inc",
+   "addr": "0x004e3620",
+   "param": "ret",
+   "from": "std::int32_t",
+   "to": "std::intptr_t",
+   "why": "Phase 2 crutch removal: Treaty::lookup_4e3620 returns the sending king's name (Unit::name), a char* the diplomacy texts print; the 32-bit result cut it above 4 GB (tools/x64_scan_u32_to_ptr.py)"
+  },
+  {
+   "inc": "treaty_methods.inc",
+   "addr": "0x004e3670",
+   "param": "ret",
+   "from": "std::uint32_t",
+   "to": "std::uintptr_t",
+   "why": "Phase 2 crutch removal: Treaty::player_query returns a nation's name (Nation::name), a char* the diplomacy texts print; the 32-bit result cut it above 4 GB (tools/x64_scan_u32_to_ptr.py)"
+  }
+ ]
+}

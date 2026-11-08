@@ -1,0 +1,4 @@
+start,end,name,confidence,evidence,target
+0x006def10,0x006df090,i_buy_tail,medium,Table::get_67a/67e (Inventory::update callers) and the pi static-init group right after i_buy.cpp (end-of-object init group),interfac/i_buy.cpp
+0x006df0c0,0x006e0380,i_letter_head,medium,"Global ctor/load/reset trio, GoalPanel::draw, UnitMarkers calling i_letter.cpp Letter::load_kill (KILL); its strings sit right before the i_letter.cpp __FILE__ in rdata",interfac/i_letter.cpp
+0x006e0440,0x006e04c0,i_letter_mid,high,"TexHandle::release, global ctor and Obj6e04c0::init sandwiched between i_letter.cpp Letter::load_kill and Letter::free",interfac/i_letter.cpp

@@ -1,0 +1,33 @@
+// Generated (re/layout/gen_types.py) from re/layout/layouts.json: the data members of Place
+// (r5_image.json, confidence medium). Do not edit; change the spec.
+    std::int16_t index;  // 0x0
+    std::int16_t id;  // 0x2
+    std::int8_t kind;  // 0x4
+    char name[32];  // 0x5
+    std::uint8_t name_end;  // 0x25
+    std::int32_t nation;  // 0x26
+    float position_[3];  // 0x2a
+    std::uint32_t angle;  // 0x36
+    float box[6];  // 0x3a
+    std::uint32_t counter;  // 0x52
+    std::uint32_t counter_max;  // 0x56
+    std::uint32_t timer;  // 0x5a
+    std::int32_t entrance_count;  // 0x5e
+    float entrances[24];  // 0x62
+    std::int32_t slot_count;  // 0xc2
+    float slot_pos_[36];  // 0xc6
+    std::uint32_t u32_156[2];  // 0x156
+    float slot_yaw[13];  // 0x15e
+    std::int32_t slot_unit[13];  // 0x192
+    std::uint32_t u32_1c6;  // 0x1c6
+    std::int32_t spawn_count;  // 0x1ca
+    std::uint32_t captured;  // 0x1ce
+    float angle_2;  // 0x1d2
+    std::uint32_t u32_1d6;  // 0x1d6
+    Actor* model;  // 0x1da
+    World* world;  // 0x1de
+    Cell* cell;  // 0x1e2
+    Place* cell_prev;  // 0x1e6
+    Place* cell_next;  // 0x1ea
+    Facility* facility_tail;  // 0x1ee
+    Facility* facility_head_;  // 0x1f2

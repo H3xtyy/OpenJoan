@@ -1,0 +1,5 @@
+start,end,name,confidence,evidence,target
+0x005be4e0,0x005be4e0,d3dutil_t1,high,CD3DArcBall::HandleMouseMessages between d3dutil.cpp Trackball::vector and its atexit stubs.,game/_unplaced/d3dutil.cpp
+0x005bf5d0,0x005bf5d0,dxutil_t1,high,DXUtil_Timer between dxutil.cpp registry helpers and string conversions (DX8 SDK source order).,game/_unplaced/dxutil.cpp
+0x005c0ef0,0x005c0ef0,mdl_t1,high,Model::load (.SMO) between mdl.cpp Model::Model and ShadowModel::begin_load.,game/_unplaced/mdl.cpp
+0x005c5be0,0x005c5be0,mlight_t1,high,Accessor between mlight.cpp Light::release and Light::invalidate.,game/_unplaced/mlight.cpp

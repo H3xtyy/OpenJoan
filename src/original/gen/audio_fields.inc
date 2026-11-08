@@ -1,0 +1,35 @@
+// Generated (re/layout/gen_types.py) from re/layout/layouts.json: the data members of Audio
+// (r3_D.json, confidence medium). Do not edit; change the spec.
+    char init_flag;  // 0x0
+    char mid_init_flag;  // 0x1
+    char wav_init_flag;  // 0x2
+    char cd_init_flag;  // 0x3
+    char mid_flag;  // 0x4
+    char wav_flag;  // 0x5
+    char cd_flag;  // 0x6
+    std::uint8_t* mid_buf;  // 0x7
+    WavHeader* wav_buf;  // 0xb
+    std::int32_t mid_buf_size;  // 0xf
+    std::int32_t wav_buf_size;  // 0x13
+    ResourceIdx wav_res;  // 0x17
+    ResourceIdxL wav_res2;  // 0x14c
+    IDirectSound* direct_sound;  // 0x281
+    IDirectSoundBuffer* wav_dsb[8];  // 0x285
+    std::int32_t wav_serial_no[8];  // 0x2a5
+    std::int32_t max_wav_serial_no;  // 0x2c5
+    std::uint32_t wav_start_time[8];  // 0x2c9
+    std::uint32_t wav_duration[8];  // 0x2e9
+    IDirectSoundBuffer* lwav_dsb[4];  // 0x309
+    std::int32_t lwav_serial_no[4];  // 0x319
+    std::int32_t max_lwav_serial_no;  // 0x329
+    void* lwav_file[4];  // 0x32d
+    std::int16_t lwav_bank[4];  // 0x33d
+    std::uint16_t lwav_bank_size[4];  // 0x345
+    std::int32_t wav_volume;  // 0x34d
+    char stream_pending;  // 0x351
+    IDirectSoundBuffer* loop_dsb[4];  // 0x352
+    void* loop_file[4];  // 0x362
+    std::int32_t loop_start[4];  // 0x372
+    std::uint16_t loop_bank[4];  // 0x382
+    std::uint32_t loop_fade_time[4];  // 0x38a
+    std::uint32_t loop_fade_volume[4];  // 0x39a

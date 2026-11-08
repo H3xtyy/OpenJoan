@@ -1,0 +1,3 @@
+start,end,name,confidence,evidence,target
+0x004cad00,0x004cadf0,recrures_tail,high,"Table::find_b4 / X::free_23 (called by recrures List::update_all) / nop: the usual find+delete+nop tail of a *res object.",game/recrures.cpp
+0x004cae10,0x004cae10,remapkey_ctor,high,"Struct14::zero is the ctor of the static-init group 0x569ba0 whose dtor is remapkey X::forward_4cb310; precedes remapkey.cpp code.",game/remapkey.cpp

@@ -1,0 +1,4 @@
+start,end,name,confidence,evidence,target
+0x004a4e60,0x004a4e60,levelres_t1,high,Level-table lookup (Unit::init / level_up / set_level) right after LevelRes::load: tail of levelres.cpp.,game/levelres.cpp
+0x004a4ed0,0x004a4f80,lightsys_ctor,high,Global ctor chain run by static init 0x564420 (its dtor 0x564470 -> lightsys.cpp ObjK::dtor) directly before that dtor: LightSys constructor at the head of lightsys.cpp.,game/lightsys.cpp
+0x004a5630,0x004a5630,lightsys_t1,high,Time-of-day light set selection (Colour / Light::invalidate / random timers) between lightsys.cpp LightSys::init and LightSys::clear: a LightSys method despite its Army label.,game/lightsys.cpp

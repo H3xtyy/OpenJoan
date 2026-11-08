@@ -1,0 +1,58 @@
+fn_name,class,method,confidence,evidence,sig
+Attachment_position_44,EffectState,position,high,Rain/Weather store EffectState at actor+0x14 kind 2; set_position 0x41b2a0 writes +0x44,void*|void*
+Attachment_position_9,Billboard,position,high,kind 1 holder released via Billboard::release; Billboard::set_position 0x635d40 writes +9,void*|void*
+CameraTracks_create_array,CamTracks,create_array,high,called with this from CamTracks load_file 0x428e90; same file camres.cpp,void*|void*
+List21_load,Order,load_entries,high,this=unit+0x2a1 Order (ctor 0x4bab50); 0x21 OrderEntry dynarray; load already taken,std::int32_t|void*
+Obj40_save,WorldItem,save,high,this=MapObject+0xa2 built by WorldItem ctor 0x456eb0; ItemStack header,std::int32_t|void*
+Obj427930_vector_delete,BoxTree,vector_delete,high,World/Map+0x7e array of 0x38 nodes; element dtor BoxTree::reset_leaf 0x54ac60,void*|std::uint32_t
+Obj6ad220_scalar_dtor,DynArrayB,scalar_delete,medium,Players+0xb0e DynArrayB (ctor 0x5856a0 new 0x2e); calls DynArrayB destruct,void*|std::uint32_t
+ObjF_load,EndCondition,load,high,0x1a records at Game+0x30b; Game end_session releases them via EndCon::release,std::int32_t|void*
+ObjG_reset,?,clear_pointers,low,only caller load_484d00 (0xe4 object) is unreferenced; owner unknown,void*|
+Obj_clear_186,ScenarioEntry,clear_186,medium,0x1b2 scenario records in Scenario (Game+0x17); name +0x82 per battle.cpp,void|
+Obj_clear_277,CampaignState,clear_pointers,medium,0x289 block at Game+0x17; called by its load 0x483f10; returns this,std::uint32_t|
+Obj_forward_492370,MapObject,release_base,medium,vtable 0x9d3bec dtor 0x43a980 calls it before MapObject destruct; forwards 0x4251b0,std::uint32_t|
+Obj_free_8,PathSearchState,free_buffer,medium,called on this+0x1c like PathSearchState in 0x4ee5e0; adjacent to reset 0x4ee410,std::int32_t|
+Obj_load_481140,WorldItem,load,high,0x52 object built by WorldItem ctor 0x456eb0; calls WorldItem set_state/set_pos,std::int32_t|void*
+Obj_load_483430,Profile,load,high,0x48 child built by Profile construct 0x4c7dc0 in list load 0x4839c0,std::int32_t|void*
+Obj_load_483f10,CampaignState,load,medium,0x289 block at Game+0x17; scenario records count +0xc ptr +0x10; squads,std::int32_t|void*
+Obj_read_1b2,ScenarioEntry,load,medium,0x1b2 campaign scenario record (battle.cpp g_a58fb7 records); two optional buffers,std::int32_t|void*
+Obj_remaining_4907c0,MouseCursor,time_left,medium,only caller MouseCursor::is_idle 0x4928f0; forwards Timer::remaining on this,double|
+Obj_save_483250,Profile,save,high,mirror of Profile load 0x483430; items of list save 0x4838e0,std::int32_t|void*
+Obj_save_483e00,CampaignState,save,medium,0x289 block at Game+0x17 saved by Game save 0x484780,std::int32_t|void*
+Obj_scalar_dtor_416ca0,WorldItem,destroy,high,scalar deleting dtor wrapping WorldItem dtor 0x456ef0; flags&1 deletes,void*|std::uint32_t
+Obj_self_42ad30,Colour,construct_default,high,default ctor on Rgba stack local; Colour 4-arg ctor 0x42a260 same struct,void*|
+Obj_self_56ded0,DebugOverlay,construct,high,static init 0x56d4e0 on g_a59a78; used as DebugOverlay elsewhere,void*|
+Obj_set_c6_ca,MapObject,set_target_unit,medium,this from g_a460a0 object list (MapObject); +0xc6=1 +0xca=unit id,void*|void*
+Obj_stub_47f560,List,on_loaded,medium,empty stub called on self after List::load_47f410,void|
+Obj_stub_5973d0,Input,lock_area_nop,medium,this=g_a48608 built by Input ctor 0x596210; forwarded from lock_area,std::uint32_t|std::uint32_t;std::uint32_t;std::uint32_t;std::uint32_t
+Obj_true_47f580,Children,save,medium,item save in List::save_47f340; items built by Children::construct 0x4afbc0,std::int32_t|std::uint32_t
+Obj_true_47f5a0,Children,load,medium,item load in List::load_47f410 on new Children (0x4afbc0),std::int32_t|std::uint32_t
+Obj_zero_3b,UnitStats,construct,low,zeroes 0x3b dword block at Unit+0x16f (Rec3b; set_16f..set_197 counters),void*|
+Pixel_unpack_color,Colour,unpack_color,medium,stdcall asm; ecx unused; only caller Color::to_bytes_6101b0 passes its this,std::uint32_t|std::uint32_t
+Rec1a_read_strings,Objective,save,medium,0x1a records at Game+0x30b = esfuncs objective(k); writes record+2 strings,std::int32_t|void*
+Rec1b2_save,ScenarioEntry,save,high,0x1b2 entries of Scenario (Game+0x17) +0x10 array; writes record+strings,std::int32_t|void*
+Rec3b_read,UnitStats,save,medium,writes 0x3b stat block at Unit+0x16f (set_16f..set_197); despite name,std::int32_t|void*
+Rec3b_write,UnitStats,load,medium,reads 0x3b stat block at Unit+0x16f in Unit load; despite name,std::int32_t|void*
+SceneSub20_ctor,Vector4,construct_default,medium,trivial ctor of ScenePick+0x20 which holds Vector4 (0x5edd30 assign),void*|
+ScriptNode_dtor_6426d0,ScriptInit,destruct,high,vt 0x9dad70 kind 3; vt parse 0x63fca0 = Init block; run_once,std::uint32_t|
+Sky_ray_clear,LightSys,ray_clear,medium,this unused; caller Sky::after_frame on LightSys (g_a47e08),std::uint8_t|void*;struct
+TexturePaths_resolve,TexDir,resolve,high,r14 decision; called on g_a59718 TexDir,const char*|const char*
+Tracks_create_array,TrackRes,create_array,high,r14 decision; called from Tracks::load with this,void*|void*
+Tracks_parse_track,TrackRes,parse_track,high,r14 decision; called from Tracks::load with this; V3 by value,const char*|void*;void*;struct
+Unit_siege_model_prefix,Hud,siege_model_prefix,high,this unused (globals only); only caller Hud::draw; sits among Hud fns 0x6f9..0x704,const char*|std::uint32_t
+X_clear_3a_4e,WorldItem,clear_links,high,called by load_481140 on WorldItem (ctor 0x456eb0); +0x3a cell/+0x46 sector links,void|
+X_key_diff,TrackNode,compare_keys,medium,this unused; only caller TrackNode::sorts_before 0x45d0f0 compares +0x40/+0x4c/+0x4a keys,std::int32_t|std::int32_t;std::int32_t;std::int32_t;std::int32_t;std::int32_t;std::int32_t
+X_ret0_6664d0,PathLine,overlaps_item,medium,stub on Regions +4/+8/+0xc pair lists (Pair ctor 0x665c20 = PathLine),std::int32_t|std::int32_t
+X_ret0_66a600,Triple,overlaps_item,medium,stub on Regions +0 point list (Triple items); adjacent Triple stub 0x66a5e0,std::int32_t|std::int32_t
+X_ret0_66a620,Zone,overlaps_item,medium,stub on Regions +0x14 children; clear_children uses as_zone on them,std::int32_t|std::int32_t
+X_word_298,Body,bump_pending,medium,returns +0x298 flag of g_a570a8 list entry; FormMove sets it on Body entries,std::uint32_t|
+delta7,Beam,step_delta,high,only caller Beam::init_42a050; classes.csv Beam; out[i]=(b-a)/d over 7 floats,void*|void*;void*;void*;float
+get_file_name_59c200,-,get_file,high,registered ResourceIdxL::get_file; File* get_file(name; int32& size),void*|const char*;void*
+get_file_name_59ce40,-,get_file,high,registered ResourceIdx::get_file; File* get_file(name; int32& size),void*|const char*;void*
+get_file_rec_59c2a0,-,get_file_rec,high,registered ResourceIdxL::get_file_rec in reslx.cpp; File* get_file_rec(i32;i32&),void*|std::int32_t;void*
+key_code_index,MathExpr,op_precedence,high,this unused; called only from MathExpr::parse_647c90 as prec(op); returns 1..6,std::int32_t|std::int32_t
+open_slice_FileMem_ptr,FileMem,open_slice_mem,high,registered FileMem::open_slice(FileMem*;i32) overload in filemem.cpp,std::int32_t|void*;std::int32_t
+sdd_0041d3a0,Sector,destroy,high,scalar deleting dtor calling Sector::destruct 0x0054dba0; same pattern as PfdData::destroy,void*|std::uint32_t
+sdd_0041dfa0,Tracks,destroy,high,scalar deleting dtor calling Tracks::destruct 0x004eb520; same pattern as PfdData::destroy,void*|std::uint32_t
+set_name_a6a118,ScriptStatementCompile,set_error_text,medium,this unused; strncpy to global a6a118; callers are ScriptStatementCompile::compile and its catch,void|const char*
+span_begin,Reorder,span_begin,medium,cdecl no-arg global counter; only caller Reorder::begin_frame 0x005e61a0; between Reorder methods,std::int32_t|

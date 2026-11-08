@@ -1,0 +1,6 @@
+start,end,name,confidence,evidence,target
+0x005464a0,0x005464a0,uscrres_names,high,NameTable::find sandwiched between uscrres.cpp UnitAIRes::load and UScrRes::kind_of_name,game/uscrres.cpp
+0x005467b0,0x00546970,uscrres_dispatch,medium,Order::dispatch/Ai::dispatch of the unit AI scripts right after uscrres.cpp kind_of_name,game/uscrres.cpp
+0x00546af0,0x00546ec0,water,medium,"Water list object: global DynArrayB ctor/dtor (obj_stub_56ac10/56ac60), Water init/clear/add_sound, Waters::clear_all",
+0x00547030,0x00547140,weffects,low,"load_weather_ini (WEFFECTS/CLOUDSYS) whose strings lie between uscrres and world.cpp rdata, with a Game::tick stub",
+0x00547590,0x005479a0,world_head,medium,Territory::create_all uses CreateTerritory from world.cpp rdata (after d:\ww\world.cpp); World cell streaming right before world.cpp NodeList::add,game/world.cpp

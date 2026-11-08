@@ -1,0 +1,4565 @@
+{
+ "group": "g12",
+ "classes": [
+  {
+   "class": "ItemRes",
+   "size": "0x25",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "item_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "type_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "class_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "types",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "classes",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "items",
+     "type": "ptr:ItemDef",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "sorted_index",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x24",
+     "name": "loaded",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [
+    {
+     "off": "0x1c",
+     "name": "strings",
+     "class": "StringPool"
+    }
+   ],
+   "evidence": "itemres.cpp load/release: ITEMTYPE 0x25-byte rows at +0xc, ITEMCLAS 0x2c rows at +0x10, 0x2bf ItemDef records at +0x14 (Records2bf), StringPool at +0x1c; loaded flag +0x24",
+   "confidence": "high",
+   "notes": "size assumes StringPool is 8 bytes (+0x1c..+0x23); +0x20 is the pool's second word"
+  },
+  {
+   "class": "ItemDef",
+   "size": "0x2bf",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "class_id",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x2",
+     "name": "type_id",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x4",
+     "name": "id",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x6",
+     "name": "icon_sprite",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x8",
+     "name": "model_sprite",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0xa",
+     "name": "bone",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0xc",
+     "name": "ref_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "name",
+     "type": "ptr:char",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "file_name",
+     "type": "ptr:char",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "message_name",
+     "type": "ptr:char",
+     "size": 4
+    },
+    {
+     "off": "0x1c",
+     "name": "struction_type",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x20",
+     "name": "description",
+     "type": "ptr:char",
+     "size": 4
+    },
+    {
+     "off": "0x24",
+     "name": "stats",
+     "type": "u16",
+     "size": 2,
+     "count": 5
+    },
+    {
+     "off": "0x2e",
+     "name": "price",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x32",
+     "name": "i32_32",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x36",
+     "name": "min_level",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x3a",
+     "name": "max_level",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x3e",
+     "name": "not_block",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x42",
+     "name": "i32_42",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x46",
+     "name": "colour",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4a",
+     "name": "damage_type",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4e",
+     "name": "damage",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x52",
+     "name": "inc_damage",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x56",
+     "name": "defense",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x5a",
+     "name": "duration",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x5e",
+     "name": "i32_5e",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x62",
+     "name": "model_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x66",
+     "name": "need_key",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x67",
+     "name": "model_values",
+     "type": "i32",
+     "size": 4,
+     "count": 4
+    },
+    {
+     "off": "0x77",
+     "name": "model_names",
+     "type": "ptr:char",
+     "size": 4,
+     "count": 4
+    },
+    {
+     "off": "0x87",
+     "name": "anim_names",
+     "type": "ptr:char",
+     "size": 4,
+     "count": 4
+    },
+    {
+     "off": "0x97",
+     "name": "model_kinds",
+     "type": "u8",
+     "size": 1,
+     "count": 4
+    },
+    {
+     "off": "0x9b",
+     "name": "slot_refs",
+     "type": "i32",
+     "size": 4,
+     "count": 5
+    },
+    {
+     "off": "0xaf",
+     "name": "slot_anims",
+     "type": "i32",
+     "size": 4,
+     "count": 5
+    },
+    {
+     "off": "0xc3",
+     "name": "blur_vertex_count",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0xe6",
+     "name": "blur_vertices",
+     "type": "f32",
+     "size": 4,
+     "count": 15
+    },
+    {
+     "off": "0x122",
+     "name": "emitter_names",
+     "type": "ptr:char",
+     "size": 4,
+     "count": 4
+    },
+    {
+     "off": "0x132",
+     "name": "emitter_pos",
+     "type": "f32",
+     "size": 4,
+     "count": 12
+    },
+    {
+     "off": "0x162",
+     "name": "emitter_scale",
+     "type": "f32",
+     "size": 4,
+     "count": 4
+    },
+    {
+     "off": "0x172",
+     "name": "emitter_scripts",
+     "type": "i32",
+     "size": 4,
+     "count": 4
+    },
+    {
+     "off": "0x182",
+     "name": "emitter_flags",
+     "type": "u8",
+     "size": 1,
+     "count": 4
+    },
+    {
+     "off": "0x186",
+     "name": "sound_params",
+     "type": "u8",
+     "size": 1,
+     "count": 7
+    },
+    {
+     "off": "0x18d",
+     "name": "sound_floats",
+     "type": "f32",
+     "size": 4,
+     "count": 9
+    },
+    {
+     "off": "0x1b1",
+     "name": "has_light2d",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x1b2",
+     "name": "light_kind",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x1b6",
+     "name": "light",
+     "type": "f32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x1c2",
+     "name": "need_collision",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x1c4",
+     "name": "pickable",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x1c5",
+     "name": "has_bounding_box",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x1c7",
+     "name": "bounding_box",
+     "type": "f32",
+     "size": 4,
+     "count": 6
+    },
+    {
+     "off": "0x1df",
+     "name": "can_transparent",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x1e0",
+     "name": "modify_camera",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x1e1",
+     "name": "enlarge_scene_sector",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x1e2",
+     "name": "has_anti_portal",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x1e3",
+     "name": "skip_intersect_with_item",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x1e4",
+     "name": "has_path",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x1e5",
+     "name": "anti_portal_percentage",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x1e7",
+     "name": "item_usage",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x1e8",
+     "name": "show_armory",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x1e9",
+     "name": "collision_type",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1ed",
+     "name": "collision_params",
+     "type": "f32",
+     "size": 4,
+     "count": 15
+    },
+    {
+     "off": "0x229",
+     "name": "terrain_sound",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x22d",
+     "name": "terrain_sound_arg",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x231",
+     "name": "sounds",
+     "type": "i32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x23d",
+     "name": "i32_23d",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x241",
+     "name": "required_level",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x245",
+     "name": "requirement_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x249",
+     "name": "requirements",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x24d",
+     "name": "effect_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x251",
+     "name": "effects",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x255",
+     "name": "usable_unit",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x257",
+     "name": "combine_item",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x259",
+     "name": "result_item",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x25b",
+     "name": "unique_item",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x25c",
+     "name": "can_drop",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x25d",
+     "name": "can_sell",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x25e",
+     "name": "open_with_interact",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [],
+   "evidence": "ItemRes 0x2bf-byte records (memset/realloc 0x2bf in scan_dir/load), field meanings from ItemParser keywords (itemres.cpp)",
+   "confidence": "high",
+   "notes": "new class (the item definition record); 0x25f..0x2be (DetailDescription*) not decoded; requirements are 16-byte {kind, base, per_level, at_least}, effects 12-byte {kind, base, per_level}; slot_refs/slot_anims index 0..4 (index 0 = icon)"
+  },
+  {
+   "class": "ModTable",
+   "size": null,
+   "base": "ItemDef",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "value/requirements_met read +0x36/+0x4a/+0x4e/+0x52/+0x245..+0x251 of an ItemDef record",
+   "confidence": "medium",
+   "notes": "label alias: the same object as ItemDef; its functions are reassigned to ItemDef (see functions), so this class needs no own layout. Prefer ItemDef in code."
+  },
+  {
+   "class": "Res",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x54",
+     "name": "u32_54",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x58",
+     "name": "index_base",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x19d",
+     "name": "extra_index",
+     "type": "ptr:ResourceIdxL",
+     "size": 4
+    }
+   ],
+   "members": [
+    {
+     "off": "0x68",
+     "name": "index",
+     "class": "ResourceIdxL"
+    }
+   ],
+   "evidence": "lookup_45a7e0 (config.cpp): ResourceIdxL at +0x68 (0x135 bytes, ends at +0x19d), second index pointer at +0x19d",
+   "confidence": "low",
+   "notes": "the Res label was a grab bag: drain_* moved to Hero/Unit (+0xc2), colour_636000 to Billboard, release_slot/sprite_id to ItemDef; what remains is one config-side resource with two name indexes"
+  },
+  {
+   "class": "UnitDef",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "kind",
+     "type": "i16",
+     "size": 2
+    }
+   ],
+   "members": [],
+   "evidence": "is_soldier switches on the word at +0",
+   "confidence": "medium",
+   "notes": "only +0 is known"
+  },
+  {
+   "class": "LevelRes",
+   "size": "0x9",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "levels",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "loaded",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [],
+   "evidence": "levelres.cpp: LEVEL db rows of 7 bytes at +4, count +0, loaded flag +8; Table7::find is its lookup",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "class": "Table7",
+   "size": null,
+   "base": "LevelRes",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "find walks the 7-byte rows of LevelRes",
+   "confidence": "medium",
+   "notes": "label alias: the same object as LevelRes; its functions are reassigned to LevelRes (see functions), so this class needs no own layout. Prefer LevelRes in code."
+  },
+  {
+   "class": "LightDef",
+   "size": "0x1a",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "mode",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x1",
+     "name": "enabled",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x2",
+     "name": "colour",
+     "type": "f32",
+     "size": 4,
+     "count": 4
+    },
+    {
+     "off": "0x12",
+     "name": "angle_b",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x16",
+     "name": "angle_a",
+     "type": "f32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "read_light writes light+0x42..+0x58 with stride 0x1a inside a LightPreset",
+   "confidence": "medium",
+   "notes": "new class; colour is r,g,b,a as floats; the two angles are degrees*pi/180"
+  },
+  {
+   "class": "LightPreset",
+   "size": "0x18c",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "name",
+     "type": "char",
+     "size": 1,
+     "count": 64
+    },
+    {
+     "off": "0x40",
+     "name": "light_count",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x15c",
+     "name": "sun_dir",
+     "type": "f32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x168",
+     "name": "scale_b",
+     "type": "f32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x174",
+     "name": "f32_174",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x178",
+     "name": "scale_a",
+     "type": "f32",
+     "size": 4,
+     "count": 5
+    }
+   ],
+   "members": [
+    {
+     "off": "0x42",
+     "name": "light0",
+     "class": "LightDef"
+    },
+    {
+     "off": "0x5c",
+     "name": "light1",
+     "class": "LightDef"
+    },
+    {
+     "off": "0x76",
+     "name": "light2",
+     "class": "LightDef"
+    },
+    {
+     "off": "0x90",
+     "name": "light3",
+     "class": "LightDef"
+    },
+    {
+     "off": "0xaa",
+     "name": "light4",
+     "class": "LightDef"
+    },
+    {
+     "off": "0xc4",
+     "name": "light5",
+     "class": "LightDef"
+    },
+    {
+     "off": "0xde",
+     "name": "light6",
+     "class": "LightDef"
+    },
+    {
+     "off": "0xf8",
+     "name": "light7",
+     "class": "LightDef"
+    },
+    {
+     "off": "0x112",
+     "name": "light8",
+     "class": "LightDef"
+    },
+    {
+     "off": "0x12c",
+     "name": "light9",
+     "class": "LightDef"
+    }
+   ],
+   "evidence": "LightSys load_lights/load_special: 0x18c-byte sets, name at 0 (find_set stricmp), lights at +0x42 stride 0x1a, read_scale +0x15c..+0x188",
+   "confidence": "medium",
+   "notes": "new class; 10 lights assumed (0x42..0x145, the lights pointer array of LightSys has 9 slots); 0x146..0x15b unknown"
+  },
+  {
+   "class": "LightSys",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "set_count",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x2",
+     "name": "sets",
+     "type": "ptr:LightPreset",
+     "size": 4
+    },
+    {
+     "off": "0x6",
+     "name": "special_count",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x8",
+     "name": "specials",
+     "type": "ptr:LightPreset",
+     "size": 4
+    },
+    {
+     "off": "0x198",
+     "name": "state_a",
+     "type": "u8",
+     "size": 1,
+     "count": 404
+    },
+    {
+     "off": "0x32c",
+     "name": "state_b",
+     "type": "u8",
+     "size": 1,
+     "count": 404
+    },
+    {
+     "off": "0x4c0",
+     "name": "time",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4c4",
+     "name": "day_count",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x4c6",
+     "name": "day_index",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x4c8",
+     "name": "days",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x4cc",
+     "name": "sky_name_b",
+     "type": "char",
+     "size": 1,
+     "count": 64
+    },
+    {
+     "off": "0x50c",
+     "name": "sky_name_c",
+     "type": "char",
+     "size": 1,
+     "count": 64
+    },
+    {
+     "off": "0x54c",
+     "name": "sky_name_a",
+     "type": "char",
+     "size": 1,
+     "count": 64
+    },
+    {
+     "off": "0x58c",
+     "name": "event_a_chance",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x590",
+     "name": "event_a_rate",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x594",
+     "name": "event_a_time",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x598",
+     "name": "event_a_state",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x59c",
+     "name": "event_b_chance",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x5a0",
+     "name": "event_b_rate",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x5a4",
+     "name": "event_b_time",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x5a8",
+     "name": "event_b_state",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x5ac",
+     "name": "moon",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x5b0",
+     "name": "light_count",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x5b2",
+     "name": "lights",
+     "type": "ptr:void",
+     "size": 4,
+     "count": 9
+    }
+   ],
+   "members": [
+    {
+     "off": "0xc",
+     "name": "current",
+     "class": "LightPreset"
+    },
+    {
+     "off": "0x5d6",
+     "name": "flares",
+     "class": "LensFlares"
+    }
+   ],
+   "evidence": "lightsys.cpp init/clear/load_*: set tables at +2/+8 (0x18c), current set copied to +0xc (init reads +0x4c count, +0x4e+i*0x1a lights), two memset(0x194) blocks, day table +0x4c8 (10-byte rows), lens flares at +0x5d6",
+   "confidence": "medium",
+   "notes": "size unknown (LensFlares at +0x5d6 is last); lit_by (Region field +0x1de/+0x26) reassigned to Region; Units::load_record 0x42e160 (copies a set into +0xc) reassigned here"
+  },
+  {
+   "class": "Sky",
+   "size": null,
+   "base": "LightSys",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "moon/after_frame/ray_clear use +0x168/+0x170 (current set sun_dir), +0x5ac moon, +0x5d6 flares of LightSys",
+   "confidence": "medium",
+   "notes": "label alias: the same object as LightSys; its functions are reassigned to LightSys (see functions), so this class needs no own layout. Prefer LightSys in code."
+  },
+  {
+   "class": "AnimDb",
+   "size": "0x7",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "records",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "count",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x6",
+     "name": "loaded",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [],
+   "evidence": "t_scrres.cpp: TextEffects::load fills 0xd51-byte records at +0, count word +4; ScrRes release/init use +0/+4/+6; ModelRes uses g_animDb->entry",
+   "confidence": "high",
+   "notes": "ScrRes and TextEffects are the same object (their functions are reassigned here)"
+  },
+  {
+   "class": "ScrRes",
+   "size": null,
+   "base": "AnimDb",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "release/init/touch_all use +0/+4/+6 and call AnimDb::entry on this",
+   "confidence": "medium",
+   "notes": "label alias: the same object as AnimDb; its functions are reassigned to AnimDb (see functions), so this class needs no own layout. Prefer AnimDb in code."
+  },
+  {
+   "class": "TextEffects",
+   "size": null,
+   "base": "AnimDb",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "TextEffects::load fills AnimDb records/count",
+   "confidence": "medium",
+   "notes": "label alias: the same object as AnimDb; its functions are reassigned to AnimDb (see functions), so this class needs no own layout. Prefer AnimDb in code."
+  },
+  {
+   "class": "ModelEntry",
+   "size": "0x2b",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "path",
+     "type": "ptr:char",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "id",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x6",
+     "name": "dir",
+     "type": "ptr:char",
+     "size": 4
+    },
+    {
+     "off": "0xa",
+     "name": "file",
+     "type": "ptr:char",
+     "size": 4
+    },
+    {
+     "off": "0xe",
+     "name": "anim",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x10",
+     "name": "ref_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x15",
+     "name": "type",
+     "type": "char",
+     "size": 1
+    },
+    {
+     "off": "0x16",
+     "name": "anim_db_id",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x1b",
+     "name": "param_a",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x1c",
+     "name": "param_b",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x1d",
+     "name": "param_anim",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x1f",
+     "name": "actor_def",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x23",
+     "name": "morph_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x27",
+     "name": "morphs",
+     "type": "ptr:void",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "ModelRes::load/add/acquire (memset 0x2b per entry)",
+   "confidence": "high",
+   "notes": "new class; morphs are 0xa4-byte {name[0x20], dir[0x40], sound[0x20], Morph* at +0xa0}"
+  },
+  {
+   "class": "ModelRes",
+   "size": "0x15",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "capacity",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "entries",
+     "type": "ptr:ModelEntry",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "loaded",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [
+    {
+     "off": "0xd",
+     "name": "strings",
+     "class": "StringPool"
+    }
+   ],
+   "evidence": "modelres.cpp: MODEL rows of 0x2b at +8, capacity +4 (+0x3f growth), StringPool at +0xd, loaded flag +0xc",
+   "confidence": "high",
+   "notes": "size assumes an 8-byte StringPool"
+  },
+  {
+   "class": "MsgEntry",
+   "size": "0x1f",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "kind",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x2",
+     "name": "type",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x3",
+     "name": "rec_no",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x7",
+     "name": "prev",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xb",
+     "name": "next",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xf",
+     "name": "value",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x13",
+     "name": "text_len",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x15",
+     "name": "extra_len",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x17",
+     "name": "text",
+     "type": "ptr:char",
+     "size": 4
+    },
+    {
+     "off": "0x1b",
+     "name": "extra",
+     "type": "ptr:char",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "operator new(0x1f) before init 0x4b2940; MsgLog::add links prev/next record numbers",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "class": "MsgLog",
+   "size": "0x82",
+   "base": "DynArrayB",
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x2e",
+     "name": "count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x32",
+     "name": "last",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x36",
+     "name": "cur_kind",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x3a",
+     "name": "first_of_kind",
+     "type": "u32",
+     "size": 4,
+     "count": 9
+    },
+    {
+     "off": "0x5e",
+     "name": "count_of_kind",
+     "type": "i32",
+     "size": 4,
+     "count": 9
+    }
+   ],
+   "members": [],
+   "evidence": "ctor = DynArrayB(4,5,0,0) then clear (+0x2e/+0x32, 9 x {+0x3a,+0x5e}); clear_slot writes +0x36",
+   "confidence": "high",
+   "notes": "g15 assigns Panel::release/show (0x6e1810, 0x6e19b0, 0x6e1c60) to MsgLog: those are the message-log SCREEN (a Panel at +0..), not this DynArrayB-based log, so their straddles here are expected; the screen should get its own class (e.g. MsgLogScreen) together with open_1 0x4de120 and load_6e1570"
+  },
+  {
+   "class": "MusicRes",
+   "size": "0x9",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "tracks",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "loaded",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [],
+   "evidence": "musicres.cpp: MUSIC rows of 0x68 bytes at +4; Ranges::find scans the same rows ({+0x54,+0x58} range, +0x64 kind)",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "class": "Ranges",
+   "size": null,
+   "base": "MusicRes",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "find walks the 0x68-byte MUSIC rows (+0/+4)",
+   "confidence": "medium",
+   "notes": "label alias: the same object as MusicRes; its functions are reassigned to MusicRes (see functions), so this class needs no own layout. Prefer MusicRes in code."
+  },
+  {
+   "class": "Calendar",
+   "size": "0x50",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "start_julian",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "start_year",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "day",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "time_prev",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "day_of_month",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "month",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "year",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x1c",
+     "name": "time_of_day",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x20",
+     "name": "minutes_per_day",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x24",
+     "name": "cycle_day30",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x28",
+     "name": "cycle_month30",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x2c",
+     "name": "cycle_year30",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x30",
+     "name": "cycle_year10",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x34",
+     "name": "cycle_month6",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x38",
+     "name": "cycle_month12",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x3c",
+     "name": "start_time",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x40",
+     "name": "u32_40",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x44",
+     "name": "weekday",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x48",
+     "name": "day_of_year",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4c",
+     "name": "years",
+     "type": "i32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "open_495290 (g04) memsets 0x50 bytes and sets the start date/time; next_day_4953d0 advances the counters",
+   "confidence": "high",
+   "notes": "+0x1c/+0x20 are minutes of the day / 1440.0 (wrap_delta, reassigned from Track); value/age_entries were Nation functions (reassigned)"
+  },
+  {
+   "class": "Rel",
+   "size": "0xf4",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x2",
+     "name": "status",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x3",
+     "name": "attitude",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x5",
+     "name": "state",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x8",
+     "name": "opinion",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "last_gift_day",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "gift_total",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x1c",
+     "name": "import_value",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x20",
+     "name": "import_prev",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x24",
+     "name": "export_value",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x28",
+     "name": "export_prev",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x78",
+     "name": "deadlines",
+     "type": "i32",
+     "size": 4,
+     "count": 31
+    }
+   ],
+   "members": [],
+   "evidence": "clear_f4 memsets 0xf4 bytes and sets +3 = 2; Nation has 20 of them at +0x55 (stride 0xf4); trade_4b6d40 adds to +0x1c/+0x24; give writes +0x14/+0x18; raise_to indexes +0x78",
+   "confidence": "medium",
+   "notes": "relation of one nation to another; 0x0/0x1/0x4/0x6..0x7/0xc..0x13/0x2c..0x77 unknown"
+  },
+  {
+   "class": "Nation",
+   "size": "0x1545",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "id",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x2",
+     "name": "kind",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x4",
+     "name": "dirty",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x5",
+     "name": "u8_5",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x6",
+     "name": "king_unit",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x8",
+     "name": "kind32",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "name",
+     "type": "char",
+     "size": 1,
+     "count": 65
+    },
+    {
+     "off": "0x1365",
+     "name": "at_war",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x1366",
+     "name": "was_at_war",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x1367",
+     "name": "war_day",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x136d",
+     "name": "mood",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x1371",
+     "name": "gold",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x1375",
+     "name": "time",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x1385",
+     "name": "population",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x1389",
+     "name": "i32_1389",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x138d",
+     "name": "income",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x1391",
+     "name": "income_prev",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x1395",
+     "name": "f32_1395",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x1399",
+     "name": "f32_1399",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x139d",
+     "name": "f32_139d",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x13a1",
+     "name": "f32_13a1",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x13a5",
+     "name": "income_by_kind",
+     "type": "f32",
+     "size": 4,
+     "count": 8
+    },
+    {
+     "off": "0x13c5",
+     "name": "income_by_kind_prev",
+     "type": "f32",
+     "size": 4,
+     "count": 8
+    },
+    {
+     "off": "0x13e5",
+     "name": "f32_13e5",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x13e9",
+     "name": "f32_13e9",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x13ed",
+     "name": "spend_by_kind",
+     "type": "f32",
+     "size": 4,
+     "count": 17
+    },
+    {
+     "off": "0x1431",
+     "name": "spend_by_kind_prev",
+     "type": "f32",
+     "size": 4,
+     "count": 17
+    },
+    {
+     "off": "0x1475",
+     "name": "spent",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x1479",
+     "name": "spent_prev",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x147d",
+     "name": "f32_147d",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x1481",
+     "name": "f32_1481",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x1485",
+     "name": "f32_1485",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x1489",
+     "name": "f32_1489",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x148d",
+     "name": "f32_148d",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x1491",
+     "name": "f32_1491",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x1495",
+     "name": "f32_1495",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x1499",
+     "name": "f32_1499",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x149d",
+     "name": "mood_delta",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x14a1",
+     "name": "mood_delta_prev",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x14a5",
+     "name": "goods",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x14a9",
+     "name": "demand",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x14ad",
+     "name": "price_trend",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x14b1",
+     "name": "production",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x14b5",
+     "name": "tax",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x14b9",
+     "name": "sold",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x14bd",
+     "name": "sold_prev",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x14c1",
+     "name": "surplus",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x14c5",
+     "name": "surplus_prev",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x14c9",
+     "name": "consume_limit",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x14cd",
+     "name": "own_tax",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x14d1",
+     "name": "import_tax",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x14d5",
+     "name": "export_tax",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x14d9",
+     "name": "score_goods",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x14dd",
+     "name": "strength",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x14e1",
+     "name": "wealth",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x14e5",
+     "name": "mood_copy",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x14f9",
+     "name": "mood_score",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x14fd",
+     "name": "recruit_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x1501",
+     "name": "recruit_ages",
+     "type": "u8",
+     "size": 1,
+     "count": 20
+    },
+    {
+     "off": "0x1515",
+     "name": "traits",
+     "type": "f32",
+     "size": 4,
+     "count": 6
+    },
+    {
+     "off": "0x152d",
+     "name": "leader_count",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x152f",
+     "name": "leader_cap",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x1531",
+     "name": "leaders",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x1535",
+     "name": "idle_count",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x1537",
+     "name": "idle_cap",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x1539",
+     "name": "idle_units",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x153d",
+     "name": "station_count",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x153f",
+     "name": "station_cap",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x1541",
+     "name": "stations",
+     "type": "ptr:void",
+     "size": 4
+    }
+   ],
+   "members": [
+    {
+     "off": "0xc",
+     "name": "colour",
+     "class": "Color"
+    },
+    {
+     "off": "0x55",
+     "name": "relation1",
+     "class": "Rel"
+    },
+    {
+     "off": "0x149",
+     "name": "relation2",
+     "class": "Rel"
+    },
+    {
+     "off": "0x23d",
+     "name": "relation3",
+     "class": "Rel"
+    },
+    {
+     "off": "0x331",
+     "name": "relation4",
+     "class": "Rel"
+    },
+    {
+     "off": "0x425",
+     "name": "relation5",
+     "class": "Rel"
+    },
+    {
+     "off": "0x519",
+     "name": "relation6",
+     "class": "Rel"
+    },
+    {
+     "off": "0x60d",
+     "name": "relation7",
+     "class": "Rel"
+    },
+    {
+     "off": "0x701",
+     "name": "relation8",
+     "class": "Rel"
+    },
+    {
+     "off": "0x7f5",
+     "name": "relation9",
+     "class": "Rel"
+    },
+    {
+     "off": "0x8e9",
+     "name": "relation10",
+     "class": "Rel"
+    },
+    {
+     "off": "0x9dd",
+     "name": "relation11",
+     "class": "Rel"
+    },
+    {
+     "off": "0xad1",
+     "name": "relation12",
+     "class": "Rel"
+    },
+    {
+     "off": "0xbc5",
+     "name": "relation13",
+     "class": "Rel"
+    },
+    {
+     "off": "0xcb9",
+     "name": "relation14",
+     "class": "Rel"
+    },
+    {
+     "off": "0xdad",
+     "name": "relation15",
+     "class": "Rel"
+    },
+    {
+     "off": "0xea1",
+     "name": "relation16",
+     "class": "Rel"
+    },
+    {
+     "off": "0xf95",
+     "name": "relation17",
+     "class": "Rel"
+    },
+    {
+     "off": "0x1089",
+     "name": "relation18",
+     "class": "Rel"
+    },
+    {
+     "off": "0x117d",
+     "name": "relation19",
+     "class": "Rel"
+    },
+    {
+     "off": "0x1271",
+     "name": "relation20",
+     "class": "Rel"
+    }
+   ],
+   "evidence": "Town::add_building news 0x1545 then Nation::construct/init; init fills +2..+0x14, 20 Rel at +0x55, economy floats +0x136d..+0x1529; clear frees the three word arrays +0x1531/+0x1539/+0x1541",
+   "confidence": "high",
+   "notes": "also the object of the Economy label and most Town/Player(nation2.cpp)/Calendar(value, age_entries) functions, all reassigned here; the 20 relations are listed as members relation1..relation20 (an array Rel[20]); 0x10..0x13, 0x1379..0x1384, 0x14e9..0x14f8 unknown; Campaign::load 0x47f800 (g11) only touches the three word arrays and is reassigned here"
+  },
+  {
+   "class": "Economy",
+   "size": null,
+   "base": "Nation",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "all accesses are Nation economy floats (+0x1371..+0x14bd); trade_4b6d40 walks the nation list (reassigned to Town)",
+   "confidence": "medium",
+   "notes": "label alias: the same object as Nation; its functions are reassigned to Nation (see functions), so this class needs no own layout. Prefer Nation in code."
+  },
+  {
+   "class": "Town",
+   "size": null,
+   "base": "DynArrayB",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "add_building: new Nation(0x1545) + DynArrayB::linkin(this); add_all_buildings / random_relation_shift / trade_4b6d40 iterate this list",
+   "confidence": "medium",
+   "notes": "the label is misleading: this is the nation list (pointer DynArrayB, g_players); the per-nation Town functions (roll_stats, update_income, score, recount_1389) are Nation functions and are reassigned; count_units is a Region function (+0x26/+0x1de/+0x3a)"
+  },
+  {
+   "class": "NationRes",
+   "size": "0x9",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "nations",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "loaded",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [],
+   "evidence": "natres.cpp: NATION rows of 0x4e at +4 (Table4e::slot), count +0, loaded +8 (init_4b8f50 / clear_8)",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "class": "NatRes",
+   "size": null,
+   "base": "NationRes",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "NatRes::free and NationRes::load are the same natres.cpp object (+4 rows, +8 flag)",
+   "confidence": "medium",
+   "notes": "label alias: the same object as NationRes; its functions are reassigned to NationRes (see functions), so this class needs no own layout. Prefer NationRes in code."
+  },
+  {
+   "class": "Player",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "unit_id",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "i16_4",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x10",
+     "name": "mode",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "mode_saved",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x44",
+     "name": "rally_pos",
+     "type": "f32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x74",
+     "name": "follow",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x75",
+     "name": "follow_param",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x79",
+     "name": "u8_79",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x7c",
+     "name": "u8_7c",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x7d",
+     "name": "cursor_mode",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x81",
+     "name": "blocked",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x82",
+     "name": "i32_82",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x86",
+     "name": "u32_86",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x8a",
+     "name": "i32_8a",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x96",
+     "name": "order_state",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x97",
+     "name": "order_time",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x9d",
+     "name": "u8_9d",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x9e",
+     "name": "i32_9e",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xa2",
+     "name": "i32_a2",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xa6",
+     "name": "turn",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0xa8",
+     "name": "u32_a8",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xac",
+     "name": "riding",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0xad",
+     "name": "cam_target",
+     "type": "f32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0xb9",
+     "name": "i16_b9",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0xbb",
+     "name": "i32_bb",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xbf",
+     "name": "u8_bf",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0xc0",
+     "name": "i32_c0",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xc4",
+     "name": "u8_c4",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0xc9",
+     "name": "i32_c9",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xcd",
+     "name": "i16_cd",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0xd3",
+     "name": "target_a",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xd7",
+     "name": "target_b",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xdd",
+     "name": "i32_dd",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xe1",
+     "name": "i32_e1",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xe9",
+     "name": "i32_e9",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xed",
+     "name": "i32_ed",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xf1",
+     "name": "i32_f1",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xf5",
+     "name": "rts_active",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xf9",
+     "name": "group_counts",
+     "type": "u8",
+     "size": 1,
+     "count": 12
+    },
+    {
+     "off": "0x105",
+     "name": "group_units",
+     "type": "u32",
+     "size": 4,
+     "count": 1100
+    },
+    {
+     "off": "0x1235",
+     "name": "dragging",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x1236",
+     "name": "group",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x1237",
+     "name": "u8_1237",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x1238",
+     "name": "u32_1238",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x123c",
+     "name": "drag_x",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x1240",
+     "name": "drag_y",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x1248",
+     "name": "pick_kind",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x124c",
+     "name": "click_time",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1250",
+     "name": "pick_id",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1254",
+     "name": "u32_1254",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1261",
+     "name": "u32_1261",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1265",
+     "name": "u32_1265",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1269",
+     "name": "u8_1269",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x126a",
+     "name": "i32_126a",
+     "type": "i32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "camcmd/mission/ctrl/rts.cpp: controlled unit id +0, input mode +0x10/+0x14, RTS groups: counts u8 +0xf9+g, ids +0x105 + g*0x190 + i*4 (11 groups of 100), drag state +0x1235..+0x1254",
+   "confidence": "medium",
+   "notes": "the human player controller; Mission (g06) functions 0x42f700/0x43fc90 touch the same object (+0x81, +0xf9, +0x1236..+0x1265) so Mission may be the same class; nation2.cpp Player functions are Nation (reassigned); flag_bit x4 -> Mission, set_unit_state -> Unit, start_move -> Shot, ~Player -> Trail; fields 0x4..0xf1 and 0x126a were added for the Order/Ctrl/Camera/Aim/Follow functions other groups (g04, g10, g15, g16) assigned to Player; +0x1237/+0x1238/+0x1261/+0x1265 from Mission::rts_init_43fc90; ArcherIcon::update (g04) writes this-0x7ffbd57, which is a misread global address, not a field"
+  },
+  {
+   "class": "NameList",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x3c",
+     "name": "values",
+     "type": "i32",
+     "size": 4,
+     "count": 9
+    },
+    {
+     "off": "0x60",
+     "name": "text_lens",
+     "type": "u8",
+     "size": 1,
+     "count": 9
+    },
+    {
+     "off": "0x69",
+     "name": "u32_69",
+     "type": "u32",
+     "size": 4,
+     "count": 9
+    },
+    {
+     "off": "0x8d",
+     "name": "u8_8d",
+     "type": "u8",
+     "size": 1,
+     "count": 9
+    },
+    {
+     "off": "0x96",
+     "name": "u32_96",
+     "type": "u32",
+     "size": 4,
+     "count": 9
+    },
+    {
+     "off": "0xba",
+     "name": "start_time",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xbe",
+     "name": "count",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0xc0",
+     "name": "dirty",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [],
+   "evidence": "list_add 0x6fe520 (up to 9 numbers, time stamp +0xba, count +0xbe)",
+   "confidence": "low",
+   "notes": "grab-bag label: find_4c2060 is PemiRes, find_4ec320 is TrackRes (both reassigned); add_648bd0 is a DynArrayB of 0x10c-byte name records (no own field access); the fields here are only from list_add (an interface counter list), which may be a different class"
+  },
+  {
+   "class": "PemiRes",
+   "size": "0x9",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "scripts",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "loaded",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [],
+   "evidence": "pemires.cpp: PScripts::scan fills 0x28-byte {name, id +0x22, EffectState* +0x24} at +4, count +0; PemiList::load / NameList::find use the same rows; clear checks +8",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "class": "PScripts",
+   "size": null,
+   "base": "PemiRes",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "scan fills the PemiRes rows",
+   "confidence": "medium",
+   "notes": "label alias: the same object as PemiRes; its functions are reassigned to PemiRes (see functions), so this class needs no own layout. Prefer PemiRes in code."
+  },
+  {
+   "class": "PemiList",
+   "size": null,
+   "base": "PemiRes",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "load uses the PemiRes rows",
+   "confidence": "medium",
+   "notes": "label alias: the same object as PemiRes; its functions are reassigned to PemiRes (see functions), so this class needs no own layout. Prefer PemiRes in code."
+  },
+  {
+   "class": "Curve",
+   "size": "0x25c",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "points",
+     "type": "f32",
+     "size": 4,
+     "count": 150
+    },
+    {
+     "off": "0x258",
+     "name": "count",
+     "type": "i32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "lookup interpolates {key, a, b} 12-byte points, count at +0x258 (= 50 points)",
+   "confidence": "medium",
+   "notes": "dy/dx/dyy were HeightGrid functions (reassigned)"
+  },
+  {
+   "class": "HeightGrid",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "width",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x2",
+     "name": "height",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x4",
+     "name": "cells",
+     "type": "ptr:void",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "plasma.cpp ctor/create/free/at: (w+1)*(h+1) u16 cells at +4",
+   "confidence": "high",
+   "notes": "new(0x14) before this ctor is the derived HeightMap; Plasma::free, Grid16::set and Curve::dy/dx/dyy are HeightGrid functions"
+  },
+  {
+   "class": "Plasma",
+   "size": null,
+   "base": "HeightMap",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "free 0x4c5960 is HeightGrid::free_4c5960; Grid::seed/init (g06) write +8/+0xc/+0x10 = HeightMap",
+   "confidence": "medium",
+   "notes": "label alias: the 0x14-byte plasma generator = HeightMap (base HeightGrid); Plasma::free is reassigned to HeightGrid. Prefer HeightMap in code."
+  },
+  {
+   "class": "HeightMap",
+   "size": "0x14",
+   "base": "HeightGrid",
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x8",
+     "name": "roughness",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "scale",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "depth",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "operator new(0x14) before HeightGrid ctor; smooth uses +8*+0xc; Terrain::subdivide sets +0xc = 0x140>>depth, counts +0x10",
+   "confidence": "medium",
+   "notes": "Terrain::subdivide*/height(0x4c7b70) are plasma.cpp HeightMap functions (reassigned)"
+  },
+  {
+   "class": "Terrain",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x14",
+     "name": "blocks",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x44",
+     "name": "origin_x",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x48",
+     "name": "origin_y",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4c",
+     "name": "width",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x4e",
+     "name": "height",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x84",
+     "name": "cells",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x88",
+     "name": "rows",
+     "type": "ptr:void",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "world_s.cpp cell_of (fild +0x44/+0x48), cell (+0x88 row table of word indexes into +0x84 32-byte cells), name_at (+0x4c/+0x4e), pathsp height (+0x14 Billboard)",
+   "confidence": "low",
+   "notes": "only the world terrain functions remain here; +0x14 is passed to Billboard::item"
+  },
+  {
+   "class": "Key",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "code",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "kind",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x5",
+     "name": "u32_5",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x9",
+     "name": "u32_9",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xd",
+     "name": "u32_d",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "equals_4e4590 (talk.cpp) compares +0/+5/+9/+0xd, equals/differs (spindex.cpp) compare +0 and byte +4",
+   "confidence": "low",
+   "notes": "grab-bag label: read/write -> ProfileUnit, set -> KeyFrame, repeat_count -> Mouse, the two filters and code_416d10 do not use this (null); the two compare pairs may be different classes"
+  },
+  {
+   "class": "KeyFrame",
+   "size": "0x20",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "time",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "rotation",
+     "type": "f32",
+     "size": 4,
+     "count": 4
+    },
+    {
+     "off": "0x14",
+     "name": "position",
+     "type": "f32",
+     "size": 4,
+     "count": 3
+    }
+   ],
+   "members": [],
+   "evidence": "Key::set (animdef.cpp): time, quat_from_matrix(+4), matrix_position(+0x14); Track keys are 0x20 bytes",
+   "confidence": "medium",
+   "notes": "new class (animation key)"
+  },
+  {
+   "class": "ProfileUnit",
+   "size": "0x77",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "name",
+     "type": "char",
+     "size": 1,
+     "count": 33
+    },
+    {
+     "off": "0x21",
+     "name": "leader",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x25",
+     "name": "member_count",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x27",
+     "name": "members",
+     "type": "ptr:void",
+     "size": 4,
+     "count": 20
+    }
+   ],
+   "members": [],
+   "evidence": "Profile::add realloc +0x77 per record, strncpy 0x21 name; clear deletes +0x21 and 20 pointers from +0x27; Record::write writes 0x20 bytes, +0x21 and +0x23+i*4",
+   "confidence": "high",
+   "notes": "new class; members[] is 1-based in write (+0x23+i*4)"
+  },
+  {
+   "class": "Profile",
+   "size": "0x48",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "name",
+     "type": "char",
+     "size": 1,
+     "count": 32
+    },
+    {
+     "off": "0x20",
+     "name": "unit_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x24",
+     "name": "units",
+     "type": "ptr:ProfileUnit",
+     "size": 4
+    },
+    {
+     "off": "0x28",
+     "name": "list_a_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x2c",
+     "name": "list_a",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x30",
+     "name": "list_b_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x34",
+     "name": "list_b",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x38",
+     "name": "u32_38",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x40",
+     "name": "i32_40",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x44",
+     "name": "i32_44",
+     "type": "i32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "save/load write/read 0x48 bytes of this; record table +0x24 (0x77 each), word arrays +0x2c/+0x34; Name32::set sets name and +0x38=100",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "class": "SaveList",
+   "size": null,
+   "base": "DynArrayB",
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x2e",
+     "name": "current",
+     "type": "i16",
+     "size": 2
+    }
+   ],
+   "members": [],
+   "evidence": "refresh: clear, Directory scan of SAVE\\*.dat, add profiles, +0x2e current index; UnitList clear_4c9f00/select_4ca210 and 0x4ca290 use the same +0x2e",
+   "confidence": "medium",
+   "notes": "the profile list (Profile* records); SaveList::add 0x65bed0 is a cdecl free function (null)"
+  },
+  {
+   "class": "UnitList",
+   "size": null,
+   "base": "DynArrayB",
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x32",
+     "name": "current_id",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x36",
+     "name": "current",
+     "type": "ptr:void",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "select 0x561350 (+0x32 id, +0x36 World*), refresh_4c55d0 iterates the list",
+   "confidence": "low",
+   "notes": "the +0x2e profile-list functions moved to SaveList; base assumed from the List calls"
+  },
+  {
+   "class": "RaceRes",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "loaded",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "races",
+     "type": "ptr:void",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "raceres.cpp: RACE rows of 0x34 at +8, count +4, loaded +0 (once_4ca310)",
+   "confidence": "high",
+   "notes": "record/test (0x30-byte rows, Bindings calls) belong to RemapKeys (reassigned)"
+  },
+  {
+   "class": "Array34",
+   "size": null,
+   "base": "RaceRes",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "item indexes the 0x34-byte RaceRes rows at +8",
+   "confidence": "medium",
+   "notes": "label alias: the same object as RaceRes; its functions are reassigned to RaceRes (see functions), so this class needs no own layout. Prefer RaceRes in code."
+  },
+  {
+   "class": "RecruitEntry",
+   "size": "0xb4",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "id",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x2",
+     "name": "name",
+     "type": "char",
+     "size": 1,
+     "count": 33
+    },
+    {
+     "off": "0x23",
+     "name": "rows",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x27",
+     "name": "value",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x2b",
+     "name": "location",
+     "type": "char",
+     "size": 1,
+     "count": 129
+    },
+    {
+     "off": "0xac",
+     "name": "level",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xb0",
+     "name": "population",
+     "type": "i32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "RecruitRes::load res_load(..., 0xb4, parse); parse fills +2/+0x23/+0x27/+0x2b/+0xac/+0xb0",
+   "confidence": "medium",
+   "notes": "new class; rows is a DynArray of RecruitRow"
+  },
+  {
+   "class": "RecruitRes",
+   "size": "0x9",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "entries",
+     "type": "ptr:RecruitEntry",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "loaded",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [],
+   "evidence": "release/load (+0 count, +4 rows, +8 flag)",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "class": "KeyBinding",
+   "size": "0x30",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "name",
+     "type": "char",
+     "size": 1,
+     "count": 34
+    },
+    {
+     "off": "0x22",
+     "name": "joy_button",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x23",
+     "name": "mouse_button",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x24",
+     "name": "key",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x28",
+     "name": "key_alt",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x2c",
+     "name": "key_mouse",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "KeyMap::load DEFAULTK rows (0x30): name 0x20, hex keys +0x24/+0x28/+0x2c, buttons +0x22/+0x23",
+   "confidence": "high",
+   "notes": "new class"
+  },
+  {
+   "class": "KeyDesc",
+   "size": "0x28",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "code",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "name",
+     "type": "char",
+     "size": 1,
+     "count": 33
+    },
+    {
+     "off": "0x27",
+     "name": "type",
+     "type": "i8",
+     "size": 1
+    }
+   ],
+   "members": [],
+   "evidence": "KeyMap::load KEYDESC rows (0x28)",
+   "confidence": "high",
+   "notes": "new class"
+  },
+  {
+   "class": "RemapKeys",
+   "size": "0x14",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "desc_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "descs",
+     "type": "ptr:KeyDesc",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "bindings",
+     "type": "ptr:KeyBinding",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "defaults",
+     "type": "ptr:KeyBinding",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "binding_count",
+     "type": "i32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "remapkey.cpp: KeyMap::load fills all five, free frees +4/+8/+0xc, restore/load copy defaults->bindings",
+   "confidence": "high",
+   "notes": "KeyMap, SlotTable, Bindings and Keys are labels of this object; their functions are reassigned here (Keys::count_below is DynArrayB)"
+  },
+  {
+   "class": "KeyMap",
+   "size": null,
+   "base": "RemapKeys",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "load_4cae70 fills +0..+0x10 of RemapKeys",
+   "confidence": "medium",
+   "notes": "label alias: the same object as RemapKeys; its functions are reassigned to RemapKeys (see functions), so this class needs no own layout. Prefer RemapKeys in code."
+  },
+  {
+   "class": "SlotTable",
+   "size": null,
+   "base": "RemapKeys",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "assign uses +0/+4 descs and +8/+0xc bindings",
+   "confidence": "medium",
+   "notes": "label alias: the same object as RemapKeys; its functions are reassigned to RemapKeys (see functions), so this class needs no own layout. Prefer RemapKeys in code."
+  },
+  {
+   "class": "Bindings",
+   "size": null,
+   "base": "RemapKeys",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "state uses +8 bindings",
+   "confidence": "medium",
+   "notes": "label alias: the same object as RemapKeys; its functions are reassigned to RemapKeys (see functions), so this class needs no own layout. Prefer RemapKeys in code."
+  },
+  {
+   "class": "Keys",
+   "size": null,
+   "base": "RemapKeys",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "state/is_down are called as Bindings::key_state/key_is_down; count_below is a DynArrayB function",
+   "confidence": "medium",
+   "notes": "label alias: the same object as RemapKeys; its functions are reassigned to RemapKeys (see functions), so this class needs no own layout. Prefer RemapKeys in code."
+  },
+  {
+   "class": "ScenarioEntry",
+   "size": "0x1b2",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "texts",
+     "type": "char",
+     "size": 1,
+     "count": 390
+    },
+    {
+     "off": "0x186",
+     "name": "object",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x18a",
+     "name": "u32_18a",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x18e",
+     "name": "u32_18e",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x192",
+     "name": "u32_192",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x196",
+     "name": "u32_196",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x19a",
+     "name": "u32_19a",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x19e",
+     "name": "name",
+     "type": "ptr:char",
+     "size": 4
+    },
+    {
+     "off": "0x1a2",
+     "name": "name2",
+     "type": "ptr:char",
+     "size": 4
+    },
+    {
+     "off": "0x1a6",
+     "name": "i32_1a6",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x1aa",
+     "name": "i32_1aa",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x1ae",
+     "name": "kind",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "Scenario::load: 0x1b2-byte entries, 6 strings of 0x41 at 0..0x145, +0x186..+0x1aa initialised; reset frees +0x186/+0x19e/+0x1a2; Scenario keeps one at +0x14 (memset 0x1b2)",
+   "confidence": "high",
+   "notes": "new class; texts are six char[0x41] strings; set_name x2 take an entry as this (Scenario::current) and are reassigned here"
+  },
+  {
+   "class": "Scenario",
+   "size": "0x289",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "id",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "index",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "u32_8",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "entry_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "entries",
+     "type": "ptr:ScenarioEntry",
+     "size": 4
+    },
+    {
+     "off": "0x1da",
+     "name": "u32_1da",
+     "type": "u32",
+     "size": 4,
+     "count": 13
+    },
+    {
+     "off": "0x20e",
+     "name": "u8_20e",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x20f",
+     "name": "u32_20f",
+     "type": "u32",
+     "size": 4,
+     "count": 4
+    },
+    {
+     "off": "0x21f",
+     "name": "u8_21f",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x220",
+     "name": "u8_220",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x221",
+     "name": "u32_221",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x233",
+     "name": "id_list_pad",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x235",
+     "name": "ids",
+     "type": "i16",
+     "size": 2,
+     "count": 31
+    },
+    {
+     "off": "0x275",
+     "name": "id_count",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x277",
+     "name": "types",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x27b",
+     "name": "type_count",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x27d",
+     "name": "items",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x281",
+     "name": "item_count",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x283",
+     "name": "squads",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x287",
+     "name": "squad_count",
+     "type": "i16",
+     "size": 2
+    }
+   ],
+   "members": [
+    {
+     "off": "0x14",
+     "name": "local",
+     "class": "ScenarioEntry"
+    }
+   ],
+   "evidence": "scenario.cpp reset/load/push_word/add_copy/remove_id: entries +0x10 (0x1b2), embedded entry +0x14, word lists +0x277/+0x27d, squad pointers +0x283, id list +0x235 (31 words)",
+   "confidence": "high",
+   "notes": "ids is indexed as +0x233 + n*2 for the last element (n = count), so id_list_pad (+0x233) is the element before ids[0]; 0x1c6..0x1d9 and 0x225..0x232 unknown; trigger_slot works on a SoundList view of this (no field access)"
+  },
+  {
+   "class": "SdateRes",
+   "size": "0x7",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "dates",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "count",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x6",
+     "name": "loaded",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [],
+   "evidence": "sdateres.cpp: SDATE rows of 0x33 at +0, count word +4, loaded +6 (SDate::load/ensure_loaded and SdateRes::free)",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "class": "SDate",
+   "size": null,
+   "base": "SdateRes",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "ensure_loaded/load use SdateRes +0/+4/+6",
+   "confidence": "medium",
+   "notes": "label alias: the same object as SdateRes; its functions are reassigned to SdateRes (see functions), so this class needs no own layout. Prefer SdateRes in code."
+  },
+  {
+   "class": "SellItemEntry",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "id",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x2",
+     "name": "name",
+     "type": "char",
+     "size": 1,
+     "count": 17
+    },
+    {
+     "off": "0x13",
+     "name": "rows",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x17",
+     "name": "value",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x1b",
+     "name": "type",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [],
+   "evidence": "SItemRes::parse fills +2 name(0x10), +0x13 list of ItemRow, +0x17, +0x1b POTION/WEAPON; delete_13 frees +0x13",
+   "confidence": "medium",
+   "notes": "new class; record size is passed by SItemRes::load 0x4ce420 (not decoded)"
+  },
+  {
+   "class": "SItemRes",
+   "size": "0x9",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "entries",
+     "type": "ptr:SellItemEntry",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "loaded",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [],
+   "evidence": "release/reset (+0, +4, +8)",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "class": "Speech",
+   "size": "0x138",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "script",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "target",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "text",
+     "type": "ptr:char",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "text_len",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "text_cap",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "time",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "last_tick",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1c",
+     "name": "time_f",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x20",
+     "name": "next_time",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x24",
+     "name": "columns",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x28",
+     "name": "text_column",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x2c",
+     "name": "column_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x30",
+     "name": "pending",
+     "type": "char",
+     "size": 1,
+     "count": 256
+    },
+    {
+     "off": "0x130",
+     "name": "state",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x134",
+     "name": "speed",
+     "type": "f32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "speech_s.cpp load_header/reset/update: FileTxt* +0, text buffer +8/+0xc/+0x10 (0x190 steps), column names +0x24 (0x50 each), pending word +0x30, state +0x130, speed +0x134",
+   "confidence": "medium",
+   "notes": "size = end of +0x134; SpeechStr::append_word uses the same +8/+0xc/+0x10 (reassigned); say_number is a static (null)"
+  },
+  {
+   "class": "SpeechStr",
+   "size": null,
+   "base": "Speech",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "append_word grows Speech text +8/+0xc/+0x10",
+   "confidence": "medium",
+   "notes": "label alias: the same object as Speech; its functions are reassigned to Speech (see functions), so this class needs no own layout. Prefer Speech in code."
+  },
+  {
+   "class": "TrackNode",
+   "size": "0x54",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "id",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "i32_4",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "pos",
+     "type": "f32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x14",
+     "name": "link_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "links",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x50",
+     "name": "owner",
+     "type": "ptr:PathGraph",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "Tracks::parse_track / Track::add_point: 0x54-byte nodes, links array of node pointers at +0x18",
+   "confidence": "medium",
+   "notes": "new class; 0x1c..0x4f unknown (route scratch)"
+  },
+  {
+   "class": "PathGraph",
+   "size": "0x52",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "id",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "name",
+     "type": "char",
+     "size": 1,
+     "count": 33
+    },
+    {
+     "off": "0x25",
+     "name": "label",
+     "type": "char",
+     "size": 1,
+     "count": 33
+    },
+    {
+     "off": "0x46",
+     "name": "node_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4a",
+     "name": "nodes",
+     "type": "ptr:TrackNode",
+     "size": 4
+    },
+    {
+     "off": "0x4e",
+     "name": "u32_4e",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "trackres.cpp: TrackRes rows of 0x52 (CreateTrack: id, two names, node count +0x46, nodes +0x4a); route/nearest_two/add_point/free use +0x46/+0x4a",
+   "confidence": "high",
+   "notes": "one track path; Points, Track::add_point and TrackRes::free_45cc20/free_4ec3d0 are its functions"
+  },
+  {
+   "class": "Points",
+   "size": null,
+   "base": "PathGraph",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "nearest_two walks +0x46/+0x4a 0x54-byte nodes",
+   "confidence": "medium",
+   "notes": "label alias: the same object as PathGraph; its functions are reassigned to PathGraph (see functions), so this class needs no own layout. Prefer PathGraph in code."
+  },
+  {
+   "class": "Track",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "key_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "keys",
+     "type": "ptr:KeyFrame",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "animdef.cpp allocate/sample/compress: 32-byte keys at +4, count +0",
+   "confidence": "medium",
+   "notes": "camera/calendar/vtrail functions under this label were reassigned (CameraZone, Calendar, Trail, PathGraph, TrackRes, Tracks); AnimDef::vector_delete 0x5b4920 (g01) reads this-4 = the operator new[] count cookie"
+  },
+  {
+   "class": "TrackRes",
+   "size": "0x9",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "paths",
+     "type": "ptr:PathGraph",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "path_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "loaded",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [],
+   "evidence": "operator new(9) + memset 9 in ctor; free/load +8; Tracks::load/create_array fill +0/+4 (0x52 rows)",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "class": "Tracks",
+   "size": "0x10",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "origin",
+     "type": "f32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0xc",
+     "name": "res",
+     "type": "ptr:TrackRes",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "ctor memset 0x10; load news a TrackRes into +0xc and passes the 12 bytes at +0 as origin",
+   "confidence": "high",
+   "notes": "Tracks::get (camzone.cpp, 0xaca records) belongs to CameraTracks (reassigned)"
+  },
+  {
+   "class": "UnitLevel",
+   "size": null,
+   "base": "Unit",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "distribute reads +0x12a/+0x12c pools of a Unit and calls Unit::use_item on this",
+   "confidence": "medium",
+   "notes": "label alias: the same object as Unit; its functions are reassigned to Unit (see functions), so this class needs no own layout. Prefer Unit in code."
+  },
+  {
+   "class": "UnitRes",
+   "size": "0x7",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "types",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "count",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x6",
+     "name": "loaded",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [],
+   "evidence": "unitres.cpp: unit.res records of 0x203 at +0 (Records203), count word +4, loaded +6",
+   "confidence": "high",
+   "notes": "UnitTypes::find is its lookup; free_buffers acts on a 0x203 UnitType record (reassigned); UnitRes::free 0x530d00 is UnitTable (reassigned); g15 assigns Panel::open 0x527520 (+0x68..+0xb0) here, which does not fit a 7-byte resource (a Panel)"
+  },
+  {
+   "class": "UnitTypes",
+   "size": null,
+   "base": "UnitRes",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "find walks the 0x203 records at +0 (count +4)",
+   "confidence": "medium",
+   "notes": "label alias: the same object as UnitRes; its functions are reassigned to UnitRes (see functions), so this class needs no own layout. Prefer UnitRes in code."
+  },
+  {
+   "class": "Occluder",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "corners",
+     "type": "f32",
+     "size": 4,
+     "count": 27
+    },
+    {
+     "off": "0x70",
+     "name": "enabled",
+     "type": "i32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "set_corner writes 3 dwords at i*0xc; set_70 sets +0x70",
+   "confidence": "low",
+   "notes": "corner count unknown (9 assumed)"
+  },
+  {
+   "class": "UnitTable",
+   "size": "0x35",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "id",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x2",
+     "name": "name",
+     "type": "char",
+     "size": 1,
+     "count": 33
+    },
+    {
+     "off": "0x23",
+     "name": "table_name",
+     "type": "char",
+     "size": 1,
+     "count": 9
+    },
+    {
+     "off": "0x2c",
+     "name": "count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x30",
+     "name": "entries",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x34",
+     "name": "loaded",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [],
+   "evidence": "UpgradeRes::load fills 0x35-byte records (+0 id, +2 name, +0x23 table name) then reload 0x530cc0 on each; load opens db +0x23, 4-byte rows at +0x30",
+   "confidence": "high",
+   "notes": "a unit upgrade list resource (UpgradeRes record)"
+  },
+  {
+   "class": "UpgradeRes",
+   "size": "0x11",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "item_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "items",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "unit_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "units",
+     "type": "ptr:UnitTable",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "loaded",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [],
+   "evidence": "init_531650: free, load_items (UPITEM 0x64 rows at +4), load_upgrades (0x35 rows at +0xc), flag +0x10",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "class": "UpgraRes",
+   "size": null,
+   "base": "UpgradeRes",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "free/dtor clear UpgradeRes +4/+0xc/+0x10",
+   "confidence": "medium",
+   "notes": "label alias: the same object as UpgradeRes; its functions are reassigned to UpgradeRes (see functions), so this class needs no own layout. Prefer UpgradeRes in code."
+  },
+  {
+   "class": "UpgradeTable",
+   "size": null,
+   "base": "UpgradeRes",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "load is UpgradeRes::load_items (+0/+4)",
+   "confidence": "medium",
+   "notes": "label alias: the same object as UpgradeRes; its functions are reassigned to UpgradeRes (see functions), so this class needs no own layout. Prefer UpgradeRes in code."
+  },
+  {
+   "class": "UpgradeList",
+   "size": "0x4",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "list",
+     "type": "ptr:DynArray",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "assign/add create a DynArray in +0 and linkin {key, count, 0, 1} words",
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "class": "UScrRes",
+   "size": "0x9",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "scripts",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "loaded",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [],
+   "evidence": "uscrres.cpp: unitAI.res rows of 0x28 at +4 (UnitAIRes::load), free uses +0/+4/+8",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "class": "UnitAIRes",
+   "size": null,
+   "base": "UScrRes",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "load fills UScrRes +0/+4 and calls UScrRes::kind_of_name on this",
+   "confidence": "medium",
+   "notes": "label alias: the same object as UScrRes; its functions are reassigned to UScrRes (see functions), so this class needs no own layout. Prefer UScrRes in code."
+  },
+  {
+   "class": "BoxTree",
+   "size": "0x38",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "u32_0",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "left",
+     "type": "ptr:BoxTree",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "right",
+     "type": "ptr:BoxTree",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "u32_c",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "box",
+     "type": "i32",
+     "size": 4,
+     "count": 6
+    },
+    {
+     "off": "0x34",
+     "name": "item",
+     "type": "ptr:void",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "collect/query recurse into +4/+8, test the box at +0x10..+0x27, report +0x34; ctor_54aa90 inits +0/+4/+8/+0xc/+0x34",
+   "confidence": "medium",
+   "notes": "0x28..0x33 unknown; size assumed from the last field"
+  },
+  {
+   "class": "Map",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "u32_0",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xa",
+     "name": "i16_a",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x14",
+     "name": "ptr_14",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "ptr_18",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x40",
+     "name": "i16_40",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x72",
+     "name": "node_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x76",
+     "name": "node_cap",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x7a",
+     "name": "nodes",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x82",
+     "name": "node_aux",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x86",
+     "name": "sector_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x8e",
+     "name": "sectors",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0xb0a",
+     "name": "i32_b0a",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xb1c",
+     "name": "i16_b1c",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0xb1e",
+     "name": "i16_b1e",
+     "type": "i16",
+     "size": 2
+    }
+   ],
+   "members": [],
+   "evidence": "world.cpp NodeList::add/get (+0x72 count, +0x76 capacity, +0x7a/+0x82 arrays, release_tree on this) and Sectors::get (+0x86/+0x8e) are Map functions",
+   "confidence": "low",
+   "notes": "grab-bag label (rts/colgrid/rworld/interfac functions); fields other than the node/sector arrays come from single readers and may belong to other classes; pick_692f40 (+0xc/+0x10/+0x580) is Region (reassigned)"
+  },
+  {
+   "class": "NodeList",
+   "size": null,
+   "base": "DynArrayB",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "delete_all iterates a pointer list and deletes the scene objects",
+   "confidence": "low",
+   "notes": "add/get are Map functions (reassigned)"
+  },
+  {
+   "class": "Sectors",
+   "size": null,
+   "base": "Map",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "get reads +0x86/+0x8e of the world Map",
+   "confidence": "low",
+   "notes": "label alias: the same object as Map; its functions are reassigned to Map (see functions), so this class needs no own layout. Prefer Map in code."
+  }
+ ],
+ "functions": {
+  "0x4a37e0": "ItemDef",
+  "0x4a3e30": "ItemDef",
+  "0x4a3f20": "ItemDef",
+  "0x4a39b0": "ItemDef",
+  "0x4a39f0": "ItemDef",
+  "0x4a4180": "ItemDef",
+  "0x4a41c0": "ItemDef",
+  "0x4a4200": "ItemDef",
+  "0x4a42f0": "ItemDef",
+  "0x49fab0": "ItemRes",
+  "0x49fb30": "ItemRes",
+  "0x4a45f0": "ItemRes",
+  "0x49f7d0": "ItemRes",
+  "0x4a36c0": "ItemRes",
+  "0x425ce0": "ItemRes",
+  "0x48c990": "Hero",
+  "0x48ee90": "Unit",
+  "0x636000": "Billboard",
+  "0x4a4bc0": "LevelRes",
+  "0x4a4bf0": "LevelRes",
+  "0x4a4e60": "LevelRes",
+  "0x4a65d0": "Region",
+  "0x42e160": "LightSys",
+  "0x4a7980": "LightSys",
+  "0x4a7ba0": "LightSys",
+  "0x4d30f0": "LightSys",
+  "0x4dea50": "AnimDb",
+  "0x4deae0": "AnimDb",
+  "0x4deb10": "AnimDb",
+  "0x4deb70": "AnimDb",
+  "0x4b09c0": "ModelRes",
+  "0x4b0ec0": "ModelRes",
+  "0x4b1640": "ModelRes",
+  "0x4b16a0": "ModelRes",
+  "0x4b20e0": "ModelRes",
+  "0x41a180": "ModelRes",
+  "0x4b28a0": "MsgEntry",
+  "0x4b3160": "MsgLog",
+  "0x4b31f0": "MsgLog",
+  "0x4b3280": "MusicRes",
+  "0x4b32b0": "MusicRes",
+  "0x4b3c70": "MusicRes",
+  "0x4b4de0": "Nation",
+  "0x4b5a90": "Nation",
+  "0x4b4d90": "Nation",
+  "0x4b4e30": "Nation",
+  "0x4b4e80": "Nation",
+  "0x4b4ec0": "Nation",
+  "0x4b4f10": "Nation",
+  "0x4b5010": "Nation",
+  "0x4b50c0": "Nation",
+  "0x4b5110": "Nation",
+  "0x4b51c0": "Nation",
+  "0x4b5200": "Nation",
+  "0x4b5250": "Nation",
+  "0x4b52a0": "Nation",
+  "0x4b6d40": "Town",
+  "0x4a8f20": "Nation",
+  "0x4b42e0": "Nation",
+  "0x4b4610": "Nation",
+  "0x4b4790": "Nation",
+  "0x4b4ce0": "Nation",
+  "0x4b5420": "Nation",
+  "0x4b8710": "Nation",
+  "0x4b4a10": "Nation",
+  "0x4b5580": "Nation",
+  "0x4b5750": "Nation",
+  "0x4b8a10": "Nation",
+  "0x49c470": "Region",
+  "0x4b8e80": "Rel",
+  "0x4b4590": "Rel",
+  "0x4b8c60": "Rel",
+  "0x4b8ca0": "Rel",
+  "0x4b8ed0": "Rel",
+  "0x4b8d60": "Rel",
+  "0x4b4120": "Nation",
+  "0x4b48d0": "Nation",
+  "0x4b4920": "Nation",
+  "0x4b4f70": "Nation",
+  "0x4b5340": "Nation",
+  "0x4b5520": "Nation",
+  "0x4b5990": "Nation",
+  "0x4b5bf0": "Nation",
+  "0x42a1c0": "Nation",
+  "0x4b7cb0": "Nation",
+  "0x47f800": "Nation",
+  "0x4b8f90": "NationRes",
+  "0x4b4730": "NationRes",
+  "0x4b8f20": "NationRes",
+  "0x4b8f50": "NationRes",
+  "0x4720d0": "Mission",
+  "0x472150": "Mission",
+  "0x472220": "Mission",
+  "0x472370": "Mission",
+  "0x50a9e0": "Unit",
+  "0x687180": "Trail",
+  "0x6b12a0": "Shot",
+  "0x4c2060": "PemiRes",
+  "0x4c1b40": "PemiRes",
+  "0x4c1d80": "PemiRes",
+  "0x4c19a0": "PemiRes",
+  "0x4c1af0": "Zones",
+  "0x4ec320": "TrackRes",
+  "0x4c6cd0": "HeightGrid",
+  "0x4c6e40": "HeightGrid",
+  "0x4c6fb0": "HeightGrid",
+  "0x4c5960": "HeightGrid",
+  "0x4c5a20": "HeightGrid",
+  "0x4c5c30": "HeightMap",
+  "0x4c5f10": "HeightMap",
+  "0x4c7b70": "HeightMap",
+  "0x416d10": null,
+  "0x763c90": null,
+  "0x763cd0": null,
+  "0x595fb0": "Mouse",
+  "0x5b8770": "KeyFrame",
+  "0x4c93e0": "ProfileUnit",
+  "0x4c9420": "ProfileUnit",
+  "0x4c9460": "ProfileUnit",
+  "0x4c9530": "ProfileUnit",
+  "0x4c7e20": "Profile",
+  "0x4c9390": "Profile",
+  "0x4c93b0": "Profile",
+  "0x4ca000": "Profile",
+  "0x4c90a0": "Profile",
+  "0x4c9880": "Unit",
+  "0x4c9f00": "SaveList",
+  "0x4ca210": "SaveList",
+  "0x4ca290": "SaveList",
+  "0x4ca050": "SaveList",
+  "0x4ca180": "SaveList",
+  "0x65bed0": null,
+  "0x4ca3d0": "RaceRes",
+  "0x4ca310": "RaceRes",
+  "0x4cb580": "RemapKeys",
+  "0x4cb820": "RemapKeys",
+  "0x4ca6d0": "RecruitRes",
+  "0x4cad80": "RecruitEntry",
+  "0x4cb6d0": "RemapKeys",
+  "0x4cae70": "RemapKeys",
+  "0x4cc3d0": "RemapKeys",
+  "0x4cc570": "RemapKeys",
+  "0x4cba40": "RemapKeys",
+  "0x4cc380": "RemapKeys",
+  "0x585cb0": "DynArrayB",
+  "0x4cde30": "ScenarioEntry",
+  "0x4cdf00": "ScenarioEntry",
+  "0x4cd510": "Scenario",
+  "0x4ce030": "SdateRes",
+  "0x4ce0f0": "SdateRes",
+  "0x4ce390": "SItemRes",
+  "0x4ce980": "SellItemEntry",
+  "0x4d27e0": "Speech",
+  "0x591810": null,
+  "0x4d1af0": "Speech",
+  "0x4d1b20": "Speech",
+  "0x4d1bb0": "Speech",
+  "0x4d2930": "Speech",
+  "0x4d2970": "Speech",
+  "0x4d2910": "Speech",
+  "0x4ec480": "PathGraph",
+  "0x66fa00": "PathGraph",
+  "0x4a9ac0": "PathGraph",
+  "0x45cc20": "PathGraph",
+  "0x4ec3d0": "PathGraph",
+  "0x4289e0": "CameraZone",
+  "0x428aa0": "CameraZone",
+  "0x4956a0": "Calendar",
+  "0x687c30": "Trail",
+  "0x49ab40": "TrackRes",
+  "0x4ebae0": "TrackRes",
+  "0x4ebb40": "TrackRes",
+  "0x4ebd50": "TrackRes",
+  "0x4ec240": "TrackRes",
+  "0x4eb920": "Tracks",
+  "0x4eb570": "Tracks",
+  "0x4eb8c0": "Tracks",
+  "0x428b30": "CameraTracks",
+  "0x4a95a0": "Unit",
+  "0x5273b0": "UnitType",
+  "0x5270b0": "UnitRes",
+  "0x530d00": "UnitTable",
+  "0x530cc0": "UnitTable",
+  "0x4fe640": "Unit",
+  "0x4fe670": "Unit",
+  "0x4fe7a0": "Unit",
+  "0x4fe7d0": "Unit",
+  "0x4fe800": "Unit",
+  "0x4feb80": "Unit",
+  "0x4febb0": "Unit",
+  "0x4febe0": "Unit",
+  "0x4fec10": "Unit",
+  "0x4fec40": "Unit",
+  "0x4fec70": "Unit",
+  "0x4feca0": "Unit",
+  "0x4fecd0": "Unit",
+  "0x531620": "UpgradeRes",
+  "0x531690": "UpgradeRes",
+  "0x531790": "UpgradeRes",
+  "0x531ba0": "UpgradeRes",
+  "0x5315f0": "UpgradeRes",
+  "0x531650": "UpgradeRes",
+  "0x5311c0": "UpgradeList",
+  "0x531360": "UpgradeList",
+  "0x5313a0": "UpgradeList",
+  "0x5462b0": "UScrRes",
+  "0x5461d0": "UScrRes",
+  "0x54aa90": "BoxTree",
+  "0x54ac60": "BoxTree",
+  "0x547bf0": "Map",
+  "0x548600": "Map",
+  "0x54aa00": "Map",
+  "0x692f40": "Region",
+  "0x45c460": "Nation",
+  "0x4e4430": "Nation"
+ },
+ "notes": "Cross-group: Hero/Unit (+0xc2 drain), Unit (+0x2f5/+0x335/+0x339/+0x345 set_unit_state; +0x11c..+0x197 setters 0x4fe640..0x4fecd0; 0x4c9880 writes 0x432 bytes, UnitStats +0x16f, UpgradeList +0x1aa, UnitData* +0x1c1; +0x12a/+0x12c pools in distribute), Region (lit_by / count_units: +0x26, +0x3a box, +0x1de World*; pick_692f40: +0xc[]/+0x10[]/+0x580), Mission (flag_bit: +0x17 flag, +0x1b index, +0x27 0x1b2-byte records, +0x1b5..+0x1bd), Mouse (repeat_count +0x65a/+0x65e/+0x701/+0x709), Trail (push_point +0x8e/+0x97; dtor 0x687180 List at +0xa3), Shot (start_move +0x236..+0x24e), UnitType (free_buffers: 4 buffers +0x1b1..+0x1bd of the 0x203 record), CameraZone (restart +0x3c/+0x44, is_type1 +0x12 Tracks*, +0x18), CameraTracks (get: 0xaca-byte records at +0), Billboard (colour_636000 reads (+5)->+0x28), Zones (PemiRes::scalar_dtor is the EffectState/Zones deleting dtor), DynArrayB (Keys::count_below reads empty_room_array/empty_room_count). Mission (g06) 0x42f700/0x43fc90 touch the Player controller fields, so Mission and Player may be one class. StringPool (g08) must be 8 bytes for ItemRes (+0x1c) and ModelRes (+0xd). Unassigned (no evidence): 0x4b2730 (anim res manager entry, 0x3a rows at +4), 0x4d29c0/0x4d2a00/0x4d2a70 (speech_s.cpp getters +0x68/+0x6c/+0xe), 0x4ee530/0x4eeb80/0x4eed10 (trackres.cpp). Overrides: Station::leave 0x45c460 and flag_1365_1366 0x4e4430 (g09 -> Player) are Nation functions (+0x153d/+0x1541 stations, +0x1365/+0x1366 war flags)."
+}

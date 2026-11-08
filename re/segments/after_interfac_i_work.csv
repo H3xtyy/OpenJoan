@@ -1,0 +1,10 @@
+start,end,name,confidence,evidence
+0x006ece80,0x006ece80,i_work_cut,high,"Cutscene::update directly before i_work.cpp WorkScreen::set_open 0x6ed3e0 and calling i_work's Images3::release: i_work.cpp content, merge into i_work.cpp"
+0x006ed4c0,0x006ed4e0,i_work_x1,high,"X::byte_34 and Menu::load_barr (BARR textures, called only by WorkScreen::set_open) between i_work.cpp functions 0x6ed3e0 and 0x6ed5b0: i_work.cpp content"
+0x006ed650,0x006eee90,i_work_cbs,high,"draw callbacks registered only by WorkInterface ctor 0x6e8f40 (i_work.cpp); H_OT/H_OV/H_DW strings follow i_work's own strings in .rdata: i_work.cpp tail, merge into i_work.cpp"
+0x006ef230,0x006f1460,i_attcmb,medium,"starts with Colour static init + Screen ctor; attack-combo panel (IATTCOMB, ADD/LIST/ATT/LEARN buttons, SRBAR, roster sort)"
+0x006f1660,0x006f2ac0,i_igframe,medium,"global ctor/dtor then in-game menu frame: Frame::init (bottom/ring/woodtex), igamebg1-4, MENU_SLIDE_IN/OUT slide helpers, set_title"
+0x006f2c10,0x006f5ed0,i_igmenu,medium,"Screen ctor then in-game/save menu (IGameMnu text res, LONGBAR, COMMELE3, .SAV, BUTTON_SLIDE_MANY, CM_ buttons, MARK callback, Menu::set_state)"
+0x006f5f00,0x006f7f20,i_unitatt,medium,"Colour static init + Screen ctor; unit attribute/inventory panel (IUNITATT, CB_/WP_ buttons, EXPBAR, coins)"
+0x006f8010,0x006f8010,list_ctor,medium,"ctor directly before List::dtor 0x6f8050 (list.cpp), same caller (OptBox::init) as Grid::setup: list.cpp head, merge into list.cpp"
+0x006f80c0,0x006f80c0,list_grid,medium,"Grid::setup lies inside list.cpp range (0x6f8050..0x6f8670), called by OptBox::init like 0x6f8010: list.cpp content, merge into list.cpp"

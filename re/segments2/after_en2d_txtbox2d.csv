@@ -1,0 +1,3 @@
+start,end,name,confidence,evidence,target
+0x00631670,0x00631730,txtbox2d_edit_sel,high,"Edit::sel_min/sel_max/diff between txtbox2d Obj::height and get6aa; twins of TextBox::sel_min/max.",en2d/txtbox2d.cpp
+0x006317a0,0x00634b60,sprite2d,medium,"2D overlay renderer: global ctor/dtor pair (0x564660/0x5646b0) opening the object, overlay Camera/Scene build, Sprite2D queue/fit_rect/fit_triangle, SpriteQueue::draw_named, Layer2D; ends before widget2d.cpp.",

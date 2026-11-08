@@ -1,0 +1,2 @@
+start,end,name,confidence,evidence,target
+0x0057f130,0x0057f1c0,bitmapd_t1,high,Bitmap32 pitch/pixel/bytes inline accessors between bitmapd.cpp Size16::set and bitmap32_bytes/Bitmap32::create: inside bitmapd.cpp.,ilib/bitmapd.cpp

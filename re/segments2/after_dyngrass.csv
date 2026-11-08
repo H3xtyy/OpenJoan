@@ -1,0 +1,2 @@
+start,end,name,confidence,evidence,target
+0x00466d50,0x004671f0,dyngrass_tail,medium,"Unit hit helper + Grass::remove_patch (same callees as dyngrass.cpp Grass::set_enabled) + header PI init block (.bss a38f90.., dyngrass's own .bss a38fa0 follows) + Table::at used by DynGrass::populate; last memset init uncertain (could head end_con.cpp).",game/dyngrass.cpp

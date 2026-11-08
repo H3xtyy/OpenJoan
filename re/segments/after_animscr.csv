@@ -1,0 +1,6 @@
+start,end,name,confidence,evidence
+0x004191e0,0x004191e0,animscr_tex,medium,Lone texture-release helper sandwiched between animscr.cpp functions (0x418dd0.. and 0x419280..); almost certainly part of the animscr.cpp object.
+0x00419950,0x0041b3a0,animscr_fx,medium,Model slots / projectiles / effects run; its float inits 0x419a90 and 0x41a8d0 derive from PI 0xa4f81c whose init 0x417ef0 sits in the animscr object -> likely continuation of animscr.cpp.
+0x0041b3f0,0x0041b640,fx_spawn,medium,Effect list helpers + Spawner::try_spawn whose .rdata strings/floats (.txt/other/snow/mud then ff8B) continue right after Projectile::launch; same topic as previous segment split only by a battle.cpp-attributed accessor.
+0x0041baa0,0x0041bee0,fx_registry,low,ModelList::add / EffectRegistry::remove / Group::purge_dead + list accessors; ends with a PI static-init block (0xa33628 family) that closes an object; init_41bbc0 and init_a3cd78 are initialisers of other objects displaced here by incremental linking.
+0x0041bf10,0x0041bf10,battle_pre,low,Bytes::at alone between the static-init block that closes the previous object and battle.cpp (0x41bf40); probably the first function of battle.cpp.

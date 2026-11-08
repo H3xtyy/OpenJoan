@@ -1,0 +1,12 @@
+start,end,name,confidence,evidence,target
+0x0045c7f0,0x0045c7f0,cpuusage_rect,medium,sandwiched between cpuusage.cpp CpuUsage::release and CpuUsageItem::scalar_dtor,game/cpuusage.cpp
+0x0045c8c0,0x0045c8c0,cpuusage_speed,high,"CpuSpeed::measure uses read_tsc, between cpuusage.cpp functions",game/cpuusage.cpp
+0x0045c9c0,0x0045c9c0,cpuusage_enter,high,Profiler::enter (Cannot profile recursive function in cpuusage rdata) between cpuusage.cpp functions,game/cpuusage.cpp
+0x0045ccb0,0x0045e620,cpuusage_report,high,Profiler leave/frame/report and PerfStats::dump; strings follow d:\ww\cpuusage.cpp in rdata; ends before cpuusage.cpp read_tsc,game/cpuusage.cpp
+0x0045e780,0x0045eb20,cpuusage_links,high,"Profiler list helpers (free_lists, Link00/Link0c::set_owner) between cpuusage.cpp read_tsc and Obj::ctor_50",game/cpuusage.cpp
+0x0045ec90,0x0045ec90,cpuusage_clear,high,Profiler::clear calls cpuusage.cpp Link38/44/24::set_owner next to it,game/cpuusage.cpp
+0x0045f140,0x0045f770,cpuusage_dump,high,"ProfTimer::stop, Profiler::dump, ProfNode::dump ( ms] strings) and enter/leave wrappers after cpuusage.cpp Ref::add",game/cpuusage.cpp
+0x0045f7a0,0x0045fae0,crithud,medium,"Global ctor/dtor (init_obj_56b210/dtor_stub_56b260), Buffers::release, CriticalHud::draw; CFGLOW/CRITICAL strings follow cpuusage rdata",
+0x00462610,0x00462e90,crithud_b,low,"CritCombo::input (CRITATT, right after the CriticalHud strings) and button draw; likely the same object as crithud, split by the stray unit.cpp Unit::cleanup",
+0x00462f50,0x00463780,dispdlg,medium,"Display-mode dialog: select_adapter, options_dlg_proc, dlg_sync/init, display_mode_list (%1d x %2d x %3d format), fill_mode_sel",
+0x00463920,0x00463920,ditemres_ctor,high,"Obj::clear_9 is the ctor of the global paired (init_56a140) with atexit obj_stub_56a1b0 -> ditemres.cpp Obj::fwd_463950, next function",game/ditemres.cpp

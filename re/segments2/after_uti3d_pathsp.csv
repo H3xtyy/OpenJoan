@@ -1,0 +1,3 @@
+start,end,name,confidence,evidence,target
+0x00677390,0x00677390,psystem_g0a,high,ParticleSystem::compile between psystem.cpp EffectState functions and ParticleProp::create.,game/_unplaced/psystem.cpp
+0x00677f00,0x00678320,psystem_g0b,high,ParticleSystem parse_block/parse_sequence between psystem.cpp functions.,game/_unplaced/psystem.cpp

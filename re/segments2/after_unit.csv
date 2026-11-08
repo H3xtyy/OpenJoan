@@ -1,0 +1,13 @@
+start,end,name,confidence,evidence,target
+0x004fe4f0,0x004fe4f0,unit_a_t1,medium,Accessor right after unit_a.cpp Unit::use_spiritual_item (the applied unit_a segment already ended at this address).,game/_unplaced/unit_a.cpp
+0x005059b0,0x005059b0,unit_core_t1,high,Unit::face_object (-> Object::heading_to) between unit_core.cpp Obj505::set_from and Object::heading_to.,game/_unplaced/unit_core.cpp
+0x00508fb0,0x00508fb0,unit_core_t2,high,Unit kind test between unit_core.cpp Obj::get_1f9 and Unit::pick_idle_anim (one of its callers).,game/_unplaced/unit_core.cpp
+0x005091d0,0x005091d0,unit_core_t3,high,Unit kind test between unit_core.cpp Unit::pick_idle_anim and Unit::set_side.,game/_unplaced/unit_core.cpp
+0x005094d0,0x005095e0,unit_core_t4,high,Unit hostility / side relation / alliance tests between unit_core.cpp Obj::lookup_509450 and Unit::is_ally_of.,game/_unplaced/unit_core.cpp
+0x005156d0,0x005156d0,unit_c_t1,high,Zone index lookup between unit_c.cpp Missile::impact and its static-init block (after Unit::find_zone).,game/_unplaced/unit_c.cpp
+0x0051fce0,0x0051fce0,units_mgr_t1,high,List refresh between units_mgr.cpp UnitManager::update_units and Units::find_by_3b.,game/_unplaced/units_mgr.cpp
+0x00522c10,0x00522c10,unit_xp_t1,high,Global counter helper between unit_xp.cpp Unit::add_experience and Unit::level_up.,game/_unplaced/unit_xp.cpp
+0x005237e0,0x00523860,unit_stats_t1,high,Unit stat getters via Modifiers::sum interleaved with unit_stats.cpp's identical getters.,game/_unplaced/unit_stats.cpp
+0x00523920,0x00523920,unit_stats_t2,high,Unit stat getter via Modifiers::sum between unit_stats.cpp Unit::level_sum and Table::slot.,game/_unplaced/unit_stats.cpp
+0x00523f00,0x00523f00,unit_stats_t3,high,Static-init stub inside unit_stats.cpp's trailing initialiser block.,game/_unplaced/unit_stats.cpp
+0x00524a30,0x00524a30,unit_stats_t4,high,Static-init stub inside unit_stats.cpp's trailing initialiser block.,game/_unplaced/unit_stats.cpp

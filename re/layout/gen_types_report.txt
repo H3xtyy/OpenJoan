@@ -1,0 +1,5 @@
+classes generated: 1072 (0 new headers); hand-typed (not generated): 37: Billboard, Blob, Bone, Box, Button, ButtonState, Colour, Database, DbfFieldDesc, DbfHeader, DynArray, DynArrayB, EmptyRoom, File, FileInfo, FileMem, FileTxt, GameSet, Material, Mem, MemHeader, Misc, Players, Point, Records2bf, RecruitRow, ResIndex, ResIndexL, ResourceDb, ResourceIdx, ResourceIdxL, SetInfo, String, TextureManager, Unit, Units, Widget
+
+Colour (hand): members not one per line -> left as is
+IngameMenu.u32_1238: at 0x1238 overlaps the previous member (ends 0x13cc) -> skipped
+VsEntry.key_format: pointer to unknown class u8 -> void*

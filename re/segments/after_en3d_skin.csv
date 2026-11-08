@@ -1,0 +1,5 @@
+start,end,name,confidence,evidence
+0x005f48b0,0x005f50e0,skin_tail,medium,Skin bone/bounds/deform methods + Groups/ShadowList/Shadow helpers directly after skin.cpp's anchors and called by the mesh loaders; no own data - most likely the rest of en3d/skin.cpp.
+0x005f5100,0x005f5240,skybox,medium,SkyBox class (ctor/dtor/init/build + inlined Shadow::~Shadow) used only by init_sample_world / World::setup_sky; no data refs.
+0x005f65b0,0x006034b0,d3dsys,medium,Direct3D renderer/state object (Renderer start/shutdown, SysEn buffers/locks/draw, blend/texture/filter/raster state apply, formats, gamma, depth/texture creation); its .rdata strings run monotonically 0x9d9848..0x9d9974 right before sysen.cpp's and its .data tables 0xa17d88..0xa17ee4.
+0x00603530,0x006035a0,sysen_head,medium,Dynamic initialiser/atexit pair of a global Jpeg object (bss 0xa69b40) right before en3d/sysen.cpp's first anchor; initialisers open a TU (as before battle/camres/skin/i_gate anchors), so this is the start of sysen.cpp.

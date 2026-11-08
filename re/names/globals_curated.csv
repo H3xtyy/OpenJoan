@@ -1,0 +1,304 @@
+# d:: data names from reading how the code uses each global and the old project's docs (Phase 3; confidence high = two
+# independent sources or unambiguous use in several places, medium = one clear source). Applied by re/rename_data_names.py.
+address,old_name,new_name,evidence
+0x00a03834,g_a03834,g_draw_overlay_mesh,medium: old doc option DAT_00A03834 gates second drawable/overlay mesh (actor/scene_s); toggled by key 0x47 unknown_game_input.cpp
+0x00a0b6b0,g_a0b6b0,g_world_write_pln,"medium: game/world_s.cpp builds and writes the .pln only when set, replay.cpp resets it; old docs formats/pln.md global flag DAT_00A0B6B0"
+0x00a173dc,g_a173dc,g_line_base_a173dc,"medium: plane.cpp mem_free(..., kPlaneCpp, line_base(g_a173dc)+8): __LINE__ base of plane.cpp like g_line_base_a0b794"
+0x00a17428,g_a17428,g_use_reorder_queue,"high: en3d/scene.cpp branch queued vs immediate sector draw; old docs functions/scene.md ""use reorder queue"" switch 0xA17428"
+0x00a336d4,g_a336d4,g_pi_a336d4,"high: src/game/unknown_mission.cpp init_a336d4 = pi_from_atan(); a336d8/dc/e0 = /2,/3,/4 (per-TU copy of pi, float)"
+0x00a33740,g_a33740,g_turn_ang,high: unknown_rts2.cpp g_a33740 = atof_f(s_TURN_ANG); old docs control.md/flocksys.md TURN_ANG 0xA33740
+0x00a3374c,g_a3374c,g_jumpmaxd,high: unknown_rts2.cpp g_a3374c = atoi_(s_JUMPMAXD); old docs control.md JUMPMAXD DAT_00A3374C
+0x00a33754,g_a33754,g_aim_ha,high: src/game/unknown_rts2.cpp g_a33754 = atof_f(s_AIM_HA); old docs control.md AIM_HA aim half angle DAT_00A33754
+0x00a39670,g_a39670,g_world_sample,"medium: src/game/unknown_samplew.cpp as_world(obj(g_a39670))->init(1, s_sampleW, s_sample_world)/cleanup/setup_sky (3 world casts)"
+0x00a399fc,g_a399fc,g_camera_motion,"medium: src/game/unknown_samplew.cpp: created with new_obj, cast jo::CameraMotion, free_list() on teardown"
+0x00a39a08,g_a39a08,g_path_space,"medium: src/game/unknown_samplew.cpp: created with new_obj, cast jo::PathSpace, freed through Players::remove_cell"
+0x00a39c20,g_a39c20,g_pi_a39c20,"high: src/game/unknown_i_obj12.cpp init = pi_value(); a39c24.. = pi/2,/3,/4 (per-translation-unit copy of the constant pi, float)"
+0x00a39c48,g_a39c48,g_pi_a39c48,"high: src/game/unknown_i_obj0e.cpp pi_global; a39c4c.. = pi/2,/3,/4 (per-translation-unit copy of the constant pi, float)"
+0x00a39c5c,g_a39c5c,g_pi_a39c5c,"high: src/game/unknown_i_obj0d.cpp init = pi_value(); a39c60.. = pi/2,/3,/4 (per-translation-unit copy of the constant pi, float)"
+0x00a39cb8,g_a39cb8,g_throw_stc_m,high: src/game/world_s.cpp load_throw_ini_body: g_a39cb8 = ini_float(s_STC_M); throw ballistics table (key name kept)
+0x00a39cdc,g_a39cdc,g_throw_proj_gl,high: src/game/world_s.cpp load_throw_ini_body: g_a39cdc = ini_float(s_PROJ_GL); throw ballistics table (key name kept)
+0x00a39cf8,g_a39cf8,g_throw_can_gl,high: src/game/world_s.cpp load_throw_ini_body: g_a39cf8 = ini_float(s_CAN_GL); throw ballistics table (key name kept)
+0x00a39cfc,g_a39cfc,g_throw_arw_gl,high: src/game/world_s.cpp load_throw_ini_body: g_a39cfc = ini_float(s_ARW_GL); throw ballistics table (key name kept)
+0x00a39d44,g_a39d44,g_throw_stm_m,high: src/game/world_s.cpp load_throw_ini_body: g_a39d44 = ini_float(s_STM_M); throw ballistics table (key name kept)
+0x00a39d78,g_a39d78,g_throw_stc_gl,high: src/game/world_s.cpp load_throw_ini_body: g_a39d78 = ini_float(s_STC_GL); throw ballistics table (key name kept)
+0x00a39dac,g_a39dac,g_throw_arw_m,high: src/game/world_s.cpp load_throw_ini_body: g_a39dac = ini_float(s_ARW_M); throw ballistics table (key name kept)
+0x00a39dbc,g_a39dbc,g_throw_can_m,high: src/game/world_s.cpp load_throw_ini_body: g_a39dbc = ini_float(s_CAN_M); throw ballistics table (key name kept)
+0x00a39dd4,g_a39dd4,g_throw_proj_m,high: src/game/world_s.cpp load_throw_ini_body: g_a39dd4 = ini_float(s_PROJ_M); throw ballistics table (key name kept)
+0x00a39dd8,g_a39dd8,g_throw_expl_gl,high: src/game/world_s.cpp load_throw_ini_body: g_a39dd8 = ini_float(s_EXPL_GL); throw ballistics table (key name kept)
+0x00a39e18,g_a39e18,g_item_res_sort_owner,high: game/itemres.cpp g_a39e18 = this before qsort; comparators read records through it; old docs items_facilities.md DAT_00A39E18 = this
+0x00a3a06c,g_a3a06c,g_pi_a3a06c,"high: src/game/unknown_places.cpp: atan(1)*4; a3a070.. = pi/2,/3,/4 (per-translation-unit copy of the constant pi, float)"
+0x00a3a294,g_a3a294,g_pi_a3a294,"high: src/game/unknown_gamedraw.cpp init_pi_a3a294; a3a298.. = pi/2,/3,/4 (per-translation-unit copy of the constant pi, float)"
+0x00a3a2b0,g_a3a2b0,g_video_capture,"high: unknown_mainwnd.cpp/game_input.cpp as_video_capture(obj(g_a3a2b0)) construct/init(""WW_CAP.WMV"")/release/shutdown (6 casts)"
+0x00a3a30c,g_a3a30c,g_video_playing,"high: game_input.cpp sets 1 at cutscene capture start, game_run frame_ms=0x21 and skips HUD when set; old docs structs/GameApp.md DAT_00A3A30C cutscene video playing"
+0x00a3cb6c,g_a3cb6c,g_pi_a3cb6c,"high: src/game/unit.cpp init_pi_4f4f10: atan(1)*4 (per-translation-unit copy of the constant pi, float)"
+0x00a3cbb4,g_a3cbb4,g_pi_a3cbb4,"high: src/game/unknown_unit_c.cpp: atan(1)*4, dividers a3cbb8/bc/c0 = /2,/3,/4 (per-translation-unit copy of the constant pi, float)"
+0x00a3cbf4,g_a3cbf4,g_critical_glow_in3,"high: src/game/unknown_unit_c.cpp config table {kInt, g_a3cbf4, CRITICAL, GLOW_IN3}; old docs unit.md CRITICAL HUD effect row"
+0x00a3cbf8,g_a3cbf8,g_critical_glow_in2,"high: src/game/unknown_unit_c.cpp config table {kInt, g_a3cbf8, CRITICAL, GLOW_IN2}; old docs unit.md CRITICAL HUD effect row"
+0x00a3cc1c,g_a3cc1c,g_unit_str_hp,"high: src/game/unknown_unit_c.cpp UNIT-section config table {kInt/kShort, g_a3cc1c, UNIT, STR_HP}; old docs re/functions/unit.md gameplay constants table (DAT_00A3CC1C)"
+0x00a3cc28,g_a3cc28,g_waypoint_reach_dist,high: old doc REACH_DT=15 waypoint reach radius DAT_00A3CC28; unknown_ai_behav/us_tactics use as float radius r
+0x00a3cc2c,g_a3cc2c,g_unit_f_defend,"high: src/game/unknown_unit_c.cpp UNIT-section config table {kInt/kShort, g_a3cc2c, UNIT, F_DEFEND}; old docs re/functions/unit.md gameplay constants table (DAT_00A3CC2C)"
+0x00a3cc64,g_a3cc64,g_unit_max_com,"high: src/game/unknown_unit_c.cpp UNIT-section config table {kInt/kShort, g_a3cc64, UNIT, MAX_COM}; old docs re/functions/unit.md gameplay constants table (DAT_00A3CC64)"
+0x00a3cc8c,g_a3cc8c,g_unit_mor_nor,"high: src/game/unknown_unit_c.cpp UNIT-section config table {kInt/kShort, g_a3cc8c, UNIT, MOR_NOR}; old docs re/functions/unit.md gameplay constants table (DAT_00A3CC8C)"
+0x00a3cc90,g_a3cc90,g_unit_blockper,"high: src/game/unknown_unit_c.cpp UNIT-section config table {kInt/kShort, g_a3cc90, UNIT, BLOCKPER}; old docs re/functions/unit.md gameplay constants table (DAT_00A3CC90)"
+0x00a3cc9c,g_a3cc9c,g_unit_body_r,"high: src/game/unknown_unit_c.cpp UNIT-section config table {kInt/kShort, g_a3cc9c, UNIT, BODY_R}; old docs re/functions/unit.md gameplay constants table (DAT_00A3CC9C)"
+0x00a3ccba,g_a3ccba,g_unit_def_hp,"high: src/game/unknown_unit_c.cpp UNIT-section config table {kInt/kShort, g_a3ccba, UNIT, DEF_HP}; old docs re/functions/unit.md gameplay constants table (DAT_00A3CCBA)"
+0x00a3ccf4,g_a3ccf4,g_unit_f_attack,"high: src/game/unknown_unit_c.cpp UNIT-section config table {kInt/kShort, g_a3ccf4, UNIT, F_ATTACK}; old docs re/functions/unit.md gameplay constants table (DAT_00A3CCF4)"
+0x00a3ccfc,g_a3ccfc,g_critical_fade_in1,"high: src/game/unknown_unit_c.cpp config table {kInt, g_a3ccfc, CRITICAL, FADE_IN1}; old docs unit.md CRITICAL HUD effect row"
+0x00a3cd04,g_a3cd04,g_unit_init_w_c,"medium: src/game/unknown_unit_c.cpp UNIT-section config table {kInt/kShort, g_a3cd04, UNIT, INIT_W_C}; old docs re/functions/unit.md gameplay constants table (DAT_00A3CD04)"
+0x00a3cd28,g_a3cd28,g_unit_egatk_mp,"high: src/game/unknown_unit_c.cpp UNIT-section config table {kInt/kShort, g_a3cd28, UNIT, EGATK_MP}; old docs re/functions/unit.md gameplay constants table (DAT_00A3CD28)"
+0x00a3cdb4,g_a3cdb4,g_pi_a3cdb4,"high: src/game/unknown_ur_orders.cpp pi_a3cdb4: atan(1)*4; a3cdb8.. = /2,/3,/4 (per-translation-unit copy of the constant pi, float)"
+0x00a3cde4,g_a3cde4,g_weather_lg_v,"high: unknown_weffects.cpp g_a3cde4 = atof_(entry(weffects, s_LG_V)); old docs functions/particles.md thunder spacing K=DAT_00A3CDE4"
+0x00a3cdf0,g_a3cdf0,g_weather_lg_r,"medium: src/game/unknown_weffects.cpp: g_a3cdf0 = atoi_(entry(weffects, s_LG_R)) (weather effects key LG_R)"
+0x00a3ce04,g_a3ce04,g_bvh_block_ptrs,medium: old doc World::build_bvh temp copy of block pointers DAT_00A3CE04; world.cpp allocates cell_count pointers
+0x00a3ce60,g_a3ce60,g_bmp_res_vict,"high: src/game/game.cpp resource load(d::g_a3ce60, d::s_VICT); freed via fn::BmpRes_free table game.cpp:838"
+0x00a3ce70,g_a3ce70,g_bmp_res_optmenu,"high: src/game/game.cpp resource load(d::g_a3ce70, d::s_OPTMENU); freed via fn::BmpRes_free table game.cpp:838"
+0x00a3ce80,g_a3ce80,g_bmp_res_gameover,"high: src/game/game.cpp resource load(d::g_a3ce80, d::s_GAMEOVER); freed via fn::BmpRes_free table game.cpp:838"
+0x00a3cf30,g_a3cf30,g_start_objectives_screen,high: unknown_gamemode.cpp as_start_objectives_screen(obj(g_a3cf30)) zero/draw/show (4 casts) + ctor/dtor registrations
+0x00a3cf38,g_a3cf38,g_main_menu,"high: as_main_menu reset_widgets 0x70d670, as_ctl2d activate"
+0x00a40390,g_a40390,g_bmp_res_criti_k,"high: src/game/game.cpp resource load(d::g_a40390, d::s_CRITI_K); freed via fn::BmpRes_free table game.cpp:838"
+0x00a403d8,g_a403d8,g_texture_priority,"medium: en3d/plane.cpp local alias ""priority"", temporarily forced to 0xffffec78 (-5000) during animated-texture rebind; old docs engine/scene.md"
+0x00a40420,g_a40420,g_font_18pt_attribute_numbers_over,"high: src/game/unknown_mainwnd.cpp init: bitmap_font/ttf_font(d::g_a40420, d::s_18pt_attribute_numbers_over); Font2d_release teardown; cast as text/font class"
+0x00a40460,g_a40460,g_bmp_res_qsave,"high: src/game/game.cpp resource load(d::g_a40460, d::s_QSAVE); freed via fn::BmpRes_free table game.cpp:838"
+0x00a40470,g_a40470,g_glory_screen,medium: as_glory_screen close/is_open/draw (8 casts); game.cpp ctor Menu4_init
+0x00a411a8,g_a411a8,g_cloud_layers,high: as_cloud_layers build/flag_08 (7 casts) scene.cpp
+0x00a411c0,g_a411c0,g_bmp_res_milibal,"high: src/game/game.cpp resource load(d::g_a411c0, d::s_MILIBAL); freed via fn::BmpRes_free table game.cpp:838"
+0x00a411d0,g_a411d0,g_save_menu,high: as_save_menu open/is_open/destruct (14 casts)
+0x00a45ccb,g_a45ccb,g_savemenu_load_mode,"medium: old docs structs/HudScreen.md DAT_00A45CCB = 0 save, 1 load when opening SAVEMENU; used in i_igmenu/objmenu/mainmenu/gameover"
+0x00a45ce0,g_a45ce0,g_bmp_res_igamemnu,"high: src/game/game.cpp resource load(d::g_a45ce0, d::s_IGAMEMNU); freed via fn::BmpRes_free table game.cpp:838"
+0x00a45cf0,g_a45cf0,g_bmp_res_iattcomb,"high: src/game/game.cpp resource load(d::g_a45cf0, d::s_IATTCOMB); freed via fn::BmpRes_free table game.cpp:838"
+0x00a45d00,g_a45d00,g_bmp_ending,high: game.cpp load(g_a45d00 s_ENDING)
+0x00a45d10,g_a45d10,g_bmp_res_armory,"high: src/game/game.cpp resource load(d::g_a45d10, d::s_ARMORY); freed via fn::BmpRes_free table game.cpp:838"
+0x00a45d20,g_a45d20,g_music_res,"high: src/game/unknown_music.cpp as_music_res(obj(g_a45d20))->track(i), count = first field; old docs audio.md DAT_00A45D20 MusicRes count"
+0x00a45d30,g_a45d30,g_dyn_grass,high: as_grass set_enabled/init/construct 0x464130 (dyngrass); old doc DynGrass
+0x00a45f48,g_a45f48,g_font_goudy_italic_12,"high: src/game/unknown_mainwnd.cpp init: bitmap_font/ttf_font(d::g_a45f48, d::s_goudy_italic_12); Font2d_release teardown; cast as text/font class"
+0x00a45f88,g_a45f88,g_bmp_res_menu_b,"high: src/game/game.cpp resource load(d::g_a45f88, d::s_MENU_B); freed via fn::BmpRes_free table game.cpp:838"
+0x00a45f98,g_a45f98,g_bmp_res_m4,"high: src/game/game.cpp resource load(d::g_a45f98, d::s_M4); freed via fn::BmpRes_free table game.cpp:838"
+0x00a46030,g_a46030,g_video_player,high: as_video_player skip() 0x6d6130 (5 casts)
+0x00a46040,g_a46040,g_letter,high: as_letter get_8/clear (9 casts); Letter_free; LETTER bmp
+0x00a46060,g_a46060,g_font_goudy18_27_white,"high: src/game/unknown_mainwnd.cpp init: bitmap_font/ttf_font(d::g_a46060, d::s_Goudy18_27_white); Font2d_release teardown; cast as text/font class"
+0x00a460a0,g_a460a0,g_items,medium: list.empty_at(item recno) 0x425d50 = item container accessor (old doc); cast class is called units but ids are item recnos (i_buy.cpp carried item)
+0x00a46ad0,g_a46ad0,g_victory_screen,high: as_victory_screen open/tick/close (6 casts)
+0x00a47b58,g_a47b58,g_bmp_res_m7,"high: src/game/game.cpp resource load(d::g_a47b58, d::s_M7); freed via fn::BmpRes_free table game.cpp:838"
+0x00a47ba8,g_a47ba8,g_calendar,"high: as_calendar start(2002,1,1) (old doc Calendar(2002,1,1)); base of a47bb0..bc4 fields"
+0x00a47bb4,g_a47bb4,g_calendar_minute_of_day,high: old doc Calendar +0x0C minute_of_day DAT_00A47BB4; calendar object at g_a47ba8
+0x00a47bc4,g_a47bc4,g_calendar_day_start_minute,medium: old doc Calendar +0x1C day_start_minute; weather roll origin / lightsys range (g_a47bc8-g_a47bc4)
+0x00a47bf8,g_a47bf8,g_nation_res,"high: as_name_table find_4b91a0(""FRENCH""); old doc nation_res row count DAT_00A47BF8"
+0x00a47c88,g_a47c88,g_bmp_res_helpbox,"high: src/game/game.cpp resource load(d::g_a47c88, d::s_HELPBOX); freed via fn::BmpRes_free table game.cpp:838"
+0x00a47c98,g_a47c98,g_bmp_res_quit,"high: src/game/game.cpp resource load(d::g_a47c98, d::s_QUIT); freed via fn::BmpRes_free table game.cpp:838"
+0x00a47ca8,g_a47ca8,g_profile_list,"high: as_profile_list current() 0x4ca290 = profile_current (old doc), destruct 0x4c9c60 (13 casts)"
+0x00a47cd8,g_a47cd8,g_font_goudy_20,"high: src/game/unknown_mainwnd.cpp init: bitmap_font/ttf_font(d::g_a47cd8, d::s_Goudy_20); Font2d_release teardown; cast as text/font class"
+0x00a47d58,g_a47d58,g_bmp_res_victory2,"high: src/game/game.cpp resource load(d::g_a47d58, d::s_VICTORY2); freed via fn::BmpRes_free table game.cpp:838"
+0x00a47d68,g_a47d68,g_bmp_res_ld_bg,"high: src/game/game.cpp load(d::g_a47d68, d::s_LD800BG / s_LD1024BG by resolution); BmpRes_free table"
+0x00a47d88,g_a47d88,g_font_goudy_bold_14,high: unknown_mainwnd.cpp ttf_font(g_a47d88 s_goudy_bold_14); popup title font
+0x00a47dc8,g_a47dc8,g_font_goudy_bold_20,high: unknown_mainwnd.cpp ttf_font(g_a47dc8 s_Goudy_bold_20); as_font measure
+0x00a47e08,g_a47e08,g_light_sys,"high: as_light_sys init(world name, scene) (5 casts) + as_table find lightning"
+0x00a484d0,g_a484d0,g_place_array,high: old doc dynarrb of Place* (0x456C70 get/0x456CA0 empty); as_place_list find(name) 0x4c54a0 = search_place_by_name
+0x00a48530,g_a48530,g_workshop_screen,high: as_workshop_screen set_open (4 casts)
+0x00a48608,g_a48608,g_mouse_cursor,medium: as_mouse_cursor init_493eb0 (7) + as_cursor set_596db0 (5)
+0x00a48810,g_a48810,g_bmp_res_buy,"high: src/game/game.cpp resource load(d::g_a48810, d::s_BUY); freed via fn::BmpRes_free table game.cpp:838"
+0x00a48848,g_a48848,g_bmp_res_victorye,"high: src/game/game.cpp resource load(d::g_a48848, d::s_VICTORYE); freed via fn::BmpRes_free table game.cpp:838"
+0x00a48868,g_a48868,g_mouse_limit_x1,medium: src/ilib/mousecr.cpp Mouse::set_boundary clamps (min) and reset_boundary restores bound_x1 from it; sibling a48878/a4887c = z limits
+0x00a4886c,g_a4886c,g_mouse_limit_y1,medium: src/ilib/mousecr.cpp Mouse::set_boundary clamps (min) and reset_boundary restores bound_y1 from it; sibling a48878/a4887c = z limits
+0x00a48870,g_a48870,g_mouse_limit_x2,medium: src/ilib/mousecr.cpp Mouse::set_boundary clamps (max) and reset_boundary restores bound_x2 from it; sibling a48878/a4887c = z limits
+0x00a48874,g_a48874,g_mouse_limit_y2,medium: src/ilib/mousecr.cpp Mouse::set_boundary clamps (max) and reset_boundary restores bound_y2 from it; sibling a48878/a4887c = z limits
+0x00a488d0,g_a488d0,g_bmp_res_m1,"high: src/game/game.cpp resource load(d::g_a488d0, d::s_M1); freed via fn::BmpRes_free table game.cpp:838"
+0x00a48920,g_a48920,g_barracks_screen,high: as_barracks_screen set_open (5 casts)
+0x00a489a8,g_a489a8,g_bmp_res_optmenub,"high: src/game/game.cpp resource load(d::g_a489a8, d::s_OPTMENUB); freed via fn::BmpRes_free table game.cpp:838"
+0x00a489b8,g_a489b8,g_bmp_res_sl_com,"high: src/game/game.cpp resource load(d::g_a489b8, d::s_SL_COM); freed via fn::BmpRes_free table game.cpp:838"
+0x00a48a08,g_a48a08,g_bmp_res_sl_bg1,"high: src/game/game.cpp resource load(d::g_a48a08, d::s_SL_BG1); freed via fn::BmpRes_free table game.cpp:838"
+0x00a48a18,g_a48a18,g_bmp_res_strategy,"high: src/game/game.cpp resource load(d::g_a48a18, d::s_STRATEGY); freed via fn::BmpRes_free table game.cpp:838"
+0x00a48a28,g_a48a28,g_bmp_res_lflare,"high: src/game/game.cpp resource load(d::g_a48a28, d::s_LFLARE); freed via fn::BmpRes_free table game.cpp:838"
+0x00a48a38,g_a48a38,g_fade_title,medium: as_fade_title zero() 0x7612a0 (5 casts); flag tested in hud
+0x00a48a68,g_a48a68,g_font_celtic_18pt_black,"high: src/game/unknown_mainwnd.cpp init: bitmap_font/ttf_font(d::g_a48a68, d::s_Celtic_18pt_Black); Font2d_release teardown; cast as text/font class"
+0x00a48aa8,g_a48aa8,g_actor_list,medium: world_s.cpp as_actor_list(obj(g_a48aa8)) add_default/delete_all (3 casts; one wave_list cast)
+0x00a48ae8,g_a48ae8,g_sms,"medium: as_sms 20 casts: construct 0x6e4e20, draw (PickupNotice::draw comment)"
+0x00a48c80,g_a48c80,g_font_goudy_12,"high: src/game/unknown_mainwnd.cpp init: bitmap_font/ttf_font(d::g_a48c80, d::s_goudy_12); Font2d_release teardown; cast as text/font class"
+0x00a48cc0,g_a48cc0,g_camera_man,high: as_camera_man set_mode/as_camera_follow target in i_buy.cpp minires.cpp unknown_playerctl.cpp (kCameraMan)
+0x00a48ccc,g_a48ccc,g_camera,high: global void* cast as_camera(...)->frame (i_buy.cpp unknown_weather.cpp); old doc lightsys camera test
+0x00a48cd0,g_a48cd0,g_main_light,"high: assigned scene->add_light() on world load, nulled on unload (unknown_game_run/rts); as_light params(main_light) vshader2.cpp; old doc World::unload_contents"
+0x00a48cd4,g_a48cd4,g_far_clip,medium: optmenui.cpp assigns the view-distance option; old docs engine/gameloop.md Far clip debug overlay DAT_00A48CD4
+0x00a48ce3,g_a48ce3,g_camera_lock_flag_a48ce3,medium: interfac/i_buy.cpp CutScene saved copies; old docs functions/battle.md camera-lock flags DAT_00A48CE3/E7/EB
+0x00a48ce7,g_a48ce7,g_camera_lock_flag_a48ce7,medium: interfac/i_buy.cpp CutScene hud_c saved copy; old docs functions/battle.md camera-lock flags
+0x00a48ceb,g_a48ceb,g_camera_lock_flag_a48ceb,medium: interfac/i_buy.cpp CutScene hud_b saved copy; old docs functions/battle.md camera-lock flags
+0x00a48cf8,g_a48cf8,g_uscr_res,"high: as_uscr_res entry() (unit.cpp), as_name_table find_5464a0 for script_id"
+0x00a48d08,g_a48d08,g_font_goudy_bold_24,high: unknown_mainwnd.cpp ttf_font(g_a48d08 s_Goudy_bold_24); as_font measure
+0x00a48d48,g_a48d48,g_font_goudy_bold_18,high: unknown_mainwnd.cpp ttf_font(g_a48d48 s_Goudy_bold_18); text3/draw_3
+0x00a48ec8,g_a48ec8,g_font_verdana_10,"high: src/game/unknown_mainwnd.cpp init: bitmap_font/ttf_font(d::g_a48ec8, d::s_font_verdana_10); Font2d_release teardown; cast as text/font class"
+0x00a48f40,g_a48f40,g_bmp_res_critical,"high: src/game/game.cpp resource load(d::g_a48f40, d::s_CRITICAL); freed via fn::BmpRes_free table game.cpp:838"
+0x00a48f50,g_a48f50,g_bmp_res_rtsicon,"high: src/game/game.cpp resource load(d::g_a48f50, d::s_RTSICON); freed via fn::BmpRes_free table game.cpp:838"
+0x00a48f60,g_a48f60,g_bmp_commele2,high: game.cpp load(g_a48f60 s_COMMELE2); widget sprite sheet in objmenu/i_work
+0x00a48f70,g_a48f70,g_font_celtic_10pt_english,"high: src/game/unknown_mainwnd.cpp init: bitmap_font/ttf_font(d::g_a48f70, d::s_Celtic_10pt_English); Font2d_release teardown; cast as text/font class"
+0x00a48fb0,g_a48fb0,g_font_goudy_18,"high: src/game/unknown_mainwnd.cpp init: bitmap_font/ttf_font(d::g_a48fb0, d::s_Goudy_18); Font2d_release teardown; cast as text/font class"
+0x00a48ff0,g_a48ff0,g_combat_screen,medium: unknown_i_unitatt.cpp as_combat_screen(obj)->load_sprites/free_sprites (2) and as_panel draw/handle_buttons (2); Screen ctor 0x6ef290 on it
+0x00a4d558,g_a4d558,g_font_goudy_bold_48,"high: src/game/unknown_mainwnd.cpp init: bitmap_font/ttf_font(d::g_a4d558, d::s_Goudy_bold_48); Font2d_release teardown; cast as text/font class"
+0x00a4d608,g_a4d608,g_bmp_res_gmsg,"high: src/game/game.cpp resource load(d::g_a4d608, d::s_GMSG); freed via fn::BmpRes_free table game.cpp:838"
+0x00a4d618,g_a4d618,g_player_hud,"medium: as_hud update_health_state(player recno) 0x703750, clear_portrait; as_name_list add_6fe520(xp)"
+0x00a4f381,g_a4f381,g_mini_map,"medium: as_mini_map near_tracked_unit/clear_reveal (13 casts), minires.cpp"
+0x00a4f810,g_a4f810,g_bmp_res_invent,"high: src/game/game.cpp resource load(d::g_a4f810, d::s_INVENT); freed via fn::BmpRes_free table game.cpp:838"
+0x00a4f820,g_a4f820,g_critical_hud,high: as_critical_hud draw/mark_crit_kill (12 casts)
+0x00a4f878,g_a4f878,g_bmp_res_m8,"high: src/game/game.cpp resource load(d::g_a4f878, d::s_M8); freed via fn::BmpRes_free table game.cpp:838"
+0x00a4fef8,g_a4fef8,g_opt_menu,high: as_opt_menu is_open 0x4303a0 (11 casts); optmenui panel comment
+0x00a50048,g_a50048,g_font_verdana_12_regular_black_out,high: unknown_mainwnd.cpp bitmap_font(g_a50048 s_verdana_12_regular_black_out); text2 in unknown_hud.cpp
+0x00a50090,g_a50090,g_main_hwnd,"high: old doc DAT_00A50090 = main window HWND; code global<HWND> debug_menu.cpp, hDeviceWindow sys3d.cpp, MessageBox owner"
+0x00a500b2,g_a500b2,g_game_time_ms,medium: actor.cpp picks it (kind==-1) instead of g_now as stamp clock; old doc current game time ms speed-scaled
+0x00a500b6,g_a500b6,g_frame_elapsed_ms,high: old doc elapsed ms of current frame; added to screen/briefing timers in i_buy/objmenu/i_sms
+0x00a500be,g_a500be,g_frame_step_ms,"medium: old doc per-frame step ms (0 while paused); actor.cpp returns early when 0, mlfader/formmove scale by it"
+0x00a500c2,g_a500c2,g_game_mode,"high: old doc game mode byte (5 disables world update, 12 skips sound); code ==9 in-game menu, ==5 game.cpp, ==12 sndplay"
+0x00a500cc,g_a500cc,g_game_speed,high: old doc GameApp+0x44 speed float (set_speed 0x42f930); i_buy/objmenu save ftol(it) when pausing
+0x00a500d0,g_a500d0,g_saved_game_speed,high: old doc DAT_00A500D0 g_saved_speed; i_buy/objmenu/i_work store ftol(g_a500cc) there when pausing
+0x00a500d2,g_a500d2,g_game_running,high: old doc DAT_00A500D2 g_game_running (1 = no interface suspends the game); i_buy/i_work pause logic. NOTE declared u8[263] but used as one byte
+0x00a501e0,g_a501e0,g_sell_item_res,high: f_shop.cpp as_sell_item_res(obj(g_a501e0))->entry_at; dtor fn::SellItemRes_dtor (2 casts)
+0x00a50298,g_a50298,g_weather_system,high: as_weather_system active_lightning/draw_lightning (scene.cpp view3d.cpp)
+0x00a50518,g_a50518,g_goal_panel,high: as_goal_panel draw/close_second (7 casts)
+0x00a50534,g_a50534,g_map_object_list,"medium: dynarray iterated everywhere with as_map_object(entries): unknown_unit_c find_near_structure, triggers, minires, unknown_unit_core (4 dynarray casts)"
+0x00a50568,g_a50568,g_model_res_mgr,high: as_model_res_mgr release()/entry (29 casts) + as_model_res add(); old doc modelres table
+0x00a505c0,g_a505c0,g_font_verdana_10_bold,"high: src/game/unknown_mainwnd.cpp init: bitmap_font/ttf_font(d::g_a505c0, d::s_font_verdana_10_bold); Font2d_release teardown; cast as text/font class"
+0x00a50690,g_a50690,g_bmp_res_optmenuf,"high: src/game/game.cpp resource load(d::g_a50690, d::s_OPTMENUF); freed via fn::BmpRes_free table game.cpp:838"
+0x00a50718,g_a50718,g_bmp_res_criti_f,"high: src/game/game.cpp resource load(d::g_a50718, d::s_CRITI_F); freed via fn::BmpRes_free table game.cpp:838"
+0x00a50728,g_a50728,g_bmp_res_m2,"high: src/game/game.cpp resource load(d::g_a50728, d::s_M2); freed via fn::BmpRes_free table game.cpp:838"
+0x00a50738,g_a50738,g_bmp_res_victory,"high: src/game/game.cpp resource load(d::g_a50738, d::s_VICTORY); freed via fn::BmpRes_free table game.cpp:838"
+0x00a50808,g_a50808,g_popup_a50808,"medium: as_popup open(x,y,w,h,font) game.cpp, as_panel draw_frame; address kept"
+0x00a50eb8,g_a50eb8,g_bmp_res_menu1024,"high: src/game/game.cpp resource load(d::g_a50eb8, d::s_MENU1024); freed via fn::BmpRes_free table game.cpp:838"
+0x00a50ec8,g_a50ec8,g_audio,"high: unknown_globals.cpp as_audio construct, game.cpp release_buffers, volpan as_sound attenuation (3+1 casts)"
+0x00a51278,g_a51278,g_recruit_res,high: as_recruit_res group_at (5 casts)
+0x00a51288,g_a51288,g_bmp_res_tui,"high: src/game/game.cpp resource load(d::g_a51288, d::s_TUI); freed via fn::BmpRes_free table game.cpp:838"
+0x00a51298,g_a51298,g_dialogue,medium: atexit registration as_dialogue destruct 0x63bf90; also cast as_streams pause_all/as_script purge (base members of same object)
+0x00a51608,g_a51608,g_font_goudy14_22_white,high: unknown_mainwnd.cpp bitmap_font(g_a51608 s_Goudy14_22_white); default button/message font
+0x00a516a0,g_a516a0,g_bmp_res_m5,"high: src/game/game.cpp resource load(d::g_a516a0, d::s_M5); freed via fn::BmpRes_free table game.cpp:838"
+0x00a516d0,g_a516d0,g_mouse_left_down,high: old doc DAT_00A516D0/D4 left/right button down; scrollbar clears dragging when 0
+0x00a516dc,g_a516dc,g_mouse_delta_x,"medium: old doc a516dc/e0/e4 relative mouse accumulators; playerctl tests |dc|,|e0| >= 3 together"
+0x00a516e0,g_a516e0,g_mouse_delta_y,medium: pair of g_a516dc (old doc accumulators; playerctl tests both)
+0x00a516e4,g_a516e4,g_mouse_wheel,high: unknown_playerctl.cpp sign tests (zoom in/out); old docs control.md DAT_00A516E4 g_mouse_wheel
+0x00a516f4,g_a516f4,g_mouse_look_dx,medium: fixes.cpp reads it as dx*sens -> yaw; unknown_camcmd negates it
+0x00a516f8,g_a516f8,g_mouse_dy,medium: unknown_playerctl.cpp/camcmd.cpp scaled by look sensitivity; old docs control.md A516F4/F8 g_mouse_dx/dy
+0x00a51800,g_a51800,g_key_modifiers,"high: old doc shift state DAT_00A51800 & 3, ctrl/alt bits 0xC/0x30; minires.cpp tests & 0x30"
+0x00a51804,g_a51804,g_rts_scroll_bits,high: old doc DAT_00A51804 arrow/edge-scroll direction bits; unknown_rts/camctl/ctrl test bits
+0x00a51d5a,g_a51d5a,g_last_key_scancode,"high: unknown_rts.cpp keyboard::translate(g_a51d5a,...), optmenui bind; old docs control.md DAT_00A51D5A last key-down scancode"
+0x00a52597,g_a52597,g_vs_cache,medium: global void* cast as_vs_cache set_tint_source (scene.cpp)
+0x00a5271b,g_a5271b,g_rgb_offset_r,"medium: src/game/unknown_game_input.cpp cheat_key arrows adjust them and pass (x,y,z) to SysEn::set_rgb_offsets(x,y,z) 0x00602bd0 (channel order from argument order)"
+0x00a5271f,g_a5271f,g_rgb_offset_g,"medium: src/game/unknown_game_input.cpp cheat_key arrows adjust them and pass (x,y,z) to SysEn::set_rgb_offsets(x,y,z) 0x00602bd0 (channel order from argument order)"
+0x00a52723,g_a52723,g_rgb_offset_b,"medium: src/game/unknown_game_input.cpp cheat_key arrows adjust them and pass (x,y,z) to SysEn::set_rgb_offsets(x,y,z) 0x00602bd0 (channel order from argument order)"
+0x00a5272b,g_a5272b,g_stencil_bits,high: old doc DAT_00A5272B > 3 stencil bits; plane.cpp stencil_bits local; view3d flags |= 4 // stencil
+0x00a52758,g_a52758,g_race_res,high: unitres.cpp as_race_res(obj(g_a52758))->find(name); game.cpp RaceRes_free; construct (3 casts)
+0x00a52768,g_a52768,g_font_dauphin_14_bold,"high: src/game/unknown_mainwnd.cpp init: bitmap_font/ttf_font(d::g_a52768, d::s_dauphin_14_bold); Font2d_release teardown; cast as text/font class"
+0x00a527a8,g_a527a8,g_pemi_res,high: as_name_list find_4c2060 = pemires_find (old doc); as_pemi_res; peffect.cpp
+0x00a527f8,g_a527f8,g_bmp_res_letter,"high: src/game/game.cpp resource load(d::g_a527f8, d::s_LETTER); freed via fn::BmpRes_free table game.cpp:838"
+0x00a52848,g_a52848,g_font_verdana_12_gold_black_outline,"high: src/game/unknown_mainwnd.cpp init: bitmap_font/ttf_font(d::g_a52848, d::s_verdana_12_gold_black_outlin); Font2d_release teardown; cast as text/font class"
+0x00a528d8,g_a528d8,g_bmp_res_ld_cp,"high: src/game/game.cpp load(d::g_a528d8, d::s_LD800CP / s_LD1024CP by resolution); BmpRes_free table"
+0x00a52930,g_a52930,g_screen_mgr,"high: old doc ScreenMgr {cur,pending,from_menu} at DAT_00A52930; as_menu set_state_6f5cc0, as_mode check_6f5a70"
+0x00a52934,g_a52934,g_screen_pending,"medium: old doc DAT_00A52934 = pending screen id (ScreenMgr+4), e.g. =6 opens objective menu; code sets =1"
+0x00a52940,g_a52940,g_territory_array,high: old doc dynarrb of Territory* (0x420FF0 get/0x4217E0 empty); minires.cpp loop with is_empty_at
+0x00a52968,g_a52968,g_credits_screen,high: as_credits close() 0x6b5880 (4 casts); Screen_create_backgrounds
+0x00a52de8,g_a52de8,g_bmp_res_kill,"high: src/game/game.cpp resource load(d::g_a52de8, d::s_KILL); freed via fn::BmpRes_free table game.cpp:838"
+0x00a52df8,g_a52df8,g_popup_a52df8,"medium: as_popup set_title/draw (22 casts), as_dialog init; several popups so address kept"
+0x00a53cb0,g_a53cb0,g_objective_menu,high: as_obj_menu draw (ObjectiveMenu::draw comment 0x71f690) 10 casts; old doc objective menu
+0x00a53ff8,g_a53ff8,g_game_over_screen,high: as_game_over draw 0x6b7160 (+screen casts)
+0x00a54b0a,g_a54b0a,g_gamefile_error_quiet,medium: old doc TODO error-message suppression flag DAT_00A54B0A; gamefile.cpp returns early when set. NOTE declared i8[262]
+0x00a54c10,g_a54c10,g_bmp_credits,high: game.cpp load(g_a54c10 s_CREDITS); unknown_credits.cpp label sprites
+0x00a54c20,g_a54c20,g_armory_screen,high: as_armory_screen set_item (6 casts); game.cpp ItemScreen_setup; ARMORY
+0x00a55a48,g_a55a48,g_font_18pt_light_numbers,"high: src/game/unknown_mainwnd.cpp init: bitmap_font/ttf_font(d::g_a55a48, d::s_18pt_light_numbers); Font2d_release teardown; cast as text/font class"
+0x00a55aba,g_a55aba,g_attention_call_last_key,medium: unknown_message.cpp compares Message::priority_ with it; old docs functions/hud.md g_attncall_last_key (monotonic sort key)
+0x00a55ad1,g_a55ad1,g_menu_frame_state,"medium: old doc MenuFrame at DAT_00A55AD0, +1 = state (2 shown); code ==2 in objmenu/optmenui/i_msglog. NOTE declared i8[2247]; not the object itself"
+0x00a56a4b,g_a56a4b,g_next_objectives_screen,high: unknown_gamemode.cpp as_next_objectives_screen(obj(g_a56a4b)) show/reset/draw (3 casts)
+0x00a56a50,g_a56a50,g_upgrade_res,"high: as_table find_name_531b20 = upgrare_type_from_name, entry 0x50d240 = upgrare_get (old doc UPITEM 100B records); kDefs comment in unitlvl.cpp is wrong"
+0x00a56ad8,g_a56ad8,g_font_18pt_attribute_numbers_out,"high: src/game/unknown_mainwnd.cpp init: bitmap_font/ttf_font(d::g_a56ad8, d::s_18pt_attribute_numbers_out); Font2d_release teardown; cast as text/font class"
+0x00a56b18,g_a56b18,g_game_set,high: as_game_set open_db/init/find_set INTERFAC STD SDATE (14 casts)
+0x00a56da0,g_a56da0,g_font_goudy12_18_target_unit,"high: src/game/unknown_mainwnd.cpp init: bitmap_font/ttf_font(d::g_a56da0, d::s_Goudy12_18_target_unit); Font2d_release teardown; cast as text/font class"
+0x00a56de0,g_a56de0,g_font_24pt_large_numbers_gold,"high: src/game/unknown_mainwnd.cpp init: bitmap_font/ttf_font(d::g_a56de0, d::s_24pt_large_numbers_gold); Font2d_release teardown; cast as text/font class"
+0x00a56e20,g_a56e20,g_bmp_res_maingame,"high: src/game/game.cpp resource load(d::g_a56e20, d::s_MAINGAME); freed via fn::BmpRes_free table game.cpp:838"
+0x00a56e70,g_a56e70,g_font_goudy_bold_italic_24,"high: src/game/unknown_mainwnd.cpp init: bitmap_font/ttf_font(d::g_a56e70, d::s_goudy_bold_italic_24); Font2d_release teardown; cast as text/font class"
+0x00a56f58,g_a56f58,g_sdate_res,"high: game.cpp SdateRes_free / SDate_ensure_loaded, unit_glow as_sdate_res->entry (2 casts)"
+0x00a56f60,g_a56f60,g_font_goudy_bold_gold_24,"high: src/game/unknown_mainwnd.cpp init: bitmap_font/ttf_font(d::g_a56f60, d::s_Goudy_Bold_Gold_24); Font2d_release teardown; cast as text/font class"
+0x00a56fa0,g_a56fa0,g_msg_log,"medium: as_msg_log draw (MessageLog::draw comment 0x6e1130), as_panel destruct"
+0x00a56ff0,g_a56ff0,g_font_times_10,"high: src/game/unknown_mainwnd.cpp init: bitmap_font/ttf_font(d::g_a56ff0, d::s_Times_10); Font2d_release teardown; cast as text/font class"
+0x00a57030,g_a57030,g_talk_prompt,high: game.cpp/gamedraw.cpp as_talk_prompt(obj(g_a57030)) construct/draw (3 casts)
+0x00a57068,g_a57068,g_bmp_res_iunitatt,"high: src/game/game.cpp resource load(d::g_a57068, d::s_IUNITATT); freed via fn::BmpRes_free table game.cpp:838"
+0x00a570aa,g_a570aa,g_collision_grid,high: as_collision_grid is_free/region_hit (8 casts)
+0x00a57632,g_a57632,g_path_poly_visit_counter,high: uti3d/pathsp.cpp ++ then stored in PfdZone::visit_stamp; old docs structs/PathPoly.md global id counter DAT_00A57632
+0x00a57636,g_a57636,g_placements,"medium: orig::placements::find(obj, ...) in pathsp/unit/unit_core"
+0x00a57bf8,g_a57bf8,g_bmp_debrief,high: game.cpp load(g_a57bf8 s_DEBRIEF); debrief/cannon labels
+0x00a57c98,g_a57c98,g_ending_screen,high: as_ending open/draw/tick (9 casts)
+0x00a57ed0,g_a57ed0,g_sound3d_system,medium: as_sound3d create_buffer_48d120 + as_sound3dsystem/as_sound set_distance_model (video.cpp optmenui.cpp)
+0x00a57ef8,g_a57ef8,g_sound3d_listener,high: as_sound3dlistener set_from_view; old doc listener DAT_00A57EF8 null check in sepl_play
+0x00a57f00,g_a57f00,g_bmp_objmenu,high: game.cpp load(g_a57f00 s_OBJMENU); objmenu.cpp sprites
+0x00a57f20,g_a57f20,g_bmp_res_m3,"high: src/game/game.cpp resource load(d::g_a57f20, d::s_M3); freed via fn::BmpRes_free table game.cpp:838"
+0x00a57f30,g_a57f30,g_bmp_commele,high: game.cpp load(g_a57f30 s_COMMELE); combobox font sheet
+0x00a57f80,g_a57f80,g_nations,high: as_players hostile(side) 0x4b6860 + find_by_word2 0x4b67e0 (old doc Nation.md live Nation by nation_res row); unknown_objm_shop.cpp FRENCH/ENGLISH
+0x00a57fae,g_a57fae,g_player_side,medium: unknown_playerctl.cpp stores controlled unit side; unknown_talk.cpp compares treaty->to with it
+0x00a57fc2,g_a57fc2,g_difficulty,"high: old doc DAT_00A57FC2 difficulty 0 easy..3 very hard; optmenui.cpp maps combo 1..4 to 0..3. NOTE declared u8[13], used as one byte"
+0x00a57ff2,g_a57ff2,g_music_volume,"medium: old doc settings byte DAT_00A57FF2 music volume; options slider, applied via set_volume_59b150 (sysen.cpp)"
+0x00a57ff9,g_a57ff9,g_sfx_volume,high: old doc SFX volume byte DAT_00A57FF9; options slider game_slider_a8; as_party set_scale(it) in sndplay/mission
+0x00a58023,g_a58023,g_cfg_control_scheme,"medium: old doc GameConfig+0x05 options value; control-scheme mapping 0/1/3; key-table selector in i_igmenu lookup(scheme,id)"
+0x00a5802b,g_a5802b,g_cfg_invert_look,medium: sign = !=0 ? -1 : 1 in playerctl/camcmd/fixes look code; options key_combo select
+0x00a58050,g_a58050,g_cfg_far_limit,medium: CameraFollow far_limit = float(it) unknown_camctl; options slider draw_to_slider; rts g_a48cd4
+0x00a58055,g_a58055,g_cfg_shadow_quality,high: old doc GameConfig+0x37 shadow_quality (==2 enables shadows); plane/view3d/boids test ==2
+0x00a58057,g_a58057,g_cfg_grass_enable,high: old doc GameConfig+0x39 grass_enable; as_grass set_enabled(it) camres/rts
+0x00a58058,g_a58058,g_cfg_grass_density,high: old doc GameConfig+0x3A grass_density; passed to as_grass init 0x4641a0 (game.cpp)
+0x00a58b00,g_a58b00,g_sound_effects,high: unknown_game_run/mainwnd/button2d as_sound_effects(obj(g_a58b00)) flush/load/play/construct (4 casts)
+0x00a58ca8,g_a58ca8,g_bmp_res_victory3,"high: src/game/game.cpp resource load(d::g_a58ca8, d::s_VICTORY3); freed via fn::BmpRes_free table game.cpp:838"
+0x00a58cb8,g_a58cb8,g_anim_res_mgr,high: as_anim_res_mgr entry() 27 casts (actordef.cpp i_buy.cpp)
+0x00a58f50,g_a58f50,g_item_res,high: as_records_2bf get(item id) 0x425ce0 = item table record (old doc 0x425CE0); i_buy.cpp kItems
+0x00a58f75,g_a58f75,g_roster_screen,medium: unknown_gamedraw.cpp as_roster_screen(obj(g_a58f75))->draw(); one shop cast elsewhere
+0x00a58f90,g_a58f90,g_game_state,high: as_game methods flag_744/has_word_728 (old doc GameState+0x744 cutscene flag); base arithmetic a58fab=+0x1B stage_index per old doc
+0x00a58fab,g_a58fab,g_stage_index,high: old doc GameState+0x1B stage_index (1-based); code indexes g_a58fb7[stage-1]
+0x00a58faf,g_a58faf,g_target_stage,high: src/game/battle.cpp writes index with stage_index (a58fab); old docs structs/Scenario.md + GameState.md target_stage DAT_00A58FAF
+0x00a58fb7,g_a58fb7,g_stages,high: old doc GameState+0x27 stage array (g_stages); code global<ScenarioEntry*>[stage-1]
+0x00a59141,g_a59141,g_scenario_script,high: battle.cpp new_script()/delete_script on it; old docs structs/Scenario.md embedded script pointer DAT_00A59141
+0x00a59181,g_a59181,g_mission_ms,high: unknown_game_tick/objmenu use; old docs structs/GameState.md mission_ms DAT_00A59181 += dt
+0x00a591d0,g_a591d0,g_scenario_rescue_count,medium: unknown_esfuncs.cpp setter; old docs structs/Scenario.md rescue_count DAT_00A591D0
+0x00a591d4,g_a591d4,g_scenario_rescue_limit,medium: old docs structs/Scenario.md rescue_limit DAT_00A591D4 (set_scenario_rescue_limit 0x659A30)
+0x00a596d0,g_a596d0,g_play_ms,high: objmenu.cpp/battle.cpp; old docs structs/GameState.md play_ms DAT_00A596D0 total play time
+0x00a59788,g_a59788,g_chat_box,medium: unknown_gamedraw.cpp/unknown_globals.cpp as_chat_box(obj(g_a59788)) construct/draw (3 casts); also initialised as panel
+0x00a59a72,g_a59a72,g_sound_def_table,"medium: as_sorted_names find(name)=sound_id_by_name 0x4d12f0 (old doc), find_select 0x4d0d80 resolves sound def"
+0x00a59a78,g_a59a78,g_debug_overlay,high: as_debug_overlay(obj(g_a59a78)) draw/on_key/update (4 casts)
+0x00a59a88,g_a59a88,g_bmp_res_mgexp,"high: src/game/game.cpp resource load(d::g_a59a88, d::s_MGEXP); freed via fn::BmpRes_free table game.cpp:838"
+0x00a59a98,g_a59a98,g_ingame_menu,medium: as_ingame_menu draw (IngameMenu::draw comment 0x6f3af0)
+0x00a5b9a8,g_a5b9a8,g_font_verdana_12,"high: src/game/unknown_mainwnd.cpp init: bitmap_font/ttf_font(d::g_a5b9a8, d::s_font_verdana_12); Font2d_release teardown; cast as text/font class"
+0x00a5b9e8,g_a5b9e8,g_player_unit_recno,high: old doc DAT_00A5B9E8 = ControlMgr +0 recno of main character; i_buy.cpp/scene_s.cpp compare unit id with it
+0x00a5b9f0,g_a5b9f0,g_command_points,high: unknown_unit_xp.cpp adds experience to it; old docs unit.md command points DAT_00A5B9F0 (Profile aux)
+0x00a5b9f8,g_a5b9f8,g_control_mode,high: old doc ControlMgr+0x10 control mode (4 = RTS); code compares ==4 in scene_s/i_buy/minires/optmenui
+0x00a5b9fc,g_a5b9fc,g_control_base_mode,medium: ControlMgr+0x14 base mode of RTS (old doc); code mode==4 ? g_a5b9fc : g_a5b9f8
+0x00a5ba61,g_a5ba61,g_cheat_keys_enabled,medium: unknown_game_input.cpp toggles it with a key and calls cheat_key(self) when set; old docs engine/camera.md debug flag DAT_00A5BA61
+0x00a5ba62,g_a5ba62,g_kill_combo,"high: old doc DAT_00A5BA62 chain counter; pad_feedback.cpp local named combo, sceload ++, hud reset to 0"
+0x00a5ccf0,g_a5ccf0,g_message_indicator,medium: as_message_indicator set_mode/construct 0x4af4a0 (4 casts)
+0x00a5cd00,g_a5cd00,g_bmp_res_m6,"high: src/game/game.cpp resource load(d::g_a5cd00, d::s_M6); freed via fn::BmpRes_free table game.cpp:838"
+0x00a5cd10,g_a5cd10,g_bmp_res_msglog,"high: src/game/game.cpp resource load(d::g_a5cd10, d::s_MSGLOG); freed via fn::BmpRes_free table game.cpp:838"
+0x00a5cd20,g_a5cd20,g_font_18pt_dark_numbers,high: unknown_mainwnd.cpp bitmap_font(g_a5cd20 s_18pt_dark_numbers); text2 in unknown_i_unitatt.cpp
+0x00a5cd6a,g_a5cd6a,g_sound_res_table,high: as_sound_res_table load/at (8 casts); old doc 0x639560 sound_table_append
+0x00a5ceb8,g_a5ceb8,g_bmp_res_savemenu,"high: src/game/game.cpp resource load(d::g_a5ceb8, d::s_SAVEMENU); freed via fn::BmpRes_free table game.cpp:838"
+0x00a5cec8,g_a5cec8,g_quit_popup,high: as_quit_popup show/draw (QuitPopup::draw comment)
+0x00a5cf98,g_a5cf98,g_sfx_player,"medium: as_sound play_def(""MAP_BUTTON"") 0x4ceef0 (old doc sepl_play_def) and as_party set_scale(sfx volume) unknown_mission.cpp"
+0x00a5d0f8,g_a5d0f8,g_model_refs,medium: as_model_refs get(kind) 0x416f20 (12 casts)
+0x00a5d130,g_a5d130,g_bmp_res_sl_bg2,"high: src/game/game.cpp resource load(d::g_a5d130, d::s_SL_BG2); freed via fn::BmpRes_free table game.cpp:838"
+0x00a5d190,g_a5d190,g_help_box,high: unknown_mainwnd.cpp as_help_box(obj(g_a5d190))->load(s_HELP_RES)
+0x00a5d2f4,g_a5d2f4,g_video_texture,medium: old docs engine/lights.md blit the video texture DAT_00A5D2F4; used in i_buy.cpp/unknown_gamedraw.cpp
+0x00a5d300,g_a5d300,g_video_width,high: interfac/i_buy.cpp video scaling uses a5d300 x a5d304; old docs engine/lights.md video WxH DAT_00A5D300/04
+0x00a5d304,g_a5d304,g_video_height,high: interfac/i_buy.cpp video scaling; old docs engine/lights.md DAT_00A5D304
+0x00a5d320,g_a5d320,g_bmp_res_popupwin,"high: src/game/game.cpp resource load(d::g_a5d320, d::s_POPUPWIN); freed via fn::BmpRes_free table game.cpp:838"
+0x00a5d330,g_a5d330,g_bmp_res_hurt,"high: src/game/game.cpp resource load(d::g_a5d330, d::s_HURT); freed via fn::BmpRes_free table game.cpp:838"
+0x00a5d3c8,g_a5d3c8,g_font_goudy12_bold_black,high: unknown_mainwnd.cpp bitmap_font(g_a5d3c8 s_Goudy12_Bold_Black); popup text font
+0x00a5d408,g_a5d408,g_quick_save_screen,medium: unknown_mission.cpp set_mode_6e4360 (old doc quick-save banner 0x6E4360); as_quick_save_screen cast
+0x00a5d868,g_a5d868,g_level_res,high: as_level_res find(level) 0x4a4e60 (old doc LEVEL table lookup)
+0x00a5d874,g_a5d874,g_movie_start_ms,"high: old doc ms timestamp of first pump of current movie (0 = not started); gamedraw dt=now-it, game.cpp resets to 0"
+0x00a64528,g_a64528,g_error_busy,high: old doc re-entrancy guard DAT_00A64528 makes later errors silent; error.cpp/unknown_errhand.cpp return when set
+0x00a6452c,g_a6452c,g_text_lead_byte_table,"medium: old docs functions/ui2d.md 256-byte lead-byte table at 0xA6452C parsed from ""%x-%x""; used in unknown_mbtext.cpp/txtres.cpp"
+0x00a67634,g_a67634,g_music_stream_list,medium: src/game/unknown_tfanim.cpp pushes MusicStream nodes (next = head) onto it (head pointer of an intrusive list)
+0x00a67698,g_a67698,g_bone_name_registry,high: en3d/bonetree.cpp g_a67698 = this; old docs functions/actor.md DAT_00A67698 current bone-name registry
+0x00a6785c,g_a6785c,g_ambient_light_list,high: en3d/light.cpp light_enable stores this at [a6785c + count*ptr]; old docs EngineLight.md ambient array 0xA6785C
+0x00a6789c,g_a6789c,g_ambient_light_count,high: en3d/light.cpp light_enable: ambient lights appended to array a6785c at index a6789c; old docs EngineLight.md
+0x00a69a74,g_a69a74,g_reorder_span_free_list,high: src/en3d/reorder.cpp reorder_release/pool_alloc<SpanNode>; old docs structs/ReorderQueue.md DAT_00A69A74 free list of 0x20-byte nodes
+0x00a69a78,g_a69a78,g_reorder_strip_free_list,high: src/en3d/reorder.cpp pool_alloc<StripNode>; ReorderQueue.md DAT_00A69A78 0x30-byte nodes
+0x00a69a7c,g_a69a7c,g_reorder_strip_free_count,high: src/en3d/reorder.cpp count capped at 0x28; ReorderQueue.md DAT_00A69A7C
+0x00a69a80,g_a69a80,g_reorder_span_free_count,high: src/en3d/reorder.cpp pool count capped at 0x28; ReorderQueue.md DAT_00A69A80
+0x00a69a84,g_a69a84,g_reorder_pool_refcount,"high: src/en3d/reorder.cpp span_begin ++ / reorder_release -- and frees pools at 0; ReorderQueue.md ""reference counted for the shared node pools (DAT_00A69A84)"""
+0x00a69ab0,g_a69ab0,g_actor_draw_enable,medium: en3d/scene.cpp/scene_s.cpp gates actor drawing; old docs functions/scene.md 0xA69AB0 actor draw enable
+0x00a69ac4,g_a69ac4,g_pi_a69ac4,"high: src/en3d/scene_s.cpp init_pi_5f44c0 = atan(1)*4 (per-TU copy of pi, float)"
+0x00a69d0c,g_a69d0c,g_interfac_set_id,"high: game.cpp stores find_set_58b250(""INTERFAC""); bmpres.cpp tests it before BmpRes::load; old doc cached id DAT_00A69D0C"
+0x00a6a0bc,g_a6a0bc,g_parser_arena,high: old doc script parse arena DAT_00A6A0BC; esstate2.cpp saves/restores it
+0x00a6a0c0,g_a6a0c0,g_parser_arena_counter,high: old doc arena counter pointer DAT_00A6A0C0; esstate2.cpp save_c0. NOTE declared u32[21]
+0x00a6a218,g_a6a218,g_sce_script_name,high: uti3d/esstate2.cpp strcpy as error-message prefix; old docs structs/SceScript.md script name prefix DAT_00A6A218
+0x00a6a270,g_a6a270,g_lens_flare_shared_refcount,high: uti3d/lflare.cpp release decrements and frees at 0; old docs structs/LensFlareList.md refcount DAT_00A6A270
+0x00a6a3d0,g_a6a3d0,g_pi_a6a3d0,"high: src/game/unknown_weather.cpp init_pi_a6a3d0; a6a3d4.. = pi/2,/3,/4 (per-translation-unit copy of the constant pi, float)"
+0x00a6a4e8,g_a6a4e8,g_pi_a6a4e8,"high: src/game/unknown_formmove.cpp init pi_from_atan; a6a4ec.. = pi/2,/3,/4 (per-translation-unit copy of the constant pi, float)"
+0x00a6a554,g_a6a554,g_pi_a6a554,"high: src/interfac/i_buy.cpp set_pi_a6a554 = pi_value(); a6a558.. = pi/2,/3,/4 (per-translation-unit copy of the constant pi, float)"
+0x00a6a584,g_a6a584,g_pi_a6a584,"high: src/game/unknown_mainmenu.cpp set_pi_a6a584 + a6a588.. = pi/2,/3,/4 (per-translation-unit copy of the constant pi, float)"

@@ -1,0 +1,24 @@
+start,end,name,confidence,evidence,target
+0x0060b3e0,0x0060ba00,texturea_tail_g0,high,TextureManager/Dds helpers right after texturea.cpp's last anchor (Dds::has_alpha's BMP/TGA/DDS constants inside texturea's .rdata); tail of en3d/texturea.cpp (earlier texturea_tail proposal).,en3d/texturea.cpp
+0x0060bb50,0x0060bb50,mathlib_g0a,high,Matrix helper sandwiched between mathlib.cpp functions (init set 0x60bad0.. / matrix_from_quat).,game/_unplaced/mathlib.cpp
+0x0060bc00,0x0060bc00,mathlib_g0b,high,matrix_rotation Y between the X/Z rotation siblings already in mathlib.cpp.,game/_unplaced/mathlib.cpp
+0x0060c070,0x0060c130,mathlib_g0c,high,Matrix row/flip helpers between mathlib.cpp functions.,game/_unplaced/mathlib.cpp
+0x0060c1d0,0x0060c8b0,mathlib_g0d,high,Matrix axis/euler/quaternion helpers between mathlib.cpp functions (matrix_axis_x .. Facing::matrix).,game/_unplaced/mathlib.cpp
+0x0060cbc0,0x0060cbc0,mathlib_g0e,high,vec_negate before mathlib.cpp vec_add/vec_sub.,game/_unplaced/mathlib.cpp
+0x0060cd60,0x0060cd60,mathlib_g0f,high,Vector helper between mathlib.cpp vec_scale and vec_add_in_place.,game/_unplaced/mathlib.cpp
+0x0060ce20,0x0060cf40,mathlib_g0g,high,Vector compare/sub helpers between mathlib.cpp functions.,game/_unplaced/mathlib.cpp
+0x0060d210,0x0060d210,mathlib_g0h,high,Box6::clip between mathlib.cpp BBox::merge and Box::centre.,game/_unplaced/mathlib.cpp
+0x0060d5f0,0x0060d5f0,mathlib_g0i,high,Box::contains between mathlib.cpp Box::extend and Box::overlaps.,game/_unplaced/mathlib.cpp
+0x0060d810,0x0060d890,mathlib_g0j,high,Sphere tests between mathlib.cpp Box::overlaps and plane_from_points.,game/_unplaced/mathlib.cpp
+0x0060d9e0,0x0060de40,mathlib_g0k,high,Plane/box distance and Segment::point_at between mathlib.cpp plane and segment functions.,game/_unplaced/mathlib.cpp
+0x0060e550,0x0060e550,mathlib_g0l,high,Matrix::copy between mathlib.cpp segment_hits_sphere and line_plane.,game/_unplaced/mathlib.cpp
+0x0060e6a0,0x0060eb90,mathlib_g0m,high,Ray/plane/triangle helpers of segment_hits_box and Bone ctors before mathlib.cpp Bone::~Bone.,game/_unplaced/mathlib.cpp
+0x0060ec70,0x0060efb0,mathlib_g0n,high,Rest of the Bone transform-node class after mathlib.cpp Bone::~Bone.,game/_unplaced/mathlib.cpp
+0x0060f020,0x0060f4b0,vtxconv,low,"Vertex-record copy/convert helpers called only from Plane::set_format (and DynGrass/Track); no data refs - split from mathlib by topic only (earlier vtxconv proposal, never applied).",
+0x0060f540,0x0060f760,surface_g0a,medium,"Display/palette code (global ctor/dtor 0x5640a0, ""Cannot determine the pixel format"") directly before surface.cpp functions.",game/_unplaced/surface.cpp
+0x0060f930,0x0060f930,surface_g0b,high,Flag::clear_1 (callee of Obj::reset_60f700) between surface.cpp stubs.,game/_unplaced/surface.cpp
+0x0060fa20,0x0060fb10,surface_g0c,high,Image ctor/dtor and camera size getters between surface.cpp stubs.,game/_unplaced/surface.cpp
+0x0060fb60,0x0060fd70,surface_g0d,high,Image::create / Texture::read_desc / release between surface.cpp stubs.,game/_unplaced/surface.cpp
+0x0060fe60,0x006100a0,surface_g0e,medium,"Texture::lock (""Cannot lock surface"") and BitWriter lock helpers after surface.cpp stubs, before vgabuf.cpp.",game/_unplaced/surface.cpp
+0x00610310,0x00610310,vgabuf_g0a,high,store_rgb3 between vgabuf.cpp poke16 and poke32.,en3d/vgabuf.cpp
+0x00610360,0x00611e70,vgabuf_g0b,high,"Pixel access, 8->16/24/32 blitters and save_bmp between vgabuf.cpp members and its anchors (earlier vgabuf_blit proposal).",en3d/vgabuf.cpp

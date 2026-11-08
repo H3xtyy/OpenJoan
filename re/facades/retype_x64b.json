@@ -1,0 +1,573 @@
+{
+ "_doc": "Round X64B: X64A audit facade retypes (re/a4/x64a_requests); applied by re/facades/retype.py with retype_p8.json.",
+ "retypes": [
+  {
+   "inc": "place_methods.inc",
+   "addr": "0x004ab020",
+   "param": 0,
+   "from": "std::int32_t",
+   "to": "const char*",
+   "why": "X64A x04: script string argument (the String value of the script node) has_unit_of game/_unplaced/message.cpp:331"
+  },
+  {
+   "inc": "army_methods.inc",
+   "addr": "0x004b79a0",
+   "param": 0,
+   "from": "std::int32_t",
+   "to": "const char*",
+   "why": "X64A x04: script string argument (the String value of the script node) count_strength game/nation2.cpp:899"
+  },
+  {
+   "inc": "free_functions.hpp",
+   "addr": "0x00651a30",
+   "param": 0,
+   "from": "std::int32_t",
+   "to": "const char*",
+   "why": "X64A x04: script string argument (the String value of the script node) call_4a36c0 game/_unplaced/esfuncs.cpp:1380"
+  },
+  {
+   "inc": "free_functions.hpp",
+   "addr": "0x00651a60",
+   "param": 0,
+   "from": "std::uint32_t",
+   "to": "const char*",
+   "why": "X64A x04: script string argument (the String value of the script node) script_651a60 game/_unplaced/esfuncs.cpp:1449"
+  },
+  {
+   "inc": "free_functions.hpp",
+   "addr": "0x00651ad0",
+   "param": 0,
+   "from": "std::uint32_t",
+   "to": "const char*",
+   "why": "X64A x04: script string argument (the String value of the script node) script_attach game/_unplaced/esfuncs.cpp:229"
+  },
+  {
+   "inc": "free_functions.hpp",
+   "addr": "0x00651ad0",
+   "param": 1,
+   "from": "std::uint32_t",
+   "to": "const char*",
+   "why": "X64A x04: script string argument (the String value of the script node) script_attach game/_unplaced/esfuncs.cpp:233"
+  },
+  {
+   "inc": "free_functions.hpp",
+   "addr": "0x00652010",
+   "param": 1,
+   "from": "std::uint32_t",
+   "to": "const char*",
+   "why": "X64A x04: script string argument (the String value of the script node) script_set_type game/_unplaced/esfuncs.cpp:912"
+  },
+  {
+   "inc": "free_functions.hpp",
+   "addr": "0x00653300",
+   "param": 1,
+   "from": "std::int32_t",
+   "to": "const char*",
+   "why": "X64A x04: script string argument (the String value of the script node) script_unit_427b50 game/_unplaced/esfuncs.cpp:1861"
+  },
+  {
+   "inc": "free_functions.hpp",
+   "addr": "0x00653360",
+   "param": 1,
+   "from": "std::int32_t",
+   "to": "const char*",
+   "why": "X64A x04: script string argument (the String value of the script node) script_unit_group_entry game/_unplaced/esfuncs.cpp:3514"
+  },
+  {
+   "inc": "free_functions.hpp",
+   "addr": "0x00653400",
+   "param": 0,
+   "from": "std::uint32_t",
+   "to": "const char*",
+   "why": "X64A x04: script string argument (the String value of the script node) script_any_quest_item game/_unplaced/esfuncs.cpp:782"
+  },
+  {
+   "inc": "free_functions.hpp",
+   "addr": "0x006537a0",
+   "param": 1,
+   "from": "std::uint32_t",
+   "to": "const char*",
+   "why": "X64A x04: script string argument (the String value of the script node) script_unit_6537a0 game/_unplaced/esfuncs.cpp:1468"
+  },
+  {
+   "inc": "free_functions.hpp",
+   "addr": "0x00653eb0",
+   "param": 0,
+   "from": "std::int32_t",
+   "to": "const char*",
+   "why": "X64A x04: script string argument (the String value of the script node) script_a484d0_4c54a0 game/_unplaced/esfuncs.cpp:3167"
+  },
+  {
+   "inc": "free_functions.hpp",
+   "addr": "0x00653ef0",
+   "param": 1,
+   "from": "std::int32_t",
+   "to": "const char*",
+   "why": "X64A x04: script string argument (the String value of the script node) script_building_49c240 game/_unplaced/esfuncs.cpp:466"
+  },
+  {
+   "inc": "free_functions.hpp",
+   "addr": "0x006548b0",
+   "param": 0,
+   "from": "std::uint32_t",
+   "to": "const char*",
+   "why": "X64A x04: script string argument (the String value of the script node) script_6548b0 game/_unplaced/esfuncs.cpp:1499"
+  },
+  {
+   "inc": "free_functions.hpp",
+   "addr": "0x006548f0",
+   "param": 4,
+   "from": "std::int32_t",
+   "to": "const char*",
+   "why": "X64A x04: script string argument (the String value of the script node) script_place_467dd0 game/_unplaced/esfuncs.cpp:1881"
+  },
+  {
+   "inc": "free_functions.hpp",
+   "addr": "0x006548f0",
+   "param": 5,
+   "from": "std::int32_t",
+   "to": "const char*",
+   "why": "X64A x04: script string argument (the String value of the script node) script_place_467dd0 game/_unplaced/esfuncs.cpp:1881"
+  },
+  {
+   "inc": "free_functions.hpp",
+   "addr": "0x00655010",
+   "param": 0,
+   "from": "std::int32_t",
+   "to": "const char*",
+   "why": "X64A x04: script string argument (the String value of the script node) fn_655010 game/_unplaced/esfuncs.cpp:4671"
+  },
+  {
+   "inc": "free_functions.hpp",
+   "addr": "0x00655010",
+   "param": 1,
+   "from": "std::int32_t",
+   "to": "const char*",
+   "why": "X64A x04: script string argument (the String value of the script node) fn_655010 game/_unplaced/esfuncs.cpp:4672"
+  },
+  {
+   "inc": "free_functions.hpp",
+   "addr": "0x006550d0",
+   "param": 0,
+   "from": "std::uint32_t",
+   "to": "const char*",
+   "why": "X64A x04: script string argument (the String value of the script node) script_6550d0 game/_unplaced/esfuncs.cpp:1533"
+  },
+  {
+   "inc": "free_functions.hpp",
+   "addr": "0x006556e0",
+   "param": 1,
+   "from": "std::uint32_t",
+   "to": "const char*",
+   "why": "X64A x04: script string argument (the String value of the script node) unit_set_5089e0 game/_unplaced/esfuncs.cpp:4249"
+  },
+  {
+   "inc": "free_functions.hpp",
+   "addr": "0x00658420",
+   "param": 1,
+   "from": "std::int32_t",
+   "to": "const char*",
+   "why": "X64A x04: script string argument (the String value of the script node) script_units_set_group game/_unplaced/esfuncs.cpp:2484"
+  },
+  {
+   "inc": "free_functions.hpp",
+   "addr": "0x006584e0",
+   "param": 1,
+   "from": "std::int32_t",
+   "to": "const char*",
+   "why": "X64A x04: script string argument (the String value of the script node) script_unit_spawn_members game/_unplaced/esfuncs.cpp:3233"
+  },
+  {
+   "inc": "free_functions.hpp",
+   "addr": "0x0065aad0",
+   "param": 0,
+   "from": "std::uint32_t",
+   "to": "const char*",
+   "why": "X64A x04: script string argument (the String value of the script node) call_4cd570 game/_unplaced/esfuncs.cpp:5341"
+  },
+  {
+   "inc": "free_functions.hpp",
+   "addr": "0x0065b160",
+   "param": 0,
+   "from": "std::int32_t",
+   "to": "const char*",
+   "why": "X64A x04: script string argument (the String value of the script node) script_type_5270b0 game/_unplaced/esfuncs.cpp:2041"
+  },
+  {
+   "inc": "free_functions.hpp",
+   "addr": "0x0065b190",
+   "param": 0,
+   "from": "std::int32_t",
+   "to": "const char*",
+   "why": "X64A x04: script string argument (the String value of the script node) script_type_activate game/_unplaced/esfuncs.cpp:5532"
+  },
+  {
+   "inc": "free_functions.hpp",
+   "addr": "0x0065b200",
+   "param": 0,
+   "from": "std::int32_t",
+   "to": "const char*",
+   "why": "X64A x04: script string argument (the String value of the script node) script_type_51fd50 game/_unplaced/esfuncs.cpp:3309"
+  },
+  {
+   "inc": "free_functions.hpp",
+   "addr": "0x0065b240",
+   "param": 0,
+   "from": "std::int32_t",
+   "to": "const char*",
+   "why": "X64A x04: script string argument (the String value of the script node) soldier_51fdd0 game/_unplaced/esfuncs.cpp:5347"
+  },
+  {
+   "inc": "free_functions.hpp",
+   "addr": "0x0065b570",
+   "param": 0,
+   "from": "std::int32_t",
+   "to": "const char*",
+   "why": "X64A x04: script string argument (the String value of the script node) units_lookup game/_unplaced/esfuncs.cpp:333"
+  },
+  {
+   "inc": "free_functions.hpp",
+   "addr": "0x0065b5b0",
+   "param": 0,
+   "from": "std::int32_t",
+   "to": "const char*",
+   "why": "X64A x04: script string argument (the String value of the script node) script_object_49f4b0 game/_unplaced/esfuncs.cpp:2573"
+  },
+  {
+   "inc": "free_functions.hpp",
+   "addr": "0x0065b5f0",
+   "param": 0,
+   "from": "std::int32_t",
+   "to": "const char*",
+   "why": "X64A x04: script string argument (the String value of the script node) script_a501e0_4ce900 game/_unplaced/esfuncs.cpp:3316"
+  },
+  {
+   "inc": "free_functions.hpp",
+   "addr": "0x0065b7c0",
+   "param": 0,
+   "from": "std::int32_t",
+   "to": "const char*",
+   "why": "X64A x04: script string argument (the String value of the script node) script_4cad00 game/_unplaced/esfuncs.cpp:2047"
+  },
+  {
+   "inc": "free_functions.hpp",
+   "addr": "0x0065c420",
+   "param": 0,
+   "from": "std::uint32_t",
+   "to": "const char*",
+   "why": "X64A x04: script string argument (the String value of the script node) call_761680 game/_unplaced/esfuncs.cpp:5363"
+  },
+  {
+   "inc": "free_functions.hpp",
+   "addr": "0x0065c5f0",
+   "param": 0,
+   "from": "std::uint32_t",
+   "to": "const char*",
+   "why": "X64A x04: script string argument (the String value of the script node) f_65c5f0 game/_unplaced/esfuncs.cpp:5927"
+  },
+  {
+   "inc": "free_functions.hpp",
+   "addr": "0x0065c770",
+   "param": 0,
+   "from": "std::uint32_t",
+   "to": "const char*",
+   "why": "X64A x04: script string argument (the String value of the script node) script_icon game/_unplaced/esfuncs.cpp:5971"
+  },
+  {
+   "inc": "free_functions.hpp",
+   "addr": "0x0065ca40",
+   "param": 0,
+   "from": "std::uint32_t",
+   "to": "const char*",
+   "why": "X64A x04: script string argument (the String value of the script node) script_unit_65ca40 game/_unplaced/esfuncs.cpp:4578"
+  },
+  {
+   "inc": "free_functions.hpp",
+   "addr": "0x0065ec90",
+   "param": 0,
+   "from": "std::int32_t",
+   "to": "const char*",
+   "why": "X64A x04: script string argument (the String value of the script node) script_a4f381_call game/_unplaced/esfuncs.cpp:5635"
+  },
+  {
+   "inc": "free_functions.hpp",
+   "addr": "0x0065ecf0",
+   "param": 0,
+   "from": "std::uint32_t",
+   "to": "const char*",
+   "why": "X64A x04: script string argument (the String value of the script node) call_71d1e0 game/_unplaced/esfuncs.cpp:5419"
+  },
+  {
+   "inc": "free_functions.hpp",
+   "addr": "0x0065f850",
+   "param": 0,
+   "from": "std::uint32_t",
+   "to": "const char*",
+   "why": "X64A x04: script string argument (the String value of the script node) set_side game/_unplaced/esfuncs.cpp:5444"
+  },
+  {
+   "inc": "free_functions.hpp",
+   "addr": "0x00655150",
+   "param": 0,
+   "from": "std::int32_t",
+   "to": "const char*",
+   "why": "X64A x04: script string argument esfuncs.cpp:3192"
+  },
+  {
+   "inc": "free_functions.hpp",
+   "addr": "0x00655150",
+   "param": 1,
+   "from": "std::int32_t",
+   "to": "const char*",
+   "why": "X64A x04: script string argument esfuncs.cpp:3192"
+  },
+  {
+   "inc": "unit_methods.inc",
+   "addr": "0x00509400",
+   "param": "ret",
+   "from": "std::int32_t",
+   "to": "void*",
+   "why": "X64B: Unit::nation: the nation object (unit_core.cpp lookup_509400)"
+  },
+  {
+   "inc": "unit_methods.inc",
+   "addr": "0x00518d10",
+   "param": 0,
+   "from": "std::uint32_t",
+   "to": "void*",
+   "why": "X64B: on_command_nop: the command pointer"
+  },
+  {
+   "inc": "triggers_methods.inc",
+   "addr": "0x004eef00",
+   "param": 12,
+   "from": "std::uint32_t",
+   "to": "void*",
+   "why": "X64B: List43::add a12: the trigger sector (World::find_sector), stored in Trigger::scene +0x3f"
+  },
+  {
+   "inc": "save_entry_methods.inc",
+   "addr": "0x0047e200",
+   "param": 14,
+   "from": "std::uint32_t",
+   "to": "void*",
+   "why": "X64B: SaveEntry::set a14: the trigger sector pointer (+0x3f)"
+  },
+  {
+   "inc": "script_tokenizer_methods.inc",
+   "addr": "0x00684590",
+   "param": "ret",
+   "from": "std::uint32_t",
+   "to": "char*",
+   "why": "X64B: ScriptTokenizer::add_string: the pooled token text"
+  },
+  {
+   "inc": "world_cell_methods.inc",
+   "addr": "0x0054eec0",
+   "param": "ret",
+   "from": "std::uint32_t",
+   "to": "void*",
+   "why": "X64B: WorldCell::get_90: first unit of the cell"
+  },
+  {
+   "inc": "world_cell_methods.inc",
+   "addr": "0x0054f510",
+   "param": "ret",
+   "from": "std::uint32_t",
+   "to": "void*",
+   "why": "X64B: WorldCell::get_98: first object of the cell"
+  },
+  {
+   "inc": "world_cell_methods.inc",
+   "addr": "0x0054ee10",
+   "param": "ret",
+   "from": "std::uint32_t",
+   "to": "void*",
+   "why": "X64B: WorldCell::get_8c: Cell::units_tail"
+  },
+  {
+   "inc": "world_methods.inc",
+   "addr": "0x0054e1b0",
+   "param": "ret",
+   "from": "std::uint32_t",
+   "to": "void*",
+   "why": "X64B: World::sector: the sector object"
+  },
+  {
+   "inc": "scene_methods.inc",
+   "addr": "0x005ef610",
+   "param": "ret",
+   "from": "std::uint32_t",
+   "to": "void**",
+   "why": "X64B: Scene::nodes_in_box: the node pointer list"
+  },
+  {
+   "inc": "upgrade_list_methods.inc",
+   "addr": "0x005313a0",
+   "param": "ret",
+   "from": "std::uint32_t",
+   "to": "void*",
+   "why": "X64B: UpgradeList::get: the DynArray element address"
+  },
+  {
+   "inc": "speech_methods.inc",
+   "addr": "0x004d2910",
+   "param": "ret",
+   "from": "std::uint32_t",
+   "to": "char*",
+   "why": "X64B: Speech::text: the text buffer"
+  },
+  {
+   "inc": "scene_methods.inc",
+   "addr": "0x005ea410",
+   "param": "ret",
+   "from": "std::uint32_t",
+   "to": "void*",
+   "why": "X64B: Array::at1 / Scene::actor_at: the actor"
+  },
+  {
+   "inc": "token_list_methods.inc",
+   "addr": "0x0067ac80",
+   "param": "ret",
+   "from": "std::uint32_t",
+   "to": "void*",
+   "why": "X64B: Holder::inner / TokenList::peek: the token"
+  },
+  {
+   "inc": "unit_methods.inc",
+   "addr": "0x0046e5d0",
+   "param": "ret",
+   "from": "std::uint32_t",
+   "to": "void*",
+   "why": "X64B: Unit::list53_item: the list element"
+  },
+  {
+   "inc": "prof_node_methods.inc",
+   "addr": "0x0045f140",
+   "param": "ret",
+   "from": "std::uint32_t",
+   "to": "void*",
+   "why": "X64B: ProfTimer::stop: the timer node"
+  },
+  {
+   "inc": "table_methods.inc",
+   "addr": "0x0047c150",
+   "param": "ret",
+   "from": "std::uint32_t",
+   "to": "void*",
+   "why": "X64B: Table::get: the record address"
+  },
+  {
+   "inc": "table_methods.inc",
+   "addr": "0x0047cb30",
+   "param": "ret",
+   "from": "std::uint32_t",
+   "to": "void*",
+   "why": "X64B: Table::at: the record address"
+  },
+  {
+   "inc": "sound3dbuffer_methods.inc",
+   "addr": "0x0059ef00",
+   "param": 1,
+   "from": "std::uint32_t",
+   "to": "const char*",
+   "why": "X64B: Sound3d::load a1: the record name"
+  },
+  {
+   "inc": "sound3dbuffer_methods.inc",
+   "addr": "0x0059f0b0",
+   "param": 0,
+   "from": "std::uint32_t",
+   "to": "const void*",
+   "why": "X64B: Sound3d::load_wav a0: the in-memory WAV"
+  },
+  {
+   "inc": "sound_methods.inc",
+   "addr": "0x00473140",
+   "param": 0,
+   "from": "std::uint32_t",
+   "to": "const char*",
+   "why": "X64B: Sound::is_playing a0: the sound name"
+  },
+  {
+   "inc": "anim_set_methods.inc",
+   "addr": "0x00414970",
+   "param": 0,
+   "from": "std::uint32_t",
+   "to": "const char*",
+   "why": "X64B: AnimEntry::init a0: the name"
+  },
+  {
+   "inc": "scene_methods.inc",
+   "addr": "0x005f35f0",
+   "param": 0,
+   "from": "std::uint32_t",
+   "to": "void*",
+   "why": "X64B: Scene::push a0: the pushed node"
+  },
+  {
+   "inc": "world_cell_methods.inc",
+   "addr": "0x00558a30",
+   "param": 0,
+   "from": "std::uint32_t",
+   "to": "void*",
+   "why": "X64B: WorldCell::load_units_thunk a0: forwarded to World::load_units as a pointer"
+  },
+  {
+   "inc": "track_res_methods.inc",
+   "addr": "0x004eba90",
+   "param": 0,
+   "from": "std::uint32_t",
+   "to": "const char*",
+   "why": "X64B: TrackRes::load a0: the file name"
+  },
+  {
+   "inc": "sprite2d_methods.inc",
+   "addr": "0x00633070",
+   "param": 7,
+   "from": "std::uint32_t",
+   "to": "void*",
+   "why": "X64B: Sprite2D::queue_frame a7: the texture"
+  },
+  {
+   "inc": "free_functions.hpp",
+   "addr": "0x00651ea0",
+   "param": 0,
+   "from": "std::int32_t",
+   "to": "const char*",
+   "why": "X64B (cascade of x04): script_remove_objects a0: the script string, forwarded to units_lookup 0x0065b570 (pushes [ebp+8])"
+  },
+  {
+   "inc": "free_functions.hpp",
+   "addr": "0x006540e0",
+   "param": 1,
+   "from": "std::uint32_t",
+   "to": "const char*",
+   "why": "X64B (cascade of x04): script_6540e0 a1: the script string, forwarded to Place::has_unit_of 0x004ab020 (pushes [ebp+0xc])"
+  },
+  {
+   "inc": "free_functions.hpp",
+   "addr": "0x00654120",
+   "param": 1,
+   "from": "std::uint32_t",
+   "to": "const char*",
+   "why": "X64B (cascade of x04): script_654120 a1: the script string, forwarded to Army::count_strength 0x004b79a0"
+  },
+  {
+   "inc": "anim_set_methods.inc",
+   "addr": "0x00414a30",
+   "param": 0,
+   "from": "std::uint32_t",
+   "to": "const char*",
+   "why": "X64B (cascade of AnimEntry::init): AnimGroup::load a0 is the section name, passed to GameSet::open_db 0x0058b180 as a string"
+  },
+  {
+   "inc": "tracks_methods.inc",
+   "addr": "0x004eb640",
+   "param": 0,
+   "from": "std::uint32_t",
+   "to": "const char*",
+   "why": "X64B (cascade of TrackRes::load): Tracks::load a0 is the track file path passed on to TrackRes::load 0x004eba90"
+  }
+ ]
+}

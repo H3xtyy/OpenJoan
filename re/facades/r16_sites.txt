@@ -1,0 +1,1032 @@
+en3d/actor.cpp:280 | left: noclass; value read is select_mesh's void** result | proposal: Actor_select_mesh, Actor, select_mesh, void** select_mesh(void* camera, std::int32_t pass, void** out_plane, std::uint32_t* out_extra)  (replacement en3d/actor.cpp H::actor_select_mesh, returns out_plane)
+en3d/actor.cpp:330 | left: noclass | proposal: Actor_select_mesh, Actor, select_mesh, void** select_mesh(void* camera, std::int32_t pass, void** out_plane, std::uint32_t* out_extra)
+en3d/actor.cpp:914 | converted (Bone::invalidate is void; Model::set_matrix 0x005ac650 is dead code with no callers -> facade + return 0)
+en3d/actor.cpp:1699 | left: noclass | proposal: Actor_sub_planes, Actor, sub_planes, void** sub_planes()  (returns this+0xd0; same object as Actor::sub_count 0x005aede0)
+en3d/actor.cpp:1709 | left: noclass | proposal: Actor_sub_planes, Actor, sub_planes, void** sub_planes()
+en3d/actor.cpp:1793 | left: class? (this = actor+0x14 attachment) | proposal: Attachment_position_9, Attachment (new class), position_9, Vec3* position_9(Vec3* out)  (copies Vec3 at +0x09, returns out)
+en3d/actor.cpp:1795 | left: class? | proposal: Attachment_position_44, Attachment (new class), position_44, Vec3* position_44(Vec3* out)  (copies Vec3 at +0x44, returns out)
+en3d/actor.cpp:2026 | left: arg count differs (site passes 3, facade 4; thiscall callee pops 3) and value is returned | facade-fix: morph_methods.inc Morph::blend_to -> std::uint32_t blend_to(std::uint32_t name, std::uint32_t time, std::uint32_t dur)  (replacement en3d/morph.cpp morph_blend_to(u32,u32,u32) returns uintptr_t)
+en3d/plane_sh.cpp:460 | left: class- | proposal: Plane4_Plane4_425700, Plane4 (PlaneEquation family, plane_equation_methods.inc), ctor_425700, void* ctor_425700()  (game/camman.cpp trivial_ctor: returns this, writes nothing)
+game/_unplaced/config.cpp:72 | converted (Options::defaults_45a010 is void; Obj::reset_459e30's callers boids.cpp/optmenui.cpp discard -> facade + return 0)
+game/_unplaced/config.cpp:93 | left: nosig:nofn - calls the kept original body (len > 15 overflow path), not a replacement
+game/_unplaced/descbox.cpp:171 | converted (TextRenderer::draw_wrapped is void; all Frame::draw_box_6b8db0 callers discard -> facade + return 0)
+game/_unplaced/globals.cpp:149 | left: class? and value meaningful (self_56ded0 returns this; _initterm ignores it) | proposal: Obj_self_56ded0, DebugOverlay (g_a59a78), construct, void* construct()  (returns this)
+game/_unplaced/globals.cpp:1240 | converted (ChatBox nop; init_56d5c0 is an atexit callback, result ignored)
+game/_unplaced/globals.cpp:1280 | left: class- (helper already returns void) | proposal: Rect9_clear, Rect9 (new class), clear, void* clear()  (gadget.cpp rect9_clear: memset 9 bytes, returns this)
+game/_unplaced/globals.cpp:1356 | left: class- | proposal: Rect9_clear, Rect9, clear, void* clear()
+game/_unplaced/globals.cpp:1386 | converted (GoalPanel::release void; dtor_56e1d0 only reached from atexit stub dtor_stub_56bf40)
+game/_unplaced/globals.cpp:1451 | converted (Letter::free void; call_6e0520 only reached from atexit stub dtor_stub_56c240)
+game/_unplaced/globals.cpp:1494 | left: class- | proposal: Rect9_clear, Rect9, clear, void* clear()
+game/_unplaced/globals.cpp:1539 | converted (MessageIndicator::release_texture void; call_4af4f0 only reached from atexit stub dtor_stub_56ba50)
+game/_unplaced/globals.cpp:1586 | left: class- | proposal: Rect9_clear, Rect9, clear, void* clear()
+game/_unplaced/globals.cpp:1749 | left: class- | proposal: Rect9_clear, Rect9, clear, void* clear()
+game/_unplaced/globals.cpp:1820 | left: class- | proposal: Rect9_clear, Rect9, clear, void* clear()
+game/_unplaced/globals.cpp:1821 | left: class- | proposal: Rect9_clear, Rect9, clear, void* clear()
+game/_unplaced/globals.cpp:1822 | left: class- | proposal: Rect9_clear, Rect9, clear, void* clear()
+game/_unplaced/globals.cpp:1823 | left: class- | proposal: Rect9_clear, Rect9, clear, void* clear()
+game/_unplaced/globals.cpp:1824 | left: class- | proposal: Rect9_clear, Rect9, clear, void* clear()
+game/_unplaced/globals.cpp:1825 | left: class- | proposal: Rect9_clear, Rect9, clear, void* clear()
+game/_unplaced/globals.cpp:1826 | left: class- | proposal: Rect9_clear, Rect9, clear, void* clear()
+game/_unplaced/globals.cpp:1827 | left: class- | proposal: Rect9_clear, Rect9, clear, void* clear()
+game/_unplaced/globals.cpp:1828 | left: class- | proposal: Rect9_clear, Rect9, clear, void* clear()
+game/_unplaced/globals.cpp:1829 | left: class- | proposal: Rect9_clear, Rect9, clear, void* clear()
+game/_unplaced/globals.cpp:1830 | left: class- | proposal: Rect9_clear, Rect9, clear, void* clear()
+game/_unplaced/globals.cpp:1831 | left: class- | proposal: Rect9_clear, Rect9, clear, void* clear()
+game/_unplaced/globals.cpp:2350 | left: class- | proposal: dtor_DynArrayB, DynArrayB (original/dynarray.hpp), destruct_585710, void destruct_585710()  (ilib DynArrayB::destruct is void)
+game/_unplaced/globals.cpp:2352 | converted (DynArray::destruct void; Obj56ae50::forward only reached via obj_stub_56ae30 registered with atexit)
+game/_unplaced/globals.cpp:2652 | converted (MsgLog release_children void; forward_6e1070 callers: init_56cd60 = atexit callback)
+game/_unplaced/globals.cpp:2816 | converted (RaceRes::free void; fwd_56deb0 only via atexit obj_stub_569e50)
+game/_unplaced/globals.cpp:2817 | converted (Inventory release void; fwd_56e0d0 only via atexit dtor_stub_56b2f0)
+game/_unplaced/globals.cpp:2818 | converted (Cutscene release void; fwd_56e0f0 only via atexit dtor_stub_56bae0)
+game/_unplaced/globals.cpp:2819 | converted (RosterScreen nop; fwd_56e180 only via atexit dtor_stub_56bb70)
+game/_unplaced/globals.cpp:2822 | converted (VideoPlayer wrap void; fwd_56e330 only via atexit dtor_stub_56c540)
+game/_unplaced/globals.cpp:2823 | converted (Screen nop; fwd_56e350 only via atexit dtor_stub_56c8a0)
+game/_unplaced/globals.cpp:2824 | converted (HelpBox reset void; fwd_56ec80 only via atexit StaticInit::dtor_a59780)
+game/_unplaced/globals.cpp:3071 | converted (Font::~Font empty/void; empty_dtor only used by term_* atexit terminators)
+game/_unplaced/mainwnd.cpp:394 | left: value may be used - Wnd::destroy_4d6fb0 is vtable slot 0xc of Screen (rdata vt_Screen_9d5d68); Dev::close_5a1c40 returns virtual_call(this,0xc) and en3d/sysen.cpp deliberately passes that eax through
+game/_unplaced/misc_004944c0.cpp:115 | converted (Party::first_free returns i16; only ax used: static_cast<i16> and arg::i16)
+game/_unplaced/misc_004944c0.cpp:121 | converted (Sound3D::set_position void; r only fed set_looping's u8 param after masking, upper bits dropped -> low byte from rec only)
+game/_unplaced/misc_004944c0.cpp:296 | converted (Table::byte_58 returns u8; site masks & 0xff then i8; u16 arg -> i16, callee reads low 16 bits)
+game/_unplaced/pemitter.cpp:770 | converted (Flag8::get returns u8; site masks & 0xff)
+game/_unplaced/pemitter.cpp:796 | left: nosig:nodef2 | proposal: quick_sort, DynArray, quick_sort, void quick_sort(int(__cdecl* cmp)(const void*, const void*))  (already a direct member in original/dynarray.hpp; sort_145's only caller psystem.cpp discards, so `as_dynarray(self()+0x145)->quick_sort(arg::cmp(...)); return 0;` would be safe once allowed)
+game/_unplaced/t_basic.cpp:402 | converted (TxtRes::load void; load_basic_txr's sole caller mainwnd.cpp:474 discards)
+game/_unplaced/unit_addon.cpp:125 | left: class? | proposal: set_byte_10a, Actor, set_10a, void set_10a(std::uint32_t v)  (camcmd.cpp set_10a writes low byte to +0x10a; pairs with Actor get_10a 0x0044cee0)
+game/_unplaced/unit_addon.cpp:371 | left: nosig:nodef2 | proposal: Unit_name_tag, Player (g_a5b9e8), name_tag, const char* name_tag(std::uint32_t id)  (rts2.cpp H::name_tag)
+game/_unplaced/unit_addon.cpp:538 | left: arg count differs (site 3, facade 4; callee pops 3) | facade-fix: cell_object_methods.inc CellObject::set_anim_state -> void set_anim_state(std::int32_t state, std::int32_t time, std::int32_t arg)  (unit_core.cpp replacement takes 3)
+game/_unplaced/unit_addon.cpp:560 | left: class? | proposal: set_byte_10a, Actor, set_10a, void set_10a(std::uint32_t v)
+game/_unplaced/unit_addon.cpp:603 | left: class? | proposal: set_byte_10a, Actor, set_10a, void set_10a(std::uint32_t v)
+game/_unplaced/unit_addon.cpp:791 | left: class? | proposal: set_byte_10a, Actor, set_10a, void set_10a(std::uint32_t v)
+game/_unplaced/unit_addon.cpp:1197 | left: arg count differs (site 3, facade 4) | facade-fix: CellObject::set_anim_state -> void set_anim_state(std::int32_t state, std::int32_t time, std::int32_t arg)
+game/gameplay.cpp:148 | converted (~File void; dtor_47cac0 callers: Obj::load_res (sole caller game.cpp discards) and Obj::dtor_419f70 (atexit))
+game/gameplay.cpp:246 | converted (Mem del void; mem_free used only as statements -> facade + return 0)
+game/gameplay.cpp:421 | converted (~File void; Gameplay::load_file 0x0047c3d0 has no callers in src)
+game/gameplay.cpp:455 | converted (~Archive void; Obj::load_res's sole caller game.cpp:222 discards)
+game/gameplay.cpp:464 | left: class- | proposal: Obj_dtor_47cac0, AnimSet (stack object built by AnimSet::AnimSet3 0x0047cb60), destruct_47cac0, void destruct_47cac0()  (ResourceIdx deinit + ~File; returns nothing meaningful)
+game/lightsys.cpp:419 | converted (LensFlares nop dtor; ObjK::dtor only via atexit stub_564470)
+game/lightsys.cpp:756 | left: class- (V3 struct by value) | proposal: Sky_ray_clear, LightSys (light_sys_methods.inc, has Sky::moon etc.), ray_clear, std::uint8_t ray_clear(void* camera, V3 point)  (gamedraw.cpp H::ray_clear; point is a 12-byte struct by value = three float dwords)
+game/lightsys.cpp:1331 | converted (Sounds::stop void; reset_then_68ab40's sole caller lightsys.cpp:887 discards)
+game/msglog.cpp:134 | left: class- | proposal: dtor_DynArrayB, DynArrayB, destruct_585710, void destruct_585710()
+game/msglog.cpp:352 | converted (MsgLog::clear void; every Obj::clear_4b31c0 (MsgLog::reset) caller discards)
+game/t_scrres.cpp:69 | converted (ScrRes::touch_all void; ScrRes::release callers: game.cpp reset table (discard), forward_4dea50 (atexit))
+ilib/se.cpp:230 | converted (Top4::insert void; Effects::trigger 0x0059e400 dead code, no callers)
+ilib/se.cpp:275 | converted (Top4::insert void; Effects::trigger 0x0059e460 has no callers in src or data)
+ilib/se.cpp:359 | converted (S8 by value = two dwords -> play_memory(mptr(wav), copy.a, copy.b); bits identical, u32 result kept)
+ilib/se.cpp:363 | converted (S8 by value = two dwords -> play_resource(key, copy.a, copy.b); bits identical, u32 result kept)
+en3d/plane.cpp:107 | converted
+en3d/plane.cpp:787 | converted
+en3d/plane.cpp:912 | converted
+en3d/plane.cpp:940 | converted
+en3d/plane.cpp:1408 | converted
+en3d/plane.cpp:1591 | converted
+en3d/plane.cpp:2112 | left: no facade; proposal: field20, <unknown class of global g_a52597 (i32[2] bss, fog/VS constants holder)>, field20, void* field20() (returns this+0x20; replacement samplew.cpp game/fx1)
+en3d/plane.cpp:2687 | converted
+en3d/plane.cpp:3093 | left: no facade; proposal: Plane4_Plane4_425700, Plane4, ctor, Plane4* ctor() (trivial, returns this; game/camman.cpp:1013)
+en3d/plane.cpp:3861 | left: no facade; proposal: Plane4_Plane4_425700, Plane4, ctor, Plane4* ctor() (trivial, returns this; game/camman.cpp:1013)
+en3d/plane.cpp:4006 | left: no facade; proposal: Plane4_Plane4_425700, Plane4, ctor, Plane4* ctor() (trivial, returns this; game/camman.cpp:1013)
+en3d/plane.cpp:4007 | left: no facade; proposal: Plane4_Plane4_425700, Plane4, ctor, Plane4* ctor() (trivial, returns this; game/camman.cpp:1013)
+en3d/plane.cpp:4034 | left: no facade; proposal: Plane4_Plane4_425700, Plane4, ctor, Plane4* ctor() (trivial, returns this; game/camman.cpp:1013)
+en3d/plane.cpp:4311 | left: no facade; proposal: same as plane.cpp:2112 (field20, void* field20())
+en3d/plane.cpp:4754 | left: no facade (nodef2); proposal: Material_set_colour4, Material, set_colour4, const void* set_colour4(const std::uint32_t* c) (replacement en3d/plane.cpp:2714-2722, B82_09; set_colour8 already faced)
+en3d/plane.cpp:4757 | left: no facade (nodef2); proposal: Material_set_colour0, Material, set_colour0, const void* set_colour0(const std::uint32_t* c) (replacement en3d/plane.cpp:2714-2722, B82_09; set_colour8 already faced)
+en3d/plane.cpp:4884 | left: no facade (nodef2); proposal: Material_set_colour4, Material, set_colour4, const void* set_colour4(const std::uint32_t* c) (replacement en3d/plane.cpp:2714-2722, B82_09; set_colour8 already faced)
+en3d/plane.cpp:4934 | left: no facade (nodef2); proposal: Material_set_colour4, Material, set_colour4, const void* set_colour4(const std::uint32_t* c) (replacement en3d/plane.cpp:2714-2722, B82_09; set_colour8 already faced)
+en3d/plane.cpp:4937 | left: no facade (nodef2); proposal: Material_set_colour0, Material, set_colour0, const void* set_colour0(const std::uint32_t* c) (replacement en3d/plane.cpp:2714-2722, B82_09; set_colour8 already faced)
+en3d/plane.cpp:5079 | left: no facade (nodef2); proposal: Material_set_colour4, Material, set_colour4, const void* set_colour4(const std::uint32_t* c) (replacement en3d/plane.cpp:2714-2722, B82_09; set_colour8 already faced)
+en3d/plane.cpp:5222 | left: no facade (nodef2); proposal: Material_set_colour4, Material, set_colour4, const void* set_colour4(const std::uint32_t* c) (replacement en3d/plane.cpp:2714-2722, B82_09; set_colour8 already faced)
+en3d/plane.cpp:5224 | left: no facade (nodef2); proposal: Material_set_colour0, Material, set_colour0, const void* set_colour0(const std::uint32_t* c) (replacement en3d/plane.cpp:2714-2722, B82_09; set_colour8 already faced)
+en3d/plane.cpp:5321 | left: no facade (nodef2); proposal: Material_set_colour4, Material, set_colour4, const void* set_colour4(const std::uint32_t* c) (replacement en3d/plane.cpp:2714-2722, B82_09; set_colour8 already faced)
+en3d/plane.cpp:5533 | left: no facade (nodef2); proposal: Material_set_colour4, Material, set_colour4, const void* set_colour4(const std::uint32_t* c) (replacement en3d/plane.cpp:2714-2722, B82_09; set_colour8 already faced)
+en3d/plane.cpp:5539 | left: no facade (nodef2); proposal: Material_set_colour4, Material, set_colour4, const void* set_colour4(const std::uint32_t* c) (replacement en3d/plane.cpp:2714-2722, B82_09; set_colour8 already faced)
+en3d/plane.cpp:5541 | left: no facade (nodef2); proposal: Material_set_colour0, Material, set_colour0, const void* set_colour0(const std::uint32_t* c) (replacement en3d/plane.cpp:2714-2722, B82_09; set_colour8 already faced)
+en3d/plane.cpp:5902 | left: no facade (nodef2); proposal: Material_set_colour4, Material, set_colour4, const void* set_colour4(const std::uint32_t* c) (replacement en3d/plane.cpp:2714-2722, B82_09; set_colour8 already faced)
+en3d/plane.cpp:5905 | left: no facade (nodef2); proposal: Material_set_colour0, Material, set_colour0, const void* set_colour0(const std::uint32_t* c) (replacement en3d/plane.cpp:2714-2722, B82_09; set_colour8 already faced)
+en3d/plane.cpp:5911 | left: no facade (nodef2); proposal: Material_set_colourc, Material, set_colourc, const void* set_colourc(const std::uint32_t* c) (replacement en3d/plane.cpp:2714-2722, B82_09; set_colour8 already faced)
+en3d/plane.cpp:6064 | left: no facade (nodef2); proposal: Material_set_colour4, Material, set_colour4, const void* set_colour4(const std::uint32_t* c) (replacement en3d/plane.cpp:2714-2722, B82_09; set_colour8 already faced)
+en3d/plane.cpp:6141 | converted
+en3d/pshader.cpp:198 | converted
+en3d/texdir.cpp:381 | left: no facade; proposal: bin_search, Misc, bin_search, std::int32_t bin_search(const void* key, const char* arr, std::int32_t count, std::int32_t size, int(__cdecl* cmp)(const void*, const void*), std::int32_t* insert_pos) (original/misc.hpp:55, ilib/misc.cpp)
+en3d/texdir.cpp:445 | converted
+en3d/texdir.cpp:634 | converted
+game/_unplaced/d3dsys.cpp:164 | converted
+game/_unplaced/d3dsys.cpp:573 | converted
+game/_unplaced/d3dsys.cpp:574 | converted
+game/_unplaced/d3dsys.cpp:603 | left: no facade; proposal: Plane4_Plane4_425700, Plane4, ctor, Plane4* ctor() (trivial, returns this; game/camman.cpp:1013)
+game/_unplaced/d3dsys.cpp:2592 | left: reset_device's result is used: en3d/sysen.cpp:604 returns it from Sound::restart, which mainwnd.cpp:686 returns from Obj::call_603fd0, a function pointer in an rdata table; cannot prove the value is unused
+game/_unplaced/dxmusic.cpp:847 | left: calls the original body (ComWrapper_call_1c_body) as the fallback for edge cases; no facade applies
+game/_unplaced/i_igmenu.cpp:336 | converted
+game/_unplaced/i_igmenu.cpp:651 | converted
+game/_unplaced/i_igmenu.cpp:1002 | converted
+game/_unplaced/i_igmenu.cpp:1003 | converted
+game/_unplaced/message.cpp:1186 | converted
+game/_unplaced/misc_004994b0.cpp:156 | left: result used: set_state's return reaches callers that return it (game/nation2.cpp:438, misc_004944c0.cpp:310); Player_set_relation (void replacement, nation2.cpp:507) returns garbage that propagates
+game/_unplaced/misc_004994b0.cpp:507 | left: no facade (original, no replacement); proposal: Turns_cos, Angle (Turns, this = float turns), cos_577b50, double cos_577b50() (0x00577b50, thiscall, ret 0; raw x87 st0 result)
+game/_unplaced/misc_004994b0.cpp:509 | left: no facade (original, no replacement); proposal: Turns_sin, Angle (Turns, this = float turns), sin_577b10, double sin_577b10() (0x00577b10, thiscall, ret 0; raw x87 st0 result)
+game/_unplaced/misc_004994b0.cpp:512 | left: no facade (original, no replacement); proposal: Turns_sin, Angle (Turns, this = float turns), sin_577b10, double sin_577b10() (0x00577b10, thiscall, ret 0; raw x87 st0 result)
+game/_unplaced/misc_004994b0.cpp:514 | left: no facade (original, no replacement); proposal: Turns_cos, Angle (Turns, this = float turns), cos_577b50, double cos_577b50() (0x00577b50, thiscall, ret 0; raw x87 st0 result)
+game/_unplaced/misc_004994b0.cpp:553 | converted
+game/_unplaced/misc_004994b0.cpp:585 | left: no facade (original, no replacement); proposal: Turns_cos, Angle (Turns, this = float turns), cos_577b50, double cos_577b50() (0x00577b50, thiscall, ret 0; raw x87 st0 result)
+game/_unplaced/misc_004994b0.cpp:587 | left: no facade (original, no replacement); proposal: Turns_sin, Angle (Turns, this = float turns), sin_577b10, double sin_577b10() (0x00577b10, thiscall, ret 0; raw x87 st0 result)
+game/_unplaced/misc_004994b0.cpp:1020 | converted
+game/_unplaced/objm_map.cpp:123 | converted
+game/_unplaced/objm_map.cpp:1099 | converted
+game/_unplaced/objm_map.cpp:1378 | converted
+game/_unplaced/objm_shop.cpp:83 | converted
+game/_unplaced/objm_shop.cpp:113 | converted
+game/_unplaced/objm_shop.cpp:202 | converted
+game/_unplaced/objm_shop.cpp:410 | converted
+game/_unplaced/objm_shop.cpp:419 | converted
+game/_unplaced/objm_shop.cpp:626 | converted
+game/_unplaced/objm_shop.cpp:650 | converted
+game/_unplaced/sndplay.cpp:179 | converted
+game/_unplaced/sndplay.cpp:1004 | left: WaveRes::open (0x004d0a60) is a vtable entry (rdata.inc:7417), so callers may test its result; Sound3d_load (void) leaves garbage
+game/_unplaced/t_interf.cpp:1191 | converted
+game/recrures.cpp:137 | converted
+game/recrures.cpp:168 | converted
+game/unit.cpp:59 | converted
+game/unit.cpp:418 | converted
+game/unit.cpp:1683 | converted
+game/uscrres.cpp:221 | converted
+en3d/scene.cpp:81 | left: Mem::del is void, but mem_free's eax is returned by Scene::clear (0x005e9b10) and Scene::free_71 (0x005ea180); Scene::clear's result goes on through scene_dtor (scene.cpp:1853), so I could not show it is unused
+en3d/scene.cpp:779 | left: class- | proposal: Plane4_Plane4_425700, Plane4, ctor, `void* ctor()` (trivial, returns this; camman.cpp:1013); init_5eb450 returns that this as u32
+en3d/scene.cpp:1323 | left: class- | proposal: Plane4_Plane4_425700, Plane4, ctor, `void* ctor()` (no-op, returns this)
+en3d/scene.cpp:2127 | left: class- | proposal: Plane4_Plane4_425700, Plane4, ctor, `void* ctor()` (no-op, returns this)
+en3d/scene.cpp:2385 | left: class? | proposal: SceneSub20_ctor, SceneSub20 (Scene +0x20), ctor, `void* ctor()` (trivial, returns this; scene.cpp:746)
+en3d/sysen.cpp:504 | left: Input::unacquire_all is void, but Screen::close (0x00603eb0) is a vtable slot (vtables 0x9d5d7c/0x9d99c4); its callers are virtual calls, so I could not prove the eax is unused (the syswnd WM_ACTIVATEAPP vcall<void> drops it, but there may be other callers)
+en3d/sysen.cpp:554 | left: Streams::pause_all is void; r goes into the vtable-slot result of Obj::activate_603f20 (0x00603f20); same problem as line 504, callers not provable
+en3d/sysen.cpp:655 | converted
+game/_unplaced/cheats.cpp:201 | converted
+game/_unplaced/cheats.cpp:244 | converted
+game/_unplaced/cheats.cpp:491 | converted
+game/_unplaced/cheats.cpp:500 | converted
+game/_unplaced/cheats.cpp:501 | converted
+game/_unplaced/cheats.cpp:504 | converted
+game/_unplaced/cheats.cpp:506 | converted
+game/_unplaced/cheats.cpp:507 | converted
+game/_unplaced/cheats.cpp:518 | converted
+game/_unplaced/credits.cpp:92 | converted
+game/_unplaced/credits.cpp:169 | converted
+game/_unplaced/escomp.cpp:3598 | left: class? | proposal: set_byte_10a, Actor (scene actor/model: the object added by Scene::add_actor, unit +0x2f5, effect +0x86), set_byte_10a, `void set_byte_10a(std::uint32_t v)` (stores the low byte at +0x10a; camcmd.cpp:1862)
+game/_unplaced/gamemode.cpp:186 | converted
+game/_unplaced/gamemode.cpp:255 | converted
+game/_unplaced/gamemode.cpp:256 | converted
+game/_unplaced/gamemode.cpp:353 | converted
+game/_unplaced/misc_00498b30.cpp:78 | left: nosig:nodef2 | proposal: bin_search, Misc (kArrays), bin_search, `std::int32_t bin_search(const void* key, const char* arr, std::int32_t count, std::int32_t size, cmp, std::int32_t* pos)` (ilib/misc.cpp:390; already declared in original/misc.hpp:55); the site reads the result as void*
+game/_unplaced/mlight.cpp:75 | converted
+game/_unplaced/mlight.cpp:140 | converted
+game/_unplaced/mlight.cpp:155 | converted
+game/_unplaced/objm_army.cpp:148 | converted
+game/_unplaced/objm_army.cpp:151 | converted
+game/_unplaced/objm_army.cpp:244 | converted
+game/_unplaced/objm_army.cpp:708 | converted
+game/_unplaced/objm_army.cpp:993 | left: noclass | proposal: Actor_select_mesh, Actor, select_mesh, `void** select_mesh(void* camera, std::int32_t, void** out_plane, std::uint32_t* out_extra)` (en3d/actor.cpp:1422)
+game/_unplaced/objm_army.cpp:1018 | converted
+game/_unplaced/objm_army.cpp:1188 | left: class? | proposal: set_byte_10a, Actor, set_byte_10a, `void set_byte_10a(std::uint32_t v)`
+game/_unplaced/talk.cpp:265 | left: class- (and the site reads i32 from a void callee: ret is overwritten only on one branch) | proposal: linkin_5857a0, DynArrayB, linkin, `void linkin(const void* ent)` (already in original/dynarray.hpp:95); the eax read at talk.cpp:265 is garbage and needs its own fix
+game/_unplaced/unitdraw.cpp:292 | converted
+game/_unplaced/unitdraw.cpp:370 | left: class- | proposal: Plane4_Plane4_425700, Plane4, ctor, `void* ctor()`
+game/plasma.cpp:105 | converted
+game/plasma.cpp:117 | converted
+game/plasma.cpp:443 | converted
+game/sitemres.cpp:137 | converted
+game/sitemres.cpp:167 | converted
+ilib/flc.cpp:184 | converted (no C++ caller of Flc::dtor_58a2f0 at all; it is a dtor whose eax only comes from the void Flc::close)
+interfac/i_buy.cpp:655 | left: class? | proposal: set_byte_10a, Actor, set_byte_10a, `void set_byte_10a(std::uint32_t v)`
+interfac/i_buy.cpp:1164 | left: noclass | proposal: Actor_select_mesh, Actor, select_mesh, `void** select_mesh(void* camera, std::int32_t, void** out_plane, std::uint32_t* out_extra)`
+interfac/i_buy.cpp:1166 | left: noclass | proposal: same as 1164
+interfac/i_buy.cpp:1184 | converted
+interfac/i_buy.cpp:1266 | converted
+interfac/i_buy.cpp:1272 | converted
+interfac/i_buy.cpp:1300 | converted
+interfac/i_buy.cpp:1636 | converted
+interfac/i_buy.cpp:1949 | converted
+interfac/i_buy.cpp:2065 | converted
+interfac/i_buy.cpp:2544 | converted
+interfac/i_buy.cpp:2711 | converted
+interfac/i_buy.cpp:2725 | converted
+interfac/i_buy.cpp:2912 | converted
+interfac/i_buy.cpp:2970 | converted
+interfac/i_buy.cpp:3258 | left: argument count differs | facade-fix: CutScene_start_6cc6a0 (cutscene_methods.inc `stop`, 11 args) is wrong. The registered replacement (i_buy.cpp:3890, game/b109_15) is `std::uint8_t cut_start(std::uint32_t a, std::uint32_t b, std::uint32_t move_flag, std::uint32_t mode)` with 4 args, and this site passes 4 (now, -128.0f as bits, 0, (i8)+6). The member is also misnamed (`stop` should be `start`)
+interfac/i_buy.cpp:3515 | left: class? | proposal: set_byte_10a, Actor, set_byte_10a, `void set_byte_10a(std::uint32_t v)`
+interfac/i_buy.cpp:3519 | left: class? | proposal: same (set_byte_10a, Actor)
+interfac/i_buy.cpp:3523 | left: class? | proposal: same (set_byte_10a, Actor)
+interfac/i_buy.cpp:3525 | left: class? | proposal: same (set_byte_10a, Actor)
+interfac/i_buy.cpp:3653 | left: class? | proposal: same (set_byte_10a, Actor)
+interfac/i_buy.cpp:5139 | converted
+interfac/i_buy.cpp:5142 | converted
+interfac/i_buy.cpp:5192 | converted
+interfac/i_buy.cpp:5288 | converted
+interfac/i_buy.cpp:5443 | converted
+interfac/i_buy.cpp:5444 | converted
+interfac/i_buy.cpp:5447 | converted
+interfac/i_buy.cpp:5448 | converted
+interfac/i_buy.cpp:7040 | converted
+en2d/popupwin.cpp:537 | converted (Font::text_height returns i16; site only used static_cast<i16>; args (i16 2, float 1.0f) same bits)
+en2d/popupwin.cpp:601 | converted (set_mode_60a740(saved); return 0. Textures::set_mode is void; ensure_window's only caller Popup::show 0x0062b5e0 has no callers, no vtable ref)
+en2d/popupwin.cpp:667 | converted (release_texture(); return 0. Ctl::release_15 void; Obj::clear_bit_e callers (misc_52f930.cpp close() x3) discard)
+en3d/skin.cpp:164 | converted (clear(); return 0. Skin::clear void; dtor_5f4670's only caller plane.cpp:4487 discards)
+game/_unplaced/billboard.cpp:465 | converted (invalidate(u32(-1)); return 0. Plane::invalidate void; Obj::set_colors only caller camcmd.cpp:401 discards)
+game/_unplaced/billboard.cpp:697 | converted (set_triangle(...); return 0. add_quad result: blit ignores it, blit_more returns it and its only caller font2d.cpp:669 discards)
+game/_unplaced/billboard.cpp:802 | converted (set_triangle(...); return 0. Overlay::quad only caller DlgRes::draw_image 0x00636c90 has no callers)
+game/_unplaced/eslexer.cpp:253 | converted (as_dynarray(...)->linkin_584620(&t); return 0. ScriptLexer::add_token is vtable slot 1 of vt_Obj661f20, called only by Tokenizer::split's emit; split's callers (esstate2.cpp:596, psystem.cpp:2212) discard)
+game/_unplaced/facility.cpp:263 | left: class- (no facade) | proposal: dtor_DynArrayB, DynArrayB, destruct_585710 (gen facade through the slot; DynArrayB::destruct exists as a direct member), void(); enclosing dtor_46cd30 result unused (atexit obj_stub_56a900)
+game/_unplaced/facility.cpp:269 | converted (detach(); return 0. notify_owner void; dtor_46d5b0 callers f_work/f_flag/f_barr/f_shop dtors return it, and their callers (scalar dtors) discard; facility.cpp:519 discards)
+game/_unplaced/facility.cpp:298 | converted (reset_585d20(); return 0. callers game.cpp:1154, facility.cpp:262 discard)
+game/_unplaced/facility.cpp:528 | left: class- (no facade) | proposal: linkout_5858c0, DynArrayB, linkout_5858c0, void(std::int32_t pos) (enclosing Obj::delete_and_remove 0x0046d190 has no callers, so it could become `...; return 0;` once a slot facade exists)
+game/_unplaced/hud.cpp:298 | converted (set_mode_60a740(saved); return 0. Hud::load_resources only caller gamedraw.cpp:940 discards)
+game/_unplaced/hud.cpp:821 | converted (near_tracked_unit(f32(v.a), f32(v.b), v.c): Vec12 by value = the same three dwords; replacement in_range(float, float, u32) returns bool, site tested AL != 0)
+game/_unplaced/hud.cpp:864 | left: nosig | proposal: Unit_siege_model_prefix, Hud, siege_model_prefix, const char*(std::uint32_t id)
+game/_unplaced/hud.cpp:1563 | converted (clear_unit(); return 0. Panel::clear_unit void; Obj::reset_6fe240 only caller i_letter.cpp:219 discards)
+game/_unplaced/hud.cpp:2882 | left: nosig | proposal: Material_set_colour0, Material, set_colour0, const void*(const std::uint32_t* c) (ret 4, returns c)
+game/_unplaced/hud.cpp:2923 | converted (sort_by_material(1); return 0. Scene::build_test_quad 0x007069f0 has no callers)
+game/_unplaced/hud.cpp:2969 | converted (set_position_5ac310(pos); return 0. Camera::look_player_707230 has no callers)
+game/_unplaced/misc_0049d490.cpp:360 | converted (as<u32>(has_word_728(i16(...))) & 0xff: only the low byte used; replacement contains(i16) reads 16 bits)
+game/_unplaced/objm_reward.cpp:87 | converted (set_scene(...); return 0. Camera::set_scene void; Map::create_widgets_732580 only caller objmenu.cpp:140 discards)
+game/_unplaced/objm_reward.cpp:165 | converted (set_frame(&p); return 0. Camera::set_frame void; set_camera_732af0 only caller objmenu.cpp:547 discards)
+game/_unplaced/objm_reward.cpp:592 | converted (scale_to_61f1b0(0, 1.0f, 0.0f, 1, 0); return 0. Widget::scale_to(i16, float, float, char, u32) void; reset_buttons_7349b0 only caller objmenu.cpp:1233 discards)
+game/_unplaced/rts2.cpp:275 | left: narrow result whose upper 24 bits are returned (`return r & 0xffffff00u`) to the caller
+game/_unplaced/rts2.cpp:287 | converted (as<u32>(can_target_453620(id)) & 0xffu: only the low byte used)
+game/_unplaced/rts2.cpp:305 | left: nosig | proposal: Unit_name_tag, Player, name_tag, const char*(std::uint32_t id) (rts2.cpp:4468; `this` unused, the RTS player object)
+game/_unplaced/rts2.cpp:318 | left: nosig | proposal: Unit_name_tag (see rts2.cpp:305)
+game/_unplaced/rts2.cpp:719 | left: class? | proposal: sdd_0041dfa0, Tracks, scalar_delete, void*(std::uint32_t flags) (battle.cpp:858: as_tracks(this)->destruct, then delete)
+game/_unplaced/rts2.cpp:1262 | left: noclass | proposal: Actor_select_mesh, Actor, select_mesh, void**(void* camera, std::int32_t, void** out_plane, std::uint32_t* out_extra) (actor.cpp:1422)
+game/_unplaced/rts2.cpp:1288 | converted (ray_query(u32 mx, u32 my, eye.v[0], eye.v[1], eye.v[2], &hit_pos): V3 by value = three floats; replacement ray_query(u32, u32, float, float, float, void*) returns u8)
+game/_unplaced/rts2.cpp:1958 | left: nosig | proposal: Turns_cos, Turns (heading object), cos, double() (naked asm in camman.cpp, st0 result)
+game/_unplaced/rts2.cpp:1959 | left: nosig | proposal: Turns_sin, Turns, sin, double()
+game/_unplaced/rts2.cpp:1973 | left: nosig | proposal: Unit_name_tag (see rts2.cpp:305)
+game/_unplaced/rts2.cpp:2010 | converted (as<u8>(region_hit(pos.x, pos.y, pos.z, u32(1)))): V3f by value = three floats; replacement region_hit(float, float, float, u32) returns bool, site read AL)
+game/_unplaced/rts2.cpp:2482 | left: nosig | proposal: Unit_name_tag (see rts2.cpp:305)
+game/_unplaced/rts2.cpp:2517 | left: nosig | proposal: Unit_name_tag (see rts2.cpp:305)
+game/_unplaced/rts2.cpp:2638 | converted (sweep_tracked(); return 0. CameraMan::sweep_tracked void; World::cull_lights_452d20 only caller rts.cpp:1450 discards)
+game/_unplaced/rts2.cpp:2774 | converted (toggle_station(this) as a statement; eax stays 0 on that path. Nation::toggle_station void; Place::set_nation callers world_s.cpp:3519, gfile3.cpp:1145, camcmd.cpp:682 discard, no vtable ref)
+game/_unplaced/rts2.cpp:2824 | left: result returned by Obj::detach_451390, which is vtable entry 0x30 of vt_Obj_9d3c88 (virtual callers not traceable)
+game/_unplaced/rts2.cpp:2828 | left: same as rts2.cpp:2824
+game/_unplaced/rts2.cpp:2926 | left: nosig | proposal: Unit_name_tag (see rts2.cpp:305)
+game/_unplaced/rts2.cpp:3123 | left: nosig | proposal: Unit_name_tag (see rts2.cpp:305)
+game/_unplaced/rts2.cpp:3348 | converted (as<i32>(find(name)): snd only reaches add_trigger's w10, which is passed on as arg::i16, so only 16 bits are read)
+game/_unplaced/rts2.cpp:3493 | left: nosig | proposal: Unit_name_tag (see rts2.cpp:305)
+game/_unplaced/rts2.cpp:4221 | converted (as<u32>(region_hit(f32(v.x), f32(v.y), f32(v.z), 1u)) & 0xffu: V3 = three raw dwords, same bits)
+game/_unplaced/rts2.cpp:4631 | converted (section(CHARMOVE)): Ini::section takes one arg (ret 4). The slot call pushed (CHARMOVE, key), so key stayed on the stack and the arg-less Ini_value call read it as its argument. Now section(CHARMOVE) and value(key) are called explicitly: the callees read the same bits, and the stack stays balanced)
+game/_unplaced/rts2.cpp:4632 | converted (value(key), see rts2.cpp:4631)
+game/_unplaced/soundres.cpp:75 | converted (clear(); return 0. Array::clear void; call_4d0bc0 only caller atexit stub obj_stub_56a480)
+game/_unplaced/soundres.cpp:343 | converted (release(); eax = 0. upper 16 bits of eax only reach Speakers::tick's return, and 0x004d1340 has no callers and no vtable ref)
+game/_unplaced/tokenize.cpp:205 | left: nosig:nofn (Tokenizer_split_body is the intact original body at 0x006840d0, not a replacement)
+game/itemres.cpp:499 | converted (as_archive(res)->dtor(); return 0. Archive dtor void; ItemRes::load_49fbb0 only caller itemres.cpp:150 discards)
+game/itemres.cpp:850 | converted (static_cast<i16>(find(next())): only the low 16 bits used)
+game/itemres.cpp:853 | converted (same as itemres.cpp:850)
+game/itemres.cpp:855 | converted (same as itemres.cpp:850)
+game/itemres.cpp:857 | converted (same as itemres.cpp:850)
+game/itemres.cpp:1601 | converted (as_archive(res)->dtor(); return 0. ItemTable::load_items only caller game.cpp:267 run() discards)
+game/remapkey.cpp:115 | converted (as_bindings(self)->load(); return 0. RemapKeys::load void; KeyMap::load_4cae70 only caller game.cpp:354 run() discards)
+game/remapkey.cpp:185 | converted (free(); return 0. RemapKeys::free void; X::forward_4cb310 only caller atexit stub obj_stub_569c10)
+game/world.cpp:112 | left: class? | proposal: Obj427930_vector_delete, (array of 0x38-byte entries at World+0x7e, dtor 0x0054ac60; class unnamed), vector_delete, void*(std::uint32_t flags) (camzone.cpp:874)
+game/world.cpp:273 | left: class? | proposal: same as world.cpp:112
+game/world.cpp:821 | converted (as_bmp_res(this)->free(); return 0. BmpRes::free void; 0x0054b460 callers: 20 obj_stub_* and 30 dtor_stub_* (all atexit only), boids.cpp:885 dtor_4214b0 (callers atexit dtor_a39670 and worldarr.cpp:164, which discards))
+ilib/resdb.cpp:55 | converted (as_file(this)->destruct_5872b0(); return 0. ~File void; dtor_596380 only caller cheats.cpp:67 dtor_454210, only called by atexit stub dtor_stub_564860)
+interfac/objmenu.cpp:154 | converted (close_if_open(); return 0. Dialog::close_if_open void; ObjMenu::build_71d2d0 only caller game.cpp:285 run() discards)
+interfac/objmenu.cpp:226 | converted (free_siege(); return 0. Obj::free_scene void; release_71e800 callers: game.cpp:813 table (discards) and globals.cpp fwd_56e6b0, whose only caller atexit_56c9d0 discards)
+interfac/objmenu.cpp:276 | converted (free_siege_images(); return 0. Res2::free_1b3 void; free_slots_and_parts callers (objm_strat.cpp:103, objmenu.cpp:201/939/1123) discard)
+interfac/objmenu.cpp:550 | converted (init_siege(); return 0. SiegeDebrief::init_73b2e0 void; reload_masks only caller objmenu.cpp:1050 discards)
+interfac/objmenu.cpp:749 | left: facade has 2 args but the replacement takes 1 (stack would unbalance) | facade-fix: obj_menu_methods.inc draw_army -> `void draw_army(std::uint8_t a0)` (GroupPanel::draw_725870, objm_army.cpp:354 group_panel_draw(u8), ret 4); after the fix the site is `as_obj_menu(f.self)->draw_army(static_cast<std::uint8_t>(sub_arg))`
+interfac/objmenu.cpp:1054 | converted (set_speed(arg::bits(0.0f)); return 0. Game::set_speed(u32 bits) void; open_7226a0 callers: savemenu.cpp x2 and i_vict.cpp discard; i_igmenu set_state_6f5cc0 returns it, and all its callers discard)
+interfac/objmenu.cpp:1190 | converted (move_to_61e020(i16(a), i16(b), f32(c), f32(d), char(e), u32(g)); return 0. Widget::move_to(i16, i16, float, float, char, u32) reads the same bits; m6's results go to r, which layout_main discards)
+interfac/objmenu.cpp:1193 | converted (scale_to_61f1b0(i16(a), f32(b), f32(c), char(d), u32(e)); return 0. Same reasoning as objmenu.cpp:1190)
+interfac/objmenu.cpp:1206 | converted (scale_to_61f1b0(...) as a statement; r is unused)
+interfac/objmenu.cpp:1240 | converted (nop_73b140(); return 0. layout_main callers objmenu.cpp:940, 1047 discard)
+interfac/objmenu.cpp:1724 | converted (scale_to_61f1b0(0, 1.0f, 0.0f, 1, 0); return 0. reset_buttons_724670 only caller objmenu.cpp:1232 discards)
+interfac/objmenu.cpp:1764 | left: move()'s result is returned by CampScreen::set_state_721a60 for state 0. Callers objm_shop.cpp:425 and objmenu.cpp:1654 pass its upper 24 bits on ((eax & ~0xff) | 1)
+en3d/animdef.cpp:1763 | converted (helper heap_free made void; its only caller discards the result; Mem::del)
+en3d/animdef.cpp:2186 | left: nosig | proposal: open_slice_FileMem_ptr, FileMem, open_slice (already declared: std::int32_t FileMem::open_slice(FileMem* parent, std::int32_t size), 0x00588430; site passes a1 as parent, a2 as size)
+en3d/animdef.cpp:2193 | left: nosig | proposal: same as 2186 (FileMem::open_slice(FileMem*, std::int32_t), a3/a4)
+en3d/texturea.cpp:160 | left: nosig | proposal: bin_search, Misc, bin_search (declared in original/misc.hpp: std::int32_t bin_search(const void* key, const char* arr, std::int32_t count, std::int32_t size, int(__cdecl*)(const void*, const void*), std::int32_t* insert_pos))
+en3d/texturea.cpp:445 | left: nosig | proposal: bin_search, Misc, bin_search (see texturea.cpp:160)
+en3d/texturea.cpp:669 | left: nosig | proposal: bin_search, Misc, bin_search (see texturea.cpp:160)
+en3d/texturea.cpp:685 | left: nosig | proposal: bin_search, Misc, bin_search (see texturea.cpp:160)
+en3d/texturea.cpp:699 | left: nosig | proposal: bin_search, Misc, bin_search (see texturea.cpp:160)
+en3d/texturea.cpp:816 | left: nosig | proposal: bin_search, Misc, bin_search (see texturea.cpp:160)
+en3d/texturea.cpp:863 | left: nosig | proposal: bin_search, Misc, bin_search (see texturea.cpp:160)
+en3d/texturea.cpp:1043 | left: nosig | proposal: bin_search, Misc, bin_search (see texturea.cpp:160)
+en3d/texturea.cpp:1144 | converted (TextureArray::clear is void; enclosing 0x00608de0's only caller is term_5642b0, an exit terminator; return 0)
+en3d/texturea.cpp:1236 | left: nosig | proposal: TexturePaths_resolve, TexturePaths (object 0xa59718), resolve, const char* resolve(const char* path) (replacement en3d/texturea.cpp H::resolve, 0x006051c0)
+en3d/texturea.cpp:2011 | converted (SysEn::link_resource is void; enclosing TextureX::attach 0x00608180 has no callers in joan.exe or src; return 0)
+en3d/vgalock.cpp:66 | converted (del is void; VgaLock::release 0x00613210 has no callers in joan.exe or src; return 0 on that path, `return self()` path unchanged)
+game/_unplaced/camzone.cpp:100 | converted (Obj427cc0::set_id is void; CamZones::init callers in joan.exe and src all discard eax; return 0)
+game/_unplaced/camzone.cpp:962 | left: class? | proposal: Obj_get_c, Obj (the +0x5c object of +0x339), get_c, std::uint32_t get_c() (returns +0xc; game/_unplaced/rts2.cpp 0x00453cc0)
+game/_unplaced/camzone.cpp:1495 | converted (CamRes::load is void(u32, Vec12); CamZones::load callers in joan.exe and src all discard; same 4+12 bytes pushed; return 0)
+game/_unplaced/fx_registry.cpp:110 | left: class- | proposal: linkout_5858c0, DynArrayB, linkout, void linkout(std::int32_t pos) (already declared in original/dynarray.hpp; house style joan::orig::dynarray_b(p)->linkout(i)); note: it returns void, so the u32 read here is garbage
+game/_unplaced/gadget.cpp:362 | converted (Object::nop_61e000 is void; enclosing is Object::~Object 0x0061dfb0, a destructor, so its eax is never used by compiled code; return 0)
+game/_unplaced/gadget.cpp:695 | converted (set_move_speed is void; float passed as arg::bits, same dword; Obj::set_time_61f400 callers in joan.exe and src discard; return 0)
+game/_unplaced/gadget.cpp:747 | converted (set_4a is void; float passed as arg::bits; Obj::set_time_61f930 callers discard; return 0)
+game/_unplaced/gadget.cpp:872 | converted (set_scale_speed is void; float passed as arg::bits; Obj::set_time_6207c0 callers discard; return 0)
+game/_unplaced/misc_423220.cpp:177 | converted (SceneObject::set_yaw is void; Place::set_angle 0x004233c0 callers in joan.exe and src discard; return 0 on that path)
+game/_unplaced/pathzone.cpp:491 | left: class- | proposal: Plane4_Plane4_425700, Plane4, construct, void* construct() (trivial ctor, returns this; game/camman.cpp 0x00425700)
+game/_unplaced/pathzone.cpp:492 | left: class- | proposal: same as pathzone.cpp:491
+game/_unplaced/pathzone.cpp:493 | left: class- | proposal: same as pathzone.cpp:491
+game/_unplaced/unit_a.cpp:759 | left: class- | proposal: same as pathzone.cpp:491
+game/_unplaced/unit_a.cpp:1048 | left: facade has 4 args, site/callee 3 | facade-fix: CellObject::set_anim_state (0x004ff9f0, ret 0xc) is void set_anim_state(std::int32_t state, std::int32_t time /*unused*/, std::int32_t arg) - 3 dwords, not (i32, void*, void*, i32)
+game/_unplaced/unit_set.cpp:175 | left: facade has 4 args, site/callee 3 | facade-fix: same as unit_a.cpp:1048
+game/flocksys.cpp:177 | converted (DynArray linkout is void; Flock::remove_group 0x0046e430 has no callers (dead code); return 0)
+game/flocksys.cpp:183 | left: class- | proposal: dtor_DynArrayB, DynArrayB, destruct, void destruct() (declared in original/dynarray.hpp, 0x00585710); returns void, u32 read here is garbage
+game/flocksys.cpp:194 | left: class- | proposal: linkout_5858c0, DynArrayB, linkout, void linkout(std::int32_t) (see fx_registry.cpp:110)
+game/flocksys.cpp:502 | converted (Ini::section reads only its first arg (ret 4); the extra key arg was the original's stack trick feeding Ini::value - now passed explicitly at 503; result as<void*>)
+game/flocksys.cpp:503 | converted (Ini::value(key): the original's leftover push is its argument; the old 0-arg call read the same key from the stack; result as<char*> + 9)
+game/flocksys.cpp:568 | converted (helper heap_free made void; its only caller discards; Mem::del)
+game/flocksys.cpp:583 | converted (Sound::reset_585d20 is void; FlockList::clear callers in joan.exe and src discard; return 0)
+game/flocksys.cpp:834 | converted (Flock::free is void; Obj::forward_46dfa0 0x0046de60 is a destructor called only by the scalar dtor, which discards; return 0)
+game/gfile3.cpp:141 | left: class? | proposal: Rec3b_write, Rec3b, write, std::int32_t write(void* stream) (gfile3.cpp 0x0047e600)
+game/gfile3.cpp:151 | left: class? | proposal: List21_load, List21, load, std::int32_t load(void* file) (0x0047f130)
+game/gfile3.cpp:559 | left: class? | proposal: Obj_clear_186, <Obj of 0x00483dd0>, clear_186, void clear_186() (0x00483dd0)
+game/gfile3.cpp:1693 | left: class? | proposal: Obj_true_47f580, <Obj>, true_47f580, std::int32_t true_47f580(std::uint32_t) (always 1, ret 4)
+game/gfile3.cpp:1738 | left: class? | proposal: Obj_true_47f5a0, <Obj>, true_47f5a0, std::int32_t true_47f5a0(std::uint32_t) (always 1, ret 4)
+game/gfile3.cpp:1742 | left: class? | proposal: Obj_stub_47f560, <Obj>, stub_47f560, void stub_47f560()
+game/gfile3.cpp:2131 | left: class? | proposal: Obj_load_483430, <Obj>, load_483430, std::int32_t load_483430(void* file)
+game/gfile3.cpp:2144 | left: class? | proposal: Obj_read_1b2, Rec1b2, read, std::int32_t read(void* file) (0x00483ca0)
+game/gfile3.cpp:2146 | left: class? | proposal: same as gfile3.cpp:2144
+game/gfile3.cpp:2147 | left: class? | proposal: Obj_clear_186 (see gfile3.cpp:559; void, the u32 read is discarded)
+game/gfile3.cpp:2148 | left: class? | proposal: Obj_clear_277, <Obj>, clear_277, std::uint32_t clear_277() (0x00484160)
+game/gfile3.cpp:2163 | left: class? | proposal: Obj_save_483e00, <Obj>, save_483e00, std::int32_t save_483e00(void* stream)
+game/gfile3.cpp:2165 | left: class? | proposal: Rec1a_read_strings, Rec1a, read_strings, std::int32_t read_strings(void* stream) (0x004841d0)
+game/gfile3.cpp:2295 | left: class? | proposal: Obj_load_481140, <Obj>, load_481140, std::int32_t load_481140(void* stream)
+game/gfile3.cpp:2506 | left: class? | proposal: X_clear_3a_4e, X, clear_3a_4e, void clear_3a_4e() (0x00481220; the u32 read is discarded)
+game/gfile3.cpp:2513 | converted (Vec3 by value -> set_pos(f<u32>(0x12), f<u32>(0x16), f<u32>(0x1a)): same 12 bytes; result discarded)
+game/gfile3.cpp:2537 | left: class? | proposal: Obj40_save, Obj40, save, std::int32_t save(void* file) (0x004810b0)
+game/gfile3.cpp:2790 | left: class? | proposal: Obj_save_483250, <Obj>, save_483250, std::int32_t save_483250(void* file)
+game/gfile3.cpp:2809 | left: class? | proposal: Obj_load_483f10, <Obj>, load_483f10, std::int32_t load_483f10(void* file)
+game/gfile3.cpp:2811 | left: class? | proposal: ObjF_load, ObjF, load, std::int32_t load(void* file) (0x004842c0)
+game/gfile3.cpp:3021 | left: class? | proposal: Rec1b2_save, Rec1b2, save, std::int32_t save(void* file) (0x00483b90)
+game/gfile3.cpp:3023 | left: class? | proposal: same as gfile3.cpp:3021
+game/gfile3.cpp:3039 | left: class? | proposal: ObjG_reset, ObjG, reset, void* reset() (0x00484d50; the u32 read is discarded)
+game/gfile3.cpp:3788 | left: class? | proposal: Rec3b_read, Rec3b, read, std::int32_t read(void* stream) (0x0047e5c0)
+game/nation2.cpp:463 | converted (Player::set_relation is void(i32, char); 1 passed as char (callee reads the low byte); X::set_4b4550 callers in joan.exe and src discard; return 0)
+game/nation2.cpp:649 | left: class- | proposal: linkout_5858c0, DynArrayB, linkout, void linkout(std::int32_t) (see fx_registry.cpp:110)
+game/nation2.cpp:1351 | left: class- | proposal: dtor_DynArrayB, DynArrayB, destruct, void destruct() (see flocksys.cpp:183)
+game/nation2.cpp:1437 | converted (Nation::apply_units is void; Slot::release_6 0x004b5630 callers in joan.exe and src discard; return 0)
+game/nation2.cpp:1559 | left: nosig | proposal: bin_search, Misc, bin_search (see texturea.cpp:160)
+game/nation2.cpp:1642 | converted (helper compact made void; its only caller discards)
+game/scenario.cpp:168 | converted (Scenario::clear is void; Scenario::reset callers discard: game.cpp, scenario.cpp:201, and 0x004cc800's only src caller (void slot_dtor); return 0)
+game/scenario.cpp:275 | converted (~FileTxt is void; Scenario::load_4ccfb0 callers in joan.exe and src discard; return 0)
+ilib/txtres.cpp:77 | left: value used - eax is tracked and returned by TextRes::free_all (0x13 when the last buffer is empty, del's eax otherwise) and forwarded through 0x005a2040 -> 0x00566c40 / 0x00566d20 -> further terminator wrappers; not proven unused
+uti3d/dlgres.cpp:344 | converted (~File is void; DlgRes::load's only caller DlgRes::init returns it as eax, and all DlgRes::init callers in joan.exe and src discard; return 0)
+uti3d/dlgres.cpp:412 | converted (narrow i16 result; the site keeps only the low 16 bits via static_cast<i16>)
+uti3d/dlgres.cpp:518 | converted (DlgRes::release is void; 0x00643520 is a destructor called only by the scalar dtor 0x0063f4e0, which discards; return 0)
+en2d/font2d.cpp:1196 | converted
+en2d/font2d.cpp:1197 | converted
+en3d/bonetree.cpp:513 | converted
+en3d/bonetree.cpp:627 | left: nosig (bin_search) | proposal: bin_search, Misc (this = kFiles), Misc::bin_search typed member exists: std::int32_t bin_search(const void* key, const char* arr, std::int32_t count, std::int32_t size, int(__cdecl*)(const void*, const void*), std::int32_t* insert_pos) - needs a facade bin_search_5911a0(void*, const char*, i32, i32, u32 cmp, i32*) -> i32
+en3d/bonetree.cpp:649 | left: nosig (bin_search) | proposal: same as bonetree.cpp:627 (Misc::bin_search, result discarded here)
+game/_unplaced/crithud.cpp:75 | converted
+game/_unplaced/crithud.cpp:180 | converted
+game/_unplaced/crithud.cpp:745 | converted
+game/_unplaced/f_barr.cpp:140 | left: 0x00467560 is virtual (vt_Obj_9d0780 slot +8, thunk 0x00407644 in the vtable) so callers reading the (garbage) eax cannot be ruled out; Obj::notify_owner returns void (facade correct)
+game/_unplaced/f_barr.cpp:244 | left: value returned from Building::spawn_467590, which is virtual (thunk 0x00404db8 at vt_Obj_9d0780 +0x10) - callers not provable; Unit::set_value_135 returns void (facade correct)
+game/_unplaced/gamefile_tail.cpp:74 | left: upper bits used (`return r | 1u` when the low byte is 0); Unit::can_target returns bool (facade correct)
+game/_unplaced/misc_52f930.cpp:406 | converted
+game/_unplaced/places.cpp:261 | left: class- | proposal: dtor_DynArrayB, DynArrayB, destruct_585710(), void (typed DynArrayB::destruct exists); X::dtor_c5 0x004c51d0 only caller is atexit stub 0x0056a870, so `destruct(); return 0;` would be safe
+game/_unplaced/places.cpp:892 | left: class- | proposal: linkout_5858c0, DynArrayB, linkout_5858c0(std::int32_t), void (typed DynArrayB::linkout exists); List::remove_4c5430 has no callers, so `linkout(i); return 0;` would be safe
+game/_unplaced/places.cpp:937 | converted
+game/_unplaced/triggers.cpp:57 | converted
+game/_unplaced/triggers.cpp:102 | converted
+game/_unplaced/triggers.cpp:164 | converted
+game/_unplaced/triggers.cpp:188 | converted
+game/_unplaced/triggers.cpp:330 | converted
+game/_unplaced/triggers.cpp:368 | converted
+game/_unplaced/triggers.cpp:385 | converted
+game/_unplaced/triggers.cpp:413 | converted
+game/_unplaced/units_mgr.cpp:61 | left: class-, and the result is used (`return r`) | proposal: linkout_5858c0, DynArrayB, linkout_5858c0(std::int32_t), void
+game/_unplaced/ur_orders.cpp:1126 | converted
+game/_unplaced/ur_orders.cpp:3255 | converted
+game/_unplaced/vtrail.cpp:228 | left: noclass | proposal: Actor_select_mesh, Actor (this = unit +0x86), select_mesh(void* camera, std::int32_t, void** out_plane, std::uint32_t* out_extra) -> void** (returns out_plane)
+game/_unplaced/vtrail.cpp:359 | left: noclass | proposal: same as vtrail.cpp:228
+game/_unplaced/vtrail.cpp:611 | left: noclass | proposal: same as vtrail.cpp:228
+game/_unplaced/vtrail.cpp:638 | converted
+game/_unplaced/vtrail.cpp:749 | left: nosig | proposal: Material_set_colour0, Material, set_colour0(const std::uint32_t* c) -> const void* (returns c)
+game/_unplaced/vtrail.cpp:829 | converted
+game/cpuusage.cpp:123 | converted
+game/cpuusage.cpp:146 | converted
+game/cpuusage.cpp:191 | left: nosig (bin_search) | proposal: as bonetree.cpp:627 (Misc::bin_search, this = kArrays, R read as void*)
+game/cpuusage.cpp:621 | left: class- | proposal: X_key_diff, (this unused - any record class), key_diff(i32 a, i32, i32 c, i32 d, i32, i32 g) -> i32
+game/cpuusage.cpp:973 | converted
+game/cpuusage.cpp:1048 | converted
+game/cpuusage.cpp:1096 | left: nosig:nofn (calls its own original body 0x0045d170 for the inexact path)
+game/cpuusage.cpp:1106 | left: nosig:nofn (calls its own original body 0x0045d2b0 for the inexact path)
+game/cpuusage.cpp:1343 | converted
+game/cpuusage.cpp:1426 | converted
+game/speech_s.cpp:562 | converted
+game/speech_s.cpp:613 | converted
+ilib/audio.cpp:641 | left: class- | proposal: Obj_dtor_47cac0, ResourceIdx (resource file at +0x17), dtor_47cac0(), std::uint32_t (replacement returns 0)
+ilib/audio.cpp:650 | left: class- | proposal: get_file_name_59ce40, ResourceIdx, get_file(const char* name, std::int32_t& size) -> File* (typed member exists; facade get_file_59ce40(const char*, i32*) -> void*)
+ilib/audio.cpp:1290 | left: class- | proposal: get_file_name_59c200, ResourceIdxL, get_file(const char* name, std::int32_t& size) -> File*
+ilib/audio.cpp:1635 | converted
+ilib/audio.cpp:1790 | left: class- | proposal: get_file_rec_59c2a0, ResourceIdxL, get_file_rec(std::int32_t rec_no, std::int32_t& size) -> File*
+ilib/vqueue.cpp:156 | converted
+interfac/optmenui.cpp:695 | converted
+interfac/optmenui.cpp:698 | converted
+interfac/optmenui.cpp:742 | converted
+interfac/optmenui.cpp:743 | converted
+interfac/optmenui.cpp:744 | converted
+interfac/optmenui.cpp:745 | converted
+interfac/optmenui.cpp:868 | converted
+interfac/optmenui.cpp:1274 | converted
+interfac/optmenui.cpp:1277 | converted
+interfac/optmenui.cpp:1507 | converted
+interfac/optmenui.cpp:1510 | converted
+interfac/optmenui.cpp:2256 | converted
+interfac/optmenui.cpp:2376 | converted
+interfac/optmenui.cpp:2533 | converted
+interfac/optmenui.cpp:2653 | converted
+interfac/optmenui.cpp:2703 | converted
+interfac/optmenui.cpp:2706 | converted
+interfac/optmenui.cpp:2709 | converted
+interfac/optmenui.cpp:2712 | converted
+interfac/optmenui.cpp:4036 | converted
+interfac/optmenui.cpp:4096 | converted
+interfac/optmenui.cpp:4099 | converted
+interfac/optmenui.cpp:4344 | converted
+interfac/optmenui.cpp:4434 | converted
+en2d/widget2d.cpp:55 | left: value is the return of registered replacement Widget2d::release 0x634b90 (del 0x58ed70 returns void; the eax that original callers may read is passed up); not provably unused
+en2d/widget2d.cpp:79 | converted (mm_free -> void, joan::orig::as_mem(...)->del(...); its only caller list_free ignores the result)
+en3d/scene_s.cpp:312 | left: r (set_scene 0x5acf10 eax, void replacement) is the return of registered SceneGroup::release_ce 0x5eff10 ("eax: the last 0x5acf10 result"); not provably unused
+en3d/scene_s.cpp:1319 | converted (as<u32>(as_light(..)->flag_59()) & 0xff)
+en3d/scene_s.cpp:1328 | converted (as<u32>(as_bound_sphere(sphere)->touches(..)) & 0xff)
+en3d/scene_s.cpp:1370 | converted (as<u32>(as_bound_sphere(L+0x38)->contains(..)) & 0xff)
+en3d/scene_s.cpp:1408 | left: del 0x58ed70 eax returned from registered Scene::light_mesh_5f2780 0x5f2780; not provably unused
+en3d/scene_s.cpp:1444 | converted (as<u32>(as_plane(..)->has_alpha_material()) & 0xff)
+en3d/scene_s.cpp:1707 | converted (Mat16 view by value split into its 16 dwords via memcpy -> texture_matrix(vw[0..15], out); same 64 stack bytes, replacement TexGen::matrix reads the 16 dwords + float*)
+game/_unplaced/animscr_fx.cpp:364 | left: class-; value is return of registered Obj::dtor_419f70 | proposal: Obj_dtor_47cac0, Ini (ResIdx + File, game/gameplay.cpp game_b90_03 H at this+9), dtor_47cac0, std::uint32_t () (eax of File_dtor 0x5872b0)
+game/_unplaced/animscr_fx.cpp:469 | left: Actor::release 0x675b30 is void; its eax is returned by registered Obj41a1f0::clear 0x41a260; not provably unused
+game/_unplaced/animscr_fx.cpp:641 | converted (arg::i16(as_effect_state(model)->source_blend()); only low 16 bits used, replacement returns int16)
+game/_unplaced/animscr_fx.cpp:642 | converted (arg::i16(as_effect_state(model)->dest_blend()))
+game/_unplaced/ctl2d.cpp:285 | left: Plane::invalidate 0x5cf920 is void; its eax deliberately returned by registered 0x629230 ("eax of 0x005cf920 kept")
+game/_unplaced/ctl2d.cpp:375 | left: same, eax of void Plane::invalidate returned by registered ModelHolder::load 0x628ed0
+game/_unplaced/ctl2d.cpp:436 | left: Actor::start_anim 0x5abe30 is void; eax returned by registered Obj::forward_5abe30 0x6293b0
+game/_unplaced/fx_spawn.cpp:113 | left: class-; eax returned by registered Obj::dtor_41b4a0 | proposal: dtor_DynArrayB, DynArrayB, destruct (already exists as DynArrayB::destruct in original/dynarray.hpp, void ())
+game/_unplaced/fx_spawn.cpp:157 | left: Sound::reset_585d20 is void; eax returned by registered List::destroy_41b530 0x41b530
+game/_unplaced/gameover.cpp:257 | converted (menus_set -> void via as_texture_manager(kMenus)->set_mode_60a740; its two callers ignore the result)
+game/_unplaced/i_obj0b.cpp:188 | converted (static_cast<u8>(as<u32>(as_game(..)->has_word(arg::i16(..)))); low byte only, callee reads int16)
+game/_unplaced/i_obj0b.cpp:216 | converted (Vec3{u32 x,y,z} by value -> set_pos(at<u32>(p,0), at<u32>(p,4), at<u32>(p,8)); result discarded)
+game/_unplaced/i_obj0b.cpp:473 | converted (same, V3 raw dwords -> set_pos(3 x u32))
+game/_unplaced/i_obj0b.cpp:657 | left: class? | proposal: set_byte_10a, unknown (object at unit+0x319; camcmd.cpp game_b82_18 H), set_10a, void (std::uint32_t) (stores low byte at +0x10a)
+game/_unplaced/music.cpp:93 | left: Obj::close_59ad70 is void; eax returned by registered Obj::call_59ad70 0x59ad00
+game/_unplaced/playerctl.cpp:524 | left: Unit::update_a2_434270 is void; eax returned by registered Obj::dtor_431520 0x431520
+game/_unplaced/playerctl.cpp:842 | left: class? (mount_set_42cf20 helper, mount object) | proposal: set_byte_10a, unknown (mount object), set_10a, void (std::uint32_t)
+game/_unplaced/playerctl.cpp:1106 | converted (Vec3{float} by value -> near_tracked_unit(pos.x, pos.y, arg::bits(pos.z)); replacement in_range(float,float,u32 unused); bool -> as<u8>, only low byte compared)
+game/_unplaced/uinput.cpp:214 | converted (pick_ray(y2, x2, f32(p.a), f32(p.b), f32(p.c), mptr(&v2c)) != 0; V3 raw dwords passed as the same float bits; only low 16 bits used)
+game/_unplaced/uinput.cpp:216 | converted (return as_player(me())->move_to(v2c); site used static_cast<i16>, enclosing input_438b30 returns i16)
+game/_unplaced/uinput.cpp:227 | converted (as_ctrl(me())->set_target_43a7d0(..); i16 result, same low 16 bits)
+game/_unplaced/uinput.cpp:235 | converted (same)
+game/_unplaced/uinput.cpp:251 | converted (as_player(me())->goto_target(..))
+game/_unplaced/uinput.cpp:256 | converted (same)
+game/_unplaced/uinput.cpp:871 | left: r & 0xffff0000u keeps the upper 16 bits of move_to's eax (and r is returned), not low-bits only
+game/_unplaced/uinput.cpp:995 | left: nosig | proposal: Obj_forward_492370, MapObject-derived (vt 0x9d3bec), forward_492370, std::uint32_t () (forwards to Unit_release_4251b0, eax passed up)
+game/_unplaced/uinput.cpp:1090 | left: class? (sub-object at this+0x1c) | proposal: Obj_free_8, unknown (holder with ptr at +8; trackres.cpp game_b99_05), free_8, std::int32_t () (operator delete eax or this)
+game/_unplaced/uinput.cpp:1148 | left: r & 0xffff0000u uses upper bits of void Unit::set_leader's eax, returned by registered 0x43ab80
+game/_unplaced/uinput.cpp:1159 | left: eax of void Textures::set_mode returned by registered MILIBAL load function
+game/_unplaced/uinput.cpp:1199 | left: full u32 of move_to (i16 replacement) returned by registered goto_object; upper bits not provably unused by original callers
+game/_unplaced/uinput.cpp:1504 | left: class-; eax returned by registered Obj::dtor_43b440 | proposal: dtor_DynArrayB, DynArrayB, destruct, void () (exists in original/dynarray.hpp)
+game/_unplaced/uinput.cpp:2332 | left: class- | proposal: heading_to_degrees, Pad/controller (this unused; mission.cpp game H), heading_to_degrees, float (const void* src, float add)
+game/_unplaced/uinput.cpp:2337 | left: class- | proposal: as 2332
+game/_unplaced/uinput.cpp:2346 | converted (Vec3{float} by value -> set_view(bits(x), bits(y), bits(z)); result discarded, replacement void)
+game/_unplaced/uinput.cpp:2641 | left: class- | proposal: as 2332
+game/_unplaced/uinput.cpp:2658 | left: class- | proposal: as 2332
+game/_unplaced/uinput.cpp:2676 | left: class- | proposal: as 2332
+game/_unplaced/uinput.cpp:2718 | left: class- | proposal: as 2332
+game/_unplaced/uinput.cpp:2775 | left: class- | proposal: as 2332
+game/_unplaced/uinput.cpp:2820 | left: class- | proposal: as 2332
+game/_unplaced/uinput.cpp:3422 | left: nosig:nofn; deliberate call of the original body behind the redirected thunk (uninit path)
+game/_unplaced/units_sel.cpp:75 | left: class-; eax returned by registered Obj::~Obj_51dc50 | proposal: dtor_DynArrayB, DynArrayB, destruct, void ()
+game/_unplaced/vgalock_mb.cpp:67 | converted (as<std::uint32_t>(as_canvas(..)->valid()) & 0xff)
+game/_unplaced/vgalock_mb.cpp:115 | converted (as<u32>(as_canvas(..)->valid()) & 0xff)
+game/_unplaced/weather.cpp:147 | left: ~DynArray 0x5844b0 is void; eax returned by registered Obj689bf0::~dtor 0x689bf0
+game/_unplaced/weather.cpp:421 | left: EffectState::parts_start void; eax returned by registered X::flag_slot 0x689fb0
+game/_unplaced/weather.cpp:422 | left: same
+game/_unplaced/weather.cpp:543 | left: class? | proposal: set_byte_10a, scene object of EffectState::object() (unknown class), set_10a, void (std::uint32_t)
+game/_unplaced/weather.cpp:560 | converted (static_cast<u8>(as<u32>(as_game(..)->flag_744())))
+game/_unplaced/weather.cpp:843 | converted (arg::i16(as_effect_state(def)->source_blend()))
+game/_unplaced/weather.cpp:844 | converted (arg::i16(as_effect_state(def)->dest_blend()))
+game/_unplaced/weather.cpp:917 | converted (same)
+game/_unplaced/weather.cpp:918 | converted (same)
+game/_unplaced/weather.cpp:985 | converted (same)
+game/_unplaced/weather.cpp:986 | converted (same)
+game/_unplaced/weather.cpp:1132 | converted (Vec3{u32 v[3]} pos split to pos.v[0..2]; 15 args map 1:1 onto Billboard::create (x,y,z,sx,sy,texture,int16 kind,argb,...); kind 2 read as int16; result discarded)
+game/battle.cpp:391 | left: nosig:nodef (naked asm replacement) | proposal: Turns_cos, Angle (u32 turns), turns_cos, double () (st0)
+game/battle.cpp:393 | left: nosig:nodef | proposal: Turns_sin, Angle, turns_sin, double () (st0)
+game/battle.cpp:395 | left: nosig:nodef | proposal: as 393
+game/battle.cpp:397 | left: nosig:nodef | proposal: as 391
+game/battle.cpp:428 | left: Widget::~Widget 0x6294c0 void; eax returned by registered dtor_41c710
+game/battle.cpp:1138 | left: class- (result discarded, would be safe) | proposal: Rect9_clear, Rect9, clear, void* () (returns this; gadget.cpp rect9_clear)
+game/unitres.cpp:183 | left: Archive::dtor void; eax returned by registered UnitRes::load_524e30
+game/unitres.cpp:727 | left: Archive::dtor void; eax returned by registered Obj::~Obj_524c90
+interfac/i_barr.cpp:735 | left: nosig:nofn; deliberate call of the original ArmyPanel::draw body (uninit path)
+en3d/morph.cpp:561 | converted (Morph::select is void; morph_blend_to's only caller 0x005ae360 has no references -> result unused; `select(); return 0;`)
+en3d/morph.cpp:1348 | converted (Table::clear void; MorphAnim dtor 0x005cae50 only called as a statement, morph.cpp:405)
+en3d/vgabuf.cpp:205 | converted (nop_6101f0 void; vga_ensure 0x00612c40 only called as a statement from dead 0x00612af0)
+en3d/vgabuf.cpp:214 | converted (Pal::convert_610270 void; same enclosing function as :205)
+en3d/vgabuf.cpp:556 | left: class- | proposal: Pixel_unpack_color, no class (naked __stdcall free function unpack_color_571215(u32) -> u32, called with ecx kept); would need a stdcall free-function facade `std::uint32_t pixel_unpack_color(std::uint32_t)`, not a member
+en3d/vgabuf.cpp:629 | left: nosig:nodef | proposal: Input_release_592cd0, Input/MouseCursor (obj d::g_mouse 0x00a48608), release_592cd0, `void release_592cd0()` (naked; preserves incoming eax/edx)
+en3d/vgabuf.cpp:899 | left: nosig:nodef; the naked callee passes the caller's eax through and the site returns it (value is the caller's own eax, not garbage) | proposal: as :629
+en3d/vgabuf.cpp:1028 | left: nosig:nodef; returns the eax-passthrough as :899 | proposal: as :629
+en3d/vgabuf.cpp:1199 | left: nosig:nodef | proposal: as :629 (statement call, could use a void facade)
+en3d/vgabuf.cpp:1574 | left: nosig:nodef | proposal: as :629 (statement call, could use a void facade)
+game/_unplaced/camctl.cpp:72 | converted (Water::release_textures void; 0x00561590 reached only via on_global atexit handler 0x0056da10, CRT ignores eax)
+game/_unplaced/camctl.cpp:116 | left: class? | proposal: field20, class of object d::g_a52597 (unknown), field20, `void* field20()` (returns this+0x20; samplew.cpp:776)
+game/_unplaced/camctl.cpp:490 | converted (Bytes::at u8; use is `& 0xffu`)
+game/_unplaced/camctl.cpp:491 | converted (Bytes::at u8; use is `& 0xffu`)
+game/_unplaced/camera3d.cpp:110 | converted (LightManager::purge void; Camera::release_scene 0x006146e0 callers: misc_473140.cpp:118 statement, camman cam_check 0x004255c0 unreferenced)
+game/_unplaced/camera3d.cpp:224 | converted (Camera::dirty void; set_flag_cb is a Bone callback invoked as void(__cdecl*)(...) at mathlib.cpp:695/1202)
+game/_unplaced/camera3d.cpp:366 | converted (Camera::dirty void; Camera::set_viewport 0x00613bf0: all ~20 callers are statements)
+game/_unplaced/camera3d.cpp:678 | converted (apply_clip_planes void; 0x00617d50 only caller plane.cpp:2136 statement)
+game/_unplaced/camera3d.cpp:829 | converted (Fog::set_range void; Sound3d::set 0x00616a90 callers all statements; a,c,b passed as float bits via arg::f32, Vec3s by value)
+game/_unplaced/camera3d.cpp:1532 | left: class- | proposal: Plane4_Plane4_425700, Plane4, construct, `void* construct()` (trivial ctor returning this; camman.cpp:1014)
+game/_unplaced/camera3d.cpp:1589 | converted (Fog::apply u32; Vec3 at +0xa4 passed as its three floats f<float>(0xa4/0xa8/0xac) -> same 5 dwords)
+game/_unplaced/camera3d.cpp:1590 | converted (Fog::off void; Camera::apply_fog 0x00616b80 callers plane.cpp:2133/4315 are statements)
+game/_unplaced/camera3d.cpp:1641 | left: class- | proposal: as :1532
+game/_unplaced/camera3d.cpp:1666 | left: class- | proposal: as :1532
+game/_unplaced/camera3d.cpp:1935 | converted (water_texture_5d8650 u8; use is `& 0xff`)
+game/_unplaced/camera3d.cpp:1972 | left: nosig:nofn (original-body slot call of Lights::set itself)
+game/_unplaced/formmove.cpp:188 | left: nosig:nofn (original-body slot call of FormMove::step_6a45a0)
+game/_unplaced/formmove.cpp:577 | converted (V3 by value split into 3 arg::f32 of its dwords, Ld(0xc0) as arg::f32, dt as arg::i32(arg::bits(dt)) for the unused i32 a10 -> same 11 dwords)
+game/_unplaced/formmove.cpp:602 | converted (same as :577, result discarded)
+game/_unplaced/i_endscr.cpp:207 | converted (ItemScreen::close void; X::open_1080 0x006e8c80 only caller esfuncs.cpp:5606 statement)
+game/_unplaced/inventory.cpp:281 | left: Obj::detach void but dtor_456ef0's value propagates (cheats.cpp:1149 returns it from Unit::spawn_label 0x00456780, whose callers cheats.cpp:514/516 return it again); unused-ness not proven
+game/_unplaced/inventory.cpp:432 | left: Region::link_unit void but Effect::attach_zone's value is returned by set_pos 0x00456fe0 and wrap_456fb0 0x00456fb0; unused-ness not proven
+game/_unplaced/mdl.cpp:226 | left: nosig:nodef2 | proposal: String_right, String, right_5c57c0, `const char* right_5c57c0(std::int32_t n)` (mdl.cpp:1007)
+game/_unplaced/mdl.cpp:227 | left: nosig:nodef2 | proposal: String_left, String, left_5c5800, `const char* left_5c5800(std::int32_t n)` (mdl.cpp:1013)
+game/_unplaced/mdl.cpp:747 | left: nosig:nodef2 | proposal: as :226
+game/_unplaced/mdl.cpp:748 | left: nosig:nodef2 | proposal: as :227
+game/_unplaced/mission.cpp:241 | left: class? | proposal: set_byte_10a, class of the Unit+0x319 sub-object (unknown), set_10a, `void set_10a(std::uint32_t v)` (camcmd.cpp:1860)
+game/_unplaced/mission.cpp:244 | left: facade has 4 args, site and replacement have 3 (thiscall, callee pops 0xc) | facade-fix: CellObject_set_anim_state -> `void set_anim_state(std::int32_t state, std::int32_t time, std::int32_t arg)` (unit_core.cpp:434)
+game/_unplaced/mission.cpp:273 | left: class? | proposal: as :241
+game/_unplaced/mission.cpp:279 | left: facade arg count wrong | facade-fix: as :244
+game/_unplaced/mission.cpp:399 | converted (Nation::update_unit void; eax stays 0 on that path; Group::release 0x0042dd70 callers all statements)
+game/_unplaced/mission.cpp:413 | converted (same; Member::release 0x0042fcb0 callers all statements)
+game/_unplaced/mission.cpp:775 | converted (char; use is static_cast<i8>)
+game/_unplaced/mission.cpp:776 | converted (u8; static_cast<i8>)
+game/_unplaced/mission.cpp:777 | converted (u8; static_cast<i8>)
+game/_unplaced/mission.cpp:778 | converted (u8; static_cast<i8>)
+game/_unplaced/mission.cpp:810 | converted (u8; static_cast<i8>)
+game/_unplaced/mission.cpp:811 | converted (u8; static_cast<i8>)
+game/_unplaced/mission.cpp:816 | converted (char; static_cast<i8>)
+game/_unplaced/mission.cpp:973 | converted (u16 result returned by Player::on_key_42e1a0, whose only caller camctl.cpp:362 is a statement)
+game/_unplaced/mission.cpp:974 | converted (i16; same as :973)
+game/_unplaced/mission.cpp:975 | converted (i16; same as :973)
+game/_unplaced/mission.cpp:976 | converted (i16; same as :973)
+game/_unplaced/mission.cpp:977 | converted (i16; same as :973)
+game/_unplaced/mission.cpp:1072 | left: Effect::set_owner void, but Unit::create_sprite 0x0042f210 is in 3 vtables (.rdata 0x9d37dc/0x9d3a28/0x9d3d88) and i_obj12.cpp:364 uses its value
+game/_unplaced/mission.cpp:1169 | converted (u8; `& 0xffu` after i8 cast)
+game/_unplaced/mission.cpp:1178 | converted (u8; `& 0xffu`)
+game/_unplaced/musicstr.cpp:92 | converted (close void; 0x00585fa0 reached only from atexit handler term_566f60)
+game/_unplaced/savemenu.cpp:296 | converted (TextureManager::set_mode void; sprite_set_flag result returned only by Menu::load_save 0x0074d900, whose only caller savemenu.cpp:394 is a statement)
+game/_unplaced/savemenu.cpp:1390 | left: Widget::move_to void; place_r's value is returned by Screen::layout_752970 -> Briefing::start 0x0074da40 (returned again by i_igmenu.cpp:1011/1014); unused-ness not proven (args would be bit-identical)
+game/_unplaced/savemenu.cpp:1502 | converted (Obj753::fill void; SaveMenu::pages_753060 callers savemenu.cpp:778/895 are statements)
+game/_unplaced/wavelist.cpp:61 | left: class-; DynArrayB::destruct is void and dtor_56ecd0 returns its value | proposal: dtor_DynArrayB, DynArrayB, destruct, `void destruct()` (already a C++ member: joan::orig::dynarray_b(p)->destruct())
+game/_unplaced/zones.cpp:112 | converted (DynArray::zap void; List::delete_all_4e49b0 callers all statements)
+game/_unplaced/zones.cpp:170 | converted (DynArray::linkout void; X::remove_key 0x004e4ac0 unreferenced)
+game/unitures.cpp:186 | converted (UnitRes::free void; 0x00530c90 unreferenced/dead)
+game/unitures.cpp:359 | converted (Holder::reset void; 0x00531170 only caller animgrp.cpp:954 statement)
+interfac/i_work.cpp:1146 | converted (as savemenu:296; Menu::load_barr 0x006ed4e0 only caller i_work.cpp:791 statement)
+uti3d/spindex.cpp:172 | converted (Sound::reset_585d20 void; SpIndex::init 0x00681fe0 callers pathmesh.cpp:1642/1643 statements)
+uti3d/spindex.cpp:181 | converted (Key::equals bool; `& 0xff`)
+uti3d/spindex.cpp:323 | converted (SpIndex::resize void; SpIndex::move is only reached from move_by_key / Grid::move_at 0x006824a0, which is unreferenced)
+uti3d/spindex.cpp:328 | converted (SpIndex::fill_rect void; same enclosing function as :323)
+uti3d/spindex.cpp:418 | converted (Key::equals bool; `& 0xffu`)
+uti3d/spindex.cpp:480 | left: class-; DynArrayB::linkout is void and the site returns the value | proposal: linkout_5858c0, DynArrayB, linkout, `void linkout(std::int32_t pos)` (already a C++ member)
+uti3d/spindex.cpp:617 | left: nosig:nodef2 | proposal: bin_search, Misc, bin_search, `std::int32_t bin_search(const void* key, const char* arr, std::int32_t count, std::int32_t size, int(__cdecl*)(const void*, const void*), std::int32_t* insert_pos)` (original/misc.hpp:55)
+en2d/txtbox2d.cpp:72 | converted
+en2d/txtbox2d.cpp:73 | converted
+en2d/txtbox2d.cpp:575 | left: mm_free's value (del is void -> garbage EAX) is returned by TextBox::free 0x0062eca0, which has no known caller (functions.csv 0, no C++ user); cannot prove the result unused
+en2d/txtbox2d.cpp:1202 | converted
+en2d/txtbox2d.cpp:1215 | converted
+en2d/txtbox2d.cpp:1299 | converted (clamp_cursor is void; its garbage EAX only fed the upper 24 bits of key_input's arg, and TxtBox2d::key_input reads only (escape_ok & 0xff))
+en3d/reorder.cpp:472 | left: no facade | proposal: bin_search, Misc (obj g_a45fa8, as_misc), bin_search (already a direct member of joan::orig::Misc), i32(const void* key, const char* arr, i32 count, i32 size, int(__cdecl*)(const void*, const void*), i32* insert_pos)
+en3d/reorder.cpp:1151 | left: no facade | proposal: span_begin is a __cdecl free function (reorder.cpp:660, i32 span_begin()), not a method: the `this` passed in ECX is ignored; call it as cdecl_call<i32>(fn::span_begin)
+game/_unplaced/ctrl.cpp:418 | left: no facade | proposal: heading_to_degrees, Player (this unused by the callee), heading_to_degrees, float(const void* cam_state, float add)
+game/_unplaced/ctrl.cpp:427 | converted (the value is passed as arg 4 of Map::point_to_cell, which ignores it: `i32 /*unused14*/`)
+game/_unplaced/ctrl.cpp:454 | converted (Vec3 {u32 x,y,z} by value == the facade's 3 dwords)
+game/_unplaced/ctrl.cpp:504 | converted (void callee; dtor_pair's only callers, mission.cpp tick_mode0/tick_mode1 = csv 1 caller each, discard it; now returns 0)
+game/_unplaced/ctrl.cpp:896 | converted (only the low 16 bits are used)
+game/_unplaced/ctrl.cpp:911 | left: set_degrees is void but the garbage EAX is returned by Player::update_camera, whose result is used (uinput.cpp:360 returns it)
+game/_unplaced/ctrl.cpp:919 | converted (only the low 16 bits are used)
+game/_unplaced/ctrl.cpp:921 | left: retarget is void but the garbage EAX is returned by Player::update_camera, whose result is used (uinput.cpp:360)
+game/_unplaced/ctrl.cpp:980 | converted (void callee; Group::init's one caller world_s.cpp:3510 discards it; now returns 0)
+game/_unplaced/ctrl.cpp:1284 | converted (static_cast<u16>, so low 16 bits only; float v44 passed as arg::bits, same bits as before)
+game/_unplaced/ctrl.cpp:1596 | left: no facade | proposal: same as ctrl.cpp:418 (heading_to_degrees, float(const void* cam_state, float add))
+game/_unplaced/ctrl.cpp:2085 | converted (static_cast<i8>, so low byte only; Unit::can_act returns bool)
+game/_unplaced/ctrl.cpp:2088 | left: set_action is void but the act() lambda's value is used: `(r & 0xffff0000u) | 1u` is returned by order_update 0x004367c0, whose callers read it ("one passes eax on")
+game/_unplaced/ctrl.cpp:2149 | converted (static_cast<i8>, so low byte only; replacement returns u8)
+game/_unplaced/ctrl.cpp:2347 | left: `return r & 0xffff0000u` sends the garbage upper bits of can_act's EAX out of order_update, whose callers read it
+game/_unplaced/ctrl.cpp:2542 | converted (unit_order's 4 callers, csv 4 = playerctl 0x00430480, ctrl 0x00432d30/0x004343e0/0x00438110, all discard its result; the low byte is unchanged)
+game/_unplaced/ctrl.cpp:2557 | converted (void callee; unit_order's result is unused, see 2542; now returns 0)
+game/_unplaced/ctrl.cpp:2558 | converted (void callee; same; the callee reads the low word of code only)
+game/_unplaced/ctrl.cpp:2565 | converted (void callee; same)
+game/_unplaced/ctrl.cpp:2566 | converted (void callee; same)
+game/_unplaced/dlgtable.cpp:84 | converted | facade-fix: none (the facade (i32 value, i32 type) is right; Misc::format has ret 8; the site passed an extra 3rd arg 5 that was never read, which also left 4 bytes on the stack; value and type are passed unchanged)
+game/_unplaced/dlgtable.cpp:224 | left: Sound3d::load is void; its EAX is returned by ResObj::load_638e60, which has no known caller (csv 0, no C++ user)
+game/_unplaced/dlgtable.cpp:282 | converted (void callee; wrap_639030's one caller is the atexit stub obj_stub_56a510; now returns 0)
+game/_unplaced/dlgtable.cpp:530 | left: Obj::release is void and its garbage EAX's upper half flows into Pool::sweep's return value; Pool::sweep has unknown callers (csv 0)
+game/_unplaced/dlgtable.cpp:624 | converted (void callee; ResTable::load's one caller, dlgres.cpp:495, discards it; now returns 0)
+game/_unplaced/dlgtext.cpp:370 | converted (static_cast<u8>, so low byte only)
+game/_unplaced/dlgtext.cpp:529 | converted (& 0xff, so low byte only)
+game/_unplaced/dlgtext.cpp:1290 | converted (void callee; Script::purge's callers, esfuncs 0x0065dba0 and i_buy.cpp:4009 = csv 2, discard it; now returns 0)
+game/_unplaced/dlgtext.cpp:1575 | left: no facade | proposal: dtor_DynArrayB, DynArrayB, destruct (already a direct member; joan::orig::dynarray_b(p)->destruct() as in spindex.cpp:87), void()
+game/_unplaced/dlgtext.cpp:1616 | converted (void callee; Obj::rebuild_63e060's 2 callers, dlgtext 0x0063c0a0 and 0x0063dfd0, discard it; now returns 0)
+game/_unplaced/dlgtext.cpp:1635 | converted (void callee; List::add_63e1a0's one caller, dlgtext.cpp:1531, discards it; now returns 0)
+game/_unplaced/dlgtext.cpp:1656 | left: no facade | proposal: linkout_5858c0, DynArrayB, linkout (already a direct member; dynarray_b(p)->linkout(i32)), void(i32 pos)
+game/_unplaced/dlgtext.cpp:1675 | left: Panel_release is void, but Obj::fwd_63b390 0x0063e270 has 3 callers in the csv and only 2 known C++ callers (dlgtext.cpp:287, 1227), so the third may read the value
+game/_unplaced/game_tick.cpp:545 | converted (& 0xff, so low byte only)
+game/_unplaced/game_tick.cpp:757 | left: no facade | proposal: dtor_DynArrayB, DynArrayB, destruct, void() (see dlgtext.cpp:1575)
+game/_unplaced/game_tick.cpp:841 | left: no facade | proposal: linkout_5858c0, DynArrayB, linkout, void(i32 pos)
+game/_unplaced/i_obj0e.cpp:72 | left: StreamSlot::release is void and its EAX is returned by Res13::free_all, whose result is used (sndplay.cpp:199 returns it)
+game/_unplaced/itemres_head.cpp:90 | left: no facade | proposal: dtor_DynArrayB, DynArrayB, destruct, void()
+game/_unplaced/itemres_head.cpp:127 | converted (void callee; compact()'s value only becomes ItemList::clear's return, and both callers, game.cpp:1152 and dtor_49e910 = csv 2, discard it; now returns 0)
+game/_unplaced/misc_00490eb0.cpp:64 | converted (Pair8 {u32 a,b} by value == the facade's 2 dwords; the int id is passed as mptr, same bits; result discarded)
+game/_unplaced/misc_00490eb0.cpp:66 | converted (same; result discarded)
+game/_unplaced/misc_00490eb0.cpp:75 | converted (void callee; LodQueue::update's one caller, misc_004994b0.cpp:280 flush(), discards it; now returns 0)
+game/_unplaced/misc_00490eb0.cpp:138 | converted (same)
+game/_unplaced/pgauge.cpp:126 | left: Obj::nop_67a4e0 is void; its EAX is returned by Obj9dcaa0::dtor, which has 34 callers (csv) that cannot all be checked
+game/_unplaced/shot.cpp:147 | converted (Picker::pick reads only a18 & 0xffff from that arg)
+game/_unplaced/shot.cpp:348 | converted (void callee; OwnerList::clear's 2 callers, shot.cpp:261 and rworld.cpp:201, discard it; now returns 0)
+game/_unplaced/shot.cpp:734 | left: no facade (and the value is used: rworld.cpp:841 returns RecordList::remove's result) | proposal: linkout_5858c0, DynArrayB, linkout, void(i32 pos)
+game/_unplaced/worldarr.cpp:234 | left: no facade | proposal: linkout_5858c0, DynArrayB, linkout, void(i32 pos)
+game/animgrp.cpp:232 | left: free_buffer is void; its EAX is returned by Obj::release_39_414930, which has no known caller (csv 0, no C++ user)
+game/animgrp.cpp:826 | left: no facade | proposal: Obj_zero_3b, SoundList (the 0x3b-byte slot block at Squad+0x16f; replacement in sndplay.cpp next to SoundList::has_kind), zero_3b, void*() (memset 0x3b, returns this)
+interfac/i_letter.cpp:308 | converted (void callee; window_set's value only becomes Letter::load 0x006e0ab0's return, whose one caller, i_letter.cpp:222, discards it; now returns 0)
+interfac/i_letter.cpp:784 | converted (void callee; X::set_mode 0x006dfe10's one caller, esfuncs.cpp:5570 open_first, discards it; now returns 0)
+interfac/list.cpp:219 | converted (void callee; List::dtor's one caller, combobox.cpp:180, discards it; now returns 0)
+uti3d/pathsp.cpp:614 | converted (static_cast<u8>, so low byte only; replacement returns bool; float r passed as float)
+uti3d/pathsp.cpp:1377 | converted (void callee; PathSp::build's 5 callers, 0x006731d0/0x0066bb40/0x0066c020/0x0066c710/0x0066c900 = csv 5, all discard it; now returns 0)
+uti3d/pathsp.cpp:1504 | converted (void callee; PathZones::group's 3 callers, pathsp.cpp:270 and rworld.cpp:1188/1288 = csv 3, discard it; now returns 0)
+uti3d/pathsp.cpp:1609 | converted (& 0xff, so low byte only)
+uti3d/pathsp.cpp:1705 | converted (& 0xff; u32 `extra` passed as arg::f32, same bits)
+uti3d/pathsp.cpp:2349 | converted (& 0xff; u32 float bits passed as arg::f32, same bits; any=0)
+uti3d/pathsp.cpp:2371 | converted (same)
+uti3d/pathsp.cpp:2605 | converted (void callee; insert_front 0x0066e870's 2 callers, unit.cpp 0x004f7bf0 and pathzone 0x006ab4e0, discard it; now returns 0)
+uti3d/pathsp.cpp:2899 | converted (V2 {i32 x,y} by value == the facade's 2 dwords; returns i32)
+uti3d/pathsp.cpp:3012 | converted (void callee; PathBox::set's 6 callers = csv 6, all discard it; now returns 0)
+uti3d/pathsp.cpp:3026 | converted (void callee; PathBox::set_end's 5 callers = csv 5, all discard it; now returns 0)
+uti3d/pathsp.cpp:3087 | converted (void callee; all LineList::add callers, csv 4, discard it; now returns 0)
+uti3d/pathsp.cpp:3111 | converted (void callee; PointList::push's one caller, unit_core.cpp:3026, discards it; now returns 0)
+game/_unplaced/actorlst.cpp:179 | converted (as_sound(this)->reset_585d20(); return 0; - List::purge_5af060 has no callers at all: no C++ refs, no asm call of it or its thunk 0x402b9e, not in any vtable)
+game/_unplaced/actorlst.cpp:223 | left: class- (no facade) | proposal: linkout_5858c0, DynArrayB, linkout, void linkout(std::int32_t) - already reachable as joan::orig::dynarray_b(p)->linkout(i32) (direct member, void); Obj::remove_5af1b0 returns its garbage, callers would need checking
+game/_unplaced/ai_behav.cpp:106 | converted (as_dynarray(this)->destruct_5844b0(); return 0; - Obj::dtor_4baba0 callers: animgrp.cpp:765 statement, asm 0x41522f ignores eax)
+game/_unplaced/ai_behav.cpp:139 | converted (as_unit(unit)->set_action(0x18,0,1); return 0; - Obj::order_18 only reached via Action::dispatch's kHandlers table, result discarded)
+game/_unplaced/ai_behav.cpp:271 | converted (as_dynarray(this)->zap_584580(1); return 0; - X::clear_1 callers: ai_behav.cpp:105 statement, asm 0x4babcb ignores eax)
+game/_unplaced/ai_behav.cpp:378 | converted (as_unit(unit)->set_action(0xa,0,1); r keeps set_213's value - Obj::check_unit_4bf5f0 only called via Ai::update's kTable, result discarded)
+game/_unplaced/ai_behav.cpp:380 | converted (same as :378, set_action(0xb,0,1))
+game/_unplaced/ai_behav.cpp:389 | converted (set_action(...); return 0; same caller argument as :378)
+game/_unplaced/ai_behav.cpp:571 | left: List::forward_584a10's result is used: esfuncs.cpp:3517 returns low8(r, 1), which keeps the upper 24 bits (garbage of the void linkout) as the script function's result
+game/_unplaced/ai_behav.cpp:735 | converted (as_order(this)->step_move_4bfa10(mptr(unit), x, y, z); the V3 by value was the same 12 stack bytes as three floats; values are int->float conversions, never NaN; the now unused local struct V3 of game_b108_04 removed)
+game/_unplaced/ai_behav.cpp:745 | converted (same as :735; x/y/z are fpu.add results)
+game/_unplaced/ai_behav.cpp:1000 | converted (combo_key: as<u32>(as_order_entry(...)->byte_at(i8, i8)); every use reads the low byte only: static_cast<i8> compares, set_action's push_arg (narrowed to int8 by Unit::set_action), a stored byte; byte_at reads only the low bytes of its args)
+game/_unplaced/ai_behav.cpp:1140 | converted (static_cast<u8>(as<u32>(byte_at(1,1))))
+game/_unplaced/ai_behav.cpp:1143 | converted (set_action push_arg: callee reads its low byte only)
+game/_unplaced/ai_behav.cpp:2121 | left: nosig:nodef | proposal: Turns_cos, Angle (as_angle, same object as set_wrapped 0x00577340), turns_cos, double turns_cos() (naked; result in st0)
+game/_unplaced/ai_behav.cpp:2124 | left: nosig:nodef | proposal: Turns_sin, Angle, turns_sin, double turns_sin() (naked; result in st0)
+game/_unplaced/ai_behav.cpp:2353 | left: nosig:nofn - fallback into the original body (fix/uninit off); no replacement exists, nothing to propose
+game/_unplaced/ai_behav.cpp:2365 | left: class? | proposal: Obj_get_c, the object at unit+0x339 -> +0x5c (rts2.cpp game namespace H::get_c), get_c, std::uint32_t get_c() (returns field +0xc; site reads it as void*)
+game/_unplaced/ai_behav.cpp:2366 | left: class? | proposal: Table52_slot, Table52 (patrol path table), slot, void* slot(std::int16_t) (misc_004994b0.cpp H::slot52)
+game/_unplaced/ai_behav.cpp:2489 | converted (as_sound_slot_entry(e)->set_position(v2.x, v2.y, v2.z); Vec3 is three u32, same 12 stack bytes; result discarded)
+game/_unplaced/ai_behav.cpp:2622 | converted (stop_unit: as_unit(unit)->play_idle(0,1); return 0; - X::stop_unit only reached via Action::dispatch's table, result discarded)
+game/_unplaced/boids.cpp:196 | converted (as_ambient_streams(obj(g_mus))->update(); return 0; - Game::reset_three callers: misc_004994b0.cpp statements only; thunk not in a vtable)
+game/_unplaced/boids.cpp:204 | converted (as_boid(this)->set_prev(0u); return 0; - Link::relink callers: flocksys.cpp:700 statement, asm 0x46ddd9 ignores eax)
+game/_unplaced/boids.cpp:206 | converted (as_boid(this+0x6a)->set_next(0u); return 0;)
+game/_unplaced/boids.cpp:207 | converted (as_boid(this+0x66)->set_prev(0u); return 0;)
+game/_unplaced/boids.cpp:209 | converted (as_boid(this+0x66)->set_prev(u32(+0x6a)); return 0;)
+game/_unplaced/boids.cpp:1276 | converted (res = as<u32>(as_boid(this)->segment_hit_in_range(...)); res is tested as u8 and returned by Mover::hits_box_421dd0, whose only caller boids.cpp:584 takes as<u8>)
+game/_unplaced/f_flag.cpp:338 | left: Obj::release_79_7d_89 is vtable slot 2 (+0x8) of vt_Obj_9d07f8; virtual callers not traced, so the garbage result cannot be proven unused
+game/_unplaced/f_flag.cpp:346 | converted (as_formation(+0x6d)->place_units(as<i32>(eng), as<u32>(fra)); return 0; pointers passed as the same dwords - Obj::set_flag_models callers: esfuncs.cpp:1577 statement, asm 0x654d27 overwrites eax)
+game/_unplaced/f_flag.cpp:347 | converted (same, fra/eng swapped)
+game/_unplaced/f_flag.cpp:409 | left: Obj::update_468600 is vtable slot 4 (+0x10) of vt_Obj_9d07f8 and returns meaningful values on its other paths; virtual callers not traced
+game/_unplaced/f_flag.cpp:462 | converted (loop calls as_dynarray(+0x89)->linkout_584a10(i); returns the count - Obj::remove_all_89 callers: f_flag.cpp:334 statement, asm 0x468577 ignores eax)
+game/_unplaced/gamedraw.cpp:436 | converted (static_cast<i8>(as<u32>(as_path(this)->find_4ed040(...))); only the low byte is tested)
+game/_unplaced/gamedraw.cpp:491 | converted (same)
+game/_unplaced/gamedraw.cpp:861 | converted (as_sprite_queue(obj(kSprites))->blit_image(i16(x0), i16(y0), 0xa, mptr(tex), c, 0,0,1,0,0, i16(src_right), i16(src_bottom), 0, i16(right), i16(bottom)); result discarded; the int16 args are read as words by the callee, so the colour bits the old call left in the upper halves are never read)
+game/_unplaced/i_obj12.cpp:386 | left: Tower::update_fire (0x00490110) is a vtable entry (rdata vt_Obj_9d3c88 slot 4) and returns meaningful values on its other paths; virtual callers not traced
+game/_unplaced/mbtext.cpp:266 | converted ((as<u32>(as_text_iter(&last)->valid()) & 0xff) == 0)
+game/_unplaced/mbtext.cpp:1011 | converted (static_cast<u8>(as<u32>(as_text_iter(r)->valid())))
+game/_unplaced/mlfader.cpp:278 | converted (as_dynarray(+0x20)->linkout_584a10(i); return 0; - Children::remove callers: mlfader.cpp:107 and :342 statements, asm callers ignore eax / are in void ChildList::remove)
+game/_unplaced/mlfader.cpp:381 | left: class- | proposal: linkout_5858c0, DynArrayB, linkout, void linkout(std::int32_t) (joan::orig::dynarray_b(p)->linkout exists)
+game/_unplaced/mlfader.cpp:442 | left: class- | proposal: dtor_DynArrayB, DynArrayB, destruct, void destruct() (joan::orig::dynarray_b(p)->destruct exists)
+game/_unplaced/mlfader.cpp:510 | converted (helper compact() made void: as_sound(list)->reset_585d20(); List::clear_4b0530 returns 0 - callers game.cpp:1160 and mlfader.cpp:439 statements, asm 0x4711ea / 0x4b04b4 ignore eax)
+game/_unplaced/portal.cpp:133 | left: class- | proposal: Plane4_Plane4_425700, Plane4, construct, void* construct() (camman.cpp H::trivial_ctor returns this)
+game/_unplaced/psystem.cpp:162 | converted (as_range(self()+0x2c)->destruct(); return 0; - Zones::~Zones callers: all as_zones(...)->dtor() statements, asm callers ignore eax)
+game/_unplaced/psystem.cpp:173 | converted (as_dynarray(+0x70)->zap_584580(1); return 0; - Container::clear callers: clear_sequences() statements only)
+game/_unplaced/psystem.cpp:943 | converted (as_range(&v)->destruct(); return 0; - X::set_2c only caller psystem.cpp:2311 statement)
+game/_unplaced/psystem.cpp:2061 | converted (set_1(Range8{{r.v[0], r.v[1]}}); new local struct Range8 {u32 d[2];}: same 8 stack bytes as the two dword pushes)
+game/_unplaced/psystem.cpp:2063 | converted (set_9(Range8{...}))
+game/_unplaced/psystem.cpp:2064 | converted (set_11(Range8{...}))
+game/_unplaced/psystem.cpp:2074 | converted (set_97(Range8{...}))
+game/_unplaced/psystem.cpp:2088 | converted (set_a0(Range8{...}))
+game/_unplaced/psystem.cpp:2107 | converted (set_6a(r.v.d[0], r.v.d[1], r.v.d[2]); Xyz12 was the same 3 dwords)
+game/_unplaced/psystem.cpp:2109 | converted (set_8b(d[0], d[1], d[2]))
+game/_unplaced/psystem.cpp:2111 | converted (set_a8(...))
+game/_unplaced/psystem.cpp:2113 | converted (set_b4(...))
+game/_unplaced/psystem.cpp:2115 | converted (set_7a(...))
+game/_unplaced/squadcmd.cpp:197 | converted (r = as<u32>(as_unit(unit)->can_act()); r is tested as i8 and otherwise returned by Obj::act_42d5c0, whose only caller act_42d270 keeps just its upper half ((r & 0xffff0000) | 1) and every squad_act caller narrows that to 16 bits)
+game/_unplaced/squadcmd.cpp:203 | converted (as_unit(unit)->check_height(); return 0; result unused, see :197)
+game/_unplaced/squadcmd.cpp:204 | converted (as_unit(unit)->hero_height_check(); return 0;)
+game/animres.cpp:432 | converted (as_dynarray(this+0x276)->linkout_584a10(i32(a)); return 0; - Obj::call_584a10_4174c0 has no callers: no C++ refs, no asm call of it or its thunk 0x407aef, not in a vtable)
+game/animres.cpp:559 | left: class- | proposal: get_file_name_59c200, ResourceIdxL, get_file, File* get_file(const char*, std::int32_t&) (direct member via as_res_idx_l)
+game/camres.cpp:176 | left: nosig:nodef2 | proposal: CameraTracks_create_array, CameraTracks, create_array, const void* create_array(void* reader) (camres.cpp H::cam_array)
+game/gamefila.cpp:90 | converted (heap_free made void: as_mem(kHeap)->del_58ed70(p, file, line); its only caller, gamefila.cpp:100, is a statement)
+game/gamefila.cpp:101 | converted (as_dynarray(this)->linkout_584a10(sw(id)); return 0; - GameFileList::remove callers: gamefila.cpp:134/:216, savemenu.cpp:892 statements, asm callers ignore eax)
+game/gamefila.cpp:135 | converted (as_dynarray(this)->zap_584580(1); return 0; - GameFileList::clear callers: statements + Game::reset_all's table (discarded), asm callers ignore eax)
+game/gamefila.cpp:200 | left: class- | proposal: Directory_Directory, Directory (original/gameset.hpp), construct, Directory* construct() (direct member)
+game/gamefila.cpp:201 | left: class- | proposal: Directory_read, Directory, read, std::int32_t read(const char*, std::int32_t) (direct member)
+game/gamefila.cpp:224 | left: class- | proposal: Obj_dtor_477410, Directory (~Directory, gamefila.cpp H::dtor_477410), destruct_477410, void destruct_477410() - its value is returned by SaveDir::browse, which save_dir_init / gamefila.cpp:193 return on, so the site itself needs a caller check
+game/gamefila.cpp:335 | converted (as_dynarray(this)->destruct_5844b0(); return 0; - GameFileList::~GameFileList only reached from the atexit stub obj_stub_56a630, result ignored)
+game/gamefila.cpp:446 | left: Obj::dtor_477410's result is read by SaveDir::browse (gamefila.cpp:224) and returned up through SaveDir::init and the gamefila.cpp:193 path; not proven unused
+game/gamefila.cpp:679 | converted (as_game_file(this)->close(); return 0; - Obj::call_477e60 callers: gamefila.cpp:250 statement, asm 0x4775af ignores eax)
+interfac/objmenub.cpp:81 | converted (helper f5 made void: as_widget(...)->scale_to_61f1b0(i16(a), f32(b), f32(c), char(d), e); all four callers are statements; args are 1 / 4.0f or 6.0f / 0.0f / 0 / 0xc8, same bits)
+interfac/objmenub.cpp:143 | left: ObjMenu::open_brief's result is returned by CampScreen::set_state_721a60 (objmenu.cpp:1838), whose callers keep the upper bits (objmenu.cpp:1654 low_byte_1, objm_shop.cpp:428)
+uti3d/blkarrb.cpp:262 | converted (as_block_array(this)->reset(); return 0; - BlkArr::reset callers: pathsp.cpp:1320/:1369, pathmesh.cpp:639/:772 statements, pathmesh.cpp:645 free_10 whose callers (clear_groups) are statements)
+game/_unplaced/am2check.cpp:138 | left: class- | proposal: get_file_rec_59c2a0, ResourceIdxL, get_file_rec_59c2a0 (slot), File*(std::int32_t rec_no, std::int32_t* size) [direct ResourceIdxL::get_file_rec(i32, i32&) exists]
+game/_unplaced/am2check.cpp:142 | left: class- | proposal: get_file_name_59c200, ResourceIdxL, get_file_59c200 (slot), File*(const char* name, std::int32_t* size) [direct ResourceIdxL::get_file(const char*, i32&) exists]
+game/_unplaced/glowmark.cpp:154 | converted (V3u v1 split into its 3 dwords x/y/z -> 15 args, bits identical)
+game/_unplaced/glowmark.cpp:391 | left: class- (value returned from dtor_487640; callee void) | proposal: dtor_DynArrayB, DynArrayB, destruct, void() [direct DynArrayB::destruct exists]
+game/_unplaced/glowmark.cpp:510 | left: class- (value returned from table_remove; callee void) | proposal: linkout_5858c0, DynArrayB, linkout, void(std::int32_t pos) [direct DynArrayB::linkout exists]
+game/_unplaced/i_igframe.cpp:88 | converted (facade; return 0 - 0x006f17e0's only caller is atexit stub 0x0056d080, result unused)
+game/_unplaced/i_igframe.cpp:119 | converted (place() made void, typed Widget::scale_to; Frame::init_6f1940 returns 0 - callers 0x0046fa0d and game.cpp run() discard)
+game/_unplaced/i_igframe.cpp:210 | converted (window_set made void via set_mode_60a740; IGameBg::load returns 0 - callers 0x006f2505 and SlideMenu::start discard)
+game/_unplaced/i_igframe.cpp:289 | left: value of set_title (0x006f2ac0) may flow: caller 0x006f441e does not overwrite eax before two branch calls; not provably unused
+game/_unplaced/i_igframe.cpp:429 | converted (button_anim made void; SlideMenu::start 0x006f24d0 returns 0 - all asm callers and all C++ slide_in() uses discard)
+game/_unplaced/i_igframe.cpp:432 | converted (button_move made void; all uses are statements)
+game/_unplaced/i_qsave.cpp:113 | converted (place() made void; every caller discards)
+game/_unplaced/news.cpp:155 | converted (facade; return 0 - callers 0x004b925f, wrap_4b9290 -> 0x0047115f / game.cpp:1146 / news.cpp:100 all discard)
+game/_unplaced/news.cpp:456 | left: facade wrong | facade-fix: Obj_dispatch (0x004ba320) replacement is `const char* dispatch()` (no args, returns string pointer); news_item_methods.inc `std::int16_t text(7 x u32)` is wrong -> `const char* text()`
+game/_unplaced/objm_strat.cpp:73 | converted (typed Widget::scale_to; build_735680 returns 0 - callers 0x0071e35b and objmenu.cpp:144 discard)
+game/_unplaced/objm_strat.cpp:239 | converted (anim() made void; reset_two 0x007364c0 returns 0 - callers 0x00721968 and objmenu.cpp:1238 discard)
+game/_unplaced/objm_strat.cpp:313 | converted (anim_a made void; only caller discards)
+game/_unplaced/objm_strat.cpp:341 | left: reset_items (0x007365e0) result is returned on by objmenu.cpp:1863 (enter_strategy, case 8) - value may be used
+game/_unplaced/projshad.cpp:76 | converted (facade; return 0 - callers 0x005efb9f (overwrites eax) and scene_s.cpp:195 discard)
+game/_unplaced/rworld.cpp:111 | converted (facade nop_6b0740; return 0 - 0x006acf80 only called from atexit stub 0x00569d30)
+game/_unplaced/rworld.cpp:207 | left: class- | proposal: Obj6ad220_scalar_dtor, Obj6ad220 (DynArrayB-based), scalar_dtor_6ad220, void*(std::uint32_t flags)
+game/_unplaced/rworld.cpp:315 | converted (narrow: as<u32>(find_slot(...)) with per-arg helpers; all callers of 0x006ae610 read ax only (asm movsx x4, rworld.cpp:695 / formmove.cpp:550 as i16); word arg: callee reads the low 16 bits only)
+game/_unplaced/rworld.cpp:694 | converted (narrow: as<i32>(side()); rb is only passed as find_slot_wrapper a2, of which only the low word is used)
+game/_unplaced/rworld.cpp:741 | left: class- (value returned) | proposal: linkout_5858c0, DynArrayB, linkout, void(std::int32_t pos)
+game/_unplaced/unitdata.cpp:649 | converted (facade; return 0 - callers 0x006db491 and i_buy.cpp:7013 discard)
+game/_unplaced/unitdata.cpp:893 | converted (facade; return 0 - callers 0x006dac07, 0x006db10a and i_buy.cpp:6976 discard)
+game/_unplaced/unitdata.cpp:894 | converted (same as 893)
+game/animscr.cpp:533 | converted (facade release(0u); return 0 - callers of 0x00418c30: atexit stub, unwind funclets, eax-overwriting / statement callers)
+game/animscr.cpp:851 | converted (facade; return 0 - 0x004187b0 only called from atexit stub 0x00567480)
+game/end_con.cpp:158 | converted (facade; return 0 - 0x00467230 only used as eh vector ctor/dtor iterator element dtor)
+game/profile.cpp:342 | converted (facade; return 0 - callers 0x004ca00f (overwrites eax) and profile.cpp:1095 discard)
+game/profile.cpp:522 | left: class- | proposal: Directory_Directory, Directory, construct_582ad0, Directory*() [direct Directory::construct exists]
+game/profile.cpp:523 | left: class- | proposal: Directory_read, Directory, read_582b00, std::int32_t(const char* wildcard, std::int32_t sort) [direct Directory::read exists]
+game/profile.cpp:534 | left: class- | proposal: Obj_dtor_477410, Directory (DynArray), dtor_477410, std::uint32_t() (forwards DynArray dtor 0x005844b0)
+game/profile.cpp:901 | converted (facade; return 0 - all callers of 0x004c9f00 (5 asm, game.cpp table loop, 4 C++ statements) discard)
+game/profile.cpp:955 | left: class- (value returned from remove_4ca110) | proposal: linkout_5858c0, DynArrayB, linkout, void(std::int32_t pos)
+game/profile.cpp:1059 | left: class? | proposal: Rec3b_read, Rec3b, read_3b, std::int32_t(void* stream) (replacement in gfile3.cpp:825)
+game/profile.cpp:1120 | left: class- (value returned from dtor_4c9c60) | proposal: dtor_DynArrayB, DynArrayB, destruct, void()
+game/profile.cpp:1261 | left: class? | proposal: Rec3b_write, Rec3b, write_3b, std::int32_t(void* stream) (replacement in gfile3.cpp:826)
+ilib/mousecr.cpp:277 | converted (facade destruct_5872b0; return 0 - callers 0x0060392a and sysen.cpp:326 discard)
+ilib/mousecr.cpp:374 | converted (facade; return 0 - 0x00592350 only called from atexit stub 0x005647d0)
+ilib/mousecr.cpp:547 | converted (narrow: static_cast<i16>(as<u32>(width())), low 16 bits only)
+ilib/mousecr.cpp:548 | converted (narrow: static_cast<i16>(as<u32>(height())), low 16 bits only)
+ilib/mousecr.cpp:558 | converted (R16 split into its 4 dwords -> src/unused/pal16/pal32, bits identical; value discarded)
+ilib/mousecr.cpp:572 | left: eax of void callbacks (empty8) is returned by Cursor::set_596db0, whose result is used (cheats.cpp:1188, ctrl.cpp:1508, sysen.cpp:556, asm epilogue callers)
+ilib/mousecr.cpp:573 | left: same as 572
+ilib/mousecr.cpp:574 | left: same as 572 (empty4)
+ilib/mousecr.cpp:575 | left: same as 572 (Mouse::update_cursor returns void)
+ilib/mousecr.cpp:825 | left: Cursor::set_pos (0x00592bd0) result flows: asm callers return it (0x0042f830.. jmp paths, 0x00603957 etc.); not provably unused
+ilib/mousecr.cpp:861 | left: Cursor::reset_pos (0x00592c30) result used: credits.cpp:316 returns it, asm callers 0x006b589f / 0x006e8c2f return it
+ilib/mousecr.cpp:895 | left: class? (result deliberately discarded already) | proposal: Obj_stub_5973d0, MouseCursor (g_a48608), stub_5973d0, std::uint32_t(u32 a, u32, u32, u32)
+ilib/mousecr.cpp:1870 | left: Mouse::set_boundary (0x00593af0) has no visible callers (likely vtable/indirect) - cannot prove result unused
+interfac/minires.cpp:443 | left: nosig:nodef2 | proposal: Material_set_colour0, Material, set_colour0, const void*(const std::uint32_t* c) (en3d/plane.cpp:2716)
+interfac/minires.cpp:1083 | left: minimap_draw_70e500 result returned by asm caller 0x006fca75 (epilogue) - not provably unused
+interfac/minires.cpp:1757 | converted (V3{x,y,0u} split into float, float, u32 0 - bits identical; value discarded)
+interfac/minires.cpp:1995 | left: nosig:nofn (original body)
+interfac/minires.cpp:2208 | converted (facade; return 0 - callers 0x0070e586 and minires.cpp:1017 discard)
+interfac/minires.cpp:2282 | converted (V3 u32 d[3] split into a1..a3; value discarded)
+interfac/minires.cpp:2292 | converted (same)
+interfac/minires.cpp:2305 | converted (same)
+interfac/minires.cpp:2555 | left: nosig:nofn (original body)
+interfac/minires.cpp:2571 | converted (Vec3 corner passed as bits of x/y/z)
+interfac/minires.cpp:2589 | converted (Vec3 p/q passed as x, y, bits(z) each; 8, color)
+interfac/minires.cpp:2603 | left: nosig:nofn (original body)
+interfac/minires.cpp:2612 | converted (Vec3 pos passed as bits of x/y/z)
+interfac/minires.cpp:2726 | left: nosig:nofn (original body)
+interfac/minires.cpp:2872 | converted (narrow: as<i16>(zoom_mode()), only low 16 bits compared)
+interfac/minires.cpp:2874 | converted (narrow: as<i16>(is_type1()), only low 16 bits compared)
+interfac/minires.cpp:2999 | left: nosig:nofn (original body)
+interfac/minires.cpp:3087 | converted (V3f pos passed as bits of x/y/z)
+interfac/minires.cpp:3209 | left: class? | proposal: set_byte_10a, (camera/marker object, camcmd.cpp:1860), set_10a, void(std::uint32_t v)
+interfac/objmenuw.cpp:131 | left: class? | proposal: set_byte_10a, (same class as minires:3209), set_10a, void(std::uint32_t v)
+interfac/objmenuw.cpp:389 | left: f5 result returned by reset_73b160 (0x0073b160), which objmenu.cpp:1867 returns on - value may be used
+game/_unplaced/camcmd.cpp:87 | converted (as_unit(this)->set_action(2,0,1); return 0; Unit::set_action replacement is void; random_stance 0x00429ec0 has 1 caller, Unit::play_idle 0x00508b90, which discards the result)
+game/_unplaced/camcmd.cpp:90 | converted (same as :87)
+game/_unplaced/camcmd.cpp:92 | converted (same as :87)
+game/_unplaced/camcmd.cpp:240 | left: nosig | proposal: delta7, Beam, delta7, const float*(const float* a, const float* b, float* out, float d)  [replacement camcmd.cpp H::delta7, 0x0042a5f0]
+game/_unplaced/camcmd.cpp:244 | left: nosig | proposal: same as :240
+game/_unplaced/camcmd.cpp:251 | left: Billboard::create replacement is void but Beam::init_42a050 (0x0042a050) returns the read EAX and has no direct callers (vtable?), so the result cannot be proven unused
+game/_unplaced/camcmd.cpp:381 | left: class? | proposal: set_byte_10a, Mount (object at Unit+0x2f5 / order rec +0x86), set_10a, void(std::uint32_t v)  [replacement camcmd.cpp H::set_10a, 0x0042cf20]
+game/_unplaced/camcmd.cpp:401 | converted (Vec3 by value -> three u32 dwords from the same memcpy; same 12 stack bytes; the now-unused local Vec3 struct of that namespace removed)
+game/_unplaced/camcmd.cpp:497 | converted (as<u32>(as_save_menu(...)->busy()); the next line re-derives r from the low byte only)
+game/_unplaced/camcmd.cpp:502 | converted (as<u32>(as_cmd(this)->aim_unit(i32(b)))); upper bits only reach the upper half of cmd_42a810's return, and all 3 callers (ctrl.cpp:189 as<i16>, ctrl.cpp:1280 static_cast<u16>, playerctl.cpp:282 discards) use the low 16 bits only)
+game/_unplaced/camcmd.cpp:561 | left: nosig:nofn (calls the untouched original body, no slot facade possible)
+game/_unplaced/camcmd.cpp:604 | left: class- | proposal: Obj_self_42ad30, Colour (Rgba local), self, void*()  [replacement camcmd.cpp H::self, 0x0042ad30, returns this]
+game/_unplaced/camcmd.cpp:799 | left: class? | proposal: same as :381
+game/_unplaced/camcmd.cpp:837 | left: class? | proposal: same as :381
+game/_unplaced/camcmd.cpp:960 | left: class?, and the (garbage) upper 16 bits of the read EAX are returned ((eax & 0xffff0000) | 1) | proposal: same as :381
+game/_unplaced/camcmd.cpp:968 | converted (as<u32>(as_players(kAnims)->place(...)); Place::set_pose 0x0042b350 has 2 callers, world_s.cpp:3513 and gfile3.cpp:1143, both discard the result)
+game/_unplaced/camcmd.cpp:1328 | left: nosig | proposal: Turns_sin, Turns, sin, double() (naked asm replacement in camman.cpp, returns raw st0)
+game/_unplaced/camcmd.cpp:1330 | left: nosig | proposal: Turns_cos, Turns, cos, double() (same)
+game/_unplaced/chatbox.cpp:177 | left: value used meaningfully: Unit::set_level 0x0045b720 returns it, and 0x004949f0 returns that EAX (unit.cpp:528 note); the Unit::set_value_135 replacement is void, so it is garbage today (latent bug: original returned 0x004fe510's EAX)
+game/_unplaced/chatbox.cpp:355 | converted (as_game(...)->set_speed(arg::bits(v)); return 0; Game::set_speed replacement is void; reset_45b930 has 1 caller, chatbox.cpp:483, which discards)
+game/_unplaced/f_work.cpp:157 | converted (Vec3 by value -> three u32 dwords via memcpy, kind 0u -> arg::i16(0), callee reads 16 bits; 15 args match)
+game/_unplaced/f_work.cpp:193 | left: Billboard::set_15 replacement is void but Obj::sdd_469ee0 (0x00469ee0) returns the read EAX and has no direct callers (vtable), result not provably unused
+game/_unplaced/f_work.cpp:376 | left: class- (result returned by remove_member 0x0046ad90) | proposal: linkout_5858c0, DynArrayB, linkout, void(std::int32_t pos) (already typed as joan::orig::dynarray_b(p)->linkout)
+game/_unplaced/f_work.cpp:462 | left: Obj::start_2f10 replacement is void but Siege::update_46a040 returns the read EAX and has no direct callers (vtable), result not provably unused
+game/_unplaced/f_work.cpp:465 | left: same as :462
+game/_unplaced/f_work.cpp:847 | converted (as<u32>(as_formation(...)->can_place(i32(id), 1, i32(bits(r)))) & 0xffu)
+game/_unplaced/f_work.cpp:1052 | left: Textures::set_mode is void but MessageBox::init's result is propagated (message.cpp:1147 returns it; game.cpp:309 calls it through run())
+game/_unplaced/f_work.cpp:1166 | left: class- | proposal: Plane4_Plane4_425700, Plane4, construct, void*() (ctor, returns this; not replaced)
+game/_unplaced/i_obj0d.cpp:171 | left: Actor::set_position replacement is void but Cursor::place_492180 (0x00492180) returns the read EAX and has no direct callers (vtable), result not provably unused
+game/_unplaced/i_obj0d.cpp:173 | left: same as :171
+game/_unplaced/i_obj0d.cpp:175 | left: same as :171
+game/_unplaced/i_unitatt.cpp:252 | converted (as_help_box(...)->load_sprite(); return 0; HelpBox::load_sprite replacement is void; Ui::load_shared_textures 0x006f6120 has 1 caller, i_unitatt.cpp:761, which discards)
+game/_unplaced/objm_debrief.cpp:634 | left: Widget::scale_to is void but Obj::reset_72ca30's result is propagated (objmenu.cpp:1862 returns it)
+game/_unplaced/objm_debrief.cpp:755 | converted (as_texture_manager(...)->set_mode(u32(saved)); return 0; Debrief::setup_72cad0 has 1 caller, objm_debrief.cpp:633, which discards)
+game/_unplaced/ptoken.cpp:373 | left: linkin is void but TokenList::add 0x0067d690 is a vtable slot returning the read EAX, result not provably unused
+game/_unplaced/rts.cpp:631 | left: nosig | proposal: Unit_name_tag, Player (the RTS/player object), name_tag, const char*(std::uint32_t id)  [replacement rts2.cpp H::name_tag, 0x00453da0]
+game/_unplaced/rts.cpp:919 | converted (as<i8>(as_player(this)->ray_query(mx, my, eye.x, eye.y, eye.z, &out)); Vec3 by value -> three floats, same 12 bytes; u8 vs i8 same 8 bits, compared != 0)
+game/_unplaced/rts.cpp:1370 | converted ((as<u32>(as_marker(...)->byte_e()) & 0xff) == 0)
+game/_unplaced/rts.cpp:2502 | left: noclass | proposal: Actor_select_mesh, Actor, select_mesh, void**(void* camera, std::int32_t, void** out_plane, std::uint32_t* out_extra)  [replacement en3d/actor.cpp H::actor_select_mesh, 0x005ad060]
+game/_unplaced/samplew.cpp:441 | left: class? | proposal: field20, <object at g_a52597 (game_fx H)>, field20, void*() (returns this+0x20)  [samplew.cpp:780]
+game/_unplaced/samplew.cpp:463 | left: argument count differs: site passes 3 args, the replacement (unit_core.cpp:434, ret 0xc) takes 3 | facade-fix: CellObject::set_anim_state should be void set_anim_state(std::int32_t state, std::int32_t time, std::int32_t arg) (facade has 4 args: i32, void*, void*, i32, which would unbalance the stack)
+game/_unplaced/samplew.cpp:466 | left: noclass | proposal: same as rts.cpp:2502
+game/_unplaced/samplew.cpp:555 | left: nosig | proposal: Material_set_colour0, Material, set_colour0, const void*(const std::uint32_t* c)  [replacement en3d/plane.cpp:2716]
+game/_unplaced/samplew.cpp:604 | left: Scene::build_tree is void but Game::init_sample_world's result is propagated (misc_004994b0.cpp mode_call returns it)
+game/_unplaced/scroll2d.cpp:119 | left: EditBox::init is void but Text::draw_aligned's result is propagated (chatbox.cpp:127 returns it); also i16 args vs i32 facade params
+game/_unplaced/scroll2d.cpp:1040 | converted (static_cast<int16_t>(as<int32_t>(as_text_box(this)->cursor_x_62e6e0(i16(...))))): only the low 16 bits are used; the callee takes int16)
+game/_unplaced/scroll2d.cpp:1045 | converted (sel_min, low 16 bits only)
+game/_unplaced/scroll2d.cpp:1046 | converted (sel_max, low 16 bits only)
+game/_unplaced/scroll2d.cpp:1048 | converted (cursor_x_62e6e0(i16(first)), low 16 bits only)
+game/_unplaced/scroll2d.cpp:1049 | converted (cursor_x_62e6e0(i16(last)), low 16 bits only)
+game/_unplaced/water.cpp:79 | converted (as_water(this)->reset_sounds(); return 0; replacement clear_2c_30 is void; Water::clear 0x00546b20 has 1 caller, ctrl.cpp:73, which discards)
+game/_unplaced/water.cpp:212 | left: class- (X546cf0::dtor returns the read EAX on purpose, "eax left as the original does") | proposal: dtor_DynArrayB, DynArrayB, destruct, void() (already typed as joan::orig::dynarray_b(p)->destruct)
+game/_unplaced/water.cpp:235 | left: class- (result returned by remove_546ec0) | proposal: same as f_work.cpp:376
+game/ditemres.cpp:56 | converted (as_mem(kHeap)->del(p, file, line); return 0; Mem::del is void; heap_free's only use, ditemres.cpp:71, discards)
+game/ditemres.cpp:69 | left: the read EAX is returned by DropItemRes::free_all when +4 is null, and free_all's result is propagated (ditemres.cpp:173 fwd_463950 returns it)
+game/pemires.cpp:76 | left: the read EAX is returned by PemiRes::clear, whose result is propagated (pemires.cpp:283 forward_4c19e0 returns it)
+ilib/sound3d.cpp:83 | converted (static_cast<u8>(as<u32>(as_sound3dsystem(this)->is_initialized())))
+ilib/sound3d.cpp:97 | left: nosig | proposal: bin_search, Misc, bin_search, std::int32_t(const void* key, const char* arr, std::int32_t count, std::int32_t size, int(__cdecl*)(const void*, const void*), std::int32_t* insert_pos) (already typed in original/misc.hpp, as_misc(p)->bin_search)
+ilib/sound3d.cpp:138 | converted ((as<u32>(is_initialized()) & 0xffu))
+ilib/sound3d.cpp:157 | left: nosig | proposal: same as :97
+ilib/sound3d.cpp:198 | left: nosig | proposal: same as :97
+ilib/sound3d.cpp:992 | converted (as_sound3dlistener(this)->shutdown(); return 0; Sound3d::nop replacement is void; Sound3d::call_nop 0x0059fe10 has 1 caller, ctrl.cpp:1401 sdtor, which discards)
+ilib/sound3d.cpp:1066 | converted (static_cast<u8>(as<u32>(is_initialized())))
+ilib/sound3d.cpp:1150 | converted (as_mem(mem)->del(...); return 0; Mem::del is void; Sound3D::init_5a0330 has 1 caller, mainwnd.cpp:455, which discards)
+ilib/sound3d.cpp:1164 | converted (as_sound3dsystem(this)->set_doppler_velocity(0x43ab8000u); return 0; replacement listener_set_doppler is void; same single discarding caller as :1150)
+ilib/sound3d.cpp:1201 | converted ((as<u32>(is_initialized()) & 0xffu))
+ilib/sound3d.cpp:1258 | converted ((as<std::uint32_t>(is_initialized()) & 0xffu))
+ilib/sound3d.cpp:1303 | converted (as<u32>(is_initialized()) & 0xffu)
+ilib/sound3d.cpp:1308 | left: nosig | proposal: same as :97
+ilib/sound3d.cpp:1411 | converted (as_sound3d(this)->unqueue(i32(v)); return 0; replacement unqueue is void; ListA::step 0x0059f400 has 2 callers: sound3d.cpp:1311 discards, dtor_59f310 forwards to its single caller ddtor_5a0e90, which discards)
+ilib/sound3d.cpp:1588 | left: class- | proposal: Obj_dtor_47cac0, ResIdx (the local `a`), dtor_47cac0, std::uint32_t()  [replacement game/gameplay.cpp:146]
+uti3d/lflare.cpp:73 | converted (as_mem(...)->del(...); return 0; LensFlares::clear 0x006626a0 has 1 caller, lightsys.cpp:78, which discards)
+uti3d/lflare.cpp:412 | converted (as_texture_manager(tm)->set_mode(u32(saved)); r = 0; LensFlares::acquire_texture 0x00662d20 has 1 caller, lflare.cpp:236, which discards)
+debug_menu.cpp:714 | left: deliberate call of the original 0x0052f930 body when the game/b117_04 port is disabled; no facade wanted
+game/_unplaced/button2d.cpp:673 | converted: as_sound_effects(...)->play(arg::as<u32>(add(this,0xe3)), Volume8{g_a67628, g_a6762c}) with a local 8-byte struct {u32,u32}; same 3 dwords pushed, result discarded (line moved to 677 because the 4-line struct was added)
+game/_unplaced/colgrid.cpp:93 | converted: as_collision_grid(this)->clear(); return 0; (clear_580 returns void; the only caller, rworld.cpp:109 reset(), discards the result)
+game/_unplaced/colgrid.cpp:528 | left: class- | proposal: Plane4_Plane4_425700, Plane4, ctor, void* ctor() (returns this; camman.cpp:1013 trivial_ctor)
+game/_unplaced/esfuncs.cpp:805 | left: class? | proposal: Obj_get_c, class of the record +0x5c object (returns a NameList*), get_c, std::uint32_t get_c() (returns +0xc; rts2.cpp:4465)
+game/_unplaced/esfuncs.cpp:1676 | left: class? | proposal: Obj_set_c6_ca, element of the g_units object list (Unit?), set_c6_ca, void* set_c6_ca(const std::int16_t* p) (dispdlg.cpp:228); the call discards the result
+game/_unplaced/esfuncs.cpp:3511 | left: Action::dispatch returns void, but script_unit_list_remove returns low8(r,1) and keeps the EAX upper bits on purpose (script result; caller unknown)
+game/_unplaced/esfuncs.cpp:3618 | left: class? | proposal: same as esfuncs.cpp:805 (Obj_get_c, get_c, std::uint32_t get_c())
+game/_unplaced/esfuncs.cpp:4744 | converted: (arg::as<u32>(as_dialogue(g_a51298)->all_ready()) & 0xffu) == 0 (only the low byte is used)
+game/_unplaced/esfuncs.cpp:4757 | left: hit_choice is bool, but ScriptNode::check_cmd returns the full 32-bit EAX (other paths keep upper bits deliberately); no C++ caller, so the upper bits cannot be shown unused
+game/_unplaced/esfuncs.cpp:4816 | left: facade wrong | facade-fix: CutScene_start_6cc6a0 (stop) has 11 params; the replacement i_buy.cpp:3890 is u8 cut_start(u32 a, u32 b, u32 move_flag, u32 mode) (only the low bytes of move_flag/mode are read): std::uint8_t stop(std::uint32_t a0, std::uint32_t a1, std::int8_t a2, std::int8_t a3)
+game/_unplaced/esfuncs.cpp:5589 | converted: (arg::as<u32>(as_marker(g)->byte_e()) & 0xff) == 0
+game/_unplaced/esfuncs.cpp:5590 | converted: static_cast<i16>(arg::as<u32>(as_marker(g)->word_8())) (the low 16 bits only)
+game/_unplaced/esfuncs.cpp:5902 | left: facade wrong | facade-fix: CutScene_start_6cb9e0 has 11 params; the replacement i_buy.cpp:3662 has 9: bool start_6cb9e0(std::uint32_t a0, std::uint32_t a1, std::int8_t a2, std::int8_t a3, std::int32_t a4, std::uint32_t a5, std::uint32_t a6, std::uint32_t a7, std::int8_t a8) (the site passes 9 args)
+game/_unplaced/esfuncs.cpp:5904 | left: facade wrong | facade-fix: stop() as at esfuncs.cpp:4816 (4 params)
+game/_unplaced/esfuncs.cpp:5930 | converted: arg::as<i8>(as_cutscene(...)->start(g, 0x43000000, a, b, bits(v.x), bits(v.y), bits(v.z), p, q, r, s)); the float Vec3 is passed as its three dwords, which are the same bits
+game/_unplaced/esfuncs.cpp:5955 | left: facade wrong | facade-fix: start_6cb9e0 has 9 params (see esfuncs.cpp:5902)
+game/_unplaced/esfuncs.cpp:6010 | converted: arg::as<char>(as_cutscene(...)->move_camera(arg::u32(kind), bits(v.x), bits(v.y), bits(v.z), a, b, c)); the callee reads only (i8)flag; the result is narrowed back to signed char
+game/_unplaced/esfuncs.cpp:6144 | converted: static_cast<u8>(arg::as<u32>(as_game(g_a58f90)->has_word_728(arg::i16(sw)))) (the callee reads a short; only the low byte is used)
+game/_unplaced/esfuncs.cpp:6284 | left: class? | proposal: same as esfuncs.cpp:805 (Obj_get_c)
+game/_unplaced/esfuncs.cpp:6285 | left: class? | proposal: Table52_slot, Table52 (an array of 0x52-byte records; here the object returned by get_c, and in trackres.cpp:235 the track list), slot, void* slot(std::int16_t i) (misc_004994b0.cpp:696)
+game/_unplaced/i_quit.cpp:95 | converted: anim() is now void and calls as_widget(w)->scale_to_61f1b0(i16(a), f32(b), f32(c), (char)d, u32(e)); its only caller (line 111) discards the result
+game/_unplaced/i_quit.cpp:323 | converted: button_anim/button_reset are now void and call scale_to_61f1b0 the same way; both callers (346, 352) discard the result
+game/_unplaced/i_quit.cpp:419 | converted: window_set is now void (set_mode_60a740); load_window_at0 returns 0. Its only path is QuitPopup::load (0x006e4d60), whose only caller, i_quit.cpp:340, discards the result
+game/_unplaced/i_vict.cpp:434 | converted: sprite_set_flag is now void (set_mode_60a740(u32(v))); its callers (447, 450) discard the result
+game/_unplaced/objscr_next.cpp:94 | left: state_sound returns void, but init_755860's result is forwarded by globals.cpp:1612 and gamemode.cpp:163 (next_objectives_screen reset()), so it cannot be shown unused
+game/_unplaced/objscr_next.cpp:151 | left: set_3c returns void; play_755d80 returns low_byte_1(eax) with the upper bits on purpose, and its result is forwarded by gamemode.cpp:443
+game/_unplaced/pathmesh.cpp:223 | left: class- | proposal: Plane4_Plane4_425700 (see colgrid.cpp:528)
+game/_unplaced/pathmesh.cpp:328 | converted: as_member(this)->set_group_664eb0(arg::mptr(b)); return 0; (set_group returns void; the only callers of Group::recentre, pathsp.cpp:2358/2397, discard the result)
+game/_unplaced/pathmesh.cpp:692 | left: clear_grid returns void, but call_666d80_665290 (0x00665260) has no C++ caller or facade, so its result cannot be shown unused
+game/_unplaced/pathmesh.cpp:1046 | left: class? | proposal: X_ret0_66a600, the item class of the path-space lists (billboard item()), ret0_66a600, std::int32_t ret0_66a600(std::int32_t) (always 0)
+game/_unplaced/pathmesh.cpp:1055 | left: class? | proposal: X_ret0_6664d0, the same item class, ret0_6664d0, std::int32_t ret0_6664d0(std::int32_t)
+game/_unplaced/pathmesh.cpp:1061 | left: class? | proposal: X_ret0_66a620, the same item class, ret0_66a620, std::int32_t ret0_66a620(std::int32_t)
+game/_unplaced/pathmesh.cpp:1721 | left: nosig | proposal: bin_search, Misc (as_misc, g_a45fa8), bin_search_5911a0, std::int32_t bin_search_5911a0(const void* key, const char* arr, std::int32_t count, std::int32_t size, cmp fn, std::int32_t* pos) (slot facade matching Misc::bin_search, ilib/misc.cpp:390)
+game/_unplaced/pathmesh.cpp:2186 | converted: as_vec2i(&a)->cross(b.x, b.y); the XY{i32,i32} passed by value is the same two dwords
+game/_unplaced/sceload.cpp:86 | converted: window_set is now void (set_mode_60a740); its callers (114, 151) discard the result
+game/_unplaced/sceload.cpp:2801 | left: nosig | proposal: Unit_name_tag, Player (g_a5b9e8, as_player), name_tag, const char* name_tag(std::uint32_t id) (rts2.cpp:4468)
+game/_unplaced/sceload.cpp:2882 | left: set_speed returns void, but seq_step returns (eax & 0xffffff00) with the upper bits on purpose (caller unknown)
+game/_unplaced/sceload.cpp:2904 | left: same as sceload.cpp:2882
+game/_unplaced/sceload.cpp:2912 | left: same as sceload.cpp:2882 ((r & 0xffffff00) | 1 returned)
+game/_unplaced/scrlbar.cpp:78 | left: dtor_body_62c720 returns void, but ModeList::dtor_7617c0 returns that eax ('eax left as is') and has no C++ caller (scroll_bar destruct() facade is unused), so its result cannot be shown unused
+game/_unplaced/unit_c.cpp:178 | left: nosig | proposal: Unit_name_tag (see sceload.cpp:2801)
+game/_unplaced/unit_c.cpp:457 | converted: as_world_item(p)->set_pos(bits(v.x), bits(v.y), bits(v.z)); the float V3 by value is the same 3 dwords, and the result is discarded
+game/_unplaced/unit_c.cpp:1790 | left: class? | proposal: set_byte_10a, the model/actor instance at unit+0x325 (bone at +0x8c, attached to a scene), set_10a, void set_10a(std::uint32_t v) (camcmd.cpp:1860, stores the low byte at +0x10a)
+game/_unplaced/unit_c.cpp:1794 | left: class? | proposal: set_byte_10a (see unit_c.cpp:1790)
+game/_unplaced/unit_c.cpp:1800 | left: class? | proposal: set_byte_10a (see unit_c.cpp:1790)
+game/_unplaced/unit_c.cpp:1803 | left: class? | proposal: set_byte_10a (see unit_c.cpp:1790)
+game/camman.cpp:122 | left: del returns void, but mem_free's value becomes CamMan::free_list's returned eax (line 148), which has no C++ caller, so it cannot be shown unused
+game/camman.cpp:499 | left: class- | proposal: Plane4_Plane4_425700 (see colgrid.cpp:528)
+game/camman.cpp:739 | left: class? | proposal: Obj_scalar_dtor_416ca0, WorldItem (unit +0xa2, built at unit_c.cpp:452; dtor 0x00456ef0), scalar_dtor_416ca0, void* scalar_dtor_416ca0(std::uint32_t flags) (animgrp.cpp:1116); the value feeds release_4251b0's eax
+game/camman.cpp:767 | converted: as_widget(self()+0x8)->dtor_6294c0(); return 0; (dtor_4254a0's only use is the atexit stub globals.cpp:2513 obj_call, whose result the CRT ignores)
+game/dyngrass.cpp:522 | left: class? | proposal: set_byte_10a, the model instance at rec+0x28 (mesh at +0x90), set_10a, void set_10a(std::uint32_t v)
+game/dyngrass.cpp:526 | left: class? | proposal: set_byte_10a (see dyngrass.cpp:522)
+game/dyngrass.cpp:530 | left: class? | proposal: set_byte_10a (see dyngrass.cpp:522)
+game/f_shop.cpp:65 | left: del returns void, but heap_free's value is returned by Shop::refresh_stock (line 132), which has no C++ caller
+game/f_shop.cpp:546 | converted: as_facility(this)->detach(); return 0; (notify_owner returns void; the only caller of release_79, f_shop.cpp:508, discards the result)
+game/raceres.cpp:185 | converted: as_race_res(this)->load(); f(0)=1; return 0; (race_load returns void; once_4ca310's only caller, game.cpp:246 run(), discards the result)
+game/trackres.cpp:123 | left: X_nop_ee8 returns void, but track_add returns (r & 0xffffff00)|1, and Track::add_point's value goes up through call_4eb920 (no C++ caller)
+game/trackres.cpp:235 | left: class? | proposal: Table52_slot, Track/Tracks list (the this of Track::reset_all_4ebae0), slot, void* slot(std::int16_t i)
+game/trackres.cpp:289 | left: nosig | proposal: Tracks_create_array, Tracks, create_array, const void* create_array(void* reader) (trackres.cpp:722); the call discards the result
+game/trackres.cpp:303 | left: nosig | proposal: Tracks_parse_track, Tracks, parse_track, const char* parse_track(void* reader, std::uint8_t* e, V3 v /*12-byte by value*/) (trackres.cpp:379)
+game/trackres.cpp:587 | converted: as_track_res(f(0xc))->load(path, origin); return 0; (track_load returns void; the only caller of Tracks::load_4eb640, world_s.cpp:558, discards the result)
+game/trackres.cpp:649 | converted: as_track_res(this)->free(); return 0; (track_free returns void; fwd_4eba00's only caller, sdd() at trackres.cpp:744, discards the result)
+game/trackres.cpp:800 | converted: arg::as<char>(as_path_graph(e)->route(bits(p.x..z), bits(q.x..z), mptr(a), b)); the float Vec3s are the same dwords
+game/trackres.cpp:838 | converted: arg::as<u32>(as_path_graph(e)->find_path(va, vb, mptr(a), c)) (u8 result; the only caller of Slots::call_4d3790, unit_core.cpp:3091, discards the result)
+game/trackres.cpp:875 | left: free_points returns u8, but table52_test returns the full u32 (no C++ caller of Table52::test), so the upper bits cannot be shown unused
+game/trackres.cpp:918 | converted: as_track(obj(elem))->add_point(v.x, v.y, v.z) (Vec3{u32} by value = the same 3 dwords; u32 result)
+game/trackres.cpp:1216 | left: class- | proposal: Obj_distance_4eda90, Path (the this of Path::find_4ed040, as_path), distance_4eda90, std::uint32_t distance_4eda90(std::uint32_t, std::uint32_t, std::uint32_t, std::uint32_t) (trackres.cpp:1355)
+game/trackres.cpp:1241 | left: class- | proposal: X_random_range, Path, random_range, std::int32_t random_range(std::uint32_t, std::uint32_t, std::uint32_t, std::uint32_t) (trackres.cpp:1384)
+game/trackres.cpp:1244 | left: class- | proposal: Obj_distance_4eda90 (see trackres.cpp:1216)
+game/trackres.cpp:1259 | left: class- | proposal: X_random_range (see trackres.cpp:1241)
+game/trackres.cpp:1266 | left: class- | proposal: pick_diff, Path, pick_diff, std::int32_t pick_diff(std::int32_t, std::int32_t, std::int32_t, std::int32_t, std::int32_t, std::int32_t) (trackres.cpp:1404)
+game/trackres.cpp:1601 | converted: as_dynarray(this)->zap_584580(0); return 0; (zap returns void; every Path::clear() caller in pathsp/gamedraw/pathzone/unit_core/trackres discards the result)
+elib/jpeg.cpp:206 | converted (Mem::del; Jpeg::free result only read by atexit 0x006035a0, which discards it -> return 0)
+game/_unplaced/calendar.cpp:96 | converted (Calendar::clear; wrapper 0x00495260 only called from static dtor 0x00563fd0 -> return 0)
+game/_unplaced/collide.cpp:926 | left: class- | proposal: Plane4_Plane4_425700, Plane4 (local Plane), construct, void*() (replacement camman.cpp trivial_ctor returns this)
+game/_unplaced/collide.cpp:1577 | left: class- | proposal: Plane4_Plane4_425700, Plane4, construct, void*()
+game/_unplaced/mainmenu.cpp:201 | converted (Font::text_height(2, 1.0f), value discarded)
+game/_unplaced/mglist.cpp:95 | left: class- | proposal: dtor_DynArrayB, DynArrayB, destruct, void() (ilib/dynarr.cpp DynArrayB::destruct; typed joan::orig::dynarray_b(p)->destruct() exists) - note dtor_4af950's result is only read by static dtor stub 0x0056ab40
+game/_unplaced/mglist.cpp:129 | converted (Sound::reset_585d20 via compact(); compact -> List::clear_4afa00 whose only consumers (game.cpp:1151, mglist.cpp:94) discard -> return 0)
+game/_unplaced/mglist.cpp:178 | left: class- | proposal: linkout_5858c0, DynArrayB, linkout, void(std::int32_t) (DynArrayB::linkout; joan::orig::dynarray_b(p)->linkout exists)
+game/_unplaced/objscr_start.cpp:94 | converted (Unit::state_sound; init_75f5a0 consumers: game.cpp shutdown table, atexit stub 0x0056bc60, mode leave table 0x00499540 - all discard -> return 0)
+game/_unplaced/objscr_start.cpp:145 | converted (Game::set_state(9); menu_close returns 1u - upper bits were garbage; only consumer update_mode11 at misc_52f930.cpp:443 discards)
+game/_unplaced/surface.cpp:117 | converted (DisplayPalette::reset; wrapper 0x0060f590 only called from static dtor 0x005640f0 -> return 0)
+game/_unplaced/unit_core.cpp:770 | converted (Wrap::f_4f0500; atexit callback -> return 0)
+game/_unplaced/unit_core.cpp:771 | converted (Wrap::f_4f0500; atexit callback -> return 0)
+game/_unplaced/unit_core.cpp:1174 | converted (as<u32>(Game::has_word(i16)) & 0xff; callee returns bool)
+game/_unplaced/unit_core.cpp:1201 | converted (WorldItem::set_pos(pos.a, pos.b, pos.c); V3 by value = same 3 dwords)
+game/_unplaced/unit_core.cpp:1206 | left: class? | proposal: set_byte_10a, Actor (unit model at obj+0x86 / unit+0x325), set_byte_10a, void(std::uint32_t) (camcmd.cpp set_10a stores the low byte at +0x10a)
+game/_unplaced/unit_core.cpp:2810 | converted (Unit::set_value_135; apply_damage_5's only caller sceload.cpp:2767 discards -> return 0)
+game/_unplaced/unit_core.cpp:4423 | left: class? | proposal: set_byte_10a, Actor, set_byte_10a, void(std::uint32_t)
+game/_unplaced/unit_core.cpp:4426 | left: class? | proposal: set_byte_10a, Actor, set_byte_10a, void(std::uint32_t)
+game/_unplaced/unit_core.cpp:4432 | converted (Unit::spawn_projectile; clear_markers consumers esfuncs.cpp:133/5403/5438 discard -> return 0)
+game/_unplaced/unit_core.cpp:4628 | left: facade wrong (4 args; the original 0x004ff9f0 ends ret 0xc and the replacement takes 3) | facade-fix: void set_anim_state(std::int32_t state, std::int32_t time, std::int32_t arg)
+game/_unplaced/unit_core.cpp:5393 | converted (CellObject::find_anim_state() takes no args (plain ret); the 2 extra pushes were really set_anim_state's 2nd/3rd args - moved to the set call below, bits read by both callees unchanged)
+game/_unplaced/unit_core.cpp:5394 | left: facade wrong (see 4628); slot call now passes (a, saved_4c, -1) explicitly instead of relying on find's leftover pushes | facade-fix: void set_anim_state(std::int32_t state, std::int32_t time, std::int32_t arg)
+game/_unplaced/unit_core.cpp:5399 | converted (as 5393; g_now still read before the find call)
+game/_unplaced/unit_core.cpp:5400 | left: facade wrong (see 4628); slot call now passes (a, now, 0) explicitly | facade-fix: void set_anim_state(std::int32_t state, std::int32_t time, std::int32_t arg)
+game/_unplaced/unit_core.cpp:5030 | converted (as<u32>(Bytes::at(1)) & 0xff; callee returns u8)
+game/_unplaced/unitupd.cpp:194 | left: class? | proposal: set_byte_10a, Actor, set_byte_10a, void(std::uint32_t)
+game/_unplaced/unitupd.cpp:249 | left: facade wrong (3-arg call is right) | facade-fix: void set_anim_state(std::int32_t state, std::int32_t time, std::int32_t arg)
+game/_unplaced/unitupd.cpp:451 | left: class? | proposal: set_byte_10a, Actor, set_byte_10a, void(std::uint32_t)
+game/_unplaced/unitupd.cpp:767 | left: nosig | proposal: Turns_cos, Turns (angle object, as_angle), cos, float() (camman.cpp turns_cos via B115_03_TURNS macro; float in st0)
+game/_unplaced/unitupd.cpp:768 | left: nosig | proposal: Turns_sin, Turns (as_angle), sin, float()
+game/_unplaced/unitupd.cpp:988 | left: class? | proposal: X_word_298, form record (unit_a.cpp b94_04 H), word_298, std::uint32_t() (returns (this & 0xffff0000) | word at +0x298; site reads i16 so low 16 bits only)
+game/_unplaced/widglist.cpp:52 | converted (DynArray::zap_584580(1); wrapper 0x0062a3a0 has no code/data references -> return 0)
+game/_unplaced/widglist.cpp:92 | converted (DynArray::destruct_5844b0; WidgetList::dtor 0x0062a140 has no references -> return 0)
+game/_unplaced/widglist.cpp:134 | converted (DynArray::insert_at_5848d0(b, &a); only consumer find_call_62a1b0 is unreferenced -> return 0)
+game/_unplaced/widglist.cpp:150 | converted (DynArray::insert_at_5848d0(i + 1, &v); only consumer find_call_62a250 is unreferenced -> return 0)
+game/_unplaced/widglist.cpp:166 | converted (DynArray::linkout_584a10(a); only consumer find_call_62a300 is unreferenced -> return 0)
+game/game.cpp:66 | converted (Mem::del; mem_free's two callers (game.cpp:79/85) discard -> return 0)
+game/game.cpp:1038 | converted (Game::log_progress; r only fed the upper 24 bits of b, DynGrass::init reads b as u8 -> b = g_a58057 byte; removed dead r)
+game/help.cpp:237 | converted (HelpBox::clear; wrapper 0x004883d0 only called by static dtor stub 0x005648f0 -> return 0)
+game/help.cpp:592 | left: class- | proposal: X_random_range, Random (kRandom = g_a45fa8, trackres.cpp b93), random_range, std::int32_t(std::uint32_t, std::uint32_t, std::uint32_t, std::uint32_t)
+game/help.cpp:772 | converted (Member::set_group_48be30(mptr(b)); Anim::start consumers trackres.cpp:1213/1240 discard -> return 0)
+game/i_wall.cpp:73 | converted (Mem::del; Wall::release_487460's only consumer ctrl.cpp:1927 discards -> return 0)
+game/i_wall.cpp:273 | left: class? | proposal: Obj_remaining_4907c0, Timer-like obj (i_obj02.cpp forwards to as_timer()->remaining_41d280), remaining_4907c0, double() (st0 result used in eq_or_nan - must stay double)
+game/i_wall.cpp:596 | converted (Scene::attach; Unit::attach_model's only consumer world_s.cpp:2572 discards -> r = 0)
+game/i_wall.cpp:652 | converted (StreamSlot::release; result is (r & 0xffff0000) | best_i and the only consumer ai_behav.cpp:2466 reads as<i16> -> return static_cast<u16>(best_i))
+game/sdateres.cpp:137 | converted (SDateRes::free; wrapper 0x004ce000 only called from static dtor stub 0x00569ca0 -> return 0)
+game/world_s.cpp:172 | left: class? | proposal: Obj_scalar_dtor_416ca0, animgrp object (animgrp.cpp b99 H, dtor 0x00456ef0), scalar_dtor_416ca0, void*(std::uint32_t flags)
+game/world_s.cpp:657 | left: class? | proposal: sdd_0041d3a0, Sector-owning object (battle.cpp L82 sdd_41d3a0), scalar_dtor, void*(std::uint32_t flags)
+game/world_s.cpp:997 | converted (WorldItem::set_pos(bits(pos.x), bits(pos.y), bits(pos.z)); Vec3 by value = same 3 dwords, value discarded)
+game/world_s.cpp:2471 | converted (as<u32>(Box::overlaps(...)) & 0xff; callee returns bool)
+game/world_s.cpp:2652 | converted (as<u32>(Unit::can_reach_49a010(u32, 0u)) & 0xff; callee returns u8)
+game/world_s.cpp:3889 | left: nosig | proposal: Material_set_colour4, Material, set_colour4, const void*(const std::uint32_t* c) (en3d/plane.cpp)
+game/world_s.cpp:4011 | left: nosig | proposal: Material_set_colour4, Material, set_colour4, const void*(const std::uint32_t* c)
+game/world_s.cpp:6156 | converted (static_cast<i16>(SortedNames::find(b158)); site truncated to i16 anyway)
+game/world_s.cpp:6547 | converted (Sector::destruct_empty; forward_54dba0 -> Sector::destruct whose consumer battle.cpp:854 discards -> return 0)
+uti3d/esstate2.cpp:571 | left: class- | proposal: set_name_a6a118, script compiler object (escomp.cpp b91), set_name_a6a118, void(const char* s)
+uti3d/esstate2.cpp:647 | left: class- | proposal: set_name_a6a118, same, set_name_a6a118, void(const char* s)
+uti3d/esstate2.cpp:953 | converted (ScriptNode::free_value; Ctrl destructor chain, consumers are sdtor templates / EH unwind funclets / derived dtors -> return 0)
+uti3d/esstate2.cpp:1209 | left: value may be used: script_clear's eax flows through Gadget::destroy_tree (vtable slot 2, "eax as in the original") whose virtual callers outside this file were not verified
+uti3d/esstate2.cpp:1347 | converted (DynArray::linkout_584a10(x); remove_a consumers (delete_child loops at 1199/1683) discard -> return 0)
+uti3d/esstate2.cpp:1355 | converted (DynArray::linkout_584a10(x); remove_b consumers (delete_var loops) discard -> return 0)
+uti3d/esstate2.cpp:1450 | converted (DynArray::go(a) [Pager_set_page]; seek_child consumers 2582/2590 discard -> return 0)
+uti3d/esstate2.cpp:1476 | converted (ScriptFuncCall::destruct; dtor_643210 only used by sdtor template -> return 0)
+uti3d/esstate2.cpp:1819 | converted (ScriptNode::free_value; dtor_body_6452f0's only consumer esstate2.cpp:2601 discards -> return 0)
+uti3d/esstate2.cpp:3020 | converted (ScriptFuncCall::destruct; dtor_643150 only used by sdtor template -> return 0)
+uti3d/esstate2.cpp:3024 | converted (ScriptFuncCall::destruct; dtor_6432d0 only used by sdtor template -> return 0)
+uti3d/esstate2.cpp:3040 | converted (ScriptNode::free_value; release_644cd0's only consumer esstate2.cpp:2939 discards -> return 0)
+uti3d/esstate2.cpp:3072 | left: class? | proposal: ScriptNode_dtor_6426d0, ScriptNode, destruct_6426d0, void() (esstate2.cpp node_dtor is declared u32 but is a destructor)
+uti3d/esstate2.cpp:3763 | converted (List::clear_648b80; wrapper 0x00648b50 only run from game.cpp:262 loader table which discards -> return 0)
+uti3d/esstate2.cpp:4160 | left: value may be used: DynArr::release() result is returned by MathExpr::parse_647c90 (indirect/virtual consumers not verified; code comment says it deliberately returns the dtor's eax)
+uti3d/esstate2.cpp:4209 | left: class- | proposal: key_code_index, MathExpr parser (esstate2.cpp 0x00647c90 H), key_code_index, std::int32_t(std::int32_t k)
+uti3d/esstate2.cpp:4750 | converted (Mem::del; free_nodes' consumers 4179/4182 and EH funclet discard; eax now stays u(this))

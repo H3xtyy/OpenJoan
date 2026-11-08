@@ -1,0 +1,11 @@
+== shaders/vs4_decl.bin
+stream 0
+v0: float3
+v1: float3
+v8: float3
+v9: float3
+v12: short2
+v13: float2
+v5: d3dcolor
+v7: float2
+end

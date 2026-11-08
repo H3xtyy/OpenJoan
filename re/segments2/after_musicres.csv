@@ -1,0 +1,2 @@
+start,end,name,confidence,evidence,target
+0x004b4790,0x004b4790,nation2_give,high,"Player::give sandwiched between nation2.cpp Player/relation functions, same Player/Table helpers",game/nation2.cpp

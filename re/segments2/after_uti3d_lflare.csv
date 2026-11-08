@@ -1,0 +1,2 @@
+start,end,name,confidence,evidence,target
+0x0066e5b0,0x0066e5b0,pathsp_pointlist,high,"PointList::assign lies between List::copy_ctor and PathBox::set inside pathsp.cpp and uses the same list helpers (slot/count/linkin) as PointList::push.",uti3d/pathsp.cpp

@@ -1,0 +1,7 @@
+== shaders/vs1_decl.bin
+stream 0
+v0: float3
+v3: float3
+v5: d3dcolor
+v7: float2
+end

@@ -1,0 +1,4 @@
+start,end,name,confidence,evidence,target
+0x006299b0,0x0062a0f0,image2d_tail,medium,Label::set_layout/draw and Widget::hit_test continue the Label/Image2D methods right after image2d.cpp Image2D::set_name,en2d/image2d.cpp
+0x0062a110,0x0062a4c0,widglist,medium,"DynArray-based WidgetList (ctor/dtor/find_call/insert/index_of/update_all) with no strings, between image2d and popupwin",
+0x0062a560,0x0062a560,popupwin_ctor,high,"Screen::ctor_62a560 is the ctor of the global g_a50808 whose atexit dtor (56d490) is popupwin.cpp Obj::dtor_62a5f0, next function",en2d/popupwin.cpp

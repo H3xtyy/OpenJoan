@@ -1,0 +1,8 @@
+start,end,name,confidence,evidence,target
+0x004ec480,0x004eed10,trackres_path_g0,medium,"PathGraph::route (only caller trackres.cpp Path::test_segment), Path::find and their small path helper structs right after trackres.cpp.",game/trackres.cpp
+0x004eed50,0x004f0500,triggers,medium,"Global list a5ccd0 (ctor/dtor via init_569d70/obj_stub_569dc0, load_arrays nop, delete_all/sdd/add/remove) with Triggers::update and its Wrap record class: own TU.",
+0x004f07f0,0x004f2f60,unit_move_g0,medium,Unit release/steer/turn_step/set_model using unit.cpp bss 0xa3cbdc..0xa3cd00 (same as Unit::init) and .rdata 0x9d7494.. next to Unit::init 0x9d7468.,game/unit.cpp
+0x004f3d10,0x004f3d10,unit_init_g0a,low,Init of the 0xa3cb6c PI set (continued by unit_a init_a3cb78) relocated between world_s.cpp functions.,game/unit.cpp
+0x004f4f10,0x004f4f40,unit_init_g0b,low,PI/derived inits of bss 0xa3cb6c/0xa3cb74 (unit.cpp init set) relocated between world_s.cpp functions.,game/unit.cpp
+0x004f5210,0x004f5210,world_s_water_g0,high,"Cell::create_water: strings 0x9d8134..0x9d830c around world_s.cpp FILE 0x9d8198, between world_s.cpp functions.",game/world_s.cpp
+0x004f7bf0,0x004f7bf0,unit_wander_g0,medium,"Unit::wander directly before unit.cpp Unit::init, sharing its bss 0xa3cc9c range and steer .rdata 0x9d74c0.",game/unit.cpp

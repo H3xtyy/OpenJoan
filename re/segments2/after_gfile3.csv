@@ -1,0 +1,5 @@
+start,end,name,confidence,evidence,target
+0x004865f0,0x00486620,gfile3_t1,medium,List at / is_null accessors used by gfile3.cpp List::save_486110 directly after gfile3.cpp Obj::clear_17_1b.,game/gfile3.cpp
+0x00486650,0x00486de0,glowmark_a,medium,"Glow-marker billboards: 0x55-byte entry ctor / destroy / init (Billboard) / update_fade / expire / Marker::draw / line_of_sight; continues as glowmark_b after the incremental-link-displaced i_wall.cpp Wall::release."
+0x00487600,0x00487bb0,glowmark_b,medium,"Same marker system: List4 global ctor/dtor (stubs 0x56af30 / 0x56af80) / delete_all / add_new (-> init_486720) / remove / Slots::advance (-> update_fade) / Markers::draw (-> Marker::draw) + list accessors."
+0x00487be0,0x00487be0,grassres_ctor,high,memset ctor run by static-init stub 0x56a310 whose atexit partner -> Obj::call_487c10 -> GrassRes::free: GrassRes global ctor heading grassres.cpp (next function).,game/grassres.cpp

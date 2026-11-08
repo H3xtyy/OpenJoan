@@ -1,0 +1,3 @@
+start,end,name,confidence,evidence,target
+0x005b1cb0,0x005b1cb0,actordeg_t1,high,ActorDef::draw_instances is called by actordeg.cpp ActorDef::queue_instance and follows it: tail of actordeg.cpp.,en3d/actordeg.cpp
+0x005b2390,0x005b2390,animdef_ctor,medium,AnimLoader memset(0x18b) ctor used by the same callers as AnimDef::load (scan_dir / AnimSet::acquire / AnimResMgr::stream) and directly precedes it: head of animdef.cpp.,en3d/animdef.cpp

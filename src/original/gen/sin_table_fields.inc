@@ -1,0 +1,3 @@
+// Generated (re/layout/gen_types.py) from re/layout/layouts.json: the data members of SinTable
+// (g03.json, confidence medium). Do not edit; change the spec.
+    std::uint8_t value;  // 0x0

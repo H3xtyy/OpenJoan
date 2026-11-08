@@ -1,0 +1,40 @@
+{
+ "round": "w64",
+ "source": "x64 run under Wine (2026-10-18): views of one object that disagreed on x64",
+ "classes": [],
+ "fields": [
+  {
+   "class": "TokenList",
+   "off": "0x4",
+   "name": "strings",
+   "type": "StringPool",
+   "member": true,
+   "why": "Obj67caa0 ctor 0x0067caa0: ScriptTokenizer::ctor 0x00684010 (called first by the ctor) constructs the StringPool at +4 (0x005a1730: head, tail); x64: two pointers, so the DynArray after it moves"
+  },
+  {
+   "class": "ScriptLexer",
+   "off": "0x4",
+   "name": "strings",
+   "type": "StringPool",
+   "member": true,
+   "why": "List::List 0x00661ea0: ScriptTokenizer::ctor 0x00684010 (called first by the ctor) constructs the StringPool at +4 (0x005a1730: head, tail); x64: two pointers, so the DynArray after it moves"
+  },
+  {
+   "class": "Camera",
+   "off": "0x2c6",
+   "name": "frustum_corners",
+   "type": "f32",
+   "size": 4,
+   "count": 24,
+   "why": "Camera::build_frustum 0x00616460 writes the 8 world-space frustum corners (Vec3) here; read by the frustum / portal tests (camera3d.cpp: self() + 0x2c6 + k * 0xc); x64: after the pointer members the raw +0x2c6 landed on the viewport"
+  },
+  {
+   "class": "MessageList",
+   "off": "0x0",
+   "name": "list",
+   "type": "DynArrayB",
+   "member": true,
+   "why": "List::clear_4734a0 0x004734a0 / the MessageList code: the object starts with the message DynArrayB (0x005857a0 linkin / 0x005858c0 linkout on this, 0x2e bytes on x86); x64: the list is 0x36 bytes, so ptr_2e .. i32_40 (the MESSAGE texture) move"
+  }
+ ]
+}

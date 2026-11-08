@@ -1,0 +1,5 @@
+start,end,name,confidence,evidence,target
+0x0073b040,0x0073b770,objmenuw_siege,medium,"Siege-debrief screen helpers (Spinner::tick / SiegeDebrief::init with CROSSBOW/BOMBARD/CANNON like siege_help / Res2::free / sm_f button) after objmenuw siege_help, all called from the objmenu family.",interfac/objmenuw.cpp
+0x0073ba40,0x0073ba40,optmenui_ctor,high,"Struct124::zero is the ctor of init group 0x56c8c0 whose atexit forwards to optmenui Obj73c410::release_all; precedes optmenui OptPanel::init.",interfac/optmenui.cpp
+0x0073c740,0x00740df0,optmenui_pages,high,"Option menu load/open/apply/set_page/draw/click with strings IF_SETTING_BUTTON_CLIC/S_OT/SLOT_OT/TB_OT right before d:\ww\interfac\optmenui.cpp (0x9df700).",interfac/optmenui.cpp
+0x007412e0,0x007433d0,optmenui_panels,high,"Option panels / sliders / layouts between optmenui scalar dtors and OptMenu::build_controls; called from optmenui functions.",interfac/optmenui.cpp

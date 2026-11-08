@@ -1,0 +1,5168 @@
+{
+ "group": "r4_r2",
+ "classes": [
+  {
+   "class": "Nation",
+   "size": "0x1545",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "id",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x2",
+     "name": "kind",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x4",
+     "name": "dirty",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x5",
+     "name": "state",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x6",
+     "name": "king_unit",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x8",
+     "name": "kind32",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "unit_count",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "name",
+     "type": "char",
+     "size": 1,
+     "count": 65
+    },
+    {
+     "off": "0x1365",
+     "name": "at_war",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x1366",
+     "name": "was_at_war",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x1367",
+     "name": "war_day",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x136d",
+     "name": "mood",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x1371",
+     "name": "gold",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x1375",
+     "name": "time",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x1385",
+     "name": "population",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x1389",
+     "name": "military_strength",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x138d",
+     "name": "income",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x1391",
+     "name": "income_prev",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x1395",
+     "name": "trade_income",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x1399",
+     "name": "trade_income_prev",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x139d",
+     "name": "f32_139d",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x13a1",
+     "name": "f32_13a1",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x13a5",
+     "name": "income_by_kind",
+     "type": "f32",
+     "size": 4,
+     "count": 8
+    },
+    {
+     "off": "0x13c5",
+     "name": "income_by_kind_prev",
+     "type": "f32",
+     "size": 4,
+     "count": 8
+    },
+    {
+     "off": "0x13e5",
+     "name": "income_total",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x13e9",
+     "name": "income_total_prev",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x13ed",
+     "name": "spend_by_kind",
+     "type": "f32",
+     "size": 4,
+     "count": 17
+    },
+    {
+     "off": "0x1431",
+     "name": "spend_by_kind_prev",
+     "type": "f32",
+     "size": 4,
+     "count": 17
+    },
+    {
+     "off": "0x1475",
+     "name": "spent",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x1479",
+     "name": "spent_prev",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x147d",
+     "name": "f32_147d",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x1481",
+     "name": "f32_1481",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x1485",
+     "name": "time_gained",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x1489",
+     "name": "time_gained_prev",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x148d",
+     "name": "time_transferred",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x1491",
+     "name": "time_transferred_prev",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x1495",
+     "name": "time_net",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x1499",
+     "name": "time_net_prev",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x149d",
+     "name": "mood_delta",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x14a1",
+     "name": "mood_delta_prev",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x14a5",
+     "name": "goods",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x14a9",
+     "name": "demand",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x14ad",
+     "name": "price_trend",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x14b1",
+     "name": "production",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x14b5",
+     "name": "tax",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x14b9",
+     "name": "sold",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x14bd",
+     "name": "sold_prev",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x14c1",
+     "name": "surplus",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x14c5",
+     "name": "surplus_prev",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x14c9",
+     "name": "consume_limit",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x14cd",
+     "name": "own_tax",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x14d1",
+     "name": "import_tax",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x14d5",
+     "name": "export_tax",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x14d9",
+     "name": "score_goods",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x14dd",
+     "name": "strength",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x14e1",
+     "name": "wealth",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x14e5",
+     "name": "mood_copy",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x14f9",
+     "name": "mood_score",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x14fd",
+     "name": "recruit_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x1501",
+     "name": "recruit_ages",
+     "type": "u8",
+     "size": 1,
+     "count": 20
+    },
+    {
+     "off": "0x1515",
+     "name": "traits",
+     "type": "f32",
+     "size": 4,
+     "count": 6
+    },
+    {
+     "off": "0x152d",
+     "name": "leader_count",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x152f",
+     "name": "leader_cap",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x1531",
+     "name": "leaders",
+     "type": "ptr:ArrI16",
+     "size": 4
+    },
+    {
+     "off": "0x1535",
+     "name": "idle_count",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x1537",
+     "name": "idle_cap",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x1539",
+     "name": "idle_units",
+     "type": "ptr:ArrI16",
+     "size": 4
+    },
+    {
+     "off": "0x153d",
+     "name": "station_count",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x153f",
+     "name": "station_cap",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x1541",
+     "name": "stations",
+     "type": "ptr:ArrI16",
+     "size": 4
+    }
+   ],
+   "members": [
+    {
+     "off": "0xc",
+     "name": "colour",
+     "class": "Color"
+    },
+    {
+     "off": "0x55",
+     "name": "relation1",
+     "class": "Rel"
+    },
+    {
+     "off": "0x149",
+     "name": "relation2",
+     "class": "Rel"
+    },
+    {
+     "off": "0x23d",
+     "name": "relation3",
+     "class": "Rel"
+    },
+    {
+     "off": "0x331",
+     "name": "relation4",
+     "class": "Rel"
+    },
+    {
+     "off": "0x425",
+     "name": "relation5",
+     "class": "Rel"
+    },
+    {
+     "off": "0x519",
+     "name": "relation6",
+     "class": "Rel"
+    },
+    {
+     "off": "0x60d",
+     "name": "relation7",
+     "class": "Rel"
+    },
+    {
+     "off": "0x701",
+     "name": "relation8",
+     "class": "Rel"
+    },
+    {
+     "off": "0x7f5",
+     "name": "relation9",
+     "class": "Rel"
+    },
+    {
+     "off": "0x8e9",
+     "name": "relation10",
+     "class": "Rel"
+    },
+    {
+     "off": "0x9dd",
+     "name": "relation11",
+     "class": "Rel"
+    },
+    {
+     "off": "0xad1",
+     "name": "relation12",
+     "class": "Rel"
+    },
+    {
+     "off": "0xbc5",
+     "name": "relation13",
+     "class": "Rel"
+    },
+    {
+     "off": "0xcb9",
+     "name": "relation14",
+     "class": "Rel"
+    },
+    {
+     "off": "0xdad",
+     "name": "relation15",
+     "class": "Rel"
+    },
+    {
+     "off": "0xea1",
+     "name": "relation16",
+     "class": "Rel"
+    },
+    {
+     "off": "0xf95",
+     "name": "relation17",
+     "class": "Rel"
+    },
+    {
+     "off": "0x1089",
+     "name": "relation18",
+     "class": "Rel"
+    },
+    {
+     "off": "0x117d",
+     "name": "relation19",
+     "class": "Rel"
+    },
+    {
+     "off": "0x1271",
+     "name": "relation20",
+     "class": "Rel"
+    }
+   ],
+   "evidence": "Town::add_building news 0x1545 then Nation::construct/init; init fills +2..+0x14, 20 Rel at +0x55, economy floats +0x136d..+0x1529; clear frees the three word arrays +0x1531/+0x1539/+0x1541",
+   "confidence": "high",
+   "notes": "also the object of the Economy label and most Town/Player(nation2.cpp)/Calendar(value, age_entries) functions, all reassigned here; the 20 relations are listed as members relation1..relation20 (an array Rel[20]); 0x10..0x13, 0x1379..0x1384, 0x14e9..0x14f8 unknown; Campaign::load 0x47f800 (g11) only touches the three word arrays and is reassigned here r3: leaders / idle_units / stations typed ArrI16 arrays (u16 unit ids: saved with file_word, binary-searched by update_unit). r4: +0x10 u32 summed over non-allied nations by objm_debrief results_body (a05). Rel::is_3 0x4b4590 is called on a Nation (misc_004994b0 set_state: as_nation(this)->is_kind_3) and reads Nation +5 (u8_5): reassigned here.",
+   "override": true
+  },
+  {
+   "class": "NationRes",
+   "size": "0x9",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "nations",
+     "type": "ptr:NationDef",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "loaded",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [],
+   "evidence": "natres.cpp: NATION rows of 0x4e at +4 (Table4e::slot), count +0, loaded +8 (init_4b8f50 / clear_8)",
+   "confidence": "high",
+   "notes": " r4: nations -> NationDef[count] (0x4e-byte records, natres.cpp:108).",
+   "override": true
+  },
+  {
+   "class": "NewsItem",
+   "size": "0x52",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "kind",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x2",
+     "name": "side",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0xc",
+     "name": "unit",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "player",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "date",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x1c",
+     "name": "value",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x2c",
+     "name": "name",
+     "type": "char",
+     "size": 1,
+     "count": 20
+    },
+    {
+     "off": "0x41",
+     "name": "arg_b",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x42",
+     "name": "arg_w1",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x44",
+     "name": "arg_w2",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x46",
+     "name": "args",
+     "type": "u32",
+     "size": 4,
+     "count": 3
+    }
+   ],
+   "members": [],
+   "evidence": "news.cpp as_news_item(this): text() 0x4ba320 dispatches on kind (+0), text_* read +2/+0xc/+0x10/+0x18/+0x1c",
+   "confidence": "medium",
+   "notes": "new class (the news.cpp \"News\"/\"Msg\" text functions and unlabelled 0x4baa30/0x4bab00/0x4b96f0/0x4ba320). +0x18 and +0x1c are read as dword and word. r4: Rec::set 0x4b9c80 (news.cpp:614): name char[0x14] +0x2c (str_cut), u8 +0x41, u16 +0x42/+0x44, u32[3] +0x46; record size 0x52 (DynArray of 0x52 in ctor_4b9220).",
+   "override": true
+  },
+  {
+   "class": "NewsRecord",
+   "size": "0x93",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "id",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x2",
+     "name": "read",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x3",
+     "name": "time",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x7",
+     "name": "start_time",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xb",
+     "name": "icon",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0xd",
+     "name": "text1",
+     "type": "char",
+     "size": 1,
+     "count": 66
+    },
+    {
+     "off": "0x4f",
+     "name": "text2",
+     "type": "char",
+     "size": 1,
+     "count": 66
+    },
+    {
+     "off": "0x91",
+     "name": "weight",
+     "type": "u16",
+     "size": 2
+    }
+   ],
+   "members": [],
+   "evidence": "News::add 0x46ab40 writes a record at +0x114 + n*0x93 (0x116 u8, 0x117 u32, 0x11f u16, 0x121/0x163 strcpy, 0x1a5 u16)",
+   "confidence": "medium",
+   "notes": "new class; bytes 0x7..0xa unseen; string lengths inferred from the gaps. r4: +7 production start time (f_work.cpp job records = Siege queue).",
+   "override": true
+  },
+  {
+   "class": "Palette",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x1",
+     "name": "loaded",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x8",
+     "name": "colours",
+     "type": "u8",
+     "size": 1,
+     "count": 1024
+    }
+   ],
+   "members": [],
+   "evidence": "load/channel/load_act take table pointers, no this-field access",
+   "confidence": "low",
+   "notes": "no fields observed r4: Palette::load 0x60f760 (surface.cpp:335) fills 256 RGBX colours at +8 and sets +1 = 1.",
+   "override": true
+  },
+  {
+   "class": "Particle",
+   "size": "0x80",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "id",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "lifetime",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "age",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "delay",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "time",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "f32_14",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "node",
+     "type": "ptr:Actor",
+     "size": 4
+    },
+    {
+     "off": "0x1c",
+     "name": "scale",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x20",
+     "name": "scale_rate",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x24",
+     "name": "colour",
+     "type": "u8",
+     "size": 1,
+     "count": 4
+    },
+    {
+     "off": "0x28",
+     "name": "colour_rate",
+     "type": "f32",
+     "size": 4,
+     "count": 4
+    },
+    {
+     "off": "0x38",
+     "name": "u32_38",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x3c",
+     "name": "u16_3c",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x42",
+     "name": "ptr_42",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x48",
+     "name": "offset",
+     "type": "f32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x54",
+     "name": "pos",
+     "type": "f32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x60",
+     "name": "vel",
+     "type": "f32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x6c",
+     "name": "accel",
+     "type": "f32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x78",
+     "name": "key_index",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x7a",
+     "name": "frame_time",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x7e",
+     "name": "frame",
+     "type": "i16",
+     "size": 2
+    }
+   ],
+   "members": [],
+   "evidence": "reset 0x662e20 memsets 0x80 keeping +0; update 0x662f60 integrates the float fields",
+   "confidence": "high",
+   "notes": "partslot.cpp particle; node (+0x18) is an Actor (SceneObject label: +0x28 scale, +0x90 plane). Round 2: the boids.cpp functions g09 mapped here (offset_to_target 0x421730, count_near 0x421a50, distance_to 0x422ca0) moved to Boid. r3: +0x0 (id): the memset call in reset passes ecx = the saved id - scanner artefact (jump-table bytes decoded as code, a register reused after the load, or a register argument of a non-thiscall callee), not a dereference. r4: pemitter.cpp: +0x78 next key index, +0x7a texture frame time, +0x7e texture frame. +0x38..+0x47 are floats (angle, rot_speed, self_angle, self_rot_speed per pemitter / psystem) but u32_38 / u16_3c / ptr_42 cannot be re-typed here (see file notes).",
+   "override": true
+  },
+  {
+   "class": "PathGrid",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x46",
+     "name": "u32_46",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4a",
+     "name": "buffer",
+     "type": "ptr:TrackNode",
+     "size": 4
+    },
+    {
+     "off": "0x4e",
+     "name": "u32_4e",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "find_path_4d3790 (gamedraw.cpp)",
+   "confidence": "low",
+   "notes": "casts this->PathGraph (g12); maybe that class R3: +0x4a \"call\" crt::_ftol is a scanner artefact. r4: buffer = 0x54-byte nodes (+8 pos f32[3], +0x1c search stamp; gamedraw.cpp:401/438/502) = TrackNode (same size / pos; TrackNode owner is a PathGraph, the class this was cast to).",
+   "override": true
+  },
+  {
+   "class": "PfdZone",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "id",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "kind",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "bbox_min",
+     "type": "i32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x14",
+     "name": "bbox_max",
+     "type": "i32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x20",
+     "name": "blocked",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x24",
+     "name": "name_id",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x28",
+     "name": "point_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x2c",
+     "name": "visit_stamp",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x30",
+     "name": "points",
+     "type": "ptr:PfdPointPtrArray",
+     "size": 4
+    },
+    {
+     "off": "0x34",
+     "name": "links",
+     "type": "ptr:PfdZonePtrArray",
+     "size": 4
+    },
+    {
+     "off": "0x38",
+     "name": "search_stamp",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x3c",
+     "name": "came_from",
+     "type": "ptr:PfdZone",
+     "size": 4
+    },
+    {
+     "off": "0x40",
+     "name": "children",
+     "type": "ptr:PfdZonePtrArray",
+     "size": 4
+    },
+    {
+     "off": "0x44",
+     "name": "open_next",
+     "type": "ptr:PfdZone",
+     "size": 4
+    },
+    {
+     "off": "0x48",
+     "name": "centre_x",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4c",
+     "name": "centre_y",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x50",
+     "name": "centre_z",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x52",
+     "name": "child_count",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x57",
+     "name": "closed",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x58",
+     "name": "cost_g",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x5c",
+     "name": "cost_f",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x60",
+     "name": "cost_h",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x64",
+     "name": "flags",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x66",
+     "name": "max_flags",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x68",
+     "name": "flags_sum",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x6c",
+     "name": "path_space",
+     "type": "ptr:PathSpace",
+     "size": 4
+    },
+    {
+     "off": "0x70",
+     "name": "group",
+     "type": "i32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "ctor 0x663c50 (Triple ctors at +8/+0x14, 0x34-byte search member 0x663b90 at +0x38); set_points 0x663cb0; contains 0x6718c0 doc comment",
+   "confidence": "medium",
+   "notes": "points = new int*[point_count] (each -> x,y,z ints), links = PfdZone*[point_count]. +0x38..+0x6b is a member (0x663b90, A* state; only +0x38/+0x3c/+0x64 seen). Size >= 0x70 (frame slot 0x74). r3: points -> PfdPoint*[point_count], links -> PfdZone*[point_count]; +0x6c is the owning PathSpace* (PathSpace::load 0x670980 writes zone+0x6c = this; engine3d request). Its value is also passed as the id argument of the cdecl placements_find 0x4a2b20 (contains / flood / find_crossing): the \"Placements::find call with ecx = +0x6c\" is a stack argument, not a method call. Remaining check reports \"indexed 4B access at <field>+-0x4 (<Elem>Array) not declared\" are 1-based element accesses (arr[i-1] compiles to [base+i*4-4]): element 0 of the array record, a negative offset cannot be declared - explained, not a missing field (same as the DynArrayB empty_room_array report). r4: uti3d/pathsp.cpp (load / saver_write / astar 0x66ce30 / path_tree_accumulate 0x66ddb0 / PathZones::group 0x675660): id, kind, name id, A* node state +0x38..+0x6b, group +0x70.",
+   "override": true
+  },
+  {
+   "class": "Plane",
+   "size": "0x11c",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "bones",
+     "type": "ptr:Bone",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "vertex_format",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x5",
+     "name": "buffer_mode",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x6",
+     "name": "bone_count",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x7",
+     "name": "owns_bones",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x8",
+     "name": "prim_type",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x9",
+     "name": "skip_draw",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0xa",
+     "name": "load_state",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0xb",
+     "name": "data_pending",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0xc",
+     "name": "source",
+     "type": "ptr:Plane",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "vertex_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "vertex_capacity",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "transformed",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1c",
+     "name": "vertices_f1",
+     "type": "ptr:VertexF1",
+     "size": 4
+    },
+    {
+     "off": "0x20",
+     "name": "vertices_f2",
+     "type": "ptr:VertexF2",
+     "size": 4
+    },
+    {
+     "off": "0x24",
+     "name": "vertices_f3",
+     "type": "ptr:VertexF3",
+     "size": 4
+    },
+    {
+     "off": "0x28",
+     "name": "vertices_f4",
+     "type": "ptr:VertexF4",
+     "size": 4
+    },
+    {
+     "off": "0x2c",
+     "name": "vertices_f5",
+     "type": "ptr:VertexF5",
+     "size": 4
+    },
+    {
+     "off": "0x30",
+     "name": "vertices_f6",
+     "type": "ptr:VertexF6",
+     "size": 4
+    },
+    {
+     "off": "0x34",
+     "name": "vertices_f7",
+     "type": "ptr:VertexF7",
+     "size": 4
+    },
+    {
+     "off": "0x38",
+     "name": "vertices_f8",
+     "type": "ptr:VertexF8",
+     "size": 4
+    },
+    {
+     "off": "0x3c",
+     "name": "colour",
+     "type": "u8",
+     "size": 1,
+     "count": 4
+    },
+    {
+     "off": "0x40",
+     "name": "triangle_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x44",
+     "name": "triangle_capacity",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x48",
+     "name": "triangles",
+     "type": "ptr:Tri16",
+     "size": 4
+    },
+    {
+     "off": "0x4c",
+     "name": "triangle_materials",
+     "type": "ptr:ArrU16",
+     "size": 4
+    },
+    {
+     "off": "0x50",
+     "name": "use_strips",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x51",
+     "name": "has_strips",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x52",
+     "name": "strip_total",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x54",
+     "name": "strip_lengths",
+     "type": "ptr:ArrU16",
+     "size": 4
+    },
+    {
+     "off": "0x58",
+     "name": "strip_capacity",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x5c",
+     "name": "strip_index_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x60",
+     "name": "strip_indices",
+     "type": "ptr:ArrU16",
+     "size": 4
+    },
+    {
+     "off": "0x64",
+     "name": "material_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x68",
+     "name": "material_capacity",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x6c",
+     "name": "materials",
+     "type": "ptr:Material",
+     "size": 4
+    },
+    {
+     "off": "0x70",
+     "name": "list_kind",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x74",
+     "name": "owner",
+     "type": "ptr:Actor",
+     "size": 4
+    },
+    {
+     "off": "0x78",
+     "name": "origin",
+     "type": "f32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x84",
+     "name": "material_matrices",
+     "type": "ptr:Matrix44",
+     "size": 4
+    },
+    {
+     "off": "0x88",
+     "name": "material_ids",
+     "type": "ptr:ArrI32",
+     "size": 4
+    },
+    {
+     "off": "0x8c",
+     "name": "dirty",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x90",
+     "name": "vertex_buffer",
+     "type": "ptr:IDirect3DVertexBuffer8",
+     "size": 4
+    },
+    {
+     "off": "0x94",
+     "name": "index_buffer",
+     "type": "ptr:IDirect3DIndexBuffer8",
+     "size": 4
+    },
+    {
+     "off": "0xb0",
+     "name": "material_first",
+     "type": "ptr:ArrU16",
+     "size": 4
+    },
+    {
+     "off": "0xb4",
+     "name": "material_ranges",
+     "type": "ptr:MaterialSpan",
+     "size": 4
+    },
+    {
+     "off": "0xb8",
+     "name": "list_slots_ready",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xbc",
+     "name": "list_slots_inline",
+     "type": "u32",
+     "size": 4,
+     "count": 4
+    },
+    {
+     "off": "0xcc",
+     "name": "list_slots",
+     "type": "ptr:ArrU32",
+     "size": 4
+    },
+    {
+     "off": "0xd0",
+     "name": "children",
+     "type": "ptr:Plane",
+     "size": 4,
+     "count": 4
+    },
+    {
+     "off": "0xe0",
+     "name": "lod_distance",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0xe4",
+     "name": "lod_count",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0xe7",
+     "name": "u8_e7",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0xe8",
+     "name": "parent",
+     "type": "ptr:Plane",
+     "size": 4
+    },
+    {
+     "off": "0xec",
+     "name": "next",
+     "type": "ptr:Plane",
+     "size": 4
+    },
+    {
+     "off": "0xf0",
+     "name": "linked",
+     "type": "ptr:Plane",
+     "size": 4
+    },
+    {
+     "off": "0xf4",
+     "name": "back_link",
+     "type": "ptr:Plane",
+     "size": 4
+    },
+    {
+     "off": "0xf8",
+     "name": "normals_pending",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xfc",
+     "name": "u32_fc",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x100",
+     "name": "flags_100",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x104",
+     "name": "flags_104",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x108",
+     "name": "shadow_edges",
+     "type": "ptr:ArrU16",
+     "size": 4
+    },
+    {
+     "off": "0x10c",
+     "name": "stencil",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x110",
+     "name": "mode",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x114",
+     "name": "face_normals",
+     "type": "ptr:V3",
+     "size": 4
+    },
+    {
+     "off": "0x118",
+     "name": "vertex_normals",
+     "type": "ptr:V3",
+     "size": 4
+    }
+   ],
+   "members": [
+    {
+     "off": "0x98",
+     "name": "resource",
+     "class": "Resource"
+    }
+   ],
+   "evidence": "new(0x11c) before ctor 0x5cbaf0, copy ctor memset 0x11c; release 0x5ccaa0 / add_vertices / add_materials / init comments in en3d/plane.cpp",
+   "confidence": "high",
+   "notes": "0x78..0x83 and 0xe5/0xe6 never accessed. 0xcc is the >4-material list-slot block, children are 0xcc[1..4] (= 0xd0..0xdf; the code indexes them as 0xcc + i*4, i=1..4). Vertex streams 0x1c..0x38 are per vertex format 1..8 (strides 0x24,0x3c,0x1c,0x18,0x48,0x14,0x48,0x28). 0x6c+-0x4 indexed read in 0x42b640 is that function's own 4-byte array (it is not a Plane, see group notes). 0x74 owner deref +0x8/+0xfc checked against Actor (g01). r2: 0x42b640 (camcmd.cpp, labelled Plane::remove_material) is a Cell method (called by Cell::unload_files with this = Cell; +0 World*, +0x64 sector count, +0x6c/+0x70 arrays) - moved to Cell. r3: pointer targets: vertex streams VertexF1..F8 (strides 0x24/0x3c/0x1c/0x18/0x48/0x14/0x48/0x28), triangles Tri16, per-triangle materials / strip lengths / strip indices / material_first / weld map (+0x108) u16 arrays, material matrices Matrix44, material ids i32, list slot block u32 (memmove from the inline +0xbc slots), face / vertex normals (+0x114/+0x118) V3[vertex_count] (alloc count*0xc), D3D vertex / index buffers. Plane::buffer 0x5cdae0 \"writes\" through +0x38 at -0x72..+0x7a: its jump table decoded as code (scanner artefact (jump-table bytes decoded as code, a register reused after the load, or a register argument of a non-thiscall callee), not a dereference); +0x10 (vertex_count) and +0x64 (memset call) are artefacts too. r4: +0x78/+0x7c/+0x80 floats written by world_s.cpp:1904-1906 / 6392 (terrain mesh position px, py, pz).",
+   "override": true
+  },
+  {
+   "class": "Portal",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x30",
+     "name": "plane",
+     "type": "f32",
+     "size": 4,
+     "count": 4
+    },
+    {
+     "off": "0x58",
+     "name": "side_a",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x5c",
+     "name": "side_b",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x60",
+     "name": "open_b",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x61",
+     "name": "open_a",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x62",
+     "name": "clipped",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x63",
+     "name": "open",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x64",
+     "name": "from_b",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "portal.cpp facing(): plane_distance(this+0x30), sectors +0x58/+0x5c, flags +0x60/+0x61",
+   "confidence": "medium",
+   "notes": "0..0x2f and 0x40..0x57 unseen (probably the portal polygon / box). r4: Scene::render (scene.cpp): clipped this frame, open / traversed, side the flood came through.",
+   "override": true
+  },
+  {
+   "class": "Profile",
+   "size": "0x48",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "name",
+     "type": "char",
+     "size": 1,
+     "count": 32
+    },
+    {
+     "off": "0x20",
+     "name": "unit_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x24",
+     "name": "units",
+     "type": "ptr:ProfileUnit",
+     "size": 4
+    },
+    {
+     "off": "0x28",
+     "name": "list_a_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x2c",
+     "name": "list_a",
+     "type": "ptr:ArrU16",
+     "size": 4
+    },
+    {
+     "off": "0x30",
+     "name": "list_b_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x34",
+     "name": "list_b",
+     "type": "ptr:ArrU16",
+     "size": 4
+    },
+    {
+     "off": "0x38",
+     "name": "u32_38",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x3c",
+     "name": "u32_3c",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x40",
+     "name": "i32_40",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x44",
+     "name": "i32_44",
+     "type": "i32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "save/load write/read 0x48 bytes of this; record table +0x24 (0x77 each), word arrays +0x2c/+0x34; Name32::set sets name and +0x38=100",
+   "confidence": "high",
+   "notes": " r4: +0x3c restored by battle.cpp:607 next to +0x38.",
+   "override": true
+  },
+  {
+   "class": "SaveMenu",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "sprites",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "u32_4",
+     "type": "u32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x10",
+     "name": "sprites2",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "u32_14",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "font",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x1c",
+     "name": "u32_1c",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x20",
+     "name": "u32_20",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x24",
+     "name": "busy",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x25",
+     "name": "u8_25",
+     "type": "u8",
+     "size": 1,
+     "count": 3
+    },
+    {
+     "off": "0x28",
+     "name": "font2",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x449d",
+     "name": "name",
+     "type": "char",
+     "size": 1,
+     "count": 64
+    },
+    {
+     "off": "0x4afb",
+     "name": "sliding",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x4afc",
+     "name": "u8_4afc",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x4afd",
+     "name": "u8_4afd",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x4afe",
+     "name": "state",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x4aff",
+     "name": "u8_4aff",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x4b00",
+     "name": "u8_4b00",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x4b01",
+     "name": "save_mode",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x4b02",
+     "name": "slide_pos",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x4b04",
+     "name": "u8_4b04",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x4b05",
+     "name": "is_open",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x4b06",
+     "name": "from_victory",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x4b07",
+     "name": "from_defeat",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x4b08",
+     "name": "u8_4b08",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [
+    {
+     "off": "0x2c",
+     "name": "slot0",
+     "class": "Button"
+    },
+    {
+     "off": "0x372",
+     "name": "slot1",
+     "class": "Button"
+    },
+    {
+     "off": "0x6b8",
+     "name": "slot2",
+     "class": "Button"
+    },
+    {
+     "off": "0x9fe",
+     "name": "slot3",
+     "class": "Button"
+    },
+    {
+     "off": "0xd44",
+     "name": "slot4",
+     "class": "Button"
+    },
+    {
+     "off": "0x108a",
+     "name": "slot5",
+     "class": "Button"
+    },
+    {
+     "off": "0x13d0",
+     "name": "slot6",
+     "class": "Button"
+    },
+    {
+     "off": "0x1716",
+     "name": "slot7",
+     "class": "Button"
+    },
+    {
+     "off": "0x1a5c",
+     "name": "slot8",
+     "class": "Button"
+    },
+    {
+     "off": "0x1da2",
+     "name": "slot9",
+     "class": "Button"
+    },
+    {
+     "off": "0x20e8",
+     "name": "list",
+     "class": "ComboBox"
+    },
+    {
+     "off": "0x2195",
+     "name": "frame",
+     "class": "Label"
+    },
+    {
+     "off": "0x224c",
+     "name": "pic",
+     "class": "Label"
+    },
+    {
+     "off": "0x2303",
+     "name": "info_bar",
+     "class": "Button"
+    },
+    {
+     "off": "0x2649",
+     "name": "info",
+     "class": "Label"
+    },
+    {
+     "off": "0x2700",
+     "name": "bar_top",
+     "class": "Label"
+    },
+    {
+     "off": "0x27b7",
+     "name": "bar_bottom",
+     "class": "Label"
+    },
+    {
+     "off": "0x286e",
+     "name": "btn_286e",
+     "class": "Button"
+    },
+    {
+     "off": "0x2bb4",
+     "name": "btn_2bb4",
+     "class": "Button"
+    },
+    {
+     "off": "0x2efa",
+     "name": "btn_2efa",
+     "class": "Button"
+    },
+    {
+     "off": "0x3240",
+     "name": "btn_3240",
+     "class": "Button"
+    },
+    {
+     "off": "0x3586",
+     "name": "btn_3586",
+     "class": "Button"
+    },
+    {
+     "off": "0x38cc",
+     "name": "mark",
+     "class": "Button"
+    },
+    {
+     "off": "0x3c12",
+     "name": "btn_3c12",
+     "class": "Button"
+    },
+    {
+     "off": "0x3f58",
+     "name": "btn_3f58",
+     "class": "Button"
+    },
+    {
+     "off": "0x429e",
+     "name": "in_frame",
+     "class": "Label"
+    },
+    {
+     "off": "0x4355",
+     "name": "in_bg",
+     "class": "Label"
+    },
+    {
+     "off": "0x440c",
+     "name": "name_edit",
+     "class": "EditBox"
+    },
+    {
+     "off": "0x44dd",
+     "name": "edit_button",
+     "class": "Button"
+    },
+    {
+     "off": "0x4823",
+     "name": "edit_scroll",
+     "class": "ScrollBar"
+    }
+   ],
+   "evidence": "InfoPanel::init 0x74cb10 creates every child gadget (10 slot Buttons stride 0x346 at +0x2c, ComboBox +0x20e8, Labels, EditBox +0x440c); Briefing::start 0x74da40 resets +0x4afc..+0x4b08",
+   "confidence": "medium",
+   "notes": "member sizes (Button 0x346, Label 0xb7, ComboBox 0xad, EditBox 0x91) are the strides between members; the 0x20 bytes at +0x20c8 and +0x44dd..+0x4afb are unknown (name buffer length 0x40 is the EditBox limit); size unknown (>= 0x4b09); InfoPanel/Images labels and Menu::load_save are methods of this object (moved); i_igmenu.cpp functions labelled SaveMenu belong to IngameMenu (g06, moved); the one checker report (indexed +0xb7 = slot0 +0x8b) needs Button (g03) to declare +0x8b R3: u32_1c[3] split: Obj::byte_24 0x42d160 (squadcmd.cpp, now SaveMenu::busy on g_a59a98) reads a byte at +0x24 (r2_player request). r4: ctor (savemenu.cpp:98-99) constructs a Button (0x620ee0) at 0x44dd and a ScrollBar (0x761720) at 0x4823 after name_edit: 0x44dd + 0x346 = 0x4823, 0x4823 + 0x2d8 = 0x4afb (sliding). So name_edit (EditBox at 0x440c) is at most 0x91 bytes (name at 0x449d) although EditBox -> TextBox declares fields up to 0x98.",
+   "override": true
+  },
+  {
+   "class": "SceneS",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "scene",
+     "type": "ptr:Scene",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "node",
+     "type": "ptr:SectorNode",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "desc",
+     "type": "u32",
+     "size": 4,
+     "count": 6
+    },
+    {
+     "off": "0x20",
+     "name": "grid_x",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x22",
+     "name": "grid_y",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x38",
+     "name": "plane",
+     "type": "ptr:Plane",
+     "size": 4
+    },
+    {
+     "off": "0x3c",
+     "name": "object",
+     "type": "ptr:SceneObject",
+     "size": 4
+    },
+    {
+     "off": "0x40",
+     "name": "plane2",
+     "type": "ptr:Plane",
+     "size": 4
+    },
+    {
+     "off": "0x44",
+     "name": "items",
+     "type": "ptr:PtrSlot",
+     "size": 4
+    },
+    {
+     "off": "0x48",
+     "name": "item_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4c",
+     "name": "item_cap",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x54",
+     "name": "portal_refs",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x58",
+     "name": "u8_58",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x59",
+     "name": "planes_ready",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x5a",
+     "name": "clip_planes",
+     "type": "f32",
+     "size": 4,
+     "count": 24
+    },
+    {
+     "off": "0xba",
+     "name": "u32_ba",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xbe",
+     "name": "node_cap",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xc2",
+     "name": "node_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xc6",
+     "name": "nodes",
+     "type": "ptr:SceneNodePtr",
+     "size": 4
+    },
+    {
+     "off": "0xca",
+     "name": "nodes_tail",
+     "type": "ptr:SceneNode",
+     "size": 4
+    },
+    {
+     "off": "0xce",
+     "name": "nodes_head",
+     "type": "ptr:SceneNode",
+     "size": 4
+    },
+    {
+     "off": "0xd2",
+     "name": "light_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xd6",
+     "name": "light_cap",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xda",
+     "name": "lights",
+     "type": "ptr:LightPtr",
+     "size": 4
+    },
+    {
+     "off": "0xde",
+     "name": "lit",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0xdf",
+     "name": "casts_shadows",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0xe0",
+     "name": "u32_e0",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "scene_s.cpp clear 0x5ef900 / reset 0x5ef880 / push / light list; SceneGroup dtor = SceneSource::clear",
+   "confidence": "medium",
+   "notes": "desc: 0x18 bytes memcpy by reset (fade params read as dwords by sector_fade/actor_fade). plane / plane2 are Plane (g02), object a SceneObject (g01) whose +0 is an ActorDef, node_list a SceneNode chain (+0x24 next). size unknown (>= 0xe4). SceneGroup / SceneSource / LightList / InstanceList? labels: same object. r2: +0x4 = the SectorNode that holds this sector (Scene::build_node sets it, SectorNode dtor 0x5eb150 clears it). +0xca/+0xce are the tail/head of a SceneNode list linked through node+0x20 prev / +0x24 next (node+0x18 = owning SceneS, scene_attach 0x5efc50); SceneNode (g07) lacks +0x20/+0x24 - the one remaining report (0xce+0x20). Sector (g02, +0xde lit) is this object: Sector::lit 0x5e8f90 moved here; Sector should become an alias (base SceneS). r3: +0xda Light* array (draw: light+0xca slot), +0xc6 SceneNode* array (clear deletes them, draw_projected uses them as texture projectors), +0x44 pointer array (push / remove_48, element class unknown). -0x4 indexed reads are 1-based loops. r4: +0x20/+0x22 sector grid i / j (world_s.cpp:1211, filed for Sector, which derives from SceneS); Scene::render (scene.cpp): +0x54 open portal count, +0x59 clip planes ready, +0x5a 6 clip planes (f32[4] each, count u32_ba). nodes_tail / nodes_head: requested as Actor* (attach / detach link Actors via Actor +0x20/+0x24) - left SceneNode (see file notes).",
+   "override": true
+  },
+  {
+   "class": "ScriptLexer",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "vtable",
+     "type": "ptr:vtable",
+     "size": 4
+    },
+    {
+     "off": "0x29",
+     "name": "i32_29",
+     "type": "i32",
+     "size": 4
+    }
+   ],
+   "members": [
+    {
+     "off": "0xc",
+     "name": "tokens",
+     "class": "DynArray"
+    }
+   ],
+   "evidence": "skip_9 reads/writes +0x29; all methods call into a sub-object at +0xc (Pool/Reader/DynArray)",
+   "confidence": "low",
+   "notes": "+0xc is an embedded object (Pool g15 or Reader g16?) - not declared as member; +0x29 may belong to it. new(0xc) before expect_xyz is a Vec3, not the lexer size r4: ScriptNode::~ScriptNode 0x661f70 (eslexer.cpp:109) is this class's destructor: writes vtable 0x9dbb54 at +0, destructs the DynArray at +0xc (Token records, stride 0xc; add_token appends), then 0x6840a0 (a base, ScriptTokenizer facade) on this. +0x29 directly follows the DynArray (0xc + 0x1d).",
+   "override": true
+  },
+  {
+   "class": "SdateRes",
+   "size": "0x7",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "dates",
+     "type": "ptr:SdateEntry",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "count",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x6",
+     "name": "loaded",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [],
+   "evidence": "sdateres.cpp: SDATE rows of 0x33 at +0, count word +4, loaded +6 (SDate::load/ensure_loaded and SdateRes::free)",
+   "confidence": "high",
+   "notes": " r4: dates -> SdateEntry[count] (0x33-byte records, sdateres.cpp:100).",
+   "override": true
+  },
+  {
+   "class": "ShadowModel",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "bytes_0",
+     "type": "u8",
+     "size": 1,
+     "count": 8
+    },
+    {
+     "off": "0x24",
+     "name": "u32_24",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x28",
+     "name": "ptr_28",
+     "type": "ptr:Plane",
+     "size": 4
+    },
+    {
+     "off": "0x2c",
+     "name": "ptr_2c",
+     "type": "ptr:Skin",
+     "size": 4
+    },
+    {
+     "off": "0x30",
+     "name": "u32_30",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4c",
+     "name": "ptr_4c",
+     "type": "ptr:FileLoader",
+     "size": 4
+    },
+    {
+     "off": "0x60",
+     "name": "ptr_60",
+     "type": "ptr:FileLoader",
+     "size": 4
+    },
+    {
+     "off": "0x64",
+     "name": "ptr_64",
+     "type": "ptr:FileLoader",
+     "size": 4
+    },
+    {
+     "off": "0x68",
+     "name": "u32_68",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "mdl.cpp loaded (+1 byte)",
+   "confidence": "low",
+   "notes": "begin_load / poll_load (not thiscall: this on the stack) supply most offsets; 0..7 is read with mixed widths (declared as bytes). r4: +0x4c / +0x60 / +0x64 are FileLoader* (mdl.cpp:335 release_stream: stop / done / ok).",
+   "override": true
+  },
+  {
+   "class": "Shot",
+   "size": "0x2b2",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "id",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "type",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "actor",
+     "type": "ptr:Actor",
+     "size": 4
+    },
+    {
+     "off": "0x278",
+     "name": "u16_278",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x27a",
+     "name": "u32_27a",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x27e",
+     "name": "extent",
+     "type": "f32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x28a",
+     "name": "tag",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x298",
+     "name": "hit",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x29a",
+     "name": "hit_obj",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x29e",
+     "name": "blocked",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x2a2",
+     "name": "u16_2a2",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x2a4",
+     "name": "i32_2a4",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x2a8",
+     "name": "i32_2a8",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x2ac",
+     "name": "u16_2ac",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x2ae",
+     "name": "u32_2ae",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [
+    {
+     "off": "0xc",
+     "name": "saved",
+     "class": "BodyState"
+    },
+    {
+     "off": "0x142",
+     "name": "state",
+     "class": "BodyState"
+    }
+   ],
+   "evidence": "new(0x2b2) + ctor 0x6b0830 (memset 0x2b2) in RecordList::add_new 0x6b2040; init 0x6b08e0",
+   "confidence": "medium",
+   "notes": "physics record (shot.cpp \"Body\"/\"Record\"); boids.cpp functions labelled Shot are a Boid (g03, moved); 0x6b10a0 (Mover) and 0x6b12a0 (Player) write state fields and are moved here Round 2: actor (+0x8) is an Actor (+0x8 kind, +0xc owner, +0x8c Bone). R3: +0x0 id: vector_differs \"call\" with ecx = it is an artefact (cdecl). r4: +0x28a tag (rworld.cpp fire_shot / restart); +0x29e restart / active flag (formmove.cpp step_6a45a0, rworld.cpp set_active).",
+   "override": true
+  },
+  {
+   "class": "Siege",
+   "size": "0x2f14",
+   "base": "Facility",
+   "vtable": "0x9d0980",
+   "fields": [
+    {
+     "off": "0x79",
+     "name": "i32_79",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x7d",
+     "name": "u32_7d",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x81",
+     "name": "order_arg",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x85",
+     "name": "order_b",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x86",
+     "name": "order_c",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x8a",
+     "name": "order_d",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x8e",
+     "name": "order_e",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x92",
+     "name": "order_f",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x9e",
+     "name": "delay",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xa2",
+     "name": "n_types",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0xa4",
+     "name": "type_kind",
+     "type": "i16",
+     "size": 2,
+     "count": 4
+    },
+    {
+     "off": "0xac",
+     "name": "type_cost",
+     "type": "i16",
+     "size": 2,
+     "count": 4
+    },
+    {
+     "off": "0xb4",
+     "name": "type_need",
+     "type": "i16",
+     "size": 2,
+     "count": 4
+    },
+    {
+     "off": "0xbc",
+     "name": "type_rate",
+     "type": "i32",
+     "size": 4,
+     "count": 4
+    },
+    {
+     "off": "0xcc",
+     "name": "type_stock",
+     "type": "i32",
+     "size": 4,
+     "count": 4
+    },
+    {
+     "off": "0xdc",
+     "name": "type_made",
+     "type": "i32",
+     "size": 4,
+     "count": 4
+    },
+    {
+     "off": "0xec",
+     "name": "group_id",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xf0",
+     "name": "n_slots",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0xf2",
+     "name": "slots",
+     "type": "i32",
+     "size": 4,
+     "count": 8
+    },
+    {
+     "off": "0x112",
+     "name": "n_queue",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x114",
+     "name": "queue",
+     "type": "u8",
+     "size": 1,
+     "count": 11760
+    },
+    {
+     "off": "0x2f04",
+     "name": "current",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x2f06",
+     "name": "time",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x2f0a",
+     "name": "i32_2f0a",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x2f0e",
+     "name": "u8_2f0e",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x2f0f",
+     "name": "u8_2f0f",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x2f10",
+     "name": "life_bar",
+     "type": "ptr:Billboard",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "new(0x2f14) before ctor 0x469e90 (vtable 0x9d0980); f_work.cpp add_type (max 4 types +0xa4/+0xac/+0xb4/+0xbc), take_item (0x93-byte records at +0x114), remove_slot (+0xf0/+0xf2)",
+   "confidence": "medium",
+   "notes": "workshop facility (same object as Workshop of g08, which has add_type 0x46a6f0). queue = 80 records of 0x93 bytes {i16 kind +0, i8 +2, u32 value +3}; +0x2f10 Billboard (g03) life bar; +0x79 parse_recruit_list int Round 2: life_bar is a Billboard (all calls through it are Billboard methods); owner->+0x2a.. is Place.position. r4: f_work.cpp:498-511: Order::add args +0x81..+0x95 and g_now + delay +0x9e (same block as Building +0x101..+0x121); +0xdc units produced per type slot (siege_update 0x46a040; WorkScreen::refresh copies it as stock).",
+   "override": true
+  },
+  {
+   "class": "Sprite2D",
+   "size": null,
+   "base": "Camera",
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x4ca",
+     "name": "scene",
+     "type": "ptr:Scene",
+     "size": 4
+    },
+    {
+     "off": "0x4ce",
+     "name": "count",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x4d0",
+     "name": "u16_4d0",
+     "type": "u16",
+     "size": 2
+    }
+   ],
+   "members": [],
+   "evidence": "ctor 0x6317a0 calls the Camera ctor 0x613650 then clears +0x4ca; release 0x631dc0 clears +0x4ce",
+   "confidence": "medium",
+   "notes": "scene pointer is used as a Scene (group(i)); Layer2D::place_model, Overlay::triangle, Screen::close_631c60 are methods of this object; size unknown (>= 0x4d0) R3: +0x4ca is a Scene (Scene::group on it). r4: Camera::build_631850 clears it with count (sprite2d.cpp:162).",
+   "override": true
+  },
+  {
+   "class": "SysEn",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "started",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "d3d",
+     "type": "ptr:IDirect3D8",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "device",
+     "type": "ptr:IDirect3DDevice8",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "back_buffer",
+     "type": "ptr:IDirect3DSurface8",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "depth_stencil",
+     "type": "ptr:IDirect3DSurface8",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "device_type",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "pp_back_buffer_width",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1c",
+     "name": "pp_back_buffer_height",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x20",
+     "name": "pp_back_buffer_format",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x24",
+     "name": "pp_back_buffer_count",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x28",
+     "name": "pp_multisample_type",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x2c",
+     "name": "pp_swap_effect",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x30",
+     "name": "pp_device_window",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x34",
+     "name": "pp_windowed",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x38",
+     "name": "pp_enable_auto_depth_stencil",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x3c",
+     "name": "pp_auto_depth_stencil_format",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x40",
+     "name": "pp_flags",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x44",
+     "name": "pp_refresh_rate",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x48",
+     "name": "pp_presentation_interval",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4c",
+     "name": "u32_4c",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x124",
+     "name": "matrix_stack",
+     "type": "ptr:ID3DXMatrixStack",
+     "size": 4
+    },
+    {
+     "off": "0x128",
+     "name": "frame_index",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x12c",
+     "name": "dot3_vertex_shader",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x130",
+     "name": "cur_vertex_type",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x131",
+     "name": "cur_blend",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x135",
+     "name": "cur_texture_mode",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x139",
+     "name": "cur_filter",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x13d",
+     "name": "cur_flags",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x145",
+     "name": "cur_raster",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x149",
+     "name": "vs_bound",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x14a",
+     "name": "new_vertex_type",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x14b",
+     "name": "new_blend",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x14f",
+     "name": "new_texture_mode",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x153",
+     "name": "new_filter",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x15b",
+     "name": "new_flags",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x15f",
+     "name": "new_raster",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x163",
+     "name": "dirty",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x167",
+     "name": "cur_overlay_stage",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x16b",
+     "name": "cur_tint_stage",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x16f",
+     "name": "new_overlay_stage",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x173",
+     "name": "new_tint_stage",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x177",
+     "name": "vs_cache",
+     "type": "ptr:VsCache",
+     "size": 4
+    },
+    {
+     "off": "0x17b",
+     "name": "ps_cache",
+     "type": "ptr:PixelShaderCache",
+     "size": 4
+    },
+    {
+     "off": "0x17f",
+     "name": "light_slot_count",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x18f",
+     "name": "dyn_vb",
+     "type": "ptr:IDirect3DVertexBuffer8",
+     "size": 4,
+     "count": 9
+    },
+    {
+     "off": "0x1b3",
+     "name": "dyn_ib",
+     "type": "ptr:IDirect3DIndexBuffer8",
+     "size": 4
+    },
+    {
+     "off": "0x1b7",
+     "name": "dyn_vb_used",
+     "type": "u32",
+     "size": 4,
+     "count": 9
+    },
+    {
+     "off": "0x1db",
+     "name": "dyn_ib_used",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1df",
+     "name": "locked_vb",
+     "type": "ptr:IDirect3DVertexBuffer8",
+     "size": 4
+    },
+    {
+     "off": "0x1e3",
+     "name": "locked_vertex_type",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x1e7",
+     "name": "locked_start",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1eb",
+     "name": "locked_stride",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1ef",
+     "name": "locked_count",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1f3",
+     "name": "index_start",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1f7",
+     "name": "index_count",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1fb",
+     "name": "vb_usage",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1ff",
+     "name": "ib_usage",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x203",
+     "name": "vs_usable",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x207",
+     "name": "dot3_usable",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x20b",
+     "name": "hw_skinning",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x20f",
+     "name": "mipmaps_supported",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x213",
+     "name": "bump_supported",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x217",
+     "name": "texture_caps_800",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x21b",
+     "name": "stats",
+     "type": "u32",
+     "size": 4,
+     "count": 11
+    },
+    {
+     "off": "0x247",
+     "name": "stats_last",
+     "type": "u32",
+     "size": 4,
+     "count": 11
+    },
+    {
+     "off": "0x273",
+     "name": "stats_sum",
+     "type": "u32",
+     "size": 4,
+     "count": 11
+    },
+    {
+     "off": "0x29f",
+     "name": "stats_avg",
+     "type": "u32",
+     "size": 4,
+     "count": 11
+    },
+    {
+     "off": "0x2cb",
+     "name": "stats_frames",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x2cf",
+     "name": "stats_time",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x2d3",
+     "name": "prev_frame_timer",
+     "type": "ptr:DynArray",
+     "size": 4
+    },
+    {
+     "off": "0x2d7",
+     "name": "frame_timer",
+     "type": "ptr:DynArray",
+     "size": 4
+    },
+    {
+     "off": "0x2db",
+     "name": "dot3_created",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x2df",
+     "name": "dot3_buffer_a",
+     "type": "u8*",
+     "size": 4
+    },
+    {
+     "off": "0x2e3",
+     "name": "u32_2e3",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x2e7",
+     "name": "dot3_buffer_b",
+     "type": "u8*",
+     "size": 4
+    },
+    {
+     "off": "0x2ef",
+     "name": "brightness",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x2f3",
+     "name": "contrast",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x2f7",
+     "name": "gamma",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x2fb",
+     "name": "gamma_offset",
+     "type": "i32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x307",
+     "name": "depth_format",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x30b",
+     "name": "stencil_bits",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x30f",
+     "name": "mirrored",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x313",
+     "name": "user_clip_planes",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x317",
+     "name": "depth_target",
+     "type": "ptr:IDirect3DSurface8",
+     "size": 4
+    },
+    {
+     "off": "0x31b",
+     "name": "depth_target_width",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x31f",
+     "name": "depth_target_height",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x323",
+     "name": "light_target",
+     "type": "ptr:IDirect3DTexture8",
+     "size": 4
+    },
+    {
+     "off": "0x327",
+     "name": "light_target_width",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x32b",
+     "name": "light_target_height",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x32f",
+     "name": "resources_head",
+     "type": "ptr:Resource",
+     "size": 4
+    },
+    {
+     "off": "0x333",
+     "name": "resources_tail",
+     "type": "ptr:Resource",
+     "size": 4
+    }
+   ],
+   "members": [
+    {
+     "off": "0x50",
+     "name": "caps",
+     "class": "D3DCaps8"
+    },
+    {
+     "off": "0x141",
+     "name": "cur_texture_factor",
+     "class": "Colour"
+    },
+    {
+     "off": "0x157",
+     "name": "new_texture_factor",
+     "class": "Colour"
+    }
+   ],
+   "evidence": "global 0xa52420; docs/RUNTIME.md; start_d3d 0x5f6c00 (GetDeviceCaps into +0x50, CreateDevice with present params +0x18), shutdown 0x5f6770",
+   "confidence": "medium",
+   "notes": "size unknown (>= 0x337). Labels Renderer, Display (reset_device), Device, Dot3, Items, RenderTarget (depth), Tex, plus the unlabelled d3dsys setters, are this same object and are merged here. Fields 0x203..0x217 written as dwords. Remaining check problems: the stray 1-byte writes at -0x4b (0x5fa360) and -0x33ffa010 (0x5ff060) are absolute addresses misread as this-relative, not fields. 0x602660 (Mesh::flag_800, put on Device by g02) reads caps +0x8c and is a SysEn function. r3: COM pointers typed (d3d IDirect3D8, device, back buffer / depth stencil / depth target surfaces, matrix stack, light target texture, dynamic VB/IB); +0x17b is the PixelShaderCache (Renderer::shutdown destroys it with the PShaderList dtor, reset_device calls free_all); +0x2d3/+0x2d7 are DynArrays (Items::add_name linkin, shutdown destroy); +0x32f/+0x333 head/tail of the Resource list (link_resource: node+0xc = this, +0x10 next, +0x14 prev). +0x2df/+0x2e7 stay u8* (op_delete only). +0x173 (byte write through it in apply_texture) and +0x1ef (call primitive_type with ecx = count) are scanner artefact (jump-table bytes decoded as code, a register reused after the load, or a register argument of a non-thiscall callee), not a dereference. r4: stats_end 0x600e50 / reset_600c20 (d3dsys.cpp:2206-2220, 2923-2926): last frame = stats (11 dwords), sums, averages every 3000 ms, frame count, time stamp (the Stats facade arr_247 / arr_273 / arr_29f / u32_2cb / u32_2cf).",
+   "override": true
+  },
+  {
+   "class": "TerrainBlock",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "index",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "u32_4",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x28",
+     "name": "count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x30",
+     "name": "points",
+     "type": "ptr:PfdPointPtrArray",
+     "size": 4
+    },
+    {
+     "off": "0x34",
+     "name": "links",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x5c",
+     "name": "key",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x64",
+     "name": "kind",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x66",
+     "name": "key_b",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x68",
+     "name": "key_c",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x6c",
+     "name": "space",
+     "type": "ptr:PathSpace",
+     "size": 4
+    }
+   ],
+   "members": [
+    {
+     "off": "0x38",
+     "name": "buffer",
+     "class": "Buffer"
+    }
+   ],
+   "evidence": "pathmesh.cpp polygon: count +0x28, Point* array +0x30, int array +0x34 (IntArray::get), centre buffer +0x38",
+   "confidence": "medium",
+   "notes": "a path-space polygon/zone (as_pfd_zone in normal()). IntArray, Group::recentre 0x664920 and unlabelled 0x663f70/0x663ff0/0x664b00 are its methods. 0x8..0x27 and 0x58..0x5b unseen. terrain (+0x6c) -> object with +0x24/+0x28/+0x30 (height grid). R3: +0x6c is the owning PathSpace (pathsp load sets zone+0x6c = this, r2_engine3d; height/normal read +0x24/+0x28 cell size, +0x30 HeightGrid, +0x34 sub grids). points (+0x30, int[3]* per point) and links (+0x34) stay ptr:void: their elements are read as arr[i-1] (displacement -4), which a typed pointee would report as an uncovered -4 access. Member::set_group 0x664eb0 moved here. r4: pathmesh.cpp:1827/2239/2283: own index in PathSpace::zones (0 = removed), +0x64 zone kind; points = array of vertex pointers (i32[3] each). The layout (count +0x28, points +0x30, links +0x34, space +0x6c) is PfdZone's: probably the same class. Check: TerrainBlock::height 0x664180 reads points[1] / points[2] directly (0x30+0x4 / +0x8, not indexed), reported as outside the 4-byte PfdPointPtrArray element - explained, not a missing field.",
+   "override": true
+  },
+  {
+   "class": "TexDirEntry",
+   "size": "0x3d",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "index",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "name",
+     "type": "char",
+     "size": 1,
+     "count": 41
+    },
+    {
+     "off": "0x2d",
+     "name": "buf_2d",
+     "type": "ptr:TexName",
+     "size": 4
+    },
+    {
+     "off": "0x31",
+     "name": "file_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x35",
+     "name": "file_cap",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x39",
+     "name": "files",
+     "type": "ptr:TexFolder",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "TexDir::add memsets 0x3d per entry; add_entry list fields",
+   "confidence": "medium",
+   "notes": "files: records of 0x10c bytes (name char[0x105], flags +0x105, kind +0x108) r4: buf_2d -> TexName[] (0x28-byte texture names, texdir.cpp:342), files -> TexFolder[] (0x10c-byte records, texdir.cpp:300). +0x25 / +0x29 (texture count / capacity) fall inside name char[41] (see file notes).",
+   "override": true
+  },
+  {
+   "class": "TrackNode",
+   "size": "0x54",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "id",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "i32_4",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "pos",
+     "type": "f32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x14",
+     "name": "link_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "links",
+     "type": "ptr:TrackNodePtr",
+     "size": 4
+    },
+    {
+     "off": "0x1c",
+     "name": "u32_1c",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x20",
+     "name": "u32_20",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x28",
+     "name": "u32_28",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x2c",
+     "name": "u32_2c",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x30",
+     "name": "u32_30",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x34",
+     "name": "i16_34",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x36",
+     "name": "i16_36",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x3b",
+     "name": "i8_3b",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x3c",
+     "name": "i32_3c",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x40",
+     "name": "i32_40",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x44",
+     "name": "i32_44",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x48",
+     "name": "i16_48",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x4a",
+     "name": "i16_4a",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x4c",
+     "name": "i32_4c",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x50",
+     "name": "owner",
+     "type": "ptr:PathGraph",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "Tracks::parse_track / Track::add_point: 0x54-byte nodes, links array of node pointers at +0x18",
+   "confidence": "medium",
+   "notes": "new class; 0x1c..0x4f unknown (route scratch) r4: route search state of Path::find_4ed040 (trackres.cpp:1208-1325); +0x1c is the search stamp PathGrid resets (gamedraw.cpp:401). links = TrackNode*[link_count].",
+   "override": true
+  },
+  {
+   "class": "Trigger",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "flags",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "target_kind",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "target_id",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0xa",
+     "name": "ref_kind",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xe",
+     "name": "ref_id",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x10",
+     "name": "sub",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x13",
+     "name": "center",
+     "type": "f32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x1f",
+     "name": "range",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x24",
+     "name": "value24",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x26",
+     "name": "next_time",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x2a",
+     "name": "expire_time",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x2e",
+     "name": "active",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x2f",
+     "name": "radius",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x3f",
+     "name": "scene",
+     "type": "ptr:SceneS",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "playerctl.cpp update_units: box of +/- radius around the player",
+   "confidence": "low",
+   "notes": " r4: Triggers::update_4ef090 (triggers.cpp:278-381) trigger records: flag bits, target kind (1 units, 2 objects, 4 zone sound) / id, reference kind / id, zone centre / radius, flag-0x80 value, next / expire time, set_casts_shadows target; Obj::timer_expired 0x43a530 (uinput.cpp:756) tests +0x2a with active +0x2e.",
+   "override": true
+  },
+  {
+   "class": "WaveRes",
+   "size": "0x93",
+   "base": null,
+   "vtable": "0x9d5b08",
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "vtable",
+     "type": "ptr:vtable",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "index",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x6",
+     "name": "name",
+     "type": "char",
+     "size": 1,
+     "count": 49
+    },
+    {
+     "off": "0x37",
+     "name": "file",
+     "type": "char",
+     "size": 1,
+     "count": 49
+    },
+    {
+     "off": "0x68",
+     "name": "max_play",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x69",
+     "name": "volume",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x6d",
+     "name": "min_pitch",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x71",
+     "name": "max_pitch",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x75",
+     "name": "min_dist",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x79",
+     "name": "max_dist",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x7d",
+     "name": "rolloff",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x81",
+     "name": "sound_time_ms",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x85",
+     "name": "flags",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x86",
+     "name": "delay_begin",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x88",
+     "name": "delay_end",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x8a",
+     "name": "stream",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x8b",
+     "name": "buffer",
+     "type": "ptr:Sound3DBuffer",
+     "size": 4
+    },
+    {
+     "off": "0x8f",
+     "name": "priority",
+     "type": "i32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "ctor 0x4d08f0 memset(+4, 0x8b); array stride 0x8f; SoundRes load 0x4d0de0 fills every field",
+   "confidence": "high",
+   "notes": "float names guessed from the SOUND table column order; vector_delete 0x4d0ce0 reads the array cookie at -4 (left unassigned); g13 maps Array::vector_delete 0x6390f0 here, whose -4 cookie read is the one remaining checker report (not a field) buffer = Sound3DBuffer (WaveRes::open 0x4d0a60 calls Sound3d::load 0x59ef00 with ecx = +0x8b). r4: +0x8f priority (atoi of the name; dlgtable.cpp find_name / cmp_name_prio / res_load); element size 0x93 (vector new of 0x93).",
+   "override": true
+  },
+  {
+   "class": "Weather",
+   "size": "0x1c8",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "initialized",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x4",
+     "name": "rain_voice",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "last_spawn",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "u32_c",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "u32_10",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "model_res",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "anim_res",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x1c",
+     "name": "i32_1c",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x20",
+     "name": "active",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x22",
+     "name": "u32_22",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [
+    {
+     "off": "0x26",
+     "name": "bolts",
+     "class": "DynArray"
+    },
+    {
+     "off": "0x43",
+     "name": "thunder",
+     "class": "DynArray"
+    },
+    {
+     "off": "0x60",
+     "name": "rain",
+     "class": "EffectState"
+    },
+    {
+     "off": "0xd8",
+     "name": "snow",
+     "class": "EffectState"
+    },
+    {
+     "off": "0x150",
+     "name": "ripple",
+     "class": "EffectState"
+    }
+   ],
+   "evidence": "ctor 0x689b10: DynArray(4) at +0x26 / +0x43, EffectState at +0x60 / +0xd8 / +0x150, memset(this, 0, 0x26)",
+   "confidence": "medium",
+   "notes": "size assumes EffectState is 0x78 bytes (member stride). Sounds / Rain / Ripple / Slots::activate / Sound3D (g14: 0x689d00, 0x68aa10 use the same +0x60/+0xd8/+0x150) are this object. Rain::init / Ripple::init / load_snow / spawn_thunder are not thiscall. r2: WeatherSystem (g15) is this object (weather.cpp init_once 0x689ca0 writes +0 initialised, +0x20 i16): merged, WeatherSystem is an alias. Table::find 0x4a9530 (lightsys.cpp, +6 i16 count, +8 0x18c-byte entries, called by LightSys::tick 0x4a7f70) is a LightSys method - moved. The ripple EffectState object pointer (+0x150+0x28) is an Actor (+0x90 Plane). r3: +0x178 = ripple (EffectState member +0x150) +0x28 object: an Actor (reads +0x90 Plane). EffectState (chunk A) should type +0x28 ptr:Actor; nothing to change here. r4: spawn_undefined 0x68af10 stores g_now at +8. +0x4 / +0x14 / +0x18 are also read as 16-bit ids (low halves).",
+   "override": true
+  },
+  {
+   "class": "World",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "active",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x1",
+     "name": "loaded",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x2",
+     "name": "world_id",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x4",
+     "name": "id",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x6",
+     "name": "name",
+     "type": "char",
+     "size": 1,
+     "count": 33
+    },
+    {
+     "off": "0x27",
+     "name": "title",
+     "type": "char",
+     "size": 1,
+     "count": 33
+    },
+    {
+     "off": "0x48",
+     "name": "bounds",
+     "type": "f32",
+     "size": 4,
+     "count": 6
+    },
+    {
+     "off": "0x60",
+     "name": "u8_60",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x6a",
+     "name": "path_space",
+     "type": "ptr:PathSpace",
+     "size": 4
+    },
+    {
+     "off": "0x6e",
+     "name": "scene",
+     "type": "ptr:Scene",
+     "size": 4
+    },
+    {
+     "off": "0x72",
+     "name": "cell_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x76",
+     "name": "cell_capacity",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x7a",
+     "name": "cells",
+     "type": "ptr:CellPtrArray",
+     "size": 4
+    },
+    {
+     "off": "0x7e",
+     "name": "box_tree",
+     "type": "ptr:BoxTree",
+     "size": 4
+    },
+    {
+     "off": "0x82",
+     "name": "cell_query",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x86",
+     "name": "entry_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x8a",
+     "name": "entry_cap",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x8e",
+     "name": "entries",
+     "type": "ptr:I32Array",
+     "size": 4
+    },
+    {
+     "off": "0xf5",
+     "name": "u8_f5",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x1fd",
+     "name": "u32_1fd",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [
+    {
+     "off": "0x61",
+     "name": "bitmaps",
+     "class": "BmpRes"
+    }
+   ],
+   "evidence": "rts.cpp/world.cpp world: +0x6e Scene, +0x72 cell count, +0x7a cells, +0x7e BoxTree; r2: unload 0x4426a0 (BmpRes::free on this+0x61, PathSpace +0x6a, Scene +0x6e deleted, Cell::unload on cells[i])",
+   "confidence": "medium",
+   "notes": "world_s.cpp methods moved to Cell (the level cell, whose +0 points back to this World); Player methods moved to Player. +0x7a is Cell*[cell_count] (pointer array), +0x82 the result buffer of cells_in_box, +0x8e scene node ids added by add_entry. +0xf5 / +0x1fd (state, flag_1fd) kept but may belong to Player. Size unknown (global object). r2: the 0x70 straddle came from Names::set 0x41baa0, which is a Cell method (moved). r3: cells -> Cell*[cell_count]; entries -> I32Array (scene node ids, add_entry writes entries[n-1]); +0x2 world_id (i16) added: the save functions 0x47dbe0 / 0x481ba0 / 0x47fc80 read it through Unit+0x335 / MapObject+0xa6 / Place+0x1de (units request). Remaining check reports \"indexed 4B access at <field>+-0x4 (<Elem>Array) not declared\" are 1-based element accesses (arr[i-1] compiles to [base+i*4-4]): element 0 of the array record, a negative offset cannot be declared - explained, not a missing field (same as the DynArrayB empty_room_array report). r4: World::init 0x44e8c0 (rts2.cpp:2244-2325): id +4, name strncpy 0x20 + NUL +0x26, title + NUL +0x47, box f32[6] +0x48 (min / max x, y, z).",
+   "override": true
+  },
+  {
+   "class": "WorldItem",
+   "size": "0x52",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x12",
+     "name": "pos",
+     "type": "f32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x2e",
+     "name": "value",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x32",
+     "name": "side",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x34",
+     "name": "object_id",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x36",
+     "name": "world",
+     "type": "ptr:World",
+     "size": 4
+    },
+    {
+     "off": "0x3a",
+     "name": "cell",
+     "type": "ptr:WorldCell",
+     "size": 4
+    },
+    {
+     "off": "0x3e",
+     "name": "cell_prev",
+     "type": "ptr:WorldItem",
+     "size": 4
+    },
+    {
+     "off": "0x42",
+     "name": "cell_next",
+     "type": "ptr:WorldItem",
+     "size": 4
+    },
+    {
+     "off": "0x46",
+     "name": "sector",
+     "type": "ptr:Sector",
+     "size": 4
+    },
+    {
+     "off": "0x4a",
+     "name": "sector_prev",
+     "type": "ptr:WorldItem",
+     "size": 4
+    },
+    {
+     "off": "0x4e",
+     "name": "sector_next",
+     "type": "ptr:WorldItem",
+     "size": 4
+    }
+   ],
+   "members": [
+    {
+     "off": "0x0",
+     "name": "stack",
+     "class": "HeldItem"
+    }
+   ],
+   "evidence": "inventory.cpp set_pos / get_pos / set_state / detach (unlinks from Sector +0x46 and WorldCell +0x3a)",
+   "confidence": "low",
+   "notes": "item object lying in the world (inventory.cpp). size 0x52 = 0x12 + the 0x40 bytes Obj40::save 0x4810b0 writes from +0x12 (after an ItemStack save of the head). clear_3a_4e 0x481220 clears the cell/sector link pointers: prev/next at +0x3e/+0x42 (Cell) and +0x4a/+0x4e (Sector). 0x0..0x11 not declared. R3: +0x36 is the World* (Obj40::save 0x4810b0 reads its +0x2 world id i16, r2_engine3d/r2_units notes); was state i32. Remaining report [+0x36]+0x2: World (chunk D) still lacks the i16 world id at +0x2 (r2_units request to engine3d/D). r4: +0..+0x11 is a HeldItem (ItemStack::init 0x456cd0 on it; item type / amount / u16_4 / uses / max_uses / u32_e as InvItem / HeldItem: misc_0049d490.cpp:349, i_buy.cpp:1379); +0x32 side of the dropper (unit_c.cpp:433, i_obj0b.cpp:217; world_s.cpp:978 stores a sound id there), +0x34 g_a460a0 id of the map object holding it.",
+   "override": true
+  },
+  {
+   "class": "NameEntry2",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x24",
+     "name": "sound",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "Unit::use_spiritual_item 0x4fd980 (unit_a.cpp:1248): entry of NameList g_a527a8 (spiritual.txt) +0x24 passed to ModelList::add",
+   "confidence": "low",
+   "notes": "only +0x24 seen; size unknown."
+  },
+  {
+   "class": "NationDef",
+   "size": "0x4e",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "name",
+     "type": "char",
+     "size": 1,
+     "count": 9
+    },
+    {
+     "off": "0x9",
+     "name": "id",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0xb",
+     "name": "text",
+     "type": "char",
+     "size": 1,
+     "count": 65
+    },
+    {
+     "off": "0x4c",
+     "name": "race",
+     "type": "u16",
+     "size": 2
+    }
+   ],
+   "members": [],
+   "evidence": "NationRes load (natres.cpp:108-114): 0x4e-byte records; nation2.cpp:283 entry()+0x4c, :858 entry()+9",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "class": "PathGroup",
+   "size": "0x34",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "count",
+     "type": "i32",
+     "size": 4
+    }
+   ],
+   "members": [
+    {
+     "off": "0x4",
+     "name": "entries",
+     "class": "Triple",
+     "count": 4
+    }
+   ],
+   "evidence": "PathSpace::group_add / group_entry (pathmesh.cpp:1271): +0 count (max 4), +4 + i*0xc Triple entries; 0x34-byte record",
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "class": "PathSearchState",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x8",
+     "name": "buffer",
+     "type": "ptr:void",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "PathSearchState::free_buffer 0x4ee530 (trackres.cpp:1471): operator delete(+8), +8 = 0",
+   "confidence": "low",
+   "notes": "only +8 seen."
+  },
+  {
+   "class": "Quat",
+   "size": "0x10",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "x",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "y",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "z",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "w",
+     "type": "f32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "d3dutil.cpp quat_identity / quat_conjugate / mul (D3DXQUATERNION x, y, z, w)",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "class": "Quaternion",
+   "size": "0x10",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "x",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "y",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "z",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "w",
+     "type": "f32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "mathlib.cpp:868 quat_from_z_angle writes 4 floats; Quaternion::Quaternion 0x5ac230 (actor.cpp)",
+   "confidence": "high",
+   "notes": "same 4-float quaternion as Quat (separate label)."
+  },
+  {
+   "class": "RecruitFacility",
+   "size": null,
+   "base": "Facility",
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x79",
+     "name": "units",
+     "type": "ptr:DynArray",
+     "size": 4
+    },
+    {
+     "off": "0x81",
+     "name": "group",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x89",
+     "name": "orders",
+     "type": "ptr:DynArray",
+     "size": 4
+    },
+    {
+     "off": "0x91",
+     "name": "place",
+     "type": "i16",
+     "size": 2
+    }
+   ],
+   "members": [],
+   "evidence": "i_barr.cpp: the Place vfunc +0x24 result reads Facility::owner +0x6d; +0x79 unit id list (ArmyPanel::draw 0x6bdea0), +0x81 RecruitRes::group_at argument, +0x89 RecruitRow list (Stats::count_unit 0x6bd4b0), +0x91 places index (rts2.cpp: vcall(place, 0x24) then +0x91)",
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "class": "RecruitRow",
+   "size": "0xa",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "type",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x2",
+     "name": "value",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x6",
+     "name": "count",
+     "type": "i32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "original/records.hpp RecruitRow (10-byte element of the 0x4ca980 list); f_flag.cpp:408-414, f_work.cpp:932",
+   "confidence": "high",
+   "notes": "hand-typed in src/original/records.hpp (names kept: type / value / count; the request called them kind / rate / count). value is read as u32 bits in f_flag.cpp:408 and +6 as i16 in f_work.cpp:935 (low half)."
+  },
+  {
+   "class": "Relation",
+   "size": "0xf4",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x1",
+     "name": "u8_1",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x2",
+     "name": "status",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x3",
+     "name": "state",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x4",
+     "name": "since",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "opinion",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "f32_c",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "u16_10",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x12",
+     "name": "i16_12",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x14",
+     "name": "last_gift_day",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "gift_total",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x1c",
+     "name": "import_value",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x20",
+     "name": "import_prev",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x24",
+     "name": "export_value",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x28",
+     "name": "export_prev",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x78",
+     "name": "deadlines",
+     "type": "i32",
+     "size": 4,
+     "count": 31
+    }
+   ],
+   "members": [],
+   "evidence": "Player::relation 0x4b42e0 returns Nation + 0x55 + (id-1)*0xf4 (the Rel record); set_state 0x499770 (misc_004994b0.cpp:130-139): state i8 +3, time stamp +4, +0x12 clamped to state*0x14; msg_apply (diplo_text.cpp:1025/1062) +0x10 / +0xc; nation2.cpp +1 / +2 / +8",
+   "confidence": "medium",
+   "notes": "the same record as Rel (g12); laid out on its own because Rel declares state u8 at +5, which comes from Rel::is_3 0x4b4590 - a Nation method (reads Nation +5) - and clashes with the i32 time stamp at +4. Rel names reused for +8 and +0x14..+0x77. +0xc is written as u32 0 (Nation::set_morale) and read as float."
+  },
+  {
+   "class": "RiffChunk",
+   "size": "0x8",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "id",
+     "type": "char",
+     "size": 1,
+     "count": 4
+    },
+    {
+     "off": "0x4",
+     "name": "size",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "ilib/audio.cpp: at<u32>(chunk, 4) after wav_find_data (RIFF chunk header)",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "class": "SdateEntry",
+   "size": "0x33",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "name",
+     "type": "char",
+     "size": 1,
+     "count": 33
+    },
+    {
+     "off": "0x21",
+     "name": "year",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x25",
+     "name": "month",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x29",
+     "name": "day",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x2d",
+     "name": "weekday",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x31",
+     "name": "id",
+     "type": "u16",
+     "size": 2
+    }
+   ],
+   "members": [],
+   "evidence": "SDate::load 0x4ce0f0 (sdateres.cpp:96-106): count*0x33 records, name (0x20) + atoi of 4/2/2/1 chars, id = i+1; Calendar::find_49c970 (misc_0049c080.cpp:318) compares year / month / +0x29 / weekday (0 = any) and returns +0x31",
+   "confidence": "high",
+   "notes": "+0x29 is the day (2 chars after the month); Calendar reads +0x31 as i16."
+  },
+  {
+   "class": "ShopStock",
+   "size": "0xe",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "id",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x2",
+     "name": "u32_2",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x6",
+     "name": "count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xa",
+     "name": "u32_a",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "f_shop.cpp:94-129,345-351: Shop::stock / SellItemEntry::rows elements are 0xe-byte records",
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "class": "SoundSlotEntry",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "sound",
+     "type": "ptr:Sound3D",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "ai_behav.cpp:2471, misc_004944c0.cpp:118, sndplay.cpp:68-680: the slot's Sound3D (queue / set_gain / set_position / play)",
+   "confidence": "medium",
+   "notes": "only +0 seen; Sound3d is an alias of Sound3D."
+  },
+  {
+   "class": "TFFrameInfo",
+   "size": "0x11",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "width",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x2",
+     "name": "height",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x4",
+     "name": "frame_count",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x6",
+     "name": "frame",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x8",
+     "name": "pixels",
+     "type": "u8*",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "palette",
+     "type": "u8*",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "loop",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [],
+   "evidence": "Rec::export 0x5a99e0 (tfanim.cpp:294-300) fills a 0x11-byte record from MusicStream +0x12..+0x2b",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "class": "TexFolder",
+   "size": "0x10c",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "path",
+     "type": "char",
+     "size": 1,
+     "count": 261
+    },
+    {
+     "off": "0x105",
+     "name": "recurse",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x106",
+     "name": "tex_state",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x107",
+     "name": "sub_state",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x108",
+     "name": "kind",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [],
+   "evidence": "TexDir::add_entry (texdir.cpp:300-303): 0x10c-byte records, strcpy path, flags; scan_604960 states",
+   "confidence": "high",
+   "notes": "tex_state / sub_state: 0 unscanned, 1 scanning, 2 scanned. 0x109..0x10b unseen."
+  },
+  {
+   "class": "TexName",
+   "size": "0x28",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "name",
+     "type": "char",
+     "size": 1,
+     "count": 34
+    },
+    {
+     "off": "0x22",
+     "name": "ext_mask",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x24",
+     "name": "dir",
+     "type": "i32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "TexDir::scan_604960 (texdir.cpp:362-368): strcpy of the file name, TexTag bit of the extension or-ed, index of the TexFolder",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "class": "TrackNodePtr",
+   "size": "0x4",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "p",
+     "type": "ptr:TrackNode",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "TrackNode +0x18 links: array of link_count TrackNode* (trackres.cpp:147,423)",
+   "confidence": "high",
+   "notes": "one slot of a pointer array (the owner field is ptr:TrackNodePtr = TrackNode**)."
+  },
+  {
+   "class": "PathRoute",
+   "size": null,
+   "base": "List",
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x1d",
+     "name": "start",
+     "type": "f32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x29",
+     "name": "start_i_a",
+     "type": "i32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x35",
+     "name": "start_i_b",
+     "type": "i32",
+     "size": 4,
+     "count": 3
+    }
+   ],
+   "members": [],
+   "evidence": "route_around_6ac050 (pathzone.cpp:666-675): `out` is cleared by 0x4eeca0 (List clear 0x4051a0 on this), then start f32[3] +0x1d and two ftol copies +0x29 / +0x35 (List = DynArray, 0x1d bytes)",
+   "confidence": "medium",
+   "notes": "new class for the route object the code casts as Path (Path is a mixed label whose u32_1c / u32_20 / i32_28.. fields came from other objects)."
+  },
+  {
+   "class": "UpgradeItem",
+   "size": "0x64",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "type",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x46",
+     "name": "bonus_text",
+     "type": "char",
+     "size": 1,
+     "count": 21
+    },
+    {
+     "off": "0x5b",
+     "name": "cost",
+     "type": "i16",
+     "size": 2
+    }
+   ],
+   "members": [],
+   "evidence": "UPITEM row (Table 0xa56a50 entry 0x50d240, 0x64 bytes); use_item (misc_004944c0.cpp:209): type switch 1..6, atoi of the bonus text, cost compared with / subtracted from the unit points",
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "class": "UpgradeListEntry",
+   "size": "0x8",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "id",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x2",
+     "name": "max",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x4",
+     "name": "cur",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x6",
+     "name": "level",
+     "type": "u16",
+     "size": 2
+    }
+   ],
+   "members": [],
+   "evidence": "unitlvl.cpp distribute (s16 at 0/2/4/6, u16 at 6), unitures.cpp has_ready / add / step: UpgradeList elements",
+   "confidence": "medium",
+   "notes": "Counter (g10: bytes_0 u8[4], u16_4) may be the same record."
+  },
+  {
+   "class": "Vector4",
+   "size": "0x10",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "x",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "y",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "z",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "w",
+     "type": "f32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "Vec4::Vec4 0x5bd220 (d3dfont.cpp:817) stores 4 floats",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "class": "VertexFormat",
+   "size": "0x10",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "type",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x1",
+     "name": "tex_coords",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x3",
+     "name": "prelit",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x4",
+     "name": "stride",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "normal_offset",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "fvf",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "vertex_format(type) 0x600200 returns 0xa17d88 + type*0x10; stride (SetStreamSource, reorder), normal offset (0 = none; Plane::merge, Skin::deform), FVF (CreateVertexBuffer), texcoord count / pre-lit (vshader.cpp)",
+   "confidence": "high",
+   "notes": "+3 nonzero = pre-lit / no normals (Plane::merge, Morph::update, Skin::deform). +2 unseen."
+  },
+  {
+   "class": "BitmapInfoHeader",
+   "size": "0x28",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "size",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "width",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "height",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "planes",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0xe",
+     "name": "bit_count",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x10",
+     "name": "compression",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "size_image",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "x_pels_per_meter",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x1c",
+     "name": "y_pels_per_meter",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x20",
+     "name": "clr_used",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x24",
+     "name": "clr_important",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "Windows BITMAPINFOHEADER (videocap.cpp writes biWidth / biHeight / biPlanes / biBitCount / biCompression / biSizeImage at VideoInfoHeader +0x34..+0x44)",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "class": "VideoInfoHeader",
+   "size": "0x58",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x20",
+     "name": "bit_rate",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x24",
+     "name": "bit_error_rate",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x28",
+     "name": "avg_time_per_frame",
+     "type": "u32",
+     "size": 4,
+     "count": 2
+    }
+   ],
+   "members": [
+    {
+     "off": "0x0",
+     "name": "source",
+     "class": "Rect"
+    },
+    {
+     "off": "0x10",
+     "name": "target",
+     "class": "Rect"
+    },
+    {
+     "off": "0x30",
+     "name": "bmi",
+     "class": "BitmapInfoHeader"
+    }
+   ],
+   "evidence": "Windows VIDEOINFOHEADER: Video::open (video.cpp) width / height from rcTarget; videocap.cpp writes rcSource +8/+0xc, rcTarget +0x18/+0x1c, dwBitRate +0x20, bmiHeader +0x30",
+   "confidence": "high",
+   "notes": "avg_time_per_frame is a REFERENCE_TIME (i64) spelled u32[2]. media/wm_reader.cpp has its own VideoInfoHeader (joan::media, + RGB565 masks)."
+  },
+  {
+   "class": "WaveFormatEx",
+   "size": "0x12",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "format_tag",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x2",
+     "name": "channels",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x4",
+     "name": "samples_per_sec",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "avg_bytes_per_sec",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "block_align",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0xe",
+     "name": "bits_per_sample",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x10",
+     "name": "cb_size",
+     "type": "u16",
+     "size": 2
+    }
+   ],
+   "members": [],
+   "evidence": "Windows WAVEFORMATEX: audio.cpp play_oneshot / play_resource / play_memory (+4 / +8 / +0xe), video.cpp Video::open audio stream check (+0 == 1 PCM, +2, +4, +0xe)",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "class": "WmMediaType",
+   "size": "0x48",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "major_type",
+     "type": "u8",
+     "size": 1,
+     "count": 16
+    },
+    {
+     "off": "0x10",
+     "name": "sub_type",
+     "type": "u8",
+     "size": 1,
+     "count": 16
+    },
+    {
+     "off": "0x20",
+     "name": "fixed_size_samples",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x24",
+     "name": "temporal_compression",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x28",
+     "name": "sample_size",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x2c",
+     "name": "format_type",
+     "type": "u8",
+     "size": 1,
+     "count": 16
+    },
+    {
+     "off": "0x3c",
+     "name": "unk",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x40",
+     "name": "format_size",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x44",
+     "name": "format",
+     "type": "ptr:VideoInfoHeader",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "Windows WM_MEDIA_TYPE: VideoCapture::init (videocap.cpp) lSampleSize +0x28, pbFormat +0x44 (video.cpp, videocap.cpp)",
+   "confidence": "high",
+   "notes": "format points at a VideoInfoHeader for video streams and at a WaveFormatEx for audio streams. GUIDs spelled u8[16]."
+  },
+  {
+   "class": "ZoneDef",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x4",
+     "name": "name",
+     "type": "char",
+     "size": 1,
+     "count": 32
+    },
+    {
+     "off": "0x25",
+     "name": "settle",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x26",
+     "name": "kind",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x27",
+     "name": "shape_count",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x28",
+     "name": "values",
+     "type": "i32",
+     "size": 4,
+     "count": 4
+    },
+    {
+     "off": "0x38",
+     "name": "owner",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x3c",
+     "name": "script",
+     "type": "char",
+     "size": 1,
+     "count": 8
+    },
+    {
+     "off": "0x45",
+     "name": "disable",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x46",
+     "name": "flag_46",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x47",
+     "name": "flag_47",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x48",
+     "name": "shape_kind",
+     "type": "u8",
+     "size": 1,
+     "count": 4
+    },
+    {
+     "off": "0x4c",
+     "name": "coords",
+     "type": "i32",
+     "size": 4,
+     "count": 36
+    },
+    {
+     "off": "0xdc",
+     "name": "time",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "zone loader (unit_a.cpp:366-384: g_a52940 DynArray entry get_420ff0): name +4 (0x20), i32 +0x28..+0x34, owner +0x38, disable +0x45, script +0x3c (8), kind +0x26, settle +0x25, count +0x27, shape kinds +0x48 + i, coords +0x4c + 0x10*n + 4*i (9 x 4); Zones (zones.cpp:248-385) +0x46 / +0x47 flags, +0xdc time",
+   "confidence": "medium",
+   "notes": "coords[n*4 + shape] (9 coordinates per shape, up to 4 shapes). kind is the message kind Zones posts. Size >= 0xe0."
+  },
+  {
+   "class": "ZoneRecord",
+   "size": null,
+   "base": "ZoneDef",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "zones.cpp:248-385 Zones (0x4e4bb0) element records = the zone loader records (both get_420ff0 on g_a52940)",
+   "confidence": "medium",
+   "notes": "alias of ZoneDef (same records); prefer ZoneDef in code."
+  }
+ ],
+ "functions": {
+  "0x4b4590": "Nation"
+ },
+ "notes": "r4 set r2 (A3 requests). Rejected / for the lead (existing fields that would have to change; not changed here):\n- Particle: pemitter.cpp / psystem.cpp read +0x38, +0x3c, +0x40, +0x44 as f32 (angle, rot_speed, self_angle, self_rot_speed); the layout has u32_38 (u32), u16_3c (u16 at +0x3c), gap 0x3e..0x41, ptr_42 (+0x42..+0x45). Those came from the boids functions (now Boid). Suggest u32_38 -> f32 angle, u16_3c -> f32 rot_speed, ptr_42 -> f32 self_angle @0x40 + f32 self_rot_speed @0x44.\n- Order0b: u8_c2 u8[6] is i16 item_type @0xc2 + i16 item_count @0xc4 (+ u16 @0xc6) (i_obj0b.cpp ItemStack::init args).\n- Queue: pairs u8[80] is QueuePair[10] {i32 key, i16 b, i16 c} (animgrp.cpp:531-570).\n- Siege: queue u8[11760] is NewsRecord[80]; Siege and NewsLog are the same layout (0xa2 type count, 0xa4/0xb4/0xcc arrays, 0x112 count, 0x114 records, 0x2f06 time; News::add 0x46ab40 is the Siege enqueue).\n- SoundStreams3: video_0..video_2 are indexed by slot (0x44 + slot*4; musicstr.cpp:165/207/259): should be videos ptr:Video[3].\n- SpEntry: the 8-byte key is copied as two dwords (spindex.cpp insert_sorted 0x682a90): key u32 + key_flag u8 should be u32[2] (or key_hi u32 @4).\n- TexDirEntry: name char[41] at +4 is really char[0x21]: +0x25 tex_count i32, +0x29 tex_cap i32 (texdir.cpp:249/339).\n- Path: the route object of pathzone.cpp route_around is laid out as new class PathRoute (List + start f32[3] @0x1d, i32[3] @0x29 / @0x35); Path's u32_1c / u32_20 / i32_28 / u32_2c / ptr_30 / ptr_34 overlap it (they came from check_671fb0, now PfdZone).\n- Vtx: arr_1c u32[1] / arr_20 u32[1] / u32_24 are 4 texture-coordinate pairs u32[8] @0x1c (vtxconv.cpp:170/206 copy_60f1d0 / copy_60f280; the class is > 0x28).\n- VertexF1 / VertexF2: attr[3] (+0x18..+0x1b) is written bytewise as a D3DCOLOR (world_s.cpp:1812-1816, 3822-3825): a u8[4] colour member there would need attr split.\n- Profiler: last_report + u32_5c is read as one u64 (cpuusage.cpp:938) - u64 is spelled u32[2] elsewhere; could be last_report u32[2].\n- Retyping non-void pointers requested (not done): Se.entries ptr:Top4 -> 0x28-byte SeEntry {u32 data, u16 id} (se.cpp; Top4 has u8_0[6] at 0); SceneS.nodes_tail / nodes_head ptr:SceneNode -> ptr:Actor (scene_s.cpp attach / detach link Actors via Actor +0x20/+0x24); VsEntry.key_format u32 -> ptr:VertexFormat (vshader.cpp:585/1277).\nRejected as covered by existing fields (narrow read at a field start, or a SAME request): Order 0x26 (current.radius low word), Place 0x26 (nation low word), Profile 0x28/0x30/0x40, ResourceIdxL 0x121, Shot 0x4, SysEn 0x1e3, UnitManager 0x70..0x7c, Wall 0x56, Weather i16 views, Players.cells, Queue/ReorderBatch (BatchKey base covers 0..0x14), TextureManager arrays (already Texture**), Water arr_24, SceneS u8_58.\nRejected as misattributed: Place 0x4 kind i16 (rts.cpp / rts2.cpp read +4 of a g_places object that has a vtable and vfunc +0x24: Facility::kind i16 @4, not Place); Placement 0x8 / 0xc (placements::find 0x4a2b20 returns a RWorldCell: x @8, y @0xc); Overlay2D 0x4 (0x62b6a0 is called with ecx = Widget+4, not an Overlay2D; already unassigned); ParticleKey 0x1b range (the derived Emitter declares lo / hi at 0x1b / 0x27; Gauge 0x23 reads +0x1b/+0x1f); SDate 0x21..0x31 (SDate = SdateRes; those are SdateEntry record fields); Sector 0x20 / 0x22 placed in base SceneS.\nRel (g12): Rel.state u8 @5 comes from Rel::is_3 0x4b4590, which is a Nation method (reassigned to Nation here); Relation (new) is the same 0xf4 record with the i32 time stamp at +4."
+}

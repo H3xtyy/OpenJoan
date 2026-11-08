@@ -1,0 +1,3153 @@
+{
+ "group": "g03",
+ "classes": [
+  {
+   "class": "InstanceList",
+   "size": "0x8",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "head",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "tail",
+     "type": "ptr:void",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "ctor 0x5f4460 zeroes two pointers",
+   "confidence": "low",
+   "notes": "size assumed from the ctor only"
+  },
+  {
+   "class": "LightList",
+   "size": null,
+   "base": "SceneS",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "get 0x5f2730 indexes the SceneS light array (+0xd2/+0xda)",
+   "confidence": "medium",
+   "notes": "no own layout: same object as SceneS; its functions are reassigned to SceneS"
+  },
+  {
+   "class": "SceneGroup",
+   "size": null,
+   "base": "SceneS",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "its dtor 0x5ef850 is SceneSource::clear and release_ce uses SceneS +0xca/+0xce",
+   "confidence": "medium",
+   "notes": "no own layout: same object as SceneS; its functions are reassigned to SceneS"
+  },
+  {
+   "class": "SceneS",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "scene",
+     "type": "ptr:Scene",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "desc",
+     "type": "u32",
+     "size": 4,
+     "count": 6
+    },
+    {
+     "off": "0x38",
+     "name": "plane",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x3c",
+     "name": "object",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x40",
+     "name": "plane2",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x44",
+     "name": "items",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x48",
+     "name": "item_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4c",
+     "name": "item_cap",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x58",
+     "name": "u8_58",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0xba",
+     "name": "u32_ba",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xbe",
+     "name": "node_cap",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xc2",
+     "name": "node_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xc6",
+     "name": "nodes",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0xca",
+     "name": "first_actor",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0xce",
+     "name": "node_list",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0xd2",
+     "name": "light_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xd6",
+     "name": "light_cap",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xda",
+     "name": "lights",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0xde",
+     "name": "u8_de",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0xdf",
+     "name": "casts_shadows",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0xe0",
+     "name": "u32_e0",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "scene_s.cpp clear 0x5ef900 / reset 0x5ef880 / push / light list; SceneGroup dtor = SceneSource::clear",
+   "confidence": "medium",
+   "notes": "desc: 0x18 bytes memcpy by reset (fade params read as dwords by sector_fade/actor_fade). plane / plane2 are Plane (g02), object a SceneObject (g01) whose +0 is an ActorDef, node_list a SceneNode chain (+0x24 next). size unknown (>= 0xe4). SceneGroup / SceneSource / LightList / InstanceList? labels: same object."
+  },
+  {
+   "class": "SceneSource",
+   "size": null,
+   "base": "SceneS",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "reset/clear free the SceneS arrays (+0xc6, +0xda) and planes (+0x38..+0x40)",
+   "confidence": "medium",
+   "notes": "no own layout: same object as SceneS; its functions are reassigned to SceneS"
+  },
+  {
+   "class": "Groups",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0xf9",
+     "name": "group_flags",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x1236",
+     "name": "u8_1236",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [],
+   "evidence": "0x453590 (rts2.cpp) reads a byte table at +0xf9 and a byte at +0x1236",
+   "confidence": "low",
+   "notes": "only 0x453590 left (a game object, not en3d); next_id / max_count (skin.cpp) belong to Skin"
+  },
+  {
+   "class": "Shadow",
+   "size": "0x3e",
+   "base": "Skin",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "Shadow ctor 0x5f45f0 / attach / link use the Skin fields (+0x32 owner, +0x36 shadow)",
+   "confidence": "medium",
+   "notes": "no own layout: same object as Skin; its functions are reassigned to Skin"
+  },
+  {
+   "class": "ShadowList",
+   "size": "0x3e",
+   "base": "Skin",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "remove/set_30 use the Skin slots (+0x1c+i*4) and +0x30",
+   "confidence": "medium",
+   "notes": "no own layout: same object as Skin; its functions are reassigned to Skin"
+  },
+  {
+   "class": "Skin",
+   "size": "0x3e",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "vertex_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "vertex_cap",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "vertices",
+     "type": "u8*",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "i32_c",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "center",
+     "type": "u32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x1c",
+     "name": "radius",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x20",
+     "name": "slots",
+     "type": "ptr:Skin",
+     "size": 4,
+     "count": 4
+    },
+    {
+     "off": "0x30",
+     "name": "u8_30",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x31",
+     "name": "slot_index",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x32",
+     "name": "owner",
+     "type": "ptr:Skin",
+     "size": 4
+    },
+    {
+     "off": "0x36",
+     "name": "shadow",
+     "type": "ptr:Skin",
+     "size": 4
+    },
+    {
+     "off": "0x3a",
+     "name": "shadow_of",
+     "type": "ptr:Skin",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "ctor 0x5f45f0 (labelled Shadow) memsets 0x3e after new(0x3e); clear/add/compute_bounds",
+   "confidence": "high",
+   "notes": "vertices: SkinVertex records of 0x84 bytes (count + up to 4 influences of 0x20). center is copied as three dwords from a global vector (floats). slots are indexed as this+0x1c+i*4, i=1..4. Shadow / ShadowList / Groups (skin.cpp) functions are this class."
+  },
+  {
+   "class": "TexDir",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "ready",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "dir_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "dir_cap",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "dirs",
+     "type": "ptr:TexDirEntry",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "tag_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "tag_cap",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "tags",
+     "type": "ptr:TexTag",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "texdir.cpp clear/add: two count/cap/data arrays, strides 0x3d and 8",
+   "confidence": "high",
+   "notes": "TexturePaths functions operate on this object"
+  },
+  {
+   "class": "TexPaths",
+   "size": "0x3c",
+   "base": "TextureManager",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "0x608e10 clears (0x609260) and sets mode/requeue/stamp +0x30..0x38",
+   "confidence": "medium",
+   "notes": "no own layout: same object as TextureManager; its functions are reassigned to TextureManager"
+  },
+  {
+   "class": "TexturePaths",
+   "size": null,
+   "base": "TexDir",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "resolve/dir_index/find use dirs (+0xc) and tags (+0x10/+0x18) of TexDir",
+   "confidence": "medium",
+   "notes": "no own layout: same object as TexDir; its functions are reassigned to TexDir"
+  },
+  {
+   "class": "CubeTexture",
+   "size": "0x5c",
+   "base": "TextureCube",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "0x606a20 is the TextureCube destructor (called by sdtor 0x6069d0)",
+   "confidence": "medium",
+   "notes": "no own layout: same object as TextureCube; its functions are reassigned to TextureCube"
+  },
+  {
+   "class": "Lists",
+   "size": "0x3c",
+   "base": "TextureManager",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "0x60ba00 sums the named/anon arrays",
+   "confidence": "medium",
+   "notes": "no own layout: same object as TextureManager; its functions are reassigned to TextureManager"
+  },
+  {
+   "class": "RenderTexture",
+   "size": "0x74",
+   "base": "Texture",
+   "vtable": "0x9d9ac0",
+   "fields": [
+    {
+     "off": "0x58",
+     "name": "d3d_texture",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x5c",
+     "name": "device_resource",
+     "type": "u8",
+     "size": 1,
+     "count": 24
+    }
+   ],
+   "members": [],
+   "evidence": "new(0x74) before ctor 0x607f10: Texture ctor, vtable 0x9d9ac0, memset(this+0x58, 0, 0x1c)",
+   "confidence": "high",
+   "notes": "device_resource is an embedded DeviceResource (set_callback 0x5e9010, SysEn::link_resource) of 0x18 bytes; TextureX / TexObj labels are this class (vtable 0x9d9ac0); 0x6089f0 has a jump table decoded as code (bogus +0x1000060)"
+  },
+  {
+   "class": "TexList",
+   "size": "0x3c",
+   "base": "TextureManager",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "0x60aec0 searches the named array (+0/+8)",
+   "confidence": "medium",
+   "notes": "no own layout: same object as TextureManager; its functions are reassigned to TextureManager"
+  },
+  {
+   "class": "TexObj",
+   "size": "0x74",
+   "base": "RenderTexture",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "0x607fb0 is the RenderTexture destructor (called by sdtor 0x607f60)",
+   "confidence": "medium",
+   "notes": "no own layout: same object as RenderTexture; its functions are reassigned to RenderTexture"
+  },
+  {
+   "class": "TexTarget",
+   "size": "0x5c",
+   "base": "TextureBump",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "0x607030 lies among the TextureBump methods and uses +0x58",
+   "confidence": "medium",
+   "notes": "no own layout: same object as TextureBump; its functions are reassigned to TextureBump"
+  },
+  {
+   "class": "Texture",
+   "size": "0x58",
+   "base": null,
+   "vtable": "0x9d9a2c",
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "vtable",
+     "type": "ptr:vtable",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "d3d_base",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "usage",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "ref_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "last_used",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "manager",
+     "type": "ptr:TextureManager",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "name",
+     "type": "char",
+     "size": 1,
+     "count": 33
+    },
+    {
+     "off": "0x3c",
+     "name": "width",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x40",
+     "name": "height",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x44",
+     "name": "levels",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x48",
+     "name": "state",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4c",
+     "name": "alpha_bits",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x50",
+     "name": "loader",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x54",
+     "name": "priority",
+     "type": "i32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "ctor 0x6058f0 memsets 0x58 bytes and sets vtable 0x9d9a2c; derived ctors new(0x5c)/new(0x74)",
+   "confidence": "high",
+   "notes": "0x50 is a FileLoader (g13). Texture::read_desc/lock (surface.cpp) operate on the Surface/Image object, Texture::create_603400 on SysEn; reassigned."
+  },
+  {
+   "class": "Texture2D",
+   "size": "0x5c",
+   "base": "Texture",
+   "vtable": "0x9d9a40",
+   "fields": [
+    {
+     "off": "0x58",
+     "name": "d3d_texture",
+     "type": "ptr:void",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "new(0x5c) before ctor 0x605ce0; ctor calls Texture::Texture and sets vtable 0x9d9a40",
+   "confidence": "high",
+   "notes": "d3d_texture: the typed IDirect3D(Cube)Texture8 (GetLevelDesc / LockRect through it)"
+  },
+  {
+   "class": "TextureArray",
+   "size": "0x3c",
+   "base": "TextureManager",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "0x609260 clears the four arrays of TextureManager",
+   "confidence": "medium",
+   "notes": "no own layout: same object as TextureManager; its functions are reassigned to TextureManager"
+  },
+  {
+   "class": "TextureBump",
+   "size": "0x5c",
+   "base": "Texture",
+   "vtable": "0x9d9aac",
+   "fields": [
+    {
+     "off": "0x58",
+     "name": "d3d_texture",
+     "type": "ptr:void",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "new(0x5c) before ctor 0x606ef0; ctor calls Texture::Texture and sets vtable 0x9d9aac",
+   "confidence": "high",
+   "notes": "d3d_texture: the typed IDirect3D(Cube)Texture8 (GetLevelDesc / LockRect through it); 0x607200 has a jump table decoded as code (bogus access at +0x76006075)"
+  },
+  {
+   "class": "TextureCube",
+   "size": "0x5c",
+   "base": "Texture",
+   "vtable": "0x9d9a98",
+   "fields": [
+    {
+     "off": "0x58",
+     "name": "d3d_texture",
+     "type": "ptr:void",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "new(0x5c) before ctor 0x606980; ctor calls Texture::Texture and sets vtable 0x9d9a98",
+   "confidence": "high",
+   "notes": "d3d_texture: the typed IDirect3D(Cube)Texture8 (GetLevelDesc / LockRect through it)"
+  },
+  {
+   "class": "TextureList",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "records",
+     "type": "u8*",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "count",
+     "type": "i16",
+     "size": 2
+    }
+   ],
+   "members": [],
+   "evidence": "0x4dff70 (t_scrres.cpp): count i16 at +4, records of 0xd51 bytes at +0",
+   "confidence": "low",
+   "notes": "only 0x4dff70 left here (a script-resource texture table, name at record+2); the en3d TextureList functions (0x609570, 0x60b050, 0x60b1b0) belong to TextureManager"
+  },
+  {
+   "class": "TextureLoader",
+   "size": "0x3c",
+   "base": "TextureManager",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "0x60a770 walks named/anon arrays (+0/+8, +0xc/+0x14)",
+   "confidence": "medium",
+   "notes": "no own layout: same object as TextureManager; its functions are reassigned to TextureManager"
+  },
+  {
+   "class": "TextureManager",
+   "size": "0x3c",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "named_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "named_cap",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "named",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "anon_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "anon_cap",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "anon",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "released_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x1c",
+     "name": "released_cap",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x20",
+     "name": "released",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x24",
+     "name": "loading_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x28",
+     "name": "loading_cap",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x2c",
+     "name": "loading",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x30",
+     "name": "mode",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x34",
+     "name": "requeue",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x38",
+     "name": "stamp",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "clear 0x608db0 memsets 0x3c; original/en3d.hpp mode/requeue/stamp; four count/cap/data arrays",
+   "confidence": "high",
+   "notes": "each array is Texture** (sorted: named by name +0x18, anon by address, released = requeue list, loading = textures with a FileLoader at +0x50). TextureArray / TextureLoader / TexList / Lists / TexPaths labels and three TextureList functions are this class."
+  },
+  {
+   "class": "TextureX",
+   "size": "0x74",
+   "base": "RenderTexture",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "functions use vtable 0x9d9ac0 = RenderTexture (ctor 0x607f10)",
+   "confidence": "medium",
+   "notes": "no own layout: same object as RenderTexture; its functions are reassigned to RenderTexture"
+  },
+  {
+   "class": "Blitter",
+   "size": "0x34",
+   "base": "Surface",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "0x6109f0 reads the Surface bits/pitch/bpp",
+   "confidence": "medium",
+   "notes": "no own layout: same object as Surface; its functions are reassigned to Surface"
+  },
+  {
+   "class": "Pal",
+   "size": "0x34",
+   "base": "Surface",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "vgabuf.cpp palette helpers / blit read the Surface bits/pitch/bpp",
+   "confidence": "medium",
+   "notes": "no own layout: same object as Surface; its functions are reassigned to Surface"
+  },
+  {
+   "class": "Surface",
+   "size": "0x34",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "d3d_surface",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "owned",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "locked",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "bits",
+     "type": "u8*",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "pitch",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "lock_bits",
+     "type": "u8*",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "lock_pitch",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x1c",
+     "name": "width",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x20",
+     "name": "height",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x24",
+     "name": "format_bits",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x28",
+     "name": "bytes_per_pixel",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x2c",
+     "name": "blend_mode",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x2d",
+     "name": "u8_2d",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x2e",
+     "name": "u16_2e",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x30",
+     "name": "u32_30",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "Image ctor 0x60fad0 memsets 0x34; lock 0x60fe60 / read_desc 0x60fca0 fill 0x0..0x28; blitters read bits/pitch/bpp",
+   "confidence": "medium",
+   "notes": "the same object as Image (g08, new 0x34 / ctor 0x60fad0); Blit / Pal / Blitter labels and Texture::lock / read_desc are its methods. u32_30 only implied by the 0x34 size."
+  },
+  {
+   "class": "VgaBuf",
+   "size": "0x10",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "rgb",
+     "type": "u8*",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "map8",
+     "type": "u8*",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "pal16",
+     "type": "u8*",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "pal32",
+     "type": "u8*",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "new(0x10) before init 0x612600; set 0x612ee0 stores the four tables (0x300/0x100/0x200/0x400 bytes)",
+   "confidence": "high",
+   "notes": "rgb: 256 x 3 bytes, map8: 256 bytes, pal16: 256 x u16, pal32: 256 x u32; Rect::set_612ee0 is its setter (reassigned)"
+  },
+  {
+   "class": "VgaLock",
+   "size": "0x4",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "buffer",
+     "type": "u8*",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "ctor 0x6131c0 zeroes +0; ensure_buffer allocates 0x400 bytes there",
+   "confidence": "medium",
+   "notes": "size assumed: only +0 is ever accessed"
+  },
+  {
+   "class": "Action",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x1d",
+     "name": "u8_1d",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x1e",
+     "name": "u8_1e",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [],
+   "evidence": "reset_bytes 0x4b9310 (news.cpp) writes +0x1d / +0x1e bytes",
+   "confidence": "low",
+   "notes": "dispatch 0x4bb660 / release_unit 0x4c11f0 are Ai methods (reassigned); the rest touch no fields (nop / predicate thunks)"
+  },
+  {
+   "class": "ArmyOrder",
+   "size": null,
+   "base": "Ai",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "the on_* handlers are entries of the Ai::update_4baf80 table (thiscall on the Ai object)",
+   "confidence": "medium",
+   "notes": "no own layout: the Ai object (g10: DynArray of 0x21-byte OrderEntry records + the current entry at +0x1d); functions reassigned to Ai"
+  },
+  {
+   "class": "Ballista",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x8",
+     "name": "ptr_8",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x50",
+     "name": "i32_50",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x54",
+     "name": "i32_54",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x58",
+     "name": "i32_58",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x5c",
+     "name": "i32_5c",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x174",
+     "name": "f32_174",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x178",
+     "name": "f32_178",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x17c",
+     "name": "f32_17c",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x184",
+     "name": "f32_184",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x188",
+     "name": "f32_188",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x18c",
+     "name": "f32_18c",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x190",
+     "name": "f32_190",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x194",
+     "name": "f32_194",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x328",
+     "name": "f32_328",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x36c",
+     "name": "i16_36c",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x36f",
+     "name": "u8_36f",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x370",
+     "name": "i32_370",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x374",
+     "name": "i32_374",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x378",
+     "name": "i32_378",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x37c",
+     "name": "i32_37c",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x494",
+     "name": "f32_494",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x498",
+     "name": "f32_498",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x49c",
+     "name": "f32_49c",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x4a4",
+     "name": "f32_4a4",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x4a8",
+     "name": "f32_4a8",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x4ac",
+     "name": "f32_4ac",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x4b0",
+     "name": "f32_4b0",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x4b4",
+     "name": "f32_4b4",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x4b8",
+     "name": "u32_4b8",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4bc",
+     "name": "f32_4bc",
+     "type": "f32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "reset_4c02b0 (ai_behav.cpp) only",
+   "confidence": "low",
+   "notes": "a unit-like object (float blocks at +0x174.., +0x494..; i16 at +0x36c); probably Unit (g09)"
+  },
+  {
+   "class": "Cmd",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "unit_id",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "u32_18",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1c",
+     "name": "u32_1c",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x96",
+     "name": "i8_96",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x97",
+     "name": "target",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xa2",
+     "name": "i32_a2",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xac",
+     "name": "i8_ac",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0xbb",
+     "name": "i32_bb",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xc4",
+     "name": "i8_c4",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0xd3",
+     "name": "target_unit",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0xd7",
+     "name": "i32_d7",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xdb",
+     "name": "u16_db",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0xdd",
+     "name": "i32_dd",
+     "type": "i32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "camcmd/ctrl/uinput.cpp unit-control functions: +0 unit id, +0x97 target, +0xd3 unit pointer",
+   "confidence": "low",
+   "notes": "mixed label: finish_* / accepts (ai_behav.cpp) are Ai methods (reassigned); send_4ba3f0 (news.cpp, +0x18/+0x1c) may be yet another object"
+  },
+  {
+   "class": "Combo",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x3a",
+     "name": "i32_3a",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4b",
+     "name": "i16_4b",
+     "type": "i16",
+     "size": 2
+    }
+   ],
+   "members": [],
+   "evidence": "only entry_at 0x6e29a0 (i_msglog.cpp) reads a field (+0x4b)",
+   "confidence": "low",
+   "notes": "dispatch / update / before_now are Ai methods (reassigned); the remaining Combo labels are predicate thunks without field access"
+  },
+  {
+   "class": "Escort",
+   "size": null,
+   "base": "Ai",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "update_4be770 / 4bed40 are Ai::update_4baf80 table handlers",
+   "confidence": "medium",
+   "notes": "no own layout: the Ai object (g10: DynArray of 0x21-byte OrderEntry records + the current entry at +0x1d); functions reassigned to Ai"
+  },
+  {
+   "class": "Handler",
+   "size": null,
+   "base": "Ai",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "reset_1d clears the Ai current order type (+0x1d)",
+   "confidence": "medium",
+   "notes": "no own layout: the Ai object (g10: DynArray of 0x21-byte OrderEntry records + the current entry at +0x1d); functions reassigned to Ai"
+  },
+  {
+   "class": "Packed",
+   "size": "0x21",
+   "base": "OrderEntry",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "byte_at 0x4bba00 is called with ecx = Ai+0x1d, the current OrderEntry (OrderEntry is defined by g10)",
+   "confidence": "medium",
+   "notes": "no own layout: same object as OrderEntry; its functions are reassigned to OrderEntry"
+  },
+  {
+   "class": "Task",
+   "size": null,
+   "base": "Ai",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "update_bf510 is an Ai::update_4baf80 table handler; stop_unit / done use +0x1d / +0x3a",
+   "confidence": "medium",
+   "notes": "no own layout: the Ai object (g10: DynArray of 0x21-byte OrderEntry records + the current entry at +0x1d); functions reassigned to Ai"
+  },
+  {
+   "class": "UnitOrder",
+   "size": null,
+   "base": "Ai",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "check_4bf240 is an Ai::update_4baf80 table handler",
+   "confidence": "medium",
+   "notes": "no own layout: the Ai object (g10: DynArray of 0x21-byte OrderEntry records + the current entry at +0x1d); functions reassigned to Ai"
+  },
+  {
+   "class": "ByteAngle",
+   "size": "0x1",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "value",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [],
+   "evidence": "angle8.cpp: every method reads/writes only the byte at +0",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "class": "ByteVal",
+   "size": "0x1",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "value",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [],
+   "evidence": "angle8.cpp: every method reads/writes only the byte at +0",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "class": "SinTable",
+   "size": "0x1",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "value",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [],
+   "evidence": "angle8.cpp: every method reads/writes only the byte at +0",
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "class": "Actors",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "add_default 0x41a650 is cdecl and touches no field",
+   "confidence": "low",
+   "notes": "cpp casts this -> DynArray: probably a DynArray-based list; no layout evidence"
+  },
+  {
+   "class": "Effect",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x4",
+     "name": "u32_4",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "u32_8",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "u32_10",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x24",
+     "name": "u16_24",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x2a",
+     "name": "u32_2a",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x2e",
+     "name": "u32_2e",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x36",
+     "name": "ptr_36",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x3a",
+     "name": "ptr_3a",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x66",
+     "name": "ptr_66",
+     "type": "ptr:void",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "release 0x4551f0 (cheats.cpp) / attach_zone 0x457070 (inventory.cpp)",
+   "confidence": "low",
+   "notes": "mixed label: update / set_owner are ModelObj (reassigned); release / attach_zone may be two different objects (+0x66 Trail/SoundSource, +0x36 World, +0x3a Aabb)"
+  },
+  {
+   "class": "EffectState",
+   "size": "0x78",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "u8_0",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x1",
+     "name": "started",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x2",
+     "name": "visible",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x3",
+     "name": "name",
+     "type": "char",
+     "size": 1,
+     "count": 33
+    },
+    {
+     "off": "0x24",
+     "name": "parts",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x28",
+     "name": "object",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x2c",
+     "name": "range",
+     "type": "u8",
+     "size": 1,
+     "count": 24
+    },
+    {
+     "off": "0x44",
+     "name": "pos",
+     "type": "f32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x50",
+     "name": "prev_pos",
+     "type": "f32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x5c",
+     "name": "u32_5c",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x60",
+     "name": "i16_60",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x62",
+     "name": "i16_62",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x64",
+     "name": "u32_64",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x68",
+     "name": "u32_68",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x6c",
+     "name": "ptr_6c",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x70",
+     "name": "emitters",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x74",
+     "name": "emitter_flags",
+     "type": "u8*",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "ctor 0x6758f0 memsets 0x78 and constructs a range at +0x2c; ModelObj embeds it at +0x2b of 0xa3",
+   "confidence": "medium",
+   "notes": "range: an embedded Range (ctor 0x67a380), size assumed 0x18; name length assumed (set_name copies to +3); object is a SceneObject/Actor (g01); the Obj41b getters/setters (+0x24, +0x28, +0x60, +0x62) are its accessors"
+  },
+  {
+   "class": "ModelObj",
+   "size": "0xa3",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "kind",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x2",
+     "name": "pos",
+     "type": "f32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0xe",
+     "name": "angle",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x12",
+     "name": "owner",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x16",
+     "name": "bone",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x1a",
+     "name": "attached",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x1b",
+     "name": "start_time",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x1f",
+     "name": "u32_1f",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x23",
+     "name": "end_time",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x27",
+     "name": "u32_27",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [
+    {
+     "off": "0x2b",
+     "name": "fx",
+     "class": "EffectState"
+    }
+   ],
+   "evidence": "new(0xa3) before ctor 0x41a1b0: EffectState ctor on this+0x2b, memset(this, 0, 0x2b)",
+   "confidence": "high",
+   "notes": "Effect::update / set_owner and Projectile::launch use this layout (reassigned); +0x2d (show flag) and +0x7b..+0x87 written by init are EffectState fields. owner/bone pointers from Effect::update (Bone at +0x16)."
+  },
+  {
+   "class": "ModelRef",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x68",
+     "name": "u32_68",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x6c",
+     "name": "u32_6c",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x84",
+     "name": "i16_84",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0xb0",
+     "name": "i32_b0",
+     "type": "i32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "release_slot 0x527690 (unitres.cpp) only",
+   "confidence": "low",
+   "notes": "release 0x41a020 is ModelSlot (same +0x24/+0x1d9/+0x1dd fields)"
+  },
+  {
+   "class": "ModelSlot",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x23",
+     "name": "refs",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x24",
+     "name": "handle",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x1d9",
+     "name": "i32_1d9",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x1dd",
+     "name": "i32_1dd",
+     "type": "i32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "acquire/add_ref/stream/idle (animscr_fx.cpp) + ModelRef::release 0x41a020",
+   "confidence": "low",
+   "notes": "+0x1dd also read as i16"
+  },
+  {
+   "class": "Quad",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "v",
+     "type": "i32",
+     "size": 4,
+     "count": 5
+    },
+    {
+     "off": "0x30",
+     "name": "f32_30",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x34",
+     "name": "f32_34",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x38",
+     "name": "f32_38",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x3c",
+     "name": "f32_3c",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x70",
+     "name": "i32_70",
+     "type": "i32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "Quad ctors (pathmesh.cpp) write +0..+0x10; translate indexes +0/+4/+8",
+   "confidence": "low",
+   "notes": "ray_hit 0x530f20 (unitures.cpp) reads floats at +0x30..+0x3c and +0x70: likely another class"
+  },
+  {
+   "class": "ItemScreen",
+   "size": "0xe27",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "open",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x1",
+     "name": "shown",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x2",
+     "name": "i16_2",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x4",
+     "name": "u32_4",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "u32_8",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "camera",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x1c",
+     "name": "scene",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x20",
+     "name": "shadow_scene",
+     "type": "ptr:SceneS",
+     "size": 4
+    },
+    {
+     "off": "0x24",
+     "name": "actor",
+     "type": "ptr:void",
+     "size": 4
+    }
+   ],
+   "members": [
+    {
+     "off": "0x28",
+     "name": "label0",
+     "class": "Label"
+    },
+    {
+     "off": "0xdf",
+     "name": "label1",
+     "class": "Label"
+    },
+    {
+     "off": "0x196",
+     "name": "label2",
+     "class": "Label"
+    },
+    {
+     "off": "0x24d",
+     "name": "label3",
+     "class": "Label"
+    },
+    {
+     "off": "0x304",
+     "name": "label4",
+     "class": "Label"
+    },
+    {
+     "off": "0x3bb",
+     "name": "label5",
+     "class": "Label"
+    },
+    {
+     "off": "0x472",
+     "name": "label6",
+     "class": "Label"
+    },
+    {
+     "off": "0x529",
+     "name": "label7",
+     "class": "Label"
+    },
+    {
+     "off": "0x5e0",
+     "name": "label8",
+     "class": "Label"
+    },
+    {
+     "off": "0x697",
+     "name": "button",
+     "class": "Button"
+    },
+    {
+     "off": "0x9dd",
+     "name": "label9",
+     "class": "Label"
+    },
+    {
+     "off": "0xa94",
+     "name": "label10",
+     "class": "Label"
+    },
+    {
+     "off": "0xb4b",
+     "name": "label11",
+     "class": "Label"
+    },
+    {
+     "off": "0xc02",
+     "name": "label12",
+     "class": "Label"
+    },
+    {
+     "off": "0xcb9",
+     "name": "label13",
+     "class": "Label"
+    },
+    {
+     "off": "0xd70",
+     "name": "label14",
+     "class": "Label"
+    }
+   ],
+   "evidence": "dtor 0x6b96b0 destroys Labels (0xb7) at +0x28+k*0xb7 (9), a Button at +0x697 and 6 Labels from +0x9dd",
+   "confidence": "medium",
+   "notes": "the armory item screen; ArmoryScreen (new class in g15) is this object. gameover.cpp functions with this label (release / free_9d2 / close) are GameOver (g08). camera/scene/actor: Camera, Scene, Actor."
+  },
+  {
+   "class": "ItemView",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x2",
+     "name": "res_id",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0xc",
+     "name": "pos",
+     "type": "u32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x20",
+     "name": "scene",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x24",
+     "name": "object",
+     "type": "ptr:void",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "release 0x6bb020 (armory.cpp)",
+   "confidence": "low",
+   "notes": "scene is a Scene (g02), object a SceneObject"
+  },
+  {
+   "class": "Billboard",
+   "size": "0x37",
+   "base": null,
+   "vtable": "0x9da81c",
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "vtable",
+     "type": "ptr:vtable",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "owned",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x5",
+     "name": "plane",
+     "type": "ptr:Plane",
+     "size": 4
+    },
+    {
+     "off": "0x9",
+     "name": "pos",
+     "type": "f32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x15",
+     "name": "u32_15",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x19",
+     "name": "u32_19",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1d",
+     "name": "i16_1d",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x1f",
+     "name": "offset",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x23",
+     "name": "scale",
+     "type": "f32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x2f",
+     "name": "width",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x33",
+     "name": "height",
+     "type": "f32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "new(0x37) before ctor 0x6351a0: vtable 0x9da81c, memset(this+4, 0, 0x33)",
+   "confidence": "high",
+   "notes": "Billboard::item 0x637da0 (blkarrb.cpp, original/en3d.hpp +0x24 items) is a BlockArray method, not this class"
+  },
+  {
+   "class": "Blit",
+   "size": "0x34",
+   "base": "Surface",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "vgabuf.cpp draw methods read bits +0xc, pitch +0x10, bpp +0x28 of the Image/Surface",
+   "confidence": "medium",
+   "notes": "no own layout: same object as Surface; its functions are reassigned to Surface"
+  },
+  {
+   "class": "Cam",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x10",
+     "name": "orient",
+     "type": "f32",
+     "size": 4,
+     "count": 4
+    },
+    {
+     "off": "0x20",
+     "name": "orient_target",
+     "type": "f32",
+     "size": 4,
+     "count": 4
+    },
+    {
+     "off": "0x30",
+     "name": "view",
+     "type": "f32",
+     "size": 4,
+     "count": 16
+    },
+    {
+     "off": "0x70",
+     "name": "proj",
+     "type": "f32",
+     "size": 4,
+     "count": 16
+    },
+    {
+     "off": "0xb0",
+     "name": "matrix_b0",
+     "type": "f32",
+     "size": 4,
+     "count": 16
+    },
+    {
+     "off": "0xf0",
+     "name": "matrix_f0",
+     "type": "f32",
+     "size": 4,
+     "count": 16
+    },
+    {
+     "off": "0x130",
+     "name": "u32_130",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "ctor 0x5be220 (d3dutil.cpp) constructs quaternions +0x10/+0x20 and matrices +0x30/+0x70/+0xb0/+0xf0",
+   "confidence": "medium",
+   "notes": "D3DX-style camera; quaternion/matrix members as f32 arrays (Quaternion / Matrix have no layout spec); matrix roles guessed. from_angles / to_angles (misc_423220.cpp) use a 0x28-byte CamPose, the boids functions labelled Cam are Boid."
+  },
+  {
+   "class": "Link",
+   "size": "0x7f",
+   "base": "Boid",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "set_66 / set_6a / relink use the Boid next/prev links (+0x66 / +0x6a)",
+   "confidence": "medium",
+   "notes": "no own layout: same object as Boid; its functions are reassigned to Boid"
+  },
+  {
+   "class": "Mover",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "no field access left",
+   "confidence": "low",
+   "notes": "hits_box / segment_hit (boids.cpp) are Boid, start 0x6b10a0 is Shot (g08); only goto_object 0x43abd0 (no own field access) remains"
+  },
+  {
+   "class": "Particle",
+   "size": "0x80",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "id",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "lifetime",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "age",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "delay",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "time",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "f32_14",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "node",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x1c",
+     "name": "scale",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x20",
+     "name": "scale_rate",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x24",
+     "name": "colour",
+     "type": "u8",
+     "size": 1,
+     "count": 4
+    },
+    {
+     "off": "0x28",
+     "name": "colour_rate",
+     "type": "f32",
+     "size": 4,
+     "count": 4
+    },
+    {
+     "off": "0x38",
+     "name": "u32_38",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x3c",
+     "name": "u16_3c",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x42",
+     "name": "ptr_42",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x48",
+     "name": "offset",
+     "type": "f32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x54",
+     "name": "pos",
+     "type": "f32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x60",
+     "name": "vel",
+     "type": "f32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x6c",
+     "name": "accel",
+     "type": "f32",
+     "size": 4,
+     "count": 3
+    }
+   ],
+   "members": [],
+   "evidence": "reset 0x662e20 memsets 0x80 keeping +0; update 0x662f60 integrates the float fields",
+   "confidence": "high",
+   "notes": "partslot.cpp particle; node is a SceneObject (g01). The boids.cpp functions labelled Particle are Boid. g09 assigns 0x421730 / 0x422ca0 (boids.cpp, Unit::offset_to_target / distance_to) to Particle: they use Boid offsets (+0xe radius, +0x42) and should be Boid."
+  },
+  {
+   "class": "Projectile",
+   "size": "0xa3",
+   "base": "ModelObj",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "launch 0x41a2a0 writes the ModelObj fields (+0x2 pos, +0xe angle, +0x1b/+0x23 timers, EffectState +0x2b)",
+   "confidence": "medium",
+   "notes": "no own layout; launch reassigned to ModelObj; hit_test 0x693750 touches no field; hit_effects 0x4fbc90 is Missile (g09)"
+  },
+  {
+   "class": "Button",
+   "size": "0x346",
+   "base": "Widget",
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x70",
+     "name": "state",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x74",
+     "name": "shown",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x75",
+     "name": "tri",
+     "type": "i16",
+     "size": 2,
+     "count": 6
+    },
+    {
+     "off": "0x81",
+     "name": "hit_rect",
+     "type": "i16",
+     "size": 2,
+     "count": 4
+    },
+    {
+     "off": "0x89",
+     "name": "u8_89",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x8a",
+     "name": "pressed",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x8c",
+     "name": "drawn",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x8d",
+     "name": "shape",
+     "type": "i8",
+     "size": 1,
+     "count": 2
+    },
+    {
+     "off": "0x8f",
+     "name": "hover",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x90",
+     "name": "u8_90",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x91",
+     "name": "i16_91",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x93",
+     "name": "sprite_set",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xe3",
+     "name": "i8_e3",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x10d",
+     "name": "tooltip",
+     "type": "char",
+     "size": 1,
+     "count": 81
+    },
+    {
+     "off": "0x15e",
+     "name": "help_text",
+     "type": "char",
+     "size": 1,
+     "count": 201
+    },
+    {
+     "off": "0x227",
+     "name": "caption",
+     "type": "char",
+     "size": 1,
+     "count": 257
+    },
+    {
+     "off": "0x328",
+     "name": "caption_box",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x32c",
+     "name": "caption_colour",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x330",
+     "name": "caption_330",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x332",
+     "name": "caption_332",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x334",
+     "name": "caption_334",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x336",
+     "name": "press_dx",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x338",
+     "name": "press_dy",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x33a",
+     "name": "callback",
+     "type": "ptr:fn",
+     "size": 4
+    },
+    {
+     "off": "0x342",
+     "name": "u32_342",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [
+    {
+     "off": "0x97",
+     "name": "states0",
+     "class": "ButtonState"
+    },
+    {
+     "off": "0xaa",
+     "name": "states1",
+     "class": "ButtonState"
+    },
+    {
+     "off": "0xbd",
+     "name": "states2",
+     "class": "ButtonState"
+    },
+    {
+     "off": "0xd0",
+     "name": "states3",
+     "class": "ButtonState"
+    }
+   ],
+   "evidence": "original/ui.hpp Button; embedded with stride 0x346 (MainMenu +0x6c5/+0xa0b, ItemScreen +0x697/+0x9dd); calls Widget methods on this",
+   "confidence": "high",
+   "notes": "shape is shape (+0x8d) and its neighbour +0x8e, written together as one word by create / update. states[4] are ButtonState members. MenuButton / UiButton / Window2d / Ctl::set_rect3 / set_name8 use this layout (reassigned). caption_box is a TextRenderer (g01). +0x33e..+0x341 unseen. tooltip / help_text: strncpy 0x50 / 0xc8 + terminator (set_texts 0x623c40). set_name 0x623b60 strcpy()s up to 0x20 chars to +0x97, over states[0..1]."
+  },
+  {
+   "class": "Child",
+   "size": "0x5",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "u8_0",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x2",
+     "name": "fit",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x3",
+     "name": "enabled",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x4",
+     "name": "visible",
+     "type": "i8",
+     "size": 1
+    }
+   ],
+   "members": [],
+   "evidence": "visible 0x623360 is called with ecx = widget+4 and reads its +4",
+   "confidence": "medium",
+   "notes": "the 5-byte sub-object at Widget+4 (Widget +4..+8); Widget (g05) could declare it as a member"
+  },
+  {
+   "class": "Ctl",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "i32_0",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "i8_4",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x5",
+     "name": "i16_5",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x7",
+     "name": "i16_7",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x9",
+     "name": "i16_9",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0xb",
+     "name": "i16_b",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0xd",
+     "name": "i16_d",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0xf",
+     "name": "i16_f",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x11",
+     "name": "i8_11",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x12",
+     "name": "i8_12",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x13",
+     "name": "i8_13",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x14",
+     "name": "i8_14",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x15",
+     "name": "u32_15",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "ctl2d.cpp / popupwin.cpp functions (and g05 set_rect 0x628b00 / hit 0x628c10)",
+   "confidence": "low",
+   "notes": "not a Widget at +4..+8 (words at +5 / +7 where Widget has bytes); set_rect3 is Button, reset_8e is Scroll (g08: +0x8e callback) - reassigned"
+  },
+  {
+   "class": "MenuButton",
+   "size": "0x346",
+   "base": "Button",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "setup / clear write the Button fields (+0x74, +0x81.., +0x93, +0x328, +0x33a)",
+   "confidence": "medium",
+   "notes": "no own layout: same object as Button; its functions are reassigned to Button"
+  },
+  {
+   "class": "UiButton",
+   "size": "0x346",
+   "base": "Button",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "mouse 0x6218c0 reads the Button hit fields (+0x70..+0x91)",
+   "confidence": "medium",
+   "notes": "no own layout: same object as Button; its functions are reassigned to Button"
+  },
+  {
+   "class": "Window2d",
+   "size": "0x346",
+   "base": "Button",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "set_rect 0x623580 (button2d.cpp) writes the Widget rect and Button tri/hit_rect",
+   "confidence": "medium",
+   "notes": "no own layout: same object as Button; its functions are reassigned to Button"
+  },
+  {
+   "class": "TexDirEntry",
+   "size": "0x3d",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "index",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "name",
+     "type": "char",
+     "size": 1,
+     "count": 41
+    },
+    {
+     "off": "0x2d",
+     "name": "buf_2d",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x31",
+     "name": "file_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x35",
+     "name": "file_cap",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x39",
+     "name": "files",
+     "type": "u8*",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "TexDir::add memsets 0x3d per entry; add_entry list fields",
+   "confidence": "medium",
+   "notes": "files: records of 0x10c bytes (name char[0x105], flags +0x105, kind +0x108)"
+  },
+  {
+   "class": "TexTag",
+   "size": "0x8",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "name",
+     "type": "char",
+     "size": 1,
+     "count": 6
+    },
+    {
+     "off": "0x6",
+     "name": "bit",
+     "type": "u16",
+     "size": 2
+    }
+   ],
+   "members": [],
+   "evidence": "TexDir::add 0x604310: strcpy name, u16 bit mask at +6",
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "class": "ScriptTexture",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x90",
+     "name": "d3d_a",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x94",
+     "name": "d3d_b",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x98",
+     "name": "device_resource",
+     "type": "u8",
+     "size": 1,
+     "count": 24
+    }
+   ],
+   "members": [],
+   "evidence": "0x4191e0 (animscr_tex.cpp, labelled Texture::release): two COM textures and a DeviceResource",
+   "confidence": "low",
+   "notes": "new class for the animscr object whose 0x4191e0 releases +0x90/+0x94 and unlinks the DeviceResource at +0x98 (0x18 bytes as in RenderTexture); offsets below 0x90 unknown"
+  },
+  {
+   "class": "Boid",
+   "size": "0x7f",
+   "base": null,
+   "vtable": "0x9cf828",
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "vtable",
+     "type": "ptr:vtable",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "actor",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "kind",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0xa",
+     "name": "u16_a",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0xe",
+     "name": "radius",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x12",
+     "name": "pos",
+     "type": "f32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x1e",
+     "name": "vel",
+     "type": "f32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x2a",
+     "name": "dir",
+     "type": "f32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x36",
+     "name": "speed",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x3a",
+     "name": "neighbour_count",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x3c",
+     "name": "u16_3c",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x3e",
+     "name": "nearest",
+     "type": "ptr:Boid",
+     "size": 4
+    },
+    {
+     "off": "0x42",
+     "name": "u32_42",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x46",
+     "name": "nearest_dist",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x4a",
+     "name": "u32_4a",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4e",
+     "name": "prev_pos",
+     "type": "f32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x5a",
+     "name": "prev_vel",
+     "type": "f32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x66",
+     "name": "next",
+     "type": "ptr:Boid",
+     "size": 4
+    },
+    {
+     "off": "0x6a",
+     "name": "prev",
+     "type": "ptr:Boid",
+     "size": 4
+    },
+    {
+     "off": "0x6e",
+     "name": "avoiding",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x6f",
+     "name": "avoid_blend",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x73",
+     "name": "avoid_dir",
+     "type": "f32",
+     "size": 4,
+     "count": 3
+    }
+   ],
+   "members": [],
+   "evidence": "ctor 0x4203e0 sets vtable 0x9cf828 and memsets 0x7f; boids.cpp init/update/neighbour code",
+   "confidence": "high",
+   "notes": "new class (the facade as_boid exists): the boids.cpp functions labelled Particle / Projectile / Cam / Mover / Link / Obj all use this layout (kind +8 indexes the kinds list, pos +0x12, vel +0x1e). actor is a SceneObject (g01). 0x4231c0 count_57 reads +0x57 (inside prev_pos): another class. 0x420690 / 0x422d80 (reassigned to Particle by g08) are Boid methods too."
+  },
+  {
+   "class": "CamPose",
+   "size": "0x28",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "u32_0",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "eye",
+     "type": "f32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x10",
+     "name": "target",
+     "type": "f32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x1c",
+     "name": "u32_1c",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x20",
+     "name": "u32_20",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x24",
+     "name": "u32_24",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "from_angles 0x423290 / to_angles 0x423400 write/read exactly +0x0..+0x27",
+   "confidence": "medium",
+   "notes": "new class: a camera pose (eye from target + yaw/pitch/distance of the source pose)"
+  },
+  {
+   "class": "ButtonState",
+   "size": "0x13",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "sprite",
+     "type": "char",
+     "size": 1,
+     "count": 9
+    },
+    {
+     "off": "0x9",
+     "name": "colour",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xd",
+     "name": "a20",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0xf",
+     "name": "a24",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x11",
+     "name": "a28",
+     "type": "i16",
+     "size": 2
+    }
+   ],
+   "members": [],
+   "evidence": "original/ui.hpp ButtonState; Button::draw / set_item stride 0x13",
+   "confidence": "high",
+   "notes": ""
+  }
+ ],
+ "functions": {
+  "0x60fca0": "Surface",
+  "0x60fe60": "Surface",
+  "0x603400": "SysEn",
+  "0x611e70": null,
+  "0x605e20": "Texture2D",
+  "0x605ff0": "Texture2D",
+  "0x606ac0": "TextureCube",
+  "0x606a20": "TextureCube",
+  "0x607200": "TextureBump",
+  "0x607030": "TextureBump",
+  "0x6082a0": "RenderTexture",
+  "0x607f60": "RenderTexture",
+  "0x608180": "RenderTexture",
+  "0x6089f0": "RenderTexture",
+  "0x608d00": "RenderTexture",
+  "0x607fb0": "RenderTexture",
+  "0x609260": "TextureManager",
+  "0x60a770": "TextureManager",
+  "0x60aec0": "TextureManager",
+  "0x60ba00": "TextureManager",
+  "0x608e10": "TextureManager",
+  "0x608db0": "TextureManager",
+  "0x609570": "TextureManager",
+  "0x60b050": "TextureManager",
+  "0x60b1b0": "TextureManager",
+  "0x6051c0": "TexDir",
+  "0x6054c0": "TexDir",
+  "0x605540": "TexDir",
+  "0x5f45f0": "Skin",
+  "0x5f5010": "Skin",
+  "0x5f5090": "Skin",
+  "0x5f4dc0": "Skin",
+  "0x5f4e90": "Skin",
+  "0x5f4fe0": "Skin",
+  "0x5f48b0": "Skin",
+  "0x5f4b90": "Skin",
+  "0x5f50e0": "Skin",
+  "0x5f3340": "SceneS",
+  "0x5ef430": "Scene",
+  "0x5e9fc0": "SceneS",
+  "0x5ef850": "SceneS",
+  "0x5eff10": "SceneS",
+  "0x5ef880": "SceneS",
+  "0x5ef900": "SceneS",
+  "0x5efbe0": "SceneS",
+  "0x5f2730": "SceneS",
+  "0x5f0310": "SceneS",
+  "0x5f0340": "SceneS",
+  "0x5f4440": "SceneS",
+  "0x4191e0": "ScriptTexture",
+  "0x4203e0": "Boid",
+  "0x420420": "Boid",
+  "0x421c50": "Boid",
+  "0x422c30": "Boid",
+  "0x420690": "Boid",
+  "0x422d80": "Boid",
+  "0x420890": "Boid",
+  "0x421510": "Boid",
+  "0x421810": "Boid",
+  "0x4219b0": "Boid",
+  "0x421ba0": "Boid",
+  "0x422bd0": "Boid",
+  "0x421dd0": "Boid",
+  "0x422a40": "Boid",
+  "0x422f70": "Boid",
+  "0x422fc0": "Boid",
+  "0x423030": "Boid",
+  "0x4207d0": "Boid",
+  "0x421060": "Boid",
+  "0x422fa0": "Boid",
+  "0x423190": "Boid",
+  "0x4fbc90": "Missile",
+  "0x423290": "CamPose",
+  "0x423400": "CamPose",
+  "0x637da0": "BlockArray",
+  "0x605be0": "Texture",
+  "0x605c30": "Texture",
+  "0x604110": "TexDir",
+  "0x635fc0": "Billboard",
+  "0x635fe0": "Billboard",
+  "0x4bb660": "Ai",
+  "0x4c11f0": "Ai",
+  "0x4bc8a0": "Ai",
+  "0x4bca60": "Ai",
+  "0x4bcdb0": "Ai",
+  "0x4bd090": "Ai",
+  "0x4c2680": "Ai",
+  "0x4c0c90": "Ai",
+  "0x4c1270": "Ai",
+  "0x4c1390": "Ai",
+  "0x4c14e0": "Ai",
+  "0x4c1670": "Ai",
+  "0x4c17a0": "Ai",
+  "0x4bb3e0": "Ai",
+  "0x4bbf20": "Ai",
+  "0x433a90": "Ai",
+  "0x4be770": "Ai",
+  "0x4bed40": "Ai",
+  "0x4c1230": "Ai",
+  "0x4bf510": "Ai",
+  "0x4c1090": "Ai",
+  "0x4c18f0": "Ai",
+  "0x4bf240": "Ai",
+  "0x4c1480": "Ai",
+  "0x4bba00": "OrderEntry",
+  "0x4bb950": "OrderEntry",
+  "0x4bb9d0": "OrderEntry",
+  "0x41ab50": "ModelObj",
+  "0x41b0d0": "ModelObj",
+  "0x41a2a0": "ModelObj",
+  "0x6758f0": "EffectState",
+  "0x41a020": "ModelSlot",
+  "0x6ba3e0": "ItemScreen",
+  "0x6ba890": "ItemScreen",
+  "0x6bbac0": "ItemScreen",
+  "0x6bbc50": "ItemScreen",
+  "0x6bbc90": "ItemScreen",
+  "0x6b6f50": "GameOver",
+  "0x6b70d0": "GameOver",
+  "0x6b8cf0": "GameOver",
+  "0x6211d0": "Button",
+  "0x6217e0": "Button",
+  "0x6218c0": "Button",
+  "0x623580": "Button",
+  "0x623380": "Button",
+  "0x623bd0": "Button",
+  "0x62cc60": "Scroll",
+  "0x62c8f0": "Scroll",
+  "0x611430": "Surface",
+  "0x612ee0": "VgaBuf",
+  "0x6131c0": "VgaLock",
+  "0x41b200": "EffectState",
+  "0x41b230": "EffectState",
+  "0x41b250": "EffectState",
+  "0x41b300": "EffectState",
+  "0x41b320": "EffectState",
+  "0x41b350": "EffectState",
+  "0x41b370": "EffectState"
+ },
+ "notes": "Cross-group: g08 assigns 0x420690 / 0x422d80 to Particle - they are Boid (boids.cpp, same offsets as Boid::init 0x420420); with g08 loaded last its mapping wins and Particle shows straddles. Surface = Image (g08) and ItemScreen = ArmoryScreen (g15) are the same objects; SceneS is the scene_s.cpp shadow scene, not Scene (g02)."
+}

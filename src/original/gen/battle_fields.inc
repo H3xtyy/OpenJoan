@@ -1,0 +1,4 @@
+// Generated (re/layout/gen_types.py) from re/layout/layouts.json: the data members of Battle
+// (g10.json, confidence low). Do not edit; change the spec.
+    std::uint32_t u32_0;  // 0x0
+    std::uint8_t gap_4[0x8e];

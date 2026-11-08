@@ -1,0 +1,4 @@
+start,end,name,confidence,evidence,target
+0x00463c40,0x00463c40,ditemres_c6,high,dead Unit::set_c6 sandwiched between DropItemRes::load and SoundList::read (ditemres.cpp),game/ditemres.cpp
+0x00463ed0,0x00464100,ditemres_tail,medium,"Names::find/Names::at/Obj::delete_23 used by DropItemRes::reset_all, plus Grass::pick: tail of ditemres.cpp",game/ditemres.cpp
+0x00464130,0x00464130,dyngrass_ctor,high,Obj::clear_1d1 is the ctor of the global whose atexit (56aff0 -> 56b010 -> Obj::forward_464390) is dyngrass.cpp; precedes it directly,game/dyngrass.cpp

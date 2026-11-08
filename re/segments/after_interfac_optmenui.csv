@@ -1,0 +1,11 @@
+start,end,name,confidence,evidence
+0x00747bc0,0x0074c2e0,optmenui_x,high,"layout/slide/options-page helpers called only from optmenui.cpp (OptPanel::init, Panel::set_page, Settings::click, Obj73c410::release_all): optmenui.cpp tail, merge into optmenui.cpp"
+0x0074c8d0,0x00755120,savemenu,high,Screen ctor + InfoPanel::init (IN_FRAME/INFO/SAVEMENU text res) and save/load menu; draw callbacks 0x753440..0x755120 registered by InfoPanel::init; INFOBAR/SBUT_ strings follow optmenui's
+0x00755810,0x00755dd0,objscr_next,medium,"zero-ctor/set_flag/init/clear/ObjectiveList::draw (""Next"", ""Side Ojbective:"")/close/nop set, mirrored by 0x75f550 group; launches next scenario"
+0x00755df0,0x0075f4f0,sceload,medium,"scenario loading screen: global ctor, SL_BG1/SL_COM textures, Seq::draw (s5-part1..4, SceLoad text), Seq::step, Progress::update/redraw; Unit::on_message (AUTOBOW) embedded here is odd"
+0x0075f550,0x0075fa90,objscr_start,medium,"second zero-ctor/set_flag/init/clear/ObjectiveList::draw (""Start"")/close/nop set; ""Start"" string directly before the ScrollBox vtable"
+0x0075fb00,0x0075fba0,scrlbox_a,medium,"ScrollBox dtor and ArrowList callbacks (registered by 0x760050); same widget object as the '=' ScrollBox ctor 0x75fab0 (vtable 0x9df888 follows draw_b's strings, i.e. a new object, probably not optmenui)"
+0x007605d0,0x00760df0,scrlbox_b,medium,"ScrollBox::relayout (vtable 0x9df888), HlBar (hl_bar/hl_mark), Slider::step: same widget object as 0x75fab0..0x761240"
+0x00761270,0x00761270,scrlbox_c,low,"Obj761::get, accessor twin of '=' Obj761::forward 0x761240: same widget object"
+0x007612a0,0x007616f0,fadetitl,low,"static-init clear, FadeTitle::draw, timers and the 0xa48a38 title record accessors used by script; no strings"
+0x00761720,0x00763c90,scrlbar,medium,"ModeList ctor/dtor, ScrollBar::build (sb_* strings follow hl_*), slot setup, Scroller::step, HudSlots::draw, key filter (callback of setup_762770); runs up to '=' Key::filter_763cd0"

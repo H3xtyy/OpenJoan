@@ -1,0 +1,3086 @@
+{
+ "group": "g10",
+ "classes": [
+  {
+   "class": "Modifiers",
+   "size": null,
+   "base": "UnitData",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "Modifiers::slot/sum read +0 / +0xa / +0x12 of Unit+0x1c1 = UnitData",
+   "confidence": "high",
+   "notes": "same object as UnitData; its functions are reassigned to UnitData (functions map)"
+  },
+  {
+   "class": "Slots",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "u32_0",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "arr_4",
+     "type": "u32",
+     "size": 4,
+     "count": 2
+    },
+    {
+     "off": "0xc",
+     "name": "ptr_c",
+     "type": "u8*",
+     "size": 4
+    },
+    {
+     "off": "0x44",
+     "name": "arr_44",
+     "type": "u32",
+     "size": 4,
+     "count": 4
+    },
+    {
+     "off": "0x56",
+     "name": "i32_56",
+     "type": "i32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "binary accesses of its remaining functions",
+   "confidence": "low",
+   "notes": "mixed label: its functions come from unrelated files / objects (glowmark advance +0x56, sndplay has_kind, trackres +0xc, musicstr release +0/+4[]/+0x44[]); fields are the union of their accesses; free/count_type moved to UnitData, activate to Weather"
+  },
+  {
+   "class": "Sounds",
+   "size": null,
+   "base": "Weather",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "Sounds::stop/resume/pause act on EffectStates +0x60/+0xd8/+0x150 and the voice +4",
+   "confidence": "medium",
+   "notes": "same object as Weather; its functions are reassigned to Weather (functions map). g09 assigns Unit::play_sound 0x4cf0f0 to Sounds: that this is a SoundList (as_sound_list / as_party(this)->first_free), not this object, hence its +0 dword is not covered"
+  },
+  {
+   "class": "UnitData",
+   "size": "0x1e",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "hand_mode",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x2",
+     "name": "hands",
+     "type": "ptr:HeldItem",
+     "size": 4,
+     "count": 2
+    },
+    {
+     "off": "0xa",
+     "name": "equipped",
+     "type": "ptr:HeldItem",
+     "size": 4
+    },
+    {
+     "off": "0xe",
+     "name": "extra_item",
+     "type": "ptr:HeldItem",
+     "size": 4
+    },
+    {
+     "off": "0x12",
+     "name": "list_12",
+     "type": "ptr:Grid",
+     "size": 4
+    },
+    {
+     "off": "0x16",
+     "name": "grid_16",
+     "type": "ptr:Grid",
+     "size": 4
+    },
+    {
+     "off": "0x1a",
+     "name": "grid_1a",
+     "type": "ptr:Grid",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "memset 0x1e (0x495950); release 0x495ce0 frees +2/+6/+0xa/+0xe and destroys Grids +0x12/+0x16/+0x1a",
+   "confidence": "high",
+   "notes": "Unit+0x1c1. +0x2 is indexed (i*8 + 2 + j*4 for i < 1): two hand slots; slot() also reaches +0xa through k*8-6+index*4. +0x12 is used as PtrList/List/Inventory, +0x16/+0x1a as Grid/Inventory (all destroyed with Grid 0x495ef0)."
+  },
+  {
+   "class": "UnitDraw",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "unit_id",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x2",
+     "name": "i32_2",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x46",
+     "name": "i16_46",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x48",
+     "name": "plate_attached",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x49",
+     "name": "label_attached",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x4a",
+     "name": "label",
+     "type": "ptr:Billboard",
+     "size": 4
+    },
+    {
+     "off": "0x4e",
+     "name": "plate",
+     "type": "ptr:Billboard",
+     "size": 4
+    },
+    {
+     "off": "0x52",
+     "name": "u8_52",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [],
+   "evidence": "label/plate billboards at +0x4a / +0x4e (create_label / create_plate), flags +0x48 / +0x49",
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "class": "UnitManager",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x2e",
+     "name": "i16_2e",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x40",
+     "name": "counts_a",
+     "type": "i16",
+     "size": 2,
+     "count": 12
+    },
+    {
+     "off": "0x58",
+     "name": "counts_b",
+     "type": "i16",
+     "size": 2,
+     "count": 12
+    }
+   ],
+   "members": [],
+   "evidence": "update_units 0x51e280 reads/writes two runs of 12 i16 counters",
+   "confidence": "low",
+   "notes": "calls List/Units functions on this; base not established; +0x2e from Units::remove 0x51e1f0 (assigned by g06)"
+  },
+  {
+   "class": "Ai",
+   "size": null,
+   "base": "Order",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "Ai functions read Order+0x1d.. (current OrderEntry) and call Order::finish on this",
+   "confidence": "high",
+   "notes": "same object as Order; its functions are reassigned to Order (functions map)"
+  },
+  {
+   "class": "Order",
+   "size": "0x3e",
+   "base": "DynArray",
+   "vtable": null,
+   "fields": [],
+   "members": [
+    {
+     "off": "0x1d",
+     "name": "current",
+     "class": "OrderEntry"
+    }
+   ],
+   "evidence": "new(0x3e) + 0x4bab50 = DynArray::construct(0x21, 0xa) + memset(+0x1d, 0x21); EventList::add 0x4bac60",
+   "confidence": "high",
+   "notes": "Unit+0x2a1: a DynArray of 0x21-byte OrderEntry records plus the current entry at +0x1d. Order::run_1..15 / dispatch (uscrres, +0x26 read as i16) and Order::is_active (news.cpp, +0 i8 / +0xc) may have a different this; Ai::is_ready 0x597ed0 (mousecr.cpp: +0 ptr, +0x2b byte table) is probably not an Order either."
+  },
+  {
+   "class": "SoundBuf",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "ptr_0",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "i32_4",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "i32_8",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "i32_c",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "ptr_10",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "i32_14",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x1c",
+     "name": "ptr_1c",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x24",
+     "name": "i32_24",
+     "type": "i32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "binary accesses of its functions (q.py class)",
+   "confidence": "low",
+   "notes": ""
+  },
+  {
+   "class": "Force",
+   "size": "0x8",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "volume",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "pan",
+     "type": "i32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "volpan.cpp: from_pair writes the volume +0 and set_dir the pan +4; Pair:: functions write the same two",
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "class": "LightParams",
+   "size": "0x60",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "c",
+     "type": "f32",
+     "size": 4,
+     "count": 24
+    }
+   ],
+   "members": [],
+   "evidence": "ctor 0x617ee0 writes 24 dwords",
+   "confidence": "medium",
+   "notes": "six Vector4 constants; members of LightSys at +0x2c4 / +0x458"
+  },
+  {
+   "class": "Scatter",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "u32_0",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x6c",
+     "name": "f32_6c",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x70",
+     "name": "f32_70",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x74",
+     "name": "u32_74",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x78",
+     "name": "f32_78",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x7c",
+     "name": "f32_7c",
+     "type": "f32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "binary accesses of its functions (q.py class)",
+   "confidence": "low",
+   "notes": ""
+  },
+  {
+   "class": "ShaderConstants",
+   "size": "0x60",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "c",
+     "type": "f32",
+     "size": 4,
+     "count": 24
+    }
+   ],
+   "members": [],
+   "evidence": "ctor 0x617d80 writes 24 dwords; member of VsEntry at +0x20 (VsEntry size 0x80)",
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "class": "Tint",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x18",
+     "name": "ptr_18",
+     "type": "ptr:void",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "binary accesses of its functions (q.py class)",
+   "confidence": "low",
+   "notes": ""
+  },
+  {
+   "class": "VsCache",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "u32_0",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "u32_4",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "ptr_8",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "i32_c",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "i32_10",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "ptr_14",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "u32_18",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1c",
+     "name": "ptr_1c",
+     "type": "ptr:void",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "binary accesses of its functions (q.py class)",
+   "confidence": "low",
+   "notes": ""
+  },
+  {
+   "class": "VsConstants",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x14",
+     "name": "ptr_14",
+     "type": "u8*",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "binary accesses of its functions (q.py class)",
+   "confidence": "low",
+   "notes": ""
+  },
+  {
+   "class": "VsEntry",
+   "size": "0x80",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x8",
+     "name": "u32_8",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "u32_c",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "u32_10",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1c",
+     "name": "u32_1c",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [
+    {
+     "off": "0x20",
+     "name": "constants",
+     "class": "ShaderConstants"
+    }
+   ],
+   "evidence": "new(0x80) before ctor 0x618030",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "class": "Attach",
+   "size": null,
+   "base": "Trail",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "Attach::update 0x687a60 is a vtrail.cpp Trail method (+0 actor, +8 scene, +0xc unit, +0x14)",
+   "confidence": "medium",
+   "notes": "same object as Trail; its functions are reassigned to Trail (functions map)"
+  },
+  {
+   "class": "MeshDeform",
+   "size": null,
+   "base": "Trail",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "MeshDeform::update 0x687500 uses Trail +0x8e.. and clears the TrailNodes at +0xa3",
+   "confidence": "medium",
+   "notes": "same object as Trail; its functions are reassigned to Trail (functions map)"
+  },
+  {
+   "class": "SoundSource",
+   "size": null,
+   "base": "Trail",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "SoundSource::release 0x687410 = Trail destructor body (called by 0x687180)",
+   "confidence": "medium",
+   "notes": "same object as Trail; its functions are reassigned to Trail (functions map)"
+  },
+  {
+   "class": "Trail",
+   "size": "0xaf",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "actor",
+     "type": "ptr:Actor",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "actor_def",
+     "type": "ptr:ActorDef",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "scene",
+     "type": "ptr:Scene",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "unit_id",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "vtx_base",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "attached",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x15",
+     "name": "enabled",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x16",
+     "name": "points",
+     "type": "f32",
+     "size": 4,
+     "count": 30
+    },
+    {
+     "off": "0x8e",
+     "name": "point_count",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x90",
+     "name": "node_count",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x92",
+     "name": "rate_hz",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x94",
+     "name": "max_nodes",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x96",
+     "name": "dirty",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x97",
+     "name": "hold_start",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x9b",
+     "name": "hold_ms",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x9f",
+     "name": "last_add",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [
+    {
+     "off": "0xa3",
+     "name": "nodes",
+     "class": "TrailNodes"
+    }
+   ],
+   "evidence": "ctor 0x687130 memset 0xaf + TrailNodes ctor at +0xa3; init 0x6871f0 / update 0x687880",
+   "confidence": "high",
+   "notes": "+0x16: up to 5 points of 0x18 bytes (local Vec3 + 12 bytes), copied from the unit type +0xe6 stride 0xc. Attach / MeshDeform / SoundSource / UnitTask are the same object."
+  },
+  {
+   "class": "TrailNode",
+   "size": "0x84",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "points",
+     "type": "f32",
+     "size": 4,
+     "count": 15
+    },
+    {
+     "off": "0x3c",
+     "name": "tangents",
+     "type": "f32",
+     "size": 4,
+     "count": 15
+    },
+    {
+     "off": "0x78",
+     "name": "time",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x7c",
+     "name": "newer",
+     "type": "ptr:TrailNode",
+     "size": 4
+    },
+    {
+     "off": "0x80",
+     "name": "older",
+     "type": "ptr:TrailNode",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "new(0x84) + ctor 0x689250 memset 0x84; set_points copies 5*12 bytes; push writes +0x78..+0x80",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "class": "TrailNodes",
+   "size": "0xc",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "newest",
+     "type": "ptr:TrailNode",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "oldest",
+     "type": "ptr:TrailNode",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "count",
+     "type": "i32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "ctor 0x689370 memset 0xc; push 0x6895c0 / pop_oldest 0x6894f0",
+   "confidence": "high",
+   "notes": "0x6893d0 clear_8 (count = 0) assigned here by address/behaviour only"
+  },
+  {
+   "class": "UnitTask",
+   "size": null,
+   "base": "Trail",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "UnitTask::init 0x6871f0 initialises Trail +0x8..+0x9f",
+   "confidence": "high",
+   "notes": "same object as Trail; its functions are reassigned to Trail (functions map)"
+  },
+  {
+   "class": "Vtx",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "pos_x",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "pos_y",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "pos_z",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "u32_c",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "u32_10",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "u32_14",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "u32_18",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1c",
+     "name": "arr_1c",
+     "type": "u32",
+     "size": 4,
+     "count": 1
+    },
+    {
+     "off": "0x20",
+     "name": "arr_20",
+     "type": "u32",
+     "size": 4,
+     "count": 1
+    },
+    {
+     "off": "0x24",
+     "name": "u32_24",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "vtxconv.cpp copy/assign functions write dwords +0..+0x24",
+   "confidence": "low",
+   "notes": "several vertex formats share this label (from_24 writes 0x18 bytes, from_28 0x28, the Rec28/copy_24 functions 0x24): one class with the widest layout"
+  },
+  {
+   "class": "Container",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x70",
+     "name": "ptr_70",
+     "type": "ptr:void",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "binary accesses of its functions (q.py class)",
+   "confidence": "low",
+   "notes": ""
+  },
+  {
+   "class": "Water",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "bytes_0",
+     "type": "u8",
+     "size": 1,
+     "count": 4
+    },
+    {
+     "off": "0x4",
+     "name": "motion",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "camera",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x1c",
+     "name": "u32_1c",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x20",
+     "name": "u32_20",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x24",
+     "name": "arr_24",
+     "type": "u32",
+     "size": 4,
+     "count": 2
+    },
+    {
+     "off": "0x2c",
+     "name": "u32_2c",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x30",
+     "name": "u32_30",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "init 0x546b50 / release_textures 0x5624c0 / add_sound",
+   "confidence": "low",
+   "notes": "+0 is read as a dword by release_textures and its bytes 2 / 3 written by init (byte array); +4 cast to CameraMotion, +0xc to Camera; release_textures is in camctl.cpp and may belong elsewhere byte arrays cover overlapping accesses: 0x0/4,0x2/1,0x3/1"
+  },
+  {
+   "class": "WaterWave",
+   "size": null,
+   "base": "DynArrayB",
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x2e",
+     "name": "loaded",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x2f",
+     "name": "life_ms",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x33",
+     "name": "model",
+     "type": "ptr:ActorDef",
+     "size": 4
+    },
+    {
+     "off": "0x37",
+     "name": "anim",
+     "type": "ptr:AnimDef",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "clear_all 0x56f010 linkouts DynArrayB records, frees +0x33 ActorDef / +0x37 AnimDef; load writes +0x2e/+0x2f",
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "class": "Rain",
+   "size": null,
+   "base": "Weather",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "Rain::init is WeatherSystem::init_rain (init_once 0x689ca0)",
+   "confidence": "medium",
+   "notes": "same object as Weather; its functions are reassigned to Weather (functions map)"
+  },
+  {
+   "class": "Ripple",
+   "size": null,
+   "base": "Weather",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "Ripple::init is WeatherSystem::init_ripple; load 0x68ace0 writes +0xc..+0x18",
+   "confidence": "medium",
+   "notes": "same object as Weather; its functions are reassigned to Weather (functions map)"
+  },
+  {
+   "class": "Weather",
+   "size": "0x1c8",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "initialized",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x4",
+     "name": "rain_voice",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "u32_c",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "u32_10",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "model_res",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "anim_res",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x1c",
+     "name": "i32_1c",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x20",
+     "name": "i16_20",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x22",
+     "name": "u32_22",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [
+    {
+     "off": "0x26",
+     "name": "bolts",
+     "class": "DynArray"
+    },
+    {
+     "off": "0x43",
+     "name": "thunder",
+     "class": "DynArray"
+    },
+    {
+     "off": "0x60",
+     "name": "rain",
+     "class": "EffectState"
+    },
+    {
+     "off": "0xd8",
+     "name": "snow",
+     "class": "EffectState"
+    },
+    {
+     "off": "0x150",
+     "name": "ripple",
+     "class": "EffectState"
+    }
+   ],
+   "evidence": "ctor 0x689b10: DynArray(4) at +0x26 / +0x43, EffectState at +0x60 / +0xd8 / +0x150, memset(this, 0, 0x26)",
+   "confidence": "medium",
+   "notes": "size assumes EffectState is 0x78 bytes (member stride). Sounds / Rain / Ripple / Slots::activate / Sound3D (g14: 0x689d00, 0x68aa10 use the same +0x60/+0xd8/+0x150) are this object. Rain::init / Ripple::init / load_snow / spawn_thunder are not thiscall."
+  },
+  {
+   "class": "WorldArray",
+   "size": null,
+   "base": "DynArrayB",
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x2e",
+     "name": "active",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x32",
+     "name": "selected",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x36",
+     "name": "u32_36",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "remove 0x561270 / clear 0x561090 use DynArrayB linkout; reset_2e 0x561050",
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "class": "Anim",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "ptr_0",
+     "type": "u8*",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "ptr_4",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "f32_8",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "f32_c",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "bytes_10",
+     "type": "u8",
+     "size": 1,
+     "count": 6
+    },
+    {
+     "off": "0x18",
+     "name": "u32_18",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1c",
+     "name": "u32_1c",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x20",
+     "name": "u32_20",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x24",
+     "name": "ptr_24",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x28",
+     "name": "u32_28",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x2c",
+     "name": "i32_2c",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x30",
+     "name": "i32_30",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x34",
+     "name": "u16_34",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x36",
+     "name": "u16_36",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x38",
+     "name": "bytes_38",
+     "type": "u8",
+     "size": 1,
+     "count": 4
+    },
+    {
+     "off": "0x3c",
+     "name": "u32_3c",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x40",
+     "name": "u32_40",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x44",
+     "name": "bytes_44",
+     "type": "u8",
+     "size": 1,
+     "count": 6
+    },
+    {
+     "off": "0x4c",
+     "name": "u32_4c",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x50",
+     "name": "ptr_50",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x58",
+     "name": "u32_58",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x78",
+     "name": "u32_78",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x7c",
+     "name": "u32_7c",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x80",
+     "name": "u32_80",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x8c",
+     "name": "u32_8c",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x90",
+     "name": "ptr_90",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x94",
+     "name": "u32_94",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "binary accesses of its remaining functions",
+   "confidence": "low",
+   "notes": "mixed label: its functions come from unrelated files / objects (camzone start_428910, help.cpp start, en3d select_frame (Actor-like, +0x90 Plane)); fields are the union of their accesses; is_jump/id_from_name moved to AnimSet, scalar_delete to AnimDef, set_key to LightSys byte arrays cover overlapping accesses: 0x10/4,0x12/4; 0x38/4,0x3b/1; 0x44/4,0x46/4,0x48/2"
+  },
+  {
+   "class": "AnimEntry",
+   "size": null,
+   "base": "AnimSet",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "init_414970 calls AnimSet::free_buffer/load on this",
+   "confidence": "medium",
+   "notes": "same object as AnimSet; its functions are reassigned to AnimSet (functions map)"
+  },
+  {
+   "class": "AnimGroup",
+   "size": null,
+   "base": "AnimSet",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "free_buffer/load use AnimSet +0x2c/+0x30/+0x39",
+   "confidence": "medium",
+   "notes": "same object as AnimSet; its functions are reassigned to AnimSet (functions map)"
+  },
+  {
+   "class": "AnimSet",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x2c",
+     "name": "group_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x30",
+     "name": "groups",
+     "type": "ptr:AnimGroupRec",
+     "size": 4
+    },
+    {
+     "off": "0x34",
+     "name": "ref_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x38",
+     "name": "stream_state",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x39",
+     "name": "owns_groups",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [],
+   "evidence": "load 0x414a30: +0x2c = record count, +0x30 = count * 0x99 records; acquire/add_ref/stream +0x34/+0x38",
+   "confidence": "medium",
+   "notes": "bytes 0..0x2b never accessed by these functions. AnimGroup / AnimEntry / ResLock / AnimTable::find are this object. AnimSet::AnimSet 0x417980 (File ctor + 0x11e) moved to Archive, AnimSet::frame to AnimDef; acquire_417540 / AnimSet3 are not thiscall."
+  },
+  {
+   "class": "AnimTable",
+   "size": null,
+   "base": "AnimSet",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "find 0x416e30 reads AnimSet +0x2c; restart 0x6af370 moved to Players",
+   "confidence": "low",
+   "notes": "same object as AnimSet; its functions are reassigned to AnimSet (functions map)"
+  },
+  {
+   "class": "ModelRefs",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "slots",
+     "type": "u8*",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "get 0x416f20 indexes the table at +0",
+   "confidence": "low",
+   "notes": ""
+  },
+  {
+   "class": "Queue",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "i8_0",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x1",
+     "name": "i8_1",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0xc",
+     "name": "i32_c",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "i32_18",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x20",
+     "name": "i32_20",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x7a",
+     "name": "u32_7a",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x247",
+     "name": "pair_count",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x249",
+     "name": "pairs",
+     "type": "u8",
+     "size": 1,
+     "count": 80
+    }
+   ],
+   "members": [],
+   "evidence": "push3 0x414f50 / find_pair 0x414fe0: i16 count +0x247, 10 entries of 8 bytes at +0x249",
+   "confidence": "low",
+   "notes": "mixed label: its functions come from unrelated files / objects (animgrp push3/find_pair, crithud rotate +1/+0x7a, news remove_match +0x20); fields are the union of their accesses; pairs = 10 x {i32 key, i16 b, i16 c}"
+  },
+  {
+   "class": "ResLock",
+   "size": null,
+   "base": "AnimSet",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "release 0x4156d0 = AnimSet release (+0x2c, +0x34, idle/stream)",
+   "confidence": "medium",
+   "notes": "same object as AnimSet; its functions are reassigned to AnimSet (functions map)"
+  },
+  {
+   "class": "AnimRes",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "entries",
+     "type": "u8*",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "loaded",
+     "type": "i32",
+     "size": 4
+    }
+   ],
+   "members": [
+    {
+     "off": "0xc",
+     "name": "index_a",
+     "class": "ResourceIdxL"
+    },
+    {
+     "off": "0x141",
+     "name": "index_b",
+     "class": "ResourceIdxL"
+    },
+    {
+     "off": "0x276",
+     "name": "list",
+     "class": "DynArray"
+    }
+   ],
+   "evidence": "free 0x417060 / load 0x4172a0 / index_of; ResourceIdxL at +0xc and +0x141 (0x135 apart), DynArray +0x276",
+   "confidence": "medium",
+   "notes": "the anim resource manager (as_anim_res_mgr); entries stride not checked here"
+  },
+  {
+   "class": "Archive",
+   "size": null,
+   "base": "ResourceIdxL",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "ctor/dtor cast this to ResourceIdxL / File; 0x4179f0 / 0x417980 = File ctor + init_flag (+0x11e) = 0",
+   "confidence": "medium",
+   "notes": "0x417980 may construct the short-name ResourceIdx (same layout up to +0x131)"
+  },
+  {
+   "class": "AnimBuf",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "data",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "ref_count",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x6",
+     "name": "state",
+     "type": "i8",
+     "size": 1
+    }
+   ],
+   "members": [],
+   "evidence": "release 0x418e00 clears +0 / +4 / +6; AnimScr / AnimScript use +4 / +6 of the same slot",
+   "confidence": "medium",
+   "notes": "probably the ModelSlot (g03) record returned by ModelRefs::get"
+  },
+  {
+   "class": "AnimScr",
+   "size": null,
+   "base": "AnimBuf",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "for_each reads +4 of the slot; called on AnimBuf this",
+   "confidence": "low",
+   "notes": "same object as AnimBuf; its functions are reassigned to AnimBuf (functions map)"
+  },
+  {
+   "class": "AnimScript",
+   "size": null,
+   "base": "AnimBuf",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "stop_and_mark writes +6 of the slot",
+   "confidence": "low",
+   "notes": "same object as AnimBuf; its functions are reassigned to AnimBuf (functions map)"
+  },
+  {
+   "class": "Path",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0xc",
+     "name": "ptr_c",
+     "type": "u8*",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "u32_14",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "u32_18",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1c",
+     "name": "u32_1c",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x20",
+     "name": "u32_20",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x28",
+     "name": "i32_28",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x2c",
+     "name": "u32_2c",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x30",
+     "name": "ptr_30",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x34",
+     "name": "ptr_34",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x6c",
+     "name": "u32_6c",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x104",
+     "name": "u8_104",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x125",
+     "name": "u8_125",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x258",
+     "name": "i32_258",
+     "type": "i32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "binary accesses of its functions",
+   "confidence": "low",
+   "notes": "mixed label: its functions come from unrelated files / objects (animscr point list +0x104/+0x125/+0x258, trackres +0xc, pathsp +0x14..+0x6c); fields are the union of their accesses; link_6af710 moved to Players"
+  },
+  {
+   "class": "Battle",
+   "size": "0x92",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "u32_0",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "binary accesses of its functions (q.py class)",
+   "confidence": "low",
+   "notes": ""
+  },
+  {
+   "class": "Counter",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "bytes_0",
+     "type": "u8",
+     "size": 1,
+     "count": 4
+    },
+    {
+     "off": "0x4",
+     "name": "u16_4",
+     "type": "u16",
+     "size": 2
+    }
+   ],
+   "members": [],
+   "evidence": "binary accesses of its functions",
+   "confidence": "low",
+   "notes": "mixed label: its functions come from unrelated files / objects (battle at_least_10 +0 i32, unitures step +2/+4 i16); fields are the union of their accesses; clamp_to_one = DynArray::start moved to DynArray byte arrays cover overlapping accesses: 0x0/4,0x2/2"
+  },
+  {
+   "class": "Handle",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "u32_0",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x64",
+     "name": "i32_64",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x6c",
+     "name": "ptr_6c",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x70",
+     "name": "ptr_70",
+     "type": "ptr:void",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "binary accesses of its functions (q.py class)",
+   "confidence": "low",
+   "notes": ""
+  },
+  {
+   "class": "CamMan",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [],
+   "members": [
+    {
+     "off": "0x20",
+     "name": "button_0",
+     "class": "UiButton"
+    },
+    {
+     "off": "0x366",
+     "name": "button_1",
+     "class": "UiButton"
+    },
+    {
+     "off": "0x6ac",
+     "name": "button_2",
+     "class": "UiButton"
+    },
+    {
+     "off": "0x9f2",
+     "name": "button_3",
+     "class": "UiButton"
+    },
+    {
+     "off": "0xd38",
+     "name": "button_4",
+     "class": "UiButton"
+    }
+   ],
+   "evidence": "dtor_425520: VictoryScreen::release then widget dtors at +0x20/+0x366/+0x6ac/+0x9f2/+0xd38 (stride 0x346 = UiButton)",
+   "confidence": "low",
+   "notes": "after moving init/free_list/set_flags to CameraMotion only the two non-thiscall destructors remain; this is a victory/score screen, not the camera manager"
+  },
+  {
+   "class": "CameraMan",
+   "size": null,
+   "base": "CameraFollow",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "set_mode / restore_mode use CameraFollow +4 / +0xc / +0x2f / +0x33; track & co. moved to CameraMotion",
+   "confidence": "medium",
+   "notes": "same object as CameraFollow; its functions are reassigned to CameraFollow (functions map)"
+  },
+  {
+   "class": "CameraMotion",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x78",
+     "name": "u32_78",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x7c",
+     "name": "u32_7c",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x80",
+     "name": "f32_80",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x84",
+     "name": "f32_84",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x88",
+     "name": "u32_88",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x8c",
+     "name": "u32_8c",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x98",
+     "name": "t",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x9c",
+     "name": "start_ms",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xa4",
+     "name": "u32_a4",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xa8",
+     "name": "collide",
+     "type": "f32",
+     "size": 4,
+     "count": 6
+    },
+    {
+     "off": "0xc0",
+     "name": "tracked",
+     "type": "ptr:CamTrackNode",
+     "size": 4
+    },
+    {
+     "off": "0xc4",
+     "name": "tracked_count",
+     "type": "i32",
+     "size": 4
+    }
+   ],
+   "members": [
+    {
+     "off": "0x0",
+     "name": "from",
+     "class": "CamPose"
+    },
+    {
+     "off": "0x28",
+     "name": "to",
+     "class": "CamPose"
+    },
+    {
+     "off": "0x50",
+     "name": "current",
+     "class": "CamPose"
+    }
+   ],
+   "evidence": "start 0x423ec0 copies 0x28-byte poses to +0 / +0x28 / +0x50; init 0x423600 sets +0x98 = 1.0, +0xc0 list",
+   "confidence": "medium",
+   "notes": "one per camera mode (CameraFollow::motion(i)); CamMan::init/free_list/set_flags and CameraMan::track/mark/unmark/sweep act on it"
+  },
+  {
+   "class": "Plane4",
+   "size": "0x10",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "a",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "b",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "c",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "d",
+     "type": "f32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "ctors write 4 dwords",
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "class": "Records",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "data",
+     "type": "u8*",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "original/tables.hpp Records203 (get 0x42d0a0)",
+   "confidence": "high",
+   "notes": "records of 0x203 bytes; get_2bf 0x425ce0 moved to Records2bf"
+  },
+  {
+   "class": "Turns",
+   "size": "0x4",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "angle",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "sin/cos read +0",
+   "confidence": "low",
+   "notes": ""
+  },
+  {
+   "class": "CamRes",
+   "size": "0x9",
+   "base": "CamTracks",
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x8",
+     "name": "loaded",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [],
+   "evidence": "new(9) before ctor 0x428cf0; free/load use +0 / +4 / +8; this cast to CamTracks",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "class": "CamTracks",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "tracks",
+     "type": "u8*",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "count",
+     "type": "i32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "find / prepare: array at +0, count at +4",
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "class": "CameraTracks",
+   "size": null,
+   "base": "CamTracks",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "create_array writes +0 / +4 like CamTracks; casts this to CamTracks",
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "class": "Zones",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "bytes_0",
+     "type": "u8",
+     "size": 1,
+     "count": 9
+    },
+    {
+     "off": "0x1d",
+     "name": "i32_1d",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x21",
+     "name": "u32_21",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x74",
+     "name": "u32_74",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x78",
+     "name": "u32_78",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "binary accesses of its functions",
+   "confidence": "low",
+   "notes": "mixed label: its functions come from unrelated files / objects (camres/minires find read +0/+1/+4/+5 (byte-offset record walks), zones.cpp update +0x1d/+0x21 (DynArray-derived?), world_s any_hit +0x74/+0x78); fields are the union of their accesses byte arrays cover overlapping accesses: 0x0/4,0x1/4,0x4/4,0x5/4"
+  },
+  {
+   "class": "Clock",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0xc",
+     "name": "f32_c",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x1c",
+     "name": "u32_1c",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "advance_476bb0 (gamefil2) +0xc f32 / +0x1c",
+   "confidence": "low",
+   "notes": "rescale 0x45f1d0 moved to ProfNode; show_diff / minutes_mod have no this accesses"
+  },
+  {
+   "class": "CpuSpeed",
+   "size": null,
+   "base": "Profiler",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "measure writes Profiler +0x44/+0x48 (cpu frequency)",
+   "confidence": "medium",
+   "notes": "same object as Profiler; its functions are reassigned to Profiler (functions map)"
+  },
+  {
+   "class": "CpuUsage",
+   "size": null,
+   "base": "Profiler",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "release 0x45c5c0 frees the Profiler tables (+0x28..+0x54)",
+   "confidence": "medium",
+   "notes": "same object as Profiler; its functions are reassigned to Profiler (functions map)"
+  },
+  {
+   "class": "Link00",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [],
+   "members": [
+    {
+     "off": "0x0",
+     "name": "link",
+     "class": "ProfLink"
+    }
+   ],
+   "evidence": "set_owner 0x45e9e0: relink at +0 (owner head +8, tail +4)",
+   "confidence": "low",
+   "notes": "a profiler graph record with links at +0 and +0xc (owner of Link38/Link44 nodes?)"
+  },
+  {
+   "class": "Link0c",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [],
+   "members": [
+    {
+     "off": "0xc",
+     "name": "link",
+     "class": "ProfLink"
+    }
+   ],
+   "evidence": "set_owner 0x45eb20: relink at +0xc (owner head +0x10, tail +0xc)",
+   "confidence": "low",
+   "notes": ""
+  },
+  {
+   "class": "Link24",
+   "size": null,
+   "base": "ProfNode",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "set_owner 0x45efb0 relinks ProfNode.sibling (+0x24)",
+   "confidence": "high",
+   "notes": "same object as ProfNode; its functions are reassigned to ProfNode (functions map)"
+  },
+  {
+   "class": "Link38",
+   "size": null,
+   "base": "ProfNode",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "set_owner 0x45ed30 relinks ProfNode.func_link (+0x38)",
+   "confidence": "high",
+   "notes": "same object as ProfNode; its functions are reassigned to ProfNode (functions map)"
+  },
+  {
+   "class": "Link44",
+   "size": null,
+   "base": "ProfNode",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "set_owner 0x45ee70 relinks ProfNode.link_44 (+0x44)",
+   "confidence": "high",
+   "notes": "same object as ProfNode; its functions are reassigned to ProfNode (functions map)"
+  },
+  {
+   "class": "Party",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "i32_0",
+     "type": "i32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "binary accesses of its functions (q.py class)",
+   "confidence": "low",
+   "notes": ""
+  },
+  {
+   "class": "PerfStats",
+   "size": null,
+   "base": "Profiler",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "dump 0x45d330 casts this to Profiler / Timer (not thiscall)",
+   "confidence": "low",
+   "notes": "same object as Profiler; its functions are reassigned to Profiler (functions map)"
+  },
+  {
+   "class": "ProfNode",
+   "size": "0x50",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "last",
+     "type": "u32",
+     "size": 4,
+     "count": 2
+    },
+    {
+     "off": "0x8",
+     "name": "total",
+     "type": "u32",
+     "size": 4,
+     "count": 2
+    },
+    {
+     "off": "0x10",
+     "name": "start",
+     "type": "u32",
+     "size": 4,
+     "count": 2
+    },
+    {
+     "off": "0x18",
+     "name": "nesting",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x1c",
+     "name": "average",
+     "type": "u32",
+     "size": 4,
+     "count": 2
+    },
+    {
+     "off": "0x30",
+     "name": "children_tail",
+     "type": "ptr:ProfNode",
+     "size": 4
+    },
+    {
+     "off": "0x34",
+     "name": "children_head",
+     "type": "ptr:ProfNode",
+     "size": 4
+    }
+   ],
+   "members": [
+    {
+     "off": "0x24",
+     "name": "sibling",
+     "class": "ProfLink"
+    },
+    {
+     "off": "0x38",
+     "name": "func_link",
+     "class": "ProfLink"
+    },
+    {
+     "off": "0x44",
+     "name": "link_44",
+     "class": "ProfLink"
+    }
+   ],
+   "evidence": "ctor 0x45ec60 memset 0x50; stop 0x45f140, start 0x45f0f0, rescale 0x45f1d0, Link24/38/44::set_owner",
+   "confidence": "medium",
+   "notes": "u64 timers as u32[2] (accessed by halves). sibling.owner (+0x24) is the parent node; func_link.owner (+0x38) points to the function record whose +0 is the id (0x45cce0)."
+  },
+  {
+   "class": "ProfTimer",
+   "size": null,
+   "base": "ProfNode",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "stop 0x45f140 updates ProfNode +0/+8/+0x10/+0x18 and returns the parent +0x24",
+   "confidence": "high",
+   "notes": "same object as ProfNode; its functions are reassigned to ProfNode (functions map)"
+  },
+  {
+   "class": "Profiler",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "enabled",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "func_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "frames",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "frame_slot",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "time_accum",
+     "type": "u32",
+     "size": 4,
+     "count": 2
+    },
+    {
+     "off": "0x18",
+     "name": "frame_avg",
+     "type": "u32",
+     "size": 4,
+     "count": 2
+    },
+    {
+     "off": "0x24",
+     "name": "node_24",
+     "type": "ptr:ProfNode",
+     "size": 4
+    },
+    {
+     "off": "0x28",
+     "name": "last",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x2c",
+     "name": "total",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x30",
+     "name": "start",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x34",
+     "name": "depth",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x38",
+     "name": "average",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x3c",
+     "name": "history",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x40",
+     "name": "history_hits",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x44",
+     "name": "cpu_hz",
+     "type": "u32",
+     "size": 4,
+     "count": 2
+    },
+    {
+     "off": "0x4c",
+     "name": "funcs",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x50",
+     "name": "root",
+     "type": "ptr:ProfNode",
+     "size": 4
+    },
+    {
+     "off": "0x54",
+     "name": "current",
+     "type": "ptr:ProfNode",
+     "size": 4
+    },
+    {
+     "off": "0x58",
+     "name": "last_report",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x5c",
+     "name": "u32_5c",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "frame 0x45cef0 / leave 0x45cd20; CpuUsage::release frees +0x28..+0x40, +0x4c, +0x50",
+   "confidence": "medium",
+   "notes": "u64 counters are declared as u32[2] because they are also accessed by halves; +0x28..+0x40 are per-function u64/u32 arrays (1-based ids, history 60 per id). CpuUsage / CpuSpeed / PerfStats and the cpuusage Stats functions are this object. CpuUsage vector_deleting_dtor reads this-4 (the new[] count)."
+  },
+  {
+   "class": "Stats",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x35",
+     "name": "i32_35",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x42",
+     "name": "u32_42",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x46",
+     "name": "u32_46",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4a",
+     "name": "u32_4a",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4e",
+     "name": "u32_4e",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x52",
+     "name": "u32_52",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x56",
+     "name": "u32_56",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x21b",
+     "name": "u32_21b",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x247",
+     "name": "arr_247",
+     "type": "u32",
+     "size": 4,
+     "count": 11
+    },
+    {
+     "off": "0x273",
+     "name": "arr_273",
+     "type": "u32",
+     "size": 4,
+     "count": 11
+    },
+    {
+     "off": "0x29f",
+     "name": "arr_29f",
+     "type": "u32",
+     "size": 4,
+     "count": 11
+    },
+    {
+     "off": "0x2cb",
+     "name": "u32_2cb",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x2cf",
+     "name": "u32_2cf",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x2d3",
+     "name": "ptr_2d3",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x2d7",
+     "name": "ptr_2d7",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x1375",
+     "name": "f32_1375",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x148d",
+     "name": "f32_148d",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x1495",
+     "name": "f32_1495",
+     "type": "f32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "binary accesses of its remaining functions",
+   "confidence": "low",
+   "notes": "mixed label: its functions come from unrelated files / objects (itemres stat_id, nation2 transfer +0x1375.., d3dsys begin/end_frame +0x21b..+0x2d7 (SysEn?), i_barr count_unit +0x35..); fields are the union of their accesses; cpuusage functions moved to Profiler, timer.cpp ones to Timer"
+  },
+  {
+   "class": "HeldItem",
+   "size": "0x12",
+   "base": "ItemStack",
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x4",
+     "name": "u16_4",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x6",
+     "name": "uses",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xa",
+     "name": "max_uses",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xe",
+     "name": "u32_e",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "new(0x12) in Owner::new_record 0x4973a0 / Names::set_item 0x497270 writes every field",
+   "confidence": "high",
+   "notes": "ItemStack (g16: +0 item record id, +2 count) extended to the 0x12-byte record held by UnitData +0x2/+0x6/+0xa/+0xe; type indexes the 0x2bf item records"
+  },
+  {
+   "class": "OrderEntry",
+   "size": "0x21",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "kind",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "priority",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x5",
+     "name": "target",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x9",
+     "name": "radius",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xd",
+     "name": "spread",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x11",
+     "name": "started",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x15",
+     "name": "arg_15",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x19",
+     "name": "arg_19",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x1d",
+     "name": "expire_time",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "record_set 0x4bb950 writes +0..+0x1d; DynArray element size 0x21",
+   "confidence": "high",
+   "notes": "names from Ai::follow (+9 radius, +0xd random spread, +0x11 position latched, +0x1d expiry vs g_now); +0x19 is also read as i16 and once as a Unit pointer (0x36+0x2a1 in C++)"
+  },
+  {
+   "class": "LightningBolt",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "billboard",
+     "type": "ptr:Billboard",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "light",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "u32_8",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "u32_c",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "gamma",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "flash",
+     "type": "i16",
+     "size": 2
+    }
+   ],
+   "members": [],
+   "evidence": "Entry::close 0x68c840 (as_lightning_bolt), dtor 0x68c800, deleting dtor 0x689f60",
+   "confidence": "medium",
+   "notes": "element of Weather.bolts; +0x14 is a float passed to set_gamma"
+  },
+  {
+   "class": "ChoiceDialog",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "button_mask",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x444",
+     "name": "choice",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [
+    {
+     "off": "0x458",
+     "name": "button_a",
+     "class": "UiButton"
+    },
+    {
+     "off": "0x79e",
+     "name": "button_b",
+     "class": "UiButton"
+    },
+    {
+     "off": "0xae4",
+     "name": "button_c",
+     "class": "UiButton"
+    }
+   ],
+   "evidence": "start_any 0x6d5120 (i_buy.cpp): button mask +0, result +0x444, UiButtons +0x458/+0x79e/+0xae4",
+   "confidence": "medium",
+   "notes": "UiButton stride 0x346 matches the member spacing"
+  },
+  {
+   "class": "AnimGroupRec",
+   "size": "0x99",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "is_jump",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "kind",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4d",
+     "name": "bip_name",
+     "type": "char",
+     "size": 1,
+     "count": 33
+    },
+    {
+     "off": "0x6e",
+     "name": "anim_id",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x72",
+     "name": "model_ref",
+     "type": "i32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "AnimSet +0x30 holds count * 0x99 bytes; acquire/stream read +4, +0x4d, +0x6e, +0x72",
+   "confidence": "low",
+   "notes": "bip_name length guessed (up to +0x6e)"
+  },
+  {
+   "class": "CamTrackNode",
+   "size": "0x11",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "u32_0",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "prev",
+     "type": "ptr:CamTrackNode",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "next",
+     "type": "ptr:CamTrackNode",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "marked",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0xd",
+     "name": "unit",
+     "type": "ptr:void",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "CamMan::init 0x423600 allocates 0x11 bytes and clears +0/+4/+8/+0xc/+0xd",
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "class": "Records2bf",
+   "size": "0x18",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "head",
+     "type": "u8",
+     "size": 1,
+     "count": 20
+    },
+    {
+     "off": "0x14",
+     "name": "data",
+     "type": "u8*",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "original/tables.hpp Records2bf (get 0x425ce0)",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "class": "ProfLink",
+   "size": "0xc",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "owner",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "prev",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "next",
+     "type": "ptr:void",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "relink(self, owner, o, p, n): owner / prev / next triple at +o (cpuusage.cpp)",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "class": "SelectionList",
+   "size": null,
+   "base": "DynArrayB",
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x2e",
+     "name": "u16_2e",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x30",
+     "name": "bytes_30",
+     "type": "u8",
+     "size": 1,
+     "count": 8
+    },
+    {
+     "off": "0x38",
+     "name": "bytes_38",
+     "type": "u8",
+     "size": 1,
+     "count": 8
+    }
+   ],
+   "members": [],
+   "evidence": "ctor 0x51dbe0 (units_sel.cpp): DynArrayB::construct(4, 0x14), +0x2e = 0, memset +0x30 / +0x38 8 bytes",
+   "confidence": "medium",
+   "notes": "name from the file (units_sel.cpp); size at least 0x40"
+  }
+ ],
+ "functions": {
+  "0x4974f0": "UnitData",
+  "0x497e10": "UnitData",
+  "0x4971e0": "UnitData",
+  "0x4978f0": "UnitData",
+  "0x495950": "UnitData",
+  "0x497350": "UnitData",
+  "0x497440": "UnitData",
+  "0x497490": "UnitData",
+  "0x497560": "UnitData",
+  "0x497580": "UnitData",
+  "0x4975a0": "UnitData",
+  "0x4976b0": "UnitData",
+  "0x4978a0": "UnitData",
+  "0x4985f0": "UnitData",
+  "0x4987d0": "UnitData",
+  "0x498970": "UnitData",
+  "0x495f40": "UnitData",
+  "0x4975d0": "UnitData",
+  "0x4976e0": "UnitData",
+  "0x497270": "UnitData",
+  "0x4973a0": "UnitData",
+  "0x4bab50": "Order",
+  "0x4bac60": "Order",
+  "0x4bb660": "Order",
+  "0x4bb8d0": "Order",
+  "0x49cef0": "Order",
+  "0x4baf10": "Order",
+  "0x4baf80": "Order",
+  "0x4bd420": "Order",
+  "0x4bf5f0": "Order",
+  "0x4bf780": "Order",
+  "0x4c0f90": "Order",
+  "0x4c15a0": "Order",
+  "0x4c25a0": "Order",
+  "0x535870": "Order",
+  "0x535a20": "Order",
+  "0x535e30": "Order",
+  "0x5377b0": "Order",
+  "0x538730": "Order",
+  "0x53a060": "Order",
+  "0x53b1b0": "Order",
+  "0x53b610": "Order",
+  "0x53beb0": "Order",
+  "0x53c700": "Order",
+  "0x53c960": "Order",
+  "0x53cda0": "Order",
+  "0x53d3b0": "Order",
+  "0x53fa60": "Order",
+  "0x540070": "Order",
+  "0x541600": "Order",
+  "0x541b10": "Order",
+  "0x542820": "Order",
+  "0x542e60": "Order",
+  "0x543090": "Order",
+  "0x543c10": "Order",
+  "0x543fd0": "Order",
+  "0x544500": "Order",
+  "0x544690": "Order",
+  "0x544aa0": "Order",
+  "0x544e50": "Order",
+  "0x5450b0": "Order",
+  "0x545430": "Order",
+  "0x545d50": "Order",
+  "0x546970": "Order",
+  "0x4bb950": "OrderEntry",
+  "0x4bb9d0": "OrderEntry",
+  "0x42ad50": "Player",
+  "0x42b3c0": "Player",
+  "0x432250": "Player",
+  "0x4363a0": "Player",
+  "0x437910": "Player",
+  "0x438820": "Player",
+  "0x43a580": "Player",
+  "0x43b490": "Player",
+  "0x43bc50": "Player",
+  "0x43bd40": "Player",
+  "0x43c080": "Player",
+  "0x43d7a0": "Player",
+  "0x4e3bb0": "Talk",
+  "0x687130": "Trail",
+  "0x687180": "Trail",
+  "0x6871f0": "Trail",
+  "0x687410": "Trail",
+  "0x687500": "Trail",
+  "0x687a60": "Trail",
+  "0x689370": "TrailNodes",
+  "0x6893a0": "TrailNodes",
+  "0x689400": "TrailNodes",
+  "0x6893d0": "TrailNodes",
+  "0x689b10": "Weather",
+  "0x68c980": "Weather",
+  "0x689ca0": "Weather",
+  "0x68ac20": "Weather",
+  "0x68ab40": "Weather",
+  "0x68ae90": "Weather",
+  "0x68c2a0": "Weather",
+  "0x470c90": "Weather",
+  "0x4ced90": "Weather",
+  "0x68ace0": "Weather",
+  "0x68c840": "LightningBolt",
+  "0x68c800": "LightningBolt",
+  "0x689f60": "LightningBolt",
+  "0x68c940": "EffectState",
+  "0x4a7f70": "LightSys",
+  "0x46a560": "LightSys",
+  "0x4b21a0": "LightSys",
+  "0x6d5120": "ChoiceDialog",
+  "0x4149c0": "AnimSet",
+  "0x414a30": "AnimSet",
+  "0x414970": "AnimSet",
+  "0x4156d0": "AnimSet",
+  "0x414900": "AnimSet",
+  "0x414930": "AnimSet",
+  "0x4168d0": "AnimSet",
+  "0x4157c0": "AnimSet",
+  "0x415820": "AnimSet",
+  "0x416e30": "AnimSet",
+  "0x5b5dd0": "AnimDef",
+  "0x417250": "AnimDef",
+  "0x417980": "Archive",
+  "0x4179f0": "Archive",
+  "0x417020": "AnimRes",
+  "0x4171b0": "AnimRes",
+  "0x415280": "Database",
+  "0x414fe0": "Queue",
+  "0x6af370": "Players",
+  "0x6af710": "Players",
+  "0x423600": "CameraMotion",
+  "0x4236d0": "CameraMotion",
+  "0x423e70": "CameraMotion",
+  "0x425720": "CameraMotion",
+  "0x425840": "CameraMotion",
+  "0x4258a0": "CameraMotion",
+  "0x4258f0": "CameraMotion",
+  "0x4297d0": "CameraFollow",
+  "0x429860": "CameraFollow",
+  "0x425ce0": "Records2bf",
+  "0x4b9d40": "DynArray",
+  "0x45c8c0": "Profiler",
+  "0x45c520": "Profiler",
+  "0x45c5c0": "Profiler",
+  "0x45d170": "Profiler",
+  "0x45d260": "Profiler",
+  "0x45d2b0": "Profiler",
+  "0x45e780": "Profiler",
+  "0x45f1d0": "ProfNode",
+  "0x45f140": "ProfNode",
+  "0x45f0f0": "ProfNode",
+  "0x45ed30": "ProfNode",
+  "0x45ee70": "ProfNode",
+  "0x45efb0": "ProfNode",
+  "0x45cce0": "ProfNode",
+  "0x45ec60": "ProfNode",
+  "0x45f270": "ProfNode",
+  "0x58ac80": "Timer",
+  "0x58acb0": "Timer",
+  "0x58ace0": "Timer",
+  "0x60f020": "Vtx",
+  "0x60f0b0": "Vtx",
+  "0x60f140": "Vtx",
+  "0x60f1d0": "Vtx",
+  "0x60f280": "Vtx",
+  "0x60f390": "Vtx",
+  "0x60f420": "Vtx",
+  "0x5a8110": "Force",
+  "0x5a8150": "Force",
+  "0x5a81f0": "Force",
+  "0x5a8230": "Force",
+  "0x5a8280": "Force",
+  "0x5a8600": "Force",
+  "0x5201d0": "UnitDraw",
+  "0x521340": "UnitDraw",
+  "0x523e50": "Unit",
+  "0x528c60": "Unit",
+  "0x561050": "WorldArray",
+  "0x561090": "WorldArray",
+  "0x56f010": "WaterWave",
+  "0x51dbe0": "SelectionList"
+ },
+ "notes": "g10: Order / Ai / UnitData / Trail / Weather / Profiler / CameraMotion collect several labels that are the same object; the alias classes keep the old labels as bases. Reassigned to other groups: Player (g12, 12 Order:: functions on the player controller), Talk (g09), LightSys (g12), CameraFollow (g04), Players (g08), Timer / DynArray / Database (g13), AnimDef (g01), EffectState (g03), Unit (g09), OrderEntry gets g03 unlabelled 0x4bb950 / 0x4bb9d0. Weather size assumes EffectState = 0x78. Open: g09 maps 0x4cf0f0 to Sounds (it is a SoundList). Unassigned g10 unlabelled: 0x529920 0x416ed0 0x417410 0x418c60 0x41cc20 0x4203c0 0x4255c0 0x45ccb0 0x45d0f0 0x45f730 0x45f770 (no evidence of a class)."
+}

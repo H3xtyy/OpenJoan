@@ -1,0 +1,103 @@
+{
+ "group": "r9d_x64",
+ "classes": [
+  {
+   "class": "LineEdit",
+   "size": "0x91",
+   "base": "Gadget",
+   "vtable": "0x9d037c",
+   "fields": [
+    {
+     "off": "0x70",
+     "name": "text",
+     "type": "ptr:char",
+     "size": 4
+    },
+    {
+     "off": "0x74",
+     "name": "font",
+     "type": "ptr:Font2d",
+     "size": 4
+    },
+    {
+     "off": "0x78",
+     "name": "colour",
+     "type": "u8",
+     "size": 1,
+     "count": 4
+    },
+    {
+     "off": "0x7c",
+     "name": "text_7c",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x7e",
+     "name": "text_7e",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x80",
+     "name": "text_80",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x82",
+     "name": "align",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x83",
+     "name": "focused",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x84",
+     "name": "u8_84",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x85",
+     "name": "max_len",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x87",
+     "name": "cursor",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x89",
+     "name": "caret_colour",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x8d",
+     "name": "sel_anchor",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x8f",
+     "name": "view_start",
+     "type": "i16",
+     "size": 2
+    }
+   ],
+   "members": [],
+   "evidence": "ctor 0x45b790 (Gadget ctor 0x61de00, vtable 0x9d037c), new(0x91) in 0x45b590; set_focus 0x45bf80 / clear_focus 0x45bfb0 write +0x83 | r9d_x64: the same fields as EditBox (text, font, colour, text_7c/7e/80, align, focused, u8_84, max_len, cursor, caret_colour, sel_anchor, view_start): LineEdit is the chatbox's / save menu's view of the same edit box (SaveMenu::name_edit is an EditBox); with only `text` typed as a pointer its focused byte sat 4 bytes early on x64 (set_83 0x0045bf80 wrote EditBox::cursor, TextBox::draw never saw the focus)",
+   "confidence": "medium",
+   "notes": "new class: the chat box text edit (ChatBox +4). Gadget base layout not known to this group; +0x70 is read by ChatBox via the pointer.",
+   "override": true
+  }
+ ]
+}

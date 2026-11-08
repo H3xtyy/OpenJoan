@@ -1,0 +1,583 @@
+{
+ "group": "r8_x64",
+ "classes": [
+  {
+   "class": "MessageBox",
+   "size": "0xe2a",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "state",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "title",
+     "type": "char",
+     "size": 1,
+     "count": 64
+    },
+    {
+     "off": "0x44",
+     "name": "text",
+     "type": "char",
+     "size": 1,
+     "count": 1024
+    },
+    {
+     "off": "0x444",
+     "name": "u32_444",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x448",
+     "name": "image",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x44c",
+     "name": "x",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x44e",
+     "name": "y",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x450",
+     "name": "font",
+     "type": "ptr:Font2d",
+     "size": 4
+    },
+    {
+     "off": "0x454",
+     "name": "text_box",
+     "type": "ptr:Font2d",
+     "size": 4
+    }
+   ],
+   "members": [
+    {
+     "off": "0x458",
+     "name": "button0",
+     "class": "Button"
+    },
+    {
+     "off": "0x79e",
+     "name": "button1",
+     "class": "Button"
+    },
+    {
+     "off": "0xae4",
+     "name": "button2",
+     "class": "Button"
+    }
+   ],
+   "evidence": "MessageBox::draw (i_buy.cpp): +0 state, +0x44c/+0x44e pos, Font +0x450, text box +0x454, Buttons +0x458/+0x79e/+0xae4 (stride 0x346); init (f_work.cpp) +0x2e..+0x44 | r5: data-image review (re/image/spec, to_layout.py) | r8_x64 (views-interfac-en-1): text is char[0x400] (set_text 0x006d5230 strncpy 0x3ff + memset 0x400), +0x444 the result dword (get_444 0x006d5370, the ChoiceDialog view's choice), +0x448 the TextureManager::load handle of load_gpopup 0x006d3be0 freed by free_gpopup 0x006d3c60 (the Popup view's image)",
+   "confidence": "low",
+   "notes": "string lengths at +4/+0x44 are gaps up to the next field; init (f_work.cpp) may be another object. +0x450 Font (g04) / +0x454 TextRenderer (g01) left ptr:void R3: +0x450 Font (= Font2d alias: measure / text_height / draw_wrapped) and +0x454 TextRenderer/TextBox (draw_wrapped, measure_lines, +0x34 line_height) are both Font2d.",
+   "override": true
+  },
+  {
+   "class": "News",
+   "size": null,
+   "base": "DynArray",
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x1d",
+     "name": "flag_1d",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x1e",
+     "name": "flag_1e",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x1f",
+     "name": "dirty",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x20",
+     "name": "cached_size",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "news.cpp: DynArray::zap/size on this, then +0x1f/+0x20 (also Messages::post 0x4b9a90, mapped here by g06) | r8_x64 (views-unplaced-2-1): +0x1d/+0x1e the two bytes Action::reset_bytes 0x004b9310 clears from the News dtor 0x004b92c0 (the Action view)",
+   "confidence": "medium",
+   "notes": "the news message queue: DynArray (g13, 0x1d) + flags; 0x1d..0x1e unseen. News::add 0x46ab40 (f_work.cpp) -> NewsLog.",
+   "override": true
+  },
+  {
+   "class": "Display",
+   "size": "0x40c",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "state",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x1",
+     "name": "flag",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x2",
+     "name": "u8_2",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x4",
+     "name": "device",
+     "type": "ptr:IDirect3DDevice8",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "colours",
+     "type": "u8",
+     "size": 1,
+     "count": 1024
+    },
+    {
+     "off": "0x408",
+     "name": "pixel_format",
+     "type": "i32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "0x60f540 memset(this, 0, 0x40c), +0x408 = -1; Display::attach 0x60f5c0 (+4 = IDirect3D8*, +0x408 = pixel format from GetDisplayMode) | r8_x64 (views-unplaced-2-2): +0x8 the 256 palette entries Palette::load 0x0060f760 fills on this object (g_a4f888; the Palette view, flag +1 = loaded)",
+   "confidence": "medium",
+   "notes": "0x8..0x407 not accessed by its functions; Display::reset_device (0x5ff4a0) and SysEn::set_raster are SysEn functions r3: +0x4 is the device passed to attach (AddRef, GetDisplayMode = IDirect3DDevice8 slot 8), not the IDirect3D8.",
+   "override": true
+  },
+  {
+   "class": "CombatScreen",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "tex_iattcomb",
+     "type": "ptr:Texture",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "tex_commele",
+     "type": "ptr:Texture",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "u32_8",
+     "type": "ptr:BmpRes",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "u32_c",
+     "type": "ptr:BmpRes",
+     "size": 4
+    },
+    {
+     "off": "0x4460",
+     "name": "stat_ids",
+     "type": "i16",
+     "size": 2,
+     "count": 10
+    },
+    {
+     "off": "0x44d8",
+     "name": "item_ids",
+     "type": "i16",
+     "size": 2,
+     "count": 3
+    },
+    {
+     "off": "0x44de",
+     "name": "sel",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x44e0",
+     "name": "scroll",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x44e2",
+     "name": "row_count",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x44e4",
+     "name": "i16_44e4",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x44e6",
+     "name": "dirty",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [
+    {
+     "off": "0x10",
+     "name": "buttons_0",
+     "class": "Button"
+    },
+    {
+     "off": "0x356",
+     "name": "buttons_1",
+     "class": "Button"
+    },
+    {
+     "off": "0x69c",
+     "name": "buttons_2",
+     "class": "Button"
+    },
+    {
+     "off": "0x9e2",
+     "name": "buttons_3",
+     "class": "Button"
+    },
+    {
+     "off": "0xd28",
+     "name": "buttons_4",
+     "class": "Button"
+    },
+    {
+     "off": "0x106e",
+     "name": "buttons_5",
+     "class": "Button"
+    },
+    {
+     "off": "0x13b4",
+     "name": "buttons_6",
+     "class": "Button"
+    },
+    {
+     "off": "0x16fa",
+     "name": "buttons_7",
+     "class": "Button"
+    },
+    {
+     "off": "0x1a40",
+     "name": "buttons_8",
+     "class": "Button"
+    },
+    {
+     "off": "0x1d86",
+     "name": "buttons_9",
+     "class": "Button"
+    },
+    {
+     "off": "0x20cc",
+     "name": "buttons_10",
+     "class": "Button"
+    },
+    {
+     "off": "0x2412",
+     "name": "buttons_11",
+     "class": "Button"
+    },
+    {
+     "off": "0x2758",
+     "name": "buttons_12",
+     "class": "Button"
+    },
+    {
+     "off": "0x2a9e",
+     "name": "buttons_13",
+     "class": "Button"
+    },
+    {
+     "off": "0x2de4",
+     "name": "buttons_14",
+     "class": "Button"
+    },
+    {
+     "off": "0x312a",
+     "name": "buttons_15",
+     "class": "Button"
+    },
+    {
+     "off": "0x3470",
+     "name": "buttons_16",
+     "class": "Button"
+    },
+    {
+     "off": "0x37b6",
+     "name": "buttons_17",
+     "class": "Button"
+    },
+    {
+     "off": "0x3afc",
+     "name": "buttons_18",
+     "class": "Button"
+    },
+    {
+     "off": "0x3e42",
+     "name": "buttons_19",
+     "class": "Button"
+    },
+    {
+     "off": "0x4188",
+     "name": "scroll_bar",
+     "class": "ScrollBar"
+    }
+   ],
+   "evidence": "i_attcmb.cpp init/draw/handle_buttons; casts this->CombatScreen; draw/handle use Buttons at this+0x10+i*0x346 (0x9e2+i*0x346 stat buttons, 0x2a9e+i*0x346 item buttons, 0x3470/0x37b6/0x3afc/0x3e42) | r5: data-image review (re/image/spec, to_layout.py) | r8_x64 (views-unplaced-1-1): +0/+4 the IATTCOMB / COMMELE texture handles of 0x006ef8d0 (load) and 0x006ef970 (free), on b_a48ff0 (the CombatPanel view)",
+   "confidence": "low",
+   "notes": "new class (was Panel); 20 embedded Buttons (0x346 bytes, g03) from +0x10: [0..2] item, [3..12] stat, [13..15] item, [16] 0x3470, [17] 0x37b6, [18] 0x3afc, [19] 0x3e42",
+   "override": true
+  },
+  {
+   "class": "UnitAttScreen",
+   "size": "0x6b3",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "tex_iunitatt",
+     "type": "ptr:Texture",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "tex_commele",
+     "type": "ptr:Texture",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "u32_8",
+     "type": "ptr:BmpRes",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "i16_c",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0xe",
+     "name": "i16_e",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x10",
+     "name": "u32_10",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "u32_14",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "u8_18",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x1d",
+     "name": "u32_1d",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x21",
+     "name": "u8_21",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x370",
+     "name": "i8_370",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x6ae",
+     "name": "u8_6ae",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x6af",
+     "name": "u32_6af",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "i_unitatt.cpp reset/close/set_mode/update_6f7780 | r5: data-image review (re/image/spec, to_layout.py) | r8_x64 (views-unplaced-1-2): +0/+4 the IUNITATT / COMMELE texture handles of 0x006f6120 (load) and 0x006f61e0 (release), on b_a56398 (the Ui view)",
+   "confidence": "low",
+   "notes": "new class (was Panel); reset calls Hud::release on this, so it may share a header with Hud (g06)",
+   "override": true
+  },
+  {
+   "class": "ScrollBar",
+   "size": "0x2d8",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "owner",
+     "type": "ptr:BmpRes",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "texture",
+     "type": "ptr:Texture",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "metrics",
+     "type": "i32",
+     "size": 4,
+     "count": 27
+    },
+    {
+     "off": "0x74",
+     "name": "mode",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x19a",
+     "name": "u32_19a",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x19e",
+     "name": "u32_19e",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x26e",
+     "name": "has_thumb",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x26f",
+     "name": "thumb_img",
+     "type": "char",
+     "size": 1,
+     "count": 16
+    },
+    {
+     "off": "0x27f",
+     "name": "thumb_rect",
+     "type": "i32",
+     "size": 4,
+     "count": 4
+    },
+    {
+     "off": "0x28f",
+     "name": "has_track",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x290",
+     "name": "track_img",
+     "type": "char",
+     "size": 1,
+     "count": 48
+    },
+    {
+     "off": "0x2c0",
+     "name": "track_rect",
+     "type": "i32",
+     "size": 4,
+     "count": 4
+    },
+    {
+     "off": "0x2d0",
+     "name": "track_x",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x2d4",
+     "name": "track_y",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [
+    {
+     "off": "0x76",
+     "name": "vbar",
+     "class": "Scroll"
+    },
+    {
+     "off": "0x108",
+     "name": "hbar",
+     "class": "Derived"
+    },
+    {
+     "off": "0x1a2",
+     "name": "button_0",
+     "class": "SbButton"
+    },
+    {
+     "off": "0x1e6",
+     "name": "button_1",
+     "class": "SbButton"
+    },
+    {
+     "off": "0x22a",
+     "name": "button_2",
+     "class": "SbButton"
+    }
+   ],
+   "evidence": "ctor 0x761720 (Scroll ctor 0x62c610 at +0x76, 0x62b6c0 at +0x108); set_27 writes +8..+0x70; set_label 0x762690 ends at +0x2d4 | r5: data-image review (re/image/spec, to_layout.py) | r8_x64: +4 the texture handle ScrollBar::init 0x007620c0 stores from build 0x00761ae0 (CombatScreen passes its COMMELE texture, i_attcmb.cpp)",
+   "confidence": "medium",
+   "notes": "mode: 1 = vertical (vbar), 0 = horizontal (hbar); size 0x2d8 = end of the last field (no new seen); track_img is 3 consecutive char[16] names (out / over / down); ModeList/HudSlots/Slot::setup_* labels are this object (moved) R3: buttons (3 x SbButton, stride 0x44) spelled as 3 members so that SbButton.button (+0) resolves as a Button pointer.",
+   "override": true
+  }
+ ]
+}

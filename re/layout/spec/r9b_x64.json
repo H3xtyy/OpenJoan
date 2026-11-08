@@ -1,0 +1,72 @@
+{
+ "group": "r9b_x64",
+ "classes": [
+  {
+   "class": "MessageList",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x2e",
+     "name": "icons",
+     "type": "ptr:BmpRes",
+     "size": 4
+    },
+    {
+     "off": "0x32",
+     "name": "u32_32",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x36",
+     "name": "message_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x3a",
+     "name": "paused",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x3b",
+     "name": "pause_time",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x3f",
+     "name": "flag_3f",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x40",
+     "name": "message_texture",
+     "type": "ptr:Texture",
+     "size": 4
+    },
+    {
+     "off": "0x44",
+     "name": "dirty",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [
+    {
+     "off": "0x0",
+     "name": "list",
+     "class": "DynArrayB"
+    }
+   ],
+   "evidence": "set_paused/pause_sounds/stop_sounds iterate as_list(this) messages and keep the pause state at +0x3a/+0x3b | r5: data-image review (re/image/spec, to_layout.py) | r9b_x64: +0x44 dirty (Obj::is_best_4ae710 0x4ae710, flag_4af2b0, Timers::bump_oldest 0x499e40 and X::byte_3f 0x4d6a10 read the list through the Messages view: +0x3a paused, +0x3f flag_3f, +0x44 dirty; the bss object 0xa55a88 is 0x48 bytes)",
+   "confidence": "low",
+   "notes": "label MessageList exists but belongs to no group; the object is a List (g11) of Message (g06); base not declared because List's extent is unknown. +0x36/+0x40 from the List functions 0x463120/0x4734a0 g11 maps here.",
+   "override": true
+  }
+ ]
+}

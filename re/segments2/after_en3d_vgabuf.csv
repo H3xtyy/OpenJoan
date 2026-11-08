@@ -1,0 +1,2 @@
+start,end,name,confidence,evidence,target
+0x00612f30,0x006131a0,vgabuf_tail_g0,medium,"Sprite fill blit and Palette::channel (callers vgabuf save_bmp) plus trivial stubs after vgabuf.cpp, before vgalock.cpp.",en3d/vgabuf.cpp

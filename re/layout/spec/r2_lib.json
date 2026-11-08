@@ -1,0 +1,781 @@
+{
+ "group": "r2_lib",
+ "classes": [
+  {
+   "class": "Script",
+   "size": "0x70",
+   "base": "ScriptBlock",
+   "vtable": "0x9da9c8",
+   "override": true,
+   "fields": [
+    {
+     "off": "0x20",
+     "name": "name",
+     "type": "char",
+     "size": 1,
+     "count": 68
+    },
+    {
+     "off": "0x64",
+     "name": "strings",
+     "type": "ptr:DlgRes",
+     "size": 4
+    },
+    {
+     "off": "0x68",
+     "name": "string_pool",
+     "type": "ptr:StringPool",
+     "size": 4
+    },
+    {
+     "off": "0x6c",
+     "name": "pool_state",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "factory table 0x640db0 kind 1 = new(0x70) + ctor 0x63f190 (ScriptBlock ctor 0x63e6e0 first, vt 0x9da9c8, kind 1, +0x64/+0x68/+0x6c = 0); ScriptInit/ScriptReset (0x71) add +0x70; set_name 0x649860 strcpy to +0x20; destroy_tree 0x63f2c0 frees +0x64 (DlgRes::scalar_dtor 0x63f4e0) / +0x68 (StringPool dtor 0x63f530) and publishes +0x68 / &+0x6c in g_a6a0bc / g_a6a0c0; size 0x641c30 = block + 0x50 + DlgRes::byte_size(+0x64)",
+   "confidence": "high",
+   "notes": "Script block (vtable 0x9da9c8: sdtor 0x63f200, set_parent, destroy_tree 0x63f2c0, run 0x649060, parse 0x649140, ..., size 0x641c30); compile 0x649280. +0x14/+0x18/+0x1c lists come from ScriptBlock. name = 0x44 chars (0x20..0x63, bounded by +0x64). The esfuncs.cpp script callbacks labelled Script:: are cdecl free functions (null). The node ctors/dtors labelled Widget that g05 put here belong to ScriptExit (kind 10), ScriptCameraCall (kind 23) and ScriptInt (kind 25), new classes here; 0x648810 is ScriptIf's dtor (vt 0x9db69c)."
+  },
+  {
+   "class": "ScriptExit",
+   "size": "0x14",
+   "base": "ScriptNode",
+   "vtable": "0x9daf14",
+   "fields": [],
+   "members": [],
+   "evidence": "factory kind 10: new(0x14) + ctor 0x642ba0 (node ctor, vt 0x9daf14, kind 0xa); vt: sdtor 0x642be0, run 0x6409d0 (returns -1), parse 0x6409f0, size 0x641e00 (= node size)",
+   "confidence": "high",
+   "notes": "dtor 0x642c30. No own fields."
+  },
+  {
+   "class": "ScriptCameraCall",
+   "size": "0x22",
+   "base": "ScriptFuncCall",
+   "vtable": "0x9db0c8",
+   "fields": [],
+   "members": [],
+   "evidence": "factory kind 23: new(0x22) + ctor 0x643180 (ScriptFuncCall ctor 0x643000, vt 0x9db0c8, kind 0x17); created by ScriptFunc::parse 0x644190 for the CAMERA keyword (FUNC/DIALOG/CAMERA/ACTION -> kinds 21..24); vt +0x30 nop 0x661020, +0x34 true 0x661040; size 0x6421f0",
+   "confidence": "medium",
+   "notes": "Name from the keyword order in parse_func ('Expecting FUNC/DIALOG/CAMERA/ACTION'). dtor 0x643210, sdtor 0x6431c0."
+  },
+  {
+   "class": "ScriptInt",
+   "size": "0x20",
+   "base": "ScriptNode",
+   "vtable": "0x9db18c",
+   "fields": [
+    {
+     "off": "0x14",
+     "name": "vec",
+     "type": "f32",
+     "size": 4,
+     "count": 3
+    }
+   ],
+   "members": [],
+   "evidence": "factory kind 25: new(0x20) + ctor 0x6433c0 (node ctor, vt 0x9db18c, kind 0x19); parse 0x6437d0 = ScriptLexer::expect_xyz(this+0x14) (3 floats); size 0x6422b0 = node size + 0xc",
+   "confidence": "medium",
+   "notes": "Label ScriptInt kept, but the payload is a 3-float vector constant (expect_xyz), not an int. run 0x6437b0 returns 1; dtor 0x643450, sdtor 0x643400."
+  },
+  {
+   "class": "Sounds",
+   "size": null,
+   "base": "Panels",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "override": true,
+   "evidence": "Sounds::pause 0x4ced90 / resume 0x470c90 / play_sound 0x4cf0f0 / emit_particles 0x494810 all run on the SoundList/Party object (as_sound_list(this)->entry(1..12), +0 volume) = the sound player Panels (r2_ui)",
+   "confidence": "medium",
+   "notes": "label alias of Panels (the game sound player, global g_a5cf98); g10's alias to Weather was wrong: only Sounds::stop 0x68ab40 (weather.cpp, +4 rain voice, EffectStates +0x60/+0xd8/+0x150) is a Weather method and stays there. Sounds::create 0x4959b0 / create_missing 0x495b40 (unitdata.cpp, +0x12/+0x16/+0x1a channels) are UnitData methods."
+  },
+  {
+   "class": "SoundStream",
+   "size": "0x24",
+   "base": null,
+   "vtable": null,
+   "override": true,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "open",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "track",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "mode",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "volume",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "start_time",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "u32_14",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "fade_ms",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1c",
+     "name": "last_tick",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x20",
+     "name": "video",
+     "type": "ptr:Video",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "music player (music.cpp, global 0xa5d0d0): ctor 0x59acd0 memset 0x24; play 0x59ae60 news Video(0x30) into +0x20, sets +4 track, +8 mode, +0x10 start, +0x18 = 8000; running 0x59b070 / update 0x59b1c0 / set_volume 0x59b150 (+0xc) / set_mode 0x59b330 / release 0x59ae00 / init 0x59ad30 / close 0x59ad70",
+   "confidence": "high",
+   "notes": "Same object as g08's Slot (music/video slot, only music.cpp functions); Slot should become an alias with base SoundStream (its functions moved here). +0x14 never accessed (memset only). mode 1 = loop, 2 = fade (fade_ms counts down from 8000)."
+  },
+  {
+   "class": "Timer",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "initialized",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "rate",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "rate_ms",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "rate2",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "rate2_ms",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "paused",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "time_offset",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1c",
+     "name": "lag_ms",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x20",
+     "name": "lag_frames",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x24",
+     "name": "rate_ticks",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x28",
+     "name": "on_time_ticks",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x2c",
+     "name": "skip_frame",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x30",
+     "name": "pause_marked",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x34",
+     "name": "pause_start",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x38",
+     "name": "fps_time",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x3c",
+     "name": "frame_count",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x40",
+     "name": "fps",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "Timer::init 0x58a830 (gameset.cpp) writes +0..+0x40 (rate_ms = 1000 / rate); set_rate/pause/mark 0x58a920..0x58aa40",
+   "confidence": "medium",
+   "notes": "Size unknown (>= 0x44; init 0x58a830 writes up to +0x40). The grab-bag functions of the label were moved to their objects: 0x41b090 running -> ModelObj (animscr_fx.cpp, end_time +0x23), 0x41d280 remaining -> MapObject (actor +0x86; callers are MapObject subclasses), 0x7294b0 remaining -> CampScreen (objm_army.cpp, p_159 +0x159), 0x4cd5d0 tick -> Scenario (this = Mission/Game+0x17 = the Scenario sub-object, scenario.cpp; +0x10 entries, local entry +0x14 i32_1a6/i32_1aa = +0x1ba/+0x1be). Earlier: 0x761630 expire -> Expiry, 0x45e7f0 -> Profiler, misc.cpp ones -> Misc.",
+   "override": true
+  },
+  {
+   "class": "CamZones",
+   "size": "0x4c",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "unit_id",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x12",
+     "name": "tracks",
+     "type": "ptr:CamRes",
+     "size": 4
+    },
+    {
+     "off": "0x16",
+     "name": "enabled",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x18",
+     "name": "current_zone",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x1c",
+     "name": "rail_segment",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x20",
+     "name": "rail_segment_b",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x24",
+     "name": "rail_param",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x28",
+     "name": "last_position",
+     "type": "f32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x34",
+     "name": "height_offset",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x38",
+     "name": "script_start",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x3c",
+     "name": "script_end",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x40",
+     "name": "key_base",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x44",
+     "name": "looping",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x46",
+     "name": "keys_per_ms",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x4a",
+     "name": "hand_back",
+     "type": "i16",
+     "size": 2
+    }
+   ],
+   "members": [],
+   "evidence": "ctor 0x425dc0 memset 0x4c (new 0x4c); init 0x425e20; field comments in camzone.cpp (CameraZone::update / enter / scripted)",
+   "confidence": "medium",
+   "notes": "tracks -> 9-byte CamTracks object (ctor 0x428cf0) whose +0 is the array of 0xaca-byte zones. Labels CameraZone and CamMotion are this object (functions merged). 0x4..0x11 unknown. tracks typed ptr:CamRes (the 9-byte CamTracks-derived resource: CamRes::free / Tracks::get / CamTracks::find are called with ecx = +0x12). List::clear_427170 (camzone.cpp, +0x8c/+0x90 list, next at +0x341, calls Unit::unlink_owner on this) is a Unit method, reassigned.",
+   "override": true
+  },
+  {
+   "class": "WaveRes",
+   "size": "0x8f",
+   "base": null,
+   "vtable": "0x9d5b08",
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "vtable",
+     "type": "ptr:vtable",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "index",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x6",
+     "name": "name",
+     "type": "char",
+     "size": 1,
+     "count": 49
+    },
+    {
+     "off": "0x37",
+     "name": "file",
+     "type": "char",
+     "size": 1,
+     "count": 49
+    },
+    {
+     "off": "0x68",
+     "name": "max_play",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x69",
+     "name": "volume",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x6d",
+     "name": "f32_6d",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x71",
+     "name": "f32_71",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x75",
+     "name": "min_dist",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x79",
+     "name": "max_dist",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x7d",
+     "name": "f32_7d",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x81",
+     "name": "i32_81",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x85",
+     "name": "flags",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x86",
+     "name": "u16_86",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x88",
+     "name": "u16_88",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x8a",
+     "name": "stream",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x8b",
+     "name": "buffer",
+     "type": "ptr:Sound3DBuffer",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "ctor 0x4d08f0 memset(+4, 0x8b); array stride 0x8f; SoundRes load 0x4d0de0 fills every field",
+   "confidence": "high",
+   "notes": "float names guessed from the SOUND table column order; vector_delete 0x4d0ce0 reads the array cookie at -4 (left unassigned); g13 maps Array::vector_delete 0x6390f0 here, whose -4 cookie read is the one remaining checker report (not a field) buffer = Sound3DBuffer (WaveRes::open 0x4d0a60 calls Sound3d::load 0x59ef00 with ecx = +0x8b).",
+   "override": true
+  },
+  {
+   "class": "DynArrayB",
+   "size": "0x2e",
+   "base": "DynArray",
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x1d",
+     "name": "empty_room_array",
+     "type": "ptr:EmptyRoom",
+     "size": 4
+    },
+    {
+     "off": "0x21",
+     "name": "empty_room_num",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x25",
+     "name": "empty_room_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x29",
+     "name": "reuse_interval_days",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x2d",
+     "name": "flag_2d",
+     "type": "char",
+     "size": 1
+    }
+   ],
+   "members": [],
+   "evidence": "new(0x2e) before DynArrayB::DynArrayB 0x5856a0; src/original/dynarray.hpp",
+   "confidence": "high",
+   "notes": "linkin 0x5857a0 / linkout 0x5858c0 read empty_room_array[count-1] (1-based count, scaled index: 0x1d+-0x8 in the report); a negative offset cannot be declared, the access is to EmptyRoom (g13, 8 bytes) records - explained, not a missing field. 0x4aede0 (ele_num - empty_room_count = live records) is a generic DynArrayB method (reassigned from SlotPool).",
+   "override": true
+  },
+  {
+   "class": "Modifiers",
+   "size": null,
+   "base": "UnitData",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "Modifiers::slot/sum read +0 / +0xa / +0x12 of Unit+0x1c1 = UnitData",
+   "confidence": "high",
+   "notes": "same object as UnitData; its functions are reassigned to UnitData (functions map). Table::slot 0x5239e0 (g11 put it here) reads entries +0x30 of a UnitTable (UpgradeRes::unit_upgrade_list 0x531e70 returns 0x35-byte UnitTable records: count +0x2c, entries +0x30); reassigned to UnitTable.",
+   "override": true
+  },
+  {
+   "class": "MemHeader",
+   "size": "0x10",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "next",
+     "type": "ptr:MemHeader",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "prev",
+     "type": "ptr:MemHeader",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "size",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "magic",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "src/original/mem.hpp (static_assert 0x10); init 0x58e650 / 0x58e6a0 write next=prev=0, size=arg, magic=0x12345678",
+   "confidence": "high",
+   "notes": "16-byte header in front of every Mem block (malloc(size + 0x11)); x64: next/prev become 8 bytes, so the header grows to 0x18 - Mem::of(body) must use sizeof(MemHeader)."
+  },
+  {
+   "class": "SlotPool",
+   "size": null,
+   "base": "ParticlePool",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "partslot.cpp SlotPool:: functions use as_particle_pool(this) and only DynArrayB calls on this (linkin/linkout/List::count/List::slot, empty_room_count +0x25)",
+   "confidence": "medium",
+   "notes": "label alias of ParticlePool (r2_engine3d, 0x3e, base DynArrayB), which is also g07's Elem (ctor 0x663630 DynArrayB(0x80,0x64) + memset(+0x2e, 0x10); reset 0x6637a0; fields alive +0x2e, emitted +0x32, last_emit +0x36, carry f32 +0x3a). Functions moved to ParticlePool."
+  }
+ ],
+ "functions": {
+  "0x41b090": "ModelObj",
+  "0x41d280": "MapObject",
+  "0x427170": "Unit",
+  "0x456070": null,
+  "0x470c90": "Panels",
+  "0x494810": "Panels",
+  "0x4959b0": "UnitData",
+  "0x495b40": "UnitData",
+  "0x4aede0": "DynArrayB",
+  "0x4cd5d0": "Scenario",
+  "0x4ced90": "Panels",
+  "0x4cf0f0": "Panels",
+  "0x5239e0": "UnitTable",
+  "0x540c10": "Order",
+  "0x543330": "Order",
+  "0x58e650": "MemHeader",
+  "0x58e6a0": "MemHeader",
+  "0x59acd0": "SoundStream",
+  "0x59ad00": "SoundStream",
+  "0x59ad30": "SoundStream",
+  "0x59ad70": "SoundStream",
+  "0x59ae00": "SoundStream",
+  "0x59ae60": "SoundStream",
+  "0x59b070": "SoundStream",
+  "0x59b150": "SoundStream",
+  "0x59b1c0": "SoundStream",
+  "0x59b330": "SoundStream",
+  "0x63eb80": null,
+  "0x63ef50": "ScriptBlock",
+  "0x63f190": "Script",
+  "0x63f200": "Script",
+  "0x63f250": "Script",
+  "0x63f2c0": "Script",
+  "0x63f530": "StringPool",
+  "0x6409d0": "ScriptExit",
+  "0x6409f0": "ScriptExit",
+  "0x641c30": "Script",
+  "0x641e00": "ScriptExit",
+  "0x6421f0": "ScriptCameraCall",
+  "0x6422b0": "ScriptInt",
+  "0x642ba0": "ScriptExit",
+  "0x642be0": "ScriptExit",
+  "0x642c30": "ScriptExit",
+  "0x643180": "ScriptCameraCall",
+  "0x6431c0": "ScriptCameraCall",
+  "0x643210": "ScriptCameraCall",
+  "0x6433c0": "ScriptInt",
+  "0x643400": "ScriptInt",
+  "0x643450": "ScriptInt",
+  "0x6437b0": "ScriptInt",
+  "0x6437d0": "ScriptInt",
+  "0x648810": "ScriptIf",
+  "0x6488d0": "ScriptBlock",
+  "0x649060": "Script",
+  "0x649140": "Script",
+  "0x649280": "Script",
+  "0x649860": "Script",
+  "0x6512d0": null,
+  "0x651430": null,
+  "0x651550": null,
+  "0x651590": null,
+  "0x6515d0": null,
+  "0x651690": null,
+  "0x651a30": null,
+  "0x6520d0": null,
+  "0x652190": null,
+  "0x6522f0": null,
+  "0x652370": null,
+  "0x652aa0": null,
+  "0x652e60": null,
+  "0x652ee0": null,
+  "0x653060": null,
+  "0x653110": null,
+  "0x653130": null,
+  "0x653150": null,
+  "0x653df0": null,
+  "0x653f30": null,
+  "0x6541d0": null,
+  "0x6542b0": null,
+  "0x654560": null,
+  "0x6547a0": null,
+  "0x6547e0": null,
+  "0x654ea0": null,
+  "0x654fa0": null,
+  "0x655010": null,
+  "0x6556e0": null,
+  "0x655750": null,
+  "0x6558d0": null,
+  "0x655b20": null,
+  "0x655cd0": null,
+  "0x655f80": null,
+  "0x6561b0": null,
+  "0x6568d0": null,
+  "0x6569f0": null,
+  "0x657fd0": null,
+  "0x6582f0": null,
+  "0x658920": null,
+  "0x659060": null,
+  "0x6595e0": null,
+  "0x659720": null,
+  "0x659740": null,
+  "0x6597d0": null,
+  "0x6597f0": null,
+  "0x659810": null,
+  "0x659860": null,
+  "0x6598f0": null,
+  "0x659910": null,
+  "0x659940": null,
+  "0x659990": null,
+  "0x6599e0": null,
+  "0x659ac0": null,
+  "0x659ae0": null,
+  "0x659b10": null,
+  "0x659b60": null,
+  "0x659ca0": null,
+  "0x659cc0": null,
+  "0x659d40": null,
+  "0x659d60": null,
+  "0x659d90": null,
+  "0x659de0": null,
+  "0x659e40": null,
+  "0x659e60": null,
+  "0x659e80": null,
+  "0x659ed0": null,
+  "0x659f20": null,
+  "0x65a0e0": null,
+  "0x65a280": null,
+  "0x65a2a0": null,
+  "0x65a2d0": null,
+  "0x65a350": null,
+  "0x65a370": null,
+  "0x65a3c0": null,
+  "0x65a400": null,
+  "0x65a460": null,
+  "0x65a6e0": null,
+  "0x65a840": null,
+  "0x65a870": null,
+  "0x65a8a0": null,
+  "0x65a900": null,
+  "0x65a930": null,
+  "0x65a9f0": null,
+  "0x65aa80": null,
+  "0x65aad0": null,
+  "0x65ab10": null,
+  "0x65afd0": null,
+  "0x65aff0": null,
+  "0x65b240": null,
+  "0x65b8c0": null,
+  "0x65bce0": null,
+  "0x65c130": null,
+  "0x65c200": null,
+  "0x65c420": null,
+  "0x65c9e0": null,
+  "0x65d070": null,
+  "0x65d560": null,
+  "0x65e810": null,
+  "0x65e8c0": null,
+  "0x65ead0": null,
+  "0x65ecf0": null,
+  "0x65ed50": null,
+  "0x65ee30": null,
+  "0x65f6a0": null,
+  "0x65f850": null,
+  "0x65fbd0": null,
+  "0x65fd10": null,
+  "0x661020": "ScriptCameraCall",
+  "0x661040": "ScriptCameraCall",
+  "0x663710": "ParticlePool",
+  "0x663740": "ParticlePool",
+  "0x663800": "ParticlePool",
+  "0x663850": "ParticlePool",
+  "0x6638b0": "ParticlePool",
+  "0x6638e0": "ParticlePool",
+  "0x663910": "ParticlePool",
+  "0x663960": "ParticlePool",
+  "0x68ab40": "Weather",
+  "0x7294b0": "CampScreen"
+ },
+ "notes": "r2_lib (lib family). Base fix: Script now derives from ScriptBlock (g16), 0x70 bytes, vt 0x9da9c8 (ScriptInit/ScriptReset 0x71 resolve). Merges: Sounds -> alias of Panels (r2_ui sound player; g10's Weather alias was wrong), SoundStream = the music player (g08 Slot is the same object), SlotPool -> alias of ParticlePool (= g07 Elem), Modifiers stays alias of UnitData. New classes: ScriptExit (kind 10), ScriptCameraCall (kind 23), ScriptInt (kind 25, 3-float payload), MemHeader, SlotPool. Needs for other classes: (ui) Panels +0 is the master sound volume (i32, play_sound/emit_particles multiply it by WaveRes volume * 0.01) - Panels now also receives Sounds::pause/resume/play_sound/emit_particles; Slot (g08) should become an alias with base SoundStream (its music.cpp functions moved there). (units) Unit needs +0x8c (u32 count) and +0x90 (ptr:Unit, list head; next link +0x341) for List::clear_427170 (camzone.cpp, moved to Unit); MapObject gets Timer::remaining 0x41d280 (reads actor +0x86 ->+4/+0x44/+0x4c/+0x50 = Actor anim state); Order gets 0x540c10 nearest_archer / 0x543330 archer_cover (ur_orders.cpp, this cast Order, no field access). (player/lead) Scenario (g12) gets Timer::tick 0x4cd5d0 and needs u32 timers at +0x1ca/+0x1ce/+0x1d2 (between the local ScenarioEntry 0x14..0x1c5 and u32_1da); g06 Mission +0x17 is this Scenario sub-object (Mission::tick 0x471620 calls Scenario::mode/tick on this+0x17). (ui) CampScreen gets Timer::remaining 0x7294b0 (p_159 +0x159 is an Actor-like anim player: +4 AnimSet*, +0x44 anim, +0x4c start, +0x50 loop). (engine3d) ModelObj gets 0x41b090 running (end_time +0x23); ParticlePool should take g07 Elem's fields (+0x2e alive i32, +0x32 emitted i32, +0x36 last_emit i32, +0x3a carry f32), ctor 0x663630 and reset 0x6637a0, and Elem become an alias; it now receives the SlotPool functions 0x663710..0x663960. (g15, no family) ScriptIf should be declared base ScriptBlock, size 0x24 (factory kind 12), vt 0x9db69c, own field +0x20 else_branch ptr:ScriptNode only (its +0/+8/+0x14 are ScriptNode/ScriptBlock fields); its dtor 0x648810 is moved to it. (g05/g15, no family) StringTable (g05) = DlgRes (g15): same layout (+1 count, +3 16-byte entries, +7 data, +0xb size); Script+0x64 is typed ptr:DlgRes. Other moves: Table::slot 0x5239e0 -> UnitTable (g12, +0x30 entries), Obj63f530 sdtor -> StringPool, Sounds::create/create_missing -> UnitData, the cdecl esfuncs.cpp callbacks labelled Script:: and Script::error 0x63eb80 -> null. Remaining explained reports: DynArrayB linkin/linkout empty_room_array[count-1] (-0x8), Input 0x5932e0 computed-pointer read at +0, WaveRes/Profiler vector-delete cookie reads at this-4."
+}

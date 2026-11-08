@@ -1,0 +1,5 @@
+# The ranges of joan.exe's .data left out of the data image (src/data/dead.cpp), frozen: the replay's state hash covers .data /
+# .bss (0x009f4000..), so an object that becomes dead there would change the hash of every recording. re/data_classify.py keeps
+# every .data object outside these ranges, whatever src/ names. One `0xADDR SIZE` per line.
+0xa2e2fc 4840
+0xa2f5e8 4852

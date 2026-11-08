@@ -1,0 +1,4 @@
+start,end,name,confidence,evidence,target
+0x0059e220,0x0059ec90,se_tail_g0,medium,"Sound-effect dispatch (Top4 effect lists, Effects::trigger, Sound::play via Lookup/Audio) directly after se.cpp Se::free.",ilib/se.cpp
+0x0059ed50,0x0059edc0,sound3d_g0a,high,Sound3DBuffer zero/dtor/stub (callers Sound3D::create_buffer) directly before sound3d.cpp Sound3D::cleanup.,ilib/sound3d.cpp
+0x0059ee00,0x0059f340,sound3d_g0b,high,OpenAL buffer/source loaders between sound3d.cpp Sound3D::cleanup and its next functions.,ilib/sound3d.cpp

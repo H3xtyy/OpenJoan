@@ -1,0 +1,8 @@
+start,end,name,confidence,evidence
+0x004d2910,0x004d2a70,speech_s_tail,medium,Small dialogue/panel accessors directly after speech_s.cpp's last anchor and before the next TU's static-init set: most likely the tail of speech_s.cpp.
+0x004d2aa0,0x004d6a10,gamedraw,low,TU opened by a math init set (bss 0xa3a294..0xa3a2a0) holding Game::draw (its .rdata 0x9d5c54.. lies between speech_s.cpp's and the window TU's) with outline/path/sky-ray/anim-res/find_target helpers; several look incrementally relocated.
+0x004d6a70,0x004d8be0,mainwnd,medium,TU opened by global-object initialisers (ComInit, Image): Wnd/Window ("JoanOfArc" class), load_fonts, release_globals, demo music / CD drive lookup, wndproc, video_copy_frame; .rdata 0x9d5d68..0x9d6250 monotonic.
+0x004d8c10,0x004d8c10,msglog_draw,medium,Message::draw ("CORN_BL"... strings at .rdata 0x9d51d8.., in msglog.cpp's area far before its neighbours): relocated msglog.cpp code.
+0x004d96e0,0x004da620,t_basic,high,Init set + generated text accessors of T_BASIC.TXR categories (DATE/AMPM/YEAR/TSA/DSA/NAME/POPUP) ending with load_basic_txr ("RESOURCE\T_BASIC.TXR"); own .rdata 0x9d6254..0x9d62ac.
+0x004da650,0x004de9c0,t_interf,high,Generated text accessors of T_INTERF.TXR categories (BUY/GMSG/.../OPTMENU/OBJMENU/.../CREDITS) ending with load_interface ("RESOURCE\T_INTERF.TXR", .rdata 0x9d6330 after t_basic's); same t_* pattern as the following t_scrres.cpp.
+0x004de9f0,0x004de9f0,misc_004de9f0,low,Struct7::zero (memset helper of a global object) between load_interface and t_scrres.cpp's first anchor; t_interf tail or t_scrres head.

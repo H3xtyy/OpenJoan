@@ -1,0 +1,10 @@
+start,end,name,confidence,evidence
+0x004a7980,0x004a8f20,lightsys_b,high,"Sky moon/after_frame and Weather::tick (""moon01""/""SNOW""/""RAIN"" 9d4700..9d4710 right after the lightsys __FILE__ 9d46c4), before lightsys find_set: ww/lightsys.cpp."
+0x004a9180,0x004a9530,lightsys_c,medium,Obj4a9::update and Table::find (used by Weather::tick) between lightsys find_set and the misplaced unitlvl anchor: probably ww/lightsys.cpp.
+0x004a9940,0x004a9aa0,lightsys_d,medium,Weather sound reset helper (called by Weather::tick) with its Str::cut helper: probably ww/lightsys.cpp.
+0x004a9d40,0x004a9d40,misc_4a9d40,low,"Dead Music::play_event with cut-content strings at 9d58a8, far past this stretch strings; looks relocated by the incremental linker, like the unitlvl/trackres anchors around it."
+0x004aa2e0,0x004af8a0,message,medium,"On-screen message/speaker system (Message::init/update_slide, MessageList::post, Messages::update/tick), strings 9d4718..9d51f0."
+0x004af910,0x004afb20,mglist,low,"Global unit list (vtable 9d524c, ctor/dtor of a static global, Units add/remove/update)."
+0x004afbc0,0x004b0810,mlfader,medium,"Light fader manager (Fader::update, Children, Mgr vtable 9d5278, ""RANDOM_ATTENUATION"" 9d5260) used by Scene::create_light and Light::release."
+0x004b08a0,0x004b0930,mode,medium,"Display-mode preset table a016a0 helpers (copy_preset, select_preset)."
+0x004b0980,0x004b0980,modelres_pre,low,ObjL::ctor of a global right before the modelres.cpp functions: probably ww/modelres.cpp.

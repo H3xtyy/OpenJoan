@@ -1,0 +1,2 @@
+start,end,name,confidence,evidence,target
+0x004cdfd0,0x004cdfd0,sdateres_g0,high,Ctor of the SdateRes global a56f58 (init_569c50; its dtor is sdateres Obj::forward_4ce070) directly before sdateres.cpp.,game/sdateres.cpp

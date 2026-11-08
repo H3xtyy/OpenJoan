@@ -1,0 +1,23 @@
+# Normalise line endings: the repository is developed on Linux and built on Windows too.
+* text=auto eol=lf
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+*.rc text eol=crlf
+*.sln text eol=crlf
+*.vcxproj text eol=crlf
+
+# Generated tables: diff as text but mark them so reviewers can collapse them.
+src/fn_names.hpp linguist-generated=true
+src/data_names.hpp linguist-generated=true
+src/data/layout.hpp linguist-generated=true
+src/data/*.inc linguist-generated=true
+src/original/gen/** linguist-generated=true
+src/code_slots.inc linguist-generated=true
+src/import_table.inc linguist-generated=true
+re/*.csv linguist-generated=true
+re/layout/layouts.json linguist-generated=true
+
+# Binary third-party artefacts
+third_party/**/*.dll binary
+third_party/**/*.lib binary

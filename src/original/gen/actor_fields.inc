@@ -1,0 +1,59 @@
+// Generated (re/layout/gen_types.py) from re/layout/layouts.json: the data members of Actor
+// (r5_image.json, confidence medium). Do not edit; change the spec.
+    ActorDef* def;  // 0x0
+    AnimDef* anim;  // 0x4
+    std::int32_t kind;  // 0x8
+    void* owner;  // 0xc
+    std::int32_t holder_kind;  // 0x10
+    Attachment* holder;  // 0x14
+    Scene* scene;  // 0x18
+    Scene* scene_params0;  // 0x1c
+    Actor* scene_prev;  // 0x20
+    Actor* scene_next;  // 0x24
+    float scale;  // 0x28
+    std::uint32_t skin;  // 0x2c
+    float fade;  // 0x30
+    std::int32_t alpha;  // 0x34
+    std::uint32_t fade_38;  // 0x38
+    std::int32_t effect;  // 0x3c
+    std::uint32_t list_index;  // 0x40
+    std::int32_t action;  // 0x44
+    std::int32_t sub_action;  // 0x48
+    std::uint32_t start_time;  // 0x4c
+    std::uint32_t anim_flags;  // 0x50
+    std::uint32_t last_eval;  // 0x54
+    std::uint32_t anim_time;  // 0x58
+    std::int32_t record;  // 0x5c
+    float velocity[3];  // 0x60
+    float impulse[3];  // 0x6c
+    AnimKey* keys;  // 0x78
+    std::uint32_t key_count;  // 0x7c
+    std::uint32_t blend_ms;  // 0x80
+    AnimDef* cursor_owner;  // 0x84
+    std::uint8_t* bone_mats;  // 0x88
+    Bone* bone;  // 0x8c
+    Plane* plane;  // 0x90
+    void* last_model;  // 0x94
+    std::uint8_t gap_98[0x4];
+    std::int32_t last_lod;  // 0x9c
+    std::uint8_t gap_a0[0x7];
+    std::int8_t vis_a7;  // 0xa7
+    float vis_time;  // 0xa8
+    std::int32_t morph_cap;  // 0xac
+    std::int32_t morph_count;  // 0xb0
+    MorphPtr* morphs;  // 0xb4
+    std::uint32_t aim_mode;  // 0xb8
+    float aim_sphere[4];  // 0xbc
+    float aim_box[6];  // 0xcc
+    std::uint32_t collide_kind;  // 0xe4
+    float collide_offset[2];  // 0xe8
+    float collide_radius;  // 0xf0
+    float collide_height;  // 0xf4
+    std::int32_t faded;  // 0xf8
+    std::int8_t byte_fc;  // 0xfc
+    std::uint8_t flag_fd_;  // 0xfd
+    float yaw;  // 0xfe
+    float pitch;  // 0x102
+    float roll;  // 0x106
+    std::uint8_t visible;  // 0x10a
+    std::uint8_t gap_10b[0x1];

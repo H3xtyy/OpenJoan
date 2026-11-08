@@ -1,0 +1,5 @@
+start,end,name,confidence,evidence,target
+0x00685940,0x006859e0,video_g0a,high,Video stream predicates between video.cpp str_equal and has_audio.,uti3d/video.cpp
+0x00685a80,0x00685dd0,video_g0b,high,Video::update/read_sample between video.cpp has_audio and close.,uti3d/video.cpp
+0x00686250,0x00686250,video_g0c,high,Video::seek after video.cpp Video::close.,uti3d/video.cpp
+0x006862d0,0x00686320,videocap_head_g0,medium,"Global COM-init object ctor/dtor (init_4d6a90/dtor_4d6ae0; shutdown calls videocap Com686::release) directly before videocap.cpp, like Com684 before video.cpp.",uti3d/videocap.cpp

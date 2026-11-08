@@ -1,0 +1,557 @@
+# Clang 22 -Wshorten-64-to-32 on linux-x64 after arg::as keeps pointers whole (2026-10-29): every site where a whole pointer still flows into a 32-bit parameter, return or variable. The Phase 2 worklist: zero at the exit.
+src/ilib/misc.cpp:656:16: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  656 |         return joan::orig::arg::as<u32>(std::strcpy(static_cast<char*>(joan::orig::arg::mptr(dst + n)), joan::orig::arg::str(ext)));  // strcpy
+src/ilib/misc.cpp:1105:48: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+ 1105 | u32 crt_memset(void* p, i32 v, u32 n) { return joan::orig::arg::as<u32>(std::memset(joan::orig::arg::mptr(p), joan::orig::arg::i32(v), joan::orig::arg::u32(n))); }
+src/lib/crt/mt.cpp:409:22: warning: implicit conversion loses integer precision: 'unsigned long' to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  409 |     *mt_doserrno() = oserr;
+src/en2d/popupwin.cpp:153:16: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::uint32_t' (aka 'unsigned int') [-Wshorten-64-to-32]
+  153 |         return joan::orig::arg::as<std::uint32_t>(joan::orig::as_widget(&jo::self<jo::PopUpWin>(this)->ok_button)->dtor_6211a0());  // 0x006211a0
+src/en3d/actordef.cpp:92:40: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::uint32_t' (aka 'unsigned int') [-Wshorten-64-to-32]
+   92 |             if (p != nullptr) result = joan::orig::arg::as<std::uint32_t>(joan::orig::as_actor_def(p)->scalar_deleting_destructor(1u));  // 0x005b05d0 scalar deleting dtor
+src/en3d/actordef.cpp:382:44: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::uint32_t' (aka 'unsigned int') [-Wshorten-64-to-32]
+  382 |     std::uint32_t actordef_dtor() { return joan::orig::arg::as<std::uint32_t>(joan::orig::as_model(this)->unload()); }  // 0x005c4f10
+src/en3d/actor.cpp:260:16: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::uint32_t' (aka 'unsigned int') [-Wshorten-64-to-32]
+  260 |         return joan::orig::arg::as<std::uint32_t>(joan::orig::as_actor(self())->select_mesh(joan::orig::arg::mptr(ctx), joan::orig::arg::i32(pass), joan::orig::arg::mptr(plane), joan::orig::arg::mptr(extra)));           // 0x005ad060
+src/en3d/actor.cpp:524:118: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::int32_t' (aka 'int') [-Wshorten-64-to-32]
+  524 |                 std::uint8_t* const ed = joan::orig::arg::as<std::uint8_t*>(joan::orig::as_name_list(kEvents)->entry(joan::orig::arg::as<std::int32_t>(def)));  // 0x0041b440
+src/en3d/actor.cpp:530:118: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::int32_t' (aka 'int') [-Wshorten-64-to-32]
+  530 |                 std::uint8_t* const ed = joan::orig::arg::as<std::uint8_t*>(joan::orig::as_name_list(kEvents)->entry(joan::orig::arg::as<std::int32_t>(def)));  // 0x0041b440
+src/en3d/bonetree.cpp:337:16: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  337 |         return joan::orig::arg::as<u32>(joan::orig::as_names(obj(d::g_a56a68))->get(joan::orig::arg::u32(id)));  // 0x005ba910
+src/en3d/bonetree.cpp:769:37: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  769 |     u32 call_417200(u32 a) { return joan::orig::arg::as<u32>(joan::orig::as_dynarray(this)->get(joan::orig::arg::i32(a))); }  // 0x00417200
+src/en3d/morph.cpp:1104:42: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::uint32_t' (aka 'unsigned int') [-Wshorten-64-to-32]
+ 1104 |     std::uint32_t wrap_5c7b80() { return joan::orig::arg::as<std::uint32_t>(joan::orig::as_morph(this)->release()); }
+src/en3d/plane_sh.cpp:531:32: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  531 |     u32 wrap_5e4430() { return joan::orig::arg::as<u32>(joan::orig::as_portal(this)->clear_sectors()); }  // 0x005e4430
+src/en3d/animdef.cpp:923:16: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::uint32_t' (aka 'unsigned int') [-Wshorten-64-to-32]
+  923 |         return joan::orig::arg::as<std::uint32_t>(joan::orig::matrix_position(static_cast<void*>(jo::self<jo::KeyFrame>(this)->position), joan::orig::arg::ptr(matrix)));  // 0x0060c310
+src/en3d/scene.cpp:129:27: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::uint32_t' (aka 'unsigned int') [-Wshorten-64-to-32]
+  129 |         std::uint32_t r = joan::orig::arg::as<std::uint32_t>(joan::orig::as_scene(this)->free_c5());  // 0x005edfd0
+src/en3d/scene.cpp:154:37: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'const std::uint32_t' (aka 'const unsigned int') [-Wshorten-64-to-32]
+  154 |             const std::uint32_t r = joan::orig::arg::as<std::uint32_t>(joan::orig::as_plane(jo::view<void*>(jo::self<jo::Scene>(this)->plane_1c))->destroy(1u));  // 0x00459c40
+src/en3d/scene.cpp:201:16: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::uint32_t' (aka 'unsigned int') [-Wshorten-64-to-32]
+  201 |         return joan::orig::arg::as<std::uint32_t>(joan::orig::as_vs_cache(global<void*>(d::g_a52597))->set_tint_source(joan::orig::arg::mptr(v)));  // 0x0061c250
+src/en3d/scene.cpp:273:16: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::uint32_t' (aka 'unsigned int') [-Wshorten-64-to-32]
+  273 |         return joan::orig::arg::as<std::uint32_t>(joan::orig::as_scene(this)->release_7d());  // 0x005ea390
+src/en3d/scene.cpp:708:39: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  708 | u32 JOAN_CDECL init_5eb450() { return joan::orig::arg::as<u32>(joan::orig::as_plane_equation(obj(d::g_a69a98))->init_425700()); }  // 0x00425700
+src/en3d/sysen.cpp:183:39: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  183 | u32 JOAN_CDECL init_603550() { return joan::orig::arg::as<u32>(joan::orig::as_jpeg_writer(obj(d::g_a69b40))->construct()); }  // 0x005a8d80
+src/en3d/plane.cpp:427:16: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::uint32_t' (aka 'unsigned int') [-Wshorten-64-to-32]
+  427 |         return joan::orig::arg::as<std::uint32_t>(joan::orig::as_plane(this)->set_parent(joan::orig::arg::mptr(0), static_cast<std::int32_t>(jo::view<std::int8_t>(jo::self<jo::Plane>(this)->u8_e7))));  // 0x005d4880
+src/en3d/scene_s.cpp:1661:123: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::int32_t' (aka 'int') [-Wshorten-64-to-32]
+ 1661 |             joan::orig::as_plane(jo::view<void*>(jo::self<jo::SceneS>(this)->plane))->draw(joan::orig::arg::mptr(lights), joan::orig::arg::as<std::int32_t>(camera), 0u);  // Plane::draw 0x005d0570
+src/en3d/scene_s.cpp:1689:41: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::uint32_t' (aka 'unsigned int') [-Wshorten-64-to-32]
+ 1689 |     std::uint32_t group_dtor() { return joan::orig::arg::as<std::uint32_t>(joan::orig::as_scene_source(this)->clear()); }  // 0x005ef900
+src/en3d/texdir.cpp:563:106: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::int32_t' (aka 'int') [-Wshorten-64-to-32]
+  563 |             joan::orig::as_tex_dir(reg)->add_path(joan::orig::arg::str(q), joan::orig::arg::u32(i32{0}), joan::orig::arg::as<std::int32_t>(str(d::s_ITEM_9d9bf0)), joan::orig::arg::u32(i32{0}));  // 0x00604560 "ITEM"
+src/en3d/vgabuf.cpp:308:16: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  308 |         return joan::orig::arg::as<u32>(std::memcpy(joan::orig::arg::mptr(out), static_cast<void*>(&packed), joan::orig::arg::u32(i32{3})));  // memmove
+src/game/_unplaced/actorlst.cpp:242:57: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::uint32_t' (aka 'unsigned int') [-Wshorten-64-to-32]
+  242 |     std::uint32_t table_get(std::uint32_t key) { return joan::orig::arg::as<std::uint32_t>(joan::orig::as_dynarray(this)->ptr_at(joan::orig::arg::i32(key))); }  // 0x0041b3f0
+src/en3d/texturea.cpp:398:32: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'const std::int32_t' (aka 'const int') [-Wshorten-64-to-32]
+  398 |         const std::int32_t i = joan::orig::arg::as<std::int32_t>(joan::orig::as_texture_manager(self())->find(joan::orig::arg::mptr(name)));  // 0x0060ae70 index + 1
+src/en3d/texturea.cpp:725:25: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'const i32' (aka 'const int') [-Wshorten-64-to-32]
+  725 |         const i32 idx = joan::orig::arg::as<i32>(joan::orig::as_texture_manager(this)->find(joan::orig::arg::mptr(tex->name)));  // 0x0060ae70
+src/en3d/texturea.cpp:767:182: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::int32_t' (aka 'int') [-Wshorten-64-to-32]
+  767 |             joan::orig::as_misc(img::obj(kArrays))->del_array_rec_591070(joan::orig::arg::str(data), joan::orig::arg::i32(count), static_cast<std::int32_t>(sizeof(jo::TexturePtr)), joan::orig::arg::as<std::int32_t>(e));
+src/en3d/texturea.cpp:1111:18: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::int32_t' (aka 'int') [-Wshorten-64-to-32]
+ 1111 |         result = joan::orig::arg::as<std::int32_t>(joan::orig::as_texture_manager(this)->remove_a(joan::orig::arg::mptr(texture)));
+src/en3d/texturea.cpp:1113:18: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::int32_t' (aka 'int') [-Wshorten-64-to-32]
+ 1113 |         result = joan::orig::arg::as<std::int32_t>(joan::orig::as_texture_manager(this)->remove_b(joan::orig::arg::mptr(texture)));
+src/en3d/texturea.cpp:2243:182: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::int32_t' (aka 'int') [-Wshorten-64-to-32]
+ 2243 |             joan::orig::as_misc(img::obj(kArrays))->del_array_rec_591070(joan::orig::arg::str(data), joan::orig::arg::i32(count), static_cast<std::int32_t>(sizeof(jo::TexturePtr)), joan::orig::arg::as<std::int32_t>(e));
+src/game/_unplaced/ai_behav.cpp:355:21: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  355 |             u32 r = joan::orig::arg::as<u32>(joan::orig::as_unit(unit)->set_213(0u));  // 0x00500d10
+src/game/_unplaced/armory.cpp:195:29: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'const u32' (aka 'const unsigned int') [-Wshorten-64-to-32]
+  195 |         const u32 caption = joan::orig::arg::as<u32>(joan::orig::as_menu(kText)->armory_1());  // 0x004de3b0
+src/game/_unplaced/armory.cpp:268:16: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  268 |         return joan::orig::arg::as<u32>(joan::orig::as_color(&jo::as_light(r)->colour)->set_bgr(joan::orig::arg::mptr(img::addr(d::g_white))));    // 0x005e9430
+src/game/_unplaced/billboard.cpp:126:16: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'i32' (aka 'int') [-Wshorten-64-to-32]
+  126 |         return joan::orig::arg::as<i32>(joan::orig::as_billboard(this)->release(0u));  // 0x006356c0
+src/game/_unplaced/billboard.cpp:559:16: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  559 |         return joan::orig::arg::as<u32>(joan::orig::as_color(out)->set_bgr(joan::orig::arg::mptr(jo::as_plane(jo::self<jo::Billboard>(this)->plane_)->vertices_f4->attr)));  // 0x005e9430
+src/game/_unplaced/boids.cpp:1200:31: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'const u32' (aka 'const unsigned int') [-Wshorten-64-to-32]
+ 1200 |                 const u32 v = joan::orig::arg::as<u32>(joan::orig::as_effect_state(rec + 0x2b)->object());  // 0x0041b280
+src/game/_unplaced/camcmd.cpp:606:115: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::int32_t' (aka 'int') [-Wshorten-64-to-32]
+  606 |         if (x != nullptr) group = joan::orig::arg::as<void*>(joan::orig::as_list(obj(d::g_a57f80))->find_by_word2(joan::orig::arg::as<std::int32_t>(x)));  // 0x004b67e0
+src/game/_unplaced/camcmd.cpp:607:70: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::int32_t' (aka 'int') [-Wshorten-64-to-32]
+  607 |         if (group != nullptr) joan::orig::as_place(this)->set_nation(joan::orig::arg::as<std::int32_t>(group));  // 0x0044f5c0
+src/game/_unplaced/chatbox.cpp:114:16: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  114 |         return joan::orig::arg::as<u32>(joan::orig::as_text(jo::view<void*>(jo::self<jo::ChatBox>(this)->edit))->draw_aligned(joan::orig::arg::i16(static_cast<i32>(l14)), joan::orig::arg::i16(static_cast<i32>(l18)), joan::orig::arg::i16(static_cast<i32>(l1c)), joan::orig::arg::i16(static_cast<i32>(l18) + 0x1e), jo::self<jo::ChatBox>(this)->prompt, joan::orig::arg::i16(0x40), joan::orig::arg::mptr(font), joan::orig::arg::u32(a1c), joan::orig::arg::i16(static_cast<i32>(static_cast<i16>(w20))), joan::orig::arg::i16(static_cast<i32>(static_cast<i16>(w24))), joan::orig::arg::i16(static_cast<i32>(static_cast<i16>(w28))), joan::orig::arg::u32(sb(static_cast<u8>(b2c))), static_cast<std::uint8_t>(joan::orig::arg::u32(sb(static_cast<u8>(b30))))));  // 0x0062d630
+src/game/_unplaced/camzone.cpp:714:32: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'const u32' (aka 'const unsigned int') [-Wshorten-64-to-32]
+  714 |                 const u32 id = joan::orig::arg::as<u32>(joan::orig::as_effect_state(o + 0x2b)->object());  // 0x0041b280
+src/game/_unplaced/camera3d.cpp:240:31: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::uint32_t' (aka 'unsigned int') [-Wshorten-64-to-32]
+  240 |         if (c != nullptr) r = joan::orig::arg::as<std::uint32_t>(joan::orig::as_fog(c)->destroy(1u));  // 0x00613b50
+src/game/_unplaced/cheats.cpp:539:90: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::int32_t' (aka 'int') [-Wshorten-64-to-32]
+  539 |                 joan::orig::as_scene(jo::as_map_object(unit)->actor->scene_params0)->nop(joan::orig::arg::as<std::int32_t>(jo::view<void*>(jo::as_map_object(unit)->actor)));  // 0x005eb590
+src/game/_unplaced/cheats.cpp:593:91: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::int32_t' (aka 'int') [-Wshorten-64-to-32]
+  593 |         const i32 g = joan::orig::arg::as<i32>(joan::orig::as_list(groups)->find_by_word2(joan::orig::arg::as<std::int32_t>(joan::orig::arg::as<void*>(joan::orig::as_name_table(lookup)->find_4b91a0(joan::orig::arg::str(name))))));  // 0x004b67e0(0x004b91a0)
+src/game/_unplaced/cheats.cpp:594:92: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::int32_t' (aka 'int') [-Wshorten-64-to-32]
+  594 |         const i32 en = joan::orig::arg::as<i32>(joan::orig::as_list(groups)->find_by_word2(joan::orig::arg::as<std::int32_t>(joan::orig::arg::as<void*>(joan::orig::as_name_table(lookup)->find_4b91a0(str(d::s_english))))));  // "english"
+src/game/_unplaced/cheats.cpp:595:92: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::int32_t' (aka 'int') [-Wshorten-64-to-32]
+  595 |         const i32 fr = joan::orig::arg::as<i32>(joan::orig::as_list(groups)->find_by_word2(joan::orig::arg::as<std::int32_t>(joan::orig::arg::as<void*>(joan::orig::as_name_table(lookup)->find_4b91a0(str(d::s_french))))));  // "french"
+src/game/_unplaced/cheats.cpp:752:88: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::int32_t' (aka 'int') [-Wshorten-64-to-32]
+  752 |                 joan::orig::as_scene(jo::as_map_object(it)->actor->scene_params0)->nop(joan::orig::arg::as<std::int32_t>(jo::view<void*>(jo::as_map_object(it)->actor)));  // 0x005eb590
+src/game/_unplaced/clouds.cpp:125:33: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'const std::uint32_t' (aka 'const unsigned int') [-Wshorten-64-to-32]
+  125 |         const std::uint32_t h = joan::orig::arg::as<std::uint32_t>(joan::orig::as_texture_manager(img::obj(kTexMan))->load(joan::orig::arg::str(tex_arg), 1, 0u));  // 0x006099c0
+src/game/_unplaced/clouds.cpp:380:23: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'const u32' (aka 'const unsigned int') [-Wshorten-64-to-32]
+  380 |         const u32 r = joan::orig::arg::as<u32>(joan::orig::as_camera(m)->matrix());                          // 0x00616e90
+src/game/_unplaced/clouds.cpp:381:16: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  381 |         return joan::orig::arg::as<u32>(joan::orig::matrix_position(static_cast<void*>(self() + offsetof(jo::CloudLayers, built) + 1), joan::orig::arg::ptr(r)));  // 0x0060c310 (the camera position after the built flag: +9 on x86, in the image tail)
+src/game/_unplaced/ctl2d.cpp:249:16: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::uint32_t' (aka 'unsigned int') [-Wshorten-64-to-32]
+  249 |         return joan::orig::arg::as<std::uint32_t>(joan::orig::as_plane(jo::view<void*>(jo::self<jo::Overlay2D>(this)->actor->plane))->invalidate(1u));  // 0x005cf920
+src/game/_unplaced/ctl2d.cpp:259:46: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::uint32_t' (aka 'unsigned int') [-Wshorten-64-to-32]
+  259 |     std::uint32_t overlay_release() { return joan::orig::arg::as<std::uint32_t>(joan::orig::as_overlay2d(this)->free_actor()); }  // 0x006292c0
+src/game/_unplaced/ctl2d.cpp:334:16: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  334 |         return joan::orig::arg::as<u32>(joan::orig::as_plane(jo::view<void*>(jo::self<jo::Overlay2D>(this)->actor->plane))->invalidate(1u));  // 0x005cf920
+src/game/_unplaced/crithud.cpp:349:113: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::uint32_t' (aka 'unsigned int') [-Wshorten-64-to-32]
+  349 |         if (jo::self<jo::CriticalHud>(this)->tex_critical == 0) jo::self<jo::CriticalHud>(this)->tex_critical = joan::orig::arg::as<u32>(joan::orig::as_texture_manager(kTextures)->load(str(d::s_CRITICAL), i32{1}, joan::orig::arg::u32(i32{0})));  // 0x006099c0 CRITICAL
+src/game/_unplaced/crithud.cpp:350:111: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::uint32_t' (aka 'unsigned int') [-Wshorten-64-to-32]
+  350 |         if (jo::self<jo::CriticalHud>(this)->tex_criti_k == 0) jo::self<jo::CriticalHud>(this)->tex_criti_k = joan::orig::arg::as<u32>(joan::orig::as_texture_manager(kTextures)->load(str(d::s_CRITI_K), i32{1}, joan::orig::arg::u32(i32{0})));  // CRITI_K
+src/game/_unplaced/ctrl.cpp:2465:16: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::uint32_t' (aka 'unsigned int') [-Wshorten-64-to-32]
+ 2465 |         return joan::orig::arg::as<std::uint32_t>(joan::orig::as_cell(*r)->attach_place(joan::orig::arg::mptr(this)));  // 0x0043ec80
+src/game/_unplaced/ctrl.cpp:2657:112: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::uint32_t' (aka 'unsigned int') [-Wshorten-64-to-32]
+ 2657 |         void* const slot = joan::orig::arg::as<void*>(joan::orig::as_anim_set(jo::as_unit(u)->anim_set)->entry(joan::orig::arg::as<std::uint32_t>(target)));  // 0x004168d0
+src/game/_unplaced/diplo_text.cpp:66:39: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+   66 | u32 JOAN_CDECL init_4e0010() { return joan::orig::arg::as<u32>(joan::orig::as_string(obj(d::g_msg_a3a348))->construct()); }  // 0x005a1170
+src/game/_unplaced/diplo_text.cpp:156:37: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  156 | u32 msg_set(const void* s) { return joan::orig::arg::as<u32>(joan::orig::as_string(kMsg)->assign(joan::orig::arg::str(s))); }  // 0x005a1440
+src/game/_unplaced/diplo_text.cpp:157:37: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  157 | u32 msg_add(const void* s) { return joan::orig::arg::as<u32>(joan::orig::as_string(kMsg)->append(joan::orig::arg::str(s))); }  // 0x005a1550
+src/game/_unplaced/diplo_text.cpp:158:45: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  158 | u32 msg_add_str(const LocalStr* s) { return joan::orig::arg::as<u32>(joan::orig::as_string(kMsg)->append_str(joan::orig::as_string(s))); }  // 0x005a14f0
+src/game/_unplaced/diplo_text.cpp:159:33: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  159 | u32 msg_add_num(i32 v) { return joan::orig::arg::as<u32>(joan::orig::as_string(kMsg)->append(joan::orig::arg::i32(v))); }  // 0x005a15d0
+src/game/_unplaced/diplo_text.cpp:567:37: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  567 | u32 msg_set(const char* s) { return joan::orig::arg::as<u32>(joan::orig::as_string(kMsg)->assign(joan::orig::arg::str(s))); }  // 0x005a1440
+src/game/_unplaced/diplo_text.cpp:568:37: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  568 | u32 msg_add(const char* s) { return joan::orig::arg::as<u32>(joan::orig::as_string(kMsg)->append(joan::orig::arg::str(s))); }  // 0x005a1550
+src/game/_unplaced/diplo_text.cpp:633:37: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  633 | u32 msg_set(const void* s) { return joan::orig::arg::as<u32>(joan::orig::as_string(kMsg)->assign(joan::orig::arg::str(s))); }  // 0x005a1440
+src/game/_unplaced/diplo_text.cpp:634:37: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  634 | u32 msg_add(const void* s) { return joan::orig::arg::as<u32>(joan::orig::as_string(kMsg)->append(joan::orig::arg::str(s))); }  // 0x005a1550
+src/game/_unplaced/diplo_text.cpp:744:38: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  744 | u32 text_set(const void* s) { return joan::orig::arg::as<u32>(joan::orig::as_string(kText)->assign(joan::orig::arg::str(s))); }  // 0x005a1440
+src/game/_unplaced/diplo_text.cpp:745:41: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  745 | u32 text_append(const void* s) { return joan::orig::arg::as<u32>(joan::orig::as_string(kText)->append(joan::orig::arg::str(s))); }  // 0x005a1550
+src/game/_unplaced/diplo_text.cpp:1120:16: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'i32' (aka 'int') [-Wshorten-64-to-32]
+ 1120 |         return joan::orig::arg::as<i32>(joan::orig::as_unit(u)->name());                                                          // 0x004fe4f0
+src/game/_unplaced/diplo_text.cpp:1144:16: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+ 1144 |         return joan::orig::arg::as<u32>(joan::orig::as_nation(p)->name());                        // 0x004b4280
+src/game/_unplaced/dlgtable.cpp:197:67: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  197 |         if (jo::self<jo::ResObj>(this)->buffer == nullptr) return joan::orig::arg::as<u32>(r);
+src/game/_unplaced/dlgtable.cpp:476:35: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  476 |                 if (v <= 0) eax = joan::orig::arg::as<u32>(joan::orig::as_wave_res(p)->release());  // 0x004d0a00
+src/game/_unplaced/dlgtext.cpp:726:16: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  726 |         return joan::orig::arg::as<u32>(joan::orig::as_widget(&jo::self<jo::DialogueList>(this)->debug_button)->dtor_6211a0());  // 0x006211a0
+src/game/_unplaced/escomp_hd.cpp:133:16: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  133 |         return joan::orig::arg::as<u32>(joan::orig::as_counter(jo::self<jo::Script>(this)->statements)->clamp_to_one());  // 0x004b9d40 (no null check)
+src/game/_unplaced/f_barr.cpp:99:59: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+   99 |     u32 call_46d5e0_467530(u32 a, const char* b) { return joan::orig::arg::as<u32>(joan::orig::as_facility(this)->set_kind_name(joan::orig::arg::i16(a), b)); }  // 0x0046d5e0
+src/game/_unplaced/f_barr.cpp:139:32: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  139 |     u32 dtor_467560() { return joan::orig::arg::as<u32>(joan::orig::as_facility(this)->detach()); }  // 0x0046d630
+src/game/_unplaced/f_barr.cpp:234:79: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  234 |             if (unit_dead(jo::self<jo::Building>(this)->unit_id) != 0) return joan::orig::arg::as<u32>(joan::orig::as_unit(this)->clear_79());  // 0x00467f90
+src/game/_unplaced/f_barr.cpp:237:64: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  237 |         if (jo::self<jo::Building>(this)->queue_n == 0) return joan::orig::arg::as<u32>(joan::orig::as_unit(this)->clear_79());  // 0x00467f90
+src/game/_unplaced/f_barr.cpp:272:16: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  272 |         return joan::orig::arg::as<u32>(joan::orig::as_unit(this)->clear_79());  // 0x00467f90
+src/game/_unplaced/f_flag.cpp:115:39: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  115 |     u32 get_79_468b70(u32 i) { return joan::orig::arg::as<u32>(joan::orig::as_dynarray(jo::view<void*>(jo::self<jo::FlagFacility>(this)->list_79))->get(joan::orig::arg::i32(i))); }  // 0x00417200
+src/game/_unplaced/f_flag.cpp:116:39: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  116 |     u32 get_7d_468be0(u32 i) { return joan::orig::arg::as<u32>(joan::orig::as_dynarray(jo::view<void*>(jo::self<jo::FlagFacility>(this)->list_7d))->get(joan::orig::arg::i32(i))); }  // 0x00417200
+src/game/_unplaced/f_flag.cpp:256:16: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  256 |         return joan::orig::arg::as<u32>(p);
+src/game/_unplaced/f_flag.cpp:294:16: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  294 |         return joan::orig::arg::as<u32>(joan::orig::as_facility(this)->detach());  // 0x0046d630
+src/game/_unplaced/f_flag.cpp:303:149: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::uint32_t' (aka 'unsigned int') [-Wshorten-64-to-32]
+  303 |             joan::orig::as_formation(jo::view<void*>(jo::self<jo::FlagFacility>(this)->owner))->place_units(joan::orig::arg::as<std::int32_t>(eng), joan::orig::arg::as<std::uint32_t>(fra));  // 0x004c4440
+src/game/_unplaced/f_flag.cpp:303:109: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::int32_t' (aka 'int') [-Wshorten-64-to-32]
+  303 |             joan::orig::as_formation(jo::view<void*>(jo::self<jo::FlagFacility>(this)->owner))->place_units(joan::orig::arg::as<std::int32_t>(eng), joan::orig::arg::as<std::uint32_t>(fra));  // 0x004c4440
+src/game/_unplaced/f_flag.cpp:305:149: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::uint32_t' (aka 'unsigned int') [-Wshorten-64-to-32]
+  305 |             joan::orig::as_formation(jo::view<void*>(jo::self<jo::FlagFacility>(this)->owner))->place_units(joan::orig::arg::as<std::int32_t>(fra), joan::orig::arg::as<std::uint32_t>(eng));  // 0x004c4440
+src/game/_unplaced/f_flag.cpp:305:109: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::int32_t' (aka 'int') [-Wshorten-64-to-32]
+  305 |             joan::orig::as_formation(jo::view<void*>(jo::self<jo::FlagFacility>(this)->owner))->place_units(joan::orig::arg::as<std::int32_t>(fra), joan::orig::arg::as<std::uint32_t>(eng));  // 0x004c4440
+src/game/_unplaced/f_flag.cpp:386:20: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  386 |             return joan::orig::arg::as<u32>(joan::orig::as_unit(item)->position(joan::orig::arg::mptr(jo::self<jo::SaveEntry>(this)->values)));  // 0x004fedb0
+src/game/_unplaced/f_work.cpp:195:16: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  195 |         return joan::orig::arg::as<u32>(joan::orig::as_billboard(jo::view<void*>(jo::self<jo::Siege>(this)->life_bar))->set_15(0x3c23d70au));      // 0x00635d80
+src/game/_unplaced/f_work.cpp:269:80: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::int32_t' (aka 'int') [-Wshorten-64-to-32]
+  269 |         if (grp != nullptr) joan::orig::as_workshop_facility(this)->load_types(joan::orig::arg::as<std::int32_t>(grp));  // 0x0046b730
+src/game/_unplaced/f_work.cpp:423:20: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  423 |             return joan::orig::arg::as<u32>(joan::orig::as_workshop_facility(this)->show_life_bar());  // 0x0046c4d0
+src/game/_unplaced/f_work.cpp:426:49: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  426 |         if (due > global<u32>(d::g_now)) return joan::orig::arg::as<u32>(joan::orig::as_workshop_facility(this)->show_life_bar());  // 0x0046c4d0
+src/game/_unplaced/f_work.cpp:934:16: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::uint32_t' (aka 'unsigned int') [-Wshorten-64-to-32]
+  934 |         return joan::orig::arg::as<std::uint32_t>(joan::orig::as_texture_manager(kScene)->set_mode_60a740(joan::orig::arg::u32(saved)));
+src/game/_unplaced/fx_spawn.cpp:147:16: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::int32_t' (aka 'int') [-Wshorten-64-to-32]
+  147 |         return joan::orig::arg::as<std::int32_t>(joan::orig::as_sound(this)->reset_585d20());  // 0x00585d20
+src/game/_unplaced/formmove.cpp:1314:108: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::int32_t' (aka 'int') [-Wshorten-64-to-32]
+ 1314 |         void* const c1 = joan::orig::arg::as<void*>(joan::orig::as_camera_follow(obj(d::g_a48cc0))->motion(joan::orig::arg::as<std::int32_t>(view)));     // 0x00563c80
+src/game/_unplaced/gamemode.cpp:100:32: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  100 |     u32 call_a501f0() { return joan::orig::arg::as<u32>(joan::orig::as_progress(obj(d::g_progress))->free_images()); }  // 0x00756190
+src/game/_unplaced/gamemode.cpp:407:32: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  407 |     u32 init_47bcb0() { return joan::orig::arg::as<u32>(joan::orig::as_progress(obj(d::g_progress))->load_images()); }  // 0x00755e30
+src/game/_unplaced/esfuncs.cpp:572:39: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  572 |     if (unit_missing(id) != 0) return joan::orig::arg::as<u32>(joan::orig::as_string(s)->assign(str(d::kEmpty)));  // 0x005a1440
+src/game/_unplaced/esfuncs.cpp:574:12: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  574 |     return joan::orig::arg::as<u32>(joan::orig::as_string(s)->assign(joan::orig::arg::str(static_cast<void*>(p))));  // 0x005a1440
+src/game/_unplaced/esfuncs.cpp:920:97: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::int32_t' (aka 'int') [-Wshorten-64-to-32]
+  920 |     const i32 s = joan::orig::arg::as<i32>(joan::orig::as_list(obj(d::g_a57f80))->find_by_word2(joan::orig::arg::as<std::int32_t>(r)));  // 0x004b67e0
+src/game/_unplaced/esfuncs.cpp:2079:12: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+ 2079 |     return joan::orig::arg::as<u32>(joan::orig::as_string(self)->assign(joan::orig::arg::str(text)));  // 0x005a1440
+src/game/_unplaced/esfuncs.cpp:5179:20: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+ 5179 |             return joan::orig::arg::as<u32>(joan::orig::as_string(target)->assign(joan::orig::arg::str(key)));       // 0x005a1440
+src/game/_unplaced/i_igframe.cpp:274:16: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::uint32_t' (aka 'unsigned int') [-Wshorten-64-to-32]
+  274 |         return joan::orig::arg::as<std::uint32_t>(joan::orig::as_widget(&jo::self<jo::SlideMenu>(this)->slider11)->move_to_61e020(joan::orig::arg::i16(static_cast<std::int16_t>(right)), joan::orig::arg::i16(0x36), joan::orig::arg::f32(0x3f800000u), joan::orig::arg::f32(0x3f800000u), static_cast<char>(joan::orig::arg::i32(1)), 0u));  // 0x0061e020
+src/game/_unplaced/globals.cpp:49:39: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+   49 | u32 JOAN_CDECL init_56daf0() { return joan::orig::arg::as<u32>(joan::orig::as_console(obj(d::g_console))->construct()); }  // 0x00454270
+src/game/_unplaced/globals.cpp:144:39: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  144 | u32 JOAN_CDECL init_563ee0() { return joan::orig::arg::as<u32>(joan::orig::as_error_log(obj(d::g_log))->construct()); }  // 0x00586950
+src/game/_unplaced/globals.cpp:145:39: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  145 | u32 JOAN_CDECL init_564250() { return joan::orig::arg::as<u32>(joan::orig::as_texture_manager(obj(d::g_a403a0))->construct()); }  // 0x00608db0
+src/game/_unplaced/globals.cpp:146:39: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  146 | u32 JOAN_CDECL init_567030() { return joan::orig::arg::as<u32>(joan::orig::as_sound3dsystem(obj(d::g_a57ed0))->construct()); }  // 0x005a02d0
+src/game/_unplaced/globals.cpp:147:39: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  147 | u32 JOAN_CDECL init_567310() { return joan::orig::arg::as<u32>(joan::orig::as_ini(obj(d::g_steer))->construct()); }  // 0x0047c370
+src/game/_unplaced/globals.cpp:148:39: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  148 | u32 JOAN_CDECL init_56ade0() { return joan::orig::arg::as<u32>(joan::orig::as_news_list(obj(d::g_tasks))->construct()); }  // 0x004b9220
+src/game/_unplaced/globals.cpp:149:39: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  149 | u32 JOAN_CDECL init_56d4e0() { return joan::orig::arg::as<u32>(joan::orig::as_debug_overlay(obj(d::g_a59a78))->construct()); }  // 0x0056ded0
+src/game/_unplaced/globals.cpp:256:43: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'i32' (aka 'int') [-Wshorten-64-to-32]
+  256 | i32 text_desc_clear(img::Addr g) { return joan::orig::arg::as<i32>(joan::orig::as_text_desc(obj(g))->clear()); }  // 0x00623dc0
+src/game/_unplaced/globals.cpp:368:43: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  368 | u32 text_desc_clear(img::Addr g) { return joan::orig::arg::as<u32>(joan::orig::as_text_desc(obj(g))->clear()); }  // 0x00623dc0
+src/game/_unplaced/globals.cpp:489:40: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  489 | u32 JOAN_CDECL clear_a50600() { return joan::orig::arg::as<u32>(joan::orig::as_text_desc(obj(d::g_a50600))->clear()); }  // 0x00564e90 (0x00623dc0)
+src/game/_unplaced/globals.cpp:490:40: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  490 | u32 JOAN_CDECL clear_a5b9a8() { return joan::orig::arg::as<u32>(joan::orig::as_text_desc(obj(d::g_a5b9a8))->clear()); }  // 0x00565310
+src/game/_unplaced/globals.cpp:491:40: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  491 | u32 JOAN_CDECL clear_a56ad8() { return joan::orig::arg::as<u32>(joan::orig::as_text_desc(obj(d::g_a56ad8))->clear()); }  // 0x00565700
+src/game/_unplaced/globals.cpp:492:40: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  492 | u32 JOAN_CDECL clear_a58ac0() { return joan::orig::arg::as<u32>(joan::orig::as_text_desc(obj(d::g_text_a58ac0))->clear()); }  // 0x00565b80
+src/game/_unplaced/globals.cpp:761:39: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'i32' (aka 'int') [-Wshorten-64-to-32]
+  761 | i32 JOAN_CDECL init_566cb0() { return joan::orig::arg::as<i32>(joan::orig::as_txt_res(obj(d::g_strings))->construct()); }  // 0x00566d40
+src/game/_unplaced/globals.cpp:970:39: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  970 | u32 JOAN_CDECL init_56ba00() { return joan::orig::arg::as<u32>(joan::orig::as_message_indicator(obj(d::g_a5ccf0))->construct()); }  // 0x004af4a0
+src/game/_unplaced/globals.cpp:1657:12: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+ 1657 |     return joan::orig::arg::as<u32>(joan::orig::as_sound_effects(obj(d::g_a58b00))->construct(joan::orig::arg::mptr(obj(d::g_a50ec8))));  // 0x00457ad0
+src/game/_unplaced/globals.cpp:2318:39: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+ 2318 | u32 JOAN_CDECL init_569ce0() { return joan::orig::arg::as<u32>(joan::orig::as_players(obj(d::g_a570a8))->construct()); }  // 0x006aced0
+src/game/_unplaced/globals.cpp:2706:39: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+ 2706 | u32 JOAN_CDECL init_56d030() { return joan::orig::arg::as<u32>(joan::orig::as_ingame_frame(obj(d::g_hud))->construct()); }  // 0x006f1660
+src/game/_unplaced/globals.cpp:2711:32: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+ 2711 |     u32 call_756190() { return joan::orig::arg::as<u32>(joan::orig::as_progress(this)->free_images()); }             // 0x0056e540
+src/game/_unplaced/globals.cpp:2810:39: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+ 2810 | u32 JOAN_CDECL init_56dc10() { return joan::orig::arg::as<u32>(joan::orig::as_direct_music(obj(d::g_a3ce50))->construct()); }  // 0x00582c20
+src/game/_unplaced/globals.cpp:2812:39: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+ 2812 | u32 JOAN_CDECL init_56dca0() { return joan::orig::arg::as<u32>(joan::orig::as_music_segment(obj(d::g_a58f78))->construct()); }  // 0x00583aa0
+src/game/_unplaced/globals.cpp:2821:31: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+ 2821 |     u32 fwd_56e2f0() { return joan::orig::arg::as<u32>(joan::orig::as_barracks_screen(this)->release()); }  // 0x006bcf00
+src/game/_unplaced/globals.cpp:2822:31: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+ 2822 |     u32 fwd_56e310() { return joan::orig::arg::as<u32>(joan::orig::as_workshop_screen(this)->release()); }  // 0x006e9a50
+src/game/_unplaced/i_igmenu.cpp:909:28: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  909 |             case 0: return joan::orig::arg::as<u32>(joan::orig::as_screen(obj(d::g_a59a98))->open_6f3730());  // 0x006f3730
+src/game/_unplaced/i_msglog.cpp:101:16: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  101 |         return joan::orig::arg::as<u32>(joan::orig::as_parser(obj(d::g_mouse))->reset());  // 0x00595a20
+src/game/_unplaced/i_obj0d.cpp:59:40: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+   59 |     u32 init_492340(u32 type) { return joan::orig::arg::as<u32>(joan::orig::as_map_object(this)->set_kind(joan::orig::arg::i16(type))); }  // 0x004178e0
+src/game/_unplaced/i_obj0e.cpp:196:23: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'const u32' (aka 'const unsigned int') [-Wshorten-64-to-32]
+  196 |         const u32 r = joan::orig::arg::as<u32>(joan::orig::as_map_object(this)->set_kind(joan::orig::arg::i16(type)));  // 0x004178e0
+src/game/_unplaced/i_obj12.cpp:360:20: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  360 |             last = joan::orig::arg::as<u32>(joan::orig::as_effect(e)->set_owner(joan::orig::arg::mptr(owner), joan::orig::arg::mptr(0u)));  // 0x0041b0d0
+src/game/_unplaced/i_qsave.cpp:497:16: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  497 |         return joan::orig::arg::as<u32>(joan::orig::as_popup(popup)->free_gpopup());  // 0x006d3c60
+src/game/_unplaced/inventory.cpp:248:32: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  248 |     u32 dtor_456ef0() { return joan::orig::arg::as<u32>(joan::orig::as_world_item(this)->detach()); }  // 0x00456f20
+src/game/_unplaced/inventory.cpp:364:16: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::uint32_t' (aka 'unsigned int') [-Wshorten-64-to-32]
+  364 |         return joan::orig::arg::as<std::uint32_t>(joan::orig::as_map_region(*r)->link_object(joan::orig::arg::mptr(static_cast<void*>(this))));  // 0x0042c140
+src/game/_unplaced/mainwnd.cpp:76:39: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+   76 | u32 JOAN_CDECL init_4d6a90() { return joan::orig::arg::as<u32>(joan::orig::as_video_capture(obj(d::g_a3a2b0))->construct()); }  // 0x006862d0
+src/game/_unplaced/mainwnd.cpp:78:39: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+   78 | u32 JOAN_CDECL init_4d6b20() { return joan::orig::arg::as<u32>(joan::orig::as_image(obj(d::g_a3a2d8))->construct()); }  // 0x0060fad0
+src/game/_unplaced/mainwnd.cpp:397:35: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  397 |     u32 destroy_4d6fb0() { return joan::orig::arg::as<u32>(joan::orig::as_sys_window(this)->destroy_window()); }  // 0x005a1cc0
+src/game/_unplaced/mainmenu.cpp:79:157: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::uint32_t' (aka 'unsigned int') [-Wshorten-64-to-32]
+   79 |     joan::orig::as_sprite_queue(obj(d::g_sprites_a46128))->draw_named(joan::orig::arg::i16(static_cast<i32>(x)), joan::orig::arg::i16(static_cast<i32>(y)), joan::orig::arg::as<std::uint32_t>(surf), joan::orig::arg::str(str(name)), joan::orig::arg::mptr(global<void*>(d::g_a3cf6d)), joan::orig::arg::u32(color), 3, 0, 0, 0, -1, -1, -1, -1, 0, -1, -1);  // 0x00633500
+src/game/_unplaced/mainmenu.cpp:83:121: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::uint32_t' (aka 'unsigned int') [-Wshorten-64-to-32]
+   83 |     joan::orig::as_sprite_queue(obj(d::g_sprites_a46128))->draw_named(joan::orig::arg::i16(x), joan::orig::arg::i16(y), joan::orig::arg::as<std::uint32_t>(surf), str(d::s_L_MARK), joan::orig::arg::mptr(global<void*>(d::g_a3cf6d)), joan::orig::arg::u32(color), 3, 0, 0, 0, -1, -1, -1, -1, 0, -1, -1);  // 0x00633500 "L_MARK"
+src/game/_unplaced/mainmenu.cpp:133:158: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::uint32_t' (aka 'unsigned int') [-Wshorten-64-to-32]
+  133 |     joan::orig::as_text(obj(d::g_a48d08))->draw_line(joan::orig::arg::i32(centre(x, x2) - w / 2 + dx), joan::orig::arg::i32(static_cast<i32>(y) + dy + 0xb), joan::orig::arg::as<std::uint32_t>(surf), joan::orig::arg::str(jo::as_button(ctl)->caption), joan::orig::arg::u32(color), i32{-1}, i32{0}, i32{1}, i32{2}, i32{0}, joan::orig::arg::f32(fbits(0x3f800000)), joan::orig::arg::f32(fbits(0x3f800000)));  // 0x006255d0
+src/game/_unplaced/mainmenu.cpp:1084:42: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+ 1084 |         for (i32 i = 0; i < 10; ++i) r = joan::orig::arg::as<u32>(joan::orig::as_widget_child(&(jo::self<jo::MainMenu>(this)->*kButtons[i]).child)->disable());  // 0x006ca020
+src/game/_unplaced/mbtext.cpp:1073:26: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+ 1073 |     u32 lwr_a() { return joan::orig::arg::as<u32>(joan::orig::libc::_strlwr(joan::orig::arg::str(jo::view<void*>(jo::self<jo::Str>(this)->p)))); }
+src/game/_unplaced/mbtext.cpp:1074:26: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+ 1074 |     u32 lwr_b() { return joan::orig::arg::as<u32>(joan::orig::libc::_mbslwr(joan::orig::arg::mptr(jo::view<void*>(jo::self<jo::Str>(this)->p)))); }
+src/game/_unplaced/mbtext.cpp:1075:26: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+ 1075 |     u32 lwr_c() { return joan::orig::arg::as<u32>(joan::orig::libc::_wcslwr(joan::orig::arg::mptr(jo::view<void*>(jo::self<jo::Str>(this)->p)))); }
+src/game/_unplaced/mbtext.cpp:1076:26: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+ 1076 |     u32 upr_a() { return joan::orig::arg::as<u32>(joan::orig::libc::_strupr(joan::orig::arg::str(jo::view<void*>(jo::self<jo::Str>(this)->p)))); }
+src/game/_unplaced/mbtext.cpp:1077:26: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+ 1077 |     u32 upr_b() { return joan::orig::arg::as<u32>(joan::orig::libc::_mbsupr(joan::orig::arg::mptr(jo::view<void*>(jo::self<jo::Str>(this)->p)))); }
+src/game/_unplaced/mbtext.cpp:1078:26: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+ 1078 |     u32 upr_c() { return joan::orig::arg::as<u32>(joan::orig::libc::_wcsupr(joan::orig::arg::mptr(jo::view<void*>(jo::self<jo::Str>(this)->p)))); }
+src/game/_unplaced/message.cpp:397:57: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  397 | u32 crt_strncpy(void* d, const char* s, i32 n) { return joan::orig::arg::as<u32>(std::strncpy(static_cast<char*>(joan::orig::arg::mptr(d)), joan::orig::arg::str(s), joan::orig::arg::u32(n))); }
+src/game/_unplaced/message.cpp:398:49: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  398 | u32 crt_strcpy(void* d, const char* s) { return joan::orig::arg::as<u32>(std::strcpy(static_cast<char*>(joan::orig::arg::mptr(d)), joan::orig::arg::str(s))); }
+src/game/_unplaced/misc_00498b30.cpp:82:214: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::int32_t' (aka 'int') [-Wshorten-64-to-32]
+   82 |             joan::orig::as_misc(kArrays)->del_array_rec_591070(joan::orig::arg::str(jo::view<void*>(jo::self<jo::Nation>(this)->stations)), static_cast<std::int32_t>(jo::self<jo::Nation>(this)->station_count), 2, joan::orig::arg::as<std::int32_t>(found));  // 0x00591070
+src/game/_unplaced/misc_004944c0.cpp:66:20: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+   66 |             return joan::orig::arg::as<u32>(joan::orig::aim_velocity(joan::orig::arg::mptr(p), a, b, joan::orig::arg::f32(gd(d::g_a39dac)), joan::orig::arg::f32(gi(d::g_a39d74)), joan::orig::arg::bits(gi(d::g_a39d84)), joan::orig::arg::f32(gd(d::g_a39d5c)), joan::orig::arg::f32(gd(d::g_a39cfc)), joan::orig::arg::f32(0u)));  // 0x00496d40
+src/game/_unplaced/misc_004944c0.cpp:69:20: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+   69 |             return joan::orig::arg::as<u32>(joan::orig::aim_velocity(joan::orig::arg::mptr(p), a, b, joan::orig::arg::f32(gd(d::g_a39dd4)), joan::orig::arg::f32(gi(d::g_a39dc0)), joan::orig::arg::bits(gi(d::g_a39da4)), joan::orig::arg::f32(gd(d::g_a39cd8)), joan::orig::arg::f32(gd(d::g_a39cdc)), joan::orig::arg::f32(0x3e800000u)));
+src/game/_unplaced/misc_004944c0.cpp:71:20: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+   71 |             return joan::orig::arg::as<u32>(joan::orig::aim_velocity(joan::orig::arg::mptr(p), a, b, joan::orig::arg::f32(gd(d::g_a39d44)), joan::orig::arg::f32(gi(d::g_a39d94)), joan::orig::arg::bits(gi(d::g_a39d10)), joan::orig::arg::f32(gd(d::g_a39d20)), joan::orig::arg::f32(gd(d::g_a39ce0)), joan::orig::arg::f32(0u)));
+src/game/_unplaced/misc_004944c0.cpp:73:20: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+   73 |             return joan::orig::arg::as<u32>(joan::orig::aim_velocity(joan::orig::arg::mptr(p), a, b, joan::orig::arg::f32(gd(d::g_a39cb8)), joan::orig::arg::f32(gi(d::g_a39d58)), joan::orig::arg::bits(gi(d::g_a39ce4)), joan::orig::arg::f32(gd(d::g_a39cec)), joan::orig::arg::f32(gd(d::g_a39d78)), joan::orig::arg::f32(0x3e800000u)));
+src/game/_unplaced/misc_004944c0.cpp:75:20: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+   75 |             return joan::orig::arg::as<u32>(joan::orig::aim_velocity(joan::orig::arg::mptr(p), a, b, joan::orig::arg::f32(gd(d::g_a39dbc)), joan::orig::arg::f32(gi(d::g_a39d00)), joan::orig::arg::bits(gi(d::g_a39d64)), joan::orig::arg::f32(gd(d::g_a39cc8)), joan::orig::arg::f32(gd(d::g_a39cf8)), joan::orig::arg::f32(0x3dcccccdu)));
+src/game/_unplaced/misc_004994b0.cpp:146:16: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'i32' (aka 'int') [-Wshorten-64-to-32]
+  146 |         return joan::orig::arg::as<i32>(joan::orig::as_player(this)->set_relation(joan::orig::arg::i32(id), static_cast<char>(joan::orig::arg::i32(i32{0}))));  // 0x004b4610
+src/game/_unplaced/misc_004994b0.cpp:312:16: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  312 |         return joan::orig::arg::as<u32>(joan::orig::as_profiler(kTimer)->release());  // 0x0045c5c0
+src/game/_unplaced/misc_004994b0.cpp:958:59: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  958 |         if (jo::as_light(light)->bone_ == nullptr) return joan::orig::arg::as<u32>(model);
+src/game/_unplaced/misc_52f930.cpp:208:16: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  208 |     put(found, joan::orig::arg::as<u32>(joan::orig::libc::strstr(joan::orig::arg::str(up_world), joan::orig::arg::str(up_dir))));    // strstr
+src/game/_unplaced/mission.cpp:958:23: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  958 |                 eax = joan::orig::arg::as<u32>(joan::orig::as_effect(fx)->set_owner(joan::orig::arg::mptr(jo::self<jo::MapObject>(this)->actor), joan::orig::arg::mptr(0u)));                  // 0x0041b0d0
+src/game/_unplaced/objm_debrief.cpp:596:23: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'const u32' (aka 'const unsigned int') [-Wshorten-64-to-32]
+  596 |         const u32 r = joan::orig::arg::as<u32>(joan::orig::as_widget(jo::self<jo::CampScreen>(this)->menu_buttons[7])->scale_to_61f1b0(joan::orig::arg::i16(i32{1}), joan::orig::arg::f32(u32{0x40c00000}), joan::orig::arg::f32(i32{0}), static_cast<char>(joan::orig::arg::i32(i32{0})), joan::orig::arg::u32(i32{0xc8})));  // 0x0061f1b0
+src/game/_unplaced/objm_debrief.cpp:763:105: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::uint32_t' (aka 'unsigned int') [-Wshorten-64-to-32]
+  763 |     joan::orig::as_sprite_queue(canvas)->draw_named(joan::orig::arg::i16(s4), joan::orig::arg::i16(s8), joan::orig::arg::as<std::uint32_t>(ctx), joan::orig::arg::str(jo::as_button(w)->states[0].sprite), obj(d::g_a57bf8), joan::orig::arg::u32(c1), 3, 0, 0, 0, -1, -1, -1, -1, 0, joan::orig::arg::i16(sc), joan::orig::arg::i16(s10));  // 0x00633500
+src/game/_unplaced/objm_debrief.cpp:766:109: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::uint32_t' (aka 'unsigned int') [-Wshorten-64-to-32]
+  766 |         joan::orig::as_sprite_queue(canvas)->draw_named(joan::orig::arg::i16(s4), joan::orig::arg::i16(s8), joan::orig::arg::as<std::uint32_t>(ctx), str(d::s_sm_fh), obj(d::g_a57bf8), joan::orig::arg::u32(c2), 3, 0, 0, 0, -1, -1, -1, -1, 0, joan::orig::arg::i16(sc), joan::orig::arg::i16(s10));  // 0x00633500 'sm_fh'
+src/game/_unplaced/objm_debrief.cpp:769:109: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::uint32_t' (aka 'unsigned int') [-Wshorten-64-to-32]
+  769 |         joan::orig::as_sprite_queue(canvas)->draw_named(joan::orig::arg::i16(s4), joan::orig::arg::i16(s8), joan::orig::arg::as<std::uint32_t>(ctx), str(d::s_sm_f), obj(d::g_a57bf8), joan::orig::arg::u32(c3), 3, 0, 0, 0, -1, -1, -1, -1, 0, joan::orig::arg::i16(sc), joan::orig::arg::i16(s10));  // 0x00633500 'sm_f'
+src/game/_unplaced/objscr_next.cpp:140:27: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  140 |         return low_byte_1(joan::orig::arg::as<u32>(joan::orig::as_game(obj(d::g_game_a50088))->set_state(joan::orig::arg::u32(u8{0xc}))));  // 0x004d7e70
+src/game/_unplaced/objm_strat.cpp:257:12: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  257 |     return joan::orig::arg::as<u32>(joan::orig::as_colour(c)->construct(r, g, b, a));  // 0x0042a260 (returns this)
+src/game/_unplaced/pathmesh.cpp:419:128: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::uint32_t' (aka 'unsigned int') [-Wshorten-64-to-32]
+  419 |             joan::orig::arg::as<std::int32_t>(joan::orig::as_triple(jo::view<void*>(jo::self<jo::Pair>(this)->b))->ret0_66a5e0(joan::orig::arg::as<std::uint32_t>(p))) != 0)    // 0x0066a5e0
+src/game/_unplaced/pathmesh.cpp:418:128: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::uint32_t' (aka 'unsigned int') [-Wshorten-64-to-32]
+  418 |             joan::orig::arg::as<std::int32_t>(joan::orig::as_triple(jo::view<void*>(jo::self<jo::Pair>(this)->a))->ret0_66a5e0(joan::orig::arg::as<std::uint32_t>(p))) != 0 ||  // 0x0066a5e0
+src/game/_unplaced/pathmesh.cpp:1286:36: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::uint32_t' (aka 'unsigned int') [-Wshorten-64-to-32]
+ 1286 |     joan::orig::sp_index::add_rect(joan::orig::arg::as<std::uint32_t>(last), joan::orig::arg::i32(p1.x), joan::orig::arg::i32(p1.y), joan::orig::arg::i32(p2.x), joan::orig::arg::i32(p2.y), joan::orig::arg::mptr(grid));
+src/game/_unplaced/pathmesh.cpp:2384:140: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::uint32_t' (aka 'unsigned int') [-Wshorten-64-to-32]
+ 2384 |             if (joan::orig::arg::as<std::int32_t>(joan::orig::as_triple(jo::self<jo::TerrainBlock>(this)->points[i - 1].item)->ret0_66a5e0(joan::orig::arg::as<std::uint32_t>(p))) != 0) return 1;  // 0x0066a5e0
+src/game/_unplaced/places.cpp:738:27: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  738 |     u32 get1f2() { return joan::orig::arg::as<u32>(jo::self<jo::Place>(this)->facility_head_); }
+src/game/_unplaced/places.cpp:776:54: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  776 | static u32 JOAN_CDECL get_75(const void* p) { return joan::orig::arg::as<u32>(jo::as_facility(p)->next); }
+src/game/_unplaced/portal.cpp:257:16: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  257 |         return joan::orig::arg::as<u32>(joan::orig::as_aabb(jo::self<jo::Portal>(this)->box)->extend(static_cast<void*>(jo::self<jo::Portal>(this)->corners + 9)));
+src/game/_unplaced/playerctl.cpp:821:21: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::int32_t' (aka 'int') [-Wshorten-64-to-32]
+  820 |                 joan::orig::as_scene(jo::as_actor(o)->scene_params0)->nop(
+src/game/_unplaced/psystem.cpp:694:16: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::uint32_t' (aka 'unsigned int') [-Wshorten-64-to-32]
+  694 |         return joan::orig::arg::as<std::uint32_t>(data);
+src/game/_unplaced/rworld.cpp:76:16: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+   76 |         return joan::orig::arg::as<u32>(joan::orig::as_players(this)->init());  // 0x006ad020
+src/game/_unplaced/rworld.cpp:192:31: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  192 |         if (p != nullptr) r = joan::orig::arg::as<u32>(joan::orig::as_dyn_array_b(p)->scalar_delete(joan::orig::arg::u32(i32{1})));  // 0x006ad220
+src/game/_unplaced/rworld.cpp:928:27: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  928 |                     *a1 = joan::orig::arg::as<u32>(joan::orig::as_grid_cell(&player_cells(this)[i])->layer(joan::orig::arg::i16(key)));  // 0x006aac10
+src/game/_unplaced/rworld.cpp:1329:97: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::int32_t' (aka 'int') [-Wshorten-64-to-32]
+ 1329 |         const float h = joan::orig::arg::as<float>(joan::orig::as_terrain(layer)->height_66cae0(joan::orig::arg::as<std::int32_t>(cell), joan::orig::arg::f32(pos.x), joan::orig::arg::f32(pos.y)));                    // 0x0066cae0
+src/game/_unplaced/rworld.cpp:1331:40: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::uint32_t' (aka 'unsigned int') [-Wshorten-64-to-32]
+ 1331 |         jo::as_shot(rec)->state.zone = joan::orig::arg::as<std::uint32_t>(cell);
+src/game/_unplaced/savemenu.cpp:1348:16: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+ 1348 |         return joan::orig::arg::as<u32>(joan::orig::as_widget(g)->move_to_61e020(joan::orig::arg::i16(x), joan::orig::arg::i16(y), 1.0f, joan::orig::arg::f32(i32{0}), static_cast<char>(joan::orig::arg::i32(i32{1})), joan::orig::arg::u32(i32{0})));  // 0x0061e020
+src/game/_unplaced/scrlbar.cpp:71:16: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+   71 |         return joan::orig::arg::as<u32>(joan::orig::as_scroll(&jo::self<jo::ScrollBar>(this)->vbar)->destruct());  // 0x0062c720 (eax left as is)
+src/game/_unplaced/rts2.cpp:1364:32: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'const i32' (aka 'const int') [-Wshorten-64-to-32]
+ 1364 |             const i32 side_u = joan::orig::arg::as<i32>(joan::orig::as_unit(u)->nation());  // 0x00509400
+src/game/_unplaced/rts2.cpp:1365:32: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'const i32' (aka 'const int') [-Wshorten-64-to-32]
+ 1365 |             const i32 side_s = joan::orig::arg::as<i32>(joan::orig::as_unit(sel)->nation());
+src/game/_unplaced/rts2.cpp:1384:32: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'const i32' (aka 'const int') [-Wshorten-64-to-32]
+ 1384 |             const i32 side_u = joan::orig::arg::as<i32>(joan::orig::as_unit(u)->nation());
+src/game/_unplaced/rts2.cpp:1385:32: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'const i32' (aka 'const int') [-Wshorten-64-to-32]
+ 1385 |             const i32 side_s = joan::orig::arg::as<i32>(joan::orig::as_unit(sel)->nation());
+src/game/_unplaced/rts2.cpp:2677:19: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+ 2677 |             eax = joan::orig::arg::as<u32>(jo::self<jo::Wall>(this)->actor_b);
+src/game/_unplaced/skybox.cpp:180:42: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::uint32_t' (aka 'unsigned int') [-Wshorten-64-to-32]
+  180 |     std::uint32_t shadow_dtor() { return joan::orig::arg::as<std::uint32_t>(joan::orig::as_plane(this)->release()); }
+src/game/_unplaced/shot.cpp:527:16: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::uint32_t' (aka 'unsigned int') [-Wshorten-64-to-32]
+  527 |         return joan::orig::arg::as<std::uint32_t>(joan::orig::as_actor(jo::view<void*>(jo::self<jo::Shot>(this)->actor))->get_xyz(joan::orig::arg::mptr(&jo::self<jo::Shot>(this)->state.angle_x), joan::orig::arg::mptr(&jo::self<jo::Shot>(this)->state.angle_y), joan::orig::arg::mptr(&jo::self<jo::Shot>(this)->state.angle_z)));  // 0x005acc30
+src/game/_unplaced/sndplay.cpp:865:69: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  865 |         if (jo::self<jo::WaveRes>(this)->buffer_ == nullptr) return joan::orig::arg::as<u32>(r);
+src/game/_unplaced/strpool.cpp:66:35: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+   66 |     u32 forward_5a1770() { return joan::orig::arg::as<u32>(joan::orig::as_list(this)->clear_5a17d0()); }  // 0x005a17d0
+src/game/_unplaced/strpool.cpp:82:35: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+   82 |     u32 forward_5a17a0() { return joan::orig::arg::as<u32>(joan::orig::as_list(this)->clear_5a17d0()); }  // 0x005a17d0
+src/game/_unplaced/t_basic.cpp:46:61: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'i32' (aka 'int') [-Wshorten-64-to-32]
+   46 | i32 open_menu(void* self, const char* name, i32 n) { return joan::orig::arg::as<i32>(joan::orig::strings::get(joan::orig::arg::mptr(self), joan::orig::arg::str(name), joan::orig::arg::i32(n))); }  // 0x005a3090
+src/game/_unplaced/t_basic.cpp:48:12: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'i32' (aka 'int') [-Wshorten-64-to-32]
+   48 |     return joan::orig::arg::as<i32>(joan::orig::strings::get(joan::orig::arg::mptr(self), joan::orig::arg::str(name), joan::orig::arg::i32(n), a));  // 0x005a3090
+src/game/_unplaced/t_basic.cpp:98:61: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'i32' (aka 'int') [-Wshorten-64-to-32]
+   98 | i32 open_menu(void* self, const char* name, i32 n) { return joan::orig::arg::as<i32>(joan::orig::strings::get(joan::orig::arg::mptr(self), joan::orig::arg::str(name), joan::orig::arg::i32(n))); }  // 0x005a3090
+src/game/_unplaced/t_basic.cpp:177:61: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'i32' (aka 'int') [-Wshorten-64-to-32]
+  177 | i32 open_menu(void* self, const char* name, i32 n) { return joan::orig::arg::as<i32>(joan::orig::strings::get(joan::orig::arg::mptr(self), joan::orig::arg::str(name), joan::orig::arg::i32(n))); }  // 0x005a3090
+src/game/_unplaced/t_basic.cpp:278:12: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'i32' (aka 'int') [-Wshorten-64-to-32]
+  278 |     return joan::orig::arg::as<i32>(joan::orig::strings::get(joan::orig::arg::mptr(self), joan::orig::arg::str(name), joan::orig::arg::i32(n), a, b, c));  // 0x005a3090
+src/game/_unplaced/t_basic.cpp:354:16: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  354 |         return joan::orig::arg::as<u32>(joan::orig::as_txt_res(this)->format_dsa(joan::orig::arg::i32(v1), joan::orig::arg::i32(v2), joan::orig::arg::i32(v3), joan::orig::arg::u32(c & 0xffu), joan::orig::arg::u32(d & 0xffu)));   // 0x004da110
+src/game/_unplaced/t_basic.cpp:387:16: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  387 |         return joan::orig::arg::as<u32>(joan::orig::as_txt_res(this)->format_tsa(joan::orig::arg::i32(m), joan::orig::arg::i32(s), joan::orig::arg::u32(h), joan::orig::arg::u32(c & 0xffu), joan::orig::arg::u32(e & 0xffu)));  // 0x004d9f30
+src/game/_unplaced/unit_a.cpp:922:91: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  922 |         if (unit_missing(jo::view<i32>(jo::self<jo::Missile>(this)->u32_2a)) != 0) return joan::orig::arg::as<u32>(joan::orig::as_missile(this)->expire());  // 0x004e6fb0
+src/game/_unplaced/unit_a.cpp:925:20: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  925 |             return joan::orig::arg::as<u32>(joan::orig::as_missile(this)->expire());                            // 0x004e6fb0
+src/game/_unplaced/unit_a.cpp:961:16: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  961 |         return joan::orig::arg::as<u32>(joan::orig::as_missile(this)->expire());  // 0x004e6fb0
+src/game/_unplaced/unit_c.cpp:173:21: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  173 |                 r = joan::orig::arg::as<u32>(joan::orig::as_string(&path)->append(str(d::s_007)));  // "007"
+src/game/_unplaced/unit_c.cpp:178:21: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  178 |                 r = joan::orig::arg::as<u32>(joan::orig::as_string(&path)->append(str(d::s_006)));  // "006"
+src/game/_unplaced/uinput.cpp:143:16: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::uint32_t' (aka 'unsigned int') [-Wshorten-64-to-32]
+  143 |         return joan::orig::arg::as<std::uint32_t>(joan::orig::as_player(this)->reset_goto());  // 0x0043ac60
+src/game/_unplaced/uinput.cpp:1047:23: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'unsigned int' [-Wshorten-64-to-32]
+ 1047 |         f<u32>(0x5) = joan::orig::arg::as<u32>(joan::orig::as_texture_manager(res)->load(str(d::s_MILIBAL), 1, 0u));  // 0x006099c0 "MILIBAL"
+src/game/_unplaced/uinput.cpp:1048:16: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+ 1048 |         return joan::orig::arg::as<u32>(joan::orig::as_texture_manager(res)->set_mode_60a740(joan::orig::arg::u32(saved)));       // 0x0060a740
+src/game/_unplaced/uinput.cpp:1618:90: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::int32_t' (aka 'int') [-Wshorten-64-to-32]
+ 1618 |         u8* const ed = joan::orig::arg::as<u8*>(joan::orig::as_name_list(kEvents)->entry(joan::orig::arg::as<std::int32_t>(def)));  // 0x0041b440
+src/game/_unplaced/unit_xp.cpp:176:43: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'const std::int32_t' (aka 'const int') [-Wshorten-64-to-32]
+  176 |                 const std::int32_t side = joan::orig::arg::as<std::int32_t>(joan::orig::as_unit(p)->nation());  // 0x00509400
+src/game/_unplaced/unit_xp.cpp:199:130: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::int32_t' (aka 'int') [-Wshorten-64-to-32]
+  199 |                 std::uint8_t* const entry = joan::orig::arg::as<std::uint8_t*>(joan::orig::as_name_list(img::obj(kFiles))->entry(joan::orig::arg::as<std::int32_t>(handle)));  // 0x0041b440
+src/game/_unplaced/unitdata.cpp:121:40: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::uint32_t' (aka 'unsigned int') [-Wshorten-64-to-32]
+  121 |     std::uint32_t dtor_body() { return joan::orig::arg::as<std::uint32_t>(joan::orig::as_unit_data(this)->release()); }  // 0x00495ce0
+src/game/_unplaced/unittask.cpp:217:16: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::uint32_t' (aka 'unsigned int') [-Wshorten-64-to-32]
+  217 |         return joan::orig::arg::as<std::uint32_t>(joan::orig::as_unit_task(&jo::self<jo::Unit>(this)->task)->set(0u, static_cast<std::uint8_t>(joan::orig::arg::u32(0)), 0u, 0u, 0u, 0u));  // 0x004e4520
+src/game/_unplaced/vshader.cpp:876:47: warning: implicit conversion loses integer precision: 'HRESULT' (aka 'long') to 'const i32' (aka 'const int') [-Wshorten-64-to-32]
+  876 |                 const i32 hr = game_device()->GetLightEnable(i, &enabled);
+src/game/animgrp.cpp:259:27: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'const u32' (aka 'const unsigned int') [-Wshorten-64-to-32]
+  259 |             const u32 r = joan::orig::arg::as<u32>(joan::orig::as_anim_set(this)->free_buffer());  // 0x004149c0
+src/game/animgrp.cpp:1044:12: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+ 1044 |     return joan::orig::arg::as<u32>(joan::orig::as_image(obj(d::g_a56ef0))->construct());   // 0x0060fad0
+src/game/animscr.cpp:180:36: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  180 |         if (res != nullptr) return joan::orig::arg::as<u32>(joan::orig::as_res_idx(res)->destroy(joan::orig::arg::u32(i32{1})));  // 0x004192d0
+src/game/battle.cpp:421:16: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  421 |         return joan::orig::arg::as<u32>(joan::orig::as_widget(&jo::self<jo::Sms>(this)->text)->dtor_6294c0());     // 0x006294c0
+src/game/camman.cpp:696:23: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  696 |             eax = p ? joan::orig::arg::as<u32>(joan::orig::as_world_item(p)->destroy(1u)) : 0u;  // 0x00416ca0
+src/game/ditemres.cpp:391:31: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  391 |         if (p != nullptr) r = joan::orig::arg::as<u32>(joan::orig::as_dynarray(p)->destroy(1u));  // 0x00463fc0
+src/game/cpuusage.cpp:312:32: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  312 |     u32 call_45c010() { return joan::orig::arg::as<u32>(joan::orig::as_profiler(this)->release()); }  // 0x0045c5c0
+src/game/cpuusage.cpp:745:16: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  745 |         return joan::orig::arg::as<u32>(n);
+src/game/f_shop.cpp:421:16: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  421 |         return joan::orig::arg::as<u32>(joan::orig::as_facility(this)->set_kind_name(joan::orig::arg::i16(a), b));  // 0x0046d5e0
+src/game/f_shop.cpp:545:16: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::uint32_t' (aka 'unsigned int') [-Wshorten-64-to-32]
+  545 |         return joan::orig::arg::as<std::uint32_t>(joan::orig::as_dynarray(jo::view<void*>(jo::self<jo::Shop>(this)->stock))->get(joan::orig::arg::i32(i)));  // 0x00417200
+src/game/gamefil2.cpp:372:88: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::int32_t' (aka 'int') [-Wshorten-64-to-32]
+  372 |             v[2] = joan::orig::arg::as<float>(joan::orig::as_terrain(m)->height_66cae0(joan::orig::arg::as<std::int32_t>(res), joan::orig::arg::f32(v[0]), joan::orig::arg::f32(v[1])));  // 0x0066cae0
+src/game/gamefile.cpp:495:29: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'i32' (aka 'int') [-Wshorten-64-to-32]
+  495 |         if (ok != 0) return joan::orig::arg::as<i32>(joan::orig::as_paths(this)->find(joan::orig::arg::str(static_cast<char*>(name))));  // 0x00477640
+src/game/gameplay.cpp:427:75: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::int32_t' (aka 'int') [-Wshorten-64-to-32]
+  427 |                 joan::orig::as_ini(this)->parse(joan::orig::arg::str(r2), joan::orig::arg::as<std::int32_t>(r1));                    // 0x0047c6c0
+src/game/gameplay.cpp:437:71: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::int32_t' (aka 'int') [-Wshorten-64-to-32]
+  437 |             joan::orig::as_ini(this)->parse(joan::orig::arg::str(r2), joan::orig::arg::as<std::int32_t>(r1));                    // 0x0047c6c0
+src/game/grassres.cpp:385:31: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  385 |         if (p != nullptr) r = joan::orig::arg::as<u32>(joan::orig::as_dynarray(p)->destroy(1u));  // 0x00463fc0 (scalar deleting dtor)
+src/game/i_gate.cpp:173:15: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  173 |         eax = joan::orig::arg::as<u32>(jo::self<jo::Gate>(this)->actor);
+src/game/gfile3.cpp:4265:16: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+ 4265 |         return joan::orig::arg::as<u32>(joan::orig::as_model_res_mgr(models)->set_params(joan::orig::arg::i16(static_cast<i32>(reinterpret_cast<const i16&>(jo::self<jo::UnitManager>(this)->select_models[3]))), static_cast<std::int8_t>(joan::orig::arg::i32(0)), static_cast<std::int8_t>(joan::orig::arg::i32(0)), joan::orig::arg::i16(0)));
+src/game/unitres.cpp:171:16: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  171 |         return joan::orig::arg::as<u32>(joan::orig::as_archive(res)->dtor());  // 0x00417a30
+src/game/unitres.cpp:712:16: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  712 |         return joan::orig::arg::as<u32>(joan::orig::as_archive(self() + 7)->dtor());     // 0x00417a30
+src/ilib/audio.cpp:791:42: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::uint32_t' (aka 'unsigned int') [-Wshorten-64-to-32]
+  791 |     std::uint32_t dtor_578d40() { return joan::orig::arg::as<std::uint32_t>(joan::orig::as_streamer(this)->shutdown()); }  // 0x00579040
+src/ilib/flc.cpp:282:56: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  282 | u32 crt_memcpy(void* d, const void* s, u32 n) { return joan::orig::arg::as<u32>(std::memcpy(joan::orig::arg::mptr(d), joan::orig::arg::ptr(s), joan::orig::arg::u32(n))); }
+src/ilib/resdb.cpp:103:19: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  103 |             eax = joan::orig::arg::as<u32>(buf);
+src/game/world_s.cpp:1196:24: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'i32' (aka 'int') [-Wshorten-64-to-32]
+ 1196 |             g.ids[k] = joan::orig::arg::as<i32>(joan::orig::as_world(g.self)->find_sector(joan::orig::arg::str(g.names[k])));  // 0x0054e6a0
+src/game/world_s.cpp:1198:24: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'i32' (aka 'int') [-Wshorten-64-to-32]
+ 1198 |         g.default_id = joan::orig::arg::as<i32>(joan::orig::as_world(g.self)->find_sector(str(d::s_Default_scene_sector)));  // "Default scene sector"
+src/game/world_s.cpp:1616:143: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::int32_t' (aka 'int') [-Wshorten-64-to-32]
+ 1616 |         void* const mesh = joan::orig::arg::as<void*>(joan::orig::as_scene(jo::view<void*>(jo::self<jo::Cell>(this)->world->scene))->occluder(joan::orig::arg::as<std::int32_t>(id)));                  // 0x005eed90
+src/game/world_s.cpp:1620:112: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::int32_t' (aka 'int') [-Wshorten-64-to-32]
+ 1620 |         std::uint8_t* const occ = joan::orig::arg::as<std::uint8_t*>(joan::orig::as_world_cell(this)->occluder(joan::orig::arg::as<std::int32_t>(oid)));                           // 0x00560d30
+src/game/world_s.cpp:1972:236: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::uint32_t' (aka 'unsigned int') [-Wshorten-64-to-32]
+ 1972 |             joan::orig::arg::as<std::int32_t>(joan::orig::as_waters(waters)->add(static_cast<char>(joan::orig::arg::i32(b398)), static_cast<char>(joan::orig::arg::i32(0)), box, joan::orig::arg::bits(f394), joan::orig::arg::u32(sound), joan::orig::arg::as<std::uint32_t>(sector)));  // 0x00474df0
+src/game/world_s.cpp:3573:90: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::int32_t' (aka 'int') [-Wshorten-64-to-32]
+ 3573 |         void* const fac = joan::orig::arg::as<void*>(joan::orig::as_list(factory)->get_e(joan::orig::arg::as<std::int32_t>(proto)));   // 0x0043c450
+src/game/world_s.cpp:5405:298: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::uint32_t' (aka 'unsigned int') [-Wshorten-64-to-32]
+ 5405 |             const std::int32_t id = joan::orig::arg::as<std::int32_t>(joan::orig::as_waters(obj(d::g_tracks))->add(static_cast<char>(joan::orig::arg::i32(static_cast<std::int32_t>(b398))), static_cast<char>(joan::orig::arg::i32(0)), box, joan::orig::arg::bits(f394), joan::orig::arg::u32(effect), joan::orig::arg::as<std::uint32_t>(node)));  // 0x00474df0
+src/ilib/vqueue.cpp:119:16: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  119 |         return joan::orig::arg::as<u32>(p);
+src/ilib/vqueue.cpp:194:16: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  194 |         return joan::orig::arg::as<u32>(jo::self<jo::VQueue>(this)->data);
+src/ilib/vqueue.cpp:203:16: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  203 |         return joan::orig::arg::as<u32>(std::memcpy(joan::orig::arg::mptr(dst), joan::orig::arg::ptr(data), joan::orig::arg::u32(len)));  // memcpy
+src/ilib/sound3d.cpp:976:31: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  976 |     u32 fwd_5a0300() { return joan::orig::arg::as<u32>(joan::orig::as_sound3d(this)->release_5a04e0()); }  // 0x005a04e0
+src/interfac/i_barr.cpp:1567:12: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+ 1567 |     return joan::orig::arg::as<u32>(joan::orig::as_colour(c)->construct(r, g, b, a));  // 0x0042a260 (returns this)
+src/interfac/i_sms.cpp:563:46: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::uint32_t' (aka 'unsigned int') [-Wshorten-64-to-32]
+  563 |             jo::self<jo::Sms>(this)->sound = joan::orig::arg::as<std::uint32_t>(joan::orig::as_texture_manager(obj(d::g_a403a0))->load(str(d::s_QSAVE), 1, 0u));  // 0x006099c0 'QSAVE'
+src/interfac/i_work.cpp:655:30: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'const u32' (aka 'const unsigned int') [-Wshorten-64-to-32]
+  655 |             const u32 menu = joan::orig::arg::as<u32>(joan::orig::as_txt_res(obj(d::g_strings))->workshop_text_19());       // 0x004de050
+src/interfac/i_work.cpp:1340:121: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::uint32_t' (aka 'unsigned int') [-Wshorten-64-to-32]
+ 1340 |     joan::orig::as_sprite_queue(obj(d::g_sprites_a46128))->draw_named(joan::orig::arg::i16(x), joan::orig::arg::i16(y), joan::orig::arg::as<std::uint32_t>(surface), joan::orig::arg::str(name), img::obj(d::g_sheet), joan::orig::arg::u32(col), 3, 0, 2, 0, -1, -1, -1, -1, 0, -1, -1);
+src/interfac/i_work.cpp:1345:104: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::uint32_t' (aka 'unsigned int') [-Wshorten-64-to-32]
+ 1345 |     joan::orig::as_text(obj(d::g_a5d3c8))->draw_line(joan::orig::arg::i32(x), joan::orig::arg::i32(y), joan::orig::arg::as<std::uint32_t>(surface), text, joan::orig::arg::u32(col), i32{-1}, i32{0}, i32{1}, i32{2}, i32{0}, joan::orig::arg::f32(u32{0x3f800000}), joan::orig::arg::f32(u32{0x3f800000}));
+src/interfac/objmenub.cpp:135:16: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  135 |         return joan::orig::arg::as<u32>(joan::orig::as_file(&file)->destruct_5872b0());  // 0x005872b0 ~File
+src/interfac/objmenu.cpp:1513:16: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+ 1513 |         return joan::orig::arg::as<u32>(joan::orig::as_label(list)->set_layout(joan::orig::arg::u32(i32{0x314}), joan::orig::arg::u32(i32{0x262}), joan::orig::arg::u32(i32{2}), joan::orig::arg::u32(jo::view<u16>(jo::self<jo::CampScreen>(this)->brief_line)), joan::orig::arg::u32(i32{1}), joan::orig::arg::u32(i32{0}), joan::orig::arg::u32(i32{-1})));  // 0x006299b0
+src/interfac/objmenu.cpp:1641:12: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+ 1641 |     return joan::orig::arg::as<u32>(joan::orig::as_widget(o)->move_to_61e020(joan::orig::arg::i16(a), joan::orig::arg::i16(b), joan::orig::arg::f32(c), joan::orig::arg::f32(d), static_cast<char>(joan::orig::arg::i32(e)), joan::orig::arg::u32(f)));  // 0x0061e020
+src/interfac/objmenuw.cpp:349:23: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'const u32' (aka 'const unsigned int') [-Wshorten-64-to-32]
+  349 |         const u32 r = joan::orig::arg::as<u32>(joan::orig::as_widget(jo::self<jo::CampScreen>(this)->menu_buttons[7])->scale_to_61f1b0(joan::orig::arg::i16(1), joan::orig::arg::f32(0x40c00000u), joan::orig::arg::f32(0u), static_cast<char>(0), joan::orig::arg::u32(0xc8)));  // 0x0061f1b0
+src/interfac/i_buy.cpp:307:19: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  307 |     fr.dw(kSel) = joan::orig::arg::as<u32>(joan::orig::as_ptr_list(jo::as_buy_screen(fself(fr))->items_b.grid_16)->get(joan::orig::arg::i32(fr.dw(kK))));  // 0x00457e90
+src/interfac/i_buy.cpp:389:20: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  389 |     fr.dw(kSel2) = joan::orig::arg::as<u32>(joan::orig::as_ptr_list(jo::as_buy_screen(fself(fr))->items.grid_16)->get(joan::orig::arg::i32(fr.dw(kK2))));  // 0x00457e90
+src/interfac/i_buy.cpp:525:24: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  525 |         fr.dw(kUnit) = joan::orig::arg::as<u32>(joan::orig::as_dynarray(obj(d::g_units))->ptr_at(joan::orig::arg::i32(global<u32>(d::g_a5b9e8))));  // 0x0041b3c0
+src/interfac/i_buy.cpp:1027:16: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+ 1027 |         return joan::orig::arg::as<u32>(joan::orig::as_parser(kMouse)->reset());  // 0x00595a20
+src/interfac/i_buy.cpp:2609:12: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+ 2609 |     return joan::orig::arg::as<u32>(joan::orig::as_texture_manager(kMenus)->load(joan::orig::arg::str(name), i32{1}, joan::orig::arg::u32(i32{0})));  // 0x006099c0
+src/interfac/i_buy.cpp:2833:48: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::uint32_t' (aka 'unsigned int') [-Wshorten-64-to-32]
+ 2833 |             jo::self<jo::Popup>(this)->image = joan::orig::arg::as<std::uint32_t>(joan::orig::as_texture_manager(img::obj(kTextures))->load(joan::orig::arg::str(&img::global<const char>(d::s_GPOPUP)), 1, 0u));  // 0x006099c0 "GPOPUP"
+src/interfac/i_buy.cpp:4214:16: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+ 4214 |         return joan::orig::arg::as<u32>(joan::orig::as_widget(&jo::self<jo::MessageBox>(this)->button0)->dtor_6211a0());  // 0x006211a0
+src/interfac/i_buy.cpp:4924:34: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'const u32' (aka 'const unsigned int') [-Wshorten-64-to-32]
+ 4924 |                 const u32 text = joan::orig::arg::as<u32>(joan::orig::as_ending(kMenus)->open_1());  // 0x004de630 ENDING 1
+src/interfac/i_buy.cpp:4931:34: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'const u32' (aka 'const unsigned int') [-Wshorten-64-to-32]
+ 4931 |                 const u32 text = joan::orig::arg::as<u32>(joan::orig::as_ending(kMenus)->open_09());  // 0x004de7b0 ENDING 9
+src/interfac/i_buy.cpp:5024:72: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::uint32_t' (aka 'unsigned int') [-Wshorten-64-to-32]
+ 5024 |             if (name != nullptr) jo::self<jo::Ending>(this)->picture = joan::orig::arg::as<std::uint32_t>(joan::orig::as_texture_manager(img::obj(kPictures))->load(joan::orig::arg::str(name), 1, 0u));  // 0x006099c0
+src/interfac/i_buy.cpp:5028:17: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::uint32_t' (aka 'unsigned int') [-Wshorten-64-to-32]
+ 5027 |             jo::self<jo::Ending>(this)->picture2 =
+src/interfac/i_buy.cpp:5886:25: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'i32' (aka 'int') [-Wshorten-64-to-32]
+ 5886 |             fr.d(rec) = joan::orig::arg::as<i32>(joan::orig::as_dynarray(block(fr, grid))->get(joan::orig::arg::i32(fr.d(-0x238))));  // 0x00417200
+src/interfac/i_buy.cpp:5919:25: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'i32' (aka 'int') [-Wshorten-64-to-32]
+ 5919 |             fr.d(rec) = joan::orig::arg::as<i32>(joan::orig::as_dynarray(block(fr, grid))->get(joan::orig::arg::i32(fr.d(-0x238))));  // 0x00417200
+src/interfac/i_buy.cpp:5950:20: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'i32' (aka 'int') [-Wshorten-64-to-32]
+ 5950 |         fr.d(-8) = joan::orig::arg::as<i32>(joan::orig::as_dynarray(obj(d::g_units))->ptr_at(joan::orig::arg::i32(fr.d(8))));  // 0x0041b3c0
+src/interfac/i_buy.cpp:5967:30: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'i32' (aka 'int') [-Wshorten-64-to-32]
+ 5967 |                 fr.d(-0xc) = jo::arg::as<i32>(jo::as_unit_data(jo::as_unit(fr.ptr(-8))->modifiers)->hands[0]);
+src/interfac/i_buy.cpp:5968:31: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'i32' (aka 'int') [-Wshorten-64-to-32]
+ 5968 |                 fr.d(-0x10) = jo::arg::as<i32>(jo::as_unit_data(jo::as_unit(fr.ptr(-8))->modifiers)->hands[1]);
+src/interfac/i_buy.cpp:6062:28: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'i32' (aka 'int') [-Wshorten-64-to-32]
+ 6062 |             fr.d(-0x4b8) = joan::orig::arg::as<i32>(joan::orig::as_dynarray(block(fr, &jo::UnitData::list_12))->get(joan::orig::arg::i32(fr.d(-0x238))));  // 0x00417200
+src/interfac/i_buy.cpp:6096:31: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'const u32' (aka 'const unsigned int') [-Wshorten-64-to-32]
+ 6096 |                 const u32 t = joan::orig::arg::as<u32>(joan::orig::text::format_5a4c30(jo::as_item_def(fr.ptr(-0x4c4))->description, joan::orig::arg::mptr(fr.p(-0x500))));  // 0x005a4c30
+src/interfac/i_buy.cpp:7081:25: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'const u32' (aka 'const unsigned int') [-Wshorten-64-to-32]
+ 7081 |         const u32 img = joan::orig::arg::as<u32>(joan::orig::as_texture_manager(images)->load(joan::orig::arg::str(fr.buf), 1, 0u));  // 0x006099c0
+src/interfac/minires.cpp:825:16: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'u32' (aka 'unsigned int') [-Wshorten-64-to-32]
+  825 |         return joan::orig::arg::as<u32>(std::memset(joan::orig::arg::mptr(jo::self<jo::MiniMap>(this)->slot_used), i32{0}, u32{0xa}));  // memset
+src/uti3d/dlgres.cpp:383:16: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'i32' (aka 'int') [-Wshorten-64-to-32]
+  383 |         return joan::orig::arg::as<i32>(std::strncpy(static_cast<char*>(joan::orig::arg::mptr(jo::view<void*>(e->text))), joan::orig::arg::str(s + 7), joan::orig::arg::u32(len + 1)));  // memcpy
+src/uti3d/esstate2.cpp:1272:40: warning: implicit conversion loses integer precision: 'std::uintptr_t' (aka 'unsigned long') to 'std::uint32_t' (aka 'unsigned int') [-Wshorten-64-to-32]
+ 1272 |     std::uint32_t sub_reset() { return joan::orig::arg::as<std::uint32_t>(joan::orig::as_counter(jo::view<void*>(jo::self<jo::ScriptBlock>(this)->statements))->clamp_to_one()); }  // 0x004b9d40

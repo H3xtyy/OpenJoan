@@ -1,0 +1,2 @@
+start,end,name,confidence,evidence,target
+0x0057f730,0x0057f730,bitmapw_t1,medium,Inline two-word (Point/Size) ctor emitted right after bitmapw.cpp Bitmap::create and before blob.cpp; same pattern as the Point16/Size16 helpers of the other bitmap*.cpp objects.,ilib/bitmapw.cpp

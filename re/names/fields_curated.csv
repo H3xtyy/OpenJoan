@@ -1,0 +1,366 @@
+# Layout field names from reading the code that uses each field and the old project's docs (Phase 3; high = unambiguous use in code or
+# code + doc, medium = one clear source). Applied by re/layout/rename_fields.py.
+class,offset,old_name,new_name,evidence
+CampScreen,0x44,p_44,top_bar,"high: objmenu.cpp:111 bar(p_44,0,0x84,commele2,LONGBAR); title() draws mode title at its x/y"
+CampScreen,0x48,p_48,bottom_bar,"high: objmenu.cpp:112 bar(p_48,0,0x298,commele2,LONGBAR,0x400)"
+CampScreen,0x4c,p_4c,side_bar,"medium: objmenu.cpp:113 bar(p_4c,0x19,0xb8,objmenu,TXT_FV); fade_panel()"
+CampScreen,0x95,p_95,reward_up_button,high: unknown_objm_reward.cpp:78 Button setup aw_u_ot/dw/ov; click -> build_list(c7-1)
+CampScreen,0x99,p_99,reward_down_button,high: unknown_objm_reward.cpp:81 aw_d_* images; click -> build_list(c7+1)
+CampScreen,0xa7,u16_a7,reward_condition_ids,"medium: unknown_objm_reward.cpp:262 reward_rec(j)=end_conditions[a7[j]], -1 terminates"
+CampScreen,0xc7,u32_c7,reward_scroll,"medium: unknown_objm_reward.cpp:409-418 up button build_list(c7-1), down c7+1, bounded by cb-10"
+CampScreen,0xcb,u32_cb,reward_count,medium: unknown_objm_reward.cpp:295 c7 < cb-10 shows the down button (10 visible rows)
+CampScreen,0xcf,p_cf,reward_camera,high: unknown_objm_reward.cpp:83-91 new Camera + set_viewport/set_scene; objmenu.cpp:800 case 0 render()
+CampScreen,0xd3,p_d3,reward_frame,medium: unknown_objm_reward.cpp:71-74 Image2D label SCR_FH (page frame)
+CampScreen,0xd7,p_d7,shop_frame,"medium: unknown_objm_shop.cpp:71-73 Image2D SCR_FH, released at :133"
+CampScreen,0xdb,p_db,shop_up_button,high: unknown_objm_shop.cpp:75 aw_u_* Button; :285 drawn when u32_101>0
+CampScreen,0xdf,p_df,shop_down_button,high: unknown_objm_shop.cpp:78 aw_d_* Button; :381 click -> fill_list
+CampScreen,0xed,u16_ed,shop_territory_ids,medium: unknown_objm_shop.cpp:447 g_territory_array->get(u16_ed[i]); owner_side(u16_ed[i])
+CampScreen,0x101,u32_101,shop_scroll,"medium: unknown_objm_shop.cpp:375-386 fill_list(u32_101-1/+1), bounded by u32_105-10"
+CampScreen,0x105,u32_105,shop_count,medium: unknown_objm_shop.cpp:536 incremented per territory row; :384 u32_105-10
+CampScreen,0x109,p_109,shop_camera,"high: unknown_objm_shop.cpp:81-86 new Camera, set_scene(map_scene); objmenu.cpp:801 case 1 render()"
+CampScreen,0x10d,p_10d,army_image_frame,medium: unknown_objm_army.cpp:76-77 Image2D IMG_F
+CampScreen,0x111,p_111,army_text_frame,medium: unknown_objm_army.cpp:79-80 Image2D TXT_FH
+CampScreen,0x115,p_115,army_up_button,high: unknown_objm_army.cpp:82 aw_u_* Button; :581 click -> build_roster(u32_147-1)
+CampScreen,0x119,p_119,army_down_button,high: unknown_objm_army.cpp:85 aw_d_* Button; :589 click -> roster+1
+CampScreen,0x127,u16_127,roster_unit_ids,high: unknown_objm_army.cpp:710 roster_row: u16_127[row]=unit_id(k); :372 g_units->ptr_at(u16_127[sel])
+CampScreen,0x13b,u32_13b,roster_french_row,medium: unknown_objm_army.cpp:734 first FRENCH unit header row index (-1 until seen)
+CampScreen,0x13f,u32_13f,roster_english_row,medium: unknown_objm_army.cpp:752 ENGLISH section header row
+CampScreen,0x143,u32_143,roster_mercenary_row,medium: unknown_objm_army.cpp:770 MERCEN section header row
+CampScreen,0x147,u32_147,roster_scroll,high: unknown_objm_army.cpp:716 build_728390(min_count) stores first visible row; hud/up-down buttons
+CampScreen,0x14b,u32_14b,roster_count,high: unknown_objm_army.cpp:350 u32_147 < u32_14b-10 shows down button
+CampScreen,0x14f,u16_14f,roster_selected,high: unknown_objm_army.cpp:372 u16_127[sx(u16_14f)]; :579 =-1 when none
+CampScreen,0x15d,u32_15d,army_actor_def,high: unknown_objm_army.cpp:1070 = model_entry->actor_def; :1072 army_model->def
+CampScreen,0x169,u32_169,army_model_flags,medium: unknown_objm_army.cpp:1060 = unit_type->model_flags[collision_id]
+CampScreen,0x16d,u32_16d,army_model_id,high: unknown_objm_army.cpp:1055 = unit_type->model_ids[collision_id]; ModelResMgr release/acquire(i16 it)
+CampScreen,0x181,u32_181,siege_actor_def,high: objmenuw.cpp:111 = model_entry(u32_189)->actor_def; :112 siege_model->def
+CampScreen,0x185,u32_185,siege_model_flags,medium: objmenuw.cpp:105 = unit_type->model_flags[0]
+CampScreen,0x189,u32_189,siege_model_id,high: objmenuw.cpp:104 = unit_type->model_ids[0]; release/acquire
+CampScreen,0x195,u32_195,siege_buttons,high: unknown_objm_cannon.cpp:90 new Button per i<6; objmenuw.cpp:72 mouse()
+CampScreen,0x1b3,u32_1b3,siege_tex_debrief,"medium: objmenuw.cpp:320 texture_manager->load(""debrief"")"
+CampScreen,0x1b7,u32_1b7,siege_tex_siege,"medium: objmenuw.cpp:322 texture_manager->load(""mb_siege"")"
+CampScreen,0x1bb,u32_1bb,siege_selected,"high: objmenuw.cpp:73,183 = clicked button index, -1 none; unknown_objm_cannon.cpp:276 switch on it"
+CampScreen,0x1c3,u32_1c3,siege_desc_text,medium: objmenuw.cpp:85-92 Mem buffer filled by File read of a DES.. file; freed before reload
+CampScreen,0x1c7,u8_1c7,help_open,"high: objmenuw.cpp:57-59,206 siege_help(): set when the help popup is shown, cleared when it is closed; cannon draw draws popup if set"
+CampScreen,0x1d0,f32_1d0,map_min_x,high: unknown_objm_map.cpp:1264 min over parsed boxes; centre=(1d0+1d8)/2 in unknown_objm_shop.cpp:174
+CampScreen,0x1d4,f32_1d4,map_min_y,high: unknown_objm_map.cpp:1265; corner[1] in map_camera()
+CampScreen,0x1d8,f32_1d8,map_max_x,high: unknown_objm_map.cpp:1266 max over parsed boxes
+CampScreen,0x1dc,f32_1dc,map_max_y,high: unknown_objm_map.cpp:1267
+CampScreen,0x1e0,u8_1e0,camera_view,medium: unknown_objm_map.cpp:118 set after map_camera init; objmenu.cpp:803 render map_camera when !=0; :824 toggled by button p_20d (text open_1a/objmenu_1b)
+CampScreen,0x1e1,u32_1e1,view_x,"medium: unknown_objm_map.cpp:704 = (sector_min_x+sector_max_x)/2; :918 += pan delta, clamped to the sector box"
+CampScreen,0x1e5,u32_1e5,view_y,"medium: unknown_objm_map.cpp:708,919 same for y"
+CampScreen,0x1e9,u32_1e9,sector_min_x,medium: unknown_objm_map.cpp:673 = ftolf(cell item box[0]) bounding box of the sector list
+CampScreen,0x1ed,u32_1ed,sector_min_y,medium: unknown_objm_map.cpp:674 box[1]
+CampScreen,0x1f1,u32_1f1,sector_max_x,medium: unknown_objm_map.cpp:675 box[3]
+CampScreen,0x1f5,u32_1f5,sector_max_y,medium: unknown_objm_map.cpp:676 box[4]
+CampScreen,0x209,u32_209,zoom_step,"medium: unknown_objm_map.cpp:136,892 scale=(u32_209-1)*0.5; ftol(z) at :732; 1 = no zoom"
+CampScreen,0x20d,p_20d,view_toggle_button,medium: unknown_objm_map.cpp:823-829 click toggles u8_1e0 and swaps its caption
+CampScreen,0x215,p_215,strat_down,high: unknown_objm_strat.cpp:139 click -> set_strategy_page(+1) (strat_up is the -1 button)
+CampScreen,0x219,u32_219,strat_first,high: unknown_objm_strat.cpp:137-147 first visible strategy; strat_selected = i + u32_219; up/down page it
+CampScreen,0x225,u32_225,strategy_texture,"high: unknown_objm_strat.cpp:345 texture_manager->load(""STRATEGY""); released :370"
+CampScreen,0x235,u32_235,hero_buttons,"medium: unknown_objm_debrief.cpp:89-93 4 Buttons created at y 0x218, drawn/clicked per i (heroes[4] / tex_heroes)"
+CampScreen,0x265,u32_265,selected_hero,high: unknown_objm_debrief.cpp:278 heroes[u32_265]; :508 != -1 draws results; :601 = -1
+CampScreen,0x26c,u16_26c,map_drag_x,"high: unknown_objm_map.cpp:840,877,887 last mouse x (g_mouse_x) for drag panning"
+CampScreen,0x26e,u16_26e,map_drag_y,"high: unknown_objm_map.cpp:841,878,888 last mouse y"
+UnitSnapshot,0x2,u16_2,layer,high: unknown_crithud.cpp:400 = Unit::layer (copy 0x462610)
+UnitSnapshot,0x104,u32_104,rank,high: unknown_crithud.cpp:407 = Unit::rank
+UnitSnapshot,0x108,u16_108,kingdom_id,high: unknown_crithud.cpp:408 = Unit::kingdom_id
+UnitSnapshot,0x10a,u16_10a,race_id,high: unknown_crithud.cpp:409 = Unit::race_id
+UnitSnapshot,0x10c,u16_10c,level,high: unknown_crithud.cpp:410 = Unit::level
+UnitSnapshot,0x110,u32_110,hit_points,high: unknown_crithud.cpp:412 = Unit::hit_points
+UnitSnapshot,0x114,u32_114,hit_points_base,high: unknown_crithud.cpp:413 = Unit::hit_points_base
+UnitSnapshot,0x118,u32_118,regen_hp,high: unknown_crithud.cpp:414 = Unit::regen_hp
+UnitSnapshot,0x11c,u32_11c,regen_ep,high: unknown_crithud.cpp:415 = Unit::regen_ep
+UnitSnapshot,0x120,u16_120,strength,"high: unknown_crithud.cpp:416 = Unit::stats[0]; debug_menu.cpp kStats ""Strength"" = stats[0]"
+UnitSnapshot,0x122,u16_122,dexterity,"high: unknown_crithud.cpp:417 = Unit::stats[1]; debug_menu.cpp ""Dexterity"""
+UnitSnapshot,0x124,u32_124,experience,high: unknown_crithud.cpp:418 = Unit::experience
+UnitSnapshot,0x12e,u32_12e,idle_time,high: unknown_crithud.cpp:421 = Unit::idle_time
+UnitSnapshot,0x13a,u16_13a,morale,high: unknown_crithud.cpp:422 = Unit::morale
+TrackNode,0x1c,u32_1c,search_stamp,high: trackres.cpp:938 reset to 0 for all nodes; :1493 id_is(v) compares it; PathSearchState reset 0x4ee410
+TrackNode,0x20,u32_20,parent,"high: trackres.cpp:1117,1205 walk p=p->u32_20 until null to emit the route backwards"
+TrackNode,0x28,u32_28,next_open,high: trackres.cpp:1114-1163 singly linked open list sorted by before()
+TrackNode,0x2c,u32_2c,grid_x,"medium: trackres.cpp:1090 add_segment(x=u32_2c,y=u32_30,..); distance_4eda90(pt[0],pt[1],u32_2c,u32_30)"
+TrackNode,0x30,u32_30,grid_y,"medium: trackres.cpp:1090,1105 second coordinate of the same point"
+TrackNode,0x36,i16_36,child_count,"high: unknown_i_obj0b.cpp:342 del_array_rec(children, i16_36); r9f note +0x36 child count; trackres.cpp:1180 >0 propagates costs"
+TrackNode,0x3b,i8_3b,closed,"medium: trackres.cpp:1160 ==0 test before relaxing, :1185 set to 1 for the expanded node"
+TrackNode,0x3c,i32_3c,cost_so_far,high: trackres.cpp:1131 g = cur.i32_3c + step; :1103 start = 0
+TrackNode,0x40,i32_40,cost_total,high: trackres.cpp:1133 = i32_3c + i32_44 (f = g + h); compared in the open list order
+TrackNode,0x44,i32_44,cost_heuristic,high: trackres.cpp:1132 = distance_4eda90 to the goal point (h)
+TrackNode,0x48,i16_48,weight,"medium: trackres.cpp:1107-1109,1134 per-node i16 added into i32_4c / max into i16_4a"
+TrackNode,0x4a,i16_4a,weight_max,"medium: trackres.cpp:1135,1151 = max(cur.i16_4a, nb.i16_48)"
+TrackNode,0x4c,i32_4c,weight_sum,"medium: trackres.cpp:1134,1150 = cur.i32_4c + nb.i16_48"
+Missile,0x10,u32_10,sound_handle,"high: unknown_unit_c.cpp:701 = sound_list->play_effect(""ARROW""); unknown_cheats.cpp:546 entry(handle) released then =0"
+Missile,0x2a,u32_2a,shooter_unit_id,high: unknown_unit_core.cpp:3223 = source->id; rbody.cpp:109 kUnits->empty_at(u32_2a); unknown_unit_c.cpp compared with g_player_unit_recno
+Missile,0x2e,u32_2e,shooter_record,medium: unknown_unit_core.cpp:3224 = source->actor->record; rbody.cpp:112 Players list ptr_at(u32_2e)
+Missile,0x32,u32_32,lifetime_ms,medium: unknown_lod_queue.cpp:208 expire when launch_time + u32_32 < now(); set from per-type stats (unknown_unit_type_stats.cpp:167)
+Missile,0x36,u32_36,max_range,high: unknown_lod_queue.cpp:202 removed when distance from origin exceeds u32_36 (fild); unknown_unit_core.cpp:3253 scaled by modifier percent /100
+Missile,0x4a,u32_4a,straight_speed,medium: unknown_unit_c.cpp:610 straight(): velocity = dir * u32_4a (vec_scale)
+SaveMenu,0x14,u32_14,preview_texture,"high: unknown_savemenu.cpp:568-583 released, then texture_manager->load(save image name) and blit_image(); freed at :326"
+SaveMenu,0x4afc,u8_4afc,selected_slot,high: unknown_savemenu.cpp:723 sel() ; index = sel + (page-1)*10 at :666
+SaveMenu,0x4afd,u8_4afd,page,"high: unknown_savemenu.cpp:724 page() ; (page-1)*10 slot offset, 0 = none"
+SaveMenu,0x4b04,u8_4b04,name_edit_state,medium: unknown_savemenu.cpp:787 start_name_edit sets 2; :683 ==2 draws the name edit box; :797 >0 skips slot polling
+SaveMenu,0x4b08,u8_4b08,load_done,"medium: unknown_savemenu.cpp:806,944 set after load_save(); :1250 then slides out, frees images and clears it"
+BodyState,0x0,u32_0,vec0_x,medium: BodyState notes: +0..+0xb is a vec3 whose y/z are vec0_y/vec0_z; unknown_shot.cpp:110 zero3(&u32_0); unknown_formmove.cpp:755 copies 12 bytes
+BodyState,0xc0,f32_c0,cell_pos,medium: physys.cpp:374 u32 slots receive ftol(pos[i]): integer cell coordinates (type is float[3] but holds i32)
+BodyState,0xd4,u16_d4,on_ground,"high: unknown_formmove.cpp:720 comment ""ground flag"": 1 when terrain height reached or knock active, else 0; :852 returns 1 if set"
+BodyState,0x11a,u32_11a,vel_start,"medium: unknown_shot.cpp:200 mover_start(v,a,b): vel=v, u32_11a=a (parallel to move_start/goal_start)"
+BodyState,0x11e,u32_11e,vel_len,medium: unknown_shot.cpp:201 = float(b); unknown_formmove.cpp:472 decremented by dt*1000 (knock impulse remaining)
+BodyState,0x122,u32_122,vel_end,medium: unknown_shot.cpp:204 = a + b (start + length)
+BodyState,0x126,u16_126,vel_flag,"medium: unknown_shot.cpp:205 =0 on start; unknown_formmove.cpp:178,271,471 flag like move_flag/goal_flag"
+BuyScreen,0x56,u8_56,items_loaded,"medium: i_buy.cpp:1340 early return if set; :1367 set after the stock loop; :491,993 cleared"
+BuyScreen,0x235,i32_235,drag_start_ms,"medium: i_buy.cpp:2124,2129,2147,2307 = g_now when a drag begins (take())"
+BuyScreen,0x245,i32_245,drag_type,high: i_buy.cpp:2067 drag_type() accessor; :2073 = InvItem::type of the picked-up record
+BuyScreen,0x249,i16_249,drag_level,"high: i_buy.cpp:2074 = InvItem level; :2355 price(.., level = i16_249)"
+BuyScreen,0x24b,i16_24b,drag_count,high: i_buy.cpp:2075 = InvItem count; :2200 count passed to add_stack
+InvItem,0x2,u16_2,count,high: i_buy.cpp:2075 -> BuyScreen drag count -> add_stack(&count) and price(count)
+InvItem,0x4,u16_4,level,high: i_buy.cpp:2074 -> price(.. level - min_level + 1); add_stack arg a1 (world item stack.u16_4)
+Vtx,0x0,u32_0,pos_x,medium: unknown_vtxconv.cpp:108 = from->pos[0]
+Vtx,0x4,u32_4,pos_y,medium: unknown_vtxconv.cpp:109 = from->pos[1]
+Vtx,0x8,u32_8,pos_z,medium: unknown_vtxconv.cpp:110 = from->pos[2]
+EndScreen,0x0,u32_0,victory_image,"high: unknown_i_endscr.cpp:232 res_load(""VICTORY""), released :258"
+EndScreen,0x4,u32_4,victory2_image,"high: unknown_i_endscr.cpp:233 res_load(""VICTORY2"")"
+EndScreen,0x8,u32_8,victory3_image,"high: unknown_i_endscr.cpp:234 res_load(""VICTORY3"")"
+EndScreen,0xc,u32_c,victory_e_image,"high: unknown_i_endscr.cpp:235 res_load(""VICTORYE"")"
+EndScreen,0x1080,u32_1080,open_time_ms,high: unknown_i_endscr.cpp:183 open(): = g_game_time_ms
+EffectState,0x0,u8_0,initialised,"high: pemitter.cpp:68 init returns if set, :83 sets it; actor_release :135 returns if clear, :170 clears"
+EffectState,0x5c,u32_5c,yaw,high: peffect.cpp:102 fx.u32_5c = ModelObj::angle right after set_yaw(angle); pemitter.cpp:293 passed to node angle
+EffectState,0x64,u32_64,owns_emitters,"high: pemitter.cpp:78 =1 on init; :142 !=0 -> destroys the emitter array, else drops shared_from reference and resets to 1"
+Message,0x0,u32_0,list_index,high: unknown_message.cpp:796 = list cursor() after linkin; :843 is_best(u32_0); flocksys.cpp:430 remove_delete(u32_0)
+Message,0x19,u32_19,sound_id,medium: unknown_message.cpp:924 play_sound(u32_19); unknown_game_run.cpp:347 sounds->pause/resume(u32_19); release triggers slot
+Message,0x1d,u32_1d,sound_started,high: unknown_message.cpp:924-926 sound played once: set to 1 after play_sound
+Message,0x3b,f32_3b,revealed_chars,high: unknown_message.cpp:929-934 grows by ticks*0.04 up to len (typewriter); msglog.cpp:483 text[ftol(f32_3b)]=0 truncation
+Shot,0x278,u16_278,idle_frames,"high: unknown_formmove.cpp:176 comment ""idle counter"": ++ while nothing moves, =0 otherwise, >=1000 stops"
+Shot,0x2ae,u32_2ae,active_link,"high: physys.cpp:529-556 set_active: stores the active-list cursor on activate, linkout + 0 on deactivate; rworld.cpp:289 skip if 0"
+Config,0x37,u8_37,tooltip_level,"high: help.cpp Help::check_wait: g_a57fef(=Config+0x37)==0 returns, ==2 -> tooltip_style 2 after 0x320 ms else style 1 after 0xc8; default 2 (unknown_config.cpp 0x45a010)"
+Config,0x3a,u16_3a,music_volume,"high: global g_music_volume 0xa57ff2 = Config(0xa57fb8)+0x3a; optmenui.cpp sets it from game_slider_a0, SoundStream::init_59ad30 volume; default 0x4d"
+Config,0x3c,u16_3c,ambient_volume,medium: global g_a57ff4 = +0x3c: optmenui slider game_slider_b0 -> as_volume(g_mus)->set; SoundStreams3 (as_ambient_streams) volume = it (unknown_musicstr.cpp:110); default 0x27
+Config,0x40,u8_40,sound_enabled,"medium: global g_a57ff8 = +0x40: Se::play/LodQueue return early when it is 0 (ilib/se.cpp:200,236,302)"
+Config,0x41,u16_41,sfx_volume,high: global g_sfx_volume 0xa57ff9 = +0x41: optmenui slider game_slider_a8 -> Party::set_scale; unknown_sndplay.cpp:338 volume factor; default 0x64
+Config,0x43,u8_43,sound_3d_enabled,"medium: global g_flag2 0xa57ffb = +0x43: Sound3DSystem::set_distance_model(flag2 ? 2 : 0), combo game_combo_90; also gates the ARROW 3D effect (unknown_unit_a.cpp:125)"
+Config,0x6b,u32_6b,control_scheme,high: global g_cfg_control_scheme 0xa58023 = +0x6b: optmenui.cpp controls page combo key_combo_c0 (defaults button sets 3)
+Config,0x73,u8_73,invert_look,high: global g_cfg_invert_look 0xa5802b = +0x73: optmenui key_combo_b8 selected-1
+Config,0x7e,u32_7e,adapter_index,"high: global g_a58036 = +0x7e: sys3d.cpp:126 ""if (a == rd32(g_a58036))"" compared with the D3D adapter ordinal in the mode enumeration"
+Config,0x92,u8_92,texture_quality,"high: global g_a5804a = +0x92: texdir.cpp TexturePaths build indexes the 3x3 directory table by it (""texture quality""), 0..2"
+Config,0x96,u8_96,trilinear_filtering,"high: global g_a5804e = +0x96: unknown_d3dsys.cpp:872 mip = g_a5804e != 0 ? kTexfLinear : kTexfPoint, comment ""trilinear option"""
+Config,0x98,u32_98,draw_distance,"high: global g_cfg_far_limit 0xa58050 = +0x98: optmenui graphics slider_60 draw_from_slider, g_far_clip = it, CameraFollow far_limit; default 0x2001"
+Config,0x9d,u8_9d,shadow_quality,high: global g_cfg_shadow_quality 0xa58055 = +0x9d: WinMain creates the 1024x1024 depth surface when ==2; check_caps downgrades 2->1->0 after depth/stencil probes; world_s water ==0 -> waterpool
+Config,0x9e,u8_9e,water_reflection,medium: global g_a58056 = +0x9e: world_s.cpp:1794/5198 reflective water material (render target) when !=0 and shadow_quality!=0; check_caps probes a 256x256 render target and clears it
+Config,0x9f,u8_9f,grass_enabled,high: global g_cfg_grass_enable 0xa58057 = +0x9f: optmenui copies it to g_cfg_grass_enable and DynGrass::set_enabled; combo snd_combo_78
+Config,0xa4,u32_a4,grass_density_percent,"high: global g_a5805c = +0xa4: dyngrass.cpp:983 ""density * g_a5805c / 100""; optmenui slider snd_slider_70 set_value(g_a5805c); default 0x32"
+TexScriptRec,0x25,u16_25,material_indices,"high: actor.cpp:564 / modelres.cpp:304 / unknown_gamedraw.cpp:200: ""if (i == rec->u16_25[set]) break"" with i = 1-based plane material index; per layer set"
+TexScriptRec,0x3d,u16_3d,tfactor_alphas,"medium: unknown_d3dsys.cpp:1053 new_tfactor = (u16_3d[set] low byte << 24) | 0xffffff, then kRsTextureFactor"
+TexScriptRec,0x6f1,f32_6f1,scroll_speeds_u,"high: unknown_d3dsys.cpp:1117 speed_u = anim_float(f32_6f1,..); scroll() period = 1000/speed fed to texture matrix _31"
+TexScriptRec,0x751,u32_751,address_modes_u,"high: parsed ""true""?3:1 (t_scrres.cpp:285); d3dsys sets kTssAddressU = it (1 wrap, 3 clamp)"
+TexScriptRec,0x7b1,f32_7b1,scroll_speeds_v,high: d3dsys speed_v = anim_float(f32_7b1) -> texture matrix _32
+TexScriptRec,0x811,u32_811,address_modes_v,high: d3dsys kTssAddressV = anim_dword(u32_811)
+TexScriptRec,0x8d1,u32_8d1,sphere_map_flags,"high: d3dsys ""else if (u32_8d1) // sphere-mapped reflection"": kSphereMap texgen, kTciCameraSpaceReflection"
+TexScriptRec,0x931,u32_931,projected_flags,medium: d3dsys: kTtffCount3|kTtffProjected + kTciCameraSpacePosition; world_s.cpp:1818 allocates a reflection render target for stages with it set
+TexScriptRec,0x991,f32_991,bump_env_mat00s,"high: unknown_d3dsys.cpp has_extra branch: tss(stage, kTssBumpEnv*, anim_dword(info->f32_991)) in the order Mat00, Mat01, Mat10, Mat11, LScale, LOffset; parsed only when has_extra"
+TexScriptRec,0x9f1,f32_9f1,bump_env_mat01s,"high: unknown_d3dsys.cpp has_extra branch: tss(stage, kTssBumpEnv*, anim_dword(info->f32_9f1)) in the order Mat00, Mat01, Mat10, Mat11, LScale, LOffset; parsed only when has_extra"
+TexScriptRec,0xa51,f32_a51,bump_env_mat10s,"high: unknown_d3dsys.cpp has_extra branch: tss(stage, kTssBumpEnv*, anim_dword(info->f32_a51)) in the order Mat00, Mat01, Mat10, Mat11, LScale, LOffset; parsed only when has_extra"
+TexScriptRec,0xab1,f32_ab1,bump_env_mat11s,"high: unknown_d3dsys.cpp has_extra branch: tss(stage, kTssBumpEnv*, anim_dword(info->f32_ab1)) in the order Mat00, Mat01, Mat10, Mat11, LScale, LOffset; parsed only when has_extra"
+TexScriptRec,0xb11,f32_b11,bump_env_lscales,"high: unknown_d3dsys.cpp has_extra branch: tss(stage, kTssBumpEnv*, anim_dword(info->f32_b11)) in the order Mat00, Mat01, Mat10, Mat11, LScale, LOffset; parsed only when has_extra"
+TexScriptRec,0xb71,f32_b71,bump_env_loffsets,"high: unknown_d3dsys.cpp has_extra branch: tss(stage, kTssBumpEnv*, anim_dword(info->f32_b71)) in the order Mat00, Mat01, Mat10, Mat11, LScale, LOffset; parsed only when has_extra"
+TexScriptRec,0xbd1,f32_bd1,scroll_offsets_u,high: d3dsys offset_u added to texture matrix m[8] (_31)
+TexScriptRec,0xc31,f32_c31,scroll_offsets_v,high: d3dsys offset_v added to m[9] (_32)
+TexScriptRec,0xc91,f32_c91,scales_u,high: d3dsys scale_u written to texture matrix _11; identity test == 0x3f800000
+TexScriptRec,0xcf1,f32_cf1,scales_v,high: d3dsys scale_v written to texture matrix _22
+InventoryScreen,0x9,u32_9,press_duration_ms,high: i_buy.cpp update(): while button 0 down and open==1: u32_9 = g_game_time_ms - u32_d; >=0x1f4 -> open=3 (drag)
+InventoryScreen,0xd,u32_d,press_time_ms,high: i_buy.cpp press(): u32_d = g_game_time_ms when the item is picked (open=1)
+InventoryScreen,0x11,u8_11,carried_source,"high: i_buy.cpp pick_grid()/drop_carried(): source kind of the carried item: 1 hand1, 2 hand0, 7 equipped, 8 extra, 9 list12, 0xa grid16, 0xb grid1a, 0xff none"
+InventoryScreen,0x12,i16_12,carried_item,high: i_buy.cpp: = HeldItem::item / InvItem::type of the picked item; w12()==0 means nothing carried; passed as item to item_sound / slot_event
+InventoryScreen,0x14,u8_14,carried_grid_x,high: i_buy.cpp:6857 u8_14 = InvItem::x of the picked grid cell; reset to 0xff
+InventoryScreen,0x15,u8_15,carried_grid_y,high: i_buy.cpp:6858 u8_15 = InvItem::y
+InventoryScreen,0x16,u8_16,carried_count,"high: i_buy.cpp:6900 u8_16 = slot count; 6595 ""p->count + u8_16"" when stacking, 6663 minus room"
+InventoryScreen,0x1b,u32_1b,carried_uses,medium: i_buy.cpp take_saved(): u32_1b = s.d6 = HeldItem::uses; passed on to set_item / new_stack_e / add_to_grid*
+InventoryScreen,0x1f,u32_1f,carried_max_uses,medium: take_saved(): u32_1f = s.da = HeldItem::max_uses
+InventoryScreen,0x27,u16_27,hover_item,"high: i_buy.cpp hover()/hover_grid(): tooltip item id under the mouse (0 = none), cleared at the start of update()"
+InventoryScreen,0x2d,u16_2d,hover_source,"high: hover(): 1 hand1, 2 hand0, 7 equipped, 8 extra, 9/0xa/0xb grid sources (same codes as carried_source)"
+InventoryScreen,0x2f,u16_2f,hover_grid_key,"medium: hover_grid(): u16_2f = k, the entry index found by Grid::find_at (0 for the fixed slots)"
+InventoryScreen,0x31,i16_31,last_mouse_x,high: update(): if g_mouse_x != i16_31 || g_mouse_y != i16_33 then store both and u32_35 = g_game_time_ms
+InventoryScreen,0x33,i16_33,last_mouse_y,high: same code as last_mouse_x
+InventoryScreen,0x35,u32_35,mouse_moved_ms,high: update(): time of the last mouse movement (tooltip delay)
+Nation,0x13e5,f32_13e5,income_total,medium: add_stat(): gold += v; income_by_kind[i] += v; f32_13e5 += v (running total of the per-kind array); roll_stats copies it to f32_13e9; yearly_4b4ec0 uses the pair
+Nation,0x13e9,f32_13e9,income_total_prev,"medium: roll_stats(): f32_13e9 = f32_13e5 (previous period), like income_by_kind_prev"
+Nation,0x1395,f32_1395,trade_income,"medium: add_stat(i,v,also): ""if (also) f32_1395 += v""; the only also==1 caller is the trade pass trade_4b6d40 pay(): add_stat(2, v, 1)"
+Nation,0x1399,f32_1399,trade_income_prev,"medium: roll_stats(): f32_1399 = f32_1395; year_frac() reads (f32_1399, f32_1395) like the other prev/current pairs"
+Nation,0x1485,f32_1485,time_gained,medium: Nation::add_time(dt) 0x4b5340: time += dt; f32_1485 += dt; f32_1495 += dt
+Nation,0x1489,f32_1489,time_gained_prev,medium: roll_stats(): f32_1489 = f32_1485
+Nation,0x148d,f32_148d,time_transferred,medium: transfer(d) 0x4b53b0: time -= d; f32_148d += d; f32_1495 -= d
+Nation,0x1491,f32_1491,time_transferred_prev,medium: roll_stats(): f32_1491 = f32_148d
+Nation,0x1495,f32_1495,time_net,"medium: add_time adds dt, transfer subtracts d: net change of the time pool this period; yearly_4b5200 uses (f32_1499, f32_1495)"
+Nation,0x1499,f32_1499,time_net_prev,medium: roll_stats(): f32_1499 = f32_1495
+SaveEntry,0x4,u32_4,target_kind,medium: SaveEntry is the 0x43-byte Trigger record (List43::add 0x4eef00 -> SaveEntry::set 0x47e200; Trigger layout offsets 0x4 target_kind); set from add()'s 2nd argument
+SaveEntry,0x8,u16_8,target_id,medium: Trigger::target_id at 0x8; add()'s word argument (sound id for type 0x800 in unit_core blood())
+SaveEntry,0xa,u32_a,ref_kind,"high: unknown_f_flag.cpp apply_468a80: kind==1 -> g_units, kind==2 -> g_items; Trigger::ref_kind at 0xa"
+SaveEntry,0xe,u16_e,ref_id,high: apply_468a80: index into g_units / g_items of the referenced object whose position is copied to values; Trigger::ref_id at 0xe
+SaveEntry,0x10,u16_10,sub,medium: Trigger::sub at 0x10; SaveEntry::set last (word) argument
+SaveEntry,0x1f,u32_1f,range,"high: Trigger::range at 0x1f (float, used as radius in unknown_triggers.cpp:309..360); set() passes the float bits (200.0 / 1.0 / size)"
+SaveEntry,0x23,u8_23,follow_ref,"medium: apply_468a80: ""if (u8_23 == 0) return"" else values = position of the ref_kind/ref_id object (trigger follows its reference)"
+SaveEntry,0x26,u32_26,next_time,"high: Trigger::next_time at 0x26; unknown_triggers.cpp:386 ""next_time > g_now: continue""; set() argument = g_now"
+SaveEntry,0x2a,u32_2a,expire_time,"high: Trigger::expire_time at 0x2a; unknown_uinput.cpp:740 ""expire_time==0 / g_now < expire_time"""
+SaveEntry,0x2e,u8_2e,active,"medium (SaveEntry and Trigger are linked by size only): Trigger::active at 0x2e; unknown_playerctl.cpp:794 ""if (active == 0) return"""
+UnitAttScreen,0x8,u32_8,bmp_iunitatt,"high: add_ctor(): u32_8 = obj(g_bmp_res_iunitatt); used as BmpRes for button sprites and find(""highlight"")"
+UnitAttScreen,0xc,i16_c,last_mouse_x,high: panel_update(): if g_mouse_x != i16_c || g_mouse_y != i16_e store both and u32_10 = now; reset to 0xffff on open
+UnitAttScreen,0xe,i16_e,last_mouse_y,high: same as last_mouse_x
+UnitAttScreen,0x10,u32_10,mouse_moved_ms,"high: inventory_draw(): ""Tooltip after 250 ms: g_game_time_ms - u32_10 <= 0xfa return"""
+UnitAttScreen,0x14,u32_14,blink_ms,medium: panel_update(): CB button toggles CB_OT/CB_OTG every 0x1f4 ms while the unit has stat_points; set to now on open
+UnitAttScreen,0x18,u8_18,blink_on,"medium: panel_update(): u8_18 toggles; 1 -> set_button(CB_OTG..) (highlighted variant), 0 -> CB_OT"
+UnitAttScreen,0x1d,u32_1d,hover_slot,"high: inventory_draw(): index 0..5 of the attribute slot under the mouse (kSlots table, 16 bytes each), -1 = none; selects tooltip text and buy_stat order"
+UnitAttScreen,0x21,u8_21,show_inventory,high: set_mode(on); inventory_draw(): !=0 -> Inventory::draw_items_6d6740 else combat screen draw_6ef9e0; CB/WP button swaps it
+UnitAttScreen,0x6ae,u8_6ae,is_open,"high: open_level() sets 1, panel_close() sets 0; accessors get_6ae / byte_6ae"
+UnitAttScreen,0x6af,u32_6af,unit_id,high: index into g_units in inventory_draw/panel_update (ptr_at(u32_6af)); open_level(level) stores the unit id; accessor named unit_6af
+UnitTemplate,0x104,u32_104,rank,medium: DynGrass::copy_to 0x466320 (dead code): copies +0x104 to Unit::rank; names follow the Unit destination
+UnitTemplate,0x10a,i16_10a,race_id,medium: copy_to: -> Unit::race_id
+UnitTemplate,0x118,i32_118,regen_hp,medium: copy_to: -> Unit::regen_hp
+UnitTemplate,0x11c,i32_11c,regen_ep,medium: copy_to: -> Unit::regen_ep
+Timer,0x1c,u32_1c,lag_ms,"high: FpsTimer view of the same object (lag at 0x1c): stats_tick ""u32_1c -= n; u32_1c = min(u32_1c, n)"", fps_update adds over-budget time"
+Timer,0x20,u32_20,lag_frames,"high: Stats::tick: if skip_frame (u32_2c) u32_20 += 1 else 0; fps_update compares it with max_lag_frames (FpsTimer calls it ""paused"")"
+Timer,0x24,u32_24,rate_ticks,"medium: Stats::tick: u32_24 += 1 when flag_14_clear() (paused==0, primary rate)"
+Timer,0x28,u32_28,on_time_ticks,medium: Stats::tick: u32_28 += 1 when not_lagging() (skip_frame == 0)
+Timer,0x2c,u32_2c,skip_frame,high: FpsTimer::skip_frame at 0x2c: fps_update sets (lag_frames<max && lag>limit); empty_2c()/Stats::tick test it
+Timer,0x38,u32_38,fps_time,"high: FpsTimer::fps_time: fps_update ""now - fps_time >= 1000"" then fps recomputed; init sets it to d (now)"
+Timer,0x3c,u32_3c,frame_count,high: Stats::tick += 1 per tick; fps_update fps = frame_count / span * 1000 then resets
+Timer,0x40,u32_40,fps,high: FpsTimer::fps (float) at 0x40; fps_update stores frames/span*1000.0 there (field declared u32 here)
+ScenarioEntry,0x1a6,i32_1a6,time_limit_ms,"medium: Timer::tick 0x4cd5d0 scenario.cpp:356: ""if (i32_1a6 > 0)"" the countdown is active; init -1"
+ScenarioEntry,0x1aa,i32_1aa,time_left_ms,medium: Timer::tick: i32_1aa -= g_frame_step_ms; <= 0 -> g_flag_a59298 = 2 (time over); init -1
+Button,0x89,u8_89,momentary,medium: UiButton::mouse 0x6218c0: !=0 -> press latches in `pressed` until the mouse is released (state machine r=-1/-2); ==0 -> pressed toggles (or latches if a18); create()/6th arg
+Button,0x90,u8_90,click_sound,"high: UiButton::mouse: ""if (u8_90) play_def(IF_BUTTON_MOUSE_DOWN)"" on press; create() 11th arg"
+Button,0x91,i16_91,hotkey,medium: UiButton::mouse: key accepted when toupper(g_key) == a8 || ac || i16_91 (third accepted key code)
+Button,0xe3,i8_e3,press_sound,"high: button2d: strcpy ""MENU-BACK-1"" (<=0x20) into it; on press Se::play(&i8_e3, ...) when non-empty. Mistyped: a char[33] (gap_e4[0x20] follows)"
+IngameFrame,0x0,u8_0,open,high: IngameFrame is the SlideMenu view (slide_menu_fields.inc: open at 0x0)
+IngameFrame,0x1,u8_1,sliding,high: SlideMenu::sliding at 0x1 (same object)
+IngameFrame,0x20,u32_20,igamebg1,"high: free_backgrounds 0x6f20f0 releases slots 0x20..0x2c; load_backgrounds 0x6f1ff0 loads ""igamebg1"" into SlideMenu::background[0] at the same offset"
+IngameFrame,0x24,u32_24,igamebg2,"high: free_backgrounds 0x6f20f0 releases slots 0x20..0x2c; load_backgrounds 0x6f1ff0 loads ""igamebg2"" into SlideMenu::background[1] at the same offset"
+IngameFrame,0x28,u32_28,igamebg3,"high: free_backgrounds 0x6f20f0 releases slots 0x20..0x2c; load_backgrounds 0x6f1ff0 loads ""igamebg3"" into SlideMenu::background[2] at the same offset"
+IngameFrame,0x2c,u32_2c,igamebg4,"high: free_backgrounds 0x6f20f0 releases slots 0x20..0x2c; load_backgrounds 0x6f1ff0 loads ""igamebg4"" into SlideMenu::background[3] at the same offset"
+MiniMap,0xe,u8_e,active,"medium: set_flag_e 0x6e0dc0 (1 on set_unit, 0 on clear); draw 0x70e500, marker_visible, update return early when 0"
+MiniMap,0x11,i16_11,show_gold,"medium: minires.cpp:986 ""if (i16_11 != 0) draw_gold_71aba0(entry)"" for every map object; set_word_11 setter; cleared in set_unit"
+MiniMap,0x2b,i16_2b,rotation,"high: minires.cpp: rot = i16_2b % 4, angle = i16_2b * 90 * deg2rad (2324); map rotated in quarter turns"
+WaveRes,0x6d,f32_6d,min_pitch,"medium: unknown_soundres.cpp load: SOUND table column read after GAIN (row+0x68, N5.2); old SePlayer.md: 0x6D min_pitch (MIN_PITCH); dlgtable default 1.0"
+WaveRes,0x71,f32_71,max_pitch,"medium: row+0x6d N5.2, old SePlayer.md 0x71 max_pitch (MAX_PITCH); dlgtable default 2.0"
+WaveRes,0x7d,f32_7d,rolloff,"high: passed to Sound3D::set_rolloff in 6 places (unknown_sndplay.cpp:344, i_gate.cpp:809, ...); SePlayer.md ROLLOFF"
+WaveRes,0x81,i32_81,sound_time_ms,"medium: unknown_unit_core.cpp:4596 ""now - snd_last_ms > rec->i32_81"" min interval between plays; SOUNDTIME column (SePlayer.md sound_time)"
+WaveRes,0x86,u16_86,delay_begin,medium: SOUND column row+0x90 N5; SePlayer.md 0x86 delay_beg (DELAY_BEG)
+WaveRes,0x88,u16_88,delay_end,medium: SOUND column row+0x95 N5; SePlayer.md 0x88 delay_end (DELAY_END)
+Lookup,0x4,u32_4,entries,medium: Lookup::find 0x457e00 and Res::lookup_45a7e0 run on the Se object g_a58b00 (comments in unknown_inventory.cpp:640); Se layout names 0x4 entries (Top4*)
+Lookup,0x8,u32_8,playing,medium: Se layout: 0x8 playing (u8*)
+Lookup,0x5c,u32_5c,count_ext,medium: Se layout: 0x5c count_ext; Lookup::find returns r + count_main for the ext archive
+Quad,0x30,f32_30,plane_nx,"high: unitures.cpp ray_hit 0x530f20: n = (f32_30,f32_34,f32_38); num = n.p + f32_3c; t = -num/denom: plane equation"
+Quad,0x34,f32_34,plane_ny,high: ray_hit plane normal y
+Quad,0x38,f32_38,plane_nz,high: ray_hit plane normal z
+Quad,0x3c,f32_3c,plane_d,high: ray_hit: p.n + f32_3c (plane distance)
+Quad,0x70,i32_70,valid,"medium: ray_hit: ""if (i32_70 == 0) return false"" before any math"
+Unit,0x110,i32_110,state_120_saved,"medium: Unit::set_10c 0x00510030 (unknown_unit_core.cpp): when formation_slot becomes nonzero i32_110=state_120, state_120=1; when zero state_120=i32_110"
+Unit,0x1b0,i16_1b0,kills,"high: unknown_unit_addon.cpp:294 killer->i16_1b0++ on each kill; unknown_objm_debrief.cpp:295 ""const i32 kills = ...->i16_1b0""; script 0x65c130 get_unit_killed_number = 1b0+1b2"
+Unit,0x1b2,i16_1b2,kills_high_rank,medium: unknown_unit_addon.cpp:295 incremented only if the victim rank >= 3; summed with i16_1b0 by script get_unit_killed_number 0x65c130; shown in unknown_i_unitatt.cpp:487
+Unit,0x1f1,i32_1f1,paired_anim_start_ms,"medium: dyngrass.cpp:1365-1372 (hit effect, mount pair) stamps now() when 0 and tests +1000 ms; reset to 0 by Unit::start_paired_anim 0x004533e0 (unknown_rts2.cpp:3800); nonzero forces cmd 0x46 (unknown_i_obj0b.cpp:611)"
+Unit,0x1fd,i32_1fd,held_item_id,"medium: index into g_items: unknown_rts.cpp:1505 Unit::check_height 0x00445000 list.ptr_at(i32_1fd) -> item position; nonzero blocks idle anim (unknown_unit_core.cpp:3568, unknown_unit_addon.cpp:1132); passed to hero_special 0x004fab10 on release_92/101"
+Unit,0x235,i16_235,combo_queued,medium: unknown_ctrl.cpp:2164-2225 set 1 together with combo_step/order_state when the attack button is queued in the combo window; cleared at 1649/2306/2314 and unit init (unit.cpp:244); unknown_unit_addon.cpp:1230 returns when ==1
+Unit,0x2d9,i16_2d9,target_object_id,medium: unknown_unit_core.cpp:1926-1965 Unit::keep_current 0x00503680: unit_get(i16_2d9) is a gate (class 1) / wall (class 4) object; returned as the kept target id; sits after target_building 0x2d7
+Unit,0x2e5,i16_2e5,interact_item,"high: script builtin 0x655c80 get_interact_item_recno / 0x655cd0 set_interact_item_recno (old docs BUILTINS.md 104/105) = unknown_esfuncs.cpp script_unit_2e5/unit_set_2e5; Gate/Order0b write their index (i_gate.cpp:487, unknown_i_obj0b.cpp:537)"
+Unit,0x2e7,i16_2e7,interact_stage,"high: script 0x655d30 get_interact_stage = script_unit_2e7 (unknown_esfuncs.cpp:538), 0x655d80 set_interact_stage = script_unit_set_2e7; zeroed in unit init (unit.cpp:387)"
+Unit,0x2e9,i16_2e9,can_interact,"high: script 0x655de0 get_can_interact_flag = script_unit_2e9, 0x655e30 set_can_interact_flag = script_unit_set_2e9; game.cpp:459 ""if (c->i16_2e9 != 0) continue"""
+Unit,0x2eb,i16_2eb,bribe_state,"medium: script 0x655e90 set_can_bribe_flag / 0x655f10 get_can_bribe_flag (value 2 reads as 0) and 0x6561b0 is_unit_bribed (unit_2eb_is_2): 0 not bribable, 1 can be bribed, 2 bribed (unknown_esfuncs.cpp:559,1926,3554,4290)"
+Unit,0x2fd,u32_2fd,actor_def_b,high: unknown_unit_core.cpp:696-698 Unit::create_alt_mesh 0x0050cc70: u32_2fd = model_entry->actor_def and actor_b->def = u32_2fd (pairs with actor_b at 0x2f9)
+Unit,0x301,u32_301,anim_set_b,high: unknown_unit_core.cpp:694 create_alt_mesh: u32_301 = anim_res_mgr entry(anim_id_b); 4352 which==1 selects actor_b with extra = u32_301
+Unit,0x305,u32_305,alt_mesh_state,"high: 0 off / 1 requested while not in scene (on_flag 0x0050cbc0, unknown_unit_core.cpp:3992) / 2 created (create_alt_mesh sets 2, line 700); rts.cpp:1054 ==1 -> create_alt_mesh(1)"
+Unit,0x30d,u32_30d,actor_def_c,high: unknown_unit_core.cpp:5052-5056 / unknown_unitupd.cpp:155: u32_30d = model_entry->actor_def and actor_c->def = u32_30d (pairs with actor_c at 0x309)
+Unit,0x311,u32_311,anim_set_c,high: unknown_unit_core.cpp:5051 u32_311 = anim_res_mgr entry; 4349 which==0 selects actor_c with extra = u32_311; 5074 anim_set = u32_311
+Unit,0x374,i32_374,getting_weapon,"high: script 0x65b8c0 set_getting_weapon_flag (unknown_esfuncs.cpp:5356 soldier_set_374: store flag, anim_special = flag ? 4 : 0) and 0x65b950 is_getting_weapon"
+Unit,0x38c,i16_38c,crew_slots_ready,medium: unit.cpp:400 set 1 when mask_slots arrays are allocated (type slot_count > 0); Unit::has_mask_ready 0x0050d550 returns 0 when it is 0; script 0x656b50 can_attach returns it
+Unit,0x3b4,i32_3b4,siege_tower_state,medium: script 0x65d450 mount_siege_tower_to_wall (unknown_esfuncs.cpp:1617) drives states 0..3; unknown_target_check.cpp:87 Order::update 0x0049cc30 advances 1->2 and 3->0 for class-8 kind-8 units
+Unit,0x3c0,u8_3c0,can_be_ridden,"high: debug_menu.cpp:423 ""+0x3c0: set_unit_can_rided_flag(id, 1)""; unknown_esfuncs.cpp:2614 setter; unknown_rts2.cpp:2580 skips units with 0; init 1 (unit.cpp:417)"
+Player,0x82,i32_82,last_dir_key,high: unknown_playerctl.cpp:225-239: last direction key (4..7 = held(4..7)); reused within 0x12c ms (300) as double-tap input; unknown_ctrl.cpp:255-280 same
+Player,0x86,u32_86,last_dir_key_ms,"high: unknown_playerctl.cpp:239 / unknown_ctrl.cpp:279 stamped with g_now when the direction key is stored; compared ""g_now - u32_86 < 0x12c"""
+Player,0x8a,i32_8a,dir_tap_armed,"medium: unknown_ctrl.cpp:255 set 1 when a key was stored and the stick is released (v38<=1), tested 265 together with the 300 ms window, cleared 280 after the double tap fired (b44/b48/b4c/b50)"
+Player,0x9d,i8_9d,combo_count,"medium: unknown_ctrl.cpp:2641 Order::try_rally 0x00438820 increments it after set_action(0x1b); 2636 divides the speed by it; 2167/2220 ""i8_9d > 1"" gates the follow-up attack; Player::set_9d sets 1 (unknown_unit_core.cpp:974)"
+Player,0x9e,i32_9e,jump_hold_ms,"high: unknown_playerctl.cpp:208-218: while held(0x10) accumulates g_frame_step_ms, fires (v1c=1, f48 = value) at g_jumpmaxd or on release, then 0"
+Player,0xa2,i32_a2,attack_target_id,"medium: unknown_ctrl.cpp:462-486 Player::update_a2 0x00434270: cleared outside anim kinds 0x1c/0x1e/0x49/0x53, set to pick_target() 0x00433c20 on entering them; used as unit id (841,1071,1173 unit_missing/unit_get)"
+Player,0xb5,f32_b5,aim_pitch_deg,"medium: unknown_camcmd.cpp:1233,1364,1500,1607: fabs(cam_pitch/k - f32_b5) tested against g_aim_ha next to aim_yaw_deg (0xb1) with the same pattern for yaw; zeroed in enter-ride 934"
+Player,0xb9,i16_b9,manual_aim,"medium: unknown_camcmd.cpp:763 when 0 the nearest target is picked and followed (set_target/follow_camera); set 1 on any move key (unknown_playerctl.cpp:283) and after aiming (camcmd 1246); cleared on enter (931, 1153)"
+Player,0xbb,i32_bb,aim_lock_id,"medium: unknown_camcmd.cpp:1095 unit_missing(i32_bb)/unit_get -> locked unit; 492 ""locked = i32_bb != 0"" selects the HUD icon; cleared on any move (unknown_playerctl.cpp:284)"
+Player,0xc9,f32_c9,mount_heading_deg,"medium: unknown_uinput.cpp:1665 = heading()/0.017453292 (degrees) while mount_heading (0xc5) holds the radians; 2469 fed to set_degrees, 2473 +/- flt_15 turn step"
+Player,0xcd,i16_cd,squad_mode,medium: unknown_ctrl.cpp:290/1308: nonzero routes input to squad_act (Player::squad_act); unknown_mission.cpp:93 and unknown_squadcmd.cpp:143 clear it; 611 nop_42d2e0 when set
+Player,0xe9,f32_e9,pan_speed,"medium: unknown_rts.cpp:1876-1890: mouse-drag step: len(mouse delta)*0.3 clamped to a zoom_dist based limit, then vec_scale_in_place(direction, f32_e9) before accumulating the camera move"
+Player,0xf1,u32_f1,prev_rts_active,"high: unknown_rts.cpp:175,328,1331: ""u32_f1 = rts_active"" taken before rts_active is changed"
+Player,0x1237,u8_1237,selected_hero,"high: unknown_rts.cpp:428-444 switch(u8_1237-1): 1 JOAN_OF_ARC .. 8 FLAVY names, then select_hero(u8_1237); unknown_rts2.cpp:3378 stores hero"
+Player,0x1238,u32_1238,selected_commander_id,medium: unknown_rts2.cpp:306 set to the unit id when the picked unit has rank >= 4 and v18 == 0 else 0; get_1238 0x006f5ed0 for the ingame menu
+Player,0x1254,u32_1254,point_kind,high: unknown_rts.cpp:1255 Player::anim_switch: switch(u32_1254) picks the cursor animation name POINT00 / POINT05 / HVYATT08 / INFATT08 / ARCATT08 / MOVTO10 ... into point_name (0x1258)
+Player,0x1261,u32_1261,rtsicon_res,"high: unknown_rts.cpp:140,263 = BmpRes g_bmp_res_rtsicon (0x00a48f50); drawn at 1643 draw_named; null-checked at 1586"
+Player,0x1269,u8_1269,castle_popup_open,medium: unknown_rts.cpp:733-739 handle_input polls kCastle popup while set and clears it after the result; 1578 cursor_draw; unknown_rts2.cpp:2923 set to 1 when the castle assignment popup is shown
+Player,0x126a,f32_126a,prev_move_angle,"medium: unknown_ctrl.cpp:1663-1676 previous angle compared (byte-angle diff) with the new one, +/-45 turn limiting; 1740 ""if (mode != -1) f32_126a = angle"""
+UnitType,0x0,u16_0,type_id,"high: unitres.cpp:162 ""rec->u16_0 = i"" (1-based record index in unit.res, the id Unit::type_id refers to)"
+UnitType,0x14b,i16_14b,kingdom_id,high: unitres.cpp:401 atoi token; unit.cpp:262 Unit::kingdom_id = t->i16_14b
+UnitType,0x155,u32_155,base_max_ep,"high: unit.cpp:259 Unit::base_max_ep = t->u32_155 (then set_145 mana); parsed in the 5-dword block hit_points,u32_155,u32_159,xp_value,cost (unitres.cpp:413)"
+UnitType,0x159,u32_159,lives_max,medium: unit.cpp:264-265 set_11c (Unit::lives_max) and set_120 both from t->u32_159
+UnitType,0x169,u32_169,upgrade_id,high: unitres.cpp:426 u32_169 = g_upgrade_res name lookup find_531df0(token)
+UnitType,0x1a5,i16_1a5,regen_hp,high: unit.cpp:378 Unit::regen_hp = t->i16_1a5
+UnitType,0x1a7,i16_1a7,regen_ep,high: unit.cpp:379 Unit::regen_ep = t->i16_1a7
+Anim,0x2c,i32_2c,grid_x,"medium: help.cpp:528 Tree::layout_4892d0 random_range(c->i32_2c, c->i32_30, n->i32_2c, n->i32_30); trackres.cpp:1100-1150 same node: distance_4eda90(goal.x, goal.y, nb.2c, nb.30) = heuristic to a coordinate pair"
+Anim,0x30,i32_30,grid_y,"medium: see grid_x (x/y pair, second coordinate)"
+Anim,0x3c,u32_3c,cost_so_far,medium: help.cpp:529 c->3c = n->3c + r (step); trackres.cpp:1101 start 3c = 0; A* g cost
+Anim,0x40,u32_40,cost_total,medium: help.cpp:530 c->40 = c->3c + c->44; trackres.cpp:1104 A* f cost (compared by before()/pick_diff)
+Anim,0x44,i32_44,cost_to_goal,"medium: help.cpp:530 added to 3c to get 40; trackres.cpp:1102 = distance_4eda90(goal, node) heuristic"
+Anim,0x48,i16_48,weight,"medium: help.cpp:531-536 c->4c = n->4c + c->i16_48; c->4a = max(n->4a, c->48); trackres.cpp:1105-1107"
+Anim,0x4a,i16_4a,weight_max,"medium: help.cpp:533-537 c->i16_4a = max(n->i16_4a, c->i16_48)"
+Anim,0x4c,u32_4c,weight_sum,medium: help.cpp:531 c->4c = n->4c + c->i16_48 (running sum along the path)
+Ctl,0x0,i32_0,vtable,"medium: unknown_ctl2d.cpp: virtual_call(this, 0/8/0xc) and widget_poll vtable_of(this)[1]; the slot is the object vtable, typed ptr:void"
+Ctl,0x5,i16_5,x,high: unknown_ctl2d.cpp:113 Gadget::set_rect 0x00628b00: i16_5 = x
+Ctl,0x7,i16_7,y,high: unknown_ctl2d.cpp:114 set_rect: i16_7 = y
+Ctl,0x9,i16_9,right,high: unknown_ctl2d.cpp:115 set_rect: i16_9 = x + w - 1 (inclusive right edge)
+Ctl,0xb,i16_b,bottom,high: unknown_ctl2d.cpp:116 set_rect: i16_b = y + h - 1 (inclusive bottom edge)
+Ctl,0xd,i16_d,width,high: unknown_ctl2d.cpp:117 set_rect: i16_d = w
+Ctl,0xf,i16_f,height,high: unknown_ctl2d.cpp:118 set_rect: i16_f = h
+Ctl,0x11,i8_11,fit_to_screen,medium: unknown_ctl2d.cpp:119 set_rect param b0; Widget::hit_628c10 (193) runs sprite2d fit_rect on the rectangle when nonzero
+Ctl,0x12,i8_12,hit_enabled,medium: set_rect param b1; Widget::hit_628c10 line 186 returns 0 when it is 0
+Ctl,0x13,i8_13,activatable,medium: set_rect param b2; Widget::activate 0x00628df0 clears i8_14 and returns 0 when it is 0; hit_628c10 requires it
+Ctl,0x14,i8_14,activated,medium: set_rect clears it; Widget::activate sets 1 when virtual slot 3 returns nonzero (unknown_ctl2d.cpp:226); hit_628c10 requires it nonzero
+MapObject,0x4e,i16_4e,class_id,"high: animres.cpp:549 Rec::set_kind 0x004178e0: i16_4e = item_def->class_id; compared with 1 (gate), 4 (wall), 0xb, 0xf in unknown_gamedraw.cpp:582-589, unknown_unit_core.cpp:1930, minires.cpp:988"
+MapObject,0x50,i16_50,item_type,"high: animres.cpp:550 set_kind: i16_50 = item_def->type_id (0xc tested as a type in unknown_unit_addon.cpp:688, order add 702)"
+MapObject,0x6e,u32_6e,scale,high: animres.cpp:552 set_kind sets 1.0f; unknown_unit_glow.cpp:66 MapObject::set_6e 0x0049cac0 also writes actor->scale; i_wall.cpp:526 / unknown_mission.cpp:925 copy it to actor->scale
+MapObject,0x72,u32_72,damage,"high: animres.cpp:546 set_kind: u32_72 = item_def->damage; read as the amount in i_gate.cpp:259, i_wall.cpp:351"
+MapObject,0x76,u32_76,defense,high: animres.cpp:547 set_kind: u32_76 = item_def->defense
+MapObject,0x7a,u32_7a,duration,high: animres.cpp:548 set_kind: u32_7a = item_def->duration
+MapObject,0x7e,u32_7e,interact_trigger,"medium: unknown_i_obj0b.cpp:252 Order0b::init_489fb0: 0x200 when item_def->open_with_interact; unknown_gamedraw.cpp:582 compared to 0x200; unknown_gamefile_tail.cpp:77 passed as the trigger kind to triggers->add(...,2,..)"
+Scenario,0x8,u32_8,target_stage,"high: old docs Scenario.md 0x008 target_stage written by change_scenario_step 0x659830; code: unknown_escomp.cpp:2058 script_set_a58faf (0x00659830), data a58faf = Scenario base a58fa7 + 8"
+Scenario,0x1da,u32_1da,counters,"medium: old docs Scenario.md rows 0x1da mission_ms, 0x1e6 citizen_killed, 0x1f2 fcitizen_killed, 0x1fe house_burnt, 0x202/0x206 enemy_bribed_count/cost, 0x20a bribed_enemy_kill_count (13 dwords, zeroed as one array scenario.cpp:153); addresses match the 0x659xxx script builtins"
+Scenario,0x20f,u32_20f,crate_counters,"medium: old docs Scenario.md 0x20f gold_crates_get (0x659b60), 0x213 total_food, 0x217 food_crates_get, 0x21b food_picked_up: 4 dwords zeroed together (scenario.cpp:155-158); code get_a591b6 0x00659b60 = base a58fa7 + 0x20f"
+Scenario,0x21f,u8_21f,food_can_be_picked,high: script_set_a591c6 0x00659ce0 (unknown_escomp.cpp:2204) writes a591c6 = base a58fa7 + 0x21f; old docs 0x21f food_can_be_picked
+Scenario,0x221,u32_221,citizen_saved,high: scripts 0x659d60 clear / 0x659d90 get / 0x659db0 post-increment on a591c8 = base + 0x221 (unknown_escomp.cpp:2221-2231); old docs citizen_saved
+Scenario,0x225,u32_225,objective_count_time,medium: scripts 0x6598c0 set / 0x6598f0 get on a591cc = base + 0x225 (unknown_escomp.cpp:2079-2084); read as minutes in unknown_objm_reward.cpp:666; old docs objective_count_time (not cleared on unload)
+Scenario,0x229,u32_229,rescue_count,medium: script 0x659a00 set_scenario_rescue_count on a591d0 = base + 0x229 (unknown_escomp.cpp:2121)
+Scenario,0x22d,u32_22d,rescue_limit,"medium: script 0x659a30 set_scenario_rescue_limit on a591d4 = base + 0x22d (unknown_escomp.cpp:2128, unknown_esfuncs.cpp:635)"
+MainMenu,0x3419,u8_3419,difficulty_0_chosen,high: unknown_mainmenu.cpp:438-441 set by button7 (7..10); 805-816 right_chain: g_difficulty = 0 then cleared
+MainMenu,0x341a,u8_341a,difficulty_1_chosen,high: unknown_mainmenu.cpp:438-441 set by button8 (7..10); 805-816 right_chain: g_difficulty = 1 then cleared
+MainMenu,0x341b,u8_341b,difficulty_2_chosen,high: unknown_mainmenu.cpp:438-441 set by button9 (7..10); 805-816 right_chain: g_difficulty = 2 then cleared
+MainMenu,0x341c,u8_341c,difficulty_3_chosen,high: unknown_mainmenu.cpp:438-441 set by button10 (7..10); 805-816 right_chain: g_difficulty = 3 then cleared
+MainMenu,0x341d,u8_341d,back_requested,medium: unknown_mainmenu.cpp:434 set with open=1 when the escape/back button11 (key 0x1b) is pressed on the difficulty slide; 708-715 update clears the slide state
+MainMenu,0x3423,u16_3423,layout_width,medium: unknown_mainmenu.cpp:288 ctor stores 0x400 (1024) next to u16_3425 = 0x300 (768): the reference layout size
+MainMenu,0x3425,u16_3425,layout_height,medium: unknown_mainmenu.cpp:289 ctor stores 0x300 (768)
+MainMenu,0x342a,u32_342a,intro_delay_ms,medium: unknown_mainmenu.cpp:830-831 update adds g_frame_elapsed_ms while < 1000 and returns; reset to 0 at 329/1053/1081
+CameraMotion,0x78,u32_78,time_mode,"high: camman.cpp:985-1035 CameraMotion::step: switch(u32_78): 1 instant (t=1), 2 linear over u32_7c, 3 ease in/out, 4 callback; set_flags_78_88_a4 0x00423e70 stores 1"
+CameraMotion,0x7c,u32_7c,duration_ms,"high: camman.cpp:994,1002: d = u32_7c; t = dt / d, or t = 1 when dt >= d"
+CameraMotion,0x80,f32_80,ease_in,"high: camman.cpp:1003 mode 3: ""const float in = f32_80"", acceleration fraction of the duration"
+CameraMotion,0x84,f32_84,ease_out,"high: camman.cpp:1004 mode 3: ""const float out = f32_84"", deceleration fraction"
+CameraMotion,0x88,u32_88,blend_mode,"medium: camman.cpp:1050 switch(u32_88): 1 lerp eye/target/params, 2 callback (never set); set_flags_78_88_a4 stores 1"
+CameraMotion,0x8c,u32_8c,blend_callback,"medium: camman.cpp:1062 mode 2 cdecl_call(u32_8c, current, from, to, t, ...) (never set; a u32 cannot hold a pointer on x64)"
+CameraMotion,0xa4,u32_a4,skip_collision,"high: camman.cpp:1070 ""if (u32_a4 == 0) collide()""; set_flags_78_88_a4 stores 1; unknown_camctl.cpp:200 clears it and sets the collide_ parameters for the follow motion 0"
+StripNode,0x8,u32_8,vertices,"high: plane.cpp:4406 fill_vertices(vtype, u32_8 + min_index*stride) when no vertex buffer; reorder.cpp:784 stores the CPU vertex pointer"
+StripNode,0xc,u32_c,vertex_buffer,"high: plane.cpp:4398 SetStreamSource(0, u32_c, stride); 4396 buffers = u32_c && u32_1c"
+StripNode,0x14,u32_14,start_index,"high: plane.cpp:4407 fill_indices(indices + u32_14*2, ...); 4416 DrawIndexedPrimitive StartIndex argument"
+StripNode,0x1c,u32_1c,index_buffer,high: plane.cpp:4401 SetIndices(u32_1c)
+StripNode,0x20,u32_20,primitive_count,"high: plane.cpp:4416-4419 DrawIndexedPrimitive / draw_indexed(prim, 0, u32_20) primitive count"
+StripNode,0x24,u32_24,bones,"medium: plane.cpp:4390-4392 upload_bones(buf, u32_24, u32_28) for vtype 7 else set_world(bone->matrix())"
+StripNode,0x28,u32_28,bone_count,medium: plane.cpp:4390 second argument of upload_bones next to u32_24 (reorder.cpp:365 a10)
+Input,0x64e,i32_64e,bound_mode,"medium: mousecr.cpp:1637-1640,1990: 0 clamps the cursor to [bound_x1..x2] x [y1..y2], 1 insets by the distance from the centre; set by the bounds setter, reset to 0 at 1678"
+ModelSlot,0x48,u32_48,gravity_level,high: animscr.cpp:366-368 parse_body: keyword GravityLevel -> atof into u32_48 (default 0x40400000 = 3.0f)
+ModelSlot,0x4c,u32_4c,attack_force,high: animscr.cpp:371 keyword AttackForce -> u32_4c (default 0xbb8); read as camera/knock distance in unknown_unit_addon.cpp:369
+ModelSlot,0x50,u32_50,vertical_attack_force,high: animscr.cpp:375 keyword VerticalAttackForce -> u32_50 (default 0x1f4)
+ModelSlot,0x1d9,i32_1d9,attach_model,"high: animscr.cpp:414 keyword AttachModel stores model_res add(""ITEM\"", name); unknown_unit_core.cpp:1415 build_model uses it as the actor_def source"
+ModelSlot,0x1dd,i32_1dd,attach_anim,medium: unknown_animscr_fx.cpp:183 anim_res_mgr add_slot result; unknown_unit_core.cpp:1418 scene_object->anim = slot(i32_1dd)->anim
+ListBox,0x44,i32_44,pressed,"high: list.cpp:571-590 ListBox::grid_hit: set 1 on mouse press inside the box, cleared on release; draws the cell as pressed (483, 567)"
+ListBox,0x48,i32_48,was_drawn,"medium: list.cpp:458-502 gauge_draw: cleared at start, set 1 when a row background or text is drawn, returned; grid_hit returns 0 when it is 0 (558)"
+ListBox,0xb2,u32_b2,draw_callback,"high: list.cpp:464-466 if (u32_b2) Cb(me, a1, flags) replaces the default row drawing; combobox.cpp:147 set_b2"
+MessageList,0x2e,ptr_2e,icons,high: unknown_f_work.cpp:932 MessageBox::init 0x0046c360: ptr_2e = g_icons
+MessageList,0x36,i32_36,message_count,high: unknown_message.cpp:777 +1 when a message is added; unknown_dispdlg.cpp:47 -1 on remove_delete 0x00463120; 0 at init
+MessageList,0x40,i32_40,message_texture,"high: unknown_f_work.cpp:933 loaded from texture ""MESSAGE""; unknown_save_preview.cpp:179 released and nulled in clear_list"

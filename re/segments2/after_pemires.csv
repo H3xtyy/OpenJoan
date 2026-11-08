@@ -1,0 +1,3 @@
+start,end,name,confidence,evidence,target
+0x004c2110,0x004c5640,places,medium,"Place/army/squad management after the tiny pemires.cpp: Place::add_entrance, Army range queries, Squad::tick, Faction::link_place, formations, then the init set + global list a484d0 (ctor/dtor/load_arrays nop, Places::alloc/find, UnitList::refresh -> Squad::tick, sdd -> Wrap::f_4c2110); a few Ai::update handlers are guests.",
+0x004c56b0,0x004c56b0,plasma_g0,high,HeightGrid ctor directly before plasma.cpp HeightMap/HeightGrid::free/create.,game/plasma.cpp

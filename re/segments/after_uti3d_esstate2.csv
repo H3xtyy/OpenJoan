@@ -1,0 +1,9 @@
+start,end,name,confidence,evidence
+0x00646290,0x00648b80,es_expr,medium,"MathExpr/ScriptIf/ScriptElse nodes, statement factory and a global list; their vtables/strings follow esstate2.cpp's in .rdata: probably esstate2.cpp tail"
+0x00648ce0,0x00648ce0,esstate2_x1,medium,accessor between esstate2.cpp functions 0x648c50 and 0x648d20: esstate2.cpp content
+0x00648e40,0x00649040,esstate2_x2,medium,List::is_empty helper of find_name plus stackt.h template instances used by MathExpr::parse (templates close a TU): esstate2.cpp tail
+0x00649060,0x00649140,escomp_hd,low,"Script block run/parse (""Missing opening brace for Script"" follows stackt.h in .rdata): head of the ScriptStatementCompile object"
+0x00649860,0x00650f40,escomp,medium,"compile helpers, ScriptNode::exec_cmd/cond_cmd and their unit helpers, before the header-constant initialisers at 0x650fb0; same object as '=' compile 0x649280"
+0x00650fb0,0x00661e10,esfuncs,low,"script command library starting with header constants + header inline helpers; ~390 small script_* wrappers, ScriptCmd::exec, area_cmd, group orders; strings (IMPORTANT..A_ATTACK) in code order, no internal boundary found"
+0x00661ea0,0x006625c0,eslexer,high,"ScriptLexer token list ctor/dtor (vtable 0x9dbb54 after VECTOR..EVENTSYSTEM keywords), expect_int/float/xyz, classify; mirrors ptoken"
+0x006625f0,0x00662640,lflare_hd,medium,"LensFlares::init (LightSys::init) and two stubs just before lflare.cpp anchor 0x6626a0: lflare.cpp head, merge into lflare.cpp"

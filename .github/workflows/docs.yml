@@ -1,0 +1,24 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# The documentation checks: every link and required page (tools/docs_lint.py) and Doxygen over the hand-written
+# headers (docs/Doxyfile; no warning allowed). Runs on documentation changes too, which build.yml ignores.
+name: docs
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  docs:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Packages
+        run: sudo apt-get update && sudo apt-get install -y doxygen
+      - name: Docs lint
+        run: python3 -I tools/docs_lint.py
+      - name: Doxygen (no warnings)
+        run: |
+          doxygen docs/Doxyfile 2> doxygen.log
+          cat doxygen.log
+          test ! -s doxygen.log

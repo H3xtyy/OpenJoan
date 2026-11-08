@@ -1,0 +1,8 @@
+start,end,name,confidence,evidence,target
+0x005a1060,0x005a10b0,sound3d_cmp,high,"qsort/bin_search comparators between sound3d Obj5a0e90::deleting_dtor and Object::has_12.",ilib/sound3d.cpp
+0x005a1170,0x005a1170,txtres_string_a,low,"String() next to String(char*) which is attributed to txtres.cpp; String class run (probably its own object; see note).",ilib/txtres.cpp
+0x005a11f0,0x005a14f0,txtres_string_b,low,"String copy/substr/case/assign/append methods between String(char*) and operator+=(char*) (both attributed txtres.cpp).",ilib/txtres.cpp
+0x005a15d0,0x005a16d0,txtres_string_c,low,"String operator+=(int/char)/operator*= after operator+=(char*) (txtres.cpp).",ilib/txtres.cpp
+0x005a1730,0x005a1b00,strpool,medium,"String pool: Pair::clear / List::clear / scalar dtor / StringPool::add / StringBlock ctor+add; one class family used by ItemRes / ModelRes / Tokenizer.",
+0x005a1b60,0x005a1e20,syswnd,medium,"Device/window class (vtable 0x9d8f08) used by SysEn: ctor/dtor/open/close/destroy/mark/set_text/wndproc.",
+0x005a1fb0,0x005a2000,txtres_head,medium,"Rec89::clear is the ctor of the global whose dtor is txtres forward_5a2070 (0x566c40); Obj::stub_5a1fe0 is the element dtor used by txtres scalar_dtor_5a2190.",ilib/txtres.cpp

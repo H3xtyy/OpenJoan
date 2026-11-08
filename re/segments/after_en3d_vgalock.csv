@@ -1,0 +1,6 @@
+start,end,name,confidence,evidence
+0x00613310,0x00613310,vgalock_pal,high,"Palette::load_act called only by vgalock ctor 0x6131c0, between vgalock.cpp functions: vgalock.cpp content"
+0x006134d0,0x00613580,vgalock_mb,low,message-box cursor restore/hide right after vgalock.cpp's last function; probably vgalock.cpp tail
+0x00613650,0x00617d50,camera3d,medium,"camera object: global ctor/dtor, SysEn::init, viewport/fog/ranges setters, update_matrices, frustum/visibility tests, clip planes, render (""Lightning"")"
+0x00617d80,0x0061d240,vshader,high,"vertex-shader cache: ShaderConstants/VsEntry, VsCache lookup/create/linker (SHADER\*.nvo, nvlinker fragments), constant upload, Scatter; its strings are the only ones between vgalock.cpp and en2d"
+0x0061dc70,0x00620a20,gadget,medium,"new TU (pi + 3 header-constant initialisers + header inline Light::params); Gadget base ctor/dtor and Widget move/scale/fade animation, up to en2d bmpres.cpp"

@@ -1,0 +1,2132 @@
+{
+ "group": "i4",
+ "symbols": {
+  "b_a5ceb8": {
+   "type": "obj:BmpRes",
+   "evidence": "this of BmpRes load/free/find (SAVEMENU); BmpRes 9 bytes (Rect9::clear is the same ctor), fits gap 0x10",
+   "confidence": "high"
+  },
+  "kSheet_a5cf88": {
+   "type": "obj:BmpRes",
+   "evidence": "this of BmpRes load/free/find (BARRACK); BmpRes 9 bytes (Rect9::clear is the same ctor), fits gap 0x10",
+   "confidence": "high"
+  },
+  "b_a5d130": {
+   "type": "obj:BmpRes",
+   "evidence": "this of BmpRes load/free/find (SL_BG2); BmpRes 9 bytes (Rect9::clear is the same ctor), fits gap 0x10",
+   "confidence": "high"
+  },
+  "b_a5d180": {
+   "type": "obj:BmpRes",
+   "evidence": "this of BmpRes load/free/find (MAPICON); BmpRes 9 bytes (Rect9::clear is the same ctor), fits gap 0x10",
+   "confidence": "high"
+  },
+  "b_a5d320": {
+   "type": "obj:BmpRes",
+   "evidence": "this of BmpRes load/free/find (POPUPWIN); BmpRes 9 bytes (Rect9::clear is the same ctor), fits gap 0x10",
+   "confidence": "high"
+  },
+  "b_a5d330": {
+   "type": "obj:BmpRes",
+   "evidence": "this of BmpRes load/free/find (HURT); BmpRes 9 bytes (Rect9::clear is the same ctor), fits gap 0x10",
+   "confidence": "high"
+  },
+  "b_a5cec8": {
+   "type": "obj:QuitPopup",
+   "evidence": "this of 14 QuitPopup calls; offsets up to 0xbe (Label member +4, 0xb7) -> size 0xbf, gap 0xc0",
+   "confidence": "high"
+  },
+  "kSpeech_a5cf98": {
+   "type": "obj:Panels",
+   "evidence": "this of 114 Sound/52 Panels calls (play_def/play_at/set_scale); Panels 0x134 = volume +0, Sound3D* sources +4..+0x10, StreamSlot[12] +0x14; ends 0xa5d0cc < 0xa5d0d0",
+   "confidence": "high",
+   "notes": "\"Sound\"/\"Scenario\"/\"Slots\" this_of labels are the same object (layouts.json Panels notes)"
+  },
+  "b_a5cf9c": {
+   "type": "ptr:Sound3D",
+   "part_of": "kSpeech_a5cf98",
+   "evidence": "kSpeech_a5cf98+0x4 (Panels.source_a, Sound3D*)",
+   "confidence": "high"
+  },
+  "b_a5cfa0": {
+   "type": "ptr:Sound3D",
+   "part_of": "kSpeech_a5cf98",
+   "evidence": "kSpeech_a5cf98+0x8 (Panels.source_c, Sound3D*)",
+   "confidence": "high"
+  },
+  "b_a5cfa4": {
+   "type": "ptr:Sound3D",
+   "part_of": "kSpeech_a5cf98",
+   "evidence": "kSpeech_a5cf98+0xc (Panels.source_d, Sound3D*)",
+   "confidence": "high"
+  },
+  "b_a5cfa8": {
+   "type": "ptr:Sound3D",
+   "part_of": "kSpeech_a5cf98",
+   "evidence": "kSpeech_a5cf98+0x10 (Panels.source_b, Sound3D*; declared u32[74] = rest of Panels incl. slots)",
+   "confidence": "high"
+  },
+  "b_a5d0d0": {
+   "type": "obj:SoundStream",
+   "evidence": "this of 116 SoundStream calls; update 0x59b1c0 reads +0x8..+0x20; size 0x24 ends 0xa5d0f4 < 0xa5d0f8",
+   "confidence": "high"
+  },
+  "b_a5d0d4": {
+   "type": "i32",
+   "part_of": "b_a5d0d0",
+   "evidence": "b_a5d0d0+0x4 (SoundStream: current track id)",
+   "confidence": "high"
+  },
+  "b_a5d0d8": {
+   "type": "i32",
+   "part_of": "b_a5d0d0",
+   "evidence": "b_a5d0d0+0x8 (SoundStream: mode (update tests [this+8]==1/2, game_tick tests g_a5d0d8 ==1/2))",
+   "confidence": "high"
+  },
+  "b_a5d0e4": {
+   "type": "i32",
+   "part_of": "b_a5d0d0",
+   "evidence": "b_a5d0d0+0x14 (SoundStream: fade start time)",
+   "confidence": "high"
+  },
+  "kModelRefs_a5d0f8": {
+   "type": "obj:AnimBuf",
+   "evidence": "ModelRefs::get / FxNameTable::find / AnimBuf::release on it: +0 records ptr (stride 0x21b), +4 i16 count, +6 i8 state = 7 bytes, gap 8",
+   "confidence": "medium",
+   "notes": "+0 is a POINTER (ModelRefs::get: mov edx,[this]; lea [edx+i*0x21b-0x21b]); AnimBuf.data is declared u32 in layouts.json and must become ptr:ModelSlot (0x21b records)"
+  },
+  "b_a5d100": {
+   "type": "obj:DynArrayB",
+   "evidence": "g_places: 86 List calls are forwarders; transitive this offsets +0..+0x2d (DynArray header + 0x1d..0x2d) = DynArrayB 0x2e, gap 0x30",
+   "confidence": "medium"
+  },
+  "kText_a5d140": {
+   "type": "obj:Font2d",
+   "evidence": "this of Text/Font/Font2d (aliases of Font2d); Font2d ctor 0x623dc0 touches +0..+0x3c; size 0x40 = gap",
+   "confidence": "high"
+  },
+  "kOverflow_a5d190": {
+   "type": "obj:Help",
+   "evidence": "this of Help::load/clear/draw; Help fields to +0x15e (i16) -> 0x160 = gap",
+   "confidence": "medium",
+   "notes": "Help has no size in layouts.json; 0x160 from the last field + gap"
+  },
+  "kVideo_a5d2f0": {
+   "type": "obj:Video",
+   "evidence": "this of 12 Video calls (open/close/ctor); Video 0x30 ends exactly at 0xa5d320",
+   "confidence": "high"
+  },
+  "b_a5d2f4": {
+   "type": "ptr:Texture2D",
+   "part_of": "kVideo_a5d2f0",
+   "evidence": "kVideo_a5d2f0+0x4 (Video.texture (Texture2D*, deref +0x58))",
+   "confidence": "high"
+  },
+  "b_a5d2f8": {
+   "type": "ptr:Sound3D",
+   "part_of": "kVideo_a5d2f0",
+   "evidence": "kVideo_a5d2f0+0x8 (Video.sound (Sound3D*))",
+   "confidence": "high"
+  },
+  "b_a5d300": {
+   "type": "u32",
+   "part_of": "kVideo_a5d2f0",
+   "evidence": "kVideo_a5d2f0+0x10 (Video.width)",
+   "confidence": "high"
+  },
+  "b_a5d304": {
+   "type": "u32",
+   "part_of": "kVideo_a5d2f0",
+   "evidence": "kVideo_a5d2f0+0x14 (Video.height (declared i32[7] = rest of Video))",
+   "confidence": "high"
+  },
+  "b_a5d340": {
+   "type": "obj:Font2d",
+   "evidence": "Font2d ctor 0x623dc0 / Font dtor on it; 0x40 = gap",
+   "confidence": "high"
+  },
+  "b_a5d380": {
+   "type": "obj:CutScene",
+   "evidence": "this of 19 CutScene calls (offsets +0..+0x47); CutScene 0x48 ends exactly at 0xa5d3c8",
+   "confidence": "high",
+   "notes": "the \"Shop::active/state\" calls (0x42ced0 +4, 0x65afb0) on it read CutScene.active: mislabelled"
+  },
+  "b_a5d384": {
+   "type": "i8",
+   "part_of": "b_a5d380",
+   "evidence": "b_a5d380+0x4 (CutScene.active i8)",
+   "confidence": "high"
+  },
+  "b_a5d386": {
+   "type": "i8",
+   "part_of": "b_a5d380",
+   "evidence": "b_a5d380+0x6 (CutScene.mode_prev (4-byte write spans duration))",
+   "confidence": "high"
+  },
+  "b_a5d38b": {
+   "type": "u32",
+   "part_of": "b_a5d380",
+   "evidence": "b_a5d380+0xb (CutScene.elapsed)",
+   "confidence": "high"
+  },
+  "b_a5d38f": {
+   "type": "i32",
+   "part_of": "b_a5d380",
+   "evidence": "b_a5d380+0xf (CutScene.state)",
+   "confidence": "high"
+  },
+  "b_a5d393": {
+   "type": "u8",
+   "part_of": "b_a5d380",
+   "evidence": "b_a5d380+0x13 (CutScene.u8_13)",
+   "confidence": "high"
+  },
+  "b_a5d394": {
+   "type": "ptr:CamZones",
+   "part_of": "b_a5d380",
+   "evidence": "b_a5d380+0x14 (CutScene.zones ptr:CamZones)",
+   "confidence": "high"
+  },
+  "b_a5d3b0": {
+   "type": "u32",
+   "part_of": "b_a5d380",
+   "evidence": "b_a5d380+0x30 (CutScene.follow_target)",
+   "confidence": "high"
+  },
+  "b_a5d3bf": {
+   "type": "u8",
+   "part_of": "b_a5d380",
+   "evidence": "b_a5d380+0x3f (CutScene.started)",
+   "confidence": "high"
+  },
+  "b_a5d3c0": {
+   "type": "u8",
+   "part_of": "b_a5d380",
+   "evidence": "b_a5d380+0x40 (CutScene.u8_40)",
+   "confidence": "high"
+  },
+  "kFont_a5d3c8": {
+   "type": "obj:Font2d",
+   "evidence": "this of Text/Font/Font2d (aliases); bitmap_font Goudy12; 0x40 = gap",
+   "confidence": "high"
+  },
+  "b_a5d408": {
+   "type": "obj:QuickBar",
+   "evidence": "this of QuickBar ctor/init/draw; offsets to +0x45e; QuickBar 0x45f ends 0xa5d867 (gap 0x458 + the 3 part_of symbols)",
+   "confidence": "high"
+  },
+  "b_a5d860": {
+   "type": "u8",
+   "part_of": "b_a5d408",
+   "evidence": "b_a5d408+0x458 (QuickBar +0x458 u8)",
+   "confidence": "high"
+  },
+  "b_a5d861": {
+   "type": "ptr:void",
+   "part_of": "b_a5d408",
+   "evidence": "b_a5d408+0x459 (QuickBar +0x459 (slot pointer written by mission.cpp))",
+   "confidence": "high"
+  },
+  "b_a5d865": {
+   "type": "i8",
+   "part_of": "b_a5d408",
+   "evidence": "b_a5d408+0x45d (QuickBar +0x45d i8)",
+   "confidence": "high"
+  },
+  "b_a5d868": {
+   "type": "obj:LevelRes",
+   "evidence": "this of 19 LevelRes calls (+0 ptr, +4 count, +8 flag); 9 bytes = gap",
+   "confidence": "high"
+  },
+  "b_a5d871": {
+   "type": "u8",
+   "evidence": "byte write (boids)",
+   "confidence": "high"
+  },
+  "b_a5d874": {
+   "type": "u32",
+   "evidence": "timestamp (ms), read/write as dword",
+   "confidence": "high"
+  },
+  "b_a5d878": {
+   "type": "ptr:Music",
+   "evidence": "value passed as this of 29 Music (DirectMusic wrapper) calls; freed in mainwnd",
+   "confidence": "high",
+   "notes": "declared u32[6685]: only +0 is referenced; the rest of the 0x6874 gap is unreferenced bss"
+  },
+  "b_a640ec": {
+   "type": "f32",
+   "count": 64,
+   "evidence": "sin table (fstp dword, indexed)",
+   "confidence": "high"
+  },
+  "b_a641ec": {
+   "type": "f32",
+   "evidence": "= 1.0f written as 0x3f800000: entry [64] of the sin table",
+   "confidence": "high"
+  },
+  "b_a641f0": {
+   "type": "f32",
+   "count": 32,
+   "evidence": "tan table (indexed)",
+   "confidence": "high"
+  },
+  "b_a64270": {
+   "type": "f32",
+   "evidence": "= 1.0f: entry [32] of the tan table",
+   "confidence": "high"
+  },
+  "b_a64274": {
+   "type": "i32",
+   "evidence": "tables-initialised flag",
+   "confidence": "high"
+  },
+  "b_a642c8": {
+   "type": "obj:Overlapped",
+   "evidence": "OVERLAPPED passed to ReadFileEx (audio pal_init); 0x14 bytes = gap through 0xa642dc",
+   "confidence": "high"
+  },
+  "b_a642d0": {
+   "type": "u32",
+   "part_of": "b_a642c8",
+   "evidence": "b_a642c8+0x8 (Overlapped.offset)",
+   "confidence": "high"
+  },
+  "b_a642d4": {
+   "type": "u32",
+   "part_of": "b_a642c8",
+   "evidence": "b_a642c8+0xc (Overlapped.offset_high)",
+   "confidence": "high"
+  },
+  "b_a642dc": {
+   "type": "bytes",
+   "evidence": "4-byte ReadFileEx read buffer",
+   "confidence": "high"
+  },
+  "b_a642e8": {
+   "type": "obj:MciOpenParms",
+   "evidence": "pushed to mciSendCommand(0, MCI_OPEN 0x803, ...); 0x14 bytes to 0xa642fc",
+   "confidence": "high"
+  },
+  "b_a642ec": {
+   "type": "u32",
+   "part_of": "b_a642e8",
+   "evidence": "b_a642e8+0x4 (MciOpenParms.device_id (passed as the device to later MCI calls))",
+   "confidence": "high"
+  },
+  "b_a642f0": {
+   "type": "ptr:char",
+   "part_of": "b_a642e8",
+   "evidence": "b_a642e8+0x8 (MciOpenParms.device_type (= 0x204 MCI_DEVTYPE_CD_AUDIO))",
+   "confidence": "high"
+  },
+  "b_a64300": {
+   "type": "obj:MciPlayParms",
+   "evidence": "pushed to mciSendCommand(dev, MCI_PLAY 0x806, ...); 0xc bytes",
+   "confidence": "high"
+  },
+  "b_a64304": {
+   "type": "u32",
+   "part_of": "b_a64300",
+   "evidence": "b_a64300+0x4 (MciPlayParms.from)",
+   "confidence": "high"
+  },
+  "b_a64308": {
+   "type": "u32",
+   "part_of": "b_a64300",
+   "evidence": "b_a64300+0x8 (MciPlayParms.to)",
+   "confidence": "high"
+  },
+  "b_a64310": {
+   "type": "obj:MciSetParms",
+   "evidence": "pushed to mciSendCommand(dev, MCI_SET 0x80d, ...); 0xc bytes",
+   "confidence": "high"
+  },
+  "b_a64314": {
+   "type": "u32",
+   "part_of": "b_a64310",
+   "evidence": "b_a64310+0x4 (MciSetParms.time_format (= 0xa MCI_FORMAT_TMSF))",
+   "confidence": "high"
+  },
+  "date_buf_guard_a64328": {
+   "type": "u8",
+   "evidence": "static-init guard bits (date.cpp)",
+   "confidence": "high"
+  },
+  "b_a6432c": {
+   "type": "char",
+   "count": 20,
+   "evidence": "empty string buffer (date.cpp empty_str)",
+   "confidence": "high"
+  },
+  "date_buf_a64340": {
+   "type": "obj:String",
+   "evidence": "this of String methods (+0, +0x190); String 0x191 fits gap 0x1e8",
+   "confidence": "high"
+  },
+  "b_a64528": {
+   "type": "u8",
+   "evidence": "re-entrancy flag (errhand)",
+   "confidence": "high"
+  },
+  "b_a6452c": {
+   "type": "u8",
+   "count": 256,
+   "evidence": "lead-byte table: memset 0x100, indexed by byte",
+   "confidence": "high"
+  },
+  "b_a64660": {
+   "type": "char",
+   "count": 28,
+   "evidence": "itoa buffer",
+   "confidence": "high"
+  },
+  "b_a6467c": {
+   "type": "char",
+   "count": 44,
+   "evidence": "scratch char buffer (misc.cpp)",
+   "confidence": "high"
+  },
+  "b_a646a8": {
+   "type": "obj:String",
+   "evidence": "this of String methods; 0x191 fits gap 0x198",
+   "confidence": "high"
+  },
+  "b_a64840": {
+   "type": "obj:String",
+   "evidence": "this of String methods; 0x191 fits gap 0x194",
+   "confidence": "high"
+  },
+  "b_a649d4": {
+   "type": "char",
+   "count": 28,
+   "evidence": "number string buffer",
+   "confidence": "high"
+  },
+  "b_a64a37": {
+   "type": "u8",
+   "evidence": "static-init guard bits",
+   "confidence": "high"
+  },
+  "b_a64a38": {
+   "type": "u8",
+   "evidence": "static-init guard bits",
+   "confidence": "high"
+  },
+  "b_a64a3b": {
+   "type": "i8",
+   "count": 900,
+   "evidence": "table_x, indexed 1..900 (symbol = base-1)",
+   "confidence": "medium"
+  },
+  "b_a64dbf": {
+   "type": "i8",
+   "count": 901,
+   "evidence": "table_y, indexed 1..900 (symbol = base-1)",
+   "confidence": "medium"
+  },
+  "table_count_a65144": {
+   "type": "i16",
+   "evidence": "table count",
+   "confidence": "high"
+  },
+  "b_a65378": {
+   "type": "bytes",
+   "evidence": "DirectInput mouse GetDeviceData buffer (0xfb0)",
+   "confidence": "high"
+  },
+  "b_a66328": {
+   "type": "bytes",
+   "evidence": "DirectInput keyboard GetDeviceData buffer (0x4a4)",
+   "confidence": "high"
+  },
+  "b_a667cc": {
+   "type": "char",
+   "count": 484,
+   "evidence": "static char buffer (gameset static_buf)",
+   "confidence": "high"
+  },
+  "b_a673b0": {
+   "type": "i32",
+   "evidence": "ring index 0..7 into 0xa66ab0 256-byte buffers",
+   "confidence": "high"
+  },
+  "b_a673b4": {
+   "type": "i32",
+   "evidence": "ring index 0..7 into 0xa669b0 32-byte buffers",
+   "confidence": "high"
+  },
+  "b_a673b8": {
+   "type": "ptr:void",
+   "count": 20,
+   "evidence": "array of pool block pointers (global<void*> stores, indexed by block*4)",
+   "confidence": "high"
+  },
+  "b_a67408": {
+   "type": "i32",
+   "evidence": "bytes used in current block",
+   "confidence": "high"
+  },
+  "b_a6740c": {
+   "type": "i32",
+   "evidence": "current block index",
+   "confidence": "high",
+   "notes": "declared u32[135]; only +0 referenced"
+  },
+  "b_a67628": {
+   "type": "obj:Force",
+   "evidence": "this of 0x5a8280 (Force/VolPan ctor, +0 volume, +4 pan); 8 bytes, includes 0xa6762c",
+   "confidence": "high"
+  },
+  "b_a6762c": {
+   "type": "u32",
+   "part_of": "b_a67628",
+   "evidence": "b_a67628+0x4 (Force +4 (pan))",
+   "confidence": "high"
+  },
+  "b_a67634": {
+   "type": "ptr:MusicStream",
+   "evidence": "head of the TF-animation list: stored anim, anim+0x27 (MusicStream.next) = old head; released with music_stream::release",
+   "confidence": "high"
+  },
+  "b_a67638": {
+   "type": "ptr:fn",
+   "evidence": "error callback, called as cdecl fn(u32)",
+   "confidence": "high"
+  },
+  "b_a6763c": {
+   "type": "f32",
+   "evidence": "pi (4*atan(1))",
+   "confidence": "high"
+  },
+  "b_a67640": {
+   "type": "u8",
+   "count": 40,
+   "evidence": "byte table indexed by id",
+   "confidence": "high"
+  },
+  "b_a67668": {
+   "type": "f32",
+   "evidence": "pi/2, pi/3, pi/4 derived constant",
+   "confidence": "high"
+  },
+  "b_a6766c": {
+   "type": "f32",
+   "evidence": "pi/2, pi/3, pi/4 derived constant",
+   "confidence": "high"
+  },
+  "b_a67670": {
+   "type": "f32",
+   "evidence": "pi/2, pi/3, pi/4 derived constant",
+   "confidence": "high"
+  },
+  "b_a67680": {
+   "type": "u32",
+   "evidence": "flag",
+   "confidence": "high"
+  },
+  "b_a67684": {
+   "type": "ptr:AnimDef",
+   "evidence": "= this of AnimDef (animdef.cpp:916); deref +0x138 = AnimDef.actions (qsort comparator context)",
+   "confidence": "high"
+  },
+  "b_a67688": {
+   "type": "u32",
+   "evidence": "flag",
+   "confidence": "high"
+  },
+  "b_a6768c": {
+   "type": "u32",
+   "evidence": "flag",
+   "confidence": "high"
+  },
+  "b_a67690": {
+   "type": "u32",
+   "evidence": "flag",
+   "confidence": "high"
+  },
+  "b_a67698": {
+   "type": "ptr:NameTable",
+   "evidence": "= this in BoneTree/NameTable build (bonetree.cpp:518, qsort context); Names::get on it",
+   "confidence": "high"
+  },
+  "b_a676a0": {
+   "type": "u8",
+   "evidence": "static-init guard bits (ArcBall::handle_mouse)",
+   "confidence": "high"
+  },
+  "b_a676a4": {
+   "type": "i32",
+   "evidence": "ArcBall last mouse y",
+   "confidence": "high"
+  },
+  "kArcDown_a676a8": {
+   "type": "obj:Vec3f",
+   "evidence": "static D3DXVECTOR3 s_vDown (Vector::Vector ctor, 3 dwords written)",
+   "confidence": "high"
+  },
+  "b_a676ac": {
+   "type": "f32",
+   "part_of": "kArcDown_a676a8",
+   "evidence": "kArcDown_a676a8+0x4 (Vec3f.y)",
+   "confidence": "high"
+  },
+  "b_a676b0": {
+   "type": "f32",
+   "part_of": "kArcDown_a676a8",
+   "evidence": "kArcDown_a676a8+0x8 (Vec3f.z)",
+   "confidence": "high"
+  },
+  "b_a676b4": {
+   "type": "i32",
+   "evidence": "ArcBall last mouse x",
+   "confidence": "high"
+  },
+  "b_a676b8": {
+   "type": "obj:Vec3f",
+   "evidence": "second static D3DXVECTOR3 (Vector::Vector ctor); never read",
+   "confidence": "medium"
+  },
+  "b_a676d0": {
+   "type": "char",
+   "count": 260,
+   "evidence": "path buffer (dxutil)",
+   "confidence": "high"
+  },
+  "b_a677d8": {
+   "type": "i32",
+   "evidence": "timer initialised flag (DXUtil_Timer)",
+   "confidence": "high"
+  },
+  "b_a677dc": {
+   "type": "i32",
+   "evidence": "use QueryPerformanceCounter flag",
+   "confidence": "high"
+  },
+  "b_a677e0": {
+   "type": "u32",
+   "count": 2,
+   "evidence": "LONGLONG qwFrequency (8-byte reads/writes); no 64-bit integer type in the vocabulary",
+   "confidence": "high"
+  },
+  "b_a677e8": {
+   "type": "u32",
+   "count": 2,
+   "evidence": "LONGLONG qwStopTime (8-byte reads/writes); no 64-bit integer type in the vocabulary",
+   "confidence": "high"
+  },
+  "b_a677f0": {
+   "type": "u32",
+   "count": 2,
+   "evidence": "LONGLONG qwLastElapsedTime (8-byte reads/writes); no 64-bit integer type in the vocabulary",
+   "confidence": "high"
+  },
+  "b_a677f8": {
+   "type": "u32",
+   "count": 2,
+   "evidence": "LONGLONG qwBaseTime (8-byte reads/writes); no 64-bit integer type in the vocabulary",
+   "confidence": "high"
+  },
+  "b_a67800": {
+   "type": "f64",
+   "evidence": "double fLastElapsedTime (QWORD fld/fstp)",
+   "confidence": "high"
+  },
+  "b_a67808": {
+   "type": "f64",
+   "evidence": "double fBaseTime (QWORD fld/fstp)",
+   "confidence": "high"
+  },
+  "b_a67810": {
+   "type": "f64",
+   "evidence": "double fStopTime (QWORD fld/fstp)",
+   "confidence": "high"
+  },
+  "b_a6785c": {
+   "type": "ptr:Light",
+   "count": 16,
+   "evidence": "ambient light list: (&g)[n] = this (Light::enable), reads light[0x34..]",
+   "confidence": "high"
+  },
+  "b_a6789c": {
+   "type": "i32",
+   "evidence": "ambient light count",
+   "confidence": "high"
+  },
+  "strips_on_a678b0": {
+   "type": "i32",
+   "evidence": "strips enabled flag",
+   "confidence": "high"
+  },
+  "b_a678b4": {
+   "type": "u16",
+   "count": 4320,
+   "evidence": "edge buffer (plane_sh.cpp u16*)",
+   "confidence": "high"
+  },
+  "b_a69a74": {
+   "type": "ptr:SpanNode",
+   "evidence": "free list head: node->next = head; head = node; pool_alloc stride 0x20",
+   "confidence": "high"
+  },
+  "b_a69a78": {
+   "type": "ptr:StripNode",
+   "evidence": "free list head: node->next = head; pool_alloc stride 0x30",
+   "confidence": "high"
+  },
+  "b_a69a7c": {
+   "type": "i32",
+   "evidence": "StripNode pool count",
+   "confidence": "high"
+  },
+  "b_a69a80": {
+   "type": "i32",
+   "evidence": "SpanNode pool count",
+   "confidence": "high"
+  },
+  "b_a69a84": {
+   "type": "i32",
+   "evidence": "pool refcount",
+   "confidence": "high"
+  },
+  "b_a69a90": {
+   "type": "ptr:void",
+   "evidence": "SceneS** sector array: mem_alloc(count*4), [i] = Scene.sectors[i]; elements are SceneS*",
+   "confidence": "high",
+   "notes": "pointer to an array of pointers: in x64 the stride becomes 8 (mem_alloc count<<2 must follow)"
+  },
+  "b_a69a94": {
+   "type": "ptr:void",
+   "evidence": "SceneS** visible-sector output array ([count] = sector)",
+   "confidence": "high",
+   "notes": "pointer to an array of pointers"
+  },
+  "b_a69a98": {
+   "type": "obj:Plane4",
+   "evidence": "plane equation (Plane4 init 0x425700, 4 dwords written, box_plane_distance); 0x10 = gap",
+   "confidence": "high"
+  },
+  "b_a69aa8": {
+   "type": "i32",
+   "evidence": "visible sector count",
+   "confidence": "high"
+  },
+  "b_a69aac": {
+   "type": "ptr:SectorNode",
+   "evidence": "node bump allocator: node = g; g = node + 0x38 (SectorNode 0x38); derefs +4/+8/+0xc/+0x34",
+   "confidence": "high"
+  },
+  "b_a69ab0": {
+   "type": "u32",
+   "evidence": "reflection flag",
+   "confidence": "high"
+  },
+  "b_a69ab4": {
+   "type": "ptr:Camera",
+   "evidence": "mirror camera, compared with the current camera",
+   "confidence": "medium"
+  },
+  "b_a69ab8": {
+   "type": "ptr:Camera",
+   "evidence": "value passed as this of 3 Camera calls / collect_visible camera",
+   "confidence": "high"
+  },
+  "b_a69ac4": {
+   "type": "f32",
+   "evidence": "pi",
+   "confidence": "high"
+  },
+  "b_a69ac8": {
+   "type": "f32",
+   "evidence": "pi/2, pi/3, pi/4",
+   "confidence": "high"
+  },
+  "b_a69acc": {
+   "type": "f32",
+   "evidence": "pi/2, pi/3, pi/4",
+   "confidence": "high"
+  },
+  "b_a69ad0": {
+   "type": "f32",
+   "evidence": "pi/2, pi/3, pi/4",
+   "confidence": "high"
+  },
+  "b_a69ad8": {
+   "type": "char",
+   "count": 80,
+   "evidence": "string buffer (d3dsys)",
+   "confidence": "high"
+  },
+  "b_a69b28": {
+   "type": "u32",
+   "evidence": "available texture memory (GetAvailableTextureMem)",
+   "confidence": "high"
+  },
+  "b_a69b40": {
+   "type": "obj:Jpeg",
+   "evidence": "this of Jpeg ctor/free/write (+0 cinfo, +4 err, +8); 0xc fits gap 0x10",
+   "confidence": "high"
+  },
+  "b_a69b50": {
+   "type": "char",
+   "count": 320,
+   "evidence": "result string buffer (texturea)",
+   "confidence": "high"
+  },
+  "b_a69c90": {
+   "type": "obj:Matrix44",
+   "evidence": "static 4x4 matrix: memcpy 0x40 from identity, matrix_rotation",
+   "confidence": "high"
+  },
+  "kWhite_a69cd0": {
+   "type": "obj:Colour",
+   "evidence": "white colour: passed by address to Colour/Material setters (17x), read as dword",
+   "confidence": "high"
+  },
+  "b_a69cd4": {
+   "type": "obj:Colour",
+   "evidence": "this of Colour::set 0x5e9260 (bytes +0..+3); ambient/clear colour dword",
+   "confidence": "high"
+  },
+  "b_a69cd8": {
+   "type": "obj:Vec3f",
+   "evidence": "g_pos: x/y/z dwords copied 12 bytes (memcpy 12, V3{a69cd8,a69cdc,a69ce0}); address passed 48x",
+   "confidence": "high"
+  },
+  "b_a69cdc": {
+   "type": "f32",
+   "part_of": "b_a69cd8",
+   "evidence": "b_a69cd8+0x4 (Vec3f.y)",
+   "confidence": "high"
+  },
+  "b_a69ce0": {
+   "type": "f32",
+   "part_of": "b_a69cd8",
+   "evidence": "b_a69cd8+0x8 (Vec3f.z (declared u32[5]: the rest is padding))",
+   "confidence": "high"
+  },
+  "b_a69cf4": {
+   "type": "u16",
+   "evidence": "colour key",
+   "confidence": "high"
+  },
+  "b_a69cf8": {
+   "type": "f32",
+   "evidence": "pi*1 (a*4.0)",
+   "confidence": "high"
+  },
+  "b_a69cfc": {
+   "type": "f32",
+   "evidence": "pi/2, pi/3, pi/4",
+   "confidence": "high"
+  },
+  "b_a69d00": {
+   "type": "f32",
+   "evidence": "pi/2, pi/3, pi/4",
+   "confidence": "high"
+  },
+  "b_a69d04": {
+   "type": "f32",
+   "evidence": "pi/2, pi/3, pi/4",
+   "confidence": "high"
+  },
+  "b_a69d0c": {
+   "type": "i16",
+   "count": 2,
+   "evidence": "current archive set index (4-byte write also seen)",
+   "confidence": "medium"
+  },
+  "b_a69d10": {
+   "type": "u32",
+   "evidence": "time",
+   "confidence": "high"
+  },
+  "b_a69d14": {
+   "type": "u32",
+   "evidence": "time",
+   "confidence": "high",
+   "notes": "declared u32[3], gap 0x1b0: only +0 referenced"
+  },
+  "kEndPtr_a69ec4": {
+   "type": "ptr:char",
+   "evidence": "text end pointer (global<const char*>)",
+   "confidence": "high"
+  },
+  "kEndY_a69ec8": {
+   "type": "i16",
+   "evidence": "text end y",
+   "confidence": "high"
+  },
+  "kLineNo_a69eca": {
+   "type": "i16",
+   "evidence": "line height / number",
+   "confidence": "high"
+  },
+  "kLine2_a69ecc": {
+   "type": "i16",
+   "evidence": "line 2",
+   "confidence": "high"
+  },
+  "text_lines_a69ece": {
+   "type": "i16",
+   "evidence": "text line count",
+   "confidence": "medium",
+   "notes": "declared i16[45]; only +0 used (some 4-byte accesses at +0)"
+  },
+  "b_a69f28": {
+   "type": "i32",
+   "evidence": "blink time",
+   "confidence": "high"
+  },
+  "b_a69f2c": {
+   "type": "i32",
+   "evidence": "blink time",
+   "confidence": "high"
+  },
+  "b_a69f34": {
+   "type": "i32",
+   "evidence": "counter",
+   "confidence": "high"
+  },
+  "b_a69f38": {
+   "type": "char",
+   "count": 388,
+   "evidence": "string buffer (esstate2)",
+   "confidence": "high"
+  },
+  "b_a6a0bc": {
+   "type": "ptr:StringPool",
+   "evidence": "value passed as this of StringPool::add; = Script.string_pool; saved/restored",
+   "confidence": "high"
+  },
+  "b_a6a0c0": {
+   "type": "ptr:void",
+   "evidence": "int* to Script.pool_state (deref +0 read/write as i32 count)",
+   "confidence": "medium"
+  },
+  "b_a6a114": {
+   "type": "u32",
+   "evidence": "counter",
+   "confidence": "high"
+  },
+  "b_a6a118": {
+   "type": "char",
+   "count": 256,
+   "evidence": "strncpy(buf, s, 0xff) buffer; buf[255] = 0 is 0xa6a217",
+   "confidence": "high"
+  },
+  "b_a6a217": {
+   "type": "char",
+   "part_of": "b_a6a118",
+   "evidence": "b_a6a118+0xff (terminator byte of the 256-char buffer)",
+   "confidence": "high"
+  },
+  "b_a6a218": {
+   "type": "ptr:char",
+   "evidence": "context string (strcpy source, global<const char*>)",
+   "confidence": "high",
+   "notes": "declared u32[14]; only +0 used"
+  },
+  "b_a6a250": {
+   "type": "f32",
+   "evidence": "pi (t*4.0)",
+   "confidence": "high"
+  },
+  "b_a6a254": {
+   "type": "i32",
+   "evidence": "deadline time",
+   "confidence": "high"
+  },
+  "b_a6a258": {
+   "type": "f32",
+   "evidence": "pi/2, pi/3, pi/4",
+   "confidence": "high"
+  },
+  "b_a6a25c": {
+   "type": "f32",
+   "evidence": "pi/2, pi/3, pi/4",
+   "confidence": "high"
+  },
+  "b_a6a260": {
+   "type": "f32",
+   "evidence": "pi/2, pi/3, pi/4",
+   "confidence": "high"
+  },
+  "b_a6a268": {
+   "type": "i32",
+   "evidence": "init flag",
+   "confidence": "high"
+  },
+  "b_a6a26c": {
+   "type": "ptr:Texture",
+   "evidence": "LFlare texture from TextureManager::load, released with TextureManager::release",
+   "confidence": "medium"
+  },
+  "b_a6a270": {
+   "type": "i16",
+   "evidence": "texture refcount",
+   "confidence": "high"
+  },
+  "b_a6a274": {
+   "type": "f32",
+   "evidence": "pi",
+   "confidence": "high"
+  },
+  "b_a6a278": {
+   "type": "ptr:void",
+   "evidence": "PfdZone** array: Mem::add(count<<2), [i-1] = zone; item(i) = as_pfd_zone([i])",
+   "confidence": "high",
+   "notes": "pointer to an array of PfdZone pointers (stride 4 -> 8 in x64)"
+  },
+  "b_a6a27c": {
+   "type": "f32",
+   "evidence": "pi/2, pi/3, pi/4",
+   "confidence": "high"
+  },
+  "b_a6a280": {
+   "type": "f32",
+   "evidence": "pi/2, pi/3, pi/4",
+   "confidence": "high"
+  },
+  "b_a6a284": {
+   "type": "f32",
+   "evidence": "pi/2, pi/3, pi/4",
+   "confidence": "high"
+  },
+  "b_a6a28c": {
+   "type": "char",
+   "count": 256,
+   "evidence": "strncpy(buf, s, 0xff) buffer; buf[255] = 0 is 0xa6a38b",
+   "confidence": "high"
+  },
+  "b_a6a38b": {
+   "type": "char",
+   "part_of": "b_a6a28c",
+   "evidence": "b_a6a28c+0xff (terminator byte of the 256-char buffer (declared u8[53]: rest is padding))",
+   "confidence": "high"
+  },
+  "b_a6a3c0": {
+   "type": "i32",
+   "evidence": "init flag",
+   "confidence": "high"
+  },
+  "b_a6a3c4": {
+   "type": "ptr:void",
+   "evidence": "HMODULE of wmvcore.dll (LoadLibraryA / GetProcAddress)",
+   "confidence": "high"
+  },
+  "b_a6a3c8": {
+   "type": "u32",
+   "evidence": "load-attempted flag",
+   "confidence": "high"
+  },
+  "b_a6a3d0": {
+   "type": "f32",
+   "evidence": "pi",
+   "confidence": "high"
+  },
+  "b_a6a3d4": {
+   "type": "f32",
+   "evidence": "pi/2, pi/3, pi/4",
+   "confidence": "high"
+  },
+  "b_a6a3d8": {
+   "type": "f32",
+   "evidence": "pi/2, pi/3, pi/4",
+   "confidence": "high"
+  },
+  "b_a6a3dc": {
+   "type": "f32",
+   "evidence": "pi/2, pi/3, pi/4",
+   "confidence": "high"
+  },
+  "b_a6a3e4": {
+   "type": "f32",
+   "evidence": "pi",
+   "confidence": "high"
+  },
+  "b_a6a3e8": {
+   "type": "f32",
+   "evidence": "pi/2, pi/3, pi/4",
+   "confidence": "high"
+  },
+  "b_a6a3ec": {
+   "type": "f32",
+   "evidence": "pi/2, pi/3, pi/4",
+   "confidence": "high"
+  },
+  "b_a6a3f0": {
+   "type": "f32",
+   "evidence": "pi/2, pi/3, pi/4",
+   "confidence": "high"
+  },
+  "b_a6a3f8": {
+   "type": "u8",
+   "evidence": "static-init guard bits",
+   "confidence": "high"
+  },
+  "b_a6a3f9": {
+   "type": "u8",
+   "evidence": "static-init guard bits",
+   "confidence": "high"
+  },
+  "b_a6a400": {
+   "type": "obj:Plane4",
+   "count": 6,
+   "evidence": "6 face planes: memcpy(g + k*16, plane, 16) k=0..5; the d of each is written at +0xc+16k",
+   "confidence": "high"
+  },
+  "b_a6a40c": {
+   "type": "f32",
+   "part_of": "b_a6a400",
+   "evidence": "b_a6a400+0xc (plane[0].d)",
+   "confidence": "high"
+  },
+  "b_a6a41c": {
+   "type": "f32",
+   "part_of": "b_a6a400",
+   "evidence": "b_a6a400+0x1c (plane[1].d)",
+   "confidence": "high"
+  },
+  "b_a6a42c": {
+   "type": "f32",
+   "part_of": "b_a6a400",
+   "evidence": "b_a6a400+0x2c (plane[2].d)",
+   "confidence": "high"
+  },
+  "b_a6a43c": {
+   "type": "f32",
+   "part_of": "b_a6a400",
+   "evidence": "b_a6a400+0x3c (plane[3].d)",
+   "confidence": "high"
+  },
+  "b_a6a44c": {
+   "type": "f32",
+   "part_of": "b_a6a400",
+   "evidence": "b_a6a400+0x4c (plane[4].d)",
+   "confidence": "high"
+  },
+  "b_a6a45c": {
+   "type": "f32",
+   "part_of": "b_a6a400",
+   "evidence": "b_a6a400+0x5c (plane[5].d)",
+   "confidence": "high"
+  },
+  "b_a6a460": {
+   "type": "obj:Plane4",
+   "count": 6,
+   "evidence": "6 face planes (Plane16* planes, memcpy g + i*16); d written at +0xc/+0x2c/+0x3c",
+   "confidence": "high"
+  },
+  "b_a6a46c": {
+   "type": "f32",
+   "part_of": "b_a6a460",
+   "evidence": "b_a6a460+0xc (plane[0].d)",
+   "confidence": "high"
+  },
+  "b_a6a48c": {
+   "type": "f32",
+   "part_of": "b_a6a460",
+   "evidence": "b_a6a460+0x2c (plane[2].d)",
+   "confidence": "high"
+  },
+  "b_a6a49c": {
+   "type": "f32",
+   "part_of": "b_a6a460",
+   "evidence": "b_a6a460+0x3c (plane[3].d)",
+   "confidence": "high"
+  },
+  "b_a6a4e8": {
+   "type": "f32",
+   "evidence": "pi (4*atan(1))",
+   "confidence": "high"
+  },
+  "b_a6a4fc": {
+   "type": "f32",
+   "evidence": "pi (4*atan(1))",
+   "confidence": "high"
+  },
+  "b_a6a510": {
+   "type": "f32",
+   "evidence": "pi (4*atan(1))",
+   "confidence": "high"
+  },
+  "b_a6a524": {
+   "type": "f32",
+   "evidence": "pi (4*atan(1))",
+   "confidence": "high"
+  },
+  "b_a6a538": {
+   "type": "f32",
+   "evidence": "pi (4*atan(1))",
+   "confidence": "high"
+  },
+  "b_a6a554": {
+   "type": "f32",
+   "evidence": "pi (4*atan(1))",
+   "confidence": "high"
+  },
+  "b_a6a584": {
+   "type": "f32",
+   "evidence": "pi (4*atan(1))",
+   "confidence": "high"
+  },
+  "b_a6a4ec": {
+   "type": "f32",
+   "evidence": "pi/2, pi/3 or pi/4 (static init)",
+   "confidence": "high"
+  },
+  "b_a6a4f0": {
+   "type": "f32",
+   "evidence": "pi/2, pi/3 or pi/4 (static init)",
+   "confidence": "high"
+  },
+  "b_a6a4f4": {
+   "type": "f32",
+   "evidence": "pi/2, pi/3 or pi/4 (static init)",
+   "confidence": "high"
+  },
+  "b_a6a500": {
+   "type": "f32",
+   "evidence": "pi/2, pi/3 or pi/4 (static init)",
+   "confidence": "high"
+  },
+  "b_a6a504": {
+   "type": "f32",
+   "evidence": "pi/2, pi/3 or pi/4 (static init)",
+   "confidence": "high"
+  },
+  "b_a6a508": {
+   "type": "f32",
+   "evidence": "pi/2, pi/3 or pi/4 (static init)",
+   "confidence": "high"
+  },
+  "b_a6a514": {
+   "type": "f32",
+   "evidence": "pi/2, pi/3 or pi/4 (static init)",
+   "confidence": "high"
+  },
+  "b_a6a518": {
+   "type": "f32",
+   "evidence": "pi/2, pi/3 or pi/4 (static init)",
+   "confidence": "high"
+  },
+  "b_a6a51c": {
+   "type": "f32",
+   "evidence": "pi/2, pi/3 or pi/4 (static init)",
+   "confidence": "high"
+  },
+  "b_a6a528": {
+   "type": "f32",
+   "evidence": "pi/2, pi/3 or pi/4 (static init)",
+   "confidence": "high"
+  },
+  "b_a6a52c": {
+   "type": "f32",
+   "evidence": "pi/2, pi/3 or pi/4 (static init)",
+   "confidence": "high"
+  },
+  "b_a6a530": {
+   "type": "f32",
+   "evidence": "pi/2, pi/3 or pi/4 (static init)",
+   "confidence": "high"
+  },
+  "b_a6a53c": {
+   "type": "f32",
+   "evidence": "pi/2, pi/3 or pi/4 (static init)",
+   "confidence": "high"
+  },
+  "b_a6a540": {
+   "type": "f32",
+   "evidence": "pi/2, pi/3 or pi/4 (static init)",
+   "confidence": "high"
+  },
+  "b_a6a544": {
+   "type": "f32",
+   "evidence": "pi/2, pi/3 or pi/4 (static init)",
+   "confidence": "high"
+  },
+  "b_a6a558": {
+   "type": "f32",
+   "evidence": "pi/2, pi/3 or pi/4 (static init)",
+   "confidence": "high"
+  },
+  "b_a6a55c": {
+   "type": "f32",
+   "evidence": "pi/2, pi/3 or pi/4 (static init)",
+   "confidence": "high"
+  },
+  "b_a6a560": {
+   "type": "f32",
+   "evidence": "pi/2, pi/3 or pi/4 (static init)",
+   "confidence": "high"
+  },
+  "b_a6a588": {
+   "type": "f32",
+   "evidence": "pi/2, pi/3 or pi/4 (static init)",
+   "confidence": "high"
+  },
+  "b_a6a58c": {
+   "type": "f32",
+   "evidence": "pi/2, pi/3 or pi/4 (static init)",
+   "confidence": "high"
+  },
+  "b_a6a590": {
+   "type": "f32",
+   "evidence": "pi/2, pi/3 or pi/4 (static init)",
+   "confidence": "high"
+  },
+  "b_a6a54c": {
+   "type": "obj:Colour",
+   "evidence": "this of Colour::construct 0x42a260 (ff,ff,ff,40); read as dword",
+   "confidence": "high"
+  },
+  "b_a6a550": {
+   "type": "obj:Colour",
+   "evidence": "this of Colour::construct 0x42a260 (ff,ff,ff,40); read as dword",
+   "confidence": "high"
+  },
+  "b_a6a568": {
+   "type": "obj:Colour",
+   "evidence": "this of Colour::construct 0x42a260 (ff,ff,ff,40); read as dword",
+   "confidence": "high"
+  },
+  "b_a6a56c": {
+   "type": "obj:Colour",
+   "evidence": "this of Colour::construct 0x42a260 (ff,ff,ff,40); read as dword",
+   "confidence": "high"
+  },
+  "b_a6a570": {
+   "type": "i16",
+   "count": 10,
+   "evidence": "unit type ids, indexed i*2",
+   "confidence": "high"
+  },
+  "b_a6a598": {
+   "type": "u32",
+   "evidence": "packed colour dword (minimap dot colours)",
+   "confidence": "high"
+  },
+  "b_a6a59c": {
+   "type": "u32",
+   "evidence": "packed colour dword (minimap dot colours)",
+   "confidence": "high"
+  },
+  "b_a6a5a0": {
+   "type": "u32",
+   "evidence": "packed colour dword (minimap dot colours)",
+   "confidence": "high"
+  },
+  "b_a6a5a4": {
+   "type": "u32",
+   "evidence": "packed colour dword (minimap dot colours)",
+   "confidence": "high"
+  },
+  "b_a6a5a8": {
+   "type": "u32",
+   "evidence": "packed colour dword (minimap dot colours)",
+   "confidence": "high"
+  },
+  "b_a6a5ac": {
+   "type": "u32",
+   "evidence": "packed colour dword (minimap dot colours)",
+   "confidence": "high"
+  },
+  "b_a6a5b0": {
+   "type": "u32",
+   "evidence": "packed colour dword (minimap dot colours)",
+   "confidence": "high"
+  },
+  "b_a6a5b4": {
+   "type": "u32",
+   "evidence": "packed colour dword (minimap dot colours)",
+   "confidence": "high"
+  },
+  "b_a6a5b8": {
+   "type": "u32",
+   "evidence": "packed colour dword (minimap dot colours)",
+   "confidence": "high"
+  },
+  "b_a6a5bc": {
+   "type": "u32",
+   "evidence": "flag (dword read)",
+   "confidence": "medium"
+  },
+  "b_a6a5c4": {
+   "type": "i16",
+   "count": 2,
+   "evidence": "saved archive set (i16 reads, one dword write)",
+   "confidence": "medium"
+  },
+  "b_a6b1c0": {
+   "type": "i32",
+   "evidence": "CRT FP flag: setter returns old value; tested by math functions (SSE2/x87 path)",
+   "confidence": "medium"
+  },
+  "b_a6b1c4": {
+   "type": "i32",
+   "evidence": "result of CRT FP init function (0x7b8e53)",
+   "confidence": "medium"
+  },
+  "g_time_dstflag_a6b1c8": {
+   "type": "i32",
+   "evidence": "dst flag",
+   "confidence": "high"
+  },
+  "g_time_gmt_a6b1d0": {
+   "type": "obj:SystemTime",
+   "evidence": "SYSTEMTIME (time.cpp SystemTime 0x10) = gap",
+   "confidence": "high"
+  },
+  "kUmask_a6b1e0": {
+   "type": "i32",
+   "evidence": "_umaskval",
+   "confidence": "high"
+  },
+  "b_a6b1e4": {
+   "type": "u32",
+   "evidence": "_osver",
+   "confidence": "high"
+  },
+  "b_a6b1e8": {
+   "type": "u32",
+   "evidence": "_winver",
+   "confidence": "high"
+  },
+  "b_a6b1ec": {
+   "type": "u32",
+   "evidence": "_winmajor",
+   "confidence": "high"
+  },
+  "b_a6b1f0": {
+   "type": "u32",
+   "evidence": "_winminor",
+   "confidence": "high"
+  },
+  "kArgc_a6b1f4": {
+   "type": "i32",
+   "evidence": "__argc",
+   "confidence": "high"
+  },
+  "kArgv_a6b1f8": {
+   "type": "ptr:void",
+   "evidence": "__argv (char**)",
+   "confidence": "high"
+  },
+  "kEnviron_a6b200": {
+   "type": "ptr:void",
+   "evidence": "_environ (char**; deref [i])",
+   "confidence": "high"
+  },
+  "kInitenv_a6b204": {
+   "type": "ptr:void",
+   "evidence": "__initenv (char**)",
+   "confidence": "high"
+  },
+  "kWenviron_a6b208": {
+   "type": "ptr:void",
+   "evidence": "_wenviron (wchar_t**)",
+   "confidence": "high"
+  },
+  "kPgmptr_a6b210": {
+   "type": "ptr:char",
+   "evidence": "_pgmptr",
+   "confidence": "high"
+  },
+  "kExitflag_a6b218": {
+   "type": "i8",
+   "evidence": "_exitflag (char)",
+   "confidence": "high"
+  },
+  "kCTerminationDone_a6b21c": {
+   "type": "i32",
+   "evidence": "_C_Termination_Done",
+   "confidence": "high"
+  },
+  "kCExitDone_a6b220": {
+   "type": "i32",
+   "evidence": "_C_Exit_Done",
+   "confidence": "high"
+  },
+  "kNewHandler_a6b224": {
+   "type": "ptr:fn",
+   "evidence": "_pnhHeap (new handler)",
+   "confidence": "high"
+  },
+  "fsystemset_a6b228": {
+   "type": "i32",
+   "evidence": "fSystemSet",
+   "confidence": "high"
+  },
+  "b_a6b22c": {
+   "type": "obj:LcId",
+   "evidence": "cacheid LC_ID (6 bytes; gap 8)",
+   "confidence": "high"
+  },
+  "cachecp_a6b234": {
+   "type": "u32",
+   "evidence": "cachecp",
+   "confidence": "high"
+  },
+  "g_start_lo_a6b238": {
+   "type": "u32",
+   "evidence": "start time FILETIME low",
+   "confidence": "high"
+  },
+  "g_start_hi_a6b23c": {
+   "type": "u32",
+   "evidence": "start time FILETIME high",
+   "confidence": "high"
+  },
+  "kAenvptr_a6b240": {
+   "type": "ptr:char",
+   "evidence": "_aenvptr (environment block; deref bytes)",
+   "confidence": "high"
+  },
+  "kErrorMode_a6b248": {
+   "type": "i32",
+   "evidence": "__error_mode",
+   "confidence": "high"
+  },
+  "use_lcmap_a_a6b24c": {
+   "type": "i32",
+   "evidence": "f_use",
+   "confidence": "high"
+  },
+  "b_a6b2b0": {
+   "type": "u32",
+   "count": 6,
+   "evidence": "__lc_handle[6] (LCIDs); [1] = 0xa6b2b4, [2] = 0xa6b2b8 (LC_CTYPE)",
+   "confidence": "high"
+  },
+  "b_a6b2b4": {
+   "type": "u32",
+   "part_of": "b_a6b2b0",
+   "evidence": "b_a6b2b0+0x4 (__lc_handle[LC_COLLATE])",
+   "confidence": "high"
+  },
+  "kLcCtype_a6b2b8": {
+   "type": "u32",
+   "part_of": "b_a6b2b0",
+   "evidence": "b_a6b2b0+0x8 (__lc_handle[LC_CTYPE])",
+   "confidence": "high"
+  },
+  "lc_codepage_a6b2c8": {
+   "type": "u32",
+   "evidence": "__lc_codepage",
+   "confidence": "high"
+  },
+  "collate_cp_a6b2cc": {
+   "type": "u32",
+   "evidence": "__lc_collate_cp",
+   "confidence": "high"
+  },
+  "kCflush_a6b2d0": {
+   "type": "i32",
+   "evidence": "_cflush",
+   "confidence": "high"
+  },
+  "kStdbuf_a6b2d4": {
+   "type": "ptr:void",
+   "count": 2,
+   "evidence": "_stdbuf[2] (void* buffers)",
+   "confidence": "high"
+  },
+  "g_tzapiused_a6b2e0": {
+   "type": "i32",
+   "evidence": "tzapiused",
+   "confidence": "high"
+  },
+  "g_tzinfo_a6b2e8": {
+   "type": "obj:TimeZoneInfo",
+   "evidence": "TIME_ZONE_INFORMATION 0xac = gap",
+   "confidence": "high"
+  },
+  "g_lastTZ_a6b394": {
+   "type": "ptr:char",
+   "evidence": "lastTZ (char*)",
+   "confidence": "high"
+  },
+  "g_tz_done_a6b398": {
+   "type": "i32",
+   "evidence": "tz init done",
+   "confidence": "high"
+  },
+  "use_gst_a_a6b3c4": {
+   "type": "i32",
+   "evidence": "f_use",
+   "confidence": "high"
+  },
+  "s_lc_time_a6b3c8": {
+   "type": "ptr:void",
+   "evidence": "__lc_time_curr (struct __lc_time_data*)",
+   "confidence": "high"
+  },
+  "s_dec_pnt_a6b3cc": {
+   "type": "ptr:char",
+   "evidence": "decimal point string",
+   "confidence": "high"
+  },
+  "s_thous_sep_a6b3d0": {
+   "type": "ptr:char",
+   "evidence": "thousands separator string",
+   "confidence": "high"
+  },
+  "s_grping_a6b3d4": {
+   "type": "ptr:char",
+   "evidence": "grouping string",
+   "confidence": "high"
+  },
+  "s_lconv_intl_a6b3d8": {
+   "type": "ptr:void",
+   "evidence": "struct lconv*",
+   "confidence": "high"
+  },
+  "s_ctype1_a6b3dc": {
+   "type": "ptr:void",
+   "evidence": "u16* ctype table",
+   "confidence": "high"
+  },
+  "s_wctype1_a6b3e0": {
+   "type": "ptr:void",
+   "evidence": "u16* wctype table",
+   "confidence": "high"
+  },
+  "b_a6b3e4": {
+   "type": "obj:LcId",
+   "count": 6,
+   "evidence": "__lc_id[6] (6 x 6 bytes = gap 0x24)",
+   "confidence": "high"
+  },
+  "g_lcid_language_a6b408": {
+   "type": "u32",
+   "evidence": "LCID language",
+   "confidence": "high"
+  },
+  "g_abbrev_country_a6b40c": {
+   "type": "i32",
+   "evidence": "bAbbrevCountry",
+   "confidence": "high"
+  },
+  "g_primary_len_a6b410": {
+   "type": "i32",
+   "evidence": "iPrimaryLen",
+   "confidence": "high"
+  },
+  "g_abbrev_language_a6b414": {
+   "type": "i32",
+   "evidence": "bAbbrevLanguage",
+   "confidence": "high"
+  },
+  "g_pch_language_a6b418": {
+   "type": "ptr:char",
+   "evidence": "pchLanguage",
+   "confidence": "high"
+  },
+  "g_pch_country_a6b41c": {
+   "type": "ptr:char",
+   "evidence": "pchCountry",
+   "confidence": "high"
+  },
+  "g_lcid_state_a6b420": {
+   "type": "u32",
+   "evidence": "iLcidState (4-byte writes; declared u8[1])",
+   "confidence": "high"
+  },
+  "g_lcid_country_a6b424": {
+   "type": "u32",
+   "evidence": "LCID country",
+   "confidence": "high"
+  },
+  "g_pfn_get_locale_info_a_a6b428": {
+   "type": "ptr:fn",
+   "evidence": "pfnGetLocaleInfoA",
+   "confidence": "high"
+  },
+  "use_cmp_a_a6b42c": {
+   "type": "i32",
+   "evidence": "f_use",
+   "confidence": "high"
+  },
+  "use_cmp_w_a6b430": {
+   "type": "i32",
+   "evidence": "f_use",
+   "confidence": "high"
+  },
+  "kNewMode_a6b434": {
+   "type": "i32",
+   "evidence": "_newmode",
+   "confidence": "high"
+  },
+  "kPrevFilter_a6b438": {
+   "type": "ptr:fn",
+   "evidence": "previous unhandled-exception filter",
+   "confidence": "high"
+  },
+  "kEnvApiChoice_a6b540": {
+   "type": "i32",
+   "evidence": "env API choice",
+   "confidence": "high"
+  },
+  "kAdbgmsg_a6b544": {
+   "type": "ptr:fn",
+   "evidence": "_adbgmsg (called if non-zero)",
+   "confidence": "high"
+  },
+  "kCtrlcAction_a6b548": {
+   "type": "i32",
+   "evidence": "signal action (SIG_DFL/SIG_IGN or handler stored as int)",
+   "confidence": "medium",
+   "notes": "MSVC _PHNDLR: may hold a handler address -> ptr:fn if signal() with a handler is used"
+  },
+  "kCtrlbreakAction_a6b54c": {
+   "type": "i32",
+   "evidence": "signal action (SIG_DFL/SIG_IGN or handler stored as int)",
+   "confidence": "medium",
+   "notes": "MSVC _PHNDLR: may hold a handler address -> ptr:fn if signal() with a handler is used"
+  },
+  "kAbortAction_a6b550": {
+   "type": "i32",
+   "evidence": "signal action (SIG_DFL/SIG_IGN or handler stored as int)",
+   "confidence": "medium",
+   "notes": "MSVC _PHNDLR: may hold a handler address -> ptr:fn if signal() with a handler is used"
+  },
+  "kTermAction_a6b554": {
+   "type": "i32",
+   "evidence": "signal action (SIG_DFL/SIG_IGN or handler stored as int)",
+   "confidence": "medium",
+   "notes": "MSVC _PHNDLR: may hold a handler address -> ptr:fn if signal() with a handler is used"
+  },
+  "kCtrlHandlerInstalled_a6b558": {
+   "type": "i32",
+   "evidence": "ConsoleCtrlHandler installed",
+   "confidence": "high"
+  },
+  "kCommode_a6b55c": {
+   "type": "i32",
+   "evidence": "_commode",
+   "confidence": "high"
+  },
+  "use_gst_w_a6b56c": {
+   "type": "i32",
+   "evidence": "f_use",
+   "confidence": "high"
+  },
+  "kPfnMessageBox_a6b570": {
+   "type": "ptr:fn",
+   "evidence": "pfnMessageBox (GetProcAddress)",
+   "confidence": "high"
+  },
+  "kPfnGetActiveWindow_a6b574": {
+   "type": "ptr:fn",
+   "evidence": "pfnGetActiveWindow",
+   "confidence": "high"
+  },
+  "kPfnGetLastActivePopup_a6b578": {
+   "type": "ptr:fn",
+   "evidence": "pfnGetLastActivePopup",
+   "confidence": "high"
+  },
+  "kFmode_a6b57c": {
+   "type": "i32",
+   "evidence": "_fmode",
+   "confidence": "high"
+  },
+  "use_gli_w_a6b580": {
+   "type": "i32",
+   "evidence": "f_use",
+   "confidence": "high"
+  },
+  "use_gli_a_a6b584": {
+   "type": "i32",
+   "evidence": "f_use",
+   "confidence": "high"
+  },
+  "use_lcmap_w_a6b588": {
+   "type": "i32",
+   "evidence": "f_use",
+   "confidence": "high"
+  },
+  "kPioinfo_a6b5a0": {
+   "type": "ptr:void",
+   "count": 64,
+   "evidence": "__pioinfo[64] (ioinfo* arrays of 32 x 8-byte ioinfo; indexed [h>>5])",
+   "confidence": "high"
+  },
+  "kNhandle_a6b6dc": {
+   "type": "i32",
+   "evidence": "_nhandle",
+   "confidence": "high"
+  },
+  "kCrtHeap_a6b704": {
+   "type": "ptr:void",
+   "evidence": "_crtheap (HANDLE)",
+   "confidence": "high"
+  },
+  "kPiob_a6b710": {
+   "type": "ptr:void",
+   "evidence": "__piob (void** FILE* table; deref [i])",
+   "confidence": "high",
+   "notes": "declared u8[848]; only +0 referenced"
+  },
+  "kNstream_a6ca60": {
+   "type": "i32",
+   "evidence": "_nstream",
+   "confidence": "high"
+  },
+  "kAcmdln_a6ca70": {
+   "type": "ptr:char",
+   "evidence": "_acmdln",
+   "confidence": "high"
+  },
+  "setlc_active_a6ca7c": {
+   "type": "i32",
+   "evidence": "__setlc_active",
+   "confidence": "high"
+  },
+  "unguarded_readlc_active_a6ca8c": {
+   "type": "i32",
+   "evidence": "__unguarded_readlc_active",
+   "confidence": "high"
+  },
+  "mbcodepage_a6ca90": {
+   "type": "i32",
+   "evidence": "__mbcodepage",
+   "confidence": "high"
+  },
+  "ismbcodepage_a6cb1c": {
+   "type": "i32",
+   "evidence": "__ismbcodepage",
+   "confidence": "high"
+  },
+  "b_a6cb20": {
+   "type": "u8",
+   "count": 256,
+   "evidence": "_mbcasemap[256]",
+   "confidence": "high"
+  },
+  "b_a6cc21": {
+   "type": "u8",
+   "count": 256,
+   "evidence": "_mbctype+1 (indexed by byte)",
+   "confidence": "high"
+  },
+  "mblcid_a6cd24": {
+   "type": "u32",
+   "evidence": "__mblcid",
+   "confidence": "high"
+  },
+  "kEnvInitialized_a6cd28": {
+   "type": "i32",
+   "evidence": "__env_initialized",
+   "confidence": "high"
+  },
+  "mbctype_initialized_a6cd38": {
+   "type": "i32",
+   "evidence": "__mbctype_initialized",
+   "confidence": "high"
+  },
+  "kOnexitEnd_a6cd3c": {
+   "type": "ptr:void",
+   "evidence": "__onexitend (_PVFV*: pointer into the atexit table)",
+   "confidence": "high"
+  },
+  "kOnexitBegin_a6cd40": {
+   "type": "ptr:void",
+   "evidence": "__onexitbegin (_PVFV*: realloc-ed atexit table of code pointers)",
+   "confidence": "high"
+  }
+ },
+ "classes": [
+  {
+   "class": "Overlapped",
+   "size": "0x14",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "internal",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "internal_high",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "offset",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "offset_high",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "event",
+     "type": "ptr:void",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "Win32 OVERLAPPED passed to ReadFileEx (0xa642c8); Offset/OffsetHigh zeroed",
+   "confidence": "high",
+   "notes": "Internal/InternalHigh are ULONG_PTR, hEvent a HANDLE: pointer-sized in x64 (0x20)"
+  },
+  {
+   "class": "MciOpenParms",
+   "size": "0x14",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "callback",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "device_id",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "device_type",
+     "type": "ptr:char",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "element_name",
+     "type": "ptr:char",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "alias",
+     "type": "ptr:char",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "MCI_OPEN_PARMSA pushed to mciSendCommand(0, 0x803 MCI_OPEN); device_type = 0x204 (MCI_DEVTYPE_CD_AUDIO with MCI_OPEN_TYPE_ID)",
+   "confidence": "high",
+   "notes": "dwCallback is DWORD_PTR"
+  },
+  {
+   "class": "MciPlayParms",
+   "size": "0xc",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "callback",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "from",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "to",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "MCI_PLAY_PARMS pushed to mciSendCommand(dev, 0x806 MCI_PLAY); from/to = track & 0xff",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "class": "MciSetParms",
+   "size": "0xc",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "callback",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "time_format",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "audio",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "MCI_SET_PARMS pushed to mciSendCommand(dev, 0x80d MCI_SET); time_format = 0xa (TMSF)",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "class": "SystemTime",
+   "size": "0x10",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "year",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x2",
+     "name": "month",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x4",
+     "name": "day_of_week",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x6",
+     "name": "day",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x8",
+     "name": "hour",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0xa",
+     "name": "minute",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0xc",
+     "name": "second",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0xe",
+     "name": "milliseconds",
+     "type": "u16",
+     "size": 2
+    }
+   ],
+   "members": [],
+   "evidence": "Win32 SYSTEMTIME (src/lib/crt/time.cpp SystemTime, static_assert 0x10)",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "class": "TimeZoneInfo",
+   "size": "0xac",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "bias",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "standard_name",
+     "type": "u16",
+     "size": 2,
+     "count": 32
+    },
+    {
+     "off": "0x54",
+     "name": "standard_bias",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x58",
+     "name": "daylight_name",
+     "type": "u16",
+     "size": 2,
+     "count": 32
+    },
+    {
+     "off": "0xa8",
+     "name": "daylight_bias",
+     "type": "i32",
+     "size": 4
+    }
+   ],
+   "members": [
+    {
+     "off": "0x44",
+     "name": "standard_date",
+     "class": "SystemTime"
+    },
+    {
+     "off": "0x98",
+     "name": "daylight_date",
+     "class": "SystemTime"
+    }
+   ],
+   "evidence": "Win32 TIME_ZONE_INFORMATION (src/lib/crt/time.cpp TimeZoneInfo, static_assert 0xac)",
+   "confidence": "high",
+   "notes": "no pointers: same size in x64"
+  },
+  {
+   "class": "LcId",
+   "size": "0x6",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "language",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x2",
+     "name": "country",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x4",
+     "name": "codepage",
+     "type": "u16",
+     "size": 2
+    }
+   ],
+   "members": [],
+   "evidence": "CRT LC_ID (src/lib/crt/locale.cpp LcId, static_assert 6)",
+   "confidence": "high",
+   "notes": ""
+  }
+ ],
+ "notes": "Found by tracing the original's ecx=&global calls through forwarders (a scratch scanner of this+off reads, which follows calls on this+k) and matching the offsets with layouts.json. Several 4-byte 'objects' are really the start of bigger objects whose fields got their own symbols: kSpeech_a5cf98 = Panels (0x134), b_a5d0d0 = SoundStream (0x24), kVideo_a5d2f0 = Video (0x30), b_a5d380 = CutScene (0x48), b_a5d408 = QuickBar (0x45f); the inner symbols carry part_of = owner and the type of that field. Text/Font labels are Font2d aliases. kModelRefs_a5d0f8: AnimBuf +0 must become a pointer (0x21b-byte ModelSlot records). Pointer arrays (b_a69a90, b_a69a94, b_a6a278, b_a673b8, b_a6785c, kPioinfo) change stride in x64. The 64-bit DXUtil timer values (b_a677e0..f8) are typed u32 x2 because the vocabulary has no 64-bit integer. Win32 structures in the image (OVERLAPPED, MCI_*_PARMS) are defined as classes because they hold pointer-sized fields. Counts: {'obj': 45, 'part_of': 48, 'scalar': 200, 'ptr': 51, 'bytes': 3}"
+}

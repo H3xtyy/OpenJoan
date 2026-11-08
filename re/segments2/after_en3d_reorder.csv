@@ -1,0 +1,4 @@
+start,end,name,confidence,evidence,target
+0x005e9010,0x005e9060,misc_005e9010,low,"Callback::set / Resource::reset: tiny inline setters used by Plane / TexObj; no evidence tying them to reorder.cpp or to the colour run.",
+0x005e9090,0x005e9960,colour,medium,"Colour/Color class: conversions (float/argb/d3d/bgr) and arithmetic operators; one class run between reorder/scene light accessors and Scene::Scene.",
+0x005e9a50,0x005e9a50,scene_scenesub,high,"SceneSub::SceneSub between Scene::Scene (its only caller) and Scene::~Scene.",en3d/scene.cpp

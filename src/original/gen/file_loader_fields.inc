@@ -1,0 +1,31 @@
+// Generated (re/layout/gen_types.py) from re/layout/layouts.json: the data members of FileLoader
+// (r5_image.json, confidence high). Do not edit; change the spec.
+    char path[261];  // 0x0
+    std::uint8_t u8_105[2];  // 0x105
+    std::uint8_t status;  // 0x107
+    char disabled;  // 0x108
+    char done_;  // 0x109
+    char error_code;  // 0x10a
+    char own_buffer;  // 0x10b
+    std::uint8_t* buffer;  // 0x10c
+    std::uint32_t offset;  // 0x110
+    std::uint32_t size;  // 0x114
+    std::uint32_t bytes_read;  // 0x118
+    std::int32_t priority;  // 0x11c
+    void* callback;  // 0x120
+    void* context;  // 0x124
+    std::uint32_t ovl_internal;  // 0x128
+    std::uint32_t ovl_internal_high;  // 0x12c
+    std::uint32_t ovl_offset;  // 0x130
+    std::uint32_t ovl_offset_high;  // 0x134
+    FileLoader* ovl_event;  // 0x138
+    void* handle;  // 0x13c
+    std::uint32_t sector_size;  // 0x140
+    std::uint8_t* raw_buf;  // 0x144
+    std::uint8_t* aligned_buf;  // 0x148
+    std::uint32_t aligned_offset;  // 0x14c
+    std::uint32_t aligned_size;  // 0x150
+    std::uint32_t u32_154;  // 0x154
+    FileLoader* prev;  // 0x158
+    FileLoader* next;  // 0x15c
+    std::int32_t queued;  // 0x160

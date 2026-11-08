@@ -1,0 +1,141 @@
+{
+ "round": "p7",
+ "source": "P8 phase A: re/a4/p7_requests/*.json, decided from joan.exe",
+ "classes": [
+  {
+   "class": "CriticalSection",
+   "size": "0x18",
+   "base": null,
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "the Win32 RTL_CRITICAL_SECTION embedded in game objects (Streamer +8: InitializeCriticalSection / Enter / Leave on it): DebugInfo, LockCount, RecursionCount, OwningThread, LockSemaphore, SpinCount (ULONG_PTR); 24 bytes on x86, 40 on x64",
+   "confidence": "high",
+   "notes": "round P8 (re/a4/p7_requests/p10.json Streamer)"
+  }
+ ],
+ "fields": [
+  {
+   "class": "CriticalSection",
+   "off": "0x0",
+   "name": "debug_info",
+   "type": "ptr:void",
+   "size": 4,
+   "why": "RTL_CRITICAL_SECTION::DebugInfo"
+  },
+  {
+   "class": "CriticalSection",
+   "off": "0x4",
+   "name": "lock_count",
+   "type": "i32",
+   "size": 4,
+   "why": "LockCount"
+  },
+  {
+   "class": "CriticalSection",
+   "off": "0x8",
+   "name": "recursion_count",
+   "type": "i32",
+   "size": 4,
+   "why": "RecursionCount"
+  },
+  {
+   "class": "CriticalSection",
+   "off": "0xc",
+   "name": "owning_thread",
+   "type": "ptr:void",
+   "size": 4,
+   "why": "OwningThread (HANDLE)"
+  },
+  {
+   "class": "CriticalSection",
+   "off": "0x10",
+   "name": "lock_semaphore",
+   "type": "ptr:void",
+   "size": 4,
+   "why": "LockSemaphore (HANDLE)"
+  },
+  {
+   "class": "CriticalSection",
+   "off": "0x14",
+   "name": "spin_count",
+   "type": "ptr:void",
+   "size": 4,
+   "why": "SpinCount (ULONG_PTR: pointer-sized)"
+  },
+  {
+   "class": "AnimDef",
+   "off": "0x130",
+   "name": "u32_130",
+   "type": "u32",
+   "size": 4,
+   "why": "read_counts 0x005b5830 / 0x005b4b90 read 4 bytes each from the file (en3d/animdef.cpp:487)"
+  },
+  {
+   "class": "AnimDef",
+   "off": "0x134",
+   "name": "u32_134",
+   "type": "u32",
+   "size": 4,
+   "why": "en3d/animdef.cpp:488"
+  },
+  {
+   "class": "TexProjector",
+   "off": "0x24",
+   "name": "texture",
+   "type": "ptr:Texture",
+   "size": 4,
+   "why": "set_texture(s, projector+0x24) (en3d/scene_s.cpp:1542)"
+  },
+  {
+   "class": "UnitDraw",
+   "off": "0x6",
+   "name": "label_text",
+   "type": "char",
+   "size": 1,
+   "why": "create_label 0x00520e80 / update_label strcpy / strlen (hud.cpp, unitdraw.cpp)",
+   "count": 64
+  },
+  {
+   "class": "SceneS",
+   "off": "0x50",
+   "name": "ptr_50",
+   "type": "ptr:void",
+   "size": 4,
+   "why": "zeroed with the other pointers after the raw 0xe4-byte load (reset 0x00484d50; gfile3.cpp)"
+  },
+  {
+   "class": "GrassType",
+   "off": "0x2",
+   "name": "name",
+   "type": "char",
+   "size": 1,
+   "why": "stricmp of the name at +2 of each 0x27-byte row (grassres.cpp 0x00488190)",
+   "count": 33
+  },
+  {
+   "class": "Body",
+   "off": "0x27a",
+   "name": "anim_slot",
+   "type": "i32",
+   "size": 4,
+   "why": "passed to AnimTable::restart 0x006af370 (gfile3.cpp select 0x... )"
+  },
+  {
+   "class": "PathSearchState",
+   "off": "0x10",
+   "name": "pos",
+   "type": "Point",
+   "why": "Struct34::reset 0x004ee410 constructs a Point (0x004eea60) at +0x10, then memsets 0x34 bytes",
+   "member": true
+  },
+  {
+   "class": "Triggers",
+   "off": "0x1d",
+   "name": "u8_1d",
+   "type": "u8",
+   "size": 1,
+   "why": "the byte after the List (DynArray) that listc_save 0x00485e70 / load_485f50 write / read first (kTriggersByte1d); on x64 the DynArray is larger, so +0x1d was inside it"
+  }
+ ]
+}

@@ -1,0 +1,2099 @@
+{
+ "group": "i3",
+ "symbols": {
+  "b_a50748": {
+   "type": "obj:Font2d",
+   "evidence": "this of Font2d (0x40) methods (bitmap_font/ttf_font init, Font2d_release); Font/Text are empty aliases of Font2d; gap 0x40",
+   "confidence": "high"
+  },
+  "b_a50788": {
+   "type": "obj:Font2d",
+   "evidence": "this of Font2d (0x40) methods (bitmap_font/ttf_font init, Font2d_release); Font/Text are empty aliases of Font2d; gap 0x40",
+   "confidence": "high"
+  },
+  "b_a507c8": {
+   "type": "obj:Font2d",
+   "evidence": "this of Font2d (0x40) methods (bitmap_font/ttf_font init, Font2d_release); Font/Text are empty aliases of Font2d; gap 0x40",
+   "confidence": "high"
+  },
+  "kText_a51608": {
+   "type": "obj:Font2d",
+   "evidence": "this of Font2d (0x40) methods (bitmap_font/ttf_font init, Font2d_release); Font/Text are empty aliases of Font2d; gap 0x40",
+   "confidence": "high"
+  },
+  "b_a52768": {
+   "type": "obj:Font2d",
+   "evidence": "this of Font2d (0x40) methods (bitmap_font/ttf_font init, Font2d_release); Font/Text are empty aliases of Font2d; gap 0x40",
+   "confidence": "high"
+  },
+  "b_a52808": {
+   "type": "obj:Font2d",
+   "evidence": "this of Font2d (0x40) methods (bitmap_font/ttf_font init, Font2d_release); Font/Text are empty aliases of Font2d; gap 0x40",
+   "confidence": "high"
+  },
+  "b_a52848": {
+   "type": "obj:Font2d",
+   "evidence": "this of Font2d (0x40) methods (bitmap_font/ttf_font init, Font2d_release); Font/Text are empty aliases of Font2d; gap 0x40",
+   "confidence": "high"
+  },
+  "b_a52888": {
+   "type": "obj:Font2d",
+   "evidence": "this of Font2d (0x40) methods (bitmap_font/ttf_font init, Font2d_release); Font/Text are empty aliases of Font2d; gap 0x40",
+   "confidence": "high"
+  },
+  "b_a528e8": {
+   "type": "obj:Font2d",
+   "evidence": "this of Font2d (0x40) methods (bitmap_font/ttf_font init, Font2d_release); Font/Text are empty aliases of Font2d; gap 0x40",
+   "confidence": "high"
+  },
+  "b_a53f28": {
+   "type": "obj:Font2d",
+   "evidence": "this of Font2d (0x40) methods (bitmap_font/ttf_font init, Font2d_release); Font/Text are empty aliases of Font2d; gap 0x40",
+   "confidence": "high"
+  },
+  "b_a55a48": {
+   "type": "obj:Font2d",
+   "evidence": "this of Font2d (0x40) methods (bitmap_font/ttf_font init, Font2d_release); Font/Text are empty aliases of Font2d; gap 0x40",
+   "confidence": "high"
+  },
+  "b_a56a98": {
+   "type": "obj:Font2d",
+   "evidence": "this of Font2d (0x40) methods (bitmap_font/ttf_font init, Font2d_release); Font/Text are empty aliases of Font2d; gap 0x40",
+   "confidence": "high"
+  },
+  "b_a56ad8": {
+   "type": "obj:Font2d",
+   "evidence": "this of Font2d (0x40) methods (bitmap_font/ttf_font init, Font2d_release); Font/Text are empty aliases of Font2d; gap 0x40",
+   "confidence": "high"
+  },
+  "b_a56da0": {
+   "type": "obj:Font2d",
+   "evidence": "this of Font2d (0x40) methods (bitmap_font/ttf_font init, Font2d_release); Font/Text are empty aliases of Font2d; gap 0x40",
+   "confidence": "high"
+  },
+  "b_a56de0": {
+   "type": "obj:Font2d",
+   "evidence": "this of Font2d (0x40) methods (bitmap_font/ttf_font init, Font2d_release); Font/Text are empty aliases of Font2d; gap 0x40",
+   "confidence": "high"
+  },
+  "kFontNum_a56e30": {
+   "type": "obj:Font2d",
+   "evidence": "this of Font2d (0x40) methods (bitmap_font/ttf_font init, Font2d_release); Font/Text are empty aliases of Font2d; gap 0x40",
+   "confidence": "high"
+  },
+  "b_a56e70": {
+   "type": "obj:Font2d",
+   "evidence": "this of Font2d (0x40) methods (bitmap_font/ttf_font init, Font2d_release); Font/Text are empty aliases of Font2d; gap 0x40",
+   "confidence": "high"
+  },
+  "b_a56eb0": {
+   "type": "obj:Font2d",
+   "evidence": "this of Font2d (0x40) methods (bitmap_font/ttf_font init, Font2d_release); Font/Text are empty aliases of Font2d; gap 0x40",
+   "confidence": "high"
+  },
+  "b_a56f60": {
+   "type": "obj:Font2d",
+   "evidence": "this of Font2d (0x40) methods (bitmap_font/ttf_font init, Font2d_release); Font/Text are empty aliases of Font2d; gap 0x40",
+   "confidence": "high"
+  },
+  "b_a56ff0": {
+   "type": "obj:Font2d",
+   "evidence": "this of Font2d (0x40) methods (bitmap_font/ttf_font init, Font2d_release); Font/Text are empty aliases of Font2d; gap 0x40",
+   "confidence": "high"
+  },
+  "b_a57f40": {
+   "type": "obj:Font2d",
+   "evidence": "this of Font2d (0x40) methods (bitmap_font/ttf_font init, Font2d_release); Font/Text are empty aliases of Font2d; gap 0x40",
+   "confidence": "high"
+  },
+  "b_a58ac0": {
+   "type": "obj:Font2d",
+   "evidence": "this of Font2d (0x40) methods (bitmap_font/ttf_font init, Font2d_release); Font/Text are empty aliases of Font2d; gap 0x40",
+   "confidence": "high"
+  },
+  "b_a596d8": {
+   "type": "obj:Font2d",
+   "evidence": "this of Font2d (0x40) methods (bitmap_font/ttf_font init, Font2d_release); Font/Text are empty aliases of Font2d; gap 0x40",
+   "confidence": "high"
+  },
+  "b_a59738": {
+   "type": "obj:Font2d",
+   "evidence": "this of Font2d (0x40) methods (bitmap_font/ttf_font init, Font2d_release); Font/Text are empty aliases of Font2d; gap 0x40",
+   "confidence": "high"
+  },
+  "b_a5b9a8": {
+   "type": "obj:Font2d",
+   "evidence": "this of Font2d (0x40) methods (bitmap_font/ttf_font init, Font2d_release); Font/Text are empty aliases of Font2d; gap 0x40",
+   "confidence": "high"
+  },
+  "b_a5cc90": {
+   "type": "obj:Font2d",
+   "evidence": "this of Font2d (0x40) methods (bitmap_font/ttf_font init, Font2d_release); Font/Text are empty aliases of Font2d; gap 0x40",
+   "confidence": "high"
+  },
+  "b_a5cd20": {
+   "type": "obj:Font2d",
+   "evidence": "this of Font2d (0x40) methods (bitmap_font/ttf_font init, Font2d_release); Font/Text are empty aliases of Font2d; gap 0x40",
+   "confidence": "high"
+  },
+  "b_a5cdc0": {
+   "type": "obj:Font2d",
+   "evidence": "this of Font2d (0x40) methods (bitmap_font/ttf_font init, Font2d_release); Font/Text are empty aliases of Font2d; gap 0x40",
+   "confidence": "high"
+  },
+  "b_a50eb8": {
+   "type": "obj:BmpRes",
+   "evidence": "this of BmpRes methods (load '<sheet>', BmpRes_free; Rect9_clear = same 9-byte object); BmpRes 0x9 <= gap 0x10",
+   "confidence": "high"
+  },
+  "b_a51288": {
+   "type": "obj:BmpRes",
+   "evidence": "this of BmpRes (load 'TUI', BmpRes_free); BmpRes 0x9 <= gap 0xc",
+   "confidence": "high"
+  },
+  "kIcons_a51648": {
+   "type": "obj:BmpRes",
+   "evidence": "this of BmpRes methods (load '<sheet>', BmpRes_free; Rect9_clear = same 9-byte object); BmpRes 0x9 <= gap 0x10",
+   "confidence": "high"
+  },
+  "b_a516a0": {
+   "type": "obj:BmpRes",
+   "evidence": "this of BmpRes methods (load '<sheet>', BmpRes_free; Rect9_clear = same 9-byte object); BmpRes 0x9 <= gap 0x10",
+   "confidence": "high"
+  },
+  "b_a527b8": {
+   "type": "obj:BmpRes",
+   "evidence": "this of BmpRes methods (load '<sheet>', BmpRes_free; Rect9_clear = same 9-byte object); BmpRes 0x9 <= gap 0x10",
+   "confidence": "high"
+  },
+  "b_a527f8": {
+   "type": "obj:BmpRes",
+   "evidence": "this of BmpRes methods (load '<sheet>', BmpRes_free; Rect9_clear = same 9-byte object); BmpRes 0x9 <= gap 0x10",
+   "confidence": "high"
+  },
+  "b_a528c8": {
+   "type": "obj:BmpRes",
+   "evidence": "this of BmpRes methods (load '<sheet>', BmpRes_free; Rect9_clear = same 9-byte object); BmpRes 0x9 <= gap 0x10",
+   "confidence": "high"
+  },
+  "b_a528d8": {
+   "type": "obj:BmpRes",
+   "evidence": "this of BmpRes methods (load '<sheet>', BmpRes_free; Rect9_clear = same 9-byte object); BmpRes 0x9 <= gap 0x10",
+   "confidence": "high"
+  },
+  "b_a52de8": {
+   "type": "obj:BmpRes",
+   "evidence": "this of BmpRes methods (load '<sheet>', BmpRes_free; Rect9_clear = same 9-byte object); BmpRes 0x9 <= gap 0x10",
+   "confidence": "high"
+  },
+  "b_a54c10": {
+   "type": "obj:BmpRes",
+   "evidence": "this of BmpRes methods (load '<sheet>', BmpRes_free; Rect9_clear = same 9-byte object); BmpRes 0x9 <= gap 0x10",
+   "confidence": "high"
+  },
+  "b_a56e20": {
+   "type": "obj:BmpRes",
+   "evidence": "this of BmpRes methods (load '<sheet>', BmpRes_free; Rect9_clear = same 9-byte object); BmpRes 0x9 <= gap 0x10",
+   "confidence": "high"
+  },
+  "b_a57068": {
+   "type": "obj:BmpRes",
+   "evidence": "this of BmpRes methods (load '<sheet>', BmpRes_free; Rect9_clear = same 9-byte object); BmpRes 0x9 <= gap 0x10",
+   "confidence": "high"
+  },
+  "b_a57bf8": {
+   "type": "obj:BmpRes",
+   "evidence": "this of BmpRes methods (load '<sheet>', BmpRes_free; Rect9_clear = same 9-byte object); BmpRes 0x9 <= gap 0x10",
+   "confidence": "high"
+  },
+  "b_a57f00": {
+   "type": "obj:BmpRes",
+   "evidence": "this of BmpRes methods (load '<sheet>', BmpRes_free; Rect9_clear = same 9-byte object); BmpRes 0x9 <= gap 0x10",
+   "confidence": "high"
+  },
+  "kSet_a57f10": {
+   "type": "obj:BmpRes",
+   "evidence": "this of BmpRes methods (load '<sheet>', BmpRes_free; Rect9_clear = same 9-byte object); BmpRes 0x9 <= gap 0x10",
+   "confidence": "high"
+  },
+  "b_a57f20": {
+   "type": "obj:BmpRes",
+   "evidence": "this of BmpRes methods (load '<sheet>', BmpRes_free; Rect9_clear = same 9-byte object); BmpRes 0x9 <= gap 0x10",
+   "confidence": "high"
+  },
+  "b_a57f30": {
+   "type": "obj:BmpRes",
+   "evidence": "this of BmpRes methods (load '<sheet>', BmpRes_free; Rect9_clear = same 9-byte object); BmpRes 0x9 <= gap 0x10",
+   "confidence": "high"
+  },
+  "b_a58ca8": {
+   "type": "obj:BmpRes",
+   "evidence": "this of BmpRes methods (load '<sheet>', BmpRes_free; Rect9_clear = same 9-byte object); BmpRes 0x9 <= gap 0x10",
+   "confidence": "high"
+  },
+  "b_a59a88": {
+   "type": "obj:BmpRes",
+   "evidence": "this of BmpRes methods (load '<sheet>', BmpRes_free; Rect9_clear = same 9-byte object); BmpRes 0x9 <= gap 0x10",
+   "confidence": "high"
+  },
+  "b_a5cd00": {
+   "type": "obj:BmpRes",
+   "evidence": "this of BmpRes methods (load '<sheet>', BmpRes_free; Rect9_clear = same 9-byte object); BmpRes 0x9 <= gap 0x10",
+   "confidence": "high"
+  },
+  "b_a5cd10": {
+   "type": "obj:BmpRes",
+   "evidence": "this of BmpRes methods (load '<sheet>', BmpRes_free; Rect9_clear = same 9-byte object); BmpRes 0x9 <= gap 0x10",
+   "confidence": "high"
+  },
+  "b_a5cd60": {
+   "type": "obj:BmpRes",
+   "evidence": "this of BmpRes x4 (load 'INTRO'); BmpRes 0x9 <= gap 0xa",
+   "confidence": "high"
+  },
+  "b_a50808": {
+   "type": "obj:PopUpWin",
+   "evidence": "this of PopUpWin x6 (Screen_ctor_62a560 / Obj_dtor_62a5f0, open/close/has_answer); PopupWin is an empty alias; size 0x6ad covers b_a50eb1 (+0x6a9 text)",
+   "confidence": "high"
+  },
+  "b_a50eb1": {
+   "type": "ptr:char",
+   "part_of": "b_a50808",
+   "evidence": "PopUpWin+0x6a9 text (ptr:char); C++ strcmp(rd32(g_a50eb1), id)",
+   "confidence": "high"
+  },
+  "b_a50ec8": {
+   "type": "obj:Audio",
+   "evidence": "this of Audio x6 (construct 0x57a340, init, Audio_dtor); Audio 0x3aa <= gap 0x3b0",
+   "confidence": "high"
+  },
+  "b_a51278": {
+   "type": "obj:RecruitRes",
+   "evidence": "this of RecruitRes x10 (group_at, release, dtor); RecruitRes 0x9 <= gap 0x10",
+   "confidence": "high"
+  },
+  "kScenarios_a51294": {
+   "type": "obj:BattleState",
+   "evidence": "this of Battle/Counter/Handle methods that only touch +0 i32 (start_scenario writes +0, at_least_10 reads +0); gap 4",
+   "confidence": "medium",
+   "notes": "Battle's size 0x92 (Battle::init new) cannot be this 4-byte object; new class BattleState (one i32)"
+  },
+  "b_a51298": {
+   "type": "obj:DialogueList",
+   "evidence": "this of DialogueList x10 / Streams (alias) x9 (ctor 0x63bf40, destruct, pause_all, release_all); DialogueList 0x36a <= gap 0x370",
+   "confidence": "high"
+  },
+  "b_a51658": {
+   "type": "obj:Timer",
+   "evidence": "this of Timer x5 / FpsTimer x2 (same object, two labels); fields 0x0..0x40, size >= 0x44 covers b_a51698 (+0x40)",
+   "confidence": "medium",
+   "notes": "Timer and FpsTimer labels are one class (FpsTimer names +0x40 fps f32); merge them; size 0x44..0x48 (next symbol +0x48)"
+  },
+  "b_a51698": {
+   "type": "f32",
+   "part_of": "b_a51658",
+   "evidence": "Timer/FpsTimer+0x40 fps (float_value prints it)",
+   "confidence": "high"
+  },
+  "kMouse_a516b0": {
+   "type": "obj:Input",
+   "evidence": "this of Input x320 (Mouse/Parser/Cursor/Point labels are Input aliases); Input size 0xd69 ends at 0xa52419 < kLight_a52420; every symbol up to b_a51db5 is an Input field",
+   "confidence": "high"
+  },
+  "mouse_x_a516c4": {
+   "type": "i32",
+   "part_of": "kMouse_a516b0",
+   "evidence": "Input+0x14 cur_x",
+   "confidence": "high"
+  },
+  "mouse_y_a516c8": {
+   "type": "i32",
+   "part_of": "kMouse_a516b0",
+   "evidence": "Input+0x18 cur_y (decl i32[2] covers cur_z +0x1c)",
+   "confidence": "high"
+  },
+  "b_a516d0": {
+   "type": "i32",
+   "part_of": "kMouse_a516b0",
+   "evidence": "Input+0x20 left_down",
+   "confidence": "high"
+  },
+  "b_a516d4": {
+   "type": "i32",
+   "part_of": "kMouse_a516b0",
+   "evidence": "Input+0x24 right_down",
+   "confidence": "high"
+  },
+  "b_a516d8": {
+   "type": "i32",
+   "part_of": "kMouse_a516b0",
+   "evidence": "Input+0x28 middle_down",
+   "confidence": "high"
+  },
+  "b_a516dc": {
+   "type": "i32",
+   "part_of": "kMouse_a516b0",
+   "evidence": "Input+0x2c delta_x",
+   "confidence": "high"
+  },
+  "b_a516e0": {
+   "type": "i32",
+   "part_of": "kMouse_a516b0",
+   "evidence": "Input+0x30 delta_y",
+   "confidence": "high"
+  },
+  "b_a516e4": {
+   "type": "i32",
+   "part_of": "kMouse_a516b0",
+   "evidence": "Input+0x34 delta_z",
+   "confidence": "high"
+  },
+  "b_a516e8": {
+   "type": "u32",
+   "part_of": "kMouse_a516b0",
+   "evidence": "Input+0x38 u32_38[0]",
+   "confidence": "high"
+  },
+  "b_a516ec": {
+   "type": "u32",
+   "part_of": "kMouse_a516b0",
+   "evidence": "Input+0x3c u32_38[1]",
+   "confidence": "high"
+  },
+  "b_a516f0": {
+   "type": "u32",
+   "part_of": "kMouse_a516b0",
+   "evidence": "Input+0x40 u32_38[2]",
+   "confidence": "high"
+  },
+  "b_a516f4": {
+   "type": "i32",
+   "part_of": "kMouse_a516b0",
+   "evidence": "Input+0x44 acc_x",
+   "confidence": "high"
+  },
+  "b_a516f8": {
+   "type": "i32",
+   "part_of": "kMouse_a516b0",
+   "evidence": "Input+0x48 acc_y (decl i32[2] covers acc_z)",
+   "confidence": "high"
+  },
+  "b_a51700": {
+   "type": "u8",
+   "count": 256,
+   "part_of": "kMouse_a516b0",
+   "evidence": "Input+0x50 key_state[256] (indexed by key)",
+   "confidence": "high"
+  },
+  "b_a5171c": {
+   "type": "u8",
+   "part_of": "kMouse_a516b0",
+   "evidence": "Input+0x6c = key_state[0x1c]",
+   "confidence": "high"
+  },
+  "b_a5179c": {
+   "type": "u8",
+   "part_of": "kMouse_a516b0",
+   "evidence": "Input+0xec = key_state[0x9c]",
+   "confidence": "high"
+  },
+  "b_a51800": {
+   "type": "u16",
+   "part_of": "kMouse_a516b0",
+   "evidence": "Input+0x150 skey_state",
+   "confidence": "high"
+  },
+  "b_a51802": {
+   "type": "u16",
+   "part_of": "kMouse_a516b0",
+   "evidence": "Input+0x152 prev_skey_state",
+   "confidence": "high"
+  },
+  "b_a51804": {
+   "type": "u16",
+   "part_of": "kMouse_a516b0",
+   "evidence": "Input+0x154 key_flags",
+   "confidence": "high"
+  },
+  "b_a51806": {
+   "type": "obj:Pad",
+   "count": 4,
+   "part_of": "kMouse_a516b0",
+   "evidence": "Input+0x156 joy_state[0..3] (Pad 0x39; Pad+0 is ptr:Joystick, deref +0 = *global<u32*>(g_keys_a51806))",
+   "confidence": "high"
+  },
+  "b_a518ea": {
+   "type": "obj:Pad",
+   "count": 4,
+   "part_of": "kMouse_a516b0",
+   "evidence": "Input+0x23a prev_joy_state[0..3] (this of Pad::is_ready)",
+   "confidence": "high"
+  },
+  "b_a51d1a": {
+   "type": "u16",
+   "part_of": "kMouse_a516b0",
+   "evidence": "Input+0x66a event_skey_state",
+   "confidence": "high"
+  },
+  "b_a51d1d": {
+   "type": "i8",
+   "part_of": "kMouse_a516b0",
+   "evidence": "Input+0x66d has_joy_event",
+   "confidence": "high"
+  },
+  "b_a51d5a": {
+   "type": "u32",
+   "part_of": "kMouse_a516b0",
+   "evidence": "Input+0x6aa scan_code (the ptr_this_of Keyboard hits are keyboard::translate(scan_code, ..), not a pointer)",
+   "confidence": "high"
+  },
+  "kKey_a51d5e": {
+   "type": "u32",
+   "part_of": "kMouse_a516b0",
+   "evidence": "Input+0x6ae key_code (decl u8[13])",
+   "confidence": "high"
+  },
+  "b_a51d6b": {
+   "type": "u8",
+   "part_of": "kMouse_a516b0",
+   "evidence": "Input+0x6bb event_joy_arg",
+   "confidence": "high"
+  },
+  "b_a51da4": {
+   "type": "i8",
+   "part_of": "kMouse_a516b0",
+   "evidence": "Input+0x6f4 = last byte of event_joy_state Pad (+0x6bc), indexed global<i8>(g_a51da4 + b) into button_down[] (+0x6f5)",
+   "confidence": "medium"
+  },
+  "b_a51db5": {
+   "type": "u32",
+   "part_of": "kMouse_a516b0",
+   "evidence": "Input+0x705 last_key_code",
+   "confidence": "high"
+  },
+  "kLight_a52420": {
+   "type": "obj:SysEn",
+   "evidence": "this of SysEn x136 / D3D x27 (alias); header src/original/gen/sys_en.hpp fields to resources_tail +0x333 (end 0x337), next symbol RaceRes at +0x338; every symbol up to b_a52743 is a SysEn field",
+   "confidence": "high",
+   "notes": "SysEn has no size static_assert: size 0x337 (or 0x338). Its pp_* names are shifted: +0x18 is the vertex-processing mode, D3DPRESENT_PARAMETERS starts at +0x1c (+0x1c width, +0x20 height, +0x24 format: g_a52444 is passed as a texture format), so +0x34 (pp_windowed in the header) is hDeviceWindow, an HWND: a pointer on x64. release_shaders' +0x670/+0x674 accesses are not this object (they would run into the RaceRes/fonts after it)."
+  },
+  "b_a52424": {
+   "type": "ptr:IDirect3D8",
+   "part_of": "kLight_a52420",
+   "evidence": "SysEn+0x4 d3d; com_call(g_a52424, 0x10/0x14/0x18) = GetAdapterCount/Identifier/ModeCount; deref +0 (vtable)",
+   "confidence": "high"
+  },
+  "game_device_a52428": {
+   "type": "ptr:IDirect3DDevice8",
+   "part_of": "kLight_a52420",
+   "evidence": "SysEn+0x8 device; 812 reads, 390 vtable derefs, com_call(.., SetRenderTarget, ..)",
+   "confidence": "high"
+  },
+  "b_a5242c": {
+   "type": "ptr:IDirect3DSurface8",
+   "part_of": "kLight_a52420",
+   "evidence": "SysEn+0xc back_buffer (attach_surface(global(g_a5242c)))",
+   "confidence": "high"
+  },
+  "b_a52430": {
+   "type": "ptr:IDirect3DSurface8",
+   "part_of": "kLight_a52420",
+   "evidence": "SysEn+0x10 depth_stencil (com_call GetDesc, attach_surface); decl u32[2] covers device_type +0x14",
+   "confidence": "high"
+  },
+  "b_a52438": {
+   "type": "u32",
+   "part_of": "kLight_a52420",
+   "evidence": "SysEn+0x18 vertex processing mode (header: pp_back_buffer_width; usage = mode==0 ? SOFTWAREPROCESSING : 0)",
+   "confidence": "high"
+  },
+  "b_a5243c": {
+   "type": "i32",
+   "part_of": "kLight_a52420",
+   "evidence": "SysEn+0x1c back buffer width (viewport w-1)",
+   "confidence": "high"
+  },
+  "b_a52440": {
+   "type": "i32",
+   "part_of": "kLight_a52420",
+   "evidence": "SysEn+0x20 back buffer height (viewport h-1)",
+   "confidence": "high"
+  },
+  "b_a52444": {
+   "type": "u32",
+   "part_of": "kLight_a52420",
+   "evidence": "SysEn+0x24 back buffer format (texture format argument)",
+   "confidence": "high"
+  },
+  "b_a52448": {
+   "type": "u32",
+   "part_of": "kLight_a52420",
+   "evidence": "SysEn+0x28 back buffer count / pp (header pp_multisample_type); decl u32[16] spans to caps +0x50 and covers hDeviceWindow +0x34 (pointer on x64)",
+   "confidence": "medium"
+  },
+  "b_a52488": {
+   "type": "u32",
+   "part_of": "kLight_a52420",
+   "evidence": "SysEn+0x68 = caps+0x18 cursor_caps (D3DCaps8 member at +0x50); decl u32[2] covers dev_caps +0x1c",
+   "confidence": "high"
+  },
+  "b_a52490": {
+   "type": "u32",
+   "part_of": "kLight_a52420",
+   "evidence": "SysEn+0x70 = caps+0x20 primitive_misc_caps (COLORWRITEENABLE 0x80) (D3DCaps8 member at +0x50, all u32)",
+   "confidence": "high"
+  },
+  "b_a52494": {
+   "type": "u32",
+   "part_of": "kLight_a52420",
+   "evidence": "SysEn+0x74 = caps+0x24 raster_caps (fog bits) (D3DCaps8 member at +0x50, all u32)",
+   "confidence": "high"
+  },
+  "b_a524ac": {
+   "type": "u32",
+   "part_of": "kLight_a52420",
+   "evidence": "SysEn+0x8c = caps+0x3c texture_caps (D3DCaps8 member at +0x50, all u32)",
+   "confidence": "high"
+  },
+  "b_a524fc": {
+   "type": "u32",
+   "part_of": "kLight_a52420",
+   "evidence": "SysEn+0xdc = caps+0x8c fvf_caps (&0xffff = max texture coords) (D3DCaps8 member at +0x50, all u32)",
+   "confidence": "high"
+  },
+  "b_a52500": {
+   "type": "u32",
+   "part_of": "kLight_a52420",
+   "evidence": "SysEn+0xe0 = caps+0x90 texture_op_caps (D3DCaps8 member at +0x50, all u32)",
+   "confidence": "high"
+  },
+  "b_a52504": {
+   "type": "u32",
+   "part_of": "kLight_a52420",
+   "evidence": "SysEn+0xe4 = caps+0x94 max_texture_blend_stages (D3DCaps8 member at +0x50, all u32)",
+   "confidence": "high"
+  },
+  "b_a52508": {
+   "type": "u32",
+   "part_of": "kLight_a52420",
+   "evidence": "SysEn+0xe8 = caps+0x98 max_simultaneous_textures (D3DCaps8 member at +0x50, all u32)",
+   "confidence": "high"
+  },
+  "b_a52514": {
+   "type": "u32",
+   "part_of": "kLight_a52420",
+   "evidence": "SysEn+0xf4 = caps+0xa4 max_user_clip_planes (D3DCaps8 member at +0x50, all u32)",
+   "confidence": "high"
+  },
+  "b_a52518": {
+   "type": "u32",
+   "part_of": "kLight_a52420",
+   "evidence": "SysEn+0xf8 = caps+0xa8 max_vertex_blend_matrices (D3DCaps8 member at +0x50, all u32)",
+   "confidence": "high"
+  },
+  "b_a52534": {
+   "type": "u32",
+   "part_of": "kLight_a52420",
+   "evidence": "SysEn+0x114 = caps+0xc4 vertex_shader_version (D3DCaps8 member at +0x50, all u32)",
+   "confidence": "high"
+  },
+  "b_a5253c": {
+   "type": "u32",
+   "part_of": "kLight_a52420",
+   "evidence": "SysEn+0x11c = caps+0xcc pixel_shader_version (D3DCaps8 member at +0x50, all u32)",
+   "confidence": "high"
+  },
+  "b_a5255d": {
+   "type": "u32",
+   "part_of": "kLight_a52420",
+   "evidence": "SysEn+0x13d cur_flags",
+   "confidence": "high"
+  },
+  "b_a52569": {
+   "type": "u8",
+   "part_of": "kLight_a52420",
+   "evidence": "SysEn+0x149 vs_bound (byte reads; 4-byte reads are the overlapping new_vertex_type..)",
+   "confidence": "medium"
+  },
+  "b_a52597": {
+   "type": "ptr:VsCache",
+   "part_of": "kLight_a52420",
+   "evidence": "SysEn+0x177 vs_cache; value passed as this to VsCache/Tint/VsConstants methods (26+8+3), deref +0/+4 writes",
+   "confidence": "high"
+  },
+  "b_a5259f": {
+   "type": "u32",
+   "part_of": "kLight_a52420",
+   "evidence": "SysEn+0x17f light_slot_count (loop bound)",
+   "confidence": "high"
+  },
+  "b_a525a3": {
+   "type": "u8",
+   "count": 4,
+   "part_of": "kLight_a52420",
+   "evidence": "SysEn+0x183 light slot area (address passed to point transform)",
+   "confidence": "low"
+  },
+  "b_a525a7": {
+   "type": "f32",
+   "count": 29,
+   "part_of": "kLight_a52420",
+   "evidence": "SysEn+0x187 (float negated in place)",
+   "confidence": "medium"
+  },
+  "b_a5261b": {
+   "type": "u32",
+   "part_of": "kLight_a52420",
+   "evidence": "SysEn+0x1fb vb_usage (decl u32[2] covers ib_usage +0x1ff)",
+   "confidence": "high"
+  },
+  "b_a52623": {
+   "type": "u32",
+   "part_of": "kLight_a52420",
+   "evidence": "SysEn+0x203 vs_usable",
+   "confidence": "high"
+  },
+  "b_a52627": {
+   "type": "u32",
+   "part_of": "kLight_a52420",
+   "evidence": "SysEn+0x207 dot3_usable",
+   "confidence": "high"
+  },
+  "b_a5262b": {
+   "type": "u32",
+   "part_of": "kLight_a52420",
+   "evidence": "SysEn+0x20b hw_skinning",
+   "confidence": "high"
+  },
+  "b_a5262f": {
+   "type": "u32",
+   "part_of": "kLight_a52420",
+   "evidence": "SysEn+0x20f mipmaps_supported",
+   "confidence": "high"
+  },
+  "b_a52633": {
+   "type": "u32",
+   "part_of": "kLight_a52420",
+   "evidence": "SysEn+0x213 bump_supported",
+   "confidence": "high"
+  },
+  "b_a52637": {
+   "type": "u32",
+   "part_of": "kLight_a52420",
+   "evidence": "SysEn+0x217 texture_caps_800 (decl i32[34] spans the stats arrays)",
+   "confidence": "high"
+  },
+  "b_a526bf": {
+   "type": "u32",
+   "part_of": "kLight_a52420",
+   "evidence": "SysEn+0x29f stats_avg[0] (cpuusage per-frame counters)",
+   "confidence": "high"
+  },
+  "b_a526c3": {
+   "type": "u32",
+   "part_of": "kLight_a52420",
+   "evidence": "SysEn+0x2a3 stats_avg[1] (cpuusage per-frame counters)",
+   "confidence": "high"
+  },
+  "b_a526c7": {
+   "type": "u32",
+   "part_of": "kLight_a52420",
+   "evidence": "SysEn+0x2a7 stats_avg[2] (cpuusage per-frame counters)",
+   "confidence": "high"
+  },
+  "b_a526cb": {
+   "type": "u32",
+   "part_of": "kLight_a52420",
+   "evidence": "SysEn+0x2ab stats_avg[3] (cpuusage per-frame counters)",
+   "confidence": "high"
+  },
+  "b_a526cf": {
+   "type": "u32",
+   "part_of": "kLight_a52420",
+   "evidence": "SysEn+0x2af stats_avg[4] (cpuusage per-frame counters)",
+   "confidence": "high"
+  },
+  "b_a526d3": {
+   "type": "u32",
+   "part_of": "kLight_a52420",
+   "evidence": "SysEn+0x2b3 stats_avg[5] (cpuusage per-frame counters)",
+   "confidence": "high"
+  },
+  "b_a526d7": {
+   "type": "u32",
+   "part_of": "kLight_a52420",
+   "evidence": "SysEn+0x2b7 stats_avg[6] (cpuusage per-frame counters)",
+   "confidence": "high"
+  },
+  "b_a526db": {
+   "type": "u32",
+   "part_of": "kLight_a52420",
+   "evidence": "SysEn+0x2bb stats_avg[7] (cpuusage per-frame counters)",
+   "confidence": "high"
+  },
+  "b_a526df": {
+   "type": "u32",
+   "part_of": "kLight_a52420",
+   "evidence": "SysEn+0x2bf stats_avg[8] (cpuusage per-frame counters)",
+   "confidence": "high"
+  },
+  "b_a526e3": {
+   "type": "u32",
+   "part_of": "kLight_a52420",
+   "evidence": "SysEn+0x2c3 stats_avg[9] (cpuusage per-frame counters)",
+   "confidence": "high"
+  },
+  "b_a526e7": {
+   "type": "u32",
+   "part_of": "kLight_a52420",
+   "evidence": "SysEn+0x2c7 stats_avg[10] (cpuusage per-frame counters)",
+   "confidence": "high"
+  },
+  "b_a526fb": {
+   "type": "u32",
+   "part_of": "kLight_a52420",
+   "evidence": "SysEn+0x2db dot3_created",
+   "confidence": "high"
+  },
+  "b_a526ff": {
+   "type": "ptr:void",
+   "part_of": "kLight_a52420",
+   "evidence": "SysEn+0x2df dot3_buffer_a (operator_new / operator_delete of global<void*>)",
+   "confidence": "high"
+  },
+  "b_a52703": {
+   "type": "i32",
+   "part_of": "kLight_a52420",
+   "evidence": "SysEn+0x2e3 dot3_buffer_a capacity",
+   "confidence": "high"
+  },
+  "b_a52707": {
+   "type": "ptr:void",
+   "part_of": "kLight_a52420",
+   "evidence": "SysEn+0x2e7 dot3_buffer_b (operator_new / operator_delete)",
+   "confidence": "high"
+  },
+  "b_a5270b": {
+   "type": "u32",
+   "part_of": "kLight_a52420",
+   "evidence": "SysEn+0x2eb dot3_buffer_b capacity (decl u32[3] covers brightness/contrast +0x2ef/+0x2f3)",
+   "confidence": "high"
+  },
+  "b_a52717": {
+   "type": "f32",
+   "part_of": "kLight_a52420",
+   "evidence": "SysEn+0x2f7 gamma (copied to LightningBolt gamma)",
+   "confidence": "high"
+  },
+  "b_a5271b": {
+   "type": "i32",
+   "part_of": "kLight_a52420",
+   "evidence": "SysEn+0x2fb gamma_offset[0]",
+   "confidence": "high"
+  },
+  "b_a5271f": {
+   "type": "i32",
+   "part_of": "kLight_a52420",
+   "evidence": "SysEn+0x2ff gamma_offset[1]",
+   "confidence": "high"
+  },
+  "b_a52723": {
+   "type": "i32",
+   "part_of": "kLight_a52420",
+   "evidence": "SysEn+0x303 gamma_offset[2]",
+   "confidence": "high"
+  },
+  "b_a52727": {
+   "type": "u32",
+   "part_of": "kLight_a52420",
+   "evidence": "SysEn+0x307 depth_format",
+   "confidence": "high"
+  },
+  "b_a5272b": {
+   "type": "u32",
+   "part_of": "kLight_a52420",
+   "evidence": "SysEn+0x30b stencil_bits (decl i32[2] covers mirrored +0x30f)",
+   "confidence": "high"
+  },
+  "b_a52733": {
+   "type": "i32",
+   "part_of": "kLight_a52420",
+   "evidence": "SysEn+0x313 user_clip_planes",
+   "confidence": "high"
+  },
+  "b_a52737": {
+   "type": "ptr:IDirect3DSurface8",
+   "part_of": "kLight_a52420",
+   "evidence": "SysEn+0x317 depth_target (SetRenderTarget argument)",
+   "confidence": "high"
+  },
+  "b_a5273b": {
+   "type": "i32",
+   "part_of": "kLight_a52420",
+   "evidence": "SysEn+0x31b depth_target_width",
+   "confidence": "high"
+  },
+  "b_a5273f": {
+   "type": "i32",
+   "part_of": "kLight_a52420",
+   "evidence": "SysEn+0x31f depth_target_height",
+   "confidence": "high"
+  },
+  "b_a52743": {
+   "type": "ptr:IDirect3DTexture8",
+   "part_of": "kLight_a52420",
+   "evidence": "SysEn+0x323 light_target (com_call GetSurfaceLevel, deref +0); decl u8[21] covers width/height/resources_head/tail (+0x32f/+0x333 pointers)",
+   "confidence": "high"
+  },
+  "b_a52758": {
+   "type": "obj:RaceRes",
+   "evidence": "this of RaceRes x4 (find, Obj_once_4ca310, RaceRes_free); fields +0 loaded, +4 count, +8 races ptr; gap 0x10",
+   "confidence": "high"
+  },
+  "b_a527a8": {
+   "type": "obj:PemiRes",
+   "evidence": "this of PemiRes x24 / Array28 x44 (Array28::get 0x41b440 reads +4 = PemiRes.scripts); NameList entries (spiritual.txt); PemiRes 0x9 <= gap 0x10",
+   "confidence": "medium",
+   "notes": "Array28 label mixes this PemiRes accessor with se.cpp's +0x60 walker; move 0x41b440 to PemiRes"
+  },
+  "b_a527c8": {
+   "type": "obj:DynArray",
+   "evidence": "this of Regions x13 / List x6 / Waters (all DynArray views, no fields of their own); gap 0x30",
+   "confidence": "medium",
+   "notes": "water tracks list (g_tracks); could be DynArrayB (0x2e fits); no access beyond the header seen"
+  },
+  "date_a52928": {
+   "type": "obj:DateInfo",
+   "evidence": "this of DateInfo methods (file_time_to_julian, date_str); empty class (no instance data); gap 8",
+   "confidence": "high"
+  },
+  "b_a52930": {
+   "type": "obj:Menu",
+   "evidence": "this of Menu x20 (set_state 0x6f5cc0) / Triple::clear x9 (12 bytes); Menu +0 state, +4 next_state (g_a52934 page); 12-byte object covers b_a52934",
+   "confidence": "medium",
+   "notes": "Menu size 0xc (Triple::clear clears 3 dwords); Menu has no size in layouts"
+  },
+  "b_a52934": {
+   "type": "u32",
+   "count": 2,
+   "part_of": "b_a52930",
+   "evidence": "Menu+0x4 next_state / page (decl u32[3] = +4..+0xb)",
+   "confidence": "high"
+  },
+  "b_a52940": {
+   "type": "obj:DynArray",
+   "evidence": "this of List x8 / Table x3 / Zones: zone list (List_load_e0 / delete_all / init_index; ZoneDef records via get_420ff0); gap 0x28",
+   "confidence": "medium"
+  },
+  "b_a52968": {
+   "type": "obj:Credits",
+   "evidence": "this of Credits x6 (Obj6b4_ctor 0x6b4e00, create_backgrounds, reset); size probably 0x47c (label_4 +0x3fa) <= gap 0x480",
+   "confidence": "medium"
+  },
+  "b_a52df8": {
+   "type": "obj:MessageBox",
+   "evidence": "this of Popup x43 / ChoiceDialog / Dialog / PopupScreen / MessageBox (one message-box object: buttons at +0x458/+0x79e/+0xae4); MessageBox 0xe2a <= gap 0xe30",
+   "confidence": "medium",
+   "notes": "Popup, ChoiceDialog, PopupScreen, Dialog labels on this global are views of MessageBox"
+  },
+  "b_a53c28": {
+   "type": "obj:MsgLog",
+   "evidence": "this of MsgLog x15 (reset 0x4b31c0, save/load); MsgLog 0x82 (DynArrayB base) covers b_a53c62 (+0x3a) and b_a53c86 (+0x5e)",
+   "confidence": "high"
+  },
+  "b_a53c62": {
+   "type": "u32",
+   "count": 9,
+   "part_of": "b_a53c28",
+   "evidence": "MsgLog+0x3a first_of_kind[9] (indexed *4)",
+   "confidence": "high"
+  },
+  "b_a53c86": {
+   "type": "i32",
+   "count": 9,
+   "part_of": "b_a53c28",
+   "evidence": "MsgLog+0x5e count_of_kind[9] (indexed *4)",
+   "confidence": "high"
+  },
+  "b_a53cb0": {
+   "type": "obj:CampScreen",
+   "evidence": "this of CampScreen x13 (ObjMenu_build_71d2d0, release, open, is_open); fields to +0x26e; next own symbol (font) at +0x278; covers b_a53e05 (+0x155)",
+   "confidence": "medium",
+   "notes": "CampScreen size unknown in layouts: 0x270..0x278"
+  },
+  "b_a53e05": {
+   "type": "ptr:Camera",
+   "part_of": "b_a53cb0",
+   "evidence": "CampScreen+0x155 army_camera; value passed as this to Camera::frame/begin_frame/render",
+   "confidence": "high"
+  },
+  "txt_a53f68": {
+   "type": "obj:TextRes",
+   "evidence": "this of TxtRes x7 (empty alias of TextRes) / TextRes (load_basic_txr, TextRes_free_all); TextRes fields +0..+5; gap 0x90",
+   "confidence": "medium",
+   "notes": "TxtRes is an empty alias of TextRes; TextRes size unknown (<= 0x90; kStrings_a57c08 has the same 0x90 gap)"
+  },
+  "b_a53ff8": {
+   "type": "obj:GameOver",
+   "evidence": "this of GameOver x10 (Screen_create_buttons, ItemScreen_release, flag_9ec); GameOver 0x9ed covers b_a549d6 (+0x9de) and fits before kSaves (+0x9f0)",
+   "confidence": "high"
+  },
+  "b_a549d6": {
+   "type": "ptr:BmpRes",
+   "part_of": "b_a53ff8",
+   "evidence": "GameOver+0x9de sprite sheet (u32_9de in layouts; gameover.cpp uses it as the sheet of draw_sprite)",
+   "confidence": "medium",
+   "notes": "GameOver.u32_9de must become ptr:BmpRes"
+  },
+  "kSaves_a549e8": {
+   "type": "obj:SaveDir",
+   "evidence": "this of Popup x122 (set_text 0x4775f0: memcpy 0x104 to +0x122, clears +0x226) / SaveDir / GameFileList / List / Paths (DynArray views); SaveDir = DynArray + path char[260] at +0x1d + u8 +0x121; Popup text_buf at +0x122 continues it; object 0x227..0x228 covers b_a54b0a",
+   "confidence": "medium",
+   "notes": "SaveDir layout must be extended with text_buf char[260] at +0x122 and u8 +0x226 (now under the Popup label); Units label hits (vtable at +0) are wrong for this object"
+  },
+  "b_a54b0a": {
+   "type": "char",
+   "count": 262,
+   "part_of": "kSaves_a549e8",
+   "evidence": "SaveDir/Popup+0x122 text_buf (char[0x104]; i8 reads of [0])",
+   "confidence": "high"
+  },
+  "b_a54c20": {
+   "type": "obj:ItemScreen",
+   "evidence": "this of ItemScreen x15 (setup_6b9870, set_item, open); ItemScreen 0xe27 <= gap 0xe28",
+   "confidence": "high"
+  },
+  "b_a55a88": {
+   "type": "obj:MessageList",
+   "evidence": "this of MessageList x23 / Messages / List (List of Message on a DynArrayB header 0x2e); MessageList fields +0x36..+0x40; covers b_a55ab6 (+0x2e) and b_a55aba (+0x32); next own symbol at +0x48",
+   "confidence": "medium",
+   "notes": "MessageList size unknown (0x44..0x48), base DynArrayB not declared in layouts; +0x2e is a sprite-sheet pointer, +0x32 the priority counter"
+  },
+  "b_a55ab6": {
+   "type": "ptr:BmpRes",
+   "part_of": "b_a55a88",
+   "evidence": "MessageList+0x2e sprite sheet (mptr(global<u32>(g_a55ab6)) as draw_named sheet)",
+   "confidence": "medium"
+  },
+  "b_a55aba": {
+   "type": "u32",
+   "part_of": "b_a55a88",
+   "evidence": "MessageList+0x32 last message priority (compared with now)",
+   "confidence": "medium"
+  },
+  "b_a55ad0": {
+   "type": "obj:SlideMenu",
+   "evidence": "this of SlideMenu x24 / IngameFrame x3 (Frame_init_6f1940, set_title, slide_in); SlideMenu size >= 0x8c4 (Widgets at +0x30 stride 0xb7), next own symbol at +0x8c8; covers b_a55ad1",
+   "confidence": "medium",
+   "notes": "IngameFrame label (fields to +0x3d4) is the same object; size 0x8c4..0x8c8"
+  },
+  "b_a55ad1": {
+   "type": "u8",
+   "part_of": "b_a55ad0",
+   "evidence": "SlideMenu+0x1 sliding (decl i8[2247] covers the rest of the object)",
+   "confidence": "high"
+  },
+  "b_a56398": {
+   "type": "obj:UnitAttScreen",
+   "evidence": "this of UnitAttScreen x6 / UnitAttrScreen / AddScreen (AddScreen_ctor run on it) / UnitAttPanel: one screen; fields to +0x6af, next own symbol at +0x6b3; covers b_a563a0",
+   "confidence": "medium",
+   "notes": "UnitAttrScreen/AddScreen/UnitAttPanel are views of this object; size 0x6b3"
+  },
+  "b_a563a0": {
+   "type": "ptr:BmpRes",
+   "part_of": "b_a56398",
+   "evidence": "UnitAttScreen+0x8 sprite sheet (u32_8 in layouts; passed as the PANEL sprite sheet)",
+   "confidence": "medium"
+  },
+  "b_a56a4b": {
+   "type": "obj:Byte",
+   "evidence": "init Struct1_zero 0x755810 = memset(this,0,1); set_flag writes +0 = 1, Obj_call_755860 +0 = 0: a 1-byte flag object; gap 5",
+   "confidence": "medium"
+  },
+  "b_a56a50": {
+   "type": "obj:UpgradeRes",
+   "evidence": "this of UpgradeRes x45 (Obj_init_531650, find_name, unit_upgrade_list); UpgradeRes 0x11 <= gap 0x18",
+   "confidence": "high"
+  },
+  "b_a56a68": {
+   "type": "obj:NameTable",
+   "evidence": "this of NameTable x4 / Names (bone name table: construct 0x5ba4b0, BoneTree build/reset); DynArray base + sorted index to +0x29 <= gap 0x30",
+   "confidence": "medium"
+  },
+  "b_a56b18": {
+   "type": "obj:GameSet",
+   "evidence": "this of GameSet x39 (open_db_58b180); src/original/gameset.hpp size 0x286, covers b_a56b19 (+1) and b_a56b21 (+9 ResourceIdx)",
+   "confidence": "high"
+  },
+  "b_a56b19": {
+   "type": "i16",
+   "part_of": "b_a56b18",
+   "evidence": "GameSet+0x1 cur_set_id",
+   "confidence": "high"
+  },
+  "b_a56b21": {
+   "type": "obj:ResourceIdx",
+   "part_of": "b_a56b18",
+   "evidence": "GameSet+0x9 set_res (this of ResourceIdx::read)",
+   "confidence": "high"
+  },
+  "b_a56ef0": {
+   "type": "obj:Surface",
+   "evidence": "this of Surface x5 (construct 0x60fad0 memset 0x34, dtor, attach_surface); Surface 0x34 <= gap 0x38",
+   "confidence": "high"
+  },
+  "b_a56f28": {
+   "type": "obj:DynArray",
+   "evidence": "this of List x14 / FlockList (boid kinds, at_word); gap 0x30",
+   "confidence": "medium"
+  },
+  "b_a56f58": {
+   "type": "obj:SdateRes",
+   "evidence": "this of SdateRes x2 (construct, entry, SDate_ensure_loaded); SdateRes 0x7 covers b_a56f5c (+4 count)",
+   "confidence": "high"
+  },
+  "b_a56f5c": {
+   "type": "u16",
+   "part_of": "b_a56f58",
+   "evidence": "SdateRes+0x4 count (decl i16[2] covers loaded +6)",
+   "confidence": "high"
+  },
+  "b_a56fa0": {
+   "type": "obj:MessageLog",
+   "evidence": "this of MessageLog x6 (LongBar_init_6e0e40 = MessageLog alias, release_children, show); fields to +0x4d <= gap 0x50",
+   "confidence": "medium"
+  },
+  "b_a57030": {
+   "type": "obj:TalkPrompt",
+   "evidence": "this of TalkPrompt x6 (ctor 0x6d2330, hide, draw); size >= 0x31, next own symbol at +0x38; covers b_a5704d (+0x1d)",
+   "confidence": "medium"
+  },
+  "b_a5704d": {
+   "type": "u32",
+   "part_of": "b_a57030",
+   "evidence": "TalkPrompt+0x1d leader (unit id written)",
+   "confidence": "high"
+  },
+  "b_a57078": {
+   "type": "obj:DynArrayB",
+   "evidence": "this of List x69 / ModelList x39 / Spawner / EffectRegistry / DynArrayB x1 (model list); DynArrayB 0x2e <= gap 0x30",
+   "confidence": "medium"
+  },
+  "b_a570a8": {
+   "type": "obj:Players",
+   "evidence": "this of Players x220 (the physics/shot world, not a player list); Collisions member +0x2, cells +0x58e, DynArrayB +0xb20, size ~0xb4e <= next own symbol +0xb50; covers b_a570aa..b_a57bb2",
+   "confidence": "medium",
+   "notes": "Players size unknown in layouts (0xb4e..0xb50)"
+  },
+  "b_a570aa": {
+   "type": "obj:Collisions",
+   "part_of": "b_a570a8",
+   "evidence": "Players+0x2 grid (this of Collisions x15, size 0x584)",
+   "confidence": "high"
+  },
+  "b_a5762e": {
+   "type": "u32",
+   "part_of": "b_a570a8",
+   "evidence": "Players+0x586 last_time",
+   "confidence": "high"
+  },
+  "b_a57632": {
+   "type": "i32",
+   "part_of": "b_a570a8",
+   "evidence": "Players+0x58a visit stamp counter",
+   "confidence": "high"
+  },
+  "b_a57636": {
+   "type": "obj:RWorldCell",
+   "count": 27,
+   "part_of": "b_a570a8",
+   "evidence": "Players+0x58e cells[27] (0x34-byte records; address passed to placements::find)",
+   "confidence": "high"
+  },
+  "b_a57bb2": {
+   "type": "i32",
+   "part_of": "b_a570a8",
+   "evidence": "Players+0xb0a cell_count (passed by value to placements::find; the ptr_this_of Placements hits are that cdecl argument)",
+   "confidence": "high"
+  },
+  "kStrings_a57c08": {
+   "type": "obj:TextRes",
+   "evidence": "this of TxtRes x398 (empty alias of TextRes) / TextRes; Strings::get(this, ...) lookups; gap 0x90",
+   "confidence": "medium",
+   "notes": "same class as txt_a53f68; TextRes size unknown (<= 0x90)"
+  },
+  "b_a57c98": {
+   "type": "obj:Ending",
+   "evidence": "this of Ending x13 (Panel_init_good_fin 0x6ce100, open, draw); size probably 0x236, next own symbol at +0x238; covers b_a57ecb (+0x233), b_a57ecc (+0x234)",
+   "confidence": "medium"
+  },
+  "b_a57ecb": {
+   "type": "i8",
+   "part_of": "b_a57c98",
+   "evidence": "Ending+0x233 kind (0 good / 1 bad)",
+   "confidence": "high"
+  },
+  "b_a57ecc": {
+   "type": "u8",
+   "part_of": "b_a57c98",
+   "evidence": "Ending+0x234 is_open",
+   "confidence": "high"
+  },
+  "b_a57ed0": {
+   "type": "obj:Sound3DSystem",
+   "evidence": "this of Sound3DSystem x23 (create_buffer, release_buffer); size >= 0x2c (+0x28 listener), next own symbol at +0x30; covers b_a57ef8",
+   "confidence": "medium"
+  },
+  "b_a57ef8": {
+   "type": "ptr:Listener",
+   "part_of": "b_a57ed0",
+   "evidence": "Sound3DSystem+0x28 listener (new Listener(0x35) in init; value passed as this to Listener methods, +5 position)",
+   "confidence": "high"
+  },
+  "b_a57f80": {
+   "type": "obj:ListB",
+   "evidence": "this of List x175 / Players x15 / ListB / Town (nation list: DynArrayB + next_id +0x2e, save 0x47fa50 / load 0x47fb30); covers b_a57fae; next own symbol at +0x38",
+   "confidence": "medium",
+   "notes": "ListB size 0x32"
+  },
+  "b_a57fae": {
+   "type": "i32",
+   "part_of": "b_a57f80",
+   "evidence": "ListB+0x2e (next_id in layouts; C++ stores the current side there)",
+   "confidence": "medium"
+  },
+  "b_a57fb8": {
+   "type": "obj:Config",
+   "evidence": "this of Config (save_file 'CONFIG.DAT', Obj_load_config 0x459e90); settings record 0xb5 + saved copy 0xb5 at +0xb5 = 0x16a; every symbol up to b_a5808f is a Config field (gap of b_a5808f ends at 0xa58ac0)",
+   "confidence": "medium",
+   "notes": "Config size 0x16a not declared in layouts"
+  },
+  "b_a57fc2": {
+   "type": "i8",
+   "part_of": "b_a57fb8",
+   "evidence": "Config+0xa kind (difficulty level, switch)",
+   "confidence": "high"
+  },
+  "b_a57fcf": {
+   "type": "char",
+   "count": 32,
+   "part_of": "b_a57fb8",
+   "evidence": "Config+0x17 profile name (str(g_a57fcf), char[0x20])",
+   "confidence": "high"
+  },
+  "b_a57fef": {
+   "type": "i8",
+   "part_of": "b_a57fb8",
+   "evidence": "Config+0x37 help mode (0/2)",
+   "confidence": "high"
+  },
+  "b_a57ff2": {
+   "type": "i16",
+   "part_of": "b_a57fb8",
+   "evidence": "Config+0x3a sound volume",
+   "confidence": "high"
+  },
+  "b_a57ff4": {
+   "type": "i16",
+   "part_of": "b_a57fb8",
+   "evidence": "Config+0x3c music volume (decl i16[2])",
+   "confidence": "high"
+  },
+  "b_a57ff8": {
+   "type": "i8",
+   "part_of": "b_a57fb8",
+   "evidence": "Config+0x40 sound effects enabled",
+   "confidence": "high"
+  },
+  "b_a57ff9": {
+   "type": "i16",
+   "part_of": "b_a57fb8",
+   "evidence": "Config+0x41 effects volume / scale",
+   "confidence": "high"
+  },
+  "flag2_a57ffb": {
+   "type": "i8",
+   "part_of": "b_a57fb8",
+   "evidence": "Config+0x43 3D sound distance flag (decl i8[40])",
+   "confidence": "high"
+  },
+  "b_a58023": {
+   "type": "u32",
+   "part_of": "b_a57fb8",
+   "evidence": "Config+0x6b player control mode",
+   "confidence": "high"
+  },
+  "b_a58027": {
+   "type": "f32",
+   "part_of": "b_a57fb8",
+   "evidence": "Config+0x6f sensitivity (read as float)",
+   "confidence": "medium"
+  },
+  "b_a5802b": {
+   "type": "i8",
+   "part_of": "b_a57fb8",
+   "evidence": "Config+0x73 invert mouse",
+   "confidence": "high"
+  },
+  "b_a5802c": {
+   "type": "i8",
+   "part_of": "b_a57fb8",
+   "evidence": "Config+0x74 camera mode flag",
+   "confidence": "high"
+  },
+  "b_a5802d": {
+   "type": "i8",
+   "part_of": "b_a57fb8",
+   "evidence": "Config+0x75 video combo selection",
+   "confidence": "high"
+  },
+  "b_a5802e": {
+   "type": "f32",
+   "part_of": "b_a57fb8",
+   "evidence": "Config+0x76 fov (decl float[2])",
+   "confidence": "high"
+  },
+  "b_a58036": {
+   "type": "i32",
+   "part_of": "b_a57fb8",
+   "evidence": "Config+0x7e display mode width / u32_7e (decl i32[3])",
+   "confidence": "high"
+  },
+  "b_a58042": {
+   "type": "i32",
+   "part_of": "b_a57fb8",
+   "evidence": "Config+0x8a colour_depth",
+   "confidence": "high"
+  },
+  "b_a58046": {
+   "type": "i32",
+   "part_of": "b_a57fb8",
+   "evidence": "Config+0x8e refresh_rate",
+   "confidence": "high"
+  },
+  "b_a5804a": {
+   "type": "i8",
+   "part_of": "b_a57fb8",
+   "evidence": "Config+0x92 texture quality (decl i8[4])",
+   "confidence": "high"
+  },
+  "b_a5804e": {
+   "type": "i8",
+   "part_of": "b_a57fb8",
+   "evidence": "Config+0x96 trilinear option",
+   "confidence": "high"
+  },
+  "b_a58050": {
+   "type": "i32",
+   "part_of": "b_a57fb8",
+   "evidence": "Config+0x98 far limit",
+   "confidence": "high"
+  },
+  "b_a58054": {
+   "type": "u8",
+   "part_of": "b_a57fb8",
+   "evidence": "Config+0x9c detail / fog flag",
+   "confidence": "high"
+  },
+  "b_a58055": {
+   "type": "i8",
+   "part_of": "b_a57fb8",
+   "evidence": "Config+0x9d u8_9d",
+   "confidence": "high"
+  },
+  "b_a58056": {
+   "type": "i8",
+   "part_of": "b_a57fb8",
+   "evidence": "Config+0x9e u8_9e",
+   "confidence": "high"
+  },
+  "b_a58057": {
+   "type": "u8",
+   "part_of": "b_a57fb8",
+   "evidence": "Config+0x9f grass enabled",
+   "confidence": "high"
+  },
+  "b_a58058": {
+   "type": "i32",
+   "part_of": "b_a57fb8",
+   "evidence": "Config+0xa0 view_distance",
+   "confidence": "high"
+  },
+  "b_a5805c": {
+   "type": "i32",
+   "part_of": "b_a57fb8",
+   "evidence": "Config+0xa4 grass density %",
+   "confidence": "high"
+  },
+  "b_a58060": {
+   "type": "f32",
+   "part_of": "b_a57fb8",
+   "evidence": "Config+0xa8 brightness (read as float, passed as f32 bits)",
+   "confidence": "medium"
+  },
+  "b_a58064": {
+   "type": "f32",
+   "part_of": "b_a57fb8",
+   "evidence": "Config+0xac contrast",
+   "confidence": "high"
+  },
+  "b_a58068": {
+   "type": "f32",
+   "part_of": "b_a57fb8",
+   "evidence": "Config+0xb0 gamma",
+   "confidence": "high"
+  },
+  "b_a5806c": {
+   "type": "u8",
+   "part_of": "b_a57fb8",
+   "evidence": "Config+0xb4 bindings saved flag",
+   "confidence": "high"
+  },
+  "b_a5806d": {
+   "type": "u8",
+   "count": 34,
+   "part_of": "b_a57fb8",
+   "evidence": "Config+0xb5 saved copy of the 0xb5-byte record (memcpy target)",
+   "confidence": "medium"
+  },
+  "b_a5808f": {
+   "type": "u8",
+   "count": 147,
+   "part_of": "b_a57fb8",
+   "evidence": "Config+0xd7 saved copy, indexed (rest of the 0xb5 bytes)",
+   "confidence": "medium"
+  },
+  "b_a58b00": {
+   "type": "obj:Se",
+   "evidence": "this of Se x2 / Wave / LodQueue / Lookup / Archive (sound effects: construct(&Audio), load, flush, Se_free); fields to +0x19d (+0x68 ResourceIdxL) <= gap 0x1a8",
+   "confidence": "medium"
+  },
+  "kAnimRes_a58cb8": {
+   "type": "obj:AnimRes",
+   "evidence": "this of AnimResMgr x17 (alias) / AnimRes / AnimSet / Path (anim resource manager: add_slot, slot_4174f0, find); members ResourceIdxL +0xc/+0x141, DynArray +0x276 -> 0x293 <= gap 0x298",
+   "confidence": "medium",
+   "notes": "AnimResMgr label = AnimRes; the AnimSet/Path hits are mixed labels"
+  },
+  "kItems_a58f50": {
+   "type": "obj:ItemRes",
+   "evidence": "this of ItemRes x493; ItemRes 0x25 == gap",
+   "confidence": "high"
+  },
+  "b_a58f75": {
+   "type": "obj:Byte",
+   "evidence": "init Obj6e6050 = memset(this,0,1); X_byte_0_6e6810 reads +0; Roster::draw reads +0 byte: 1-byte flag; gap 3",
+   "confidence": "medium"
+  },
+  "b_a58f78": {
+   "type": "obj:MediaSample",
+   "evidence": "this of MediaSample (music segment construct 0x583aa0 / destruct); MediaSample 0x18 == gap",
+   "confidence": "high"
+  },
+  "b_a58f90": {
+   "type": "obj:Game",
+   "evidence": "this of Game x89 (flag_744, Obj_save_4848a0/484780); Scenario member at +0x17 (0x289), EndCon[40] at +0x30b, fields to cutscene_flag +0x744; next own symbol (font) at +0x748; every symbol up to b_a596d0 is a Game field",
+   "confidence": "medium",
+   "notes": "Game size unknown in layouts (0x745..0x748). kObjTable_a59290 (other group) is Game+0x300 = mode_timers[19]: it is part of this object too."
+  },
+  "b_a58f95": {
+   "type": "u8",
+   "part_of": "b_a58f90",
+   "evidence": "Game+0x5 flag (unknown area 0x5..0x16)",
+   "confidence": "high"
+  },
+  "b_a58f96": {
+   "type": "u8",
+   "part_of": "b_a58f90",
+   "evidence": "Game+0x6 flag (unknown area 0x5..0x16)",
+   "confidence": "high"
+  },
+  "b_a58f97": {
+   "type": "u32",
+   "part_of": "b_a58f90",
+   "evidence": "Game+0x7: saved copy of ScenarioEntry+0x18a (esfuncs copies both ways)",
+   "confidence": "high"
+  },
+  "b_a58f9b": {
+   "type": "u32",
+   "part_of": "b_a58f90",
+   "evidence": "Game+0xb: saved copy of ScenarioEntry+0x18e (esfuncs copies both ways)",
+   "confidence": "high"
+  },
+  "b_a58f9f": {
+   "type": "u32",
+   "part_of": "b_a58f90",
+   "evidence": "Game+0xf: saved copy of ScenarioEntry+0x192 (esfuncs copies both ways)",
+   "confidence": "high"
+  },
+  "b_a58fa3": {
+   "type": "u32",
+   "part_of": "b_a58f90",
+   "evidence": "Game+0x13: saved copy of ScenarioEntry+0x196 (esfuncs copies both ways)",
+   "confidence": "high"
+  },
+  "b_a58fa7": {
+   "type": "u32",
+   "part_of": "b_a58f90",
+   "evidence": "Game+0x17 = Scenario+0x0 id (g_mission; this of Scenario x31 = the embedded Scenario member)",
+   "confidence": "high",
+   "notes": "first byte of the embedded Scenario member Game.scenario"
+  },
+  "b_a58fab": {
+   "type": "u32",
+   "part_of": "b_a58f90",
+   "evidence": "Game+0x1b Scenario+0x4 index",
+   "confidence": "high"
+  },
+  "b_a58faf": {
+   "type": "u32",
+   "part_of": "b_a58f90",
+   "evidence": "Game+0x1f Scenario+0x8 u32_8 (decl u32[2] covers entry_count +0xc)",
+   "confidence": "high"
+  },
+  "b_a58fb7": {
+   "type": "ptr:ScenarioEntry",
+   "part_of": "b_a58f90",
+   "evidence": "Game+0x27 Scenario+0x10 entries: loaded and read at +0x186..+0x1aa, indexed (index-1)*0x1b2 (stride 0x1b2 = ScenarioEntry)",
+   "confidence": "high",
+   "notes": "decl u8[134] also covers Scenario+0x14 local ScenarioEntry texts[0..1]"
+  },
+  "b_a5903d": {
+   "type": "char",
+   "count": 65,
+   "part_of": "b_a58f90",
+   "evidence": "Game+0xad = Scenario.local(ScenarioEntry)+0x82 texts[2] (char[0x41], strcpy target)",
+   "confidence": "high"
+  },
+  "b_a5907e": {
+   "type": "char",
+   "count": 65,
+   "part_of": "b_a58f90",
+   "evidence": "Game+0xee = ScenarioEntry+0xc3 texts[3] (char[0x41], strcpy/strcat '_des'; decl u8[195] covers texts[3..5])",
+   "confidence": "high"
+  },
+  "b_a59141": {
+   "type": "ptr:Script",
+   "part_of": "b_a58f90",
+   "evidence": "Game+0x1b1 = ScenarioEntry+0x186 script (new_script / delete_virtual, value passed as this to Script)",
+   "confidence": "high"
+  },
+  "b_a59145": {
+   "type": "u32",
+   "part_of": "b_a58f90",
+   "evidence": "ScenarioEntry+0x18a u32_18a (local entry)",
+   "confidence": "high"
+  },
+  "b_a59149": {
+   "type": "u32",
+   "part_of": "b_a58f90",
+   "evidence": "ScenarioEntry+0x18e u32_18e (local entry)",
+   "confidence": "high"
+  },
+  "b_a5914d": {
+   "type": "u32",
+   "part_of": "b_a58f90",
+   "evidence": "ScenarioEntry+0x192 u32_192 (local entry)",
+   "confidence": "high"
+  },
+  "b_a59151": {
+   "type": "u32",
+   "part_of": "b_a58f90",
+   "evidence": "ScenarioEntry+0x196 u32_196 (local entry)",
+   "confidence": "high"
+  },
+  "b_a59155": {
+   "type": "u32",
+   "part_of": "b_a58f90",
+   "evidence": "ScenarioEntry+0x19a u32_19a (decl i32[3] covers name/name2 pointers +0x19e/+0x1a2)",
+   "confidence": "high"
+  },
+  "b_a59161": {
+   "type": "i32",
+   "part_of": "b_a58f90",
+   "evidence": "ScenarioEntry+0x1a6 i32_1a6",
+   "confidence": "high"
+  },
+  "b_a59165": {
+   "type": "i32",
+   "part_of": "b_a58f90",
+   "evidence": "ScenarioEntry+0x1aa i32_1aa (decl i32[2] covers kind +0x1ae)",
+   "confidence": "high"
+  },
+  "b_a5916d": {
+   "type": "u32",
+   "part_of": "b_a58f90",
+   "evidence": "Scenario+0x1c6 start time (= g_now)",
+   "confidence": "high"
+  },
+  "get_a59171_a59171": {
+   "type": "u32",
+   "part_of": "b_a58f90",
+   "evidence": "Scenario+0x1ca timer_a",
+   "confidence": "high"
+  },
+  "get_a59175_a59175": {
+   "type": "u32",
+   "part_of": "b_a58f90",
+   "evidence": "Scenario+0x1ce timer_b",
+   "confidence": "high"
+  },
+  "get_a59179_a59179": {
+   "type": "u32",
+   "part_of": "b_a58f90",
+   "evidence": "Scenario+0x1d2 timer_c (decl u32[2])",
+   "confidence": "high"
+  },
+  "b_a59181": {
+   "type": "u32",
+   "part_of": "b_a58f90",
+   "evidence": "Scenario+0x1da u32_1da[0] (play time; decl u32[3])",
+   "confidence": "high"
+  },
+  "get_a5918d_a5918d": {
+   "type": "u32",
+   "part_of": "b_a58f90",
+   "evidence": "Scenario+0x1e6 statistics counter (u32_1da[3])",
+   "confidence": "high"
+  },
+  "get_a59199_a59199": {
+   "type": "u32",
+   "part_of": "b_a58f90",
+   "evidence": "Scenario+0x1f2 statistics counter (u32_1da[6])",
+   "confidence": "high"
+  },
+  "get_a591a5_a591a5": {
+   "type": "u32",
+   "part_of": "b_a58f90",
+   "evidence": "Scenario+0x1fe statistics counter (u32_1da[9])",
+   "confidence": "high"
+  },
+  "get_a591a9_a591a9": {
+   "type": "u32",
+   "part_of": "b_a58f90",
+   "evidence": "Scenario+0x202 statistics counter (u32_1da[10])",
+   "confidence": "high"
+  },
+  "get_a591ad_a591ad": {
+   "type": "u32",
+   "part_of": "b_a58f90",
+   "evidence": "Scenario+0x206 statistics counter (u32_1da[11])",
+   "confidence": "high"
+  },
+  "get_a591b1_a591b1": {
+   "type": "u32",
+   "part_of": "b_a58f90",
+   "evidence": "Scenario+0x20a statistics counter (u32_1da[12])",
+   "confidence": "high"
+  },
+  "b_a591b5": {
+   "type": "u8",
+   "part_of": "b_a58f90",
+   "evidence": "Scenario+0x20e u8_20e",
+   "confidence": "high"
+  },
+  "get_a591b6_a591b6": {
+   "type": "u32",
+   "part_of": "b_a58f90",
+   "evidence": "Scenario+0x20f u32_20f[0] counter",
+   "confidence": "high"
+  },
+  "get_a591ba_a591ba": {
+   "type": "u32",
+   "part_of": "b_a58f90",
+   "evidence": "Scenario+0x213 u32_20f[1] counter",
+   "confidence": "high"
+  },
+  "get_a591be_a591be": {
+   "type": "u32",
+   "part_of": "b_a58f90",
+   "evidence": "Scenario+0x217 u32_20f[2] counter",
+   "confidence": "high"
+  },
+  "get_a591c2_a591c2": {
+   "type": "u32",
+   "part_of": "b_a58f90",
+   "evidence": "Scenario+0x21b u32_20f[3] counter",
+   "confidence": "high"
+  },
+  "b_a591c6": {
+   "type": "i8",
+   "part_of": "b_a58f90",
+   "evidence": "Scenario+0x21f u8_21f",
+   "confidence": "high"
+  },
+  "get_a591c7_a591c7": {
+   "type": "i8",
+   "part_of": "b_a58f90",
+   "evidence": "Scenario+0x220 u8_220",
+   "confidence": "high"
+  },
+  "get_a591c8_a591c8": {
+   "type": "u32",
+   "part_of": "b_a58f90",
+   "evidence": "Scenario+0x221 counter (layouts: u32_221 then unknown 0x225..0x232)",
+   "confidence": "high"
+  },
+  "get_a591cc_a591cc": {
+   "type": "u32",
+   "part_of": "b_a58f90",
+   "evidence": "Scenario+0x225 counter (layouts: u32_221 then unknown 0x225..0x232)",
+   "confidence": "high"
+  },
+  "b_a591d0": {
+   "type": "u32",
+   "part_of": "b_a58f90",
+   "evidence": "Scenario+0x229 counter (layouts: u32_221 then unknown 0x225..0x232)",
+   "confidence": "high"
+  },
+  "b_a591d4": {
+   "type": "u32",
+   "part_of": "b_a58f90",
+   "evidence": "Scenario+0x22d counter (layouts: u32_221 then unknown 0x225..0x232)",
+   "confidence": "high"
+  },
+  "get_a591d8_a591d8": {
+   "type": "u32",
+   "part_of": "b_a58f90",
+   "evidence": "Scenario+0x231 counter (layouts: u32_221 then unknown 0x225..0x232)",
+   "confidence": "high"
+  },
+  "b_a591dc": {
+   "type": "i16",
+   "count": 32,
+   "part_of": "b_a58f90",
+   "evidence": "Scenario+0x235 ids[] (indexed *2; decl i16[32] = id_list_pad.. ids[31])",
+   "confidence": "high"
+  },
+  "unit_count_a5921c": {
+   "type": "i16",
+   "part_of": "b_a58f90",
+   "evidence": "Scenario+0x275 id_count (decl i16[7] covers types ptr +0x277, type_count, items ptr +0x27d)",
+   "confidence": "high",
+   "notes": "the decl i16[7] hides two pointers (Scenario.types / items, ptr:ArrI16)"
+  },
+  "b_a5922a": {
+   "type": "ptr:UnitPtr",
+   "part_of": "b_a58f90",
+   "evidence": "Scenario+0x283 squads: deref +0 indexed ((void**)g_a5922a)[i]",
+   "confidence": "high"
+  },
+  "b_a5922e": {
+   "type": "i16",
+   "part_of": "b_a58f90",
+   "evidence": "Scenario+0x287 squad_count (2-byte read)",
+   "confidence": "high"
+  },
+  "b_a59244": {
+   "type": "u32",
+   "count": 20,
+   "part_of": "b_a58f90",
+   "evidence": "Game+0x2b4 mode_timers[20] (memset 0x50)",
+   "confidence": "high"
+  },
+  "get_a59294_a59294": {
+   "type": "u32",
+   "part_of": "b_a58f90",
+   "evidence": "Game+0x304 mode2_timer",
+   "confidence": "high"
+  },
+  "flag_a59298_a59298": {
+   "type": "u8",
+   "part_of": "b_a58f90",
+   "evidence": "Game+0x308 end_state",
+   "confidence": "high"
+  },
+  "b_a59299": {
+   "type": "i16",
+   "part_of": "b_a58f90",
+   "evidence": "Game+0x309 end_condition_count",
+   "confidence": "high"
+  },
+  "b_a5929b": {
+   "type": "obj:EndCon",
+   "count": 40,
+   "part_of": "b_a58f90",
+   "evidence": "Game+0x30b end_conditions[40] (EndCon 0x1a, stride 0x1a in every C++ use; 40*0x1a ends at b_a596ab)",
+   "confidence": "high",
+   "notes": "C++ indexes these fields with literal stride 0x1a and EndCon holds two char* (+1/+5): the stride changes on x64, rewrite as obj<EndCon>(k)"
+  },
+  "b_a5929c": {
+   "type": "ptr:char",
+   "part_of": "b_a58f90",
+   "evidence": "EndCon[0]+0x1 text (global<char*>(g_a5929c + i*0x1a))",
+   "confidence": "high"
+  },
+  "b_a592a0": {
+   "type": "ptr:char",
+   "part_of": "b_a58f90",
+   "evidence": "EndCon[0]+0x5 text2 (freed by end_con.cpp; reward record address)",
+   "confidence": "high"
+  },
+  "b_a592a4": {
+   "type": "i16",
+   "part_of": "b_a58f90",
+   "evidence": "EndCon[0]+0x9 result",
+   "confidence": "high"
+  },
+  "b_a592a6": {
+   "type": "i16",
+   "part_of": "b_a58f90",
+   "evidence": "EndCon[0]+0xb (unknown 0xb..0xe)",
+   "confidence": "high"
+  },
+  "b_a592a8": {
+   "type": "i16",
+   "part_of": "b_a58f90",
+   "evidence": "EndCon[0]+0xd (unknown 0xb..0xe)",
+   "confidence": "high"
+  },
+  "b_a592aa": {
+   "type": "i16",
+   "part_of": "b_a58f90",
+   "evidence": "EndCon[0]+0xf used",
+   "confidence": "high"
+  },
+  "b_a592ac": {
+   "type": "u32",
+   "part_of": "b_a58f90",
+   "evidence": "EndCon[0]+0x11 reward_gold",
+   "confidence": "high"
+  },
+  "b_a592b0": {
+   "type": "u32",
+   "part_of": "b_a58f90",
+   "evidence": "EndCon[0]+0x15 reward_exp",
+   "confidence": "high"
+  },
+  "b_a592b4": {
+   "type": "u8",
+   "part_of": "b_a58f90",
+   "evidence": "EndCon[0]+0x19 rewarded (decl i8[1015] covers EndCon[1..39])",
+   "confidence": "high"
+  },
+  "b_a596ab": {
+   "type": "u8",
+   "part_of": "b_a58f90",
+   "evidence": "Game+0x71b u8_71b",
+   "confidence": "high"
+  },
+  "b_a596ac": {
+   "type": "ptr:ArrI16",
+   "part_of": "b_a58f90",
+   "evidence": "Game+0x71c word_set (file_write_array(ptr(..), count, 2))",
+   "confidence": "high"
+  },
+  "b_a596b0": {
+   "type": "i32",
+   "part_of": "b_a58f90",
+   "evidence": "Game+0x720 word_set_count (decl u32[2] covers cap)",
+   "confidence": "high"
+  },
+  "b_a596b8": {
+   "type": "ptr:ArrI16",
+   "part_of": "b_a58f90",
+   "evidence": "Game+0x728 word_stack (file_write_array)",
+   "confidence": "high"
+  },
+  "b_a596bc": {
+   "type": "i32",
+   "part_of": "b_a58f90",
+   "evidence": "Game+0x72c word_stack_count (decl u32[2] covers cap)",
+   "confidence": "high"
+  },
+  "get_a596c4_a596c4": {
+   "type": "u32",
+   "part_of": "b_a58f90",
+   "evidence": "Game+0x734 accumulated value (layouts: unknown after word_stack_cap)",
+   "confidence": "high"
+  },
+  "b_a596c8": {
+   "type": "i32",
+   "part_of": "b_a58f90",
+   "evidence": "Game+0x738 end_delay (decl i32[2] covers end_since)",
+   "confidence": "high"
+  },
+  "b_a596d0": {
+   "type": "u32",
+   "part_of": "b_a58f90",
+   "evidence": "Game+0x740 play time (decl u32[2] covers cutscene_flag +0x744)",
+   "confidence": "high"
+  },
+  "b_a59718": {
+   "type": "obj:TexDir",
+   "evidence": "this of TexDir x13 (Obj_clear_1c 0x6040b0 clears 0x1c, resolve); fields to +0x1b == gap 0x1c",
+   "confidence": "high"
+  },
+  "b_a59734": {
+   "type": "f32",
+   "evidence": "init_a59734: g_a4f81c / 2 stored as float",
+   "confidence": "high"
+  },
+  "b_a59778": {
+   "type": "f32",
+   "evidence": "init_a59778: g_a4f81c / 3 stored as float",
+   "confidence": "high"
+  },
+  "b_a5977c": {
+   "type": "f32",
+   "evidence": "init_a5977c: g_a4f81c / 4 stored as float",
+   "confidence": "high"
+  },
+  "kTooltip_a59780": {
+   "type": "obj:HelpBox",
+   "evidence": "this of Frame x18 / HelpBox x6 (descbox: load_sprite/free_sprite +0, set_owner/reset_b +4); 8 bytes == gap",
+   "confidence": "medium",
+   "notes": "Frame label (only +4) is this HelpBox; HelpBox size 8 (two pointers -> 16 on x64)"
+  },
+  "b_a59788": {
+   "type": "obj:ChatBox",
+   "evidence": "this of ChatBox x5 (init, draw, open; 10 history lines char[0x40] from +0x10); fields to +0x2e4 == gap",
+   "confidence": "medium"
+  },
+  "b_a59a6c": {
+   "part_of": "b_a59788",
+   "type": "u8",
+   "evidence": "ChatBox +0x2e4 (u8_2e4: the ChatBox methods read this+0x2e4; misc_52f930.cpp tests it as the open flag) - corrected after the image review (ChatBox 0x2e5 bytes ran into it)",
+   "confidence": "high"
+  },
+  "b_a59a72": {
+   "type": "obj:SortedNames",
+   "evidence": "this of SortedNames x37 (is_ts_prefix, find); +0 items ptr, +4 count i16 = 6 == gap",
+   "confidence": "high"
+  },
+  "b_a59a78": {
+   "type": "obj:DebugOverlay",
+   "evidence": "this of DebugOverlay methods (construct 0x56ded0, draw, on_key, update) that touch no field: empty object; gap 0x10",
+   "confidence": "medium"
+  },
+  "b_a59a98": {
+   "type": "obj:IngameMenu",
+   "evidence": "this of IngameMenu x6 (LoadScreen_init_6f2d70 alias, draw, open) / SaveMenu x4 (busy byte +0x24); IngameMenu size >= 0x1f0c, next own symbol at +0x1f10; covers b_a59ab8/b_a59abe/b_a59abf",
+   "confidence": "medium",
+   "notes": "SaveMenu label hits here are IngameMenu methods (SaveMenu layout reaches 0x4b08 > gap); IngameMenu size 0x1f0c..0x1f10"
+  },
+  "b_a59ab8": {
+   "type": "ptr:void",
+   "part_of": "b_a59a98",
+   "evidence": "IngameMenu+0x20 font_20 (mptr(global<u32>(g_a59ab8)) passed as font/sheet)",
+   "confidence": "medium"
+  },
+  "b_a59abe": {
+   "type": "i8",
+   "part_of": "b_a59a98",
+   "evidence": "IngameMenu+0x26 u8_26",
+   "confidence": "high"
+  },
+  "b_a59abf": {
+   "type": "i8",
+   "part_of": "b_a59a98",
+   "evidence": "IngameMenu+0x27 u8_27 (decl i8[7913] covers the rest of IngameMenu)",
+   "confidence": "high"
+  },
+  "get_a5b9e8_a5b9e8": {
+   "type": "obj:Player",
+   "evidence": "this of Player x84 (Mission/UnitCtl aliases); write_camera/load copy 0x126e bytes; 0x126e ends at 0xa5cc56 < kCanvas; every symbol up to b_a5ba65 is a Player field",
+   "confidence": "high"
+  },
+  "b_a5b9ec": {
+   "type": "i32",
+   "part_of": "get_a5b9e8_a5b9e8",
+   "evidence": "Player+0x4 (hero unit id; layouts i16_4)",
+   "confidence": "medium"
+  },
+  "b_a5b9f0": {
+   "type": "i32",
+   "part_of": "get_a5b9e8_a5b9e8",
+   "evidence": "Player+0x8 experience (decl i32[2])",
+   "confidence": "medium"
+  },
+  "get_a5b9f8_a5b9f8": {
+   "type": "i32",
+   "part_of": "get_a5b9e8_a5b9e8",
+   "evidence": "Player+0x10 mode",
+   "confidence": "high"
+  },
+  "b_a5b9fc": {
+   "type": "i32",
+   "part_of": "get_a5b9e8_a5b9e8",
+   "evidence": "Player+0x14 prev_mode",
+   "confidence": "high"
+  },
+  "b_a5ba00": {
+   "type": "ptr:CamZones",
+   "part_of": "get_a5b9e8_a5b9e8",
+   "evidence": "Player+0x18 cam_zones (deleted through bp(..); value passed as this to CameraZone/Track methods)",
+   "confidence": "high"
+  },
+  "b_a5ba34": {
+   "type": "u8",
+   "count": 40,
+   "part_of": "get_a5b9e8_a5b9e8",
+   "evidence": "Player+0x4c 0x28-byte block read from the save stream (s_read(stream, obj(g_a5ba34), 0x28))",
+   "confidence": "medium"
+  },
+  "b_a5ba5c": {
+   "type": "i8",
+   "part_of": "get_a5b9e8_a5b9e8",
+   "evidence": "Player+0x74 follow_mode",
+   "confidence": "high"
+  },
+  "b_a5ba61": {
+   "type": "i8",
+   "part_of": "get_a5b9e8_a5b9e8",
+   "evidence": "Player+0x79 cheat flag (toggled)",
+   "confidence": "high"
+  },
+  "b_a5ba62": {
+   "type": "i16",
+   "part_of": "get_a5b9e8_a5b9e8",
+   "evidence": "Player+0x7a combo counter",
+   "confidence": "high"
+  },
+  "b_a5ba64": {
+   "type": "u8",
+   "part_of": "get_a5b9e8_a5b9e8",
+   "evidence": "Player+0x7c u8_7c",
+   "confidence": "high"
+  },
+  "b_a5ba65": {
+   "type": "i32",
+   "part_of": "get_a5b9e8_a5b9e8",
+   "evidence": "Player+0x7d cursor_mode (decl u8[4595] covers the rest of Player)",
+   "confidence": "high"
+  },
+  "kCanvas_a5cc58": {
+   "type": "obj:Surface",
+   "evidence": "this of Surface x10 (valid, put, pop_lock, attach/set_surface); deref +0 = Surface.surface; Surface 0x34 covers b_a5cc60 (+8) and b_a5cc7c (+0x24); gap to next own symbol 0x38",
+   "confidence": "high"
+  },
+  "b_a5cc60": {
+   "type": "u32",
+   "part_of": "kCanvas_a5cc58",
+   "evidence": "Surface+0x8 locked (decl u32[7])",
+   "confidence": "high"
+  },
+  "b_a5cc7c": {
+   "type": "u32",
+   "part_of": "kCanvas_a5cc58",
+   "evidence": "Surface+0x24 format_bits (passed to Image::create)",
+   "confidence": "high"
+  },
+  "b_a5ccd0": {
+   "type": "obj:DynArray",
+   "evidence": "this of List43 x76 / List / ListC / Triggers (trigger list: add, at_485f20, List_load_485f50 / ListC_save); views of DynArray; gap 0x20",
+   "confidence": "medium"
+  },
+  "b_a5ccf0": {
+   "type": "obj:MessageIndicator",
+   "evidence": "init X_init_af4c0 writes +0 = 1 and +9 = &BmpRes 0xa411c0; Obj_byte0_4af5d0 reads +0; construct 0x4af4a0 empty; Messages::tick has no this access; gap 0x10",
+   "confidence": "medium",
+   "notes": "new class MessageIndicator; the Messages label hit (DynArray-based, +0x3a/+0x44) is not this object"
+  },
+  "b_a5cd6a": {
+   "type": "obj:NamedTable",
+   "evidence": "this of NamedTable x6 / Defs / ResTable (empty alias): sound resource table, +0 WaveRes array ptr, +4 count i16 = 6 == gap",
+   "confidence": "medium"
+  },
+  "b_a5cd70": {
+   "type": "obj:SoundStreams3",
+   "evidence": "this of SoundStreams3 x96 / Music / Slots (ambient streams); fields to +0x4c, next own symbol at +0x50; covers b_a5cd74..b_a5cd98",
+   "confidence": "medium",
+   "notes": "SoundStreams3 size 0x50 (not declared)"
+  },
+  "b_a5cd74": {
+   "type": "i32",
+   "count": 3,
+   "part_of": "b_a5cd70",
+   "evidence": "SoundStreams3+0x4 tag[3]",
+   "confidence": "high"
+  },
+  "b_a5cd80": {
+   "type": "i32",
+   "count": 3,
+   "part_of": "b_a5cd70",
+   "evidence": "SoundStreams3+0x10 mode[3] (decl i32[4])",
+   "confidence": "high"
+  },
+  "b_a5cd90": {
+   "type": "u32",
+   "part_of": "b_a5cd70",
+   "evidence": "SoundStreams3+0x20 next ambient delay (decl i32[2])",
+   "confidence": "high"
+  },
+  "b_a5cd98": {
+   "type": "u32",
+   "count": 3,
+   "part_of": "b_a5cd70",
+   "evidence": "SoundStreams3+0x28 start_time[3] (decl i32[10] covers to +0x50)",
+   "confidence": "high"
+  },
+  "b_a5ce00": {
+   "type": "obj:Streamer",
+   "evidence": "this of Streamer x15 (SoundSlots_ctor 0x578ce0 = Streamer ctor, dtor 0x578d40); Streamer 0xb8 == span to b_a5ceb8; covers b_a5ce04",
+   "confidence": "high"
+  },
+  "b_a5ce04": {
+   "type": "i32",
+   "part_of": "b_a5ce00",
+   "evidence": "Streamer+0x4 (audio.cpp reads it as the stream mode; layouts name it thread, a HANDLE: check before typing ptr)",
+   "confidence": "medium",
+   "notes": "layouts declare Streamer+0x4 thread (HANDLE => pointer on x64) but audio.cpp compares it with 1/2; resolve in the Streamer layout"
+  }
+ },
+ "classes": [
+  {
+   "class": "BattleState",
+   "size": "0x4",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "state",
+     "type": "i32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "global kScenarios_a51294 (4-byte gap): Battle::start_scenario writes +0, Counter::at_least_10 0x41c7e0 reads +0 i32, Handle::release 0x41c780",
+   "confidence": "medium",
+   "notes": "the scenario runner state behind the Battle facade; Battle (size 0x92 from Battle::init new) is a different object"
+  },
+  {
+   "class": "MessageIndicator",
+   "size": "0xd",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "active",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x9",
+     "name": "sprites",
+     "type": "ptr:BmpRes",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "global b_a5ccf0: init 0x4af4c0 (+9 = BmpRes 0xa411c0, +0 = 1), byte0 0x4af5d0 reads +0",
+   "confidence": "medium",
+   "notes": "+1..+8 not accessed; size >= 0xd, <= 0x10 (gap)"
+  },
+  {
+   "class": "DebugOverlay",
+   "size": "0x1",
+   "base": null,
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "global b_a59a78: construct 0x56ded0, on_key 0x4d2a20, update 0x4d2a50, draw 0x4d69f0 touch no field of this",
+   "confidence": "medium",
+   "notes": "stateless object (empty class)"
+  }
+ ],
+ "notes": "Most of i3 is containers: Input (kMouse_a516b0, 0xd69) holds all of mouse_x..b_a51db5; SysEn (kLight_a52420, 0x337) holds b_a52424..b_a52743 (d3d/device/surfaces/textures/dot3 buffers are pointers); Game (b_a58f90, ~0x748) holds the embedded Scenario (+0x17, 0x289; its ScenarioEntry local +0x14), EndCon[40] (+0x30b) and the word arrays; Config (b_a57fb8, 0x16a), Player (get_a5b9e8, 0x126e), Players (b_a570a8, ~0xb4e), IngameMenu (b_a59a98), SlideMenu (g_hud), GameSet, SdateRes, Surface (kCanvas), SoundStreams3, Streamer, MsgLog, MessageList, TalkPrompt, Ending, Sound3DSystem, CampScreen, GameOver, UnitAttScreen, ListB, SaveDir, Menu, Timer, PopUpWin each absorb the symbols after them (part_of). Class sizes not in layouts but bounded here: SysEn 0x337, Game 0x745..0x748, Config 0x16a, Players 0xb4e..0xb50, IngameMenu 0x1f0c..0x1f10, SlideMenu 0x8c4..0x8c8, UnitAttScreen 0x6b3, CampScreen 0x270..0x278, Timer 0x44..0x48, Ending 0x236, SoundStreams3 0x50, ListB 0x32, MessageList 0x44..0x48, Menu 0xc. For aliases (Font/Text -> Font2d, PopupWin -> PopUpWin, TxtRes -> TextRes, Streams -> DialogueList, AnimResMgr -> AnimRes) the layout-holding class is used. EndCon records are indexed with literal stride 0x1a in C++ and contain two char*: these uses must be rewritten for x64."
+}

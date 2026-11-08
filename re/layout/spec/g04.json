@@ -1,0 +1,3971 @@
+{
+ "group": "g04",
+ "classes": [
+  {
+   "class": "Aim",
+   "size": null,
+   "base": "Player",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "its functions use the offsets of Player",
+   "confidence": "medium",
+   "notes": "alias: not a separate object; its functions are reassigned to Player"
+  },
+  {
+   "class": "ArcherIcon",
+   "size": null,
+   "base": "Player",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "its functions use the offsets of Player",
+   "confidence": "medium",
+   "notes": "alias: not a separate object; its functions are reassigned to Player"
+  },
+  {
+   "class": "Beam",
+   "size": "0xbb",
+   "base": "Billboard",
+   "vtable": "0x9cf8f4",
+   "fields": [
+    {
+     "off": "0x37",
+     "name": "light_slot",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x3b",
+     "name": "from",
+     "type": "f32",
+     "size": 4,
+     "count": 7
+    },
+    {
+     "off": "0x57",
+     "name": "from_delta",
+     "type": "f32",
+     "size": 4,
+     "count": 7
+    },
+    {
+     "off": "0x73",
+     "name": "from_steps",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x77",
+     "name": "from_time",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x7b",
+     "name": "to",
+     "type": "f32",
+     "size": 4,
+     "count": 7
+    },
+    {
+     "off": "0x97",
+     "name": "to_delta",
+     "type": "f32",
+     "size": 4,
+     "count": 7
+    },
+    {
+     "off": "0xb3",
+     "name": "to_steps",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xb7",
+     "name": "to_time",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "ctor 0x429f70: Billboard ctor (size 0x37), vtable 0x9cf8f4, memset(+0x37, 0, 0x84); init 0x42a050 copies two 28-byte blocks to +0x3b / +0x7b",
+   "confidence": "medium",
+   "notes": "from[4..6] (+0x4b) is the position passed to Billboard::create; 0x42a1f0 pick / 0x42a020 dtor are its functions"
+  },
+  {
+   "class": "Follow",
+   "size": null,
+   "base": "Player",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "its functions use the offsets of Player",
+   "confidence": "medium",
+   "notes": "alias: not a separate object; its functions are reassigned to Player"
+  },
+  {
+   "class": "MapCell",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x43",
+     "name": "loaded",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x90",
+     "name": "files",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x9c",
+     "name": "u32_9c",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xa0",
+     "name": "units",
+     "type": "u8*",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "MapCell::unload 0x42ac40 (World::release); Region::link_unit 0x42c140 keeps the unit list head at +0xa0 (unit +0x3a = cell)",
+   "confidence": "low",
+   "notes": "assumed the same world-cell object for both functions"
+  },
+  {
+   "class": "Region",
+   "size": null,
+   "base": "Place",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "Region::find_unit / has_*_of use Place +0x26 / +0x3a / +0x1de",
+   "confidence": "low",
+   "notes": "alias of Place; 0x42c140 -> MapCell, 0x594ab0 -> MouseZone, 0x693580 -> Collisions. Remaining check problems: 0x692f40 Map::pick (assigned to Region by g12, which loads after g04) reads +0 / +0xc[] / +0x10[] / +0x580 = the Collisions layout; it should be Collisions."
+  },
+  {
+   "class": "UnitCmd",
+   "size": null,
+   "base": "Player",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "its functions use the offsets of Player",
+   "confidence": "medium",
+   "notes": "alias: not a separate object; its functions are reassigned to Player"
+  },
+  {
+   "class": "UnitRef",
+   "size": null,
+   "base": "Player",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "its functions use the offsets of Player",
+   "confidence": "medium",
+   "notes": "alias: not a separate object; its functions are reassigned to Player"
+  },
+  {
+   "class": "CamCtl",
+   "size": null,
+   "base": "CameraFollow",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "its functions use the offsets of CameraFollow",
+   "confidence": "high",
+   "notes": "alias: not a separate object; its functions are reassigned to CameraFollow"
+  },
+  {
+   "class": "CameraFollow",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "active",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "motions",
+     "type": "u8*",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "i32_8",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "camera",
+     "type": "ptr:Camera",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "light",
+     "type": "ptr:Light",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "far_limit",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "height",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x1c",
+     "name": "target_distance",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x23",
+     "name": "key_move",
+     "type": "f32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x2f",
+     "name": "follow_target",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x33",
+     "name": "mode",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "global camera manager 0xa48cc0: CutMan::init 0x5615c0 creates the Camera (new 0x4ca) at +0xc; motion(i) 0x563c80 = +4 + i*0xc8; follow_target 0x563dc0 = +0x2f",
+   "confidence": "medium",
+   "notes": "motions points to an array of CameraMotion objects (0xc8 bytes each; vector deleting dtor 0x562420). Labels CamCtl and CutMan are this object (functions merged); Camera::update_5634e0 is its per-frame update. 0x20..0x22 unknown; size unknown (>= 0x33). The 4-byte writes through +0x10 (Light +0xc/+0x10/+0x14, from 0x5634e0) straddle fields of the g12 Light spec - Light layout issue."
+  },
+  {
+   "class": "CutMan",
+   "size": null,
+   "base": "CameraFollow",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "its functions use the offsets of CameraFollow",
+   "confidence": "high",
+   "notes": "alias: not a separate object; its functions are reassigned to CameraFollow"
+  },
+  {
+   "class": "Angles",
+   "size": null,
+   "base": "Camera",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "its functions access Camera offsets (0x2c..0x40, 0x54..0x74, 0x402/0x462/0x4c2)",
+   "confidence": "high",
+   "notes": "alias: not a separate object; its functions are reassigned to Camera"
+  },
+  {
+   "class": "CamParams",
+   "size": "0x28",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "projection",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "position",
+     "type": "f32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x10",
+     "name": "orbit",
+     "type": "f32",
+     "size": 4,
+     "count": 4
+    },
+    {
+     "off": "0x20",
+     "name": "fov_tan",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x24",
+     "name": "aspect",
+     "type": "f32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "init 0x616d50 memset 0x28; Camera::set_frame copies 0x28 bytes at +0xa0; update_matrices reads +0xa0..+0xc4",
+   "confidence": "medium",
+   "notes": "projection 1 = orthographic (far_ortho) else perspective; orbit = 4 args of orbit_matrix 0x60bd00; rotate 0x616dd0 moves position x/y by the yaw orbit[0]"
+  },
+  {
+   "class": "Camera",
+   "size": "0x4ca",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "bone",
+     "type": "ptr:Bone",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "scene",
+     "type": "ptr:Scene",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "target",
+     "type": "ptr:Surface",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "depth_target",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "view_x1",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "view_y1",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "view_x2",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x1c",
+     "name": "view_y2",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x20",
+     "name": "view_width",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x24",
+     "name": "view_height",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x28",
+     "name": "u32_28",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x2c",
+     "name": "angle_min",
+     "type": "f32",
+     "size": 4,
+     "count": 2
+    },
+    {
+     "off": "0x34",
+     "name": "angle_max",
+     "type": "f32",
+     "size": 4,
+     "count": 2
+    },
+    {
+     "off": "0x3c",
+     "name": "angle_extra",
+     "type": "f32",
+     "size": 4,
+     "count": 2
+    },
+    {
+     "off": "0x44",
+     "name": "near_plane",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x48",
+     "name": "far_plane",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x4c",
+     "name": "far_perspective",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x50",
+     "name": "far_ortho",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x54",
+     "name": "fog",
+     "type": "ptr:Fog",
+     "size": 4
+    },
+    {
+     "off": "0x58",
+     "name": "fog_kind",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x5c",
+     "name": "light",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x60",
+     "name": "fog_start",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x64",
+     "name": "fog_end",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x68",
+     "name": "fog_density",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x6c",
+     "name": "fog_height_a",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x70",
+     "name": "fog_height_b",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0xc8",
+     "name": "near_threshold",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0xcc",
+     "name": "u8_cc",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0xce",
+     "name": "clear_target",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0xcf",
+     "name": "clear_depth",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0xd8",
+     "name": "multiply_blend",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xdc",
+     "name": "reorder",
+     "type": "ptr:Reorder",
+     "size": 4
+    },
+    {
+     "off": "0xea",
+     "name": "matrices_valid",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0xeb",
+     "name": "dirty",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0xee",
+     "name": "inv_bone_matrix",
+     "type": "f32",
+     "size": 4,
+     "count": 16
+    },
+    {
+     "off": "0x12e",
+     "name": "projection",
+     "type": "f32",
+     "size": 4,
+     "count": 16
+    },
+    {
+     "off": "0x16e",
+     "name": "view_projection",
+     "type": "f32",
+     "size": 4,
+     "count": 16
+    },
+    {
+     "off": "0x1ae",
+     "name": "matrix_1ae",
+     "type": "f32",
+     "size": 4,
+     "count": 16
+    },
+    {
+     "off": "0x1ee",
+     "name": "view",
+     "type": "f32",
+     "size": 4,
+     "count": 16
+    },
+    {
+     "off": "0x22e",
+     "name": "matrix_22e",
+     "type": "f32",
+     "size": 4,
+     "count": 16
+    },
+    {
+     "off": "0x26e",
+     "name": "d3d_projection",
+     "type": "f32",
+     "size": 4,
+     "count": 16
+    },
+    {
+     "off": "0x2ae",
+     "name": "viewport_x",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x2b2",
+     "name": "viewport_y",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x2b6",
+     "name": "viewport_width",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x2ba",
+     "name": "viewport_height",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x2be",
+     "name": "viewport_min_z",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x2c2",
+     "name": "viewport_max_z",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x326",
+     "name": "frustum_planes",
+     "type": "f32",
+     "size": 4,
+     "count": 24
+    },
+    {
+     "off": "0x386",
+     "name": "frustum_bounds",
+     "type": "f32",
+     "size": 4,
+     "count": 6
+    },
+    {
+     "off": "0x39e",
+     "name": "extra_planes",
+     "type": "f32",
+     "size": 4,
+     "count": 24
+    },
+    {
+     "off": "0x3fe",
+     "name": "extra_plane_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x402",
+     "name": "clip_planes_world",
+     "type": "f32",
+     "size": 4,
+     "count": 24
+    },
+    {
+     "off": "0x462",
+     "name": "clip_planes_view",
+     "type": "f32",
+     "size": 4,
+     "count": 24
+    },
+    {
+     "off": "0x4c2",
+     "name": "clip_plane_mask",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4c6",
+     "name": "clip_planes_loaded",
+     "type": "i32",
+     "size": 4
+    }
+   ],
+   "members": [
+    {
+     "off": "0x74",
+     "name": "fog_colour",
+     "class": "Colour"
+    },
+    {
+     "off": "0x78",
+     "name": "prev_params",
+     "class": "CamParams"
+    },
+    {
+     "off": "0xa0",
+     "name": "params",
+     "class": "CamParams"
+    },
+    {
+     "off": "0xd0",
+     "name": "clear_colour",
+     "class": "Colour"
+    }
+   ],
+   "evidence": "ctor 0x613650 memset(this,0,0x4ca) + 4 x Plane4[6] vector ctors at 0x326/0x39e/0x402/0x462; init 0x613730; update_matrices 0x6141a0",
+   "confidence": "medium",
+   "notes": "Plane4[6] arrays declared as f32[24] (Plane4 class owned elsewhere, 0x10 bytes); 0x2c6..0x326 (calls on +0x2c6/+0x2d2) not typed; 0xe0..0xe9 and 0xec unknown. Labels Lights/Viewport/Angles are this object (functions merged). Not Camera: 0x42bcd0/0x43f000/0x438720/0x445990 (Player), 0x68a170 (Weather), 0x707230 (Hud), 0x6b0d10 (Shot), 0x60fa50/70 (Surface, the target at +0x8), 0x5634e0 (CameraFollow)."
+  },
+  {
+   "class": "Lights",
+   "size": null,
+   "base": "Camera",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "its functions access Camera offsets (0x2c..0x40, 0x54..0x74, 0x402/0x462/0x4c2)",
+   "confidence": "high",
+   "notes": "alias: not a separate object; its functions are reassigned to Camera"
+  },
+  {
+   "class": "Viewport",
+   "size": null,
+   "base": "Camera",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "its functions access Camera offsets (0x2c..0x40, 0x54..0x74, 0x402/0x462/0x4c2)",
+   "confidence": "high",
+   "notes": "alias: not a separate object; its functions are reassigned to Camera"
+  },
+  {
+   "class": "CamMotion",
+   "size": null,
+   "base": "CamZones",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "its functions use the offsets of CamZones",
+   "confidence": "high",
+   "notes": "alias: not a separate object; its functions are reassigned to CamZones"
+  },
+  {
+   "class": "CamZones",
+   "size": "0x4c",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "unit_id",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x12",
+     "name": "tracks",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x16",
+     "name": "enabled",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x18",
+     "name": "current_zone",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x1c",
+     "name": "rail_segment",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x20",
+     "name": "rail_segment_b",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x24",
+     "name": "rail_param",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x28",
+     "name": "last_position",
+     "type": "f32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x34",
+     "name": "height_offset",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x38",
+     "name": "script_start",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x3c",
+     "name": "script_end",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x40",
+     "name": "key_base",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x44",
+     "name": "looping",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x46",
+     "name": "keys_per_ms",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x4a",
+     "name": "hand_back",
+     "type": "i16",
+     "size": 2
+    }
+   ],
+   "members": [],
+   "evidence": "ctor 0x425dc0 memset 0x4c (new 0x4c); init 0x425e20; field comments in camzone.cpp (CameraZone::update / enter / scripted)",
+   "confidence": "medium",
+   "notes": "tracks -> 9-byte CamTracks object (ctor 0x428cf0) whose +0 is the array of 0xaca-byte zones. Labels CameraZone and CamMotion are this object (functions merged). 0x4..0x11 unknown."
+  },
+  {
+   "class": "CameraZone",
+   "size": null,
+   "base": "CamZones",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "its functions use the offsets of CamZones",
+   "confidence": "high",
+   "notes": "alias: not a separate object; its functions are reassigned to CamZones"
+  },
+  {
+   "class": "ChatBox",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "open",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "edit",
+     "type": "ptr:LineEdit",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "line_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "history_pos",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "lines",
+     "type": "char",
+     "size": 1,
+     "count": 640
+    },
+    {
+     "off": "0x290",
+     "name": "prompt",
+     "type": "char",
+     "size": 1,
+     "count": 64
+    },
+    {
+     "off": "0x2d0",
+     "name": "i32_2d0",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x2d4",
+     "name": "box_x1",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x2d6",
+     "name": "box_y1",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x2d8",
+     "name": "box_x2",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x2da",
+     "name": "box_y2",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x2dc",
+     "name": "font",
+     "type": "ptr:Font",
+     "size": 4
+    },
+    {
+     "off": "0x2e0",
+     "name": "colour",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "ChatBox::draw 0x45b9d0 comment (64-byte history lines from +0x10, edit +4); push_history 0x45be60 strcpy(+0x10 + n*0x40)",
+   "confidence": "medium",
+   "notes": "lines = 10 x char[0x40] (declared flat); label TextRing is this object (push_history). Menu::key_45bc10 / Obj::reset_45b930 / Obj::query_70 (as_chat_box(this) in the C++) moved here from Menu."
+  },
+  {
+   "class": "TextRing",
+   "size": null,
+   "base": "ChatBox",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "TextRing::push 0x45be60 is ChatBox::push_history",
+   "confidence": "high",
+   "notes": "alias of ChatBox; function reassigned"
+  },
+  {
+   "class": "CloudLayers",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "layer1",
+     "type": "ptr:Plane",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "layer2",
+     "type": "ptr:Plane",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "built",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [],
+   "evidence": "0x458720 comment: layer 1 in +0, layer 2 in +4; Pair::release 0x459b70 deletes them when +8 set",
+   "confidence": "medium",
+   "notes": "global 0xa411a8; FollowPlanes::draw and Pair::release are its functions. Size probably 9."
+  },
+  {
+   "class": "FollowPlanes",
+   "size": null,
+   "base": "CloudLayers",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "FollowPlanes::draw uses CloudLayers +0/+4",
+   "confidence": "high",
+   "notes": "alias of CloudLayers; function reassigned"
+  },
+  {
+   "class": "Collisions",
+   "size": "0x584",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "objects",
+     "type": "ptr:DynArray",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "zones",
+     "type": "u32",
+     "size": 4,
+     "count": 351
+    },
+    {
+     "off": "0x580",
+     "name": "zone_count",
+     "type": "i32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "init 0x68db80 (+0 list, +0x580 count = 0); add 0x68dbf0: 0x34-byte entries from +4, scanned up to +0x580",
+   "confidence": "medium",
+   "notes": "zones = 27 x 0x34-byte entries (a, b, x, y, fx, fy, flag, info[6]) declared as u32[351]; label Placement is this object (is_free / check_move)"
+  },
+  {
+   "class": "Placement",
+   "size": null,
+   "base": "Collisions",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "its functions use the offsets of Collisions",
+   "confidence": "high",
+   "notes": "alias: not a separate object; its functions are reassigned to Collisions"
+  },
+  {
+   "class": "Frame",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x4",
+     "name": "bitmaps",
+     "type": "ptr:BmpRes",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "Frame::draw_box 0x6b8db0 (descbox.cpp) looks frame bitmaps up in the BmpRes at +4",
+   "confidence": "low",
+   "notes": "Frame::init_6f1940 (i_igframe.cpp) is probably a different object (no this accesses); 0x6a0c70 is not thiscall"
+  },
+  {
+   "class": "Color",
+   "size": null,
+   "base": "Colour",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "colour.cpp functions on the same 4-byte r,g,b,a struct",
+   "confidence": "high",
+   "notes": "alias of Colour; its member functions are reassigned to Colour (operators are not thiscall)"
+  },
+  {
+   "class": "Colour",
+   "size": "0x4",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "rgba",
+     "type": "u8",
+     "size": 1,
+     "count": 4
+    }
+   ],
+   "members": [],
+   "evidence": "original/colour.hpp (r, g, b, a bytes); read as one dword by 0x5c0980 / to_d3d",
+   "confidence": "high",
+   "notes": "rgba[0]=r [1]=g [2]=b [3]=a (original/colour.hpp names them r,g,b,a); declared as an array because 0x5c0980 and others read the whole dword"
+  },
+  {
+   "class": "Config",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "kind_value",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "kind_byte",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x5",
+     "name": "u8_5",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x6",
+     "name": "u16_6",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x8",
+     "name": "u8_8",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x9",
+     "name": "u8_9",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0xa",
+     "name": "kind",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0xb",
+     "name": "u32_b",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xf",
+     "name": "u8_f",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x10",
+     "name": "u32_10",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "u8_14",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x15",
+     "name": "u8_15",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x16",
+     "name": "u8_16",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x2c",
+     "name": "u8_2c",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x2d",
+     "name": "u8_2d",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x2e",
+     "name": "u32_2e",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x32",
+     "name": "u8_32",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x33",
+     "name": "u8_33",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x34",
+     "name": "u8_34",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x35",
+     "name": "u16_35",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x37",
+     "name": "u8_37",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x38",
+     "name": "u8_38",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x39",
+     "name": "u8_39",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x3a",
+     "name": "u16_3a",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x3c",
+     "name": "u16_3c",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x3e",
+     "name": "u16_3e",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x40",
+     "name": "u8_40",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x41",
+     "name": "u16_41",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x43",
+     "name": "u8_43",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x44",
+     "name": "u8_44",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x45",
+     "name": "u8_45",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x46",
+     "name": "u8_46",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x47",
+     "name": "u8_47",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x48",
+     "name": "u8_48",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x49",
+     "name": "u8_49",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x4a",
+     "name": "u8_4a",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x4b",
+     "name": "u8_4b",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x4c",
+     "name": "u8_4c",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x4d",
+     "name": "u8_4d",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x4e",
+     "name": "u8_4e",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x4f",
+     "name": "u32_4f",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x53",
+     "name": "u32_53",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x57",
+     "name": "u32_57",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x5b",
+     "name": "u32_5b",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x5f",
+     "name": "u32_5f",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x63",
+     "name": "u32_63",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x67",
+     "name": "u32_67",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x6b",
+     "name": "u32_6b",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x6f",
+     "name": "u32_6f",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x73",
+     "name": "u8_73",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x76",
+     "name": "fov",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x7a",
+     "name": "u32_7a",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x7e",
+     "name": "u32_7e",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x82",
+     "name": "screen_width",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x86",
+     "name": "screen_height",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x8a",
+     "name": "colour_depth",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x8e",
+     "name": "refresh_rate",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x92",
+     "name": "u8_92",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x93",
+     "name": "u8_93",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x94",
+     "name": "u8_94",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x95",
+     "name": "u8_95",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x96",
+     "name": "u8_96",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x97",
+     "name": "u8_97",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x98",
+     "name": "u32_98",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x9c",
+     "name": "detail",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x9d",
+     "name": "u8_9d",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x9e",
+     "name": "u8_9e",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x9f",
+     "name": "u8_9f",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0xa0",
+     "name": "view_distance",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xa4",
+     "name": "u32_a4",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xa8",
+     "name": "brightness",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0xac",
+     "name": "contrast",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0xb0",
+     "name": "gamma",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0xb4",
+     "name": "u8_b4",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0xb5",
+     "name": "saved",
+     "type": "u8",
+     "size": 1,
+     "count": 181
+    }
+   ],
+   "members": [],
+   "evidence": "game settings record: Config::defaults 0x459ec0 / Options::defaults 0x45a010 / assign 0x45a4d0 write 0x0..0xb4; 0x45adc0 memcpy(this+0xb5, this, 0xb5) keeps a second copy",
+   "confidence": "medium",
+   "notes": "record of 0xb5 bytes followed by a saved copy of the same 0xb5 bytes (+0xb5; save_restore 0x45adc0) - total size probably 0x16a. The Options data functions (defaults/assign/set_defaults_45/set_4a_4e), D3DSetup::check_caps and the unlabelled config.cpp setters are this record; most field meanings unknown (defaults in 0x45a010: 0x82/0x86 = 1024x768, 0x8a = 32, 0x8e = 60, 0x76 = 90.0f, 0xa8/0xac/0xb0 = -0.2/1.1/1.0)."
+  },
+  {
+   "class": "D3DSetup",
+   "size": null,
+   "base": "Config",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "0x45b240 writes Config +0x9c..0x9e",
+   "confidence": "high",
+   "notes": "alias: its function is reassigned to Config"
+  },
+  {
+   "class": "Options",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x48",
+     "name": "slider_0",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x4c",
+     "name": "value_box_0",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x50",
+     "name": "slider_1",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x54",
+     "name": "value_box_1",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x58",
+     "name": "slider_2",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x5c",
+     "name": "value_box_2",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x60",
+     "name": "slider_3",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x64",
+     "name": "value_box_3",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x68",
+     "name": "slider_4",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x6c",
+     "name": "value_box_4",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x70",
+     "name": "slider_5",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x74",
+     "name": "value_box_5",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x78",
+     "name": "popup_0",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x7c",
+     "name": "value_box_6",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x80",
+     "name": "popup_1",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x84",
+     "name": "value_box_7",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x88",
+     "name": "button_0",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x8c",
+     "name": "button_1",
+     "type": "ptr:void",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "Options::update_74a700 (options menu): widget pointers at +0x48..+0x8c (Slider calls on 0x48/0x50/.., Popup on 0x78/0x80, UiButton on 0x88/0x8c)",
+   "confidence": "low",
+   "notes": "only the options-menu panel (0x74a700; 0x742470 is not thiscall) remains here; the data functions of the label are the Config record. Probably derives from Panel (casts this -> Panel) but the base layout size is unknown, so no base is declared. The C++ also uses +0xec/+0xf0/+0x115/+0x119/+0x11d (ComboBox / Button pointers)."
+  },
+  {
+   "class": "Range",
+   "size": "0x18",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "i32_0",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "u32_4",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "current",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "end",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "u32_10",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "u32_14",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "Range::Range 0x67a380 memset 0x18 (two vec3 per the comment)",
+   "confidence": "low",
+   "notes": "at_end 0x642440 compares +8 >= +0xc as ints although the ctor comment calls the 0x18 bytes two vec3; 0x45ac60 moved to Config, 0x42d130 (floats at +0x38/+0x3c of another object) unassigned"
+  },
+  {
+   "class": "Wave",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x50",
+     "name": "not_loaded",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x54",
+     "name": "wave_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x64",
+     "name": "config",
+     "type": "u8*",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "Wave::load 0x45a350 (sound effects object: as_sound_effects(this))",
+   "confidence": "low",
+   "notes": "+0x64 points to a record whose byte +2 is the wave count"
+  },
+  {
+   "class": "Credits",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "active",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x1",
+     "name": "stage",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x2",
+     "name": "images",
+     "type": "u32",
+     "size": 4,
+     "count": 12
+    }
+   ],
+   "members": [
+    {
+     "off": "0x32",
+     "name": "backdrop",
+     "class": "Image2d"
+    },
+    {
+     "off": "0xe9",
+     "name": "label_0",
+     "class": "Label"
+    },
+    {
+     "off": "0x1a0",
+     "name": "label_1",
+     "class": "Label"
+    },
+    {
+     "off": "0x257",
+     "name": "label_2",
+     "class": "Label"
+    },
+    {
+     "off": "0x30e",
+     "name": "label_3",
+     "class": "Label"
+    },
+    {
+     "off": "0x3c5",
+     "name": "label_4",
+     "class": "Label"
+    }
+   ],
+   "evidence": "credits.cpp: ctor memset(this,0,0x32) + Image2d ctor at +0x32; load 0x6b5320 fills texture handles +0x2..+0x2e; draw 0x6b5e60 draws labels at +0xe9 + i*0xb7 when byte +0x35 of each is set",
+   "confidence": "medium",
+   "notes": "images: texture-manager handles (credits_bg_1 +0x2, credits_bg_mask_1 +0x12, credits1..3 +0x22/+0x26/+0x2a, credits_border +0x2e). Label count 5 inferred from the +0x3fa access (label_4 +0x35); size probably 0x47c. Images12::release and 0x6b5880/0x6b58c0 are its functions."
+  },
+  {
+   "class": "Images12",
+   "size": null,
+   "base": "Credits",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "Images12::release 0x6b5470 frees Credits +0x2..+0x2e",
+   "confidence": "high",
+   "notes": "alias of Credits; function reassigned"
+  },
+  {
+   "class": "Buffers",
+   "size": null,
+   "base": "CriticalHud",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "Buffers::release frees CriticalHud +0/+4/+8 (called by its dtor)",
+   "confidence": "high",
+   "notes": "alias of CriticalHud; function reassigned"
+  },
+  {
+   "class": "CritCombo",
+   "size": null,
+   "base": "CriticalHud",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "CritCombo::input uses CriticalHud +0x18..+0x38",
+   "confidence": "high",
+   "notes": "alias of CriticalHud; function reassigned"
+  },
+  {
+   "class": "CriticalHud",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "tex_critical",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "tex_4",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "tex_criti_k",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "sheet_a",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "sheet_b",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "sheet_c",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "combo_active",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x19",
+     "name": "combo_success",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x1a",
+     "name": "i8_1a",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x1b",
+     "name": "i8_1b",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x1c",
+     "name": "u8_1c",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x1d",
+     "name": "progress",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x1f",
+     "name": "keys",
+     "type": "i8",
+     "size": 1,
+     "count": 6
+    },
+    {
+     "off": "0x25",
+     "name": "key_count",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x27",
+     "name": "start_time",
+     "type": "f64",
+     "size": 8
+    },
+    {
+     "off": "0x2f",
+     "name": "success_time",
+     "type": "f64",
+     "size": 8
+    },
+    {
+     "off": "0x37",
+     "name": "done",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x38",
+     "name": "enabled",
+     "type": "i8",
+     "size": 1
+    }
+   ],
+   "members": [
+    {
+     "off": "0x39",
+     "name": "slots",
+     "class": "DynArray"
+    }
+   ],
+   "evidence": "crithud.cpp: ctor 0x45f7a0 builds a DynArray at +0x39; release 0x45fa30 frees textures +0/+4/+8; draw 0x45fae0, input 0x462810, start 0x462970",
+   "confidence": "medium",
+   "notes": "keys length 6 = gap up to +0x25 (the key string read at +0x1f + progress); size probably 0x39 + sizeof(DynArray) = 0x56. Labels Buffers and CritCombo are this object."
+  },
+  {
+   "class": "ModelHolder",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "both functions (0x628ed0, 0x681d10) are not thiscall",
+   "confidence": "low",
+   "notes": "no this-relative accesses; nothing to lay out"
+  },
+  {
+   "class": "Overlay2D",
+   "size": "0x4",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "actor",
+     "type": "ptr:Actor",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "new(4) before ctor 0x628e70; attach 0x629230 stores the actor at +0 and edits its plane (+0x90)",
+   "confidence": "medium",
+   "notes": "0x62b6a0 (popupwin.cpp, byte +4 of a Widget child) is not this object"
+  },
+  {
+   "class": "Face",
+   "size": null,
+   "base": "Player",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "Face::update 0x434080 reads +0 unit / +0x10 / +0xa2 like Player",
+   "confidence": "medium",
+   "notes": "alias of Player; function reassigned"
+  },
+  {
+   "class": "Order0c_a",
+   "size": "0xce",
+   "base": "MapObject",
+   "vtable": "0x9d3ab4",
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "vtable",
+     "type": "ptr:vtable",
+     "size": 4
+    },
+    {
+     "off": "0xc2",
+     "name": "u32_c2",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xc6",
+     "name": "u32_c6",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xca",
+     "name": "u32_ca",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "new(0xce) before ctor; ctor = MapObject ctor 0x416a50 (size 0xc2, g09), vtable 0x9d3ab4, memset(+0xc2, 0, 0xc) (order_ctor in ctrl.cpp)",
+   "confidence": "high",
+   "notes": "same shape as Order0c_c (g06); vtable field restated over the MapObject base +0"
+  },
+  {
+   "class": "Order0c_b",
+   "size": "0xce",
+   "base": "MapObject",
+   "vtable": "0x9d3b50",
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "vtable",
+     "type": "ptr:vtable",
+     "size": 4
+    },
+    {
+     "off": "0xc2",
+     "name": "u32_c2",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xc6",
+     "name": "u32_c6",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xca",
+     "name": "u32_ca",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "new(0xce) before ctor; ctor = MapObject ctor 0x416a50 (size 0xc2, g09), vtable 0x9d3b50, memset(+0xc2, 0, 0xc) (order_ctor in ctrl.cpp)",
+   "confidence": "high",
+   "notes": "same shape as Order0c_c (g06); vtable field restated over the MapObject base +0"
+  },
+  {
+   "class": "Place",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "id",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x26",
+     "name": "nation",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x2a",
+     "name": "position",
+     "type": "f32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x36",
+     "name": "angle",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x3a",
+     "name": "box",
+     "type": "f32",
+     "size": 4,
+     "count": 6
+    },
+    {
+     "off": "0x52",
+     "name": "u32_52",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x56",
+     "name": "u32_56",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x5e",
+     "name": "entrance_count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x62",
+     "name": "entrances",
+     "type": "f32",
+     "size": 4,
+     "count": 24
+    },
+    {
+     "off": "0x1d6",
+     "name": "u32_1d6",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1da",
+     "name": "model",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x1de",
+     "name": "owner",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x1e2",
+     "name": "owner_place",
+     "type": "ptr:Place",
+     "size": 4
+    },
+    {
+     "off": "0x1e6",
+     "name": "u32_1e6",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1ea",
+     "name": "u32_1ea",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1ee",
+     "name": "ptr_1ee",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x1f2",
+     "name": "u32_1f2",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "set_pose 0x42b350 copies pos to +0x2a and a 0x18-byte box to +0x3a; add_entrance 0x4c22b0: count +0x5e, 12-byte entries from +0x62 (max 8); set_owner 0x4366f0",
+   "confidence": "medium",
+   "notes": "the Region label functions (find_unit / has_enemy_of / has_unit_of) read +0x26 / +0x3a box / +0x1de of this layout and are merged here; they use +0x1de as a pointer (World::cells_in_box) while set_owner compares it with an int - type unresolved"
+  },
+  {
+   "class": "Selection",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x2e",
+     "name": "flags_a",
+     "type": "u16",
+     "size": 2,
+     "count": 5
+    },
+    {
+     "off": "0x38",
+     "name": "flags_b",
+     "type": "u16",
+     "size": 2,
+     "count": 4
+    },
+    {
+     "off": "0x40",
+     "name": "u16_40",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x42",
+     "name": "u16_42",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x46",
+     "name": "u16_46",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x48",
+     "name": "u16_48",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x4a",
+     "name": "u16_4a",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x4c",
+     "name": "u16_4c",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x50",
+     "name": "u16_50",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x52",
+     "name": "u16_52",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x54",
+     "name": "u16_54",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x56",
+     "name": "u16_56",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x58",
+     "name": "u16_58",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x5a",
+     "name": "u16_5a",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x5e",
+     "name": "u16_5e",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x60",
+     "name": "u16_60",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x62",
+     "name": "u16_62",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x64",
+     "name": "u16_64",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x68",
+     "name": "u16_68",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x6a",
+     "name": "u16_6a",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x6c",
+     "name": "u16_6c",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x6e",
+     "name": "u16_6e",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x70",
+     "name": "markers",
+     "type": "u32",
+     "size": 4,
+     "count": 4
+    }
+   ],
+   "members": [],
+   "evidence": "Selection::init 0x51dcc0 (units_sel.cpp): 1-based u16 flags at +0x2e+2i / +0x36+2i (i=1..4), marker models +0x70..+0x7c",
+   "confidence": "low",
+   "notes": "flags_a[1..4] at +0x30..+0x36 (index 0 unused), flags_b[1..4] at +0x38..+0x3e (the original indexes from +0x36 with i>=1); markers = select/select2/select3/select4 model handles. append 0x438420 moved to WaypointList."
+  },
+  {
+   "class": "Font",
+   "size": null,
+   "base": "Font2d",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "font2d.cpp functions: same layout as Font2d (g01): loaded +0, name +1, texture +0x26, char range +0x2a/+0x2c, metrics +0x2e..+0x3a, glyphs +0x3c",
+   "confidence": "high",
+   "notes": "alias of Font2d (g01). The d3dfont.cpp functions of the label are the CD3DFont class -> D3DFont. 0x575940 not thiscall; 0x57efe0 (bitmap.cpp) passes this+4 on, no direct accesses."
+  },
+  {
+   "class": "Device",
+   "size": null,
+   "base": "SysEn",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "its functions use the offsets of SysEn",
+   "confidence": "high",
+   "notes": "alias: not a separate object; its functions are reassigned to SysEn"
+  },
+  {
+   "class": "Display",
+   "size": "0x40c",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "state",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x1",
+     "name": "flag",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x2",
+     "name": "u8_2",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x4",
+     "name": "d3d",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x408",
+     "name": "pixel_format",
+     "type": "i32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "0x60f540 memset(this, 0, 0x40c), +0x408 = -1; Display::attach 0x60f5c0 (+4 = IDirect3D8*, +0x408 = pixel format from GetDisplayMode)",
+   "confidence": "medium",
+   "notes": "0x8..0x407 not accessed by its functions; Display::reset_device (0x5ff4a0) and SysEn::set_raster are SysEn functions"
+  },
+  {
+   "class": "Dot3",
+   "size": null,
+   "base": "SysEn",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "its functions use the offsets of SysEn",
+   "confidence": "high",
+   "notes": "alias: not a separate object; its functions are reassigned to SysEn"
+  },
+  {
+   "class": "Format",
+   "size": null,
+   "base": "SysEn",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "its functions use the offsets of SysEn",
+   "confidence": "high",
+   "notes": "alias: not a separate object; its functions are reassigned to SysEn"
+  },
+  {
+   "class": "Items",
+   "size": null,
+   "base": "SysEn",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "its functions use the offsets of SysEn",
+   "confidence": "high",
+   "notes": "alias: not a separate object; its functions are reassigned to SysEn"
+  },
+  {
+   "class": "RenderLog",
+   "size": null,
+   "base": "SysEn",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "its functions use the offsets of SysEn",
+   "confidence": "high",
+   "notes": "alias: not a separate object; its functions are reassigned to SysEn"
+  },
+  {
+   "class": "RenderTarget",
+   "size": null,
+   "base": "Texture",
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x58",
+     "name": "d3d_texture",
+     "type": "ptr:void",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "RenderTarget::create 0x608080: Texture::attach on this, D3DXCreateTexture into +0x58, device resource +0x5c linked into SysEn",
+   "confidence": "medium",
+   "notes": "+0x5c is an embedded device-resource node (SysEn::link_resource), size unknown; create_depth / release_depth of the label are SysEn functions"
+  },
+  {
+   "class": "Renderer",
+   "size": null,
+   "base": "SysEn",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "its functions use the offsets of SysEn",
+   "confidence": "high",
+   "notes": "alias: not a separate object; its functions are reassigned to SysEn"
+  },
+  {
+   "class": "SysEn",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "started",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "d3d",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "device",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "back_buffer",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "depth_stencil",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "device_type",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "pp_back_buffer_width",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1c",
+     "name": "pp_back_buffer_height",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x20",
+     "name": "pp_back_buffer_format",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x24",
+     "name": "pp_back_buffer_count",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x28",
+     "name": "pp_multisample_type",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x2c",
+     "name": "pp_swap_effect",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x30",
+     "name": "pp_device_window",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x34",
+     "name": "pp_windowed",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x38",
+     "name": "pp_enable_auto_depth_stencil",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x3c",
+     "name": "pp_auto_depth_stencil_format",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x40",
+     "name": "pp_flags",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x44",
+     "name": "pp_refresh_rate",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x48",
+     "name": "pp_presentation_interval",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4c",
+     "name": "u32_4c",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x124",
+     "name": "matrix_stack",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x128",
+     "name": "frame_index",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x12c",
+     "name": "dot3_vertex_shader",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x130",
+     "name": "cur_vertex_type",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x131",
+     "name": "cur_blend",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x135",
+     "name": "cur_texture_mode",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x139",
+     "name": "cur_filter",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x13d",
+     "name": "cur_flags",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x145",
+     "name": "cur_raster",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x149",
+     "name": "vs_bound",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x14a",
+     "name": "new_vertex_type",
+     "type": "i8",
+     "size": 1
+    },
+    {
+     "off": "0x14b",
+     "name": "new_blend",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x14f",
+     "name": "new_texture_mode",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x153",
+     "name": "new_filter",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x15b",
+     "name": "new_flags",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x15f",
+     "name": "new_raster",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x163",
+     "name": "dirty",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x167",
+     "name": "cur_overlay_stage",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x16b",
+     "name": "cur_tint_stage",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x16f",
+     "name": "new_overlay_stage",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x173",
+     "name": "new_tint_stage",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x177",
+     "name": "vs_cache",
+     "type": "ptr:VsCache",
+     "size": 4
+    },
+    {
+     "off": "0x17b",
+     "name": "ps_cache",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x17f",
+     "name": "light_slot_count",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x18f",
+     "name": "dyn_vb",
+     "type": "ptr:void",
+     "size": 4,
+     "count": 9
+    },
+    {
+     "off": "0x1b3",
+     "name": "dyn_ib",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x1b7",
+     "name": "dyn_vb_used",
+     "type": "u32",
+     "size": 4,
+     "count": 9
+    },
+    {
+     "off": "0x1db",
+     "name": "dyn_ib_used",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1df",
+     "name": "locked_vb",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x1e3",
+     "name": "locked_vertex_type",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x1e7",
+     "name": "locked_start",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1eb",
+     "name": "locked_stride",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1ef",
+     "name": "locked_count",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1f3",
+     "name": "index_start",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1f7",
+     "name": "index_count",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1fb",
+     "name": "vb_usage",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1ff",
+     "name": "ib_usage",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x203",
+     "name": "vs_usable",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x207",
+     "name": "dot3_usable",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x20b",
+     "name": "hw_skinning",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x20f",
+     "name": "mipmaps_supported",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x213",
+     "name": "bump_supported",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x217",
+     "name": "texture_caps_800",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x21b",
+     "name": "stats",
+     "type": "u32",
+     "size": 4,
+     "count": 11
+    },
+    {
+     "off": "0x2d3",
+     "name": "prev_frame_timer",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x2d7",
+     "name": "frame_timer",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x2db",
+     "name": "dot3_created",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x2df",
+     "name": "dot3_buffer_a",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x2e3",
+     "name": "u32_2e3",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x2e7",
+     "name": "dot3_buffer_b",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x2ef",
+     "name": "brightness",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x2f3",
+     "name": "contrast",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x2f7",
+     "name": "gamma",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x2fb",
+     "name": "gamma_offset",
+     "type": "i32",
+     "size": 4,
+     "count": 3
+    },
+    {
+     "off": "0x307",
+     "name": "depth_format",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x30b",
+     "name": "stencil_bits",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x30f",
+     "name": "mirrored",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x313",
+     "name": "user_clip_planes",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x317",
+     "name": "depth_target",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x31b",
+     "name": "depth_target_width",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x31f",
+     "name": "depth_target_height",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x323",
+     "name": "light_target",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x327",
+     "name": "light_target_width",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x32b",
+     "name": "light_target_height",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x32f",
+     "name": "resources_head",
+     "type": "u8*",
+     "size": 4
+    },
+    {
+     "off": "0x333",
+     "name": "resources_tail",
+     "type": "u8*",
+     "size": 4
+    }
+   ],
+   "members": [
+    {
+     "off": "0x50",
+     "name": "caps",
+     "class": "D3DCaps8"
+    },
+    {
+     "off": "0x141",
+     "name": "cur_texture_factor",
+     "class": "Colour"
+    },
+    {
+     "off": "0x157",
+     "name": "new_texture_factor",
+     "class": "Colour"
+    }
+   ],
+   "evidence": "global 0xa52420; docs/RUNTIME.md; start_d3d 0x5f6c00 (GetDeviceCaps into +0x50, CreateDevice with present params +0x18), shutdown 0x5f6770",
+   "confidence": "medium",
+   "notes": "size unknown (>= 0x337). Labels Renderer, Display (reset_device), Device, Dot3, Items, RenderTarget (depth), Tex, plus the unlabelled d3dsys setters, are this same object and are merged here. Fields 0x203..0x217 written as dwords. Remaining check problems: the stray 1-byte writes at -0x4b (0x5fa360) and -0x33ffa010 (0x5ff060) are absolute addresses misread as this-relative, not fields. 0x602660 (Mesh::flag_800, put on Device by g02) reads caps +0x8c and is a SysEn function."
+  },
+  {
+   "class": "Tex",
+   "size": null,
+   "base": "SysEn",
+   "vtable": null,
+   "fields": [],
+   "members": [],
+   "evidence": "its functions use the offsets of SysEn",
+   "confidence": "high",
+   "notes": "alias: not a separate object; its functions are reassigned to SysEn"
+  },
+  {
+   "class": "D3DFont",
+   "size": "0x678",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "font_name",
+     "type": "char",
+     "size": 1,
+     "count": 80
+    },
+    {
+     "off": "0x50",
+     "name": "font_height",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x54",
+     "name": "font_flags",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x58",
+     "name": "device",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x5c",
+     "name": "texture",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x60",
+     "name": "vertex_buffer",
+     "type": "ptr:void",
+     "size": 4
+    },
+    {
+     "off": "0x64",
+     "name": "tex_width",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x68",
+     "name": "tex_height",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x6c",
+     "name": "text_scale",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x70",
+     "name": "tex_coords",
+     "type": "f32",
+     "size": 4,
+     "count": 384
+    },
+    {
+     "off": "0x670",
+     "name": "saved_state_block",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x674",
+     "name": "draw_text_state_block",
+     "type": "u32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "CD3DFont of the DirectX 8 SDK (d3dfont.cpp): name[80], height, flags, device, texture, vb, tex size, scale, tex coords[96][4], two state blocks; offsets match the binary",
+   "confidence": "high",
+   "notes": "new class (split from the Font label): 0x5baae0 init_device_objects, 0x5bb2e0 restore, 0x5bb900 extent, 0x5bba70/0x5bc2d0/0x5bc9b0 draw, 0x5bb7c0 invalidate (was SysEn::release_shaders), 0x5bb8a0 delete_device_objects, 0x5baab0"
+  },
+  {
+   "class": "D3DCaps8",
+   "size": "0xd4",
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "device_type",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "adapter_ordinal",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x8",
+     "name": "caps",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xc",
+     "name": "caps2",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x10",
+     "name": "caps3",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x14",
+     "name": "presentation_intervals",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x18",
+     "name": "cursor_caps",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x1c",
+     "name": "dev_caps",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x20",
+     "name": "primitive_misc_caps",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x24",
+     "name": "raster_caps",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x28",
+     "name": "z_cmp_caps",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x2c",
+     "name": "src_blend_caps",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x30",
+     "name": "dest_blend_caps",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x34",
+     "name": "alpha_cmp_caps",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x38",
+     "name": "shade_caps",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x3c",
+     "name": "texture_caps",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x40",
+     "name": "texture_filter_caps",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x44",
+     "name": "cube_texture_filter_caps",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x48",
+     "name": "volume_texture_filter_caps",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x4c",
+     "name": "texture_address_caps",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x50",
+     "name": "volume_texture_address_caps",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x54",
+     "name": "line_caps",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x58",
+     "name": "max_texture_width",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x5c",
+     "name": "max_texture_height",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x60",
+     "name": "max_volume_extent",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x64",
+     "name": "max_texture_repeat",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x68",
+     "name": "max_texture_aspect_ratio",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x6c",
+     "name": "max_anisotropy",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x70",
+     "name": "max_vertex_w",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x74",
+     "name": "guard_band_left",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x78",
+     "name": "guard_band_top",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x7c",
+     "name": "guard_band_right",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x80",
+     "name": "guard_band_bottom",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x84",
+     "name": "extents_adjust",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0x88",
+     "name": "stencil_caps",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x8c",
+     "name": "fvf_caps",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x90",
+     "name": "texture_op_caps",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x94",
+     "name": "max_texture_blend_stages",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x98",
+     "name": "max_simultaneous_textures",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x9c",
+     "name": "vertex_processing_caps",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xa0",
+     "name": "max_active_lights",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xa4",
+     "name": "max_user_clip_planes",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xa8",
+     "name": "max_vertex_blend_matrices",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xac",
+     "name": "max_vertex_blend_matrix_index",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xb0",
+     "name": "max_point_size",
+     "type": "f32",
+     "size": 4
+    },
+    {
+     "off": "0xb4",
+     "name": "max_primitive_count",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xb8",
+     "name": "max_vertex_index",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xbc",
+     "name": "max_streams",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xc0",
+     "name": "max_stream_stride",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xc4",
+     "name": "vertex_shader_version",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xc8",
+     "name": "max_vertex_shader_const",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xcc",
+     "name": "pixel_shader_version",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0xd0",
+     "name": "max_pixel_shader_value",
+     "type": "f32",
+     "size": 4
+    }
+   ],
+   "members": [],
+   "evidence": "D3DCAPS8 (d3d8.h), filled by GetDeviceCaps at SysEn+0x50",
+   "confidence": "high",
+   "notes": "new class: the Direct3D 8 caps struct embedded in SysEn at +0x50"
+  },
+  {
+   "class": "MouseZone",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x66c",
+     "name": "enabled",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x66e",
+     "name": "shape",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0x672",
+     "name": "tri_a",
+     "type": "i32",
+     "size": 4,
+     "count": 7
+    },
+    {
+     "off": "0x68e",
+     "name": "tri_b",
+     "type": "i32",
+     "size": 4,
+     "count": 7
+    }
+   ],
+   "members": [],
+   "evidence": "Region::hit 0x594ab0 (ilib/mousecr.cpp): enabled +0x66c, shape kind +0x66e (4/5), triangles at +0x672 / +0x68e",
+   "confidence": "low",
+   "notes": "new class for the mouse-cursor hit region; tri_a / tri_b points read at +8/+0xc of each block"
+  },
+  {
+   "class": "LineEdit",
+   "size": "0x91",
+   "base": "Gadget",
+   "vtable": "0x9d037c",
+   "fields": [
+    {
+     "off": "0x70",
+     "name": "text",
+     "type": "ptr:char",
+     "size": 4
+    },
+    {
+     "off": "0x83",
+     "name": "focused",
+     "type": "u8",
+     "size": 1
+    }
+   ],
+   "members": [],
+   "evidence": "ctor 0x45b790 (Gadget ctor 0x61de00, vtable 0x9d037c), new(0x91) in 0x45b590; set_focus 0x45bf80 / clear_focus 0x45bfb0 write +0x83",
+   "confidence": "medium",
+   "notes": "new class: the chat box text edit (ChatBox +4). Gadget base layout not known to this group; +0x70 is read by ChatBox via the pointer."
+  },
+  {
+   "class": "UnitSnapshot",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "unit_id",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x2",
+     "name": "layer",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x4",
+     "name": "block",
+     "type": "u32",
+     "size": 4,
+     "count": 14
+    },
+    {
+     "off": "0x3c",
+     "name": "u16_3c",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x3e",
+     "name": "u8_3e",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x3f",
+     "name": "name",
+     "type": "char",
+     "size": 1,
+     "count": 132
+    },
+    {
+     "off": "0xc3",
+     "name": "name2",
+     "type": "char",
+     "size": 1,
+     "count": 65
+    },
+    {
+     "off": "0x104",
+     "name": "rank",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x108",
+     "name": "kingdom_id",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x10a",
+     "name": "race_id",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x10c",
+     "name": "level",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x10e",
+     "name": "u16_10e",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x110",
+     "name": "hit_points",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x114",
+     "name": "hit_points_base",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x118",
+     "name": "regen_hp",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x11c",
+     "name": "regen_ep",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x120",
+     "name": "strength",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x122",
+     "name": "dexterity",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x124",
+     "name": "experience",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x128",
+     "name": "u16_128",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x12a",
+     "name": "u16_12a",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x12c",
+     "name": "u16_12c",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x12e",
+     "name": "idle_time",
+     "type": "u32",
+     "size": 4
+    },
+    {
+     "off": "0x13a",
+     "name": "morale",
+     "type": "u16",
+     "size": 2
+    },
+    {
+     "off": "0x13c",
+     "name": "u16_13c",
+     "type": "u16",
+     "size": 2
+    }
+   ],
+   "members": [],
+   "evidence": "Record::copy_462610 copies fields of a Unit (+0x3b id, +0x3d / +0xc1 names, +0x16f block, ...) into this record",
+   "confidence": "low",
+   "notes": "new class for the unlabelled 0x462610; fields from +0x104 are auto-named from the copy widths"
+  },
+  {
+   "class": "Control2D",
+   "size": null,
+   "base": null,
+   "vtable": "0x9da6f8",
+   "fields": [
+    {
+     "off": "0x0",
+     "name": "vtable",
+     "type": "ptr:vtable",
+     "size": 4
+    },
+    {
+     "off": "0x4",
+     "name": "u8_4",
+     "type": "u8",
+     "size": 1
+    },
+    {
+     "off": "0x5",
+     "name": "rect",
+     "type": "i16",
+     "size": 2,
+     "count": 4
+    },
+    {
+     "off": "0xd",
+     "name": "i16_d",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0xf",
+     "name": "i16_f",
+     "type": "i16",
+     "size": 2
+    },
+    {
+     "off": "0x11",
+     "name": "flags",
+     "type": "u8",
+     "size": 1,
+     "count": 4
+    }
+   ],
+   "members": [],
+   "evidence": "ctor 0x628a30 (ctl2d.cpp) sets vtable 0x9da6f8 and initialises +0x4..+0x14; dtor body 0x628ad0",
+   "confidence": "low",
+   "notes": "new class for unlabelled 0x628a30 / 0x628ad0; size probably 0x15"
+  },
+  {
+   "class": "WaypointList",
+   "size": null,
+   "base": null,
+   "vtable": null,
+   "fields": [
+    {
+     "off": "0xc2",
+     "name": "count",
+     "type": "i32",
+     "size": 4
+    },
+    {
+     "off": "0xc6",
+     "name": "positions",
+     "type": "f32",
+     "size": 4,
+     "count": 39
+    },
+    {
+     "off": "0x162",
+     "name": "values",
+     "type": "u32",
+     "size": 4,
+     "count": 13
+    }
+   ],
+   "members": [],
+   "evidence": "Selection::append 0x438420: count +0xc2 (max 13), 12-byte positions from +0xc6, values from +0x162",
+   "confidence": "low",
+   "notes": "new class; +0xc2 = sizeof(MapObject), so probably an order derived from MapObject (base not declared)"
+  }
+ ],
+ "functions": {
+  "0x5f65f0": "SysEn",
+  "0x5f6770": "SysEn",
+  "0x5f6c00": "SysEn",
+  "0x5ff4a0": "SysEn",
+  "0x6026a0": "SysEn",
+  "0x601380": "SysEn",
+  "0x601000": "SysEn",
+  "0x6010d0": "SysEn",
+  "0x6032d0": "SysEn",
+  "0x603380": "SysEn",
+  "0x602610": "SysEn",
+  "0x5ff060": "SysEn",
+  "0x5ff0e0": "SysEn",
+  "0x602540": "SysEn",
+  "0x5fa220": "SysEn",
+  "0x5febb0": "SysEn",
+  "0x5febe0": "SysEn",
+  "0x6014a0": "SysEn",
+  "0x602720": "SysEn",
+  "0x602a50": "SysEn",
+  "0x602ad0": "SysEn",
+  "0x602bd0": "SysEn",
+  "0x6034b0": "SysEn",
+  "0x5bfed0": "Fog",
+  "0x5ffe60": null,
+  "0x5fff90": null,
+  "0x601140": null,
+  "0x603ad0": null,
+  "0x5bec90": "Cam",
+  "0x61aa50": "VsCache",
+  "0x603780": "Screen",
+  "0x5baae0": "D3DFont",
+  "0x5bb2e0": "D3DFont",
+  "0x5bb900": "D3DFont",
+  "0x5bba70": "D3DFont",
+  "0x5bc2d0": "D3DFont",
+  "0x5bc9b0": "D3DFont",
+  "0x5bb7c0": "D3DFont",
+  "0x5baab0": "D3DFont",
+  "0x5bb8a0": "D3DFont",
+  "0x613650": "Camera",
+  "0x613730": "Camera",
+  "0x6179a0": "Camera",
+  "0x614110": "Camera",
+  "0x616a00": "Camera",
+  "0x616a60": "Camera",
+  "0x613e10": "Camera",
+  "0x613ba0": "Camera",
+  "0x613d80": "Camera",
+  "0x6140e0": "Camera",
+  "0x616b60": "Camera",
+  "0x617040": "Camera",
+  "0x617070": "Camera",
+  "0x42bcd0": "Player",
+  "0x43f000": "Player",
+  "0x438720": "Player",
+  "0x445990": "Player",
+  "0x451fe0": null,
+  "0x5c58a0": null,
+  "0x631850": null,
+  "0x65ade0": null,
+  "0x5d80a0": null,
+  "0x5c67f0": "Morph",
+  "0x60fa50": "Surface",
+  "0x60fa70": "Surface",
+  "0x68a170": "Weather",
+  "0x6b0d10": "Shot",
+  "0x707230": "Hud",
+  "0x616ef0": "Camera",
+  "0x616fb0": "Camera",
+  "0x616f80": "Camera",
+  "0x615340": "Camera",
+  "0x6152b0": "Camera",
+  "0x615190": "Camera",
+  "0x5c0980": "Colour",
+  "0x5e9090": "Colour",
+  "0x5e9300": "Colour",
+  "0x5e9430": "Colour",
+  "0x5e9490": "Colour",
+  "0x5e9550": "Colour",
+  "0x5e9640": "Colour",
+  "0x6101b0": "Colour",
+  "0x42cb20": "Player",
+  "0x42a8a0": "Player",
+  "0x42c830": "Player",
+  "0x42a770": "Player",
+  "0x42d1d0": "Player",
+  "0x43c500": "Player",
+  "0x42a6c0": "Player",
+  "0x42c7c0": "Player",
+  "0x42d450": "Player",
+  "0x429f70": "Beam",
+  "0x42a020": "Beam",
+  "0x42a1f0": "Beam",
+  "0x42c140": "MapCell",
+  "0x594ab0": "MouseZone",
+  "0x693580": "Collisions",
+  "0x68db80": "Collisions",
+  "0x68dbc0": "Collisions",
+  "0x68ee50": "Collisions",
+  "0x693170": "Collisions",
+  "0x425fc0": "CamZones",
+  "0x426450": "CamZones",
+  "0x4271f0": "CamZones",
+  "0x4279b0": "CamZones",
+  "0x427bb0": "CamZones",
+  "0x427d90": "CamZones",
+  "0x428850": "CamZones",
+  "0x425ef0": "CamZones",
+  "0x427cc0": "CamZones",
+  "0x427d10": "CamZones",
+  "0x428a20": "CamZones",
+  "0x428a70": "CamZones",
+  "0x428b00": "CamZones",
+  "0x562f40": "CameraFollow",
+  "0x5615c0": "CameraFollow",
+  "0x5634e0": "CameraFollow",
+  "0x5639f0": "CameraFollow",
+  "0x45a010": "Config",
+  "0x45a4d0": "Config",
+  "0x45a8b0": "Config",
+  "0x45a950": "Config",
+  "0x45b240": "Config",
+  "0x459e30": "Config",
+  "0x459f30": "Config",
+  "0x459f70": "Config",
+  "0x459fb0": "Config",
+  "0x45a420": "Config",
+  "0x45a900": "Config",
+  "0x45a9a0": "Config",
+  "0x45ad00": "Config",
+  "0x45ad60": "Config",
+  "0x45adc0": "Config",
+  "0x45ac40": "Config",
+  "0x45ac60": "Config",
+  "0x42d130": null,
+  "0x45be60": "ChatBox",
+  "0x45bc10": "ChatBox",
+  "0x45b930": "ChatBox",
+  "0x45bf30": "ChatBox",
+  "0x45b8b0": "ChatBox",
+  "0x45b9b0": "ChatBox",
+  "0x45b7c0": "ChatBox",
+  "0x45b790": "LineEdit",
+  "0x45b830": "LineEdit",
+  "0x45b880": "LineEdit",
+  "0x45bf80": "LineEdit",
+  "0x45bfb0": "LineEdit",
+  "0x459b70": "CloudLayers",
+  "0x459cd0": "CloudLayers",
+  "0x459c90": "CloudLayers",
+  "0x602660": "SysEn",
+  "0x6b5470": "Credits",
+  "0x6b5880": "Credits",
+  "0x6b58c0": "Credits",
+  "0x45fa30": "CriticalHud",
+  "0x462810": "CriticalHud",
+  "0x45f860": "CriticalHud",
+  "0x462970": "CriticalHud",
+  "0x45f7a0": "CriticalHud",
+  "0x45f7f0": "CriticalHud",
+  "0x462610": "UnitSnapshot",
+  "0x6293b0": "Overlay2D",
+  "0x62b6a0": null,
+  "0x628a30": "Control2D",
+  "0x628ad0": "Control2D",
+  "0x434080": "Player",
+  "0x49a8e0": "Place",
+  "0x4a8c20": "Place",
+  "0x4ab020": "Place",
+  "0x438420": "WaypointList",
+  "0x495290": "Calendar",
+  "0x68ce00": null,
+  "0x562420": null,
+  "0x427930": null,
+  "0x5bd1e0": null,
+  "0x5bd220": null,
+  "0x692f40": "Collisions",
+  "0x616dd0": "CamParams"
+ },
+ "notes": "Most labels of this group are fragments of a few objects and are kept as empty aliases (base = the real class, functions reassigned): SysEn <- Renderer/Device/Dot3/Items/Tex/Format/RenderLog (+ Display::reset_device, RenderTarget depth, all d3dsys setters); Camera (size 0x4ca) <- Lights/Viewport/Angles; CameraFollow (camera manager 0xa48cc0) <- CamCtl/CutMan/Camera::update_5634e0; CamZones (0x4c) <- CameraZone/CamMotion; Config (settings record 0xb5 + saved copy) <- Options data functions/D3DSetup; ChatBox <- TextRing (+ Menu::key_45bc10, 0x45b930, 0x45bf30); CloudLayers <- FollowPlanes/Pair::release; Collisions <- Placement; CriticalHud <- Buffers/CritCombo; Credits <- Images12; Colour <- Color; Font = Font2d (g01); Place <- Region. The camcmd labels Aim/ArcherIcon/Follow/UnitCmd/UnitRef/Face and Camera::move_42bcd0/terrain_clamp/step_height/update_follow are the Player object (g12): their accesses (+0xad, +0xb1, +0xb5, +0xb9 u16, +0xbb, +0xbf, +0xc0, +0xa2) must be covered by Player. Reassigned to other groups: 0x5bec90 -> Cam, 0x61aa50 -> VsCache, 0x603780 -> Screen, 0x5bfed0 -> Fog, 0x5c67f0 -> Morph, 0x60fa50/0x60fa70 -> Surface (the Camera render target), 0x68a170 -> Weather, 0x6b0d10 -> Shot, 0x707230 -> Hud, 0x495290 -> Calendar. Camera methods taken from other labels: 0x615340/0x6152b0 (Grid::to_local/to_cell), 0x616f80 (Dialog::reset_name), 0x616ef0/0x616fb0/0x615190. 0x692f40 (Map::pick, put on Region by g12) uses the Collisions layout (+0 list, +0xc/+0x10 zone entries, +0x580 count) and should be Collisions. Camera +0x386 is a 0x18-byte min/max box (Box::overlaps) while g06 declares Box as 0x30 bytes. Unassigned: 0x42a1c0 (0xf4-byte records from +0x5d), 0x42ced0, 0x42cf20 (Unit sub-objects +0x319/+0x325), 0x4384a0, 0x4958f0, 0x45b160 (timers at +0x58c..+0x5a8), 0x62b6a0, 0x42d130."
+}

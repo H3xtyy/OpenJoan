@@ -1,0 +1,6 @@
+start,end,name,confidence,evidence,target
+0x00417410,0x004179c0,animres_g0a,medium,AnimSet::acquire / anim slot helpers right after animres.cpp; .AM2/.AM3 strings 0x9cf5b4 directly follow animres .rdata (0x9cf598).,game/animres.cpp
+0x00417a30,0x00417a30,animres_g0b,medium,Archive dtor between animres-area helpers.,game/animres.cpp
+0x00417ad0,0x00417d20,animres_g0c,medium,AnimResMgr add_ref/stream after animres.cpp Obj417aa0::call_276.,game/animres.cpp
+0x00417db0,0x00417e00,animres_g0d,medium,AnimResMgr idle/release completing the AnimResMgr run.,game/animres.cpp
+0x00417ef0,0x00418da0,animscr_head_g0,medium,"PI init 0xa4f81c (base of animscr float inits) opens the animscr TU: bind_bip/Path parse, load_txt_ids (strings 0x9cf5f4..0x9cf608 just before animscr FILE 0x9cf610), nop_418d80 called by the adjacent AnimScr::for_each.",game/animscr.cpp

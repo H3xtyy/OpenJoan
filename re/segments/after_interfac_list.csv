@@ -1,0 +1,7 @@
+start,end,name,confidence,evidence
+0x006f87b0,0x006f93d0,list_tail,medium,List/combobox widget helpers (find / remove / page_count / gauge / grid hit / item) directly after list.cpp and called from combobox/list drawing; probably the tail of list.cpp.
+0x006f9440,0x00707df0,hud,medium,In-game HUD object: global panel ctor + Panel::init (RESUMEDW) + Hud::load/free/draw/track + portraits / exp / level banner / combo counters / arrows / objectives / objective log+blink; strings 0x9de728..0x9debc4 in order.
+0x00707e30,0x0070e150,mainmenu,medium,Main menu object: L_*/M_* button drawers / MainMenu::init+draw / update_cheats / Menu::update / load_images / Interface::reset_widgets (strings 0x9debd0..0x9decc8); closed by its PI + colour-global static-init block 0x70dce0..0x70e150.
+0x0070e190,0x0070e1d0,minires_head,medium,Struct480::zero + Hud::init_70e1d0 right after the main-menu static-init block and before minires.cpp Screen::release; head of minires.cpp (its .bss 0xa6a5bc follows the colour globals).
+0x0070e4b0,0x007141a0,minires_a,high,PanelView sdd + Minimap draw / MapButton / MiniMap::update / markers / MapOverlay::draw_unit between minires.cpp functions; belongs to minires.cpp.
+0x00716010,0x0071aba0,minires_b,high,Minimap markers / view / waypoints / reveal / gold drawing after minires.cpp PanelView::~PanelView and Panel::set_unit; rest of minires.cpp.

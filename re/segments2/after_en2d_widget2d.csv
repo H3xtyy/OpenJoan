@@ -1,0 +1,3 @@
+start,end,name,confidence,evidence,target
+0x00634e40,0x00635130,misc_634e40,low,Uncalled Cycler::step (qsort of shorts with its comparator / Ai::is_ready) between widget2d.cpp's PtrList helpers and the Billboard class; no strings or data tying it to either.
+0x006351a0,0x00636ff0,billboard,medium,"Billboard class in member order (ctor / scalar dtor / ~ObjA / create / Holder::release / place / setters / centre / text / blit / blit_more / normalise, vtable 0x9da81c) followed by the DlgRes::draw_image + Overlay::quad pair that builds quads exactly like Billboard::blit; ends before uti3d/blkarrb.cpp."

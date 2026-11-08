@@ -1,0 +1,9 @@
+start,end,name,confidence,evidence
+0x00638aa0,0x00639560,dlgtable,medium,".RES/EX.res resource table code (ExRes::write, ResObj vtable 9da870, NamedTable, ResTable::load), strings 9da858..9da880 right after the dlgres __FILE__ 9da83c; could also be the tail of dlgres.cpp."
+0x00639af0,0x0063e420,dlgtext,medium,"Dialogue/speech box system (Unit::set_model_prefix, Dialogue::draw/layout, DialogueList, Streams), strings 9da90c..9da940 monotone, ends at the first esstate2-registered function."
+0x0063e4f0,0x0063eb00,esstate2_p1,high,Script pool/reader/node classes: vtables 9da944/9da980 start the unbroken .rdata run that reaches the esstate2 __FILE__ string 9db4ec at 0x645de0; part of ww/uti3d/esstate2.cpp.
+0x0063ecd0,0x0063f140,esstate2_p2,high,Script tree helpers between the esstate2 functions 0x63eb80 and 0x63f190; same esstate2 data run; part of ww/uti3d/esstate2.cpp.
+0x0063f200,0x0063f530,esstate2_p3,high,Script dtors/destroy_tree (vtable 9da9c8) between esstate2 0x63f190 and 0x63f580; part of ww/uti3d/esstate2.cpp.
+0x0063f790,0x00642310,esstate2_p4,high,"Script statement parsers (""Expecting ..."" 9daa04..9dad00) and size() methods; same esstate2 run; part of ww/uti3d/esstate2.cpp."
+0x00642440,0x006434d0,esstate2_p5,high,Script node ctor/dtor pairs with vtables 9dad34..9db1c8 in order; part of ww/uti3d/esstate2.cpp.
+0x00643550,0x00645d40,esstate2_p6,high,Expression/call/if parsers (strings 9db204..9db4b0) running straight into ScriptLoad::parse 0x645de0 (esstate2 __FILE__ 9db4ec); part of ww/uti3d/esstate2.cpp.

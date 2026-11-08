@@ -1,0 +1,7 @@
+start,end,name,confidence,evidence
+0x00531b20,0x00531b20,upgrares_a,high,Table::find_name next to upgrares attribute_id: ww/upgrares.cpp.
+0x00531df0,0x00531df0,upgrares_b,high,NameTable::find between two upgrares.cpp functions: ww/upgrares.cpp.
+0x00531ed0,0x00531ed0,upgrares_c,high,"UpgradeRes::is_special (""UpgradeRes::operator[]"" 9d7d70 right after the upgrares string 9d7d40): ww/upgrares.cpp."
+0x00531f90,0x005437d0,ur_orders,medium,"Unit AI order dispatchers Order::run_1..15 and their state functions (strings 9d7d8c..9d7e1c), closed by header init group 0x5436b0 (pi a3cdb4)."
+0x00543800,0x00546050,us_tactics,medium,"AI states for orders 8-15 after the init group, with new constants 9d7e30/9d7e34; no init group of its own."
+0x005460e0,0x005460e0,uscrres_pre,low,"Struct9::zero ctor of a global, right before the uscrres.cpp functions; probably ww/uscrres.cpp."

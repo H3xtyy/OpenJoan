@@ -1,0 +1,106 @@
+# CI:
+# the game executable configures and builds from a clean clone with no game files, on Linux with GCC and Clang and
+# on Windows with MSVC x64. The Windows job is the only MSVC compile check the project has (the owner has no Windows
+# machine; MSVC-only errors are fixed from this log). The lints run on Linux: the asset lint skips cleanly without a
+# game folder, the hazard meter must not rise above re/x64_census/hazards_baseline.txt. ctest runs the tests that
+# build with the game executable; tests/data_image_reference_test reports SKIPPED without the reference joan.exe.
+# The Windows job uploads openjoan.exe with its DLLs and settings as an artifact (14 days; no game files). There is no
+# 32-bit job: the 32-bit builds were retired at the end of Phase 2 (only the local objcmp reference, tools/objcmp-x86.sh).
+# The docs lint and Doxygen are .github/workflows/docs.yml; the release archives .github/workflows/release.yml.
+name: build
+
+on:
+  push:
+    branches: [main]
+    paths-ignore: ['docs/**', '**.md', '.claude/**', 'prompts/**', 'LICENSE', '.gitignore']
+  pull_request:
+    paths-ignore: ['docs/**', '**.md', '.claude/**', 'prompts/**', 'LICENSE', '.gitignore']
+
+jobs:
+  linux:
+    name: Linux x86-64 (${{ matrix.compiler }})
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        compiler: [gcc, clang]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Packages
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ninja-build pkg-config python3-numpy libopenal-dev \
+            libavformat-dev libavcodec-dev libswscale-dev libswresample-dev libavutil-dev \
+            libx11-dev libxext-dev libxrandr-dev libxcursor-dev libxi-dev libxfixes-dev libxss-dev \
+            libxtst-dev libxkbcommon-dev libwayland-dev libegl-dev libgl-dev libasound2-dev libpulse-dev libudev-dev \
+            libdbus-1-dev libdecor-0-dev libdrm-dev libgbm-dev
+      - name: Configure
+        env:
+          CC: ${{ matrix.compiler == 'clang' && 'clang' || 'gcc' }}
+          CXX: ${{ matrix.compiler == 'clang' && 'clang++' || 'g++' }}
+        # Ubuntu 24.04 has no SDL3 package: FetchContent builds the pinned release.
+        run: cmake --preset linux-x64 -DJOAN_SDL3_SYSTEM=OFF
+      - name: Build
+        run: cmake --build --preset linux-x64 -j4
+      - name: Tests (data_image_reference_test is skipped without the game)
+        run: ctest --test-dir build/linux-x64 --output-on-failure
+      - name: Asset lint (skips without a game folder)
+        run: python3 -I tools/check_no_assets.py --verbose
+      - name: Hazard meter (no hazard column may rise)
+        # the hazard columns are raw_ptr, raw_u32, raw_any, vtbl4, ptr_u32, naked, asm, raw_add, narrow64 (1-4, 8-10,
+        # 12-13 of the change line); slot_call, orig_fwd, img_use, x87emu are usage counts that move with every retype
+        run: |
+          python3 tools/x64_hazards.py --baseline re/x64_census/hazards_baseline.txt | tee hazards.txt
+          if tail -1 hazards.txt | awk '{ if ($1 ~ /\+[1-9]/ || $2 ~ /\+[1-9]/ || $3 ~ /\+[1-9]/ || $4 ~ /\+[1-9]/ || $8 ~ /\+[1-9]/ || $9 ~ /\+[1-9]/ || $10 ~ /\+[1-9]/ || $12 ~ /\+[1-9]/ || $13 ~ /\+[1-9]/) exit 1 }'; then :; else echo "::error::a hazard column rose above the baseline"; exit 1; fi
+      - name: Hazard meter (the Phase 2 columns stay at zero)
+        run: |
+          python3 tools/x64_hazards.py | tee hazards.txt
+          grep '^TOTAL' hazards.txt | awk '{ if ($2 || $3 || $5 || $9 || $10 || $11) exit 1 }' ||
+            { echo "::error::raw_ptr, raw_u32, vtbl4, ptr_u32, naked and asm must be zero"; exit 1; }
+
+  windows:
+    name: Windows x86-64 (MSVC)
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: x64
+      - name: Ninja
+        shell: pwsh
+        run: if (-not (Get-Command ninja -ErrorAction SilentlyContinue)) { choco install ninja -y }
+      - name: Configure
+        # SDL3 and OpenAL Soft from FetchContent, FFmpeg from third_party/ffmpeg-win64 (cmake/ffmpeg.cmake).
+        run: cmake --preset windows-hook-x64
+      - name: Build
+        run: cmake --build --preset windows-hook-x64 -j4
+      - name: Tests (data_image_reference_test is skipped without the game)
+        run: ctest --test-dir build/windows-hook-x64 --output-on-failure
+      - name: Package (openjoan.exe, its DLLs, settings; no game files)
+        shell: pwsh
+        run: |
+          $exe = Get-ChildItem build/windows-hook-x64 -Recurse -Filter openjoan.exe | Select-Object -First 1
+          if (-not $exe) { throw "openjoan.exe not found" }
+          $dir = $exe.DirectoryName
+          New-Item -ItemType Directory -Force package | Out-Null
+          Copy-Item "$dir/openjoan.exe", "$dir/openjoan.ini" package/
+          if (Test-Path "$dir/openjoan.pdb") { Copy-Item "$dir/openjoan.pdb" package/ }
+          Copy-Item "$dir/*.dll" package/
+          Copy-Item LICENSE package/LICENSE.txt
+          @(
+            "OpenJoan windows x64, CI build of commit ${{ github.sha }} (debug flavour: writes openjoan.log, has the debug menu).",
+            "",
+            "Copy every file of this folder into a COPY of your Wars and Warriors: Joan of Arc folder (the 1.1 data files",
+            "of the Steam, GOG or 2004 retail edition) and start openjoan.exe there. openjoan.ini holds the settings.",
+            "No game file is included: OpenJoan needs your own copy of the game.",
+            "",
+            "Source and licence (GPL-3.0-or-later): https://github.com/${{ github.repository }}"
+          ) | Set-Content package/README.txt
+          Get-ChildItem package | Format-Table Name, Length
+      - name: Upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: openjoan-windows-x64-${{ github.sha }}
+          path: package/
+          retention-days: 14
+          if-no-files-found: error

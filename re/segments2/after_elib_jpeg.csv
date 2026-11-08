@@ -1,0 +1,4 @@
+start,end,name,confidence,evidence,target
+0x005a9040,0x005a93b0,jpeg_t1,high,Screenshot::write_jpeg (libjpeg compress via jpeg.cpp's error handlers) + its Bitmap::address helper right after elib/jpeg.cpp Jpeg::free.,elib/jpeg.cpp
+0x005a93f0,0x005aaaf0,tfanim,high,"Self-contained TFAnimation FLC/FLI decoder library (TFAnimation_NewFile/NewMem/DeleteAll, TFBuffers, TFFrame_Decode/Seek, fli_brun / color256 chunk decoders, error hook a67638); its error strings 0x9d9030..0x9d9384 ascend contiguously."
+0x005aab20,0x005aaee0,actor_head,medium,SceneObject ctor/init (Plane copy + bones) used by Actors::add_default / Actor::attach_model + AnimKey ctor directly before en3d/actor.cpp Actor::release.,en3d/actor.cpp

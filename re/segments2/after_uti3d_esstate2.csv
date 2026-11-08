@@ -1,0 +1,2 @@
+start,end,name,confidence,evidence,target
+0x00656dc0,0x00656dc0,esfuncs_g0,high,Seat::find_free (caller ScriptNode::exec_cmd) sandwiched between esfuncs.cpp script functions.,game/_unplaced/esfuncs.cpp

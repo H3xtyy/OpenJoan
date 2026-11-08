@@ -1,0 +1,3 @@
+start,end,name,confidence,evidence,target
+0x00476ee0,0x00476fa0,gamefila_head,high,Global GameFileList ctor/dtor (obj_stub_56a5e0/56a630) and SaveDir::init (SAVE\) directly before gamefila.cpp GameFileList::clear/SaveDir::browse,game/gamefila.cpp
+0x00477360,0x00477410,gamefila_mid,medium,Obj::dtor_477410 (used by SaveDir::browse) and Unit::play_effect sandwiched between gamefila.cpp functions,game/gamefila.cpp
