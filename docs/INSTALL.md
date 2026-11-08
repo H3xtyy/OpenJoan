@@ -17,6 +17,9 @@ files: you need your own copy of the game, and OpenJoan reads that copy's data f
    `map`, `unit` and `script` folders.
 2. Start `openjoan` (Linux) or `openjoan.exe` (Windows) from that folder.
 
+OpenJoan does not work with a `d3d8.dll` in the game folder, such as the community widescreen patch or another graphics
+wrapper. Remove it first.
+
 ## Settings
 
 `openjoan.ini`, next to the executable, holds the display and rendering options. Each key is explained in the file;
