@@ -41,7 +41,7 @@ jobs:
         # Ubuntu 24.04 has no SDL3 package: FetchContent builds the pinned release.
         run: cmake --preset linux-x64 -DJOAN_SDL3_SYSTEM=OFF
       - name: Build
-        run: cmake --build --preset linux-x64 -j4
+        run: cmake --build --preset linux-x64 -j4 -- -k 0
       - name: Tests (data_image_reference_test is skipped without the game)
         run: ctest --test-dir build/linux-x64 --output-on-failure
       - name: Asset lint (skips without a game folder)
@@ -73,7 +73,7 @@ jobs:
         # SDL3 and OpenAL Soft from FetchContent, FFmpeg from third_party/ffmpeg-win64 (cmake/ffmpeg.cmake).
         run: cmake --preset windows-hook-x64
       - name: Build
-        run: cmake --build --preset windows-hook-x64 -j4
+        run: cmake --build --preset windows-hook-x64 -j4 -- -k 0
       - name: Tests (data_image_reference_test is skipped without the game)
         run: ctest --test-dir build/windows-hook-x64 --output-on-failure
       - name: Package (openjoan.exe, its DLLs, settings; no game files)

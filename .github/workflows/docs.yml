@@ -19,6 +19,7 @@ jobs:
         run: python3 -I tools/docs_lint.py
       - name: Doxygen (no warnings)
         run: |
-          doxygen docs/Doxyfile 2> doxygen.log
+          mkdir -p build/doxygen
+          doxygen docs/Doxyfile 2> doxygen.log || { cat doxygen.log; exit 1; }
           cat doxygen.log
           test ! -s doxygen.log

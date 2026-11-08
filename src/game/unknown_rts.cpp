@@ -569,7 +569,14 @@ void text_add(Text* t, const char* s) { joan::orig::as_string(t)->append(joan::o
 void text_num(Text* t, i32 n) { joan::orig::as_string(t)->append(joan::orig::arg::i32(n)); }  // 0x005a15d0
 const char* c_str(Text* t) { return joan::orig::arg::as<const char*>(joan::orig::as_string(t)->c_str()); }  // 0x00417d90
 i32 rnd(i32 a, i32 b) { return joan::orig::arg::as<i32>(joan::orig::as_misc(kRandom)->random_range(joan::orig::arg::i32(a), joan::orig::arg::i32(b))); }   // 0x00590690
+#if defined(__GNUC__) && !defined(__clang__)
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wstringop-truncation"  // the original's bounded copy, truncating by design
+#endif
 char* strncpy_(char* d, const char* s, u32 n) { return std::strncpy(static_cast<char*>(joan::orig::arg::mptr(d)), joan::orig::arg::str(s), joan::orig::arg::u32(n)); }
+#if defined(__GNUC__) && !defined(__clang__)
+#pragma GCC diagnostic pop
+#endif
 bool ne_ordered(double a, double b) { return a < b || a > b; }  // fcomp + test ah,0x40 je
 u32 flag3() { return (global<u16>(d::g_key_modifiers) & 3u) == 0 ? 1u : 0u; }  // neg / sbb / inc
 

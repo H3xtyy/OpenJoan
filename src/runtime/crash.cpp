@@ -31,6 +31,7 @@
 #include <cstdio>
 #include <string>
 
+#include "../compiler.hpp"  // JOAN_RETURN_ADDRESS
 #include "code_table.hpp"
 #include "../registry.hpp"
 #include "../platform/memory.hpp"
