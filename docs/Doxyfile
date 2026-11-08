@@ -10,7 +10,6 @@ FILE_PATTERNS          = *.hpp
 RECURSIVE              = YES
 EXCLUDE_PATTERNS       = */gen/*
 EXTENSION_MAPPING      = inc=C++
-SEARCH_INCLUDES        = NO
 EXTRACT_ALL            = NO
 WARN_IF_UNDOCUMENTED   = YES
 WARN_IF_DOC_ERROR      = YES

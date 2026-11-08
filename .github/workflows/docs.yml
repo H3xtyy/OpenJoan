@@ -21,5 +21,7 @@ jobs:
         run: |
           mkdir -p build/doxygen
           doxygen docs/Doxyfile 2> doxygen.log || { cat doxygen.log; exit 1; }
-          cat doxygen.log
-          test ! -s doxygen.log
+          # the generated gen/*.inc headers are left out of Doxygen on purpose (docs/Doxyfile); older versions warn about that
+          grep -v 'include file gen/.* not found' doxygen.log > warnings.log || true
+          cat warnings.log
+          test ! -s warnings.log
