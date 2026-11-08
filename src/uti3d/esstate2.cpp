@@ -26,6 +26,10 @@
 
 namespace jo = joan::orig;
 
+#if defined(__GNUC__) && !defined(__clang__)
+#pragma GCC diagnostic ignored "-Warray-bounds"  // GCC 13: strcpy into a block whose size it cannot see
+#endif
+
 namespace {
 // ScriptNode::value holds a pointer or, for value_type 1 / 2, an i32 / float in its first 4 bytes (0x0063f140 hands
 // out its address). x64: that value stays in the low 4 bytes of the 8-byte slot.

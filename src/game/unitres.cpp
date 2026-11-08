@@ -23,6 +23,10 @@
 namespace jo = joan::orig;
 
 // Helpers shared by the blocks below (identical in their batch modules).
+#if defined(__GNUC__) && !defined(__clang__)
+#pragma GCC diagnostic ignored "-Wvolatile"  // GCC 13: the original's volatile counter in a for header
+#endif
+
 namespace {
 
 using joan::hook::global;

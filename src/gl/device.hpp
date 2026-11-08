@@ -74,7 +74,7 @@ class ComObject : public Interface {
     std::atomic<ULONG> refs_{1};  ///< Reference count, starts at 1 (the creator's reference).
 };
 
-/// Per-object storage for IDirect3D*8::SetPrivateData, keyed by GUID bytes.
+/// Per-object storage for the Direct3D 8 SetPrivateData calls, keyed by GUID bytes.
 struct PrivateData {
     std::map<std::string, std::vector<char>> entries;  ///< The stored blobs, keyed by the bytes of the GUID.
     /// The map key of a GUID: its raw bytes.
