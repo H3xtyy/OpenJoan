@@ -7,7 +7,7 @@ files: you need your own copy of the game, and OpenJoan reads that copy's data f
 
 - The game's **data files**, from an edition you own. OpenJoan never reads the original `joan.exe`.
 - A graphics driver with **OpenGL 4.6**.
-- **Linux x86-64:** the FFmpeg libraries named in the archive's `REQUIREMENTS.txt`, from your distribution. SDL3 and
+- **Linux x86-64:** FFmpeg, SDL3 and
   OpenAL Soft are in the archive.
 - **Windows 10 or later, x86-64:** everything is in the archive.
 

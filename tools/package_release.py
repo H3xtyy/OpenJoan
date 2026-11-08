@@ -9,8 +9,9 @@ the install page. Nothing else from the build directory can reach an archive, an
 
 On Windows the DLLs of WINDOWS_DLLS are shipped (SDL3, OpenAL Soft, FFmpeg); an llvm-mingw build also needs the C++
 runtime DLLs of its toolchain. On Linux SDL3 and OpenAL Soft are
-shipped next to the executable (RUNPATH $ORIGIN); FFmpeg stays the system's, because its libraries pull in the
-distribution's codec packages, so the archive's REQUIREMENTS.txt names the FFmpeg libraries this build was linked with.
+shipped next to the executable (RUNPATH $ORIGIN), and FFmpeg too when the build used a minimal one of its own
+(JOAN_FFMPEG_ROOT, tools/build_ffmpeg_linux.sh); a build against the system's FFmpeg instead lists the libraries it was
+linked with in the archive's REQUIREMENTS.txt.
 """
 import argparse
 import glob
@@ -25,6 +26,7 @@ import zipfile
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REPOSITORY = 'https://github.com/H3xtyy/OpenJoan'
+FFMPEG_SOURCE = 'https://ffmpeg.org/releases/ffmpeg-7.1.1.tar.xz'
 BUNDLED_LINUX = ('libSDL3.so', 'libopenal.so')
 WINDOWS_DLLS = re.compile(r'^(SDL3|soft_oal|OpenAL32|(avformat|avcodec|avutil|swscale|swresample)-\d+)\.dll$', re.I)
 MINGW_RUNTIME = ('libc++.dll', 'libunwind.dll')
@@ -95,11 +97,16 @@ def main():
         else:
             ship, ffmpeg = linux_libraries(exe)
             files += ship
+            own_ffmpeg = cache_value(a.build, 'JOAN_FFMPEG_ROOT')
+            if own_ffmpeg:
+                files += [(os.path.join(own_ffmpeg, 'lib', so), so) for so in ffmpeg]
+                files.append((os.path.join(ROOT, 'third_party', 'ffmpeg-win64', 'COPYING.LGPLv2.1'), 'FFMPEG-COPYING.LGPLv2.1.txt'))
+                ffmpeg = []
             with open(os.path.join(d, 'REQUIREMENTS.txt'), 'w') as f:
-                f.write('OpenGL 4.6 and these FFmpeg libraries from your distribution:\n')
+                f.write('OpenGL 4.6%s\n' % (' and these FFmpeg libraries from your distribution:' if ffmpeg else ''))
                 f.writelines('  %s\n' % so for so in ffmpeg)
         with open(os.path.join(d, 'SOURCE.txt'), 'w') as f:
-            f.write('OpenJoan %s\nSource code: %s\n' % (a.version, REPOSITORY))
+            f.write('OpenJoan %s\nSource code: %s\nFFmpeg 7.1.1 source code: %s\n' % (a.version, REPOSITORY, FFMPEG_SOURCE))
         for path, base in files:
             shutil.copyfile(path, os.path.join(d, base))
             shutil.copymode(path, os.path.join(d, base))

@@ -29,9 +29,9 @@ python3 tools/package_release.py build/mingw-x64-release v0.1.0
 
 The archives appear in `dist/` (git-ignored).
 
-A Linux archive runs only with the FFmpeg major versions it was linked against, listed in its `REQUIREMENTS.txt`. An
-archive built on a rolling distribution therefore needs that distribution's FFmpeg; the Ubuntu 24.04 CI build is the
-one meant for general use.
+The CI release builds a minimal FFmpeg (`tools/build_ffmpeg_linux.sh`) and ships it in the Linux archive, so the archive
+does not depend on the distribution's FFmpeg. An archive built against the system's FFmpeg instead lists the libraries it
+needs in its `REQUIREMENTS.txt`.
 
 ## Before the repository goes public
 
