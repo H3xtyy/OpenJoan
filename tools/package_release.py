@@ -24,6 +24,7 @@ import tempfile
 import zipfile
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+REPOSITORY = 'https://github.com/H3xtyy/OpenJoan'
 BUNDLED_LINUX = ('libSDL3.so', 'libopenal.so')
 WINDOWS_DLLS = re.compile(r'^(SDL3|soft_oal|OpenAL32|(avformat|avcodec|avutil|swscale|swresample)-\d+)\.dll$', re.I)
 MINGW_RUNTIME = ('libc++.dll', 'libunwind.dll')
@@ -97,6 +98,8 @@ def main():
             with open(os.path.join(d, 'REQUIREMENTS.txt'), 'w') as f:
                 f.write('OpenGL 4.6 and these FFmpeg libraries from your distribution:\n')
                 f.writelines('  %s\n' % so for so in ffmpeg)
+        with open(os.path.join(d, 'SOURCE.txt'), 'w') as f:
+            f.write('OpenJoan %s\nSource code: %s\n' % (a.version, REPOSITORY))
         for path, base in files:
             shutil.copyfile(path, os.path.join(d, base))
             shutil.copymode(path, os.path.join(d, base))
