@@ -18,7 +18,7 @@ jobs:
       - name: Packages
         run: |
           sudo apt-get update
-          sudo apt-get install -y ninja-build pkg-config libopenal-dev \
+          sudo apt-get install -y ninja-build pkg-config \
             libx11-dev libxext-dev libxrandr-dev libxcursor-dev libxi-dev libxfixes-dev libxss-dev \
             libxtst-dev libxkbcommon-dev libwayland-dev libegl-dev libgl-dev libasound2-dev libpulse-dev libudev-dev \
             libdbus-1-dev libdecor-0-dev libdrm-dev libgbm-dev
@@ -26,7 +26,7 @@ jobs:
         run: |
           git clone --depth 1 --branch n7.1.1 https://github.com/FFmpeg/FFmpeg.git ffmpeg-src
           tools/build_ffmpeg_linux.sh ffmpeg-src "$PWD/ffmpeg-linux" 4
-      - run: cmake --preset linux-x64-release -DJOAN_SDL3_SYSTEM=OFF -DJOAN_FFMPEG_ROOT="$PWD/ffmpeg-linux"
+      - run: cmake --preset linux-x64-release -DJOAN_SDL3_SYSTEM=OFF -DJOAN_OPENAL_SYSTEM=OFF -DJOAN_FFMPEG_ROOT="$PWD/ffmpeg-linux"
       - run: cmake --build --preset linux-x64-release -j4
       - run: python3 tools/package_release.py build/linux-x64-release ${{ github.ref_name }}
       - uses: actions/upload-artifact@v4

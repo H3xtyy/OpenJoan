@@ -111,6 +111,10 @@ def main():
             shutil.copyfile(path, os.path.join(d, base))
             shutil.copymode(path, os.path.join(d, base))
         strip_executable(os.path.join(d, os.path.basename(exe)), windows)
+        if not windows:
+            for _, base in files:
+                if '.so.' in base:
+                    strip_executable(os.path.join(d, base), False)
         os.makedirs(a.out, exist_ok=True)
         if windows:
             out = os.path.join(a.out, name + '.zip')
