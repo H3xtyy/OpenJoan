@@ -80,6 +80,7 @@ def main():
         exe = os.path.join(src, 'openjoan.exe' if windows else 'openjoan')
         files = [(exe, os.path.basename(exe)), (os.path.join(src, 'openjoan.ini'), 'openjoan.ini'),
                  (os.path.join(ROOT, 'LICENSE'), 'LICENSE.txt'), (os.path.join(ROOT, 'docs', 'INSTALL.md'), 'INSTALL.md')]
+        files.append((os.path.join(ROOT, 'third_party', 'licenses', 'OpenAL-Soft-COPYING.txt'), 'OPENAL-COPYING.txt'))
         if windows:
             dlls = [p for p in sorted(glob.glob(os.path.join(src, '*.dll'))) if WINDOWS_DLLS.match(os.path.basename(p))]
             files += [(p, os.path.basename(p)) for p in dlls]
@@ -88,6 +89,7 @@ def main():
                     sys.exit('set JOAN_MINGW: a mingw build ships its C++ runtime DLLs')
                 bin_dir = os.path.join(os.environ['JOAN_MINGW'], 'x86_64-w64-mingw32', 'bin')
                 files += [(os.path.join(bin_dir, n), n) for n in MINGW_RUNTIME]
+                files.append((os.path.join(ROOT, 'third_party', 'licenses', 'LLVM-LICENSE.txt'), 'LLVM-LICENSE.txt'))
             files.append((os.path.join(ROOT, 'third_party', 'ffmpeg-win64', 'COPYING.LGPLv2.1'), 'FFMPEG-COPYING.LGPLv2.1.txt'))
         else:
             ship, ffmpeg = linux_libraries(exe)
