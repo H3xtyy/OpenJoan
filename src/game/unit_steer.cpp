@@ -30,6 +30,7 @@ using i32 = std::int32_t;
 using u32 = std::uint32_t;
 
 constexpr u32 kSampleMs = 150;        // a unit's speed is measured over this much game time
+constexpr u32 kHeadwayMs = 600;       // a unit with somewhere to go that has not moved for this long counts as standing
 constexpr double kMovedUnits = 4.0;   // moving at all: at least this far per sample
 constexpr double kNearby = 400.0;     // units further than this are not looked at
 constexpr u32 kKeepSideMs = 1500;     // a side chosen is kept this long after the unit in the way was last seen
@@ -50,6 +51,7 @@ struct Sample {
     u32 time = 0;
     bool moving = false;
     float dir_x = 0.0f, dir_y = 0.0f;
+    u32 last_moved = 0;   // when it was last seen to move
 };
 
 struct Known {
@@ -141,12 +143,13 @@ void refresh_units(u32 now) {
 
         Sample& sample = g_samples[static_cast<std::size_t>(i)];
         if (sample.record != record) {
-            sample = Sample{record, position[0], position[1], now, false, 0.0f, 0.0f};
+            sample = Sample{record, position[0], position[1], now, false, 0.0f, 0.0f, now};
         } else if (now - sample.time >= kSampleMs) {
             const double dx = static_cast<double>(position[0] - sample.x), dy = static_cast<double>(position[1] - sample.y);
             const double moved = std::sqrt(dx * dx + dy * dy);
             sample.moving = moved >= kMovedUnits;
             if (sample.moving) {
+                sample.last_moved = now;
                 sample.dir_x = static_cast<float>(dx / moved);
                 sample.dir_y = static_cast<float>(dy / moved);
             }
@@ -163,6 +166,22 @@ void refresh_units(u32 now) {
         known.neighbour.radius = body_radius(type_of(record));
         known.neighbour.moving = sample.moving;
         known.neighbour.heading = {static_cast<double>(sample.dir_x), static_cast<double>(sample.dir_y)};
+        // Where it means to go counts as well as what it did: speed is only known after a moment, and a whole formation
+        // setting off would otherwise look like a crowd of standing units. One that has made no headway for a while is standing.
+        const float* intent = nullptr;
+        if (unit->scripted_move != 0) {
+            intent = jo::view<float[3]>(unit->move_target);
+        } else if (unit->path_index < joan::orig::arg::as<i32>(joan::orig::as_list(&unit->path)->count_66e8a0())) {  // 0x0066e8a0
+            intent = joan::orig::arg::as<const float*>(joan::orig::as_list(&unit->path)->from_end(joan::orig::arg::i32(unit->path_index + 1)));  // 0x0066e8d0
+        }
+        if (intent != nullptr && now - sample.last_moved < kHeadwayMs) {
+            const double dx = static_cast<double>(intent[0] - position[0]), dy = static_cast<double>(intent[1] - position[1]);
+            const double to_go = std::sqrt(dx * dx + dy * dy);
+            if (to_go > 0.0) {
+                known.neighbour.moving = true;
+                known.neighbour.heading = {dx / to_go, dy / to_go};
+            }
+        }
         known.neighbour.id = unit->id;
         g_units.push_back(known);
     }
