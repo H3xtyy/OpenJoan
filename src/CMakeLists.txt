@@ -698,4 +698,10 @@ if(JOAN_BUILD_DATA_TEST)
     endif()
     add_test(NAME data_image_reference_test COMMAND data_image_reference_test)
     set_tests_properties(data_image_reference_test PROPERTIES SKIP_RETURN_CODE 77)
+
+    # The new pathfinding's search on small hand-built meshes (docs/PATHFINDING.md).
+    find_package(Threads REQUIRED)
+    add_executable(navsearch_test ${CMAKE_SOURCE_DIR}/tests/test_navsearch.cpp enpath/navsearch.cpp)
+    target_link_libraries(navsearch_test PRIVATE joan_warnings Threads::Threads)
+    add_test(NAME navsearch_test COMMAND navsearch_test)
 endif()

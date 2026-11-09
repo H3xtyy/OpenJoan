@@ -7,6 +7,7 @@ One line per page.
 - [ARCHITECTURE.md](ARCHITECTURE.md): the runtime model (code table, data image, layouts, libraries, platform, renderer), the source tree, start-up, verification .
 - [RUNTIME.md](RUNTIME.md): how the executable runs the game, start-up, the data image, every ini key, logs and the debug tools.
 - [X64_STATE_CHECK.md](X64_STATE_CHECK.md): how an x64 replay of an x86 recording is checked (dumped state, not the recorded hashes).
+- [PATHFINDING.md](PATHFINDING.md): the new route search and its plan.
 - [X64.md](X64.md): the 64-bit design (widths, data image, saves, hazard meter, replay across widths).
 - [CONTRIBUTING.md](CONTRIBUTING.md): workflow, commits, verification tools, review checklist.
 - [INSTALL.md](INSTALL.md): installing a release into a copy of the game.
