@@ -28,8 +28,7 @@ constexpr double kNarrowUnit = 200.0;           // units at least this wide keep
 constexpr std::uint32_t kBudget = 60000;        // search nodes: an unreachable goal costs a level's worth of them
 constexpr double kLaneScale = 2.5;              // the game's formation numbers to world units (0x0066ece0)
 constexpr double kSamePoint = 0.5;              // route points closer than this are one point (0x0066ece0)
-constexpr double kWideGap = 400.0;              // a unit has no need of its lane in a gap at least this wide
-constexpr double kMostCornerSpread = 200.0;     // how far from a corner the units going round it spread
+constexpr double kMostLaneShift = 48.0;         // how far from the route a unit's place in its formation may take it
 constexpr double kStartCell = 16.0;             // a search starts from the middle of a square of this size around the unit
 constexpr std::size_t kMaxRemembered = 8192;    // routes remembered before the memory is cleared
 
@@ -145,27 +144,15 @@ void refresh_blocked(GameMesh& game) {
     }
 }
 
-// Where the unit crosses: its own line, kept inside the usable part of the edge, and only where it is tight: at a corner or in a
-// narrow gap. Elsewhere the straight line stands, since a formation's shape comes from each unit's own goal, and shifting points
-// along edges that face every way would make the route zigzag.
+// Where the unit crosses: a little to the side of the route, by its place in the formation, and always inside the usable part of the
+// edge. Only a little: a formation goes through a gate as a column, and an offset the size of the formation would send its flanks
+// to the far ends of the short edges beside the gate, which are at the wall.
 Point in_lane(const Crossing& crossing, double lane, double width) {
     const double dx = crossing.right.x - crossing.left.x, dy = crossing.right.y - crossing.left.y;
     const double usable = std::sqrt(dx * dx + dy * dy);
     if (usable == 0.0 || width == 0.0) return crossing.at;
-    const double along = ((crossing.at.x - crossing.left.x) * dx + (crossing.at.y - crossing.left.y) * dy) / (usable * usable);
-    if (along > 0.0 && along < 1.0 && usable >= kWideGap) return crossing.at;
-    const double place = std::clamp(-lane / width + 0.5, 0.0, 1.0);
-    double s = 0.0;
-    if (usable < width) {
-        s = place;  // the formation squeezes into the gap
-    } else if (along <= 0.0) {
-        s = place * std::min(width, kMostCornerSpread) / usable;  // around the corner at the left end
-    } else if (along >= 1.0) {
-        s = 1.0 - (1.0 - place) * std::min(width, kMostCornerSpread) / usable;  // around the corner at the right end
-    } else {
-        s = along + std::clamp(-lane / width, -0.5, 0.5) * width / usable;
-    }
-    s = std::clamp(s, 0.0, 1.0);
+    const double along = ((crossing.at.x - crossing.left.x) * dx + (crossing.at.y - crossing.left.y) * dy) / usable;
+    const double s = std::clamp((along + std::clamp(-lane, -kMostLaneShift, kMostLaneShift)) / usable, 0.0, 1.0);
     return {crossing.left.x + dx * s, crossing.left.y + dy * s};
 }
 

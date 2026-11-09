@@ -22,10 +22,10 @@ through. Units of at least 200 world units keep out of polygons the loader marke
 
 **The route the game receives.** `src/enpath/navgame.cpp` builds a `NavMesh` from a `PathSpace` on the first request and
 reads the current blocked flags on every request. The route it writes has one point per polygon edge crossed, so each leg
-stays inside one convex polygon and the height of every point comes from the edge it lies on. At a corner or in a gap
-narrower than 400 units, the unit's place in its formation moves the point along its edge, within the usable part, which
-spreads the units of one order across the gap. Elsewhere the point stays on the straight line: edges face every way, so
-moving each one would make the route zigzag, and a formation's shape already comes from each unit's own goal. When the goal cannot be reached, the route ends near the point of the visited polygons closest to it, the unit's radius
+stays inside one convex polygon and the height of every point comes from the edge it lies on. The unit's place in its
+formation moves the point along its edge by at most 48 units, within the usable part, so that the units of one order do not
+all take exactly one line. It stays small: a formation goes through a gate as a column, its shape comes from each unit's own
+goal, and larger offsets made routes zigzag and sent the flanks to the walls beside a gate. When the goal cannot be reached, the route ends near the point of the visited polygons closest to it, the unit's radius
 back from the edge, so that nobody presses against a wall or a closed gate.
 
 The polygons of the shipped levels are small enough for this to be cheap. Over 45,600 random requests on all 38 meshes (up
