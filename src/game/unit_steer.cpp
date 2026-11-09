@@ -216,12 +216,12 @@ void aim(void* unit_record, float x, float y, float& aim_x, float& aim_y) {
 
 // What Unit::move_to (0x00505dd0) will ask for a unit on foot whose goal is in its own cell: the goal rounded to the coarse
 // grid of the world's path space, then the search on the cell's mesh (replan, 0x00506240).
-void prepare_route(void* unit_record, float x, float y, float z) {
+void prepare_route(void* unit_record, float x, float y) {
     jo::Unit* const unit = jo::as_unit(unit_record);
     if (unit->cell == nullptr || unit->actor == nullptr) return;
     if (jo::as_unit_type(type_of(unit_record))->unit_class == 8 || joan::orig::arg::as<i32>(joan::orig::as_unit(unit_record)->mounted()) != 0) return;  // 0x00430190
     void* const cell = unit->cell;
-    const float goal[3] = {x, y, z};
+    const float goal[3] = {x, y, 0.0f};  // as replan tests the coarse route's points, which have no height
     if (joan::orig::arg::as<std::uint8_t>(joan::orig::as_aabb(jo::as_cell(cell)->box)->contains(joan::orig::arg::ptr(goal))) == 0 || jo::view<std::int8_t>(jo::as_cell(cell)->loaded) == 0) return;  // 0x0060d5f0
     void* const space = joan::orig::arg::as<void*>(joan::orig::as_world_cell(cell)->grid(joan::orig::arg::i16(static_cast<i32>(unit->layer))));  // 0x005600c0
     if (space == nullptr || jo::as_path_space(space)->zones == nullptr) return;

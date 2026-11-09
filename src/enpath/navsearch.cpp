@@ -105,8 +105,6 @@ std::int32_t NavMesh::locate(Point p) const {
     return -1;
 }
 
-bool NavMesh::contains(std::int32_t poly, Point p) const { return joan::nav::contains(*this, polys[static_cast<std::size_t>(poly)], p); }
-
 // Worst terrain first, then length; on a tie the earlier push, so the order never depends on the heap's layout.
 bool NavSearch::later(const Open& a, const Open& b) {
     if (a.worst != b.worst) return a.worst > b.worst;
@@ -353,7 +351,7 @@ Route NavSearch::find(const NavMesh& mesh, const Request& request) {
         if (!portal_of(mesh, vertex_, corner(via, edge), corner(via, edge + 1), request.radius, portal)) continue;
         const double s = hit_fraction(node.root, towards, portal.right, portal.left, -1.0);
         const Point at = s >= 0.0 && s <= 1.0 ? portal.right + (portal.left - portal.right) * s : closest_on_segment(portal.right, portal.left, towards);
-        route.crossings.push_back({at, portal.left, portal.right, corner(via, edge + 1), corner(via, edge), node.poly});
+        route.crossings.push_back({at, portal.left, portal.right, corner(via, edge + 1), corner(via, edge)});
     }
     if (extra_bend) add_point(last_leg);
     add_point(end);

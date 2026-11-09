@@ -168,7 +168,7 @@ struct H {
         joan::orig::as_unit_task(&jo::self<jo::Unit>(this)->task)->set(joan::orig::arg::u32(slot->kind), static_cast<std::uint8_t>(joan::orig::arg::u32(slot->priority)), joan::orig::arg::u32(jo::view<std::int32_t>(slot->target)), joan::orig::arg::u32(jo::view<std::int32_t>(slot->arg_9)), joan::orig::arg::u32(jo::view<std::int32_t>(slot->arg_d)), joan::orig::arg::u32(jo::view<std::int32_t>(slot->expire_time)));  // 0x004e4520
         joan::orig::as_unit_task(&jo::self<jo::Unit>(this)->task_next)->set(0u, static_cast<std::uint8_t>(joan::orig::arg::u32(0)), 0u, 0u, 0u, 0u);
         if (jo::self<jo::TaskSlot>(rec)->kind == 0xc || jo::self<jo::TaskSlot>(rec)->kind == 0x13) {  // a move or attack-move order: docs/PATHFINDING.md
-            joan::unit_steer::prepare_route(this, static_cast<float>(static_cast<std::int32_t>(jo::self<jo::TaskSlot>(rec)->target)), static_cast<float>(static_cast<std::int32_t>(jo::self<jo::TaskSlot>(rec)->arg_9)), static_cast<float>(static_cast<std::int32_t>(jo::self<jo::TaskSlot>(rec)->arg_d)));
+            joan::unit_steer::prepare_route(this, static_cast<float>(static_cast<std::int32_t>(jo::self<jo::TaskSlot>(rec)->target)), static_cast<float>(static_cast<std::int32_t>(jo::self<jo::TaskSlot>(rec)->arg_9)));
         }
         if (jo::self<jo::TaskSlot>(rec)->kind == 0xf) {
             jo::self<jo::Unit>(this)->task_kind = 1;

@@ -83,7 +83,6 @@ int main() {
         const Route tight = find(m, {5, 15}, {45, 15}, 6.0);
         check(tight.outcome == Outcome::reached, "a gap narrower than the unit stays open");
         check(!tight.crossings.empty(), "the route lists its crossings");
-        check(m.contains(tight.crossings.front().into_poly, tight.crossings.front().at), "a crossing names the polygon it enters");
         bool centred = true;
         for (const Crossing& c : tight.crossings) centred = centred && std::fabs(c.at.y - 15.0) < 0.5;
         check(centred, "a narrow gap is crossed at its middle");

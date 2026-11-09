@@ -41,15 +41,17 @@ with no clock or thread timing in it. Workers can therefore compute routes ahead
   a few dozen orders in the whole session; 95% of them are answered from memory). A search therefore starts from the middle of a 16-unit square around the unit,
   which makes those requests the same search, and a finished route is remembered until a polygon opens or closes. The piece
   of walk from the unit to its first edge stays inside the unit's polygon;
-- arriving in a new square starts, on workers, the searches for the next squares along the route, so that they are normally
-  finished by the time the unit gets there;
 - a move or attack-move order (`Unit::set_task` 0x00527fb0) starts its route on a worker, for units on foot whose goal is in
   their own block;
-- a request finds its remembered route, waits for one in progress, or computes it itself. The answer is identical in all
+- a request finds its remembered route, takes or waits for one from a worker, or computes it itself. The answer is identical in all
   cases; only the time differs. The debug build's log counts the three ways: `Nav::route_repeated`,
   `Nav::route_ready_from_worker` and `Nav::route_searched_on_request`.
 
 Floating point is limited to `+ - * /` and `sqrt` on doubles, so results are the same on every platform.
+
+Workers are used only for routes known in advance. Starting the squares ahead of a walking unit was tried and removed: in
+play only 27 of 2,787 new searches used one, because most new searches come from followers whose goal moves with their
+leader and cannot be known beforehand. Those few dozen searches a second stay on the main thread, where they are cheap.
 
 **Other units.** A route knows only the level, so a unit standing on it is dealt with while walking
 (`src/enpath/navsteer.{hpp,cpp}`, `src/game/unit_steer.{hpp,cpp}`). While following a route, a unit heads for a point beside
