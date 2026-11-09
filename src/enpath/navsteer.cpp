@@ -43,12 +43,14 @@ Dodge plan_dodge(Point me, double radius, Point waypoint, const Neighbour* neigh
     const std::int32_t side = preferred_side != 0 ? preferred_side : (nearest_lateral > 0.0 ? -1 : 1);
     const std::int32_t chosen = preferred_side == 0 && std::fabs(nearest_lateral) < 1.0 ? -1 : side;
     const Point left{-dir_y, dir_x};
-    const auto beside = [&](std::int32_t s) {
-        return Point{blocker->at.x + left.x * static_cast<double>(s) * nearest_clear, blocker->at.y + left.y * static_cast<double>(s) * nearest_clear};
+    const auto beside = [&](std::int32_t s, double distance) {
+        return Point{blocker->at.x + left.x * static_cast<double>(s) * distance, blocker->at.y + left.y * static_cast<double>(s) * distance};
     };
     dodge.needed = true;
-    dodge.first = beside(chosen);
-    dodge.second = beside(-chosen);
+    dodge.first = beside(chosen, nearest_clear);
+    dodge.second = beside(-chosen, nearest_clear);
+    dodge.first_room = beside(chosen, nearest_clear + radius);
+    dodge.second_room = beside(-chosen, nearest_clear + radius);
     dodge.first_side = chosen;
     dodge.blocker = blocker->id;
     return dodge;

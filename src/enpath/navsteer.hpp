@@ -23,6 +23,7 @@ struct Neighbour {
 struct Dodge {
     bool needed = false;     ///< something is in the way
     Point first, second;     ///< where to aim to pass it: the preferred side, then the other
+    Point first_room, second_room;  ///< the far edge of the walking unit's body at those points: must be on the level too
     std::int32_t first_side = 0;  ///< the side of `first`: +1 left of the direction of travel, -1 right
     std::int16_t blocker = 0;     ///< the id of the unit in the way
 };

@@ -4,6 +4,7 @@
 // without a side chosen and without a known speed, which settles within a moment.
 #include "unit_steer.hpp"
 
+#include <algorithm>
 #include <cmath>
 #include <cstdint>
 #include <unordered_map>
@@ -33,6 +34,8 @@ constexpr double kMovedUnits = 4.0;   // moving at all: at least this far per sa
 constexpr double kNearby = 400.0;     // units further than this are not looked at
 constexpr u32 kKeepSideMs = 1500;     // a side chosen is kept this long after the unit in the way was last seen
 constexpr u32 kRecheckMs = 250;       // how often a chosen side is checked against the level
+constexpr u32 kPassMs = 1200;         // how long a unit in a jam may walk through friendly units, at least
+constexpr u32 kStillOverlapMs = 250;  // and this much longer each time it is still inside one
 
 struct Sample {
     const void* record = nullptr;
@@ -54,6 +57,7 @@ struct Side {
     std::int32_t side = 0;
     u32 seen = 0;
     u32 checked = 0;
+    u32 passing_until = 0;
 };
 
 std::vector<Sample> g_samples;   // by unit id
@@ -77,6 +81,10 @@ double body_radius(const std::uint8_t* type) {
         }
         default: return body;
     }
+}
+
+bool hostile(const void* a, const void* b) {
+    return joan::orig::arg::as<i32>(joan::orig::as_players(obj(d::g_nations))->hostile(static_cast<i32>(jo::as_unit(a)->side), joan::orig::arg::i32(static_cast<i32>(jo::as_unit(b)->side)))) != 0;  // 0x004b6860
 }
 
 void refresh_units(u32 now) {
@@ -145,6 +153,17 @@ void aim(void* unit_record, float x, float y, float& aim_x, float& aim_y) {
         if (dx * dx + dy * dy <= kNearby * kNearby) nearby.push_back(k.neighbour);
     }
     Side& side = g_sides[unit_record];
+    if (side.passing_until > now) {  // walking through: straight on, for as long as it is inside someone
+        const double own = body_radius(type);
+        for (const nav::Neighbour& n : nearby) {
+            const double dx = n.at.x - me.x, dy = n.at.y - me.y, touching = own + n.radius;
+            if (dx * dx + dy * dy < touching * touching) {
+                side.passing_until = std::max(side.passing_until, now + kStillOverlapMs);
+                break;
+            }
+        }
+        return;
+    }
     const bool same_recent = now - side.seen <= kKeepSideMs;
     const nav::Dodge dodge = nav::plan_dodge(me, body_radius(type), {static_cast<double>(aim_x), static_cast<double>(aim_y)}, nearby.data(), nearby.size(), same_recent ? side.side : 0);
     if (!dodge.needed) return;
@@ -158,8 +177,8 @@ void aim(void* unit_record, float x, float y, float& aim_x, float& aim_y) {
         if (space == nullptr || jo::as_path_space(space)->zones == nullptr) return;
         const double origin_x = static_cast<double>(jo::as_cell(unit->cell)->origin_x), origin_y = static_cast<double>(jo::as_cell(unit->cell)->origin_y);
         const auto walkable = [&](nav::Point p) { return nav::walkable(space, p.x - origin_x, p.y - origin_y); };
-        if (!walkable(dodge.first)) {
-            if (!walkable(dodge.second)) return;
+        if (!walkable(dodge.first) || !walkable(dodge.first_room)) {
+            if (!walkable(dodge.second) || !walkable(dodge.second_room)) return;
             target = dodge.second;
             chosen = -dodge.first_side;
         }
@@ -170,6 +189,28 @@ void aim(void* unit_record, float x, float y, float& aim_x, float& aim_y) {
     side.seen = now;
     aim_x = static_cast<float>(target.x);
     aim_y = static_cast<float>(target.y);
+}
+
+bool start_passing(void* unit_record, std::uint32_t body) {
+    void* const bodies = joan::orig::as_players(obj(d::g_physic_sys));
+    if (body == 0 || joan::orig::as_players(bodies)->list.empty_at(joan::orig::arg::i32(body)) != 0) return false;
+    auto* const shot = joan::orig::arg::as<std::uint8_t*>(joan::orig::as_players(bodies)->list.ptr_at(joan::orig::arg::i32(body)));  // 0x006af310
+    const auto* const actor = jo::view<std::uint8_t*>(jo::as_shot(shot)->actor);
+    if (actor == nullptr || jo::as_actor(actor)->kind != 0xb) return false;
+    if (hostile(unit_record, jo::as_actor(actor)->owner)) return false;
+    g_sides[unit_record].passing_until = global<u32>(d::g_now) + kPassMs;
+    return true;
+}
+
+bool passing(const void* unit_record) {
+    const auto it = g_sides.find(unit_record);
+    return it != g_sides.end() && it->second.passing_until > global<u32>(d::g_now);
+}
+
+bool walks_through(const void* actor, const void* other) {
+    if (jo::as_actor(actor)->kind != 0xb) return false;
+    const void* const owner = jo::as_actor(actor)->owner;
+    return passing(owner) && !hostile(owner, other);
 }
 
 }  // namespace joan::unit_steer

@@ -999,6 +999,11 @@ struct H {
                 jo::self<jo::Unit>(this)->stuck_count = static_cast<i32>(jo::self<jo::Unit>(this)->stuck_count - 1u) > 0 ? jo::self<jo::Unit>(this)->stuck_count - 1u : 0u;
                 if (jo::self<jo::Unit>(this)->stuck_count == 0) jo::self<jo::Unit>(this)->stuck_ms = now();
             }
+            if (now() - jo::self<jo::Unit>(this)->stuck_ms > 500u && jo::self<jo::Unit>(this)->stuck_count != 0 &&
+                joan::unit_steer::start_passing(this, jo::as_shot(form)->hit_obj)) {  // pressed against a friend: through it
+                jo::self<jo::Unit>(this)->stuck_count = 0;
+                jo::self<jo::Unit>(this)->stuck_ms = now();
+            }
             if (now() - jo::self<jo::Unit>(this)->stuck_ms > 500u && jo::self<jo::Unit>(this)->stuck_count != 0) {
                 jo::self<jo::Unit>(this)->stuck_count = 0;
                 jo::self<jo::Unit>(this)->stuck_ms = now();
@@ -1015,7 +1020,7 @@ struct H {
         }
         // [Fixes] UnitStuck (game/unit_stuck.hpp): a unit pushing against an obstacle the path data does not know
         // (no unit bump, no progress) ends its route as at its end (follow_path's end-of-route block).
-        if (joan::hook::settings().fix_unit_stuck && joan::hook::settings().fix_unit_stuck_watch &&
+        if (joan::hook::settings().fix_unit_stuck && joan::hook::settings().fix_unit_stuck_watch && !joan::unit_steer::passing(this) &&
             [&] {
                 const float* const waypoint = joan::orig::arg::as<const float*>(joan::orig::as_list(&jo::self<jo::Unit>(this)->path)->from_end(  // 0x0066e8d0
                     static_cast<i32>(jo::view<u32>(jo::self<jo::Unit>(this)->path_index) + 1u)));  // the point follow_path walks to

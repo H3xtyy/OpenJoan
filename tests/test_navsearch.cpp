@@ -189,6 +189,7 @@ int main() {
         check(d.needed && d.blocker == 7, "a standing unit on the line is in the way");
         check(d.first_side == -1 && d.first.y < 0.0, "it is passed on the side away from it");
         check(d.second.y > 0.0, "the other side is the alternative");
+        check(d.first_room.y < d.first.y && d.second_room.y > d.second.y, "the room a body needs lies further out");
         check(plan_dodge({0, 0}, 16, {200, 0}, &standing, 1, 1).first.y > 0.0, "a side already chosen is kept");
 
         Neighbour column = standing;

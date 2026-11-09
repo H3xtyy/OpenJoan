@@ -24,6 +24,7 @@
 #include "../render/overrides.hpp"
 #include "../original/layout_access.hpp"
 #include "../original/bind.hpp"
+#include "unit_steer.hpp"
 
 namespace jo = joan::orig;
 
@@ -340,7 +341,7 @@ struct H {
                     continue;
                 }
                 u8* const p = joan::orig::arg::as<u8*>(joan::orig::as_players(obj(d::g_physic_sys))->list.ptr_at(joan::orig::arg::i32(jo::view<u32>(jo::as_actor(sa)->record))));  // 0x006af310
-                if (skip_player(p, rec)) {
+                if (skip_player(p, rec) || joan::unit_steer::walks_through(actor, s)) {
                     s = next;
                     continue;
                 }

@@ -46,7 +46,12 @@ Floating point is limited to `+ - * /` and `sqrt` on doubles, so results are the
 (`src/enpath/navsteer.{hpp,cpp}`, `src/game/unit_steer.{hpp,cpp}`). While following a route, a unit heads for a point beside
 the nearest unit that it would otherwise walk into, instead of for its waypoint. Units going the same way are left alone so
 that a column keeps flowing; units meeting head-on keep to their right. A side is kept while passing, and a side that runs
-off the level is not taken. Riders and siege engines do not steer yet.
+off the level is not taken.
+
+A tunnel or gate may leave no way round at all. A unit pressed against a non-hostile unit for half a second therefore walks
+through friendly units until it is clear of them (at least 1.2 s, then as long as it is still inside one). Hostile units
+always collide. This replaces the original's pause for friendly units, and a unit passing through does not count as stuck.
+Riders and siege engines do neither yet.
 
 ## Plan
 
