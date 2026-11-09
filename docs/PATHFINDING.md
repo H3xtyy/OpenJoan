@@ -1,8 +1,8 @@
 # Pathfinding
 
 The replacement for the game's route search, on the `pathfinding` branch. Status: every route request of the game goes
-through it, and units walk around other units in their way; the worker threads and the rest of the crowd behaviour are
-still to come (see the plan below).
+through it, worker threads prepare the routes of move orders, and units walk around other units in their way; the rest of
+the crowd behaviour is still to come (see the plan below).
 
 ## What was wrong
 
@@ -33,12 +33,18 @@ treated as unreachable, and the route stops beside it.
 
 **Multithreading without changing results.** `Unit::move_to` (0x00505dd0) is synchronous and callers read the route
 immediately, so that contract stays. A route is a pure function of the mesh, the blocked-polygon state and the request,
-with no clock or thread timing in it. Workers can therefore compute routes ahead of time:
+with no clock or thread timing in it. Workers can therefore compute routes ahead of time (`src/enpath/navpool.{hpp,cpp}`):
 
-- every search owns its working memory (`NavSearch`) and the mesh is read-only, so searches run in parallel;
-- when many units get one destination (an RTS order), workers compute their routes together;
-- a request finds its finished result, waits for one in progress, or computes it itself. The answer is identical in all
-  three cases; only the time differs.
+- every search owns its working memory (`NavSearch`), and a mesh is never changed once published: when a polygon opens or
+  closes the mesh is copied, so searches run in parallel on whatever state they started with;
+- when a unit gets a move or attack-move order (`Unit::set_task` 0x00527fb0), its route is started on a worker, so all
+  the routes of a group order are worked on together; this covers units on foot whose goal is in their own block;
+- a request finds its finished result, waits for one in progress, or computes it itself (also when its job was still
+  waiting for a worker, or was started for slightly different values). The answer is identical in all cases; only the time
+  differs. The debug build's log counts both ways: `Nav::route_ready_from_worker` and `Nav::route_searched_on_request`.
+
+Most requests are not preceded by an order (a follower asking again, an AI unit choosing a new spot) and are searched on
+the spot, which is cheap: see the numbers above.
 
 Floating point is limited to `+ - * /` and `sqrt` on doubles, so results are the same on every platform.
 
@@ -59,7 +65,7 @@ Riders and siege engines do neither yet.
 1. Search core with tests (done).
 2. Build a `NavMesh` from the game's `PathSpace`; keep the blocked flags current (done).
 3. Replace `find_path`, keeping the `PathRoute` output the game follows and the partial-route behaviour (done).
-4. Worker pool and shared results for group orders.
+4. Worker pool and shared results for group orders (done).
 5. Crowds, for several dozen units moving together:
    - local avoidance while walking (done for units on foot);
    - units of one order spread over the width of a gap instead of all taking the same line;

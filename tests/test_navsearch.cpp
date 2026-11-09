@@ -2,9 +2,12 @@
 // The route search of src/enpath/navsearch.hpp on small meshes built by hand.
 #include <cmath>
 #include <cstdio>
+#include <memory>
+#include <optional>
 #include <thread>
 #include <vector>
 
+#include "../src/enpath/navpool.hpp"
 #include "../src/enpath/navsearch.hpp"
 #include "../src/enpath/navsteer.hpp"
 
@@ -210,6 +213,29 @@ int main() {
         Neighbour beyond = standing;
         beyond.at = {50, 0};
         check(!plan_dodge({0, 0}, 16, {30, 0}, &beyond, 1, 0).needed, "a unit past the waypoint is left alone");
+    }
+    {  // the worker threads give what a search on the spot gives
+        auto m = std::make_shared<NavMesh>(grid(40, 40, 10.0, [](int x, int y) { return (x + y * 7) % 11 != 0; }));
+        RoutePool pool(3);
+        std::vector<Request> requests;
+        for (int i = 0; i < 300; ++i) {
+            const Point from{5.0 + (i % 37) * 10.0, 5.0 + (i * 3 % 37) * 10.0};
+            const std::int32_t start = m->locate(from);
+            if (start >= 0) requests.push_back({start, from, {395, 385}, 2.0, 0});
+        }
+        for (const Request& r : requests) pool.submit(key_of(m.get(), 1, r), m, r);
+        check(pool.workers() == 3, "the pool starts its workers");
+        NavSearch search;
+        for (const Request& r : requests) {
+            const Route direct = search.find(*m, r);
+            std::optional<Route> ready = pool.take(key_of(m.get(), 1, r));
+            if (!ready) ready = search.find(*m, r);  // not started yet: what the game does
+            check(ready->points == direct.points && ready->expanded == direct.expanded, "a route from a worker equals a search on the spot");
+        }
+        check(!pool.take(key_of(m.get(), 1, requests.front())), "a route is handed out once");
+        pool.submit(key_of(m.get(), 2, requests[0]), m, requests[0]);
+        pool.forget(m.get());
+        check(!pool.take(key_of(m.get(), 3, requests[0])), "another mesh state is another search");
     }
     if (g_failures == 0) std::printf("navsearch: all checks passed\n");
     return g_failures == 0 ? 0 : 1;

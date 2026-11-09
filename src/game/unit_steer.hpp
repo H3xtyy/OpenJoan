@@ -11,6 +11,10 @@ namespace joan::unit_steer {
 /// aim is changed only if the unit has to go around something.
 void aim(void* unit, float x, float y, float& aim_x, float& aim_y);
 
+/// Unit::set_task (0x00527fb0): the unit was just told to move to (`x`, `y`, `z`): its route is started on a worker thread,
+/// so that a whole group's routes are worked on together. Only a head start (enpath/navgame.hpp, prepare_route).
+void prepare_route(void* unit, float x, float y, float z);
+
 /// Unit::move_update (0x0052daa0): the unit has been pressed against `body` (a physics record id, Shot::hit_obj) for half a
 /// second. If `body` is a unit not hostile to it, the unit may now walk through friendly units until it is clear of them,
 /// and true is returned; otherwise nothing changes and the caller does what the original does.

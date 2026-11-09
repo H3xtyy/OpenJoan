@@ -17,6 +17,7 @@
 #include "../original/dynarray.hpp"
 #include "../original/layout_access.hpp"
 #include "../registry.hpp"
+#include "../x87.hpp"
 
 namespace jo = joan::orig;
 using joan::hook::global;
@@ -211,6 +212,34 @@ void aim(void* unit_record, float x, float y, float& aim_x, float& aim_y) {
     side.seen = now;
     aim_x = static_cast<float>(target.x);
     aim_y = static_cast<float>(target.y);
+}
+
+// What Unit::move_to (0x00505dd0) will ask for a unit on foot whose goal is in its own cell: the goal rounded to the coarse
+// grid of the world's path space, then the search on the cell's mesh (replan, 0x00506240).
+void prepare_route(void* unit_record, float x, float y, float z) {
+    jo::Unit* const unit = jo::as_unit(unit_record);
+    if (unit->cell == nullptr || unit->actor == nullptr) return;
+    if (jo::as_unit_type(type_of(unit_record))->unit_class == 8 || joan::orig::arg::as<i32>(joan::orig::as_unit(unit_record)->mounted()) != 0) return;  // 0x00430190
+    void* const cell = unit->cell;
+    const float goal[3] = {x, y, z};
+    if (joan::orig::arg::as<std::uint8_t>(joan::orig::as_aabb(jo::as_cell(cell)->box)->contains(joan::orig::arg::ptr(goal))) == 0 || jo::view<std::int8_t>(jo::as_cell(cell)->loaded) == 0) return;  // 0x0060d5f0
+    void* const space = joan::orig::arg::as<void*>(joan::orig::as_world_cell(cell)->grid(joan::orig::arg::i16(static_cast<i32>(unit->layer))));  // 0x005600c0
+    if (space == nullptr || jo::as_path_space(space)->zones == nullptr) return;
+
+    float position[3] = {0.0f, 0.0f, 0.0f};
+    joan::orig::as_unit(unit_record)->position(joan::orig::arg::mptr(position));  // 0x004fedb0
+    const joan::hook::x87::Fpu fpu{true};
+    const auto in_cell = [&](float v, i32 origin) { return static_cast<float>(fpu.sub(static_cast<double>(v), static_cast<double>(origin))); };
+    const auto coarse = [&](float v) {
+        const float cells = static_cast<float>(fpu.div(static_cast<double>(v), static_cast<double>(global<float>(d::flt_32))));
+        return static_cast<float>(joan::hook::x87::ftol(static_cast<double>(cells))) * 32.0f + 16.0f;
+    };
+    const auto origin_x = static_cast<i32>(jo::as_cell(cell)->origin_x), origin_y = static_cast<i32>(jo::as_cell(cell)->origin_y);
+    const float from_x = in_cell(position[0], origin_x), from_y = in_cell(position[1], origin_y);
+    const float radius = static_cast<float>(static_cast<i32>(global<u32>(d::g_unit_body_r) << 1));
+    const i32 zone = joan::orig::arg::as<i32>(joan::orig::as_path_space(space)->pick(joan::orig::arg::f32(from_x), joan::orig::arg::f32(from_y), joan::orig::arg::f32(position[2]), joan::orig::arg::bits(radius)));  // 0x0066c020
+    if (zone == 0) return;
+    nav::prepare_route(space, zone, from_x, from_y, in_cell(coarse(x), origin_x), in_cell(coarse(y), origin_y), radius);
 }
 
 bool start_passing(void* unit_record, std::uint32_t body) {

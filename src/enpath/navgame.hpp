@@ -22,6 +22,13 @@ struct GameRequest {
 /// @param path_space the PathSpace; its mesh is built on the first request and stays until forget_mesh.
 std::int32_t find_route(void* path_space, const GameRequest& request, void* route);
 
+/// Starts, on a worker thread, the search a later find_route with these values will ask for. Purely a head start: if the
+/// later request turns out different, this one is wasted and that one is searched as usual.
+/// @param zone the 1-based PfdZone the unit stands in
+/// @param x,y,to_x,to_y start and goal in the coordinates of `path_space`, world units
+/// @param radius as GameRequest::radius
+void prepare_route(void* path_space, std::int32_t zone, float x, float y, float to_x, float to_y, float radius);
+
 /// Whether the point (`x`, `y`), in the coordinates of `path_space`, lies on an open polygon. Costs a walk over the mesh.
 bool walkable(void* path_space, double x, double y);
 

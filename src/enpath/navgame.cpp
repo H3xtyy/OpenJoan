@@ -6,6 +6,7 @@
 #include <cmath>
 #include <cstdint>
 #include <memory>
+#include <thread>
 #include <unordered_map>
 #include <vector>
 
@@ -13,6 +14,7 @@
 #include "../original/layout_access.hpp"
 #include "../registry.hpp"
 #include "../x87.hpp"
+#include "navpool.hpp"
 #include "navsearch.hpp"
 
 namespace jo = joan::orig;
@@ -28,9 +30,10 @@ constexpr std::uint32_t kBudget = 60000;        // search nodes: an unreachable 
 constexpr double kLaneScale = 2.5;              // the game's formation numbers to world units (0x0066ece0)
 constexpr double kSamePoint = 0.5;              // route points closer than this are one point (0x0066ece0)
 
-/// The mesh of one PathSpace.
+/// The mesh of one PathSpace. A published mesh never changes: when a polygon opens or closes, the mesh is copied.
 struct GameMesh {
-    NavMesh mesh;
+    std::shared_ptr<const NavMesh> mesh;
+    std::uint64_t generation = 0;         // counts those copies
     std::vector<jo::PfdZone*> zones;      // per polygon: its zone, for the current blocked state
     std::vector<std::int32_t> xyz;        // per vertex: the original integers, three each
     const void* zones_array = nullptr;    // what the mesh was built from: rebuilt if that changes
@@ -38,6 +41,15 @@ struct GameMesh {
 
 std::unordered_map<const void*, std::unique_ptr<GameMesh>> g_meshes;  // looked up only, never walked
 NavSearch g_search;
+
+JOAN_COUNTER(c_prepared, "Nav::route_ready_from_worker");
+JOAN_COUNTER(c_searched, "Nav::route_searched_on_request");
+
+// One thread stays with the game, and a few are plenty for a level's routes.
+RoutePool& pool() {
+    static RoutePool instance(std::clamp(std::thread::hardware_concurrency(), 2u, 5u) - 1u);
+    return instance;
+}
 
 i32 zone_count(const jo::PathSpace* space) {
     return joan::orig::arg::as<i32>(joan::orig::as_path_space(jo::view<void*>(space->zones))->get_2c());  // 0x0066b7a0
@@ -50,7 +62,8 @@ jo::PfdZone* zone_at(const jo::PathSpace* space, i32 index) {
 std::unique_ptr<GameMesh> build_mesh(const jo::PathSpace* space) {
     auto built = std::make_unique<GameMesh>();
     built->zones_array = jo::view<void*>(space->zones);
-    NavMesh& mesh = built->mesh;
+    auto owned = std::make_shared<NavMesh>();
+    NavMesh& mesh = *owned;
     const i32 count = zone_count(space);
     std::unordered_map<const void*, std::uint32_t> vertex_of;  // looked up only
     std::vector<std::uint32_t> corners;
@@ -89,6 +102,7 @@ std::unique_ptr<GameMesh> build_mesh(const jo::PathSpace* space) {
         mesh.corners.insert(mesh.corners.end(), corners.begin(), corners.end());
         mesh.links.insert(mesh.links.end(), links.begin(), links.end());
     }
+    built->mesh = std::move(owned);
     return built;
 }
 
@@ -101,11 +115,21 @@ GameMesh& mesh_of(const jo::PathSpace* space) {
 
 // Doors and buildings open and close polygons while the game runs (0x006af710).
 void refresh_blocked(GameMesh& game) {
+    const std::vector<Poly>& polys = game.mesh->polys;
+    bool changed = false;
+    for (std::size_t i = 0; i < game.zones.size() && !changed; ++i) {
+        const i32 state = game.zones[i]->blocked;
+        changed = polys[i].blocked != (state == 1) || polys[i].narrow != (state == -1);
+    }
+    if (!changed) return;
+    auto copy = std::make_shared<NavMesh>(*game.mesh);
     for (std::size_t i = 0; i < game.zones.size(); ++i) {
         const i32 state = game.zones[i]->blocked;
-        game.mesh.polys[i].blocked = state == 1;
-        game.mesh.polys[i].narrow = state == -1;
+        copy->polys[i].blocked = state == 1;
+        copy->polys[i].narrow = state == -1;
     }
+    game.mesh = std::move(copy);
+    ++game.generation;
 }
 
 // Where the unit crosses: its place in the formation, kept inside the usable part of the edge. This is what makes the units
@@ -148,7 +172,14 @@ std::int32_t find_route(void* path_space, const GameRequest& request, void* rout
     query.radius = static_cast<double>(request.radius);
     query.avoid_narrow = query.radius >= kNarrowUnit;
     query.budget = kBudget;
-    const Route found = g_search.find(game.mesh, query);
+    std::optional<Route> ready = pool().take(key_of(path_space, game.generation, query));
+    if (ready) {
+        c_prepared.hit();
+    } else {
+        c_searched.hit();
+        ready = g_search.find(*game.mesh, query);
+    }
+    const Route& found = *ready;
     if (found.outcome == Outcome::no_start) return 0;
 
     const double lane = static_cast<double>(request.lane) * kLaneScale;
@@ -189,12 +220,28 @@ std::int32_t find_route(void* path_space, const GameRequest& request, void* rout
     return static_cast<double>(ftol(request.tx)) == static_cast<double>(request.tx) && static_cast<double>(ftol(request.ty)) == static_cast<double>(request.ty) ? 1 : 0;
 }
 
+void prepare_route(void* path_space, std::int32_t zone, float x, float y, float to_x, float to_y, float radius) {
+    GameMesh& game = mesh_of(jo::as_path_space(path_space));
+    refresh_blocked(game);
+    Request query;
+    query.start_poly = zone - 1;
+    query.from = {static_cast<double>(x), static_cast<double>(y)};
+    query.to = {static_cast<double>(to_x), static_cast<double>(to_y)};
+    query.radius = static_cast<double>(radius);
+    query.avoid_narrow = query.radius >= kNarrowUnit;
+    query.budget = kBudget;
+    pool().submit(key_of(path_space, game.generation, query), game.mesh, query);
+}
+
 bool walkable(void* path_space, double x, double y) {
     GameMesh& game = mesh_of(jo::as_path_space(path_space));
     refresh_blocked(game);
-    return game.mesh.locate({x, y}) >= 0;
+    return game.mesh->locate({x, y}) >= 0;
 }
 
-void forget_mesh(const void* path_space) { g_meshes.erase(path_space); }
+void forget_mesh(const void* path_space) {
+    g_meshes.erase(path_space);
+    pool().forget(path_space);
+}
 
 }  // namespace joan::nav
