@@ -45,7 +45,8 @@ advance, and almost none are: in play only 27 of 2,787 new searches used a route
 
 **Formations.** A follower close to its leader copies the leader's route, shifted by the distance between them
 (`route_around` 0x006ac050). It joins that route on the stretch it stands beside. The new routes are often straight, so this
-test looks at the stretch itself and not at the infinite line through it, which would match the first stretch every time.
+test looks at the stretch itself and not at the infinite line through it, which would match the first stretch every time. The copy stops at the first wall it meets, so a soldier whose copy ends more
+than 64 units from its goal plans its own route instead. The debug log counts these: `Nav::copied_route_cut_short`.
 
 **Other units.** A route knows only the level, so a unit standing on it is dealt with while walking
 (`src/enpath/navsteer.{hpp,cpp}`, `src/game/unit_steer.{hpp,cpp}`). While following a route, a unit heads for a point beside

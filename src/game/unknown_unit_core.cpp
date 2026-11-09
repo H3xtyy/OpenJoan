@@ -2854,8 +2854,10 @@ void push(const void* list, const void* p) { joan::orig::as_path(list)->push(joa
 void clear(const void* list) { joan::orig::as_path(list)->clear(); }                     // 0x004eeca0
 
 JOAN_COUNTER(c_move, "Unit::move_to_505dd0");
+JOAN_COUNTER(c_copy_cut_short, "Nav::copied_route_cut_short");
 
 // Radius used for the fine path (switch on type +0x1c3), before the * [0x9cfc20] scaling.
+constexpr float kCopyMissed = 64.0f;   // a copied route ending further than this from the soldier's goal was cut short
 constexpr float kOwnLaneSpan = 80.0f;  // the lanes of units outside a formation, in the formation numbers of find_path
 
 float path_radius(const u8* t) {
@@ -3078,9 +3080,20 @@ struct H {
                                                 joan::orig::arg::i32(s18), joan::orig::arg::mptr(p432()), joan::orig::arg::mptr(&jo::as_unit(rec)->path), dx, dy, dz,
                                                 jo::view<Vec>(jo::self<jo::Unit>(this)->position_).x, jo::view<Vec>(jo::self<jo::Unit>(this)->position_).y, jo::view<Vec>(jo::self<jo::Unit>(this)->position_).z,
                                                 joan::orig::arg::i32(global<u32>(d::g_unit_body_r)));  // 0x006ac050
-                jo::self<jo::Unit>(this)->path_remaining = 0;
-                sum_length();
-                return count(p432()) != 0 ? 1 : 3;
+                // The copy of the leader's route stops at the first wall it meets: a soldier on the flank would run to the wall
+                // beside a gate its leader went through. Such a soldier plans its own way there instead (docs/PATHFINDING.md).
+                bool cut_short = false;
+                if (count(p432()) != 0) {
+                    const float* const end = back(p432());
+                    const float gap_x = end[0] - pos.x, gap_y = end[1] - pos.y;
+                    cut_short = gap_x * gap_x + gap_y * gap_y > kCopyMissed * kCopyMissed;
+                }
+                if (!cut_short) {
+                    jo::self<jo::Unit>(this)->path_remaining = 0;
+                    sum_length();
+                    return count(p432()) != 0 ? 1 : 3;
+                }
+                c_copy_cut_short.hit();
             }
             // 0x00506206
             Vec p54{0.0f, 0.0f, 0.0f};
