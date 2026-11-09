@@ -34,6 +34,12 @@ constexpr double kMovedUnits = 4.0;   // moving at all: at least this far per sa
 constexpr double kNearby = 400.0;     // units further than this are not looked at
 constexpr u32 kKeepSideMs = 1500;     // a side chosen is kept this long after the unit in the way was last seen
 constexpr u32 kRecheckMs = 250;       // how often a chosen side is checked against the level
+constexpr u32 kNoProgressMs = 450;    // no closer to the waypoint for this long: something the level does not know is in the way
+constexpr double kProgress = 8.0;     // closer by at least this much is progress
+constexpr u32 kAsideMs = 350;         // a step aside lasts this long,
+constexpr double kAsideBy = 96.0;     // aims this far to the side,
+constexpr double kAsideOn = 32.0;     // and this far on
+constexpr std::int32_t kMostAsides = 4;  // and is tried this many times before the unit counts as stuck (game/unit_stuck.hpp)
 constexpr u32 kPassMs = 1200;         // how long a unit in a jam may walk through friendly units, at least
 constexpr double kInsideShare = 0.7;  // of the two radii together: closer than this, two bodies are inside each other
 constexpr u32 kStillOverlapMs = 250;  // and this much longer each time it is still inside one
@@ -59,6 +65,13 @@ struct Side {
     u32 seen = 0;
     u32 checked = 0;
     u32 passing_until = 0;
+    float waypoint_x = 0.0f, waypoint_y = 0.0f;  // the waypoint progress is measured against
+    double best = 0.0;                           // the closest the unit came to it
+    u32 best_at = 0;                             // when
+    u32 last_aim = 0;                            // the last time the unit asked
+    u32 aside_until = 0;                         // stepping aside until then
+    std::int32_t aside_side = 0;                 // +1 left, -1 right
+    std::int32_t attempts = 0;                   // steps aside since the last progress
 };
 
 std::vector<Sample> g_samples;   // by unit id
@@ -186,6 +199,44 @@ void aim(void* unit_record, float x, float y, float& aim_x, float& aim_y) {
         }
         return;
     }
+
+    // Running against something the level's mesh does not know, a wall of a model for instance: step aside, one way then the other.
+    void* const space = joan::orig::arg::as<void*>(joan::orig::as_world_cell(unit->cell)->grid(joan::orig::arg::i16(static_cast<i32>(unit->layer))));  // 0x005600c0
+    if (space == nullptr || jo::as_path_space(space)->zones == nullptr) return;
+    const double origin_x = static_cast<double>(jo::as_cell(unit->cell)->origin_x), origin_y = static_cast<double>(jo::as_cell(unit->cell)->origin_y);
+    const auto walkable = [&](nav::Point p) { return nav::walkable(space, p.x - origin_x, p.y - origin_y); };
+    const double to_x = static_cast<double>(aim_x) - me.x, to_y = static_cast<double>(aim_y) - me.y, to_waypoint = std::sqrt(to_x * to_x + to_y * to_y);
+    if (now - side.last_aim > kNoProgressMs || std::fabs(aim_x - side.waypoint_x) > 1.0f || std::fabs(aim_y - side.waypoint_y) > 1.0f) {
+        side.waypoint_x = aim_x;
+        side.waypoint_y = aim_y;
+        side.best = to_waypoint;
+        side.best_at = now;
+        side.aside_until = 0;
+        side.attempts = 0;
+    }
+    side.last_aim = now;
+    if (to_waypoint < side.best - kProgress) {
+        side.best = to_waypoint;
+        side.best_at = now;
+        side.attempts = 0;
+    } else if (now - side.best_at >= kNoProgressMs && now >= side.aside_until && side.attempts < kMostAsides) {
+        side.aside_side = (((unit->id & 1) != 0) == ((side.attempts & 1) != 0)) ? 1 : -1;
+        side.attempts += 1;
+        side.aside_until = now + kAsideMs;
+        side.best_at = now;
+    }
+    if (now < side.aside_until && to_waypoint > 0.0) {
+        const double dir_x = to_x / to_waypoint, dir_y = to_y / to_waypoint;
+        const double sideways = static_cast<double>(side.aside_side) * kAsideBy;
+        const nav::Point target{me.x - dir_y * sideways + dir_x * kAsideOn, me.y + dir_x * sideways + dir_y * kAsideOn};
+        if (walkable(target)) {
+            aim_x = static_cast<float>(target.x);
+            aim_y = static_cast<float>(target.y);
+            return;
+        }
+        side.aside_until = now;
+    }
+
     const bool same_recent = now - side.seen <= kKeepSideMs;
     const nav::Dodge dodge = nav::plan_dodge(me, body_radius(type), {static_cast<double>(aim_x), static_cast<double>(aim_y)}, nearby.data(), nearby.size(), same_recent ? side.side : 0);
     if (!dodge.needed) return;
@@ -195,10 +246,6 @@ void aim(void* unit_record, float x, float y, float& aim_x, float& aim_y) {
     nav::Point target = dodge.first;
     std::int32_t chosen = dodge.first_side;
     if (!keep) {
-        void* const space = joan::orig::arg::as<void*>(joan::orig::as_world_cell(unit->cell)->grid(joan::orig::arg::i16(static_cast<i32>(unit->layer))));  // 0x005600c0
-        if (space == nullptr || jo::as_path_space(space)->zones == nullptr) return;
-        const double origin_x = static_cast<double>(jo::as_cell(unit->cell)->origin_x), origin_y = static_cast<double>(jo::as_cell(unit->cell)->origin_y);
-        const auto walkable = [&](nav::Point p) { return nav::walkable(space, p.x - origin_x, p.y - origin_y); };
         if (!walkable(dodge.first) || !walkable(dodge.first_room)) {
             if (!walkable(dodge.second) || !walkable(dodge.second_room)) return;
             target = dodge.second;
@@ -227,6 +274,13 @@ bool start_passing(void* unit_record, std::uint32_t body) {
 bool passing(const void* unit_record) {
     const auto it = g_sides.find(unit_record);
     return it != g_sides.end() && it->second.passing_until > global<u32>(d::g_now);
+}
+
+bool busy(const void* unit_record) {
+    const auto it = g_sides.find(unit_record);
+    if (it == g_sides.end()) return false;
+    const u32 now = global<u32>(d::g_now);
+    return it->second.passing_until > now || it->second.aside_until > now;
 }
 
 bool walks_through(const void* actor, const void* other) {

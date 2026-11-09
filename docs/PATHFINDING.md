@@ -53,6 +53,14 @@ always collide, and nobody walks through the player. Two friendly bodies already
 that neither can be trapped when one stops inside the other. This replaces the original's pause for friendly units, and a unit passing through does not count as stuck.
 Riders and siege engines do neither yet.
 
+A unit in no formation gets a line of its own from its id, used only at corners and in gaps narrower than 400 units, so that
+a crowd does not funnel to one point; on open ground it keeps the straight line.
+
+The mesh does not know everything: a model's wall may stand on ground the mesh calls free. A unit that has come no closer
+to its waypoint for 0.45 s steps aside for 0.35 s, one way and then the other, up to four times. Only then does the older
+check (`game/unit_stuck.hpp`, a unit with no progress for a second ends its route) apply. That check stays, because it deals
+with exactly this case when stepping aside does not help.
+
 ## Plan
 
 1. Search core with tests (done).
@@ -61,8 +69,8 @@ Riders and siege engines do neither yet.
 4. Remembering routes so that repeated requests cost nothing (done).
 5. Crowds, for several dozen units moving together:
    - local avoidance while walking (done for units on foot);
-   - units of one order spread over the width of a gap instead of all taking the same line;
-   - detecting units that have stopped making progress, and re-routing or yielding, in place of the current stuck fixes.
+   - units spread over the width of a gap instead of all taking the same line (done);
+   - stepping aside from what the mesh does not know, before the existing stuck check applies (done).
 6. Measure on real levels and tune; test on full missions, since mission scripts depend on units arriving.
 
 Recordings made before this work do not replay with it; that is accepted.

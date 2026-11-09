@@ -2856,6 +2856,8 @@ void clear(const void* list) { joan::orig::as_path(list)->clear(); }            
 JOAN_COUNTER(c_move, "Unit::move_to_505dd0");
 
 // Radius used for the fine path (switch on type +0x1c3), before the * [0x9cfc20] scaling.
+constexpr float kOwnLaneSpan = 80.0f;  // the lanes of units outside a formation, in the formation numbers of find_path
+
 float path_radius(const u8* t) {
     float v = static_cast<float>(static_cast<i32>(global<u32>(d::g_unit_body_r) << 1));
     const i32 kind = jo::view<i32>(jo::self<jo::UnitType>(t)->shape_kind);
@@ -2886,6 +2888,17 @@ float path_radius(const u8* t) {
 // ------------------------------------------------------------------ thiscall functions
 struct H {
     void* zone() { return jo::self<jo::Unit>(this)->cell; }
+    // A unit outside any formation still needs a line of its own, or a crowd funnels to one point of every gap. The place
+    // comes from its id; a negative span tells the route to use it only where it is tight (docs/PATHFINDING.md).
+    u32 lane_slot() {
+        if (jo::view<float>(jo::self<jo::Unit>(this)->form_width) != 0.0f) return jo::self<jo::Unit>(this)->form_slot_y;
+        const u32 place = (static_cast<u32>(static_cast<std::uint16_t>(jo::self<jo::Unit>(this)->id)) * 2654435761u) >> 28;
+        return joan::orig::arg::bits((static_cast<float>(place) - 7.5f) / 7.5f * (kOwnLaneSpan / 2.0f));
+    }
+    u32 lane_span() {
+        if (jo::view<float>(jo::self<jo::Unit>(this)->form_width) != 0.0f) return jo::self<jo::Unit>(this)->form_width;
+        return joan::orig::arg::bits(-kOwnLaneSpan);
+    }
     void* p432() { return &jo::self<jo::Unit>(this)->path; }
     void* p473() { return &jo::self<jo::Unit>(this)->path_b; }
     // v - (float)int [+0x339 + off], one x87 rounding.
@@ -2969,7 +2982,7 @@ struct H {
                     const u32 z1 = jo::view<u32>(e1[2]);
                     const float y1 = rel(e1[1], &jo::Cell::origin_y), x1 = rel(e1[0], &jo::Cell::origin_x);
                     void* const finder = joan::orig::arg::as<void*>(joan::orig::as_world_cell(zone())->grid(joan::orig::arg::i16(static_cast<i32>(jo::self<jo::Unit>(this)->layer))));  // 0x005600c0
-                    joan::orig::as_path_space(finder)->find_path(joan::orig::arg::f32(x1), joan::orig::arg::f32(y1), joan::orig::arg::f32(z1), joan::orig::arg::f32(x2), joan::orig::arg::f32(y2), joan::orig::arg::f32(z2), joan::orig::arg::mptr(fine), joan::orig::arg::bits(r), i32{0}, joan::orig::arg::i32(a14), joan::orig::arg::u32(jo::self<jo::Unit>(this)->form_slot_y), joan::orig::arg::u32(jo::self<jo::Unit>(this)->form_width), joan::orig::arg::u32(u32{0x3f000000}));  // 0x0066cb40
+                    joan::orig::as_path_space(finder)->find_path(joan::orig::arg::f32(x1), joan::orig::arg::f32(y1), joan::orig::arg::f32(z1), joan::orig::arg::f32(x2), joan::orig::arg::f32(y2), joan::orig::arg::f32(z2), joan::orig::arg::mptr(fine), joan::orig::arg::bits(r), i32{0}, joan::orig::arg::i32(a14), joan::orig::arg::u32(lane_slot()), joan::orig::arg::u32(lane_span()), joan::orig::arg::u32(u32{0x3f000000}));  // 0x0066cb40
                 } else {
                     const float lim = static_cast<float>(static_cast<i32>(global<u32>(d::g_unit_body_r) << 1));
                     const u32 z2 = jo::view<u32>(e2[2]);
@@ -2977,7 +2990,7 @@ struct H {
                     const u32 z1 = jo::view<u32>(e1[2]);
                     const float y1 = rel(e1[1], &jo::Cell::origin_y), x1 = rel(e1[0], &jo::Cell::origin_x);
                     void* const finder = joan::orig::arg::as<void*>(joan::orig::as_world_cell(zone())->grid(joan::orig::arg::i16(static_cast<i32>(jo::self<jo::Unit>(this)->layer))));  // 0x005600c0
-                    joan::orig::as_path_space(finder)->find_path(joan::orig::arg::f32(x1), joan::orig::arg::f32(y1), joan::orig::arg::f32(z1), joan::orig::arg::f32(x2), joan::orig::arg::f32(y2), joan::orig::arg::f32(z2), joan::orig::arg::mptr(fine), joan::orig::arg::bits(lim), i32{0}, joan::orig::arg::i32(a14), joan::orig::arg::u32(jo::self<jo::Unit>(this)->form_slot_y), joan::orig::arg::u32(jo::self<jo::Unit>(this)->form_width), joan::orig::arg::u32(u32{0xbf800000}));  // 0x0066cb40
+                    joan::orig::as_path_space(finder)->find_path(joan::orig::arg::f32(x1), joan::orig::arg::f32(y1), joan::orig::arg::f32(z1), joan::orig::arg::f32(x2), joan::orig::arg::f32(y2), joan::orig::arg::f32(z2), joan::orig::arg::mptr(fine), joan::orig::arg::bits(lim), i32{0}, joan::orig::arg::i32(a14), joan::orig::arg::u32(lane_slot()), joan::orig::arg::u32(lane_span()), joan::orig::arg::u32(u32{0xbf800000}));  // 0x0066cb40
                 }
                 {
                     const float zy = static_cast<float>(jo::as_cell(zone())->origin_y);
@@ -3112,13 +3125,13 @@ struct H {
                     const float y2 = rel(pos.y, &jo::Cell::origin_y), x2 = rel(pos.x, &jo::Cell::origin_x);
                     const float y1 = rel(pa0.y, &jo::Cell::origin_y), x1 = rel(pa0.x, &jo::Cell::origin_x);
                     void* const finder = joan::orig::arg::as<void*>(joan::orig::as_world_cell(zone())->grid(joan::orig::arg::i16(static_cast<i32>(jo::self<jo::Unit>(this)->layer))));  // 0x005600c0
-                    joan::orig::as_path_space(finder)->find_path(joan::orig::arg::f32(x1), joan::orig::arg::f32(y1), joan::orig::arg::f32(jo::view<u32>(pa0.z)), joan::orig::arg::f32(x2), joan::orig::arg::f32(y2), joan::orig::arg::f32(jo::view<u32>(pos.z)), joan::orig::arg::mptr(p432()), joan::orig::arg::bits(r), joan::orig::arg::i32(a4), joan::orig::arg::i32(a14), joan::orig::arg::u32(jo::self<jo::Unit>(this)->form_slot_y), joan::orig::arg::u32(jo::self<jo::Unit>(this)->form_width), joan::orig::arg::u32(u32{0x3f000000}));  // 0x0066cb40
+                    joan::orig::as_path_space(finder)->find_path(joan::orig::arg::f32(x1), joan::orig::arg::f32(y1), joan::orig::arg::f32(jo::view<u32>(pa0.z)), joan::orig::arg::f32(x2), joan::orig::arg::f32(y2), joan::orig::arg::f32(jo::view<u32>(pos.z)), joan::orig::arg::mptr(p432()), joan::orig::arg::bits(r), joan::orig::arg::i32(a4), joan::orig::arg::i32(a14), joan::orig::arg::u32(lane_slot()), joan::orig::arg::u32(lane_span()), joan::orig::arg::u32(u32{0x3f000000}));  // 0x0066cb40
                 } else {
                     const float lim = static_cast<float>(static_cast<i32>(global<u32>(d::g_unit_body_r) << 1));
                     const float y2 = rel(pos.y, &jo::Cell::origin_y), x2 = rel(pos.x, &jo::Cell::origin_x);
                     const float y1 = rel(pa0.y, &jo::Cell::origin_y), x1 = rel(pa0.x, &jo::Cell::origin_x);
                     void* const finder = joan::orig::arg::as<void*>(joan::orig::as_world_cell(zone())->grid(joan::orig::arg::i16(static_cast<i32>(jo::self<jo::Unit>(this)->layer))));  // 0x005600c0
-                    joan::orig::as_path_space(finder)->find_path(joan::orig::arg::f32(x1), joan::orig::arg::f32(y1), joan::orig::arg::f32(jo::view<u32>(pa0.z)), joan::orig::arg::f32(x2), joan::orig::arg::f32(y2), joan::orig::arg::f32(jo::view<u32>(pos.z)), joan::orig::arg::mptr(p432()), joan::orig::arg::bits(lim), joan::orig::arg::i32(a4), joan::orig::arg::i32(a14), joan::orig::arg::u32(jo::self<jo::Unit>(this)->form_slot_y), joan::orig::arg::u32(jo::self<jo::Unit>(this)->form_width), joan::orig::arg::u32(u32{0xbf800000}));  // 0x0066cb40
+                    joan::orig::as_path_space(finder)->find_path(joan::orig::arg::f32(x1), joan::orig::arg::f32(y1), joan::orig::arg::f32(jo::view<u32>(pa0.z)), joan::orig::arg::f32(x2), joan::orig::arg::f32(y2), joan::orig::arg::f32(jo::view<u32>(pos.z)), joan::orig::arg::mptr(p432()), joan::orig::arg::bits(lim), joan::orig::arg::i32(a4), joan::orig::arg::i32(a14), joan::orig::arg::u32(lane_slot()), joan::orig::arg::u32(lane_span()), joan::orig::arg::u32(u32{0xbf800000}));  // 0x0066cb40
                 }
                 const float zy = static_cast<float>(jo::as_cell(zone())->origin_y);
                 const float zx = static_cast<float>(jo::as_cell(zone())->origin_x);

@@ -28,6 +28,7 @@ constexpr double kNarrowUnit = 200.0;           // units at least this wide keep
 constexpr std::uint32_t kBudget = 60000;        // search nodes: an unreachable goal costs a level's worth of them
 constexpr double kLaneScale = 2.5;              // the game's formation numbers to world units (0x0066ece0)
 constexpr double kSamePoint = 0.5;              // route points closer than this are one point (0x0066ece0)
+constexpr double kWideGap = 400.0;              // a unit outside a formation has no need of its lane in a gap at least this wide
 constexpr double kStartCell = 16.0;             // a search starts from the middle of a square of this size around the unit
 constexpr std::size_t kMaxRemembered = 8192;    // routes remembered before the memory is cleared
 
@@ -145,11 +146,12 @@ void refresh_blocked(GameMesh& game) {
 
 // Where the unit crosses: its place in the formation, kept inside the usable part of the edge. This is what makes the units
 // of one order take different lines through a gap; the numbers are those of the original's smoothing (0x0066ece0).
-Point in_lane(const Crossing& crossing, double lane, double width) {
+Point in_lane(const Crossing& crossing, double lane, double width, bool tight_only) {
     const double dx = crossing.right.x - crossing.left.x, dy = crossing.right.y - crossing.left.y;
     const double usable = std::sqrt(dx * dx + dy * dy);
     if (usable == 0.0 || width == 0.0) return crossing.at;
     const double along = ((crossing.at.x - crossing.left.x) * dx + (crossing.at.y - crossing.left.y) * dy) / (usable * usable);
+    if (tight_only && along > 0.0 && along < 1.0 && usable >= kWideGap) return crossing.at;  // open ground: the straight line
     const double place = std::clamp(-lane / width + 0.5, 0.0, 1.0);
     double s = 0.0;
     if (usable < width) {
@@ -214,7 +216,8 @@ std::int32_t find_route(void* path_space, const GameRequest& request, void* rout
     if (found.outcome == Outcome::no_start) return 0;
 
     const double lane = static_cast<double>(request.lane) * kLaneScale;
-    const double width = static_cast<double>(request.lane_width) * kLaneScale;
+    const double width = std::fabs(static_cast<double>(request.lane_width)) * kLaneScale;
+    const bool tight_only = request.lane_width < 0.0f;
     const auto height = [&](const Crossing& c, Point at) {
         const std::int32_t* const l = &game.xyz[static_cast<std::size_t>(c.left_corner) * 3];
         const std::int32_t* const r = &game.xyz[static_cast<std::size_t>(c.right_corner) * 3];
@@ -236,7 +239,7 @@ std::int32_t find_route(void* path_space, const GameRequest& request, void* rout
     Point next = end;
     for (std::size_t i = found.crossings.size(); i-- > 0;) {
         const Crossing& crossing = found.crossings[i];
-        const Point at = in_lane(crossing, lane, width);
+        const Point at = in_lane(crossing, lane, width, tight_only);
         if (same_point(at, next) || same_point(at, from)) continue;
         next = at;
         const std::int32_t* const l = &game.xyz[static_cast<std::size_t>(crossing.left_corner) * 3];

@@ -1020,7 +1020,7 @@ struct H {
         }
         // [Fixes] UnitStuck (game/unit_stuck.hpp): a unit pushing against an obstacle the path data does not know
         // (no unit bump, no progress) ends its route as at its end (follow_path's end-of-route block).
-        if (joan::hook::settings().fix_unit_stuck && joan::hook::settings().fix_unit_stuck_watch && !joan::unit_steer::passing(this) &&
+        if (joan::hook::settings().fix_unit_stuck && joan::hook::settings().fix_unit_stuck_watch && !joan::unit_steer::busy(this) &&
             [&] {
                 const float* const waypoint = joan::orig::arg::as<const float*>(joan::orig::as_list(&jo::self<jo::Unit>(this)->path)->from_end(  // 0x0066e8d0
                     static_cast<i32>(jo::view<u32>(jo::self<jo::Unit>(this)->path_index) + 1u)));  // the point follow_path walks to
