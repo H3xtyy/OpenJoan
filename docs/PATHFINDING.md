@@ -58,8 +58,7 @@ Riders and siege engines do neither yet.
 
 1. Search core with tests (done).
 2. Build a `NavMesh` from the game's `PathSpace`; keep the blocked flags current (done).
-3. Replace `find_path`, keeping the `PathRoute` output the game follows and the partial-route behaviour (done). The old search
-   (`find_path2` 0x0066ce30, `PathResult2::smooth_path` 0x0066ece0) is still compiled and is removed once this has been played.
+3. Replace `find_path`, keeping the `PathRoute` output the game follows and the partial-route behaviour (done).
 4. Worker pool and shared results for group orders.
 5. Crowds, for several dozen units moving together:
    - local avoidance while walking (done for units on foot);
