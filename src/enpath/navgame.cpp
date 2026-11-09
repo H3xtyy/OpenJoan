@@ -189,6 +189,12 @@ std::int32_t find_route(void* path_space, const GameRequest& request, void* rout
     return static_cast<double>(ftol(request.tx)) == static_cast<double>(request.tx) && static_cast<double>(ftol(request.ty)) == static_cast<double>(request.ty) ? 1 : 0;
 }
 
+bool walkable(void* path_space, double x, double y) {
+    GameMesh& game = mesh_of(jo::as_path_space(path_space));
+    refresh_blocked(game);
+    return game.mesh.locate({x, y}) >= 0;
+}
+
 void forget_mesh(const void* path_space) { g_meshes.erase(path_space); }
 
 }  // namespace joan::nav

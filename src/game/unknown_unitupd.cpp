@@ -17,6 +17,7 @@
 #include "../fn_names.hpp"
 #include "../registry.hpp"
 #include "unit_stuck.hpp"
+#include "unit_steer.hpp"
 #include "animal_pen.hpp"
 #include "../runtime/hitch.hpp"
 
@@ -872,13 +873,15 @@ struct H {
                 jo::view<u32>(jo::self<jo::Unit>(this)->path_index) = jo::view<u32>(jo::self<jo::Unit>(this)->path_index) + 1u;
                 continue;
             }
-            if (fcom_eq(wp[0], me.x) && fcom_eq(wp[1], me.y)) {
+            float aim_x = wp[0], aim_y = wp[1];
+            joan::unit_steer::aim(this, me.x, me.y, aim_x, aim_y);  // around a unit standing in the way
+            if (fcom_eq(aim_x, me.x) && fcom_eq(aim_y, me.y)) {
                 joan::orig::as_unit(this)->set_heading(joan::orig::arg::f32(u32{0}));  // 0x0050abd0
             } else {
                 u32 ang = 0;
                 joan::orig::as_angle(static_cast<void*>(&ang))->construct_577190();  // 0x00577190
-                const double dx = static_cast<double>(wp[0] - me.x);
-                const double dy = static_cast<double>(wp[1] - me.y);
+                const double dx = static_cast<double>(aim_x - me.x);
+                const double dy = static_cast<double>(aim_y - me.y);
                 joan::orig::as_angle(static_cast<void*>(&ang))->from_xy(joan::orig::arg::f64(dx), joan::orig::arg::f64(dy));          // 0x00577b90
                 const float a = joan::orig::arg::as<float>(joan::orig::as_angle(static_cast<void*>(&ang))->degrees());  // 0x00577450
                 const float diff = joan::orig::arg::as<float>(joan::orig::as_unit(this)->float_1e()) - a;               // 0x0050ac00

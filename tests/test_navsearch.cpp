@@ -6,6 +6,7 @@
 #include <vector>
 
 #include "../src/enpath/navsearch.hpp"
+#include "../src/enpath/navsteer.hpp"
 
 using namespace joan::nav;
 
@@ -178,6 +179,36 @@ int main() {
             });
         for (std::thread& t : threads) t.join();
         for (const int ok : same) check(ok != 0, "every thread finds the same route");
+    }
+    {  // walking around other units
+        Neighbour standing;
+        standing.at = {50, 2};
+        standing.radius = 16;
+        standing.id = 7;
+        Dodge d = plan_dodge({0, 0}, 16, {200, 0}, &standing, 1, 0);
+        check(d.needed && d.blocker == 7, "a standing unit on the line is in the way");
+        check(d.first_side == -1 && d.first.y < 0.0, "it is passed on the side away from it");
+        check(d.second.y > 0.0, "the other side is the alternative");
+        check(plan_dodge({0, 0}, 16, {200, 0}, &standing, 1, 1).first.y > 0.0, "a side already chosen is kept");
+
+        Neighbour column = standing;
+        column.moving = true;
+        column.heading = {1, 0};
+        check(!plan_dodge({0, 0}, 16, {200, 0}, &column, 1, 0).needed, "a unit going the same way is left alone");
+        Neighbour oncoming = column;
+        oncoming.heading = {-1, 0};
+        oncoming.at = {50, 0};
+        check(plan_dodge({0, 0}, 16, {200, 0}, &oncoming, 1, 0).first.y < 0.0, "head-on, a unit keeps to its right");
+
+        Neighbour aside = standing;
+        aside.at = {50, 60};
+        check(!plan_dodge({0, 0}, 16, {200, 0}, &aside, 1, 0).needed, "a unit off the line is left alone");
+        Neighbour behind = standing;
+        behind.at = {-30, 0};
+        check(!plan_dodge({0, 0}, 16, {200, 0}, &behind, 1, 0).needed, "a unit behind is left alone");
+        Neighbour beyond = standing;
+        beyond.at = {50, 0};
+        check(!plan_dodge({0, 0}, 16, {30, 0}, &beyond, 1, 0).needed, "a unit past the waypoint is left alone");
     }
     if (g_failures == 0) std::printf("navsearch: all checks passed\n");
     return g_failures == 0 ? 0 : 1;

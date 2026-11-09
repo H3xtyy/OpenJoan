@@ -1,7 +1,8 @@
 # Pathfinding
 
 The replacement for the game's route search, on the `pathfinding` branch. Status: every route request of the game goes
-through it; the worker threads and the crowd behaviour are still to come (see the plan below).
+through it, and units walk around other units in their way; the worker threads and the rest of the crowd behaviour are
+still to come (see the plan below).
 
 ## What was wrong
 
@@ -41,6 +42,12 @@ with no clock or thread timing in it. Workers can therefore compute routes ahead
 
 Floating point is limited to `+ - * /` and `sqrt` on doubles, so results are the same on every platform.
 
+**Other units.** A route knows only the level, so a unit standing on it is dealt with while walking
+(`src/enpath/navsteer.{hpp,cpp}`, `src/game/unit_steer.{hpp,cpp}`). While following a route, a unit heads for a point beside
+the nearest unit that it would otherwise walk into, instead of for its waypoint. Units going the same way are left alone so
+that a column keeps flowing; units meeting head-on keep to their right. A side is kept while passing, and a side that runs
+off the level is not taken. Riders and siege engines do not steer yet.
+
 ## Plan
 
 1. Search core with tests (done).
@@ -49,7 +56,7 @@ Floating point is limited to `+ - * /` and `sqrt` on doubles, so results are the
    (`find_path2` 0x0066ce30, `PathResult2::smooth_path` 0x0066ece0) is still compiled and is removed once this has been played.
 4. Worker pool and shared results for group orders.
 5. Crowds, for several dozen units moving together:
-   - local avoidance while walking (units steer around each other instead of pushing), on top of the route;
+   - local avoidance while walking (done for units on foot);
    - units of one order spread over the width of a gap instead of all taking the same line;
    - detecting units that have stopped making progress, and re-routing or yielding, in place of the current stuck fixes.
 6. Measure on real levels and tune; test on full missions, since mission scripts depend on units arriving.

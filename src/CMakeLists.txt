@@ -451,6 +451,7 @@ add_library(openjoan_game OBJECT
     interfac/mouse_options.cpp
     interfac/remap_set.cpp
     game/pad_feedback.cpp
+    game/unit_steer.cpp
     game/unit_stuck.cpp
     game/animal_pen.cpp
     game/mission_count.cpp
@@ -472,6 +473,7 @@ add_library(openjoan_game OBJECT
     enparticle/peventsq.cpp
     enpath/navgame.cpp
     enpath/navsearch.cpp
+    enpath/navsteer.cpp
     enpath/pathsp.cpp
     enpath/pathspr.cpp
     enphysic/collimgr.cpp
@@ -703,7 +705,7 @@ if(JOAN_BUILD_DATA_TEST)
 
     # The new pathfinding's search on small hand-built meshes (docs/PATHFINDING.md).
     find_package(Threads REQUIRED)
-    add_executable(navsearch_test ${CMAKE_SOURCE_DIR}/tests/test_navsearch.cpp enpath/navsearch.cpp)
+    add_executable(navsearch_test ${CMAKE_SOURCE_DIR}/tests/test_navsearch.cpp enpath/navsearch.cpp enpath/navsteer.cpp)
     target_link_libraries(navsearch_test PRIVATE joan_warnings Threads::Threads)
     add_test(NAME navsearch_test COMMAND navsearch_test)
 endif()

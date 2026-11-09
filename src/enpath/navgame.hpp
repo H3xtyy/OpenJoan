@@ -22,6 +22,9 @@ struct GameRequest {
 /// @param path_space the PathSpace; its mesh is built on the first request and stays until forget_mesh.
 std::int32_t find_route(void* path_space, const GameRequest& request, void* route);
 
+/// Whether the point (`x`, `y`), in the coordinates of `path_space`, lies on an open polygon. Costs a walk over the mesh.
+bool walkable(void* path_space, double x, double y);
+
 /// Drops the mesh built for `path_space`. Called when the PathSpace is destroyed.
 void forget_mesh(const void* path_space);
 
