@@ -2889,7 +2889,7 @@ float path_radius(const u8* t) {
 struct H {
     void* zone() { return jo::self<jo::Unit>(this)->cell; }
     // A unit outside any formation still needs a line of its own, or a crowd funnels to one point of every gap. The place
-    // comes from its id; a negative span tells the route to use it only where it is tight (docs/PATHFINDING.md).
+    // comes from its id (docs/PATHFINDING.md).
     u32 lane_slot() {
         if (jo::view<float>(jo::self<jo::Unit>(this)->form_width) != 0.0f) return jo::self<jo::Unit>(this)->form_slot_y;
         const u32 place = (static_cast<u32>(static_cast<std::uint16_t>(jo::self<jo::Unit>(this)->id)) * 2654435761u) >> 28;
@@ -2897,7 +2897,7 @@ struct H {
     }
     u32 lane_span() {
         if (jo::view<float>(jo::self<jo::Unit>(this)->form_width) != 0.0f) return jo::self<jo::Unit>(this)->form_width;
-        return joan::orig::arg::bits(-kOwnLaneSpan);
+        return joan::orig::arg::bits(kOwnLaneSpan);
     }
     void* p432() { return &jo::self<jo::Unit>(this)->path; }
     void* p473() { return &jo::self<jo::Unit>(this)->path_b; }

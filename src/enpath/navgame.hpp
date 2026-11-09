@@ -13,8 +13,7 @@ struct GameRequest {
     float tx = 0.0f, ty = 0.0f, tz = 0.0f;  ///< goal
     float radius = 0.0f;                    ///< clearance from walls, world units
     float lane = 0.0f;                      ///< the unit's place across its formation, world units (0 = centre)
-    float lane_width = 0.0f;                ///< the formation's width, world units; 0 = no lane; negative = a unit outside any
-                                            ///< formation, which keeps its lane only at corners and in narrow gaps
+    float lane_width = 0.0f;                ///< the formation's width, world units (0 = no lane)
     std::int32_t zone = 0;                  ///< the 1-based PfdZone the unit stands in
 };
 

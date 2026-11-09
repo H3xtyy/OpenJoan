@@ -22,9 +22,10 @@ through. Units of at least 200 world units keep out of polygons the loader marke
 
 **The route the game receives.** `src/enpath/navgame.cpp` builds a `NavMesh` from a `PathSpace` on the first request and
 reads the current blocked flags on every request. The route it writes has one point per polygon edge crossed, so each leg
-stays inside one convex polygon and the height of every point comes from the edge it lies on. The unit's place in its
-formation moves each point along its edge, within the usable part: this is what spreads the units of one order across a
-gap. When the goal cannot be reached, the route ends near the point of the visited polygons closest to it, the unit's radius
+stays inside one convex polygon and the height of every point comes from the edge it lies on. At a corner or in a gap
+narrower than 400 units, the unit's place in its formation moves the point along its edge, within the usable part, which
+spreads the units of one order across the gap. Elsewhere the point stays on the straight line: edges face every way, so
+moving each one would make the route zigzag, and a formation's shape already comes from each unit's own goal. When the goal cannot be reached, the route ends near the point of the visited polygons closest to it, the unit's radius
 back from the edge, so that nobody presses against a wall or a closed gate.
 
 The polygons of the shipped levels are small enough for this to be cheap. Over 45,600 random requests on all 38 meshes (up
@@ -58,8 +59,7 @@ always collide, and nobody walks through the player. Two friendly bodies already
 that neither can be trapped when one stops inside the other. This replaces the original's pause for friendly units, and a unit passing through does not count as stuck.
 Riders and siege engines do neither yet.
 
-A unit in no formation gets a line of its own from its id, used only at corners and in gaps narrower than 400 units, so that
-a crowd does not funnel to one point; on open ground it keeps the straight line.
+A unit in no formation gets a line of its own from its id, so that a crowd does not funnel to one point of a gap.
 
 The mesh does not know everything: a model's wall may stand on ground the mesh calls free. A unit that has come no closer
 to its waypoint for 0.45 s steps aside for 0.35 s, one way and then the other, up to twice. Only then does the older
