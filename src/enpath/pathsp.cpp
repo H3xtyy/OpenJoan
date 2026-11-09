@@ -23,6 +23,7 @@
 #include "../render/overrides.hpp"
 #include "../original/layout_access.hpp"
 #include "../original/bind.hpp"
+#include "navgame.hpp"
 
 namespace jo = joan::orig;
 
@@ -206,6 +207,7 @@ struct H {
     // 0x00665000 PfdData::~PfdData() (ret 0); the members are deleted but not cleared.
     std::uintptr_t pfd_destroy() {  // EAX: the last destructor's result / this (pointer-wide on x64)
         c_pfd_destroy.hit();
+        joan::nav::forget_mesh(this);
         joan::orig::as_path_space(this)->clear_groups();  // 0x00666d80
         joan::orig::as_path_space(this)->clear_grid();  // 0x00665290
         std::uintptr_t r = 0;

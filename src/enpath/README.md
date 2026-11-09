@@ -5,6 +5,9 @@ string for these files; the file names follow the Restaurant Empire 2 engine sym
 whose engine kept them in `enpath/` (in joan's 2004 tree the code sat between the uti3d objects). One file per original
 source file; every function keeps its registration (name, module key, address).
 
+`navsearch.{hpp,cpp}` and `navgame.{hpp,cpp}` are not ported code: they are the new route search and its connection to the game
+(`docs/PATHFINDING.md`).
+
 The function table below is generated from the registrations (`python3 tools/module_table.py src/enpath --write`).
 
 ## Functions

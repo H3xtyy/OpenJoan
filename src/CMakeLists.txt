@@ -470,6 +470,8 @@ add_library(openjoan_game OBJECT
     enparticle/petoken.cpp
     enparticle/pevent.cpp
     enparticle/peventsq.cpp
+    enpath/navgame.cpp
+    enpath/navsearch.cpp
     enpath/pathsp.cpp
     enpath/pathspr.cpp
     enphysic/collimgr.cpp

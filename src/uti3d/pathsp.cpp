@@ -26,6 +26,8 @@
 #include "../original/cxx_eh.hpp"
 #include "../original/layout_access.hpp"
 #include "../original/bind.hpp"
+#include "../enpath/navgame.hpp"
+#include <bit>
 
 namespace jo = joan::orig;
 
@@ -2010,8 +2012,6 @@ using joan::hook::x87::ftol;
 using u32 = std::uint32_t;
 
 using joan::orig::helpers::add32;
-// x87 fcomp + test ah,0x40: equal or unordered.
-bool eq_or_nan(double a, double b) { return !(a < b) && !(a > b); }
 
 struct Vec3 {
     float x, y, z;
@@ -2033,29 +2033,17 @@ struct H {
             node = joan::orig::arg::as<i32>(joan::orig::as_path_space(this)->nearest_zone(joan::orig::arg::i32(ftol(x)), joan::orig::arg::i32(ftol(y)), joan::orig::arg::u32(ftol(z)), joan::orig::arg::u32(a)));  // 0x0066c710
             if (node == 0) return 0;
         }
-        void* const start = joan::orig::arg::as<void*>(joan::orig::as_billboard(jo::view<void*>(jo::self<jo::PathSpace>(this)->zones))->item(joan::orig::arg::i32(node)));  // 0x00637da0
         const i32 itx = ftol(tx), ity = ftol(ty), itz = ftol(tz);
-        if (jo::self<jo::PathSpace>(this)->search_stamp == 0) {
-            for (i32 i = 1; i <= joan::orig::arg::as<i32>(joan::orig::as_path_space(jo::view<void*>(jo::self<jo::PathSpace>(this)->zones))->get_2c()); ++i) {  // 0x0066b7a0
-                jo::PfdZone* const n = jo::as_pfd_zone(joan::orig::as_billboard(jo::view<void*>(jo::self<jo::PathSpace>(this)->zones))->item(joan::orig::arg::i32(i)));
-                jo::view<u32>(n->search_stamp) = 0;
-            }
-            jo::self<jo::PathSpace>(this)->search_stamp = 1;
-        }
-        const i32 stamp = jo::self<jo::PathSpace>(this)->search_stamp;
-        jo::self<jo::PathSpace>(this)->search_stamp = add32(jo::self<jo::PathSpace>(this)->search_stamp, 1);
         joan::orig::as_path_box(path)->set(joan::orig::arg::i32(ftol(x)), joan::orig::arg::i32(ftol(y)), joan::orig::arg::i32(ftol(z)), joan::orig::arg::i32(itx), joan::orig::arg::i32(ity), joan::orig::arg::i32(itz));  // 0x0066e640
-        const Vec3 to{tx, ty, tz};
-        const Vec3 from{x, y, z};
-        const i32 found = joan::orig::path::astar_66ce30(start, 0u, joan::orig::arg::bits(from.x), joan::orig::arg::bits(from.y), joan::orig::arg::bits(from.z), joan::orig::arg::bits(to.x), joan::orig::arg::bits(to.y), joan::orig::arg::bits(to.z), stamp, path, joan::orig::arg::u32(a), b, -1, joan::orig::arg::i32(jo::self<jo::PathSpace>(this)->map_id));
-        if (found != 0) {
-            joan::orig::as_path_box(path)->set_end(joan::orig::arg::i32(itx), joan::orig::arg::i32(ity), joan::orig::arg::i32(itz));  // 0x0066e720
-            joan::orig::as_path(path)->smooth(joan::orig::arg::f32(a), joan::orig::arg::f32(c), joan::orig::arg::f32(d), joan::orig::arg::i32(e));     // 0x0066ece0
-            if (eq_or_nan(static_cast<double>(itx), tx) && eq_or_nan(static_cast<double>(ity), ty)) return 1;
-            return 0;
-        }
-        joan::orig::as_path(path)->smooth(joan::orig::arg::f32(a), joan::orig::arg::f32(c), joan::orig::arg::f32(d), joan::orig::arg::i32(e));
-        return 0;
+        joan::nav::GameRequest request;  // docs/PATHFINDING.md
+        request.x = x, request.y = y, request.z = z;
+        request.tx = tx, request.ty = ty, request.tz = tz;
+        request.radius = std::bit_cast<float>(a);
+        request.lane = std::bit_cast<float>(c);
+        request.lane_width = std::bit_cast<float>(d);
+        request.zone = node;
+        (void)b, (void)e;  // the old search's node budget and an argument the original's smoothing ignored
+        return joan::nav::find_route(this, request, path);
     }
 };
 
