@@ -34,6 +34,7 @@ struct Portal {
 
 constexpr std::uint8_t kCorner = 1;    // a route may bend here: the terrain class changes
 constexpr std::uint8_t kObstacle = 2;  // a route may bend here and keeps its distance: a wall or a closed polygon touches it
+constexpr double kMostPartialInset = 0.9;  // of the way to a polygon's centre: how far a partial route's end may move from the edge
 constexpr double kMostInset = 0.49;    // of a gap's width: a gap too narrow for the radius is crossed at its middle
 
 // The usable part of the edge from `right_vertex` to `left_vertex`: the ends touching an obstacle moved `radius` inwards.
@@ -311,7 +312,15 @@ Route NavSearch::find(const NavMesh& mesh, const Request& request) {
     }
 
     route.outcome = found >= 0 ? Outcome::reached : Outcome::partial;
-    const Point end = found >= 0 ? target : nearest;
+    Point end = target;
+    if (found < 0) {  // the closest point lies on the polygon's edge: a body's width short of it, so that the unit does not end up pressing on a wall
+        const Poly& last = mesh.polys[static_cast<std::size_t>(nearest_node >= 0 ? nodes_[static_cast<std::size_t>(nearest_node)].poly : request.start_poly)];
+        Point centre{0.0, 0.0};
+        for (std::uint32_t i = 0; i < last.count; ++i) centre = centre + mesh.points[corner(last, i)];
+        centre = centre * (1.0 / static_cast<double>(last.count));
+        const double to_centre = distance(nearest, centre);
+        end = to_centre > 0.0 ? nearest + (centre - nearest) * (std::min(request.radius, to_centre * kMostPartialInset) / to_centre) : nearest;
+    }
     std::vector<std::int32_t> chain;
     for (std::int32_t at = found >= 0 ? found : nearest_node; at >= 0; at = nodes_[static_cast<std::size_t>(at)].parent) chain.push_back(at);
     std::reverse(chain.begin(), chain.end());

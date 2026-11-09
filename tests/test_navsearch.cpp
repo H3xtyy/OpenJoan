@@ -120,6 +120,8 @@ int main() {
         m.polys[2].blocked = true;
         const Route r = find(m, {5, 50}, {250, 50});
         check(r.outcome == Outcome::partial && std::fabs(r.points.back().x - 200.0) < 1e-9, "a partial route ends at the far edge");
+        const Route clear = find(m, {5, 50}, {250, 50}, 30.0);
+        check(clear.outcome == Outcome::partial && clear.points.back().x < 175.0 && clear.points.back().x > 165.0, "a unit with a radius stops short of the wall");
     }
     {  // a start a little outside its polygon
         const NavMesh m = grid(3, 1, 10.0, [](int, int) { return true; });

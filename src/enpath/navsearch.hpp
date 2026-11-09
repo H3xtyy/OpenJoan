@@ -49,7 +49,7 @@ struct Request {
 /// How a search ended.
 enum class Outcome {
     reached,    ///< the route ends at the goal
-    partial,    ///< no route (or the budget ran out): the route ends at the closest polygon reached
+    partial,    ///< no route (or the budget ran out): the route ends at the closest polygon reached, the unit's radius from its edge
     no_start,   ///< the start polygon does not exist or is blocked
 };
 

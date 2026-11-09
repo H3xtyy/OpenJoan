@@ -24,7 +24,8 @@ through. Units of at least 200 world units keep out of polygons the loader marke
 reads the current blocked flags on every request. The route it writes has one point per polygon edge crossed, so each leg
 stays inside one convex polygon and the height of every point comes from the edge it lies on. The unit's place in its
 formation moves each point along its edge, within the usable part: this is what spreads the units of one order across a
-gap. When the goal cannot be reached, the route ends at the point of the visited polygons closest to it.
+gap. When the goal cannot be reached, the route ends near the point of the visited polygons closest to it, the unit's radius
+back from the edge, so that nobody presses against a wall or a closed gate.
 
 The polygons of the shipped levels are small enough for this to be cheap. Over 45,600 random requests on all 38 meshes (up
 to 3,875 polygons), a request takes 0.1 ms at the median, 4.4 ms at the 99th percentile and 58 ms at worst, the worst being
@@ -61,7 +62,7 @@ A unit in no formation gets a line of its own from its id, used only at corners 
 a crowd does not funnel to one point; on open ground it keeps the straight line.
 
 The mesh does not know everything: a model's wall may stand on ground the mesh calls free. A unit that has come no closer
-to its waypoint for 0.45 s steps aside for 0.35 s, one way and then the other, up to four times. Only then does the older
+to its waypoint for 0.45 s steps aside for 0.35 s, one way and then the other, up to twice. Only then does the older
 check (`game/unit_stuck.hpp`, a unit with no progress for a second ends its route) apply. That check stays, because it deals
 with exactly this case when stepping aside does not help.
 
