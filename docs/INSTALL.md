@@ -25,6 +25,12 @@ wrapper. Remove it first.
 `openjoan.ini`, next to the executable, holds the display and rendering options. Each key is explained in the file;
 `docs/RUNTIME.md` is the full reference.
 
+## Saves when the game is installed under Program Files
+
+Windows does not let a program write inside `C:\Program Files`. When the game folder cannot be written, OpenJoan keeps its
+saves, `CONFIG.DAT`, settings and any other file it writes in `%LOCALAPPDATA%\OpenJoan` (`~/.local/share/openjoan` on Linux)
+and reads them back from there. Installing somewhere writable, such as `C:\Games`, keeps everything in the game folder.
+
 ## Licence
 
 OpenJoan is GPL-3.0-or-later (`LICENSE.txt`). FFmpeg is LGPL 2.1 or later, SDL3 is zlib, OpenAL Soft is LGPL, and the Windows cross-build's libc++ and libunwind are

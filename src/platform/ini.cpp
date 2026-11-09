@@ -1,6 +1,7 @@
 // openjoan.ini without Windows' profile API (ini.hpp).
 
 #include "ini.hpp"
+#include "user_files.hpp"
 
 #include <algorithm>
 #include <cstdlib>
@@ -17,6 +18,14 @@ namespace joan::platform::ini {
 namespace {
 
 namespace fs = std::filesystem;
+
+// The settings file to read: the user's copy if the game folder could not be written (user_files.hpp), otherwise `file`.
+fs::path own_copy_or(const fs::path& file) {
+    std::error_code ec;
+    const fs::path copy = user_files::users_folder() / file.filename();
+    return fs::exists(copy, ec) ? copy : file;
+}
+
 
 std::string_view trim(std::string_view s) {
     while (!s.empty() && (s.front() == ' ' || s.front() == '\t')) s.remove_prefix(1);
@@ -80,7 +89,7 @@ File load(const fs::path& path) {
     if (!f.exists) return f;
     f.size = fs::file_size(path, ec);
     f.time = fs::last_write_time(path, ec);
-    std::ifstream in(path, std::ios::binary);
+    std::ifstream in(own_copy_or(path), std::ios::binary);
     std::string all((std::istreambuf_iterator<char>(in)), std::istreambuf_iterator<char>());
     if (all.size() >= 3 && static_cast<unsigned char>(all[0]) == 0xef && static_cast<unsigned char>(all[1]) == 0xbb &&
         static_cast<unsigned char>(all[2]) == 0xbf) {
@@ -232,6 +241,13 @@ bool write_string(const char* section, const char* key, const char* value, const
     }
     {
         std::ofstream o(file, std::ios::binary | std::ios::trunc);
+        if (!o) {  // a game folder that cannot be written: the user's copy, which is read from then on
+            o.clear();
+            std::error_code ec;
+            const fs::path copy = user_files::users_folder() / file.filename();
+            fs::create_directories(copy.parent_path(), ec);
+            o.open(copy, std::ios::binary | std::ios::trunc);
+        }
         if (!o) return false;
         const std::string s = out.str();
         o.write(s.data(), static_cast<std::streamsize>(s.size()));
