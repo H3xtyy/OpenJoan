@@ -25,7 +25,7 @@ SearchKey key_of(const void* owner, std::uint64_t generation, const Request& req
     return key;
 }
 
-std::size_t RoutePool::Hash::operator()(const SearchKey& key) const {
+std::size_t hash_of(const SearchKey& key) {
     std::uint64_t h = 1469598103934665603ull;
     const auto add = [&](std::uint64_t v) { h = (h ^ v) * 1099511628211ull; };
     add(std::bit_cast<std::uintptr_t>(key.owner));
@@ -36,6 +36,8 @@ std::size_t RoutePool::Hash::operator()(const SearchKey& key) const {
     add(key.avoid_narrow ? 1u : 0u);
     return static_cast<std::size_t>(h);
 }
+
+std::size_t RoutePool::Hash::operator()(const SearchKey& key) const { return hash_of(key); }
 
 RoutePool::RoutePool(unsigned threads) : wanted_(threads) {}
 

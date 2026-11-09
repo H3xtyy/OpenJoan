@@ -35,6 +35,8 @@ struct NavMesh {
 
     /// The polygon containing `p`, -1 if none (the first in index order, blocked ones excluded).
     std::int32_t locate(Point p) const;
+    /// Whether polygon `poly` contains `p`.
+    bool contains(std::int32_t poly, Point p) const;
 };
 
 /// What a route is asked for.
@@ -60,6 +62,7 @@ struct Crossing {
     Point left, right;        ///< the part of the edge a unit may use (the ends moved away from walls)
     std::uint32_t left_corner = 0;   ///< NavMesh::points index of the edge's left end
     std::uint32_t right_corner = 0;  ///< the same for the right end
+    std::int32_t into_poly = -1;     ///< the polygon the route enters here
 };
 
 /// A finished route.

@@ -32,6 +32,9 @@ struct SearchKey {
 /// The key of `request` on the mesh `generation` of `owner`.
 SearchKey key_of(const void* owner, std::uint64_t generation, const Request& request);
 
+/// A hash of `key`.
+std::size_t hash_of(const SearchKey& key);
+
 /// A fixed set of worker threads and the routes they have found.
 class RoutePool {
    public:
