@@ -41,6 +41,7 @@ constexpr u32 kAsideMs = 350;         // a step aside lasts this long,
 constexpr double kAsideBy = 96.0;     // aims this far to the side,
 constexpr double kAsideOn = 32.0;     // and this far on
 constexpr std::int32_t kMostAsides = 2;  // and is tried this many times before the unit counts as stuck (game/unit_stuck.hpp)
+constexpr double kLargestAvoided = 48.0;  // body radius, world units: larger units are not walked around
 constexpr u32 kPassMs = 1200;         // how long a unit in a jam may walk through friendly units, at least
 constexpr double kInsideShare = 0.7;  // of the two radii together: closer than this, two bodies are inside each other
 constexpr u32 kStillOverlapMs = 250;  // and this much longer each time it is still inside one
@@ -212,7 +213,8 @@ void aim(void* unit_record, float x, float y, float& aim_x, float& aim_y) {
         nearby.push_back(k.neighbour);
         // Soldiers of one group do not swerve around each other: the back rank would be sent left and right every time the front
         // rank slows down. One that really is in the way is walked through once the two have been pressed together (start_passing).
-        if (own_group == nullptr || k.group != own_group) to_avoid.push_back(k.neighbour);
+        // Nor around anything bigger than a person: the clearance around a standing wagon carried the soldiers beside it into the wall.
+        if ((own_group == nullptr || k.group != own_group) && k.neighbour.radius <= kLargestAvoided) to_avoid.push_back(k.neighbour);
     }
     Side& side = g_sides[unit_record];
     if (side.passing_until > now) {  // walking through: straight on, for as long as it is inside someone

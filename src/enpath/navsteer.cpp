@@ -8,7 +8,7 @@ namespace joan::nav {
 
 namespace {
 constexpr double kMargin = 8.0;           // world units left between two bodies when passing
-constexpr double kLookAhead = 2.5;        // how far ahead a unit counts, in units of the distance two bodies keep
+constexpr double kLookAhead = 1.75;        // how far ahead a unit counts, in units of the distance two bodies keep
 constexpr double kSameWay = 0.3;          // a unit whose direction has at least this much in common with ours goes our way
 }  // namespace
 
