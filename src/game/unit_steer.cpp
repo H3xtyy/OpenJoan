@@ -35,6 +35,7 @@ constexpr double kNearby = 400.0;     // units further than this are not looked 
 constexpr u32 kKeepSideMs = 1500;     // a side chosen is kept this long after the unit in the way was last seen
 constexpr u32 kRecheckMs = 250;       // how often a chosen side is checked against the level
 constexpr u32 kPassMs = 1200;         // how long a unit in a jam may walk through friendly units, at least
+constexpr double kInsideShare = 0.7;  // of the two radii together: closer than this, two bodies are inside each other
 constexpr u32 kStillOverlapMs = 250;  // and this much longer each time it is still inside one
 
 struct Sample {
@@ -85,6 +86,27 @@ double body_radius(const std::uint8_t* type) {
 
 bool hostile(const void* a, const void* b) {
     return joan::orig::arg::as<i32>(joan::orig::as_players(obj(d::g_nations))->hostile(static_cast<i32>(jo::as_unit(a)->side), joan::orig::arg::i32(static_cast<i32>(jo::as_unit(b)->side)))) != 0;  // 0x004b6860
+}
+
+bool is_player(const void* unit) { return static_cast<i32>(jo::as_unit(unit)->id) == global<i32>(d::g_player_unit_recno); }
+
+double actor_radius(const void* actor, const void* unit) {
+    switch (jo::view<i32>(jo::as_actor(actor)->aim_mode)) {
+        case 1: return static_cast<double>(jo::as_actor(actor)->aim_sphere[3]);
+        case 3: return static_cast<double>(jo::as_actor(actor)->collide_radius);
+        default: return body_radius(type_of(unit));
+    }
+}
+
+// Clearly inside each other, not merely touching: bodies that touch are as far apart as the sum of their radii.
+bool overlapping(const void* actor, const void* owner, const void* other) {
+    const void* const other_actor = jo::as_unit(other)->actor;
+    if (other_actor == nullptr) return false;
+    const float* const a = jo::view<float[3]>(jo::as_unit(owner)->position_);
+    const float* const b = jo::view<float[3]>(jo::as_unit(other)->position_);
+    const double dx = static_cast<double>(a[0] - b[0]), dy = static_cast<double>(a[1] - b[1]);
+    const double limit = (actor_radius(actor, owner) + actor_radius(other_actor, other)) * kInsideShare;
+    return dx * dx + dy * dy < limit * limit;
 }
 
 void refresh_units(u32 now) {
@@ -192,12 +214,12 @@ void aim(void* unit_record, float x, float y, float& aim_x, float& aim_y) {
 }
 
 bool start_passing(void* unit_record, std::uint32_t body) {
-    void* const bodies = joan::orig::as_players(obj(d::g_physic_sys));
+    void* const bodies = obj(d::g_physic_sys);
     if (body == 0 || joan::orig::as_players(bodies)->list.empty_at(joan::orig::arg::i32(body)) != 0) return false;
     auto* const shot = joan::orig::arg::as<std::uint8_t*>(joan::orig::as_players(bodies)->list.ptr_at(joan::orig::arg::i32(body)));  // 0x006af310
     const auto* const actor = jo::view<std::uint8_t*>(jo::as_shot(shot)->actor);
     if (actor == nullptr || jo::as_actor(actor)->kind != 0xb) return false;
-    if (hostile(unit_record, jo::as_actor(actor)->owner)) return false;
+    if (hostile(unit_record, jo::as_actor(actor)->owner) || is_player(jo::as_actor(actor)->owner)) return false;
     g_sides[unit_record].passing_until = global<u32>(d::g_now) + kPassMs;
     return true;
 }
@@ -210,7 +232,11 @@ bool passing(const void* unit_record) {
 bool walks_through(const void* actor, const void* other) {
     if (jo::as_actor(actor)->kind != 0xb) return false;
     const void* const owner = jo::as_actor(actor)->owner;
-    return passing(owner) && !hostile(owner, other);
+    if (owner == other) return false;
+    const bool inside = overlapping(actor, owner, other);
+    if (!inside && !passing(owner)) return false;
+    if (hostile(owner, other)) return false;
+    return inside || !is_player(other);  // two bodies already inside each other must be able to part; the player is never walked through
 }
 
 }  // namespace joan::unit_steer

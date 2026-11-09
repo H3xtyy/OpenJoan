@@ -50,7 +50,8 @@ off the level is not taken.
 
 A tunnel or gate may leave no way round at all. A unit pressed against a non-hostile unit for half a second therefore walks
 through friendly units until it is clear of them (at least 1.2 s, then as long as it is still inside one). Hostile units
-always collide. This replaces the original's pause for friendly units, and a unit passing through does not count as stuck.
+always collide, and nobody walks through the player. Two friendly bodies already inside each other do not collide, so
+that neither can be trapped when one stops inside the other. This replaces the original's pause for friendly units, and a unit passing through does not count as stuck.
 Riders and siege engines do neither yet.
 
 ## Plan

@@ -19,7 +19,8 @@ bool start_passing(void* unit, std::uint32_t body);
 /// Whether `unit` is walking through friendly units at the moment.
 bool passing(const void* unit);
 
-/// Players::collide (0x0068de40): whether the unit that owns `actor` walks through the unit `other` at the moment.
+/// Players::collide (0x0068de40): whether the unit that owns `actor` walks through the unit `other` at the moment: it is
+/// passing and `other` is not the player, or the two are already inside each other. Hostile units are never walked through.
 bool walks_through(const void* actor, const void* other);
 
 }  // namespace joan::unit_steer
