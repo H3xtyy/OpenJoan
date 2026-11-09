@@ -200,6 +200,12 @@ static void JOAN_CDECL route_around_6ac050(u8* base, i32 count, i32 idx, i32 key
             if (!(len2 > global<float>(d::k_9cf5c4))) continue;  // test ah,0x41 jne
             const double q = fpu.div(static_cast<double>(wrap_mul(cross, cross)), static_cast<double>(len2));
             if (!(q < static_cast<double>(global<float>(d::flt_9)))) continue;  // test ah,1 je
+            // Not in the original, which looks only at the distance to the infinite line: it relied on routes that zigzag. On a
+            // straight route every stretch is on one line, and the first would send the follower back to where its leader
+            // has already been. The unit must be beside this stretch (docs/PATHFINDING.md).
+            const double along = static_cast<double>(d.x) * static_cast<double>(c.x - s.x) + static_cast<double>(d.y) * static_cast<double>(c.y - s.y);
+            const double margin = 3.0 * std::sqrt(static_cast<double>(len2));
+            if (along < -margin || along > static_cast<double>(len2) + margin) continue;
             cut = true;
             joan::orig::as_vec2i(&s)->assign(&c);
         }

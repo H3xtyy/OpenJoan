@@ -41,6 +41,10 @@ few dozen small searches a second. The debug build's log counts both: `Nav::rout
 Worker threads were tried and removed. Callers need the route at once, so a thread can only help with a route known in
 advance, and almost none are: in play only 27 of 2,787 new searches used a route prepared ahead of time.
 
+**Formations.** A follower close to its leader copies the leader's route, shifted by the distance between them
+(`route_around` 0x006ac050). It joins that route on the stretch it stands beside. The new routes are often straight, so this
+test looks at the stretch itself and not at the infinite line through it, which would match the first stretch every time.
+
 **Other units.** A route knows only the level, so a unit standing on it is dealt with while walking
 (`src/enpath/navsteer.{hpp,cpp}`, `src/game/unit_steer.{hpp,cpp}`). While following a route, a unit heads for a point beside
 the nearest unit that it would otherwise walk into, instead of for its waypoint. Units going the same way are left alone so
