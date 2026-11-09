@@ -2,12 +2,8 @@
 // The route search of src/enpath/navsearch.hpp on small meshes built by hand.
 #include <cmath>
 #include <cstdio>
-#include <memory>
-#include <optional>
-#include <thread>
 #include <vector>
 
-#include "../src/enpath/navpool.hpp"
 #include "../src/enpath/navsearch.hpp"
 #include "../src/enpath/navsteer.hpp"
 
@@ -164,24 +160,15 @@ int main() {
         check(std::fabs(length(r) - best) < 1e-9, "serpentine route is the exact shortest");
         check(r.points.size() == 6, "serpentine turns only at the four wall corners");
     }
-    {  // the same answer from any number of threads
+    {  // a search depends on nothing but the mesh and the request, also when its memory is reused
         const NavMesh m = grid(40, 40, 10.0, [](int x, int y) { return (x + y * 7) % 11 != 0; });
         const Request req{m.locate({5, 15}), {5, 15}, {395, 385}, 2.0, 0};
         const Route reference = NavSearch{}.find(m, req);
-        std::vector<int> same(8, 0);
-        std::vector<std::thread> threads;
-        for (std::size_t t = 0; t < same.size(); ++t)
-            threads.emplace_back([&, t] {
-                NavSearch search;
-                int ok = 1;
-                for (int i = 0; i < 200; ++i) {
-                    const Route r = search.find(m, req);
-                    ok = ok && r.points == reference.points && r.expanded == reference.expanded;
-                }
-                same[t] = ok;
-            });
-        for (std::thread& t : threads) t.join();
-        for (const int ok : same) check(ok != 0, "every thread finds the same route");
+        NavSearch search;
+        for (int i = 0; i < 20; ++i) {
+            const Route r = search.find(m, req);
+            check(r.points == reference.points && r.expanded == reference.expanded, "a repeated search gives the same route");
+        }
     }
     {  // walking around other units
         Neighbour standing;
@@ -213,29 +200,6 @@ int main() {
         Neighbour beyond = standing;
         beyond.at = {50, 0};
         check(!plan_dodge({0, 0}, 16, {30, 0}, &beyond, 1, 0).needed, "a unit past the waypoint is left alone");
-    }
-    {  // the worker threads give what a search on the spot gives
-        auto m = std::make_shared<NavMesh>(grid(40, 40, 10.0, [](int x, int y) { return (x + y * 7) % 11 != 0; }));
-        RoutePool pool(3);
-        std::vector<Request> requests;
-        for (int i = 0; i < 300; ++i) {
-            const Point from{5.0 + (i % 37) * 10.0, 5.0 + (i * 3 % 37) * 10.0};
-            const std::int32_t start = m->locate(from);
-            if (start >= 0) requests.push_back({start, from, {395, 385}, 2.0, 0});
-        }
-        for (const Request& r : requests) pool.submit(key_of(m.get(), 1, r), m, r);
-        check(pool.workers() == 3, "the pool starts its workers");
-        NavSearch search;
-        for (const Request& r : requests) {
-            const Route direct = search.find(*m, r);
-            std::optional<Route> ready = pool.take(key_of(m.get(), 1, r));
-            if (!ready) ready = search.find(*m, r);  // not started yet: what the game does
-            check(ready->points == direct.points && ready->expanded == direct.expanded, "a route from a worker equals a search on the spot");
-        }
-        check(!pool.take(key_of(m.get(), 1, requests.front())), "a route is handed out once");
-        pool.submit(key_of(m.get(), 2, requests[0]), m, requests[0]);
-        pool.forget(m.get());
-        check(!pool.take(key_of(m.get(), 3, requests[0])), "another mesh state is another search");
     }
     if (g_failures == 0) std::printf("navsearch: all checks passed\n");
     return g_failures == 0 ? 0 : 1;

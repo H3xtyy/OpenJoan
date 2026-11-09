@@ -1,8 +1,8 @@
 # Pathfinding
 
 The replacement for the game's route search, on the `pathfinding` branch. Status: every route request of the game goes
-through it, worker threads prepare the routes of move orders, and units walk around other units in their way; the rest of
-the crowd behaviour is still to come (see the plan below).
+through it, and units walk around other units in their way; the rest of the crowd behaviour is still to come (see the plan
+below).
 
 ## What was wrong
 
@@ -31,27 +31,15 @@ to 3,875 polygons), a request takes 0.1 ms at the median, 4.4 ms at the 99th per
 a goal that cannot be reached, which visits a whole level. A goal inside one of the handful of non-convex polygons is
 treated as unreachable, and the route stops beside it.
 
-**Multithreading without changing results.** `Unit::move_to` (0x00505dd0) is synchronous and callers read the route
-immediately, so that contract stays. A route is a pure function of the mesh, the blocked-polygon state and the request,
-with no clock or thread timing in it. Workers can therefore compute routes ahead of time (`src/enpath/navpool.{hpp,cpp}`):
+**One thread, and no repeated work.** `Unit::move_to` (0x00505dd0) is synchronous and callers read the route immediately.
+A unit walking along asks for its route again every few frames: over 1,000 requests a second were counted in play, against a
+few dozen orders in a whole session. A search therefore starts from the middle of a 16-unit square around the unit, which
+makes those requests the same search, and a finished route is remembered until a polygon opens or closes. The piece of walk
+from the unit to its first edge stays inside the unit's polygon. Over 90% of requests were answered from memory, leaving a
+few dozen small searches a second. The debug build's log counts both: `Nav::route_repeated` and `Nav::route_searched`.
 
-- every search owns its working memory (`NavSearch`), and a mesh is never changed once published: when a polygon opens or
-  closes the mesh is copied, so searches run in parallel on whatever state they started with;
-- a unit walking along asks for its route again every few frames (over 1,000 requests a second were counted in play, against
-  a few dozen orders in the whole session; 95% of them are answered from memory). A search therefore starts from the middle of a 16-unit square around the unit,
-  which makes those requests the same search, and a finished route is remembered until a polygon opens or closes. The piece
-  of walk from the unit to its first edge stays inside the unit's polygon;
-- a move or attack-move order (`Unit::set_task` 0x00527fb0) starts its route on a worker, for units on foot whose goal is in
-  their own block;
-- a request finds its remembered route, takes or waits for one from a worker, or computes it itself. The answer is identical in all
-  cases; only the time differs. The debug build's log counts the three ways: `Nav::route_repeated`,
-  `Nav::route_ready_from_worker` and `Nav::route_searched_on_request`.
-
-Floating point is limited to `+ - * /` and `sqrt` on doubles, so results are the same on every platform.
-
-Workers are used only for routes known in advance. Starting the squares ahead of a walking unit was tried and removed: in
-play only 27 of 2,787 new searches used one, because most new searches come from followers whose goal moves with their
-leader and cannot be known beforehand. Those few dozen searches a second stay on the main thread, where they are cheap.
+Worker threads were tried and removed. Callers need the route at once, so a thread can only help with a route known in
+advance, and almost none are: in play only 27 of 2,787 new searches used a route prepared ahead of time.
 
 **Other units.** A route knows only the level, so a unit standing on it is dealt with while walking
 (`src/enpath/navsteer.{hpp,cpp}`, `src/game/unit_steer.{hpp,cpp}`). While following a route, a unit heads for a point beside
@@ -70,7 +58,7 @@ Riders and siege engines do neither yet.
 1. Search core with tests (done).
 2. Build a `NavMesh` from the game's `PathSpace`; keep the blocked flags current (done).
 3. Replace `find_path`, keeping the `PathRoute` output the game follows and the partial-route behaviour (done).
-4. Worker pool and shared results for group orders (done).
+4. Remembering routes so that repeated requests cost nothing (done).
 5. Crowds, for several dozen units moving together:
    - local avoidance while walking (done for units on foot);
    - units of one order spread over the width of a gap instead of all taking the same line;

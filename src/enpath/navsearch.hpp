@@ -1,8 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 // The route search of the new pathfinding (docs/PATHFINDING.md): any-angle search over the navigation mesh, which finds
 // the shortest line through it instead of smoothing a chain of polygons. Independent of the game's objects: a NavMesh is plain data and a search only writes to
-// its own NavSearch, so any number of threads can search one mesh. A route depends on nothing but the mesh and the
-// request: no clock, no thread timing, no hash order.
+// its own NavSearch. A route depends on nothing but the mesh and the request: no clock, no hash order.
 #pragma once
 
 #include <cstdint>
@@ -70,7 +69,7 @@ struct Route {
     std::uint32_t expanded = 0;           ///< search nodes expanded
 };
 
-/// One search's working memory. Reused between searches, one per thread; never shared.
+/// One search's working memory, reused between searches.
 class NavSearch {
    public:
     /// Searches `mesh` for `request`. The result depends only on the two arguments.
