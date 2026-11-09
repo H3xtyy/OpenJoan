@@ -37,12 +37,12 @@ with no clock or thread timing in it. Workers can therefore compute routes ahead
 
 - every search owns its working memory (`NavSearch`), and a mesh is never changed once published: when a polygon opens or
   closes the mesh is copied, so searches run in parallel on whatever state they started with;
-- a unit walking along asks for its route again every few frames (about 300 requests a second were counted in play, against
-  a few dozen orders in the whole session). A search therefore starts from the middle of a 16-unit square around the unit,
+- a unit walking along asks for its route again every few frames (over 1,000 requests a second were counted in play, against
+  a few dozen orders in the whole session; 95% of them are answered from memory). A search therefore starts from the middle of a 16-unit square around the unit,
   which makes those requests the same search, and a finished route is remembered until a polygon opens or closes. The piece
   of walk from the unit to its first edge stays inside the unit's polygon;
-- each answer also starts, on a worker, the search for the next square along the route, so the search for a new square is
-  normally finished by the time the unit gets there;
+- arriving in a new square starts, on workers, the searches for the next squares along the route, so that they are normally
+  finished by the time the unit gets there;
 - a move or attack-move order (`Unit::set_task` 0x00527fb0) starts its route on a worker, for units on foot whose goal is in
   their own block;
 - a request finds its remembered route, waits for one in progress, or computes it itself. The answer is identical in all

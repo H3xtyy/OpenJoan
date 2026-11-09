@@ -30,6 +30,8 @@ constexpr std::uint32_t kBudget = 60000;        // search nodes: an unreachable 
 constexpr double kLaneScale = 2.5;              // the game's formation numbers to world units (0x0066ece0)
 constexpr double kSamePoint = 0.5;              // route points closer than this are one point (0x0066ece0)
 constexpr double kStartCell = 16.0;             // a search starts from the middle of a square of this size around the unit
+constexpr int kAheadCells = 5;                  // squares along the route prepared in advance
+constexpr double kAheadStep = 8.0;              // how finely the route is walked to find them
 constexpr std::size_t kMaxRemembered = 8192;    // routes remembered before the memory is cleared
 
 /// The mesh of one PathSpace. A published mesh never changes: when a polygon opens or closes, the mesh is copied.
@@ -182,28 +184,37 @@ Request make_query(std::int32_t zone, Point from, Point to, double radius) {
     return query;
 }
 
-// The search this unit will most likely want next, a square further along: started now on a worker.
+// The searches this unit will most likely want next: the squares its route runs through, started now on workers.
 void prepare_next(void* path_space, const GameMesh& game, const Request& query, Point from, const Route& route) {
-    const Point towards = route.crossings.empty() ? route.points.back() : route.crossings.front().at;
-    const double dx = towards.x - from.x, dy = towards.y - from.y, length = std::sqrt(dx * dx + dy * dy);
-    if (length < kStartCell) return;
-    const Point ahead{from.x + dx / length * kStartCell, from.y + dy / length * kStartCell};
-    if (to_cell(ahead.x) == query.from.x && to_cell(ahead.y) == query.from.y) return;
-    std::int32_t zone = query.start_poly;
-    if (!game.mesh->contains(zone, ahead)) {
-        if (route.crossings.empty() || !game.mesh->contains(route.crossings.front().into_poly, ahead)) return;
-        zone = route.crossings.front().into_poly;
+    double last_x = query.from.x, last_y = query.from.y;
+    int prepared = 0;
+    Point a = from;
+    double remaining = kAheadCells * kStartCell;
+    for (std::size_t leg = 0; leg <= route.crossings.size() && remaining > 0.0 && prepared < kAheadCells; ++leg) {
+        const Point b = leg < route.crossings.size() ? route.crossings[leg].at : route.points.back();
+        const std::int32_t zone = leg == 0 ? query.start_poly : route.crossings[leg - 1].into_poly;
+        const double dx = b.x - a.x, dy = b.y - a.y, length = std::sqrt(dx * dx + dy * dy);
+        for (double along = kAheadStep; along <= length && remaining > 0.0 && prepared < kAheadCells; along += kAheadStep) {
+            remaining -= kAheadStep;
+            const Point p{a.x + dx / length * along, a.y + dy / length * along};
+            if (to_cell(p.x) == last_x && to_cell(p.y) == last_y) continue;
+            last_x = to_cell(p.x);
+            last_y = to_cell(p.y);
+            ++prepared;
+            const Request next = make_query(zone + 1, p, query.to, query.radius);
+            const SearchKey key = key_of(path_space, game.generation, next);
+            if (g_remembered.find(key) == g_remembered.end()) pool().submit(key, game.mesh, next);
+        }
+        a = b;
     }
-    const Request next = make_query(zone + 1, ahead, query.to, query.radius);
-    const SearchKey key = key_of(path_space, game.generation, next);
-    if (g_remembered.find(key) == g_remembered.end()) pool().submit(key, game.mesh, next);
 }
 
-const Route& route_for(void* path_space, const GameMesh& game, const Request& query) {
+const Route& route_for(void* path_space, const GameMesh& game, const Request& query, bool& repeated) {
     const SearchKey key = key_of(path_space, game.generation, query);
     const auto known = g_remembered.find(key);
     if (known != g_remembered.end()) {
         c_repeated.hit();
+        repeated = true;
         return known->second;
     }
     std::optional<Route> ready = pool().take(key);
@@ -227,7 +238,8 @@ std::int32_t find_route(void* path_space, const GameRequest& request, void* rout
     const Point from{static_cast<double>(request.x), static_cast<double>(request.y)};
     const Point to{static_cast<double>(request.tx), static_cast<double>(request.ty)};
     const Request query = make_query(request.zone, from, to, static_cast<double>(request.radius));
-    const Route& found = route_for(path_space, game, query);
+    bool repeated = false;
+    const Route& found = route_for(path_space, game, query, repeated);
     if (found.outcome == Outcome::no_start) return 0;
 
     const double lane = static_cast<double>(request.lane) * kLaneScale;
@@ -264,7 +276,7 @@ std::int32_t find_route(void* path_space, const GameRequest& request, void* rout
         point->pos[1] = static_cast<float>(at.y);
         point->pos[2] = static_cast<float>(height(crossing, at));
     }
-    prepare_next(path_space, game, query, from, found);
+    if (!repeated) prepare_next(path_space, game, query, from, found);  // on arriving in a new square
     if (found.outcome != Outcome::reached) return 0;
     return static_cast<double>(ftol(request.tx)) == static_cast<double>(request.tx) && static_cast<double>(ftol(request.ty)) == static_cast<double>(request.ty) ? 1 : 0;
 }
