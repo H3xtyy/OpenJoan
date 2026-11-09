@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 // The route search of the new pathfinding (docs/PATHFINDING.md): any-angle search over the navigation mesh, which finds
-// the shortest line through it instead of smoothing a chain of polygons. Independent of the game's objects: a NavMesh is plain data, immutable once built, and a search only writes to
+// the shortest line through it instead of smoothing a chain of polygons. Independent of the game's objects: a NavMesh is plain data and a search only writes to
 // its own NavSearch, so any number of threads can search one mesh. A route depends on nothing but the mesh and the
 // request: no clock, no thread timing, no hash order.
 #pragma once
@@ -23,6 +23,7 @@ struct Poly {
     std::uint32_t count = 0;   ///< number of vertices (and edges)
     std::int32_t weight = 0;   ///< terrain class: a route avoids a higher class before it considers length
     bool blocked = false;      ///< no route may enter this polygon
+    bool narrow = false;       ///< routes asked to avoid narrow polygons do not enter it (Request::avoid_narrow)
 };
 
 /// The navigation mesh of one block.
@@ -41,8 +42,9 @@ struct Request {
     std::int32_t start_poly = -1;  ///< polygon the route starts in
     Point from;                    ///< start point
     Point to;                      ///< goal point
-    double radius = 0.0;           ///< the unit's radius: portals narrower than 2 * radius are closed
+    double radius = 0.0;           ///< clearance kept from walls; a gap narrower than 2 * radius is crossed at its middle
     std::uint32_t budget = 0;      ///< search nodes to expand at most, 0 = no limit
+    bool avoid_narrow = false;     ///< large units: polygons marked Poly::narrow are closed
 };
 
 /// How a search ended.
@@ -52,10 +54,19 @@ enum class Outcome {
     no_start,   ///< the start polygon does not exist or is blocked
 };
 
+/// One polygon edge a route goes through, as seen walking along the route.
+struct Crossing {
+    Point at;                 ///< where the route crosses the edge
+    Point left, right;        ///< the part of the edge a unit may use (the ends moved away from walls)
+    std::uint32_t left_corner = 0;   ///< NavMesh::points index of the edge's left end
+    std::uint32_t right_corner = 0;  ///< the same for the right end
+};
+
 /// A finished route.
 struct Route {
     Outcome outcome = Outcome::no_start;  ///< how the search ended
-    std::vector<Point> points;            ///< from the start to the end, inclusive
+    std::vector<Point> points;            ///< the bends, from the start to the end, inclusive
+    std::vector<Crossing> crossings;      ///< every edge crossed, in walking order
     std::uint32_t expanded = 0;           ///< search nodes expanded
 };
 
@@ -72,6 +83,8 @@ class NavSearch {
         double g = 0.0;                // length of the route up to the root
         std::int32_t poly = -1;        // polygon the interval leads into
         std::int32_t entry = -1;       // the edge of `poly` it enters through
+        std::int32_t via_poly = -1;    // the polygon it came out of
+        std::int32_t via_edge = -1;    // the edge of `via_poly` it came through
         std::int32_t worst = 0;        // highest terrain class on the way
         std::int32_t parent = -1;      // index in nodes_
         bool left_corner = false;      // the interval's left end is a corner a route may turn at
@@ -88,7 +101,7 @@ class NavSearch {
 
     std::vector<Node> nodes_;
     std::vector<Open> heap_;
-    std::vector<char> turnable_;
+    std::vector<std::uint8_t> vertex_;  // what each vertex touches: kCorner, kObstacle
     std::uint64_t order_ = 0;
 };
 

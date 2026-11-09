@@ -32,14 +32,20 @@ struct Portal {
     Point left, right;
 };
 
-// Edge `edge` of `poly` seen leaving the polygon, its ends moved `radius` inwards. False when the gap is too narrow.
-bool portal_of(const NavMesh& mesh, const Poly& poly, std::uint32_t edge, double radius, Portal& out) {
-    const Point right = mesh.points[mesh.corners[poly.first + edge]];
-    const Point left = mesh.points[mesh.corners[poly.first + (edge + 1) % poly.count]];
+constexpr std::uint8_t kCorner = 1;    // a route may bend here: the terrain class changes
+constexpr std::uint8_t kObstacle = 2;  // a route may bend here and keeps its distance: a wall or a closed polygon touches it
+constexpr double kMostInset = 0.49;    // of a gap's width: a gap too narrow for the radius is crossed at its middle
+
+// The usable part of the edge from `right_vertex` to `left_vertex`: the ends touching an obstacle moved `radius` inwards.
+// False only for an edge of no length.
+bool portal_of(const NavMesh& mesh, const std::vector<std::uint8_t>& vertex, std::uint32_t right_vertex, std::uint32_t left_vertex, double radius, Portal& out) {
+    const Point right = mesh.points[right_vertex], left = mesh.points[left_vertex];
     const double width = distance(left, right);
-    if (width < 2.0 * radius || width == 0.0) return radius == 0.0 && width > 0.0;
-    const Point along = (left - right) * (radius / width);
-    out = {left - along, right + along};
+    if (width == 0.0) return false;
+    const Point unit = (left - right) * (1.0 / width);
+    const double inset = std::min(radius, width * kMostInset);
+    out.left = (vertex[left_vertex] & kObstacle) != 0 ? left - unit * inset : left;
+    out.right = (vertex[right_vertex] & kObstacle) != 0 ? right + unit * inset : right;
     return true;
 }
 
@@ -76,6 +82,21 @@ Point closest_on_segment(Point a, Point b, Point p) {
     return a + edge * std::clamp(dot(p - a, edge) / squared, 0.0, 1.0);
 }
 
+// The point of a convex polygon's boundary closest to `p`.
+Point closest_on_boundary(const NavMesh& mesh, const Poly& poly, Point p) {
+    Point best = mesh.points[mesh.corners[poly.first]];
+    double best_distance = distance(best, p);
+    for (std::uint32_t i = 0; i < poly.count; ++i) {
+        const Point on = closest_on_segment(mesh.points[mesh.corners[poly.first + i]], mesh.points[mesh.corners[poly.first + (i + 1) % poly.count]], p);
+        const double d = distance(on, p);
+        if (d < best_distance) {
+            best_distance = d;
+            best = on;
+        }
+    }
+    return best;
+}
+
 }  // namespace
 
 std::int32_t NavMesh::locate(Point p) const {
@@ -94,18 +115,26 @@ bool NavSearch::later(const Open& a, const Open& b) {
 Route NavSearch::find(const NavMesh& mesh, const Request& request) {
     Route route;
     const auto count = static_cast<std::int32_t>(mesh.polys.size());
-    if (request.start_poly < 0 || request.start_poly >= count || mesh.polys[request.start_poly].blocked) return route;
+    if (request.start_poly < 0 || request.start_poly >= count) return route;
     const Point target = request.to;
-    if (contains(mesh, mesh.polys[request.start_poly], target)) {
+    const Poly& start = mesh.polys[static_cast<std::size_t>(request.start_poly)];
+    if (contains(mesh, start, target)) {
         route.outcome = Outcome::reached;
         route.points = {request.from, target};
         return route;
     }
+    // a unit a little outside its polygon: the search starts from the polygon's edge, the route from the unit
+    const Point origin = contains(mesh, start, request.from) ? request.from : closest_on_boundary(mesh, start, request.from);
     nodes_.clear();
     heap_.clear();
     order_ = 0;
     std::map<std::pair<double, double>, double> root_length;  // looked up only, never walked: no effect on the order
 
+    const auto closed = [&](std::int32_t poly) {
+        const Poly& p = mesh.polys[static_cast<std::size_t>(poly)];
+        return p.blocked || (request.avoid_narrow && p.narrow);
+    };
+    const auto corner = [&](const Poly& poly, std::uint32_t i) { return mesh.corners[poly.first + i % poly.count]; };
     const auto push = [&](const Node& node, double f) {
         nodes_.push_back(node);
         heap_.push_back({node.worst, f, order_++, static_cast<std::int32_t>(nodes_.size() - 1)});
@@ -120,52 +149,58 @@ Route NavSearch::find(const NavMesh& mesh, const Request& request) {
         }
         push(node, node.g + through_interval(node.root, node.left, node.right, target));
     };
-    const auto corner_pos = [&](const Poly& poly, std::int32_t next) {
-        for (std::uint32_t e = 0; e < mesh.polys[next].count; ++e)
-            if (mesh.links[mesh.polys[next].first + e] == static_cast<std::int32_t>(&poly - mesh.polys.data())) return static_cast<std::int32_t>(e);
+    const auto entry_of = [&](std::int32_t from, std::int32_t next) {
+        const Poly& p = mesh.polys[static_cast<std::size_t>(next)];
+        for (std::uint32_t e = 0; e < p.count; ++e)
+            if (mesh.links[p.first + e] == from) return static_cast<std::int32_t>(e);
         return -1;
     };
 
-    // A route can only bend around something: the vertices touching a wall, a blocked polygon, a gap too narrow, or another
-    // terrain class.
-    turnable_.assign(mesh.points.size(), 0);
-    for (const Poly& poly : mesh.polys) {
+    // A route can only bend around something: the vertices touching a wall, a closed polygon, or another terrain class.
+    vertex_.assign(mesh.points.size(), 0);
+    for (std::size_t i = 0; i < mesh.polys.size(); ++i) {
+        const Poly& poly = mesh.polys[i];
         if (poly.blocked) continue;
         for (std::uint32_t edge = 0; edge < poly.count; ++edge) {
             const std::int32_t next = mesh.links[poly.first + edge];
-            Portal unused;
-            if (next >= 0 && !mesh.polys[static_cast<std::size_t>(next)].blocked && mesh.polys[static_cast<std::size_t>(next)].weight == poly.weight &&
-                portal_of(mesh, poly, edge, request.radius, unused))
-                continue;
-            turnable_[mesh.corners[poly.first + edge]] = 1;
-            turnable_[mesh.corners[poly.first + (edge + 1) % poly.count]] = 1;
+            std::uint8_t kind = 0;
+            if (next < 0 || closed(next)) {
+                kind = kObstacle;
+            } else if (mesh.polys[static_cast<std::size_t>(next)].weight != poly.weight) {
+                kind = kCorner;
+            }
+            vertex_[corner(poly, edge)] |= kind;
+            vertex_[corner(poly, edge + 1)] |= kind;
         }
     }
-    const auto left_turnable = [&](const Poly& poly, std::uint32_t edge) { return turnable_[mesh.corners[poly.first + (edge + 1) % poly.count]] != 0; };
-    const auto right_turnable = [&](const Poly& poly, std::uint32_t edge) { return turnable_[mesh.corners[poly.first + edge]] != 0; };
+    const auto left_turnable = [&](const Poly& poly, std::uint32_t edge) { return vertex_[corner(poly, edge + 1)] != 0; };
+    const auto right_turnable = [&](const Poly& poly, std::uint32_t edge) { return vertex_[corner(poly, edge)] != 0; };
 
-    const Poly& start = mesh.polys[request.start_poly];
+    // The way out of the search when the goal cannot be reached: the point of the visited polygons closest to it.
+    Point nearest = closest_on_boundary(mesh, start, target);
+    std::int32_t nearest_node = -1;
+    double nearest_score = distance(nearest, target) + distance(origin, nearest) / 16.0;
+
     const std::int32_t start_worst = std::max(0, start.weight);
     for (std::uint32_t edge = 0; edge < start.count; ++edge) {
         const std::int32_t next = mesh.links[start.first + edge];
-        if (next < 0 || mesh.polys[next].blocked) continue;
+        if (next < 0 || closed(next)) continue;
         Portal portal;
-        if (!portal_of(mesh, start, edge, request.radius, portal)) continue;
+        if (!portal_of(mesh, vertex_, corner(start, edge), corner(start, edge + 1), request.radius, portal)) continue;
         Node node;
-        node.root = request.from;
+        node.root = origin;
         node.left = portal.left;
         node.right = portal.right;
         node.poly = next;
-        node.entry = corner_pos(start, next);
-        node.worst = std::max(start_worst, mesh.polys[next].weight);
+        node.entry = entry_of(request.start_poly, next);
+        node.via_poly = request.start_poly;
+        node.via_edge = static_cast<std::int32_t>(edge);
+        node.worst = std::max(start_worst, mesh.polys[static_cast<std::size_t>(next)].weight);
         node.left_corner = left_turnable(start, edge);
         node.right_corner = right_turnable(start, edge);
         push_interval(node);
     }
 
-    Point nearest = request.from;
-    std::int32_t nearest_node = -1;
-    double nearest_score = distance(request.from, target);
     std::int32_t found = -1;
     while (!heap_.empty() && nodes_.size() < kMaxNodes && (request.budget == 0 || route.expanded < request.budget)) {
         std::pop_heap(heap_.begin(), heap_.end(), later);
@@ -178,7 +213,8 @@ Route NavSearch::find(const NavMesh& mesh, const Request& request) {
         }
         ++route.expanded;
 
-        const Point closest = closest_on_segment(current.right, current.left, target);
+        const Poly& poly = mesh.polys[static_cast<std::size_t>(current.poly)];
+        const Point closest = closest_on_boundary(mesh, poly, target);
         const double score = distance(closest, target) + (current.g + distance(current.root, closest)) / 16.0;
         if (score < nearest_score) {
             nearest_score = score;
@@ -186,7 +222,6 @@ Route NavSearch::find(const NavMesh& mesh, const Request& request) {
             nearest_node = index;
         }
 
-        const Poly& poly = mesh.polys[static_cast<std::size_t>(current.poly)];
         if (contains(mesh, poly, target)) {  // straight to the goal, or around one end of the interval
             Node last = current;
             last.final_node = true;
@@ -210,9 +245,9 @@ Route NavSearch::find(const NavMesh& mesh, const Request& request) {
         for (std::uint32_t edge = 0; edge < poly.count; ++edge) {
             if (static_cast<std::int32_t>(edge) == current.entry) continue;
             const std::int32_t next = mesh.links[poly.first + edge];
-            if (next < 0 || mesh.polys[static_cast<std::size_t>(next)].blocked) continue;
+            if (next < 0 || closed(next)) continue;
             Portal portal;
-            if (!portal_of(mesh, poly, edge, request.radius, portal)) continue;
+            if (!portal_of(mesh, vertex_, corner(poly, edge), corner(poly, edge + 1), request.radius, portal)) continue;
             // Clip the edge (right end to left end) against the cone: what lies inside is seen from the root, what lies
             // beyond an end of the interval needs a turn at that end.
             const Point right_end = portal.right, left_end = portal.left, span = left_end - right_end;
@@ -235,7 +270,9 @@ Route NavSearch::find(const NavMesh& mesh, const Request& request) {
 
             Node child;
             child.poly = next;
-            child.entry = corner_pos(poly, next);
+            child.entry = entry_of(current.poly, next);
+            child.via_poly = current.poly;
+            child.via_edge = static_cast<std::int32_t>(edge);
             child.worst = std::max(current.worst, mesh.polys[static_cast<std::size_t>(next)].weight);
             child.parent = index;
             if (seen_from + kEpsilon < seen_to) {
@@ -274,16 +311,50 @@ Route NavSearch::find(const NavMesh& mesh, const Request& request) {
     }
 
     route.outcome = found >= 0 ? Outcome::reached : Outcome::partial;
-    Point end = found >= 0 ? target : nearest;
-    std::int32_t at = found >= 0 ? found : nearest_node;
-    route.points.push_back(end);
-    while (at >= 0) {
-        const Node& node = nodes_[static_cast<std::size_t>(at)];
-        if (!(route.points.back() == node.root)) route.points.push_back(node.root);
-        at = node.parent;
+    const Point end = found >= 0 ? target : nearest;
+    std::vector<std::int32_t> chain;
+    for (std::int32_t at = found >= 0 ? found : nearest_node; at >= 0; at = nodes_[static_cast<std::size_t>(at)].parent) chain.push_back(at);
+    std::reverse(chain.begin(), chain.end());
+
+    // A partial route: from the last root through its interval to the closest point, around an end of the interval if need be.
+    Point last_leg = end;
+    bool extra_bend = false;
+    if (found < 0 && nearest_node >= 0) {
+        const Node& node = nodes_[static_cast<std::size_t>(nearest_node)];
+        const double s = hit_fraction(node.root, end, node.right, node.left, -1.0);
+        if (s < 0.0 || s > 1.0) {
+            const double by_left = distance(node.root, node.left) + distance(node.left, end);
+            const double by_right = distance(node.root, node.right) + distance(node.right, end);
+            last_leg = by_left < by_right ? node.left : node.right;
+            extra_bend = true;
+        }
     }
-    if (!(route.points.back() == request.from)) route.points.push_back(request.from);
-    std::reverse(route.points.begin(), route.points.end());
+
+    route.points.push_back(request.from);
+    const auto add_point = [&](Point p) {
+        if (!(route.points.back() == p)) route.points.push_back(p);
+    };
+    add_point(origin);
+    for (std::size_t i = 0; i < chain.size(); ++i) {
+        const Node& node = nodes_[static_cast<std::size_t>(chain[i])];
+        add_point(node.root);
+        if (node.final_node) continue;
+        Point towards = last_leg;  // where this node's straight piece of the route goes
+        for (std::size_t j = i + 1; j < chain.size(); ++j)
+            if (!(nodes_[static_cast<std::size_t>(chain[j])].root == node.root)) {
+                towards = nodes_[static_cast<std::size_t>(chain[j])].root;
+                break;
+            }
+        const Poly& via = mesh.polys[static_cast<std::size_t>(node.via_poly)];
+        const auto edge = static_cast<std::uint32_t>(node.via_edge);
+        Portal portal;
+        if (!portal_of(mesh, vertex_, corner(via, edge), corner(via, edge + 1), request.radius, portal)) continue;
+        const double s = hit_fraction(node.root, towards, portal.right, portal.left, -1.0);
+        const Point at = s >= 0.0 && s <= 1.0 ? portal.right + (portal.left - portal.right) * s : closest_on_segment(portal.right, portal.left, towards);
+        route.crossings.push_back({at, portal.left, portal.right, corner(via, edge + 1), corner(via, edge)});
+    }
+    if (extra_bend) add_point(last_leg);
+    add_point(end);
     return route;
 }
 

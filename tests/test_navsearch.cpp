@@ -72,18 +72,67 @@ int main() {
         const double best = 2.0 * std::hypot(25.0, 45.0) + 10.0;
         check(std::fabs(length(r) - best) < 1e-9, "wall route is the shortest");
     }
-    {  // a one-cell corridor: passes a small unit, stops a large one
+    {  // a one-cell corridor: a gap too narrow for the radius is crossed at its middle; a polygon marked narrow can be avoided
         const auto open = [](int x, int y) { return y == 1 || x == 2; };
-        const NavMesh m = grid(5, 3, 10.0, open);
+        NavMesh m = grid(5, 3, 10.0, open);
         check(find(m, {5, 15}, {45, 15}, 4.0).outcome == Outcome::reached, "a small unit fits the corridor");
-        check(find(m, {5, 15}, {45, 15}, 6.0).outcome == Outcome::partial, "a large unit does not");
+        const Route tight = find(m, {5, 15}, {45, 15}, 6.0);
+        check(tight.outcome == Outcome::reached, "a gap narrower than the unit stays open");
+        check(!tight.crossings.empty(), "the route lists its crossings");
+        bool centred = true;
+        for (const Crossing& c : tight.crossings) centred = centred && std::fabs(c.at.y - 15.0) < 0.5;
+        check(centred, "a narrow gap is crossed at its middle");
+        for (Poly& p : m.polys) p.narrow = true;
+        NavSearch search;
+        Request request{m.locate({5, 15}), {5, 15}, {45, 15}, 6.0, 0};
+        request.avoid_narrow = true;
+        check(search.find(m, request).outcome == Outcome::partial, "a large unit avoids narrow polygons");
+    }
+    {  // clearance is kept from walls, not from the open vertices in the middle of a room
+        const auto open = [](int x, int y) { return !(x == 3 && y < 5); };
+        const NavMesh m = grid(7, 6, 10.0, open);
+        const Route r = find(m, {5, 5}, {65, 5}, 2.0);
+        check(r.outcome == Outcome::reached, "with a radius the wall route is found");
+        for (const Point& p : r.points) check(p.y <= 52.0 + 1e-9, "the route stays below the top wall");
+        bool away = false;
+        for (const Point& p : r.points) away = away || std::fabs(p.y - 52.0) < 1e-9;
+        check(away, "the route passes the wall end at the radius");
+        const NavMesh room = grid(6, 6, 10.0, [](int, int) { return true; });
+        check(find(room, {5, 5}, {55, 45}, 3.0).points.size() == 2, "an open room stays one straight line with a radius");
+    }
+    {  // every crossing lies on its edge, in walking order, and the legs between them stay inside the mesh
+        const auto open = [](int x, int y) { return !(x == 2 && y < 5) && !(x == 5 && y > 0); };
+        const NavMesh m = grid(8, 6, 10.0, open);
+        const Route r = find(m, {5, 5}, {75, 55}, 1.0);
+        check(r.crossings.size() >= 7, "a long route has its crossings");
+        Point previous{5, 5};
+        double walked = 0.0;
+        for (const Crossing& c : r.crossings) {
+            check(std::fabs(std::hypot(c.at.x - c.left.x, c.at.y - c.left.y) + std::hypot(c.right.x - c.at.x, c.right.y - c.at.y) - std::hypot(c.right.x - c.left.x, c.right.y - c.left.y)) < 1e-6, "a crossing lies on its edge");
+            walked += std::hypot(c.at.x - previous.x, c.at.y - previous.y);
+            previous = c.at;
+        }
+        walked += std::hypot(75.0 - previous.x, 55.0 - previous.y);
+        check(walked < length(r) + 1e-6, "the crossings follow the route");
+    }
+    {  // a goal in a closed part: the route ends at the closest point of the part it can reach
+        NavMesh m = grid(3, 1, 100.0, [](int, int) { return true; });
+        m.polys[2].blocked = true;
+        const Route r = find(m, {5, 50}, {250, 50});
+        check(r.outcome == Outcome::partial && std::fabs(r.points.back().x - 200.0) < 1e-9, "a partial route ends at the far edge");
+    }
+    {  // a start a little outside its polygon
+        const NavMesh m = grid(3, 1, 10.0, [](int, int) { return true; });
+        NavSearch search;
+        const Route r = search.find(m, {0, {-2, 5}, {25, 5}, 0.0, 0});
+        check(r.outcome == Outcome::reached && r.points.front() == Point{-2, 5}, "a route starts where the unit is");
     }
     {  // no connection: the route ends as close as the search got
         const auto open = [](int x, int) { return x != 3; };
         const NavMesh m = grid(7, 3, 10.0, open);
         const Route r = find(m, {5, 5}, {65, 5});
         check(r.outcome == Outcome::partial, "unreachable goal is partial");
-        check(r.points.back().x <= 30.0, "partial route stays on its side");
+        check(r.points.back().x <= 30.0 && r.points.back().x > 25.0, "partial route ends at the wall");
     }
     {  // higher terrain classes are avoided first, even when longer
         NavMesh m = grid(5, 3, 10.0, [](int, int) { return true; });
