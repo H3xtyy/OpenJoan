@@ -51,7 +51,8 @@ test looks at the stretch itself and not at the infinite line through it, which 
 (`src/enpath/navsteer.{hpp,cpp}`, `src/game/unit_steer.{hpp,cpp}`). While following a route, a unit heads for a point beside
 the nearest unit that it would otherwise walk into, instead of for its waypoint. Units going the same way, judged by where their route leads as well as by how they have been moving, are left alone so
 that a column or a formation keeps flowing; units meeting head-on keep to their right. A side is kept while passing, and a side that runs
-off the level is not taken.
+off the level is not taken. Soldiers of one group never swerve around each other, or the back rank would scatter whenever
+the front rank slows down.
 
 A tunnel or gate may leave no way round at all. A unit pressed against a non-hostile unit for half a second therefore walks
 through friendly units until it is clear of them (at least 1.2 s, then as long as it is still inside one). Hostile units

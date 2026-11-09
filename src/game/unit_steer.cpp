@@ -57,6 +57,7 @@ struct Sample {
 struct Known {
     const void* record = nullptr;
     const void* cell = nullptr;
+    const void* group = nullptr;
     std::int16_t layer = 0;
     nav::Neighbour neighbour;
 };
@@ -161,6 +162,7 @@ void refresh_units(u32 now) {
         Known known;
         known.record = record;
         known.cell = unit->cell;
+        known.group = jo::view<void*>(unit->group);
         known.layer = unit->layer;
         known.neighbour.at = {static_cast<double>(position[0]), static_cast<double>(position[1])};
         known.neighbour.radius = body_radius(type_of(record));
@@ -198,13 +200,19 @@ void aim(void* unit_record, float x, float y, float& aim_x, float& aim_y) {
     if (jo::as_unit_type(type)->unit_class == 8) return;                                  // siege engines and the like go straight
     if (joan::orig::arg::as<i32>(joan::orig::as_unit(unit_record)->mounted()) != 0) return;  // 0x00430190
 
-    static std::vector<nav::Neighbour> nearby;
+    static std::vector<nav::Neighbour> nearby, to_avoid;
     nearby.clear();
+    to_avoid.clear();
+    const void* const own_group = jo::view<void*>(unit->group);
     const nav::Point me{static_cast<double>(x), static_cast<double>(y)};
     for (const Known& k : g_units) {
         if (k.record == unit_record || k.cell != unit->cell || k.layer != unit->layer) continue;
         const double dx = k.neighbour.at.x - me.x, dy = k.neighbour.at.y - me.y;
-        if (dx * dx + dy * dy <= kNearby * kNearby) nearby.push_back(k.neighbour);
+        if (dx * dx + dy * dy > kNearby * kNearby) continue;
+        nearby.push_back(k.neighbour);
+        // Soldiers of one group do not swerve around each other: the back rank would be sent left and right every time the front
+        // rank slows down. One that really is in the way is walked through once the two have been pressed together (start_passing).
+        if (own_group == nullptr || k.group != own_group) to_avoid.push_back(k.neighbour);
     }
     Side& side = g_sides[unit_record];
     if (side.passing_until > now) {  // walking through: straight on, for as long as it is inside someone
@@ -257,7 +265,7 @@ void aim(void* unit_record, float x, float y, float& aim_x, float& aim_y) {
     }
 
     const bool same_recent = now - side.seen <= kKeepSideMs;
-    const nav::Dodge dodge = nav::plan_dodge(me, body_radius(type), {static_cast<double>(aim_x), static_cast<double>(aim_y)}, nearby.data(), nearby.size(), same_recent ? side.side : 0);
+    const nav::Dodge dodge = nav::plan_dodge(me, body_radius(type), {static_cast<double>(aim_x), static_cast<double>(aim_y)}, to_avoid.data(), to_avoid.size(), same_recent ? side.side : 0);
     if (!dodge.needed) return;
 
     // A side that runs off the level is no way round. The check is against the mesh, so it is made a few times a second.
