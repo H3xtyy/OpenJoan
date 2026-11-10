@@ -43,7 +43,7 @@ one input stream from each, so the number of players changes the host's bandwidt
    the camera variables are in the hashed image. Each player's own camera needs the simulation separated from what is only
    drawn: every game loads what all the cameras need, and the drawing-only state stays out of the stream and the hash.
 5. **Menus, pauses, dialogue, cutscenes, mission changes, saves and loads** for several players (who may pause; a
-   cutscene shows every player the script's camera, and who may skip it or a line of dialogue is decided here; how a load reaches them, as a save sent over the stream; joining a running game the same way).
+   cutscene shows every player the script's camera, and only the host may skip it or a line of dialogue; how a load reaches them, as a save sent over the stream; joining a running game the same way).
 6. **Recovering from a desync** by sending the host's save to that guest and starting its stream again from it.
 7. **Steam relay transport.** See the licence question below. Until it is settled, a plain network transport is used for
    development and tests (several game copies on one PC).
