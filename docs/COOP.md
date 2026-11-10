@@ -9,6 +9,9 @@ host's campaign, so there are as many players as heroes in the party; the party 
 player without a hero in the current mission watches or commands the troops until one is free. The host's saves are the
 campaign's saves. Players join through Steam's relay, so nobody forwards ports.
 
+The story is one for everybody: there is a single campaign, so its scripts, objectives, dialogue and choices are the same
+for all players, and a cutscene plays on every player's screen at the same moment, with the camera the script gives it.
+
 ## How the games stay the same: lockstep on the replay stream
 
 The game is deterministic: the replay system (`src/runtime/replay`) records every input the game takes from outside
@@ -39,8 +42,8 @@ one input stream from each, so the number of players changes the host's bandwidt
 4. **A view per player.** The camera is part of the game state: the ground cells and textures around it are loaded, and
    the camera variables are in the hashed image. Each player's own camera needs the simulation separated from what is only
    drawn: every game loads what all the cameras need, and the drawing-only state stays out of the stream and the hash.
-5. **Menus, pauses, dialogue, cutscenes, mission changes, saves and loads** for several players (who may pause; what a
-   cutscene shows the guests; how a load reaches them, as a save sent over the stream; joining a running game the same way).
+5. **Menus, pauses, dialogue, cutscenes, mission changes, saves and loads** for several players (who may pause; a
+   cutscene shows every player the script's camera, and who may skip it or a line of dialogue is decided here; how a load reaches them, as a save sent over the stream; joining a running game the same way).
 6. **Recovering from a desync** by sending the host's save to that guest and starting its stream again from it.
 7. **Steam relay transport.** See the licence question below. Until it is settled, a plain network transport is used for
    development and tests (several game copies on one PC).
