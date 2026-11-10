@@ -9,7 +9,7 @@ host's campaign, so there are as many players as heroes in the party; the party 
 player without a hero in the current mission watches or commands the troops until one is free. The host's saves are the
 campaign's saves. Players join through Steam's relay, so nobody forwards ports.
 
-## How the two games stay the same: lockstep on the replay stream
+## How the games stay the same: lockstep on the replay stream
 
 The game is deterministic: the replay system (`src/runtime/replay`) records every input the game takes from outside
 (time, keyboard and mouse, file and window calls, sound) and a hash of the game state at every frame, and a replay that
@@ -28,11 +28,11 @@ one input stream from each, so the number of players changes the host's bandwidt
 ## Problems to solve, in order
 
 1. **Everything the game depends on must be recorded.** Replacing SDL 3.4.16 by 3.4.18 in a game copy changed a replay
-   (found 2026-11-09), so something the game reads is not in the recording yet. Two players will also often run
+   (found 2026-11-09), so something the game reads is not in the recording yet. Players will also often run
    different systems (Windows and Linux, other SDL versions). This is found and fixed first, with replays across those
    combinations as the test.
 2. **Spectators.** Guests follow the host's stream live over the network and show the host's view. This proves the
-   transport and the determinism between two machines without touching game logic.
+   transport and the determinism between machines without touching game logic.
 3. **A human hero per player.** The game has one human-controlled unit (`g_player_unit_recno`, read in about 300 places).
    The host must run one per player from that player's input: walking, fighting, items, skills, and who may switch to which
    hero.
