@@ -8,7 +8,7 @@ One line per page.
 - [RUNTIME.md](RUNTIME.md): how the executable runs the game, start-up, the data image, every ini key, logs and the debug tools.
 - [X64_STATE_CHECK.md](X64_STATE_CHECK.md): how an x64 replay of an x86 recording is checked (dumped state, not the recorded hashes).
 - [PATHFINDING.md](PATHFINDING.md): the new route search and its plan.
-- [COOP.md](COOP.md): the co-op plan (two players, each a hero).
+- [COOP.md](COOP.md): the co-op plan (several players, each a hero).
 - [X64.md](X64.md): the 64-bit design (widths, data image, saves, hazard meter, replay across widths).
 - [CONTRIBUTING.md](CONTRIBUTING.md): workflow, commits, verification tools, review checklist.
 - [INSTALL.md](INSTALL.md): installing a release into a copy of the game.
