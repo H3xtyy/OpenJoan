@@ -46,6 +46,7 @@ add_library(openjoan_game OBJECT
     media/wm_reader.cpp
     runtime/import_census.cpp
     platform/files.cpp
+    platform/user_files.cpp
     platform/ini.cpp
     platform/memory.cpp
     platform/process.cpp
@@ -701,6 +702,9 @@ if(JOAN_BUILD_DATA_TEST)
         target_compile_options(data_image_reference_test PRIVATE -Wno-invalid-offsetof)
     endif()
     add_test(NAME data_image_reference_test COMMAND data_image_reference_test)
+    add_executable(user_files_test ${CMAKE_SOURCE_DIR}/tests/test_user_files.cpp platform/user_files.cpp)
+    target_link_libraries(user_files_test PRIVATE joan_warnings)
+    add_test(NAME user_files_test COMMAND user_files_test)
     set_tests_properties(data_image_reference_test PROPERTIES SKIP_RETURN_CODE 77)
 
     # The new pathfinding's search on small hand-built meshes (docs/PATHFINDING.md).

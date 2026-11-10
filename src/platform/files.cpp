@@ -26,6 +26,7 @@
 //     ERROR_NO_MORE_FILES, ERROR_HANDLE_EOF, ...), which the game and the CRT read with GetLastError.
 // The replay layer wraps these imports on top as it wrapped KERNEL32's.
 #include "files.hpp"
+#include "user_files.hpp"
 #include "threads.hpp"
 
 #include <sys/stat.h>
@@ -185,6 +186,21 @@ fs::path to_path(const char* name) {
     }
     return out;
 #endif
+}
+
+// The file of the game named `name`, in the user's folder when the game folder cannot be written (user_files.hpp). Only names
+// relative to the game folder are the game's own files.
+fs::path in_user_folder(const char* name) { return to_path((user_files::folder() / name).string().c_str()); }
+
+fs::path game_file(const char* name, bool writing) {
+    static const bool detected = [] {
+        user_files::detect();
+        if (user_files::active()) hook::log_line("the game folder cannot be written: the game's files go to %s", user_files::folder().string().c_str());
+        return true;
+    }();
+    (void)detected;
+    if (!user_files::active() || !fs::path(name).is_relative()) return to_path(name);
+    return writing ? user_files::for_write(to_path(name), in_user_folder(name)) : user_files::for_read(to_path(name), in_user_folder(name));
 }
 
 DWORD error_of(const std::error_code& ec, const fs::path& p) {
@@ -610,10 +626,11 @@ HANDLE WINAPI CreateFileA(LPCSTR name, DWORD access, DWORD /*share: ignored*/, L
         if (hitch::enabled()) hitch::note("file opened: %s (from memory)", name);  // [Debug] HitchLog
         return h;
     }
-    if (!hitch::enabled()) return create_file(to_path(name), access, disposition, flags);
+    const bool writing = (access & (GENERIC_WRITE | GENERIC_ALL)) != 0 || disposition != OPEN_EXISTING;
+    if (!hitch::enabled()) return create_file(game_file(name, writing), access, disposition, flags);
     // [Debug] HitchLog: the open with the time it took (finding the file's name in any case, opening it)
     const auto t0 = std::chrono::steady_clock::now();
-    const HANDLE h = create_file(to_path(name), access, disposition, flags);
+    const HANDLE h = create_file(game_file(name, writing), access, disposition, flags);
     const double ms = std::chrono::duration<double, std::milli>(std::chrono::steady_clock::now() - t0).count();
     hitch::add_file_time(ms);
     hitch::note("file opened: %s (%.2f ms)", name, ms);
@@ -945,14 +962,17 @@ HANDLE WINAPI FindFirstFileA(LPCSTR pattern, LPWIN32_FIND_DATAA data) {
         return INVALID_HANDLE_VALUE;
     }
     if (mask == "*.*") mask = "*";
-    const fs::path dpath = dir.empty() ? fs::path(".") : to_path(dir.c_str());
+    const fs::path dpath = dir.empty() ? fs::path(".") : game_file(dir.c_str(), false);
+    // A folder of the game listed while the user's folder is in use: what is in the user's folder, then what is only in the game's.
+    fs::path extra_dpath;
+    if (const fs::path game_dpath = dir.empty() ? fs::path(".") : to_path(dir.c_str()); game_dpath != dpath) extra_dpath = game_dpath;
     std::error_code ec;
     auto o = std::make_unique<Object>();
     o->kind = Object::Kind::Find;
     std::vector<FindEntry>& out = o->find.entries;
     if (!has_wildcards(mask)) {
         // A name: that entry (the existence checks of Misc::is_file_exist / is_dir_exist).
-        const fs::path p = to_path(pat.c_str());  // the whole path (elsewhere: each part matched ignoring case)
+        const fs::path p = game_file(pat.c_str(), false);  // the whole path (elsewhere: each part matched ignoring case)
         fs::directory_entry e(p, ec);
         if (ec || !e.exists(ec)) {
             set_error(fs::is_directory(dpath, ec) ? ERROR_FILE_NOT_FOUND : ERROR_PATH_NOT_FOUND);
@@ -967,13 +987,24 @@ HANDLE WINAPI FindFirstFileA(LPCSTR pattern, LPWIN32_FIND_DATAA data) {
             return INVALID_HANDLE_VALUE;
         }
         std::vector<FindEntry> files;
-        for (fs::directory_iterator it(dpath, fs::directory_options::skip_permission_denied, ec), end; !ec && it != end;
-             it.increment(ec)) {
-            const std::string name = narrow(it->path().filename());
-            if (!wild_match(mask.c_str(), name.c_str())) continue;
-            FindEntry fe{};
-            fill(fe.data, name, &*it, it->is_directory(ec));
-            files.push_back(fe);
+        std::vector<std::string> seen;  // upper-case names already listed: only used with a second folder
+        for (const fs::path& listed : {dpath, extra_dpath}) {
+            if (listed.empty()) continue;
+            for (fs::directory_iterator it(listed, fs::directory_options::skip_permission_denied, ec), end; !ec && it != end;
+                 it.increment(ec)) {
+                const std::string name = narrow(it->path().filename());
+                if (!wild_match(mask.c_str(), name.c_str())) continue;
+                if (!extra_dpath.empty()) {
+                    std::string key = name;
+                    std::transform(key.begin(), key.end(), key.begin(), upper);
+                    if (std::find(seen.begin(), seen.end(), key) != seen.end()) continue;
+                    seen.push_back(std::move(key));
+                }
+                FindEntry fe{};
+                fill(fe.data, name, &*it, it->is_directory(ec));
+                files.push_back(fe);
+            }
+            ec.clear();
         }
         // NTFS order: upper-case ordinal comparison.
         std::sort(files.begin(), files.end(), [](const FindEntry& a, const FindEntry& b) {
@@ -1038,7 +1069,7 @@ BOOL WINAPI FindClose(HANDLE h) {
 // ---------------------------------------------------------------- paths
 
 BOOL WINAPI DeleteFileA(LPCSTR name) {
-    const fs::path p = to_path(name ? name : "");
+    const fs::path p = game_file(name ? name : "", false);
     std::error_code ec;
     const fs::file_status st = fs::status(p, ec);
     if (!fs::exists(st)) {
@@ -1059,7 +1090,7 @@ BOOL WINAPI DeleteFileA(LPCSTR name) {
 namespace {
 
 BOOL WINAPI j_CreateDirectoryA(LPCSTR name, LPSECURITY_ATTRIBUTES) {
-    const fs::path p = to_path(name ? name : "");
+    const fs::path p = game_file(name ? name : "", true);
     std::error_code ec;
     if (fs::exists(p, ec)) {
         set_error(ERROR_ALREADY_EXISTS);
@@ -1073,8 +1104,8 @@ BOOL WINAPI j_CreateDirectoryA(LPCSTR name, LPSECURITY_ATTRIBUTES) {
 }
 
 BOOL WINAPI j_MoveFileA(LPCSTR from, LPCSTR to) {
-    const fs::path a = to_path(from ? from : "");
-    const fs::path b = to_path(to ? to : "");
+    const fs::path a = game_file(from ? from : "", false);
+    const fs::path b = game_file(to ? to : "", true);
     std::error_code ec;
     if (fs::exists(b, ec)) {
         set_error(ERROR_ALREADY_EXISTS);
@@ -1089,8 +1120,8 @@ BOOL WINAPI j_MoveFileA(LPCSTR from, LPCSTR to) {
 }
 
 BOOL WINAPI j_CopyFileA(LPCSTR from, LPCSTR to, BOOL fail_if_exists) {
-    const fs::path a = to_path(from ? from : "");
-    const fs::path b = to_path(to ? to : "");
+    const fs::path a = game_file(from ? from : "", false);
+    const fs::path b = game_file(to ? to : "", true);
     std::error_code ec;
     const auto opt = fail_if_exists ? fs::copy_options::none : fs::copy_options::overwrite_existing;
     if (!fs::copy_file(a, b, opt, ec)) {

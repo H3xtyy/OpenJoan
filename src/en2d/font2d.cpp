@@ -128,6 +128,9 @@ struct H {
                 return 0;
             }
         }
+        // The Chinese release's Goudy12(18) black is a sheet four times as wide with 56 columns, where the game asks for the English
+        // sheet's 14; read as 14 columns, every character from the second row on comes from the wrong cell (a "1" drew as "[").
+        if (per_row == 14 && cell_w == 17 && jo::view<i32>(jo::self<jo::Font2d>(this)->texture->width) == 1024) per_row = 56;
         i16 x = spacing, y = spacing;
         i16 min_top = static_cast<i16>(cell_h - 1);
         i16 max_bottom = 0;
