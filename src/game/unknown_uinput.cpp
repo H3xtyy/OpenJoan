@@ -2859,15 +2859,15 @@ struct H {
                 const FVec p = vsub(&cam[1], &sc);
                 float box[6] = {p.x, p.y, p.z, p.x, p.y, p.z};
                 u32 cnt = 0;
-                u32* rr = joan::orig::arg::as<u32*>(joan::orig::as_world(global<void*>(d::g_world))->cells_in_box(joan::orig::arg::mptr(box), &cnt));  // 0x00429090
+                void* const* const rr = joan::orig::arg::as<void* const*>(joan::orig::as_world(global<void*>(d::g_world))->cells_in_box(joan::orig::arg::mptr(box), &cnt));  // 0x00429090: a list of cell pointers
                 if (cnt != 0) {
-                    u8* ts = joan::orig::arg::as<u8*>(joan::orig::as_world_cell(obj(*rr))->grid(joan::orig::arg::i16(0u)));  // 0x005600c0
+                    u8* ts = joan::orig::arg::as<u8*>(joan::orig::as_world_cell(*rr)->grid(joan::orig::arg::i16(0u)));  // 0x005600c0
                     if (ts != nullptr) {
                         const float d0 = static_cast<float>(
-                            fpu.div(fpu.sub(box[0], static_cast<double>(jo::as_cell(obj(*rr))->origin_x)),
+                            fpu.div(fpu.sub(box[0], static_cast<double>(jo::as_cell(*rr)->origin_x)),
                                     static_cast<double>(jo::as_path_space(ts)->cell_w)));
                         const float d4 = static_cast<float>(
-                            fpu.div(fpu.sub(box[1], static_cast<double>(jo::as_cell(obj(*rr))->origin_y)),
+                            fpu.div(fpu.sub(box[1], static_cast<double>(jo::as_cell(*rr)->origin_y)),
                                     static_cast<double>(jo::as_path_space(ts)->cell_h)));
                         const i32 i0 = ftol(d0);
                         const i32 i1 = ftol(d4);
