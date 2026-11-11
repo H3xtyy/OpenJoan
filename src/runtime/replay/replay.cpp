@@ -217,7 +217,7 @@ bool wait_for_player(const std::string& port_text) {
 // A replay passed on to a player: what the replay has used so far. Also called between frames once enough has gathered, so
 // that a player is not kept waiting through the start of the game (loading, the intro), which has no frames.
 void forward_used() {
-    if (!g_peer.open()) return;
+    if (!g_peer.open() || !g_opt.follow.empty()) return;  // only a host passes a replay on
     const std::vector<std::uint8_t> bytes = g_reader.used_since(g_forwarded);
     if (!bytes.empty() && !g_peer.send_all(bytes.data(), bytes.size())) stream_lost();
 }
