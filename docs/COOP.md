@@ -101,7 +101,9 @@ window):
 - The recording's header holds the number of players on other computers (flags bits 20..23). Every game that replays
   it starts the same remote player on the same hero in the first frame of a mission.
 
-For now the player sees the host's view (step 4 gives each player its own). Once a player has joined, the host's game is
+Every player also has its own copy of the camera (`CameraFollow` 0x00a48cc0 and its six motions), swapped in with its
+`Player` and `Input`: the game's control code moves "the" camera after the player's hero, and with one shared camera both
+heroes pulled it every frame. For now the player sees the host's view (step 4 draws each player's own camera). Once a player has joined, the host's game is
 never told that its window went to the background (it would pause, and every player with it); only its keyboard and mouse
 stop while another window has the focus.
 
