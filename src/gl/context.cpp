@@ -22,6 +22,7 @@ bool create_context(HWND window, bool debug, int swap_interval, Context& out, st
 
 void destroy_context(Context& ctx) {
     if (ctx.sdl) platform::gl_destroy_context(ctx.sdl);
+    if (ctx.sdl) unload_functions();
     ctx = Context{};
 }
 

@@ -1,6 +1,7 @@
 #include "glapi.hpp"
 
 #include <cstring>
+#include <type_traits>
 
 namespace joan::gl {
 
@@ -24,6 +25,33 @@ const char* load_functions(void* (*get_proc)(const char*)) {
 #undef JOAN_GL_LOAD_OPTIONAL
     return nullptr;
 }
+
+namespace {
+// What a GL function returns once the context is gone: nothing, or a zero.
+template <class R>
+R nothing() {
+    if constexpr (!std::is_void_v<R>) return R{};
+}
+}  // namespace
+
+// The game releases textures and buffers while it shuts down, after the context is gone and SDL may have unloaded the
+// driver: the functions point at code that no longer exists. They do nothing from then on.
+#if defined(__GNUC__)
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-parameter"
+#endif
+void unload_functions() {
+#define JOAN_GL_UNLOAD(ret, name, params) name = [] params -> ret { return nothing<ret>(); };
+    JOAN_GL_FUNCTIONS(JOAN_GL_UNLOAD)
+    JOAN_GL_EXT_FUNCTIONS(JOAN_GL_UNLOAD)
+#undef JOAN_GL_UNLOAD
+#define JOAN_GL_UNLOAD_OPTIONAL(ret, name, params) name = nullptr;
+    JOAN_GL_OPTIONAL_FUNCTIONS(JOAN_GL_UNLOAD_OPTIONAL)
+#undef JOAN_GL_UNLOAD_OPTIONAL
+}
+#if defined(__GNUC__)
+#pragma GCC diagnostic pop
+#endif
 
 bool has_bindless_textures() {
     if (!glGetStringi || !glGetTextureSamplerHandleARB || !glMakeTextureHandleResidentARB || !glMakeTextureHandleNonResidentARB)

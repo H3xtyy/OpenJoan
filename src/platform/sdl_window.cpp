@@ -846,6 +846,11 @@ void* gl_create_context(void* hwnd, bool debug, int& major, int& minor, std::str
         error = "not the SDL game window";
         return nullptr;
     }
+    // The game destroys its window while it exits and releases textures afterwards (static destructors): SDL would unload
+    // the GL driver with its last GL window, leaving the GL functions pointing at unmapped code. A reference of our own
+    // keeps the driver loaded until the process ends; a release without a context then does nothing.
+    static const bool driver_kept = SDL_GL_LoadLibrary(nullptr);
+    (void)driver_kept;
     for (const int m : {6, 5}) {
         SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
         SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
