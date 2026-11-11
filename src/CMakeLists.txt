@@ -453,6 +453,7 @@ add_library(openjoan_game OBJECT
     interfac/mouse_options.cpp
     interfac/remap_set.cpp
     game/pad_feedback.cpp
+    game/coop_players.cpp
     game/unit_steer.cpp
     game/unit_stuck.cpp
     game/animal_pen.cpp

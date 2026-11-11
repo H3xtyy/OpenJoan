@@ -21,6 +21,7 @@
 #include "../runtime/replay/replay.hpp"
 #include "../original/layout_access.hpp"
 #include "../original/bind.hpp"
+#include "coop_players.hpp"
 #include "../interfac/view_range.hpp"
 
 namespace jo = joan::orig;
@@ -350,6 +351,7 @@ struct H {
             joan::orig::as_camera_motion(cam(i))->start(&t, &t);  // 0x00423ec0
         }
         joan::orig::as_player(obj(d::g_player_unit_recno))->on_key_42e1a0();  // 0x0042e1a0
+        joan::coop::other_players_input();  // co-op: the other players' input (coop_players.hpp)
         if (global<i32>(d::g_key) == 0x5700) {
             jo::view<u32>(jo::self<jo::CameraFollow>(this)->key_move[0]) = jo::view<u32>(jo::self<jo::CameraFollow>(this)->key_move[0]) == 0 ? 1u : 0u;
             jo::view<u32>(jo::self<jo::CameraFollow>(this)->key_move[1]) = jo::view<u32>(jo::self<jo::CameraFollow>(this)->key_move[1]) == 0 ? 1u : 0u;
@@ -449,6 +451,7 @@ struct H {
         c_camera_5634e0.hit();
         if (jo::self<jo::CameraFollow>(this)->active == 0) return;
         joan::orig::as_player(obj(d::g_player_unit_recno))->tick();  // 0x0042f700
+        joan::coop::other_players_tick();  // co-op: the other players' tick (coop_players.hpp)
         joan::orig::as_light_sys(obj(d::g_light_sys))->tick_weather(jo::as_world(global<void*>(d::g_world))->scene);  // 0x004a7f70
         joan::orig::as_cloud_layers(obj(d::g_cloud_layers))->update_position(joan::orig::arg::mptr(jo::self<jo::CameraFollow>(this)->camera));                                  // 0x00459c90
         auto node = [this]() { return jo::self<jo::CameraFollow>(this)->camera; };  // re-read at every use, as the original
