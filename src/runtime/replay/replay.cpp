@@ -2156,6 +2156,7 @@ void install() {
                          (hook::settings().fix_popup_buttons ? kFlagPopupButtons : 0u) |
                          (hook::settings().fix_ending_layout ? kFlagEndingLayout : 0u) |
                          (hook::settings().fix_wheel_zoom ? kFlagWheelZoom : 0u) |
+                         (hook::settings().ui_animations == 0 ? kFlagNoUiAnimations : 0u) |
                          (hook::settings().fix_mouse_options ? (static_cast<std::uint32_t>(hook::settings().cursor_sensitivity) + 1u) << kCursorSensitivityShift : 0u);
         pln_cache_off();
         g_stable_ground_order = true;
@@ -2279,6 +2280,7 @@ void install() {
         // The ending's placement: as recorded (a 1024x768 screen changes where the game keeps the mouse).
         hook::mutable_settings().fix_ending_layout = (g_header.flags & kFlagEndingLayout) != 0;
         hook::mutable_settings().fix_wheel_zoom = (g_header.flags & kFlagWheelZoom) != 0;  // the zoom step, as recorded
+        hook::mutable_settings().ui_animations = (g_header.flags & kFlagNoUiAnimations) != 0 ? 0 : 1;  // menu animations, as recorded
         // The mouse options ([Fixes] MouseOptions): the recording's switch and cursor speed.
         {
             const std::uint32_t recorded = (g_header.flags >> kCursorSensitivityShift) & kCursorSensitivityMask;

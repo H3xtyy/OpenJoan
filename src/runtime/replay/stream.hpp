@@ -66,6 +66,7 @@ inline constexpr std::uint32_t kFlagPopupButtons = 1u << 17;  ///< made with a m
 /// Bits 20..23 of the flags: the players on other computers of a co-op game (docs/COOP.md); 0 = no co-op.
 inline constexpr int kCoopPlayersShift = 20;
 inline constexpr std::uint32_t kCoopPlayersMask = 0xf;  ///< width of that field, after shifting
+inline constexpr std::uint32_t kFlagNoUiAnimations = 1u << 24;  ///< made with [Display] UiAnimations=0 (a replay applies it)
 inline constexpr int kCursorSensitivityShift = 12;  ///< first bit of the cursor sensitivity field in the flags
 inline constexpr std::uint32_t kCursorSensitivityMask = 0x1f;  ///< width of that field, after shifting
 inline constexpr std::uint32_t kFlagStableGroundOrder = 256;  ///< Cell::build_ground grouped its tiles by the owner sector's index
