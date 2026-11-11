@@ -87,8 +87,8 @@ camera stayed with Joan. Two things were needed: the flags the mission's scripts
 cutscenes and dialogue, and its two neighbours) are copied from the host's object to every other player each frame, and a
 hero taken over has its order cleared as `Player::select_hero` does.
 
-A player on another computer (written 2026-11-11, `src/game/coop_players.cpp`; not yet tested with a person at each
-window):
+A player on another computer (`src/game/coop_players.cpp`; tested 2026-11-11 with two windows on one PC: the second
+window's keyboard and mouse walked, turned and attacked with the second hero while the host played Joan):
 
 - The player's game follows the host's stream as a spectator does, and sends every key, mouse movement, wheel step and
   button of its computer to the host while its window has the focus (`platform::input::forward`, then
@@ -96,6 +96,9 @@ window):
 - The host keeps those items per player. In `CamCtl::camkeys`, right before running that player's `Player::on_key`, it
   runs the game's own `Input::poll` (0x00594f90) with the player's `Input` object in place and the received items as its
   devices (`platform::input::read_from`). Key repeats, double taps and button timing then work as for the host.
+- The game ends every drawn frame by clearing the Input object's motion (`Game::run`: `clear_deltas` 0x004d8560, the key
+  modifiers and the mouse motion kept as the previous ones, the motion zeroed); each remote player's Input object gets
+  the same steps at the same places, or its last mouse motion would act every frame.
 - The poll's device reads are recorded like any other, so the player's game, and any replay of the file, runs the same
   poll with the same items in the same frame. The other player's mouse does not move the host's cursor.
 - The recording's header holds the number of players on other computers (flags bits 20..23). Every game that replays
