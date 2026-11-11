@@ -87,9 +87,21 @@ camera stayed with Joan. Two things were needed: the flags the mission's scripts
 cutscenes and dialogue, and its two neighbours) are copied from the host's object to every other player each frame, and a
 hero taken over has its order cleared as `Player::select_hero` does.
 
-Next: the input of a player on another computer. The player's game sends its keyboard and mouse to the host each frame;
-the host puts them into the stream as an event of their own, just before running the other players' input, and copies them
-into that player's input object. Every game, the player's own included, then applies the same input at the same frame.
+A player on another computer (written 2026-11-11, `src/game/coop_players.cpp`; not yet tested with a person at each
+window):
+
+- The player's game follows the host's stream as a spectator does, and sends every key, mouse movement, wheel step and
+  button of its computer to the host while its window has the focus (`platform::input::forward`, then
+  `replay::coop_send`). The replayed game itself never reads the devices.
+- The host keeps those items per player. In `CamCtl::camkeys`, right before running that player's `Player::on_key`, it
+  runs the game's own `Input::poll` (0x00594f90) with the player's `Input` object in place and the received items as its
+  devices (`platform::input::read_from`). Key repeats, double taps and button timing then work as for the host.
+- The poll's device reads are recorded like any other, so the player's game, and any replay of the file, runs the same
+  poll with the same items in the same frame. The other player's mouse does not move the host's cursor.
+- The recording's header holds the number of players on other computers (flags bits 20..23). Every game that replays
+  it starts the same remote player on the same hero in the first frame of a mission.
+
+For now the player sees the host's view (step 4 gives each player its own).
 
 ## Licence question (open)
 
@@ -99,6 +111,10 @@ permission from the copyright holders (GPL-3.0 section 7). The SDK itself can ne
 open-source GameNetworkingSockets (BSD) does not include the relay. This is decided before step 7.
 
 ## Testing
+
+A player on another computer: the host records with `--stream PORT`, the player starts with `--follow HOST:PORT` (both
+debug builds with `[Debug]` record / replay available). In a mission the player's keyboard and mouse drive the second
+hero of the party while the window of the player's game has the focus.
 
 Several game copies on one PC: the host replays a reference recording while streaming it, the guests follow over the
 network, and the frame hashes must match to the end. Later steps add scripted input for the guests' heroes, so that tests
