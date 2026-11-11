@@ -18,6 +18,8 @@
 // window messages / completions delivered inside it come first; replay injects them at the same place.
 #pragma once
 
+#include <functional>
+
 #include <cstddef>
 #include <cstdint>
 #include <cstdio>
@@ -228,6 +230,12 @@ public:
     void close();
     /// Bytes written to the file so far.
     std::uint64_t bytes_written() const { return bytes_; }
+    /// Also gives every byte written to `copy` (co-op: the stream to the players, docs/COOP.md), and calls `flush` where
+    /// the file is flushed (each frame). Set before open() so that the header goes too.
+    void tee(std::function<void(const void*, std::size_t)> copy, std::function<void()> flush) {
+        tee_ = std::move(copy);
+        tee_flush_ = std::move(flush);
+    }
 
 private:
     void put(const void* p, std::size_t n);
@@ -237,6 +245,8 @@ private:
     }
     std::FILE* f_ = nullptr;
     std::uint64_t bytes_ = 0;
+    std::function<void(const void*, std::size_t)> tee_;
+    std::function<void()> tee_flush_;
 };
 
 /// One decoded event (views into the loaded file).
@@ -260,6 +270,15 @@ class Reader {
 public:
     /// Loads the whole file. Returns an error text, or nullptr.
     const char* load(const std::string& path);
+    /// Where more of a recording comes from while it is being made (co-op, docs/COOP.md): appends at least one byte to the
+    /// vector, waiting for it, or returns false when the stream has ended.
+    using Source = std::function<bool(std::vector<std::uint8_t>&)>;
+    /// Reads a recording as it arrives from `source`: waits for the header now, and peek() waits for each event. Returns an
+    /// error text, or nullptr.
+    const char* follow(Source source);
+    /// The bytes from file offset `from` up to the read position, for passing a replayed recording on as it is used.
+    /// Advances `from` to the read position.
+    std::vector<std::uint8_t> used_since(std::size_t& from) const;
     /// The file header (valid after a successful load()).
     const Header& header() const { return header_; }
     /// Decodes the event at the read position without consuming it. False at the end of the data (or on a damaged
@@ -268,17 +287,22 @@ public:
     /// Consumes the event peek() returned.
     void next() { pos_ = next_pos_; }
     /// Read position, as a file offset.
-    std::size_t position() const { return pos_; }
+    std::size_t position() const { return base_ + pos_; }
     /// Size of the loaded file in bytes.
-    std::size_t size() const { return data_.size(); }
+    std::size_t size() const { return base_ + data_.size(); }
     /// Text of the last decoding error, or nullptr.
     const char* error() const { return error_; }
 
 private:
+    bool decode(Event& e);
+    const char* read_header();
     std::vector<std::uint8_t> data_;
     Header header_;
     std::size_t pos_ = 0;
     std::size_t next_pos_ = 0;
+    std::size_t base_ = 0;  // file offset of data_[0]: a followed recording drops what it has used
+    bool short_ = false;    // the last decode ran out of bytes
+    Source source_;
     const char* error_ = nullptr;
 };
 

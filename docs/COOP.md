@@ -1,6 +1,9 @@
 # Co-op
 
-Plan for several players in one campaign, on the `coop` branch. Status: planning; nothing is built yet.
+Plan for several players in one campaign, on the `coop` branch. Status: step 2 (spectators) is being built and not yet
+proven to work: a debug build takes `--stream PORT` (host: waits for one player, then sends what it records, or what it
+replays, as it goes) and `--follow HOST:PORT` (player: replays the host's stream as it arrives, checking every frame hash).
+The connection is plain TCP (`src/platform/net.hpp`) until the Steam transport.
 
 ## What co-op means here
 
@@ -47,6 +50,9 @@ one input stream from each, so the number of players changes the host's bandwidt
 6. **Recovering from a desync** by sending the host's save to that guest and starting its stream again from it.
 7. **Steam relay transport.** See the licence question below. Until it is settled, a plain network transport is used for
    development and tests (several game copies on one PC).
+
+The release build has no record and replay (`build_flavor.hpp`): co-op needs that machinery in the builds players run,
+which is decided when the spectator works.
 
 ## Licence question (open)
 

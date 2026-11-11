@@ -46,6 +46,7 @@ add_library(openjoan_game OBJECT
     media/wm_reader.cpp
     runtime/import_census.cpp
     platform/files.cpp
+    platform/net.cpp
     platform/user_files.cpp
     platform/ini.cpp
     platform/memory.cpp
@@ -498,7 +499,7 @@ endif()
 target_include_directories(openjoan_game PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 target_link_libraries(openjoan_game PUBLIC joan_warnings OpenAL::OpenAL joan_ffmpeg SDL3::SDL3 freetype)
 if(WIN32)
-    target_link_libraries(openjoan_game PUBLIC opengl32 gdi32 user32 winmm)
+    target_link_libraries(openjoan_game PUBLIC opengl32 gdi32 user32 winmm ws2_32)
 else()
     # OpenGL comes through SDL (SDL_GL_GetProcAddress); dladdr / backtrace (runtime/crash.cpp, runtime/profiler.cpp), threads.
     find_package(Threads REQUIRED)

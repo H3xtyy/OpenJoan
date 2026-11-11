@@ -27,6 +27,7 @@
 #include "../code_table.hpp"
 #include "../det_heap.hpp"
 #include "../../platform/ini.hpp"
+#include "../../platform/net.hpp"
 #include "../../data_names.hpp"
 #include "../image.hpp"
 #include "../image_runtime.hpp"
@@ -142,6 +143,8 @@ constexpr char kFileTag[] = "file\n";       // Env event: "file\n<path below the
 
 struct Options {
     std::string record, replay;
+    std::string stream;  // --stream PORT: co-op host, the recording (or the replayed one) goes to a player as it is used
+    std::string follow;  // --follow HOST:PORT: co-op player, the replay comes from the host as it is made (docs/COOP.md)
     bool back_buffer = false;
     bool heap = false;
     int files = 1;  // ReplayHashFiles: 0 off, 1 quick fingerprint, 2 whole content
@@ -173,6 +176,51 @@ Options g_opt;
 Header g_header;
 Writer g_writer;
 Reader g_reader;
+
+// ---------------------------------------------------------------- co-op stream (docs/COOP.md)
+
+constexpr std::size_t kForwardChunk = 256u << 10;  // a replay passed on: sent at least this often, between frames too
+platform::net::Connection g_peer;     // the player the stream goes to, or the host it comes from
+std::vector<std::uint8_t> g_outgoing;  // stream bytes not sent yet
+std::size_t g_forwarded = 0;           // a replay passed on: file offset sent so far
+
+void stream_lost() {
+    log("[Coop] the player left: the stream stops, the game goes on");
+    g_peer.close();
+    g_outgoing.clear();
+}
+
+void send_outgoing() {
+    if (!g_peer.open() || g_outgoing.empty()) return;
+    if (!g_peer.send_all(g_outgoing.data(), g_outgoing.size())) stream_lost();
+    g_outgoing.clear();
+}
+
+// Waits for the player of --stream; false (and a log line) when there is none.
+bool wait_for_player(const std::string& port_text) {
+    std::string host, error;
+    std::uint16_t port = 0;
+    if (!platform::net::split_address(port_text, host, port)) {
+        log("[Coop] --stream %s: not a port number", port_text.c_str());
+        return false;
+    }
+    log("[Coop] waiting for a player on port %u", static_cast<unsigned>(port));
+    g_peer = platform::net::Connection::accept_one(port, error);
+    if (!g_peer.open()) {
+        log("[Coop] no player: %s", error.c_str());
+        return false;
+    }
+    log("[Coop] a player joined: streaming");
+    return true;
+}
+
+// A replay passed on to a player: what the replay has used so far. Also called between frames once enough has gathered, so
+// that a player is not kept waiting through the start of the game (loading, the intro), which has no frames.
+void forward_used() {
+    if (!g_peer.open()) return;
+    const std::vector<std::uint8_t> bytes = g_reader.used_since(g_forwarded);
+    if (!bytes.empty() && !g_peer.send_all(bytes.data(), bytes.size())) stream_lost();
+}
 std::string g_file;  // the recording
 std::uint32_t g_frame = 0;
 bool g_stable_ground_order = false;  // kFlagStableGroundOrder (stable_ground_order())
@@ -246,7 +294,10 @@ void command_line(Options& o) {
     for (std::size_t i = 1; i + 1 < args.size(); ++i) {
         if (args[i] == "--record") o.record = args[i + 1];
         if (args[i] == "--replay") o.replay = args[i + 1];
+        if (args[i] == "--stream") o.stream = args[i + 1];
+        if (args[i] == "--follow") o.follow = args[i + 1];
     }
+    if (!o.follow.empty() && o.replay.empty()) o.replay = o.follow;  // a followed host is replayed
 }
 
 Options read_options() {
@@ -1536,6 +1587,7 @@ void inject_wndproc(std::uint32_t msg, std::uint32_t wp, std::uint32_t lp) {
 // Replay: injects recorded window messages / completions until the next event of another kind, which is returned
 // (not consumed). False when replay ended (end of the recording) - the caller then goes on live.
 bool next_event(Event& e, const char* for_what) {
+    if (g_peer.open() && g_opt.follow.empty() && g_reader.position() - g_forwarded >= kForwardChunk) forward_used();
     for (;;) {
         if (g_mode != Mode::Replay) return false;
         if (!g_reader.peek(e)) {
@@ -1983,19 +2035,24 @@ void frame_boundary(void* device) {
                 compare_frame(e.frame, now, words);
             }
         }
+        forward_used();
     }
+    if ((g_peer.open() || !g_opt.follow.empty()) && g_frame % 1000 == 0)
+        log("[Coop] frame %u (%s)", static_cast<unsigned>(g_frame), g_opt.follow.empty() ? "host" : "player");
     ++g_frame;
 }
 
 void game_exit(UINT code) {
     if (g_mode == Mode::Record && sys::thread_id() == g_thread) {
         g_writer.end(g_frame);
+        send_outgoing();  // the end reaches the player too
         report_line("the game exits (code %u) after %u frames", static_cast<unsigned>(code), static_cast<unsigned>(g_frame));
     } else if (g_mode == Mode::Replay) {
         Event e;
         if (next_event(e, "the game's exit")) {
             if (e.type == Ev::End) {
                 g_reader.next();
+                if (g_opt.follow.empty()) forward_used();  // a replay passed on: its end too
                 report_line("the game exits where the recording ends (frame %u)", static_cast<unsigned>(g_frame));
             } else {
                 g_diverged = true;
@@ -2077,6 +2134,10 @@ void install() {
         g_header.page_size = kPageSize;
         g_header.exe_stamp = exe_timestamp();
         g_header.snapshot_every = g_opt.snapshot_every;
+        if (!g_opt.stream.empty() && wait_for_player(g_opt.stream))
+            g_writer.tee([](const void* p, std::size_t n) {
+                if (g_peer.open()) g_outgoing.insert(g_outgoing.end(), static_cast<const std::uint8_t*>(p), static_cast<const std::uint8_t*>(p) + n);
+            }, [] { send_outgoing(); });
         if (!g_writer.open(g_file, g_header)) {
             log("cannot create the recording %s - not recording", g_file.c_str());
             return;
@@ -2097,8 +2158,34 @@ void install() {
             report_line("warning: [Fixes] UninitReads=0 - reads of uninitialised stack memory differ between builds; set "
                         "UninitReads=1 for recordings that check refactored code");
     } else {
-        g_file = absolute(g_opt.replay);
-        if (const char* err = g_reader.load(g_file)) {
+        const char* err = nullptr;
+        if (!g_opt.follow.empty()) {
+            g_file = g_opt.follow;
+            std::string host, error;
+            std::uint16_t port = 0;
+            if (!platform::net::split_address(g_opt.follow, host, port)) {
+                err = "not a HOST:PORT address";
+            } else {
+                log("[Coop] joining %s", g_opt.follow.c_str());
+                g_peer = platform::net::Connection::connect_to(host, port, 60000, error);
+                if (!g_peer.open()) {
+                    log("[Coop] cannot reach the host: %s", error.c_str());
+                    err = "cannot reach the host";
+                } else {
+                    err = g_reader.follow([](std::vector<std::uint8_t>& data) {
+                        std::uint8_t chunk[1 << 16];
+                        const long got = g_peer.receive(chunk, sizeof chunk);
+                        if (got <= 0) return false;
+                        data.insert(data.end(), chunk, chunk + got);
+                        return true;
+                    });
+                }
+            }
+        } else {
+            g_file = absolute(g_opt.replay);
+            err = g_reader.load(g_file);
+        }
+        if (err != nullptr) {
             report_line("cannot replay %s: %s", g_file.c_str(), err);
             write_report_file();
             real_exit_process(5);
@@ -2110,6 +2197,7 @@ void install() {
             write_report_file();
             real_exit_process(5);
         }
+        if (g_opt.follow.empty() && !g_opt.stream.empty()) wait_for_player(g_opt.stream);  // a replay passed on (tests)
         g_mode = Mode::Replay;
         report_line("REPLAYING %s (%u bytes; recorded by an executable of stamp %08x, this is %08x; hashes: image%s%s)",
                     g_file.c_str(), static_cast<unsigned>(g_reader.size()), static_cast<unsigned>(g_header.exe_stamp),

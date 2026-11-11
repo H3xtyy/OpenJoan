@@ -1,6 +1,7 @@
 // Recording file format - see stream.hpp.
 #include "stream.hpp"
 
+#include <algorithm>
 #include <cstring>
 
 namespace joan::replay {
@@ -120,6 +121,7 @@ bool Writer::open(const std::string& path, const Header& h) {
 void Writer::put(const void* p, std::size_t n) {
     if (!f_ || n == 0) return;
     std::fwrite(p, 1, n, f_);
+    if (tee_) tee_(p, n);
     bytes_ += n;
 }
 
@@ -175,6 +177,7 @@ void Writer::end(std::uint32_t frames) {
 
 void Writer::flush() {
     if (f_) std::fflush(f_);
+    if (tee_flush_) tee_flush_();
 }
 
 void Writer::close() {
@@ -198,6 +201,10 @@ const char* Reader::load(const std::string& path) {
     const std::size_t got = std::fread(data_.data(), 1, data_.size(), f);
     std::fclose(f);
     if (got != data_.size()) return "cannot read the recording";
+    return read_header();
+}
+
+const char* Reader::read_header() {
     if (std::memcmp(data_.data(), kMagic, sizeof(kMagic)) != 0) return "not an OpenJoan recording (magic)";
     std::uint32_t fields[8];
     std::memcpy(fields, data_.data() + sizeof(kMagic), sizeof(fields));
@@ -215,11 +222,54 @@ const char* Reader::load(const std::string& path) {
     return nullptr;
 }
 
+const char* Reader::follow(Source source) {
+    source_ = std::move(source);
+    data_.clear();
+    base_ = 0;
+    while (data_.size() < kHeaderSize)
+        if (!source_(data_)) return "the stream ended before its header";
+    return read_header();
+}
+
+std::vector<std::uint8_t> Reader::used_since(std::size_t& from) const {
+    std::vector<std::uint8_t> out;
+    const std::size_t to = base_ + pos_;
+    if (from < base_) from = base_;
+    if (from < to)
+        out.assign(data_.begin() + static_cast<std::ptrdiff_t>(from - base_), data_.begin() + static_cast<std::ptrdiff_t>(pos_));
+    from = to;
+    return out;
+}
+
 bool Reader::peek(Event& e) {
-    if (pos_ >= data_.size()) return false;
+    for (;;) {
+        short_ = false;
+        error_ = nullptr;
+        if (decode(e)) return true;
+        if (!source_ || !short_) return false;
+        // A followed recording: wait for the rest of the event, after dropping what was used (event payloads point into
+        // the buffer and are used only until the next peek).
+        if (pos_ > (64u << 20)) {
+            data_.erase(data_.begin(), data_.begin() + static_cast<std::ptrdiff_t>(pos_));
+            base_ += pos_;
+            next_pos_ -= std::min(next_pos_, pos_);
+            pos_ = 0;
+        }
+        if (!source_(data_)) {
+            error_ = nullptr;  // the host ended the stream: the end of the recording
+            return false;
+        }
+    }
+}
+
+bool Reader::decode(Event& e) {
+    if (pos_ >= data_.size()) {
+        short_ = true;
+        return false;
+    }
     Cursor c(data_.data() + pos_, data_.size() - pos_);
     e = Event{};
-    e.offset = pos_;
+    e.offset = base_ + pos_;
     e.type = static_cast<Ev>(c.get<std::uint8_t>());
     switch (e.type) {
         case Ev::Call:
@@ -228,6 +278,7 @@ bool Reader::peek(Event& e) {
             e.size = c.get<std::uint32_t>();
             if (c.left() < e.size) {
                 error_ = "truncated call event";
+                short_ = true;
                 return false;
             }
             e.payload = data_.data() + (data_.size() - c.left());
@@ -247,6 +298,7 @@ bool Reader::peek(Event& e) {
             const std::uint32_t n = c.get<std::uint32_t>();
             if (c.left() / 4 < n) {
                 error_ = "truncated frame event";
+                short_ = true;
                 return false;
             }
             e.frame.pages.resize(n);
@@ -258,6 +310,7 @@ bool Reader::peek(Event& e) {
             const std::uint32_t n = c.get<std::uint32_t>();
             if (c.left() / 4 < n) {
                 error_ = "truncated snapshot event";
+                short_ = true;
                 return false;
             }
             e.words.resize(n);
@@ -268,6 +321,7 @@ bool Reader::peek(Event& e) {
             e.size = c.get<std::uint32_t>();
             if (c.left() < e.size) {
                 error_ = "truncated environment event";
+                short_ = true;
                 return false;
             }
             e.payload = data_.data() + (data_.size() - c.left());
@@ -283,6 +337,7 @@ bool Reader::peek(Event& e) {
     }
     if (!c.ok()) {
         error_ = "truncated event at the end of the recording";
+        short_ = true;
         return false;
     }
     next_pos_ = data_.size() - c.left();
