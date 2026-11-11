@@ -1,7 +1,8 @@
 # Co-op
 
-Plan for several players in one campaign, on the `coop` branch. Status: step 2 (spectators) is being built and not yet
-proven to work: a debug build takes `--stream PORT` (host: waits for one player, then sends what it records, or what it
+Plan for several players in one campaign, on the `coop` branch. Status: step 2 (spectators) works: a player followed the
+host's replay of the mission 1 reference over the network to its end, with the same calls and the same state as a replay of
+the file, checked word by word on every frame. A debug build takes `--stream PORT` (host: waits for one player, then sends what it records, or what it
 replays, as it goes) and `--follow HOST:PORT` (player: replays the host's stream as it arrives, checking every frame hash).
 The connection is plain TCP (`src/platform/net.hpp`) until the Steam transport.
 
@@ -53,6 +54,35 @@ one input stream from each, so the number of players changes the host's bandwidt
 
 The release build has no record and replay (`build_flavor.hpp`): co-op needs that machinery in the builds players run,
 which is decided when the spectator works.
+
+## A hero per player (step 3): design
+
+What the game has (read from the code, 2026-11-11):
+
+- `d::g_player_unit_recno` (0x00a5b9e8) is not only a unit number: it is the address of the one `jo::Player` object
+  (0x126e bytes, `src/original/gen/player.hpp`), whose first field is the controlled unit. All of the control state is in
+  it: the input mode (`mode` = `d::g_control_mode`, keyboard / pad / keyboard and mouse / RTS), riding and mounting, combo
+  timing (`press_time`, `order_state`), the attack target, the RTS selection and groups, the camera's follow mode.
+- Each frame, `Game::process_input` (0x0052f930) passes the input to `Player::on_key` (0x0042e1a0), which dispatches on the
+  mode (`PlayerCtl::update_430480` for keyboard and mouse, `Player::handle_input` 0x00440b30 for RTS), and the camera
+  update runs `Player::tick` (0x0042f700). The handlers find the hero through the object, not through the global, and read
+  the shared input globals (`g_mouse_delta_*`, `g_key`, ...) filled by `Input::poll` (0x00594f90).
+- A hero is driven by a human when `Unit::layer` is 0, by its AI when it is 1; hero switching (`Player::select_hero`
+  0x00432300) moves the object to another unit and flips the layers.
+- About 290 places read the global: some 35 control the hero, about 105 draw the camera, HUD and menus for it, about 125
+  are game rules that treat "the player's unit" specially (hostility, damage credit, AI target choice, script functions,
+  triggers), the rest debug and cheats.
+
+The plan: one `Player` per human. The host keeps the game's own object for player 1 and one copy per other player, each on
+its own hero. Each frame, for every other player, the host swaps that player's object and that player's input into the
+game's places, runs `on_key` and `tick` for it, and swaps them back. The game code stays as it is: it controls "the
+player" as before, once per player. Every player's hero has layer 0, so the rules that check the layer already treat all
+of them as human. The rules that compare a unit with the global (the 125) are gone through one by one: for most, "a unit
+of any player" is the right reading. A player's input reaches the host as an event of the stream, so every game applies it
+at the same frame.
+
+Test before any network: a second player on the same PC, driven by scripted input (walk, attack, switch), shows two
+heroes under human control at once.
 
 ## Licence question (open)
 
