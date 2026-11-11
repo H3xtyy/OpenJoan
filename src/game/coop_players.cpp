@@ -91,6 +91,7 @@ void start_test_player() {
     in->scan_code = in->key_code = 0;
     in->queue_head = in->queue_tail;  // no queued events
     jo::as_unit(unit_of(hero))->layer = 0;  // driven by a player, not by its AI
+    take_orders_of(unit_of(hero));          // and no longer by its order (escorting the host, for instance)
     g_others.push_back(std::move(p));
     hook::log_line("[Coop] CoopTestPlayer: a scripted second player controls unit %d (the host controls %d)", hero, host_id);
 }
@@ -121,6 +122,13 @@ template <class Step>
 void as_player(OtherPlayer& p, Step step) {
     auto* const player = static_cast<u8*>(player_object());
     auto* const input = static_cast<u8*>(input_object());
+    // What the mission's scripts set on "the player" holds for every player: blocked during a cutscene or a dialogue, and
+    // the two flags next to it. They are only ever set on the host's object.
+    auto* const mine = reinterpret_cast<jo::Player*>(p.player.data());
+    const auto* const host = reinterpret_cast<const jo::Player*>(player);
+    mine->blocked = host->blocked;
+    mine->u8_79 = host->u8_79;
+    mine->u8_7c = host->u8_7c;
     std::vector<u8> host_player(player, player + p.player.size()), host_input(input, input + p.input.size());
     std::memcpy(player, p.player.data(), p.player.size());
     std::memcpy(input, p.input.data(), p.input.size());

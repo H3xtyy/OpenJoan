@@ -30,6 +30,7 @@
 #include "../runtime/replay/replay.hpp"
 #include "../original/layout_access.hpp"
 #include "../original/bind.hpp"
+#include "coop_players.hpp"
 
 namespace jo = joan::orig;
 
@@ -1278,3 +1279,6 @@ auto joan::orig::Order::set_clamped(float a0) -> void { joan::bind::member<&::ga
 auto joan::orig::Player::select_hero(std::int32_t a0) -> void { joan::bind::member<&::game_b86_05::H::select_hero>(this, a0); }  // 0x432300
 auto joan::orig::Cell::load(void* a0, std::int32_t a1) -> void { joan::bind::member<&::game_world4::H::cell_load>(this, a0, a1); }  // 0x4329e0
 auto joan::orig::Game::byte_2e1() -> std::uint32_t { return joan::bind::conv<std::uint32_t>(joan::bind::member<&::game_leaves82b::H::byte_2e1>(this)); }  // 0x432b90
+
+// Co-op (coop_players.hpp): a player taking a hero over takes its orders, as Player::select_hero does.
+void joan::coop::take_orders_of(void* unit) { ::game_b86_05::take_orders(static_cast<std::uint8_t*>(unit)); }

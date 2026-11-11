@@ -12,4 +12,8 @@ void other_players_input();
 /// Camera::update_5634e0, after the host's Player::tick (0x0042f700): the same for every other player.
 void other_players_tick();
 
+/// What Player::select_hero (0x00432300) does to a hero it takes over: its order is kept for later and cleared, and the
+/// orders of its group too (game/unknown_playerctl.cpp).
+void take_orders_of(void* unit);
+
 }  // namespace joan::coop
