@@ -113,6 +113,7 @@ struct Settings {
     JOAN_DEBUG_SETTING(int, shadow_caster_margin, 1500, 1500);  // ShadowCasterMargin: world units outside the picture still drawn to cast
     int water = 1;                  // Water: 0 the original water, 1 modern water (render/water.*)
     int pixel_lighting = 1;         // PixelLighting: lit draws lit per pixel (render/pixel_lighting.hpp)
+    int ui_animations = 1;          // [Display] UiAnimations: 1 menu widgets slide and zoom (original), 0 they are at once where they go
     int camera_fade = 0;            // CameraFade: 1 objects between the camera and the player turn see-through (original), 0 off
     int cursor_sensitivity = 10;    // [Platform] CursorSensitivity: position of the options page's cursor slider, 0..20 (10 = the original's speed)
     int gpu_shadow_volumes = 1;     // GpuShadowVolumes: 1 the original shadows' volumes made by the GPU (render/shadow_volumes.hpp), 0 by the CPU

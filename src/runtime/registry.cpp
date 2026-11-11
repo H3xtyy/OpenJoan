@@ -158,6 +158,7 @@ void load_settings(const std::string& ini_path) {
     JOAN_DEBUG_READ(g_settings.shadow_caster_margin = static_cast<int>(joan::platform::ini::get_int("Graphics", "ShadowCasterMargin", 1500, ini_path.c_str()));)
     g_settings.water = static_cast<int>(joan::platform::ini::get_int("Graphics", "Water", 1, ini_path.c_str()));
     g_settings.pixel_lighting = static_cast<int>(joan::platform::ini::get_int("Graphics", "PixelLighting", 1, ini_path.c_str()));
+    g_settings.ui_animations = static_cast<int>(joan::platform::ini::get_int("Display", "UiAnimations", 1, ini_path.c_str()));
     g_settings.camera_fade =static_cast<int>(joan::platform::ini::get_int("Graphics", "CameraFade", 0, ini_path.c_str()));
     g_settings.gpu_shadow_volumes = static_cast<int>(joan::platform::ini::get_int("Graphics", "GpuShadowVolumes", 1, ini_path.c_str()));
     g_settings.grass_batching = static_cast<int>(joan::platform::ini::get_int("Graphics", "GrassBatching", 1, ini_path.c_str()));

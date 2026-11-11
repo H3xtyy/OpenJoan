@@ -61,6 +61,7 @@ inline constexpr std::uint32_t kFlagMissionCount = 2048;  ///< [Fixes] MissionCo
 inline constexpr std::uint32_t kFlagEndingLayout = 1u << 18;  ///< made with the ending drawn as a 1024x768 screen in the mission's frame too
 inline constexpr std::uint32_t kFlagWheelZoom = 1u << 19;  ///< made with a wheel notch zooming the same at any frame rate
 inline constexpr std::uint32_t kFlagPopupButtons = 1u << 17;  ///< made with a message box's buttons centred on the real screen (a replay of an older recording keeps the old position)
+inline constexpr std::uint32_t kFlagNoUiAnimations = 1u << 24;  ///< made with [Display] UiAnimations=0 (a replay applies it)
 inline constexpr int kCursorSensitivityShift = 12;  ///< first bit of the cursor sensitivity field in the flags
 inline constexpr std::uint32_t kCursorSensitivityMask = 0x1f;  ///< width of that field, after shifting
 inline constexpr std::uint32_t kFlagStableGroundOrder = 256;  ///< Cell::build_ground grouped its tiles by the owner sector's index

@@ -188,6 +188,7 @@ The game's Direct3D 8 device is our OpenGL 4.6 implementation (`src/gl`); the sy
 | `Resolution` | `desktop` | R | `desktop` = the primary monitor's size, `original` = 1024x768, or `WIDTHxHEIGHT` (scaled to the monitor, aspect kept) |
 | `DpiAware` | 1 | R | tell Windows the game handles DPI itself (real pixels at 125 % / 150 % scaling) |
 | `UiScale` | `auto` | R | in-mission HUD size: 1 = original pixels, 1.5 / 2 / ..., `auto` = from the resolution (1080p 1, 1440p 1.5, 4K 2.5). A value <= 0 reads as 1 |
+| `UiAnimations` | 1 | R | 1 = the menus' buttons, panels and pictures slide and zoom into place (original); 0 = no menu animations, every widget is at once where it goes (`Widget::slide_step` 0x0061f450 / `Widget::fade_step` 0x00620810 finish in their first step, start delays included). A recording keeps the value (flag bit 24) and its replay applies it |
 
 ### 3.5 `[Audio]` and `[Video]`
 
