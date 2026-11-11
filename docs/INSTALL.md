@@ -7,8 +7,9 @@ files: you need your own copy of the game, and OpenJoan reads that copy's data f
 
 - The game's **data files**, from an edition you own. OpenJoan never reads the original `joan.exe`.
 - A graphics driver with **OpenGL 4.6**.
-- **Linux x86-64:** FFmpeg, SDL3 and
-  OpenAL Soft are in the archive.
+- **Linux x86-64:** glibc 2.28 or newer (any distribution from 2018 on; systemd is not needed) and X11 or Wayland.
+  FFmpeg, SDL3 and OpenAL Soft are in the archive and in the AppImage; sound goes through ALSA, PulseAudio or PipeWire,
+  whichever the system has. Distributions built on musl instead of glibc (Alpine, Void musl, Chimera) cannot run them.
 - **Windows 10 or later, x86-64:** everything is in the archive.
 
 ## Install
@@ -16,6 +17,10 @@ files: you need your own copy of the game, and OpenJoan reads that copy's data f
 1. Unpack the archive for your platform and copy every file from it into your game folder, next to the game's `Resource`,
    `map`, `unit` and `script` folders.
 2. Start `openjoan` (Linux) or `openjoan.exe` (Windows) from that folder.
+
+On Linux the AppImage, `OpenJoan-<version>-x86_64.AppImage`, is the same program in one file: copy it into the game folder,
+make it executable (`chmod +x`) and start it. It writes `openjoan.ini` into the game folder the first time. It needs FUSE
+(`/dev/fuse` and `fusermount`), which almost every desktop has; without it, start it with `--appimage-extract-and-run`.
 
 OpenJoan does not work with a `d3d8.dll` in the game folder, such as the community widescreen patch or another graphics
 wrapper. Remove it first.
