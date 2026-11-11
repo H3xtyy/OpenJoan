@@ -276,7 +276,7 @@ bool Reader::decode(Event& e) {
             e.id = c.get<std::uint16_t>();
             e.check = c.get<std::uint32_t>();
             e.size = c.get<std::uint32_t>();
-            if (c.left() < e.size) {
+            if (!c.ok() || c.left() < e.size) {  // the header itself can be cut off too (a stream arrives in pieces)
                 error_ = "truncated call event";
                 short_ = true;
                 return false;
@@ -296,7 +296,7 @@ bool Reader::decode(Event& e) {
             e.frame.heap = c.get<std::uint64_t>();
             e.frame.back_buffer = c.get<std::uint64_t>();
             const std::uint32_t n = c.get<std::uint32_t>();
-            if (c.left() / 4 < n) {
+            if (!c.ok() || c.left() / 4 < n) {
                 error_ = "truncated frame event";
                 short_ = true;
                 return false;
@@ -308,7 +308,7 @@ bool Reader::decode(Event& e) {
         case Ev::Snapshot: {
             e.a = c.get<std::uint32_t>();
             const std::uint32_t n = c.get<std::uint32_t>();
-            if (c.left() / 4 < n) {
+            if (!c.ok() || c.left() / 4 < n) {
                 error_ = "truncated snapshot event";
                 short_ = true;
                 return false;
@@ -319,7 +319,7 @@ bool Reader::decode(Event& e) {
         }
         case Ev::Env: {
             e.size = c.get<std::uint32_t>();
-            if (c.left() < e.size) {
+            if (!c.ok() || c.left() < e.size) {
                 error_ = "truncated environment event";
                 short_ = true;
                 return false;

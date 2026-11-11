@@ -706,6 +706,9 @@ if(JOAN_BUILD_DATA_TEST)
     add_executable(user_files_test ${CMAKE_SOURCE_DIR}/tests/test_user_files.cpp platform/user_files.cpp)
     target_link_libraries(user_files_test PRIVATE joan_warnings)
     add_test(NAME user_files_test COMMAND user_files_test)
+    add_executable(replay_stream_test ${CMAKE_SOURCE_DIR}/tests/test_replay_stream.cpp runtime/replay/stream.cpp)
+    target_link_libraries(replay_stream_test PRIVATE joan_warnings)
+    add_test(NAME replay_stream_test COMMAND replay_stream_test)
     set_tests_properties(data_image_reference_test PROPERTIES SKIP_RETURN_CODE 77)
 
     # The new pathfinding's search on small hand-built meshes (docs/PATHFINDING.md).
