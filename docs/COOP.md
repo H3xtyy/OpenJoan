@@ -101,7 +101,9 @@ window):
 - The recording's header holds the number of players on other computers (flags bits 20..23). Every game that replays
   it starts the same remote player on the same hero in the first frame of a mission.
 
-For now the player sees the host's view (step 4 gives each player its own).
+For now the player sees the host's view (step 4 gives each player its own). Once a player has joined, the host's game is
+never told that its window went to the background (it would pause, and every player with it); only its keyboard and mouse
+stop while another window has the focus.
 
 ## Licence question (open)
 
@@ -114,7 +116,8 @@ open-source GameNetworkingSockets (BSD) does not include the relay. This is deci
 
 A player on another computer: the host records with `--stream PORT`, the player starts with `--follow HOST:PORT` (both
 debug builds with `[Debug]` record / replay available). In a mission the player's keyboard and mouse drive the second
-hero of the party while the window of the player's game has the focus.
+hero of the party while the window of the player's game has the focus. Both games must be started this way: a copy started
+on its own is an ordinary single-player game.
 
 Several game copies on one PC: the host replays a reference recording while streaming it, the guests follow over the
 network, and the frame hashes must match to the end. Later steps add scripted input for the guests' heroes, so that tests
