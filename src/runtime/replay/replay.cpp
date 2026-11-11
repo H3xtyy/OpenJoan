@@ -221,6 +221,36 @@ void forward_used() {
     const std::vector<std::uint8_t> bytes = g_reader.used_since(g_forwarded);
     if (!bytes.empty() && !g_peer.send_all(bytes.data(), bytes.size())) stream_lost();
 }
+}  // namespace
+
+int coop_remote_players() {
+    if (g_mode == Mode::Off) return 0;
+    return static_cast<int>((g_header.flags >> kCoopPlayersShift) & kCoopPlayersMask);
+}
+
+bool coop_player() { return g_mode == Mode::Replay && !g_opt.follow.empty() && g_peer.open(); }
+
+void coop_send(const void* data, std::size_t n) {
+    if (!coop_player() || n == 0) return;
+    if (!g_peer.send_all(data, n)) log("[Coop] the host cannot be reached any more");
+}
+
+void coop_receive(std::vector<std::uint8_t>& out) {
+    if (g_mode != Mode::Record || !g_peer.open()) return;
+    std::uint8_t chunk[4096];
+    for (;;) {
+        const long got = g_peer.receive_now(chunk, sizeof chunk);
+        if (got < 0) {
+            stream_lost();
+            return;
+        }
+        if (got == 0) return;
+        out.insert(out.end(), chunk, chunk + got);
+    }
+}
+
+namespace {
+
 std::string g_file;  // the recording
 std::uint32_t g_frame = 0;
 bool g_stable_ground_order = false;  // kFlagStableGroundOrder (stable_ground_order())
@@ -2134,10 +2164,12 @@ void install() {
         g_header.page_size = kPageSize;
         g_header.exe_stamp = exe_timestamp();
         g_header.snapshot_every = g_opt.snapshot_every;
-        if (!g_opt.stream.empty() && wait_for_player(g_opt.stream))
+        if (!g_opt.stream.empty() && wait_for_player(g_opt.stream)) {
+            g_header.flags |= 1u << kCoopPlayersShift;  // one player: the one that joined
             g_writer.tee([](const void* p, std::size_t n) {
                 if (g_peer.open()) g_outgoing.insert(g_outgoing.end(), static_cast<const std::uint8_t*>(p), static_cast<const std::uint8_t*>(p) + n);
             }, [] { send_outgoing(); });
+        }
         if (!g_writer.open(g_file, g_header)) {
             log("cannot create the recording %s - not recording", g_file.c_str());
             return;

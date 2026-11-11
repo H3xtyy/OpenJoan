@@ -13,6 +13,7 @@
 #include <netdb.h>
 #include <netinet/in.h>
 #include <netinet/tcp.h>
+#include <poll.h>
 #include <sys/socket.h>
 #include <unistd.h>
 #endif
@@ -100,6 +101,24 @@ long Connection::receive(void* data, std::size_t n) {
         return got == 0 ? 0 : -1;
     }
     return static_cast<long>(got);
+}
+
+long Connection::receive_now(void* data, std::size_t n) {
+    if (!open()) return -1;
+#ifdef _WIN32
+    WSAPOLLFD p{native(handle_), POLLRDNORM, 0};
+    const int ready = WSAPoll(&p, 1, 0);
+#else
+    pollfd p{native(handle_), POLLIN, 0};
+    const int ready = ::poll(&p, 1, 0);
+#endif
+    if (ready < 0) {
+        close();
+        return -1;
+    }
+    if (ready == 0) return 0;
+    const long got = receive(data, n);  // readable: data, or the other side closed
+    return got > 0 ? got : -1;
 }
 
 Connection Connection::accept_one(std::uint16_t port, std::string& error) {

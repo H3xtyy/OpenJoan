@@ -19,6 +19,10 @@
 // 3 = divergence, 4 = state hash mismatches, 5 = the recording could not be used.
 #pragma once
 
+#include <cstddef>
+#include <cstdint>
+#include <vector>
+
 /// Record / replay of a game session at the platform boundary, with per-frame state hashes.
 namespace joan::replay {
 
@@ -43,6 +47,17 @@ enum class InputOp : int { Acquire = 0, Unacquire = 1, Read = 2, PadMask = 3, Pa
 using InputFn = int (*)(int device, void* items, unsigned* count);
 /// Records or replays one call of the native input layer (`op` on `device`; `real` performs it when recording or when no replay is active); returns the call's result.
 int input_call(InputOp op, int device, void* items, unsigned* count, InputFn real);
+
+/// Co-op (docs/COOP.md): the players on other computers in this game, 0 outside co-op. The host's recording keeps the
+/// number in its header, so every game that replays it (a player following the host, or a replay of the file) has them.
+int coop_remote_players();
+/// Co-op: a player sends `n` bytes to the host (nothing happens in other games).
+void coop_send(const void* data, std::size_t n);
+/// Co-op: the host appends what the players have sent since the last call to `out`, without waiting (nothing happens in
+/// other games).
+void coop_receive(std::vector<std::uint8_t>& out);
+/// Co-op: true in a player's game that follows a host.
+bool coop_player();
 
 /// True while recording or replaying ([Debug] ReplayDetHeap=1, default): the game's CRT heap is then joan::det_heap.
 bool wants_deterministic_heap();

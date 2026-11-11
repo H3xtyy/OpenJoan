@@ -14,6 +14,7 @@
 #pragma once
 
 #include <cstdint>
+#include <deque>
 
 /// The game's keyboard and mouse read from the platform layer, modelled on buffered DirectInput devices.
 namespace joan::platform::input {
@@ -48,6 +49,18 @@ std::int32_t acquire(Device d);
 std::int32_t unacquire(Device d);
 /// Up to *count items into `items`; *count = items delivered. kOk, kNoEffect (items were lost), kNotAcquired.
 std::int32_t read(Device d, Item* items, std::uint32_t* count);
+
+// ---------------------------------------------------------------- co-op (docs/COOP.md)
+/// The host of a co-op game: while set (non-null), acquire() succeeds and read() takes its items from these queues
+/// (another player's keyboard and mouse, received over the network) instead of this computer's devices. The calls are
+/// recorded as usual, so every game that follows the host replays the same items. nullptr, nullptr restores the devices.
+void read_from(std::deque<Item>* mouse, std::deque<Item>* keyboard);
+/// Receives a keyboard or mouse item of this computer.
+using Forward = void (*)(Device device, const Item& item);
+/// A co-op player: `to` receives every key, mouse movement, wheel step and button of this computer while the game window
+/// has the focus, whether or not the game itself reads the devices (a game that follows the host replays its input).
+/// nullptr stops it.
+void forward(Forward to);
 
 // ---------------------------------------------------------------- game pads (round P4)
 // Up to four pads in the game's joystick slots, laid out as the DirectInput joystick the game was written for:

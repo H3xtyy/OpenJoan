@@ -1,10 +1,13 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
-// coop_players.hpp. For now only a test: [Debug] CoopTestPlayer=1 gives a second hero of the party to a scripted player on
-// this PC (walk, turn, attack), to see two heroes under player control at once before any network is involved.
+// coop_players.hpp. A player on another computer (docs/COOP.md): its game sends its keyboard and mouse items to the host
+// (platform::input::forward, replay::coop_send); the host runs the game's own Input::poll on them with that player's Input
+// object in place (platform::input::read_from), and the poll's device reads are recorded, so every game replays them.
+// [Debug] CoopTestPlayer=1 (no network) gives a second hero to a scripted player on this PC instead (walk, turn, attack).
 #include "coop_players.hpp"
 
 #include <cstdint>
 #include <cstring>
+#include <deque>
 #include <vector>
 
 #include "../data_names.hpp"
@@ -12,7 +15,10 @@
 #include "../original/dynarray.hpp"
 #include "../original/layout_access.hpp"
 #include "../platform/ini.hpp"
+#include "../platform/input.hpp"
+#include "../platform/window.hpp"
 #include "../registry.hpp"
+#include "../runtime/replay/replay.hpp"
 
 namespace jo = joan::orig;
 using joan::hook::global;
@@ -25,16 +31,27 @@ namespace {
 using i32 = std::int32_t;
 using u8 = std::uint8_t;
 using u32 = std::uint32_t;
+namespace pin = joan::platform::input;
 
 /// A player other than the host: its own Player and Input objects, kept here while the game uses the host's.
 struct OtherPlayer {
     std::vector<u8> player;  // a jo::Player
     std::vector<u8> input;   // a jo::Input
     u32 frames = 0;          // frames this player has run (the scripted test's clock)
+    bool remote = false;     // on another computer (else the scripted test player)
+    std::deque<pin::Item> mouse, keys;  // the host: its items received and not read by the game yet
 };
 
 std::vector<OtherPlayer> g_others;
 bool g_tried = false;
+bool g_polling = false;  // polling_other_player()
+
+// The items of the network: a device byte (pin::Device) and the item, as sent by a player.
+constexpr std::size_t kWireItem = 1 + sizeof(pin::Item);
+std::vector<u8> g_received;          // the host: bytes received, not a whole item yet
+std::vector<u8> g_to_host;           // a player: items of this computer not sent yet
+constexpr std::size_t kMaxUnsent = 1024 * kWireItem;
+u32 g_sequence = 0;                  // the host: sequence numbers of the received items (one order for both devices)
 
 bool test_player_wanted() {
     static const bool on = platform::ini::get_int("Debug", "CoopTestPlayer", 0, hook::ini_path().c_str()) != 0;
@@ -70,12 +87,13 @@ i32 free_hero(i32 host_id) {
     return 0;
 }
 
-void start_test_player() {
+void start_player(bool remote) {
     g_tried = true;
+    const char* const what = remote ? "the player on the other computer" : "CoopTestPlayer: a scripted second player";
     const i32 host_id = jo::self<jo::Player>(player_object())->unit_id_;
     const i32 hero = free_hero(host_id);
     if (hero == 0) {
-        hook::log_line("[Coop] CoopTestPlayer: no other hero of the party to give to a second player");
+        hook::log_line("[Coop] no other hero of the party for %s", what);
         return;
     }
     OtherPlayer p;
@@ -92,8 +110,54 @@ void start_test_player() {
     in->queue_head = in->queue_tail;  // no queued events
     jo::as_unit(unit_of(hero))->layer = 0;  // driven by a player, not by its AI
     take_orders_of(unit_of(hero));          // and no longer by its order (escorting the host, for instance)
+    p.remote = remote;
     g_others.push_back(std::move(p));
-    hook::log_line("[Coop] CoopTestPlayer: a scripted second player controls unit %d (the host controls %d)", hero, host_id);
+    hook::log_line("[Coop] %s controls unit %d (the host controls %d)", what, hero, host_id);
+}
+
+// A player: an item of this computer for the host.
+void keep_for_host(pin::Device device, const pin::Item& item) {
+    if (g_to_host.size() >= kMaxUnsent) return;  // the host is not reading (not in a mission yet)
+    g_to_host.push_back(static_cast<u8>(device));
+    const auto* const b = reinterpret_cast<const u8*>(&item);
+    g_to_host.insert(g_to_host.end(), b, b + sizeof item);
+}
+
+// A player, every frame of a mission: what this computer's keyboard and mouse did goes to the host.
+void send_to_host() {
+    static bool forwarding = false;
+    if (!forwarding) {
+        forwarding = true;
+        g_to_host.clear();
+        pin::forward(&keep_for_host);
+        hook::log_line("[Coop] this computer's keyboard and mouse go to the host");
+    }
+    joan::replay::coop_send(g_to_host.data(), g_to_host.size());
+    g_to_host.clear();
+}
+
+// The host: the items a player sent, into its queues, in the order they arrived and in the host's clock.
+void take_received(OtherPlayer& p) {
+    joan::replay::coop_receive(g_received);
+    std::size_t at = 0;
+    for (; at + kWireItem <= g_received.size(); at += kWireItem) {
+        pin::Item item;
+        std::memcpy(&item, g_received.data() + at + 1, sizeof item);
+        item.time = static_cast<u32>(joan::platform::time_ms());
+        item.sequence = ++g_sequence;
+        (g_received[at] == static_cast<u8>(pin::Device::Mouse) ? p.mouse : p.keys).push_back(item);
+    }
+    g_received.erase(g_received.begin(), g_received.begin() + static_cast<std::ptrdiff_t>(at));
+}
+
+// Input::poll on the player's devices (its Input object in place): on the host the items it sent, in every other game
+// the recorded reads.
+void poll_player(OtherPlayer& p) {
+    pin::read_from(&p.mouse, &p.keys);
+    g_polling = true;
+    joan::orig::as_input(input_object())->poll();  // 0x00594f90
+    g_polling = false;
+    pin::read_from(nullptr, nullptr);
 }
 
 // The scripted test input of frame `f`: four seconds each of walking, walking and turning, standing and attacking.
@@ -146,13 +210,26 @@ bool in_mission() {
 
 }  // namespace
 
+bool polling_other_player() { return g_polling; }
+
 void other_players_input() {
-    if (!test_player_wanted()) return;
-    if (!g_tried && in_mission()) start_test_player();
+    const bool network = joan::replay::coop_remote_players() > 0;
+    if (!network && !test_player_wanted()) return;
+    if (!in_mission()) return;
+    if (network && joan::replay::coop_player()) send_to_host();
+    if (!g_tried) start_player(network);
     for (OtherPlayer& p : g_others) {
         if (unit_of(reinterpret_cast<jo::Player*>(p.player.data())->unit_id_) == nullptr) continue;
-        script(p);
-        as_player(p, [] { joan::orig::as_player(player_object())->on_key_42e1a0(); });  // 0x0042e1a0
+        if (p.remote) {
+            take_received(p);
+            as_player(p, [&p] {
+                poll_player(p);
+                joan::orig::as_player(player_object())->on_key_42e1a0();  // 0x0042e1a0
+            });
+        } else {
+            script(p);
+            as_player(p, [] { joan::orig::as_player(player_object())->on_key_42e1a0(); });  // 0x0042e1a0
+        }
     }
 }
 

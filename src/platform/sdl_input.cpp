@@ -68,6 +68,11 @@ struct DeviceState {
 DeviceState g_mouse_dev;
 DeviceState g_key_dev;
 DWORD g_sequence = 0;
+std::deque<Item>* g_from_mouse = nullptr;  // co-op host: another player's devices (input::read_from)
+std::deque<Item>* g_from_keys = nullptr;
+in::Forward g_forward = nullptr;      // co-op player: this computer's items go to the host too (input::forward)
+BYTE g_forward_keys[256] = {};        // the keys down as forwarded (key changes only)
+DWORD g_forward_sequence = 0;
 float g_rest_x = 0, g_rest_y = 0, g_rest_wheel = 0;
 
 DeviceState& state(in::Device d) { return d == in::Device::Mouse ? g_mouse_dev : g_key_dev; }
@@ -105,6 +110,7 @@ void drop(DeviceState& d) {
 
 // The real devices (the replay layer calls these while recording / without a recording).
 std::int32_t real_acquire(std::int32_t device) {
+    if (g_from_mouse != nullptr) return in::kOk;  // another player's devices: always there
     DeviceState& d = state(static_cast<in::Device>(device));
     if (!d.open) return in::kNotAcquired;
     if (!joan::platform::detail::focused()) return in::kOtherAppHasPriority;  // foreground devices
@@ -125,6 +131,16 @@ std::int32_t real_unacquire(std::int32_t device) {
 void pad_menu_frame();  // the pad in the menus (below)
 
 std::int32_t real_read(std::int32_t device, Item* items, std::uint32_t* count) {
+    if (g_from_mouse != nullptr) {  // another player's devices
+        std::deque<Item>& q = static_cast<in::Device>(device) == in::Device::Mouse ? *g_from_mouse : *g_from_keys;
+        std::uint32_t n = 0;
+        while (n < *count && !q.empty()) {
+            items[n++] = q.front();
+            q.pop_front();
+        }
+        *count = n;
+        return in::kOk;
+    }
     if (static_cast<in::Device>(device) == in::Device::Mouse) pad_menu_frame();  // once per Input::poll, before the items go out
     DeviceState& d = state(static_cast<in::Device>(device));
     if (!d.acquired) {
@@ -853,6 +869,16 @@ std::int32_t read(Device d, Item* items, std::uint32_t* count) {
                               [](std::int32_t dev, void* p, std::uint32_t* n) { return real_read(dev, static_cast<Item*>(p), n); });
 }
 
+void read_from(std::deque<Item>* mouse, std::deque<Item>* keyboard) {
+    g_from_mouse = mouse != nullptr && keyboard != nullptr ? mouse : nullptr;
+    g_from_keys = g_from_mouse != nullptr ? keyboard : nullptr;
+}
+
+void forward(Forward to) {
+    g_forward = to;
+    std::memset(g_forward_keys, 0, sizeof g_forward_keys);
+}
+
 std::uint32_t pads() {
     std::uint32_t mask = 0;
     std::uint32_t size = sizeof mask;
@@ -948,7 +974,56 @@ void on_focus(bool focused) {
     g_rest_x = g_rest_y = g_rest_wheel = 0;
 }
 
+namespace {
+
+// A co-op player's item for the host (input::forward), whatever the game itself does with the devices.
+void forward_item(in::Device device, DWORD ofs, DWORD data, DWORD time, DWORD seq) {
+    if (g_forward == nullptr || !joan::platform::detail::focused()) return;
+    g_forward(device, Item{ofs, data, time, seq, 0});
+}
+
+void forward_event(const SDL_Event& e) {
+    if (g_forward == nullptr) return;
+    switch (e.type) {
+        case SDL_EVENT_KEY_DOWN:
+        case SDL_EVENT_KEY_UP: {
+            const BYTE dik = e.key.repeat ? 0 : dik_of(e.key.scancode);
+            const bool down = e.type == SDL_EVENT_KEY_DOWN;
+            if (dik == 0 || (g_forward_keys[dik] != 0) == down) return;
+            g_forward_keys[dik] = down ? 0x80 : 0;
+            forward_item(in::Device::Keyboard, dik, down ? 0x80u : 0u, stamp(e.key.timestamp), ++g_forward_sequence);
+            return;
+        }
+        case SDL_EVENT_MOUSE_MOTION: {
+            const auto dx = static_cast<LONG>(std::lround(e.motion.xrel)), dy = static_cast<LONG>(std::lround(e.motion.yrel));
+            const DWORD t = stamp(e.motion.timestamp), seq = ++g_forward_sequence;
+            if (dx) forward_item(in::Device::Mouse, 0, static_cast<DWORD>(dx), t, seq);
+            if (dy) forward_item(in::Device::Mouse, 4, static_cast<DWORD>(dy), t, seq);
+            return;
+        }
+        case SDL_EVENT_MOUSE_WHEEL: {
+            const float y = e.wheel.direction == SDL_MOUSEWHEEL_FLIPPED ? -e.wheel.y : e.wheel.y;
+            const auto dz = static_cast<LONG>(std::lround(y * WHEEL_DELTA));
+            if (dz) forward_item(in::Device::Mouse, 8, static_cast<DWORD>(dz), stamp(e.wheel.timestamp), ++g_forward_sequence);
+            return;
+        }
+        case SDL_EVENT_MOUSE_BUTTON_DOWN:
+        case SDL_EVENT_MOUSE_BUTTON_UP: {
+            const int b = di_button(e.button.button);
+            if (b < 0) return;
+            forward_item(in::Device::Mouse, static_cast<DWORD>(0xc + b), e.type == SDL_EVENT_MOUSE_BUTTON_DOWN ? 0x80u : 0u,
+                         stamp(e.button.timestamp), ++g_forward_sequence);
+            return;
+        }
+        default:
+            return;
+    }
+}
+
+}  // namespace
+
 void on_input_event(const SDL_Event& e) {
+    forward_event(e);
     switch (e.type) {
         case SDL_EVENT_KEY_DOWN:
         case SDL_EVENT_KEY_UP: {

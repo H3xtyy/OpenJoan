@@ -14,6 +14,7 @@
 #include "../data_names.hpp"
 #include "../fn_names.hpp"
 #include "../interfac/mouse_options.hpp"
+#include "../game/coop_players.hpp"
 #include "../registry.hpp"
 #include "../x87.hpp"
 #include "../original/dynarray.hpp"
@@ -2088,7 +2089,7 @@ struct H {
             }
             jo::view<std::int32_t>(jo::self<jo::Input>(this)->init_time) = joan::orig::arg::as<std::int32_t>(joan::orig::as_misc(obj(d::g_misc))->get_time_591050());  // 0x00591050
         }
-        if (moved != 0) {
+        if (moved != 0 && !joan::coop::polling_other_player()) {  // co-op: another player's mouse is not this cursor
             joan::orig::as_mouse_cursor(obj(d::g_mouse_cursor))->move(joan::orig::arg::i32(add(jo::self<jo::Input>(this)->cur_x, jo::self<jo::Input>(this)->saved_x)), joan::orig::arg::i32(add(jo::self<jo::Input>(this)->cur_y, jo::self<jo::Input>(this)->saved_y)));  // 0x004918d0
         }
         return result;

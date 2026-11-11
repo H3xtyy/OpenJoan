@@ -26,6 +26,9 @@ class Connection {
     /// Receives up to `n` bytes into `data`, waiting for at least one: the number received, 0 when the other side closed
     /// the connection, -1 on an error (the connection is closed in both cases).
     long receive(void* data, std::size_t n);
+    /// Receives up to `n` bytes into `data` without waiting: the number received, 0 when nothing has arrived, -1 when the
+    /// connection was closed or broke (it is closed then).
+    long receive_now(void* data, std::size_t n);
     /// Closes the connection.
     void close();
 
