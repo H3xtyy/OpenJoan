@@ -356,14 +356,12 @@ struct H {
         jo::view<std::uint16_t>(jo::self<jo::Model>(this)->kind) = static_cast<std::uint16_t>(anim);
         char fname[0x100];
         joan::orig::libc::_splitpath(joan::orig::arg::mptr(file), joan::orig::arg::mptr(static_cast<char*>(nullptr)), joan::orig::arg::mptr(static_cast<char*>(nullptr)), joan::orig::arg::mptr(static_cast<char*>(fname)), joan::orig::arg::mptr(static_cast<char*>(nullptr)));                                    // _splitpath
-        // false positive: Model::u8_4 is the first byte of the 32-byte name field at +4 in the original layout
+        // a name of 0x20 characters or more is cut short there: the terminator is the byte at +0x24, written next
 #if defined(__GNUC__) && !defined(__clang__)
 #pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Warray-bounds"
 #pragma GCC diagnostic ignored "-Wstringop-truncation"
-#pragma GCC diagnostic ignored "-Wstringop-overflow"
 #endif
-        std::strncpy(static_cast<char*>(joan::orig::arg::mptr(&jo::view<char>(jo::self<jo::Model>(this)->u8_4))), joan::orig::arg::str(static_cast<const char*>(fname)), 0x20u);  // strncpy
+        std::strncpy(jo::self<jo::Model>(this)->name, joan::orig::arg::str(static_cast<const char*>(fname)), 0x20u);  // strncpy
 #if defined(__GNUC__) && !defined(__clang__)
 #pragma GCC diagnostic pop
 #endif
@@ -549,7 +547,7 @@ struct H {
     void* model_create(void* mesh, const std::uint32_t* sphere) {
         if (static_cast<std::int8_t>(jo::view<std::uint8_t>(jo::self<jo::Model>(this)->loaded)) != 0) return this;
         jo::view<std::uint16_t>(jo::self<jo::Model>(this)->kind) = 0;
-        jo::self<jo::Model>(this)->u8_4 = 0;
+        jo::self<jo::Model>(this)->name[0] = 0;
         jo::view<void*>(jo::self<jo::Model>(this)->mesh) = mesh;
         if (sphere != nullptr) {
             jo::view<std::uint32_t>(jo::self<jo::Model>(this)->sphere[0]) = sphere[0];

@@ -12,23 +12,14 @@ permissions:
 
 jobs:
   linux:
+    # Built in the manylinux_2_28 container (glibc 2.28, GCC 14): the archive and the AppImage start on any x86-64
+    # distribution from 2018 on, systemd or not (tools/build_linux_release.sh).
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
-      - name: Packages
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y ninja-build pkg-config \
-            libx11-dev libxext-dev libxrandr-dev libxcursor-dev libxi-dev libxfixes-dev libxss-dev \
-            libxtst-dev libxkbcommon-dev libwayland-dev libegl-dev libgl-dev libasound2-dev libpulse-dev libudev-dev \
-            libdbus-1-dev libdecor-0-dev libdrm-dev libgbm-dev
-      - name: FFmpeg (a minimal build, shipped in the archive)
-        run: |
-          git clone --depth 1 --branch n7.1.1 https://github.com/FFmpeg/FFmpeg.git ffmpeg-src
-          tools/build_ffmpeg_linux.sh ffmpeg-src "$PWD/ffmpeg-linux" 4
-      - run: cmake --preset linux-x64-release -DJOAN_SDL3_SYSTEM=OFF -DJOAN_OPENAL_SYSTEM=OFF -DJOAN_FFMPEG_ROOT="$PWD/ffmpeg-linux"
-      - run: cmake --build --preset linux-x64-release -j4
-      - run: python3 tools/package_release.py build/linux-x64-release ${{ github.ref_name }}
+      - run: |
+          docker run --rm -v "$PWD":/src -w /src quay.io/pypa/manylinux_2_28_x86_64 \
+            tools/build_linux_release.sh ${{ github.ref_name }} 4
       - uses: actions/upload-artifact@v4
         with: { name: linux, path: dist/*, if-no-files-found: error }
 

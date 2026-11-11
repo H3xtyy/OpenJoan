@@ -13,8 +13,8 @@ game file can reach it.
 
 ## Building the archives
 
-With GitHub Actions available (public repository), pushing the tag runs `.github/workflows/release.yml`: Linux on
-Ubuntu 24.04, Windows with MSVC, both archives on a **draft** release. Check the draft, then publish it by hand.
+With GitHub Actions available (public repository), pushing the tag runs `.github/workflows/release.yml`: Linux in the
+manylinux_2_28 container, Windows with MSVC, the archives and the Linux AppImage on a **draft** release. Check the draft, then publish it by hand.
 
 While CI cannot run (private repository, ), build on the development
 host. The Windows archive is then the llvm-mingw cross-build:
@@ -28,6 +28,18 @@ python3 tools/package_release.py build/mingw-x64-release v0.1.0
 ```
 
 The archives appear in `dist/` (git-ignored).
+
+The Linux release is built in the manylinux_2_28 container (AlmaLinux 8: glibc 2.28, GCC 14), the same way in CI and on
+the development host (`podman` or `docker`):
+
+```sh
+podman run --rm -v "$PWD":/src:Z -w /src quay.io/pypa/manylinux_2_28_x86_64 tools/build_linux_release.sh v0.1.0
+```
+
+It links the C++ runtime statically, builds SDL3, OpenAL Soft and FFmpeg, gives every shipped file the RUNPATH `$ORIGIN`
+only, refuses a result that needs a glibc newer than 2.28, and writes both the archive and the AppImage. A build on the
+host itself (above) needs the host's glibc and C++ runtime, which is fine for testing but not for a release: an archive
+built on a 2024 distribution does not start on an older one.
 
 The CI release builds a minimal FFmpeg (`tools/build_ffmpeg_linux.sh`) and ships it in the Linux archive, so the archive
 does not depend on the distribution's FFmpeg. An archive built against the system's FFmpeg instead lists the libraries it

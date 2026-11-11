@@ -518,6 +518,11 @@ if(NOT MSVC)
     # instead of the x87 unit (MSVC /arch:SSE2: the float results the game's decisions depend on).
     target_compile_options(openjoan_game PUBLIC
         $<$<COMPILE_LANGUAGE:C,CXX>:-fno-strict-aliasing -fwrapv -ffp-contract=off>)
+    # No _FORTIFY_SOURCE, whatever the toolchain's default (Ubuntu's GCC, distribution packaging flags): the original's
+    # string copies fill fields that the generated layouts still type as one byte followed by a gap (Model::load
+    # 0x005c0ef0 into the name at +4, Button2D, ...), in bounds of the object as in the original, and its run-time checks
+    # abort on them ("buffer overflow detected", the v1.0.7 Linux release at start-up). Until those fields are typed.
+    target_compile_options(openjoan_game PUBLIC $<$<COMPILE_LANGUAGE:C,CXX>:-U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=0>)
     # The layout checks of the game's structures (original/gen: static_assert(offsetof(...))) are on classes with
     # member functions, which GCC supports but warns about thousands of times.
     target_compile_options(openjoan_game PUBLIC $<$<COMPILE_LANGUAGE:CXX>:-Wno-invalid-offsetof>)
