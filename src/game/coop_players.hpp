@@ -7,10 +7,12 @@
 namespace joan::coop {
 
 /// CamCtl::camkeys (0x00562f40), after the host's Player::on_key (0x0042e1a0): the same for every other player.
-void other_players_input();
+/// `camera` is the game's camera (the CameraFollow the hook runs on); every player has a copy of it.
+void other_players_input(void* camera);
 
 /// Camera::update_5634e0, after the host's Player::tick (0x0042f700): the same for every other player.
-void other_players_tick();
+/// `camera` as for other_players_input.
+void other_players_tick(void* camera);
 
 /// True while the game reads another player's keyboard and mouse (Input::poll 0x00594f90 for that player): the poll then
 /// leaves this computer's mouse cursor where it is.
