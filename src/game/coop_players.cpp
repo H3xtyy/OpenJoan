@@ -37,6 +37,7 @@ namespace pin = joan::platform::input;
 struct OtherPlayer {
     std::vector<u8> player;  // a jo::Player
     std::vector<u8> input;   // a jo::Input
+    std::vector<u8> camera;  // its camera: a jo::CameraFollow and the six jo::CameraMotion it points to
     u32 frames = 0;          // frames this player has run (the scripted test's clock)
     bool remote = false;     // on another computer (else the scripted test player)
     std::deque<pin::Item> mouse, keys;  // the host: its items received and not read by the game yet
@@ -60,6 +61,39 @@ bool test_player_wanted() {
 
 void* player_object() { return obj(d::g_player_unit_recno); }
 void* input_object() { return obj(d::g_mouse); }
+void* camera_object() { return obj(d::g_camera_man); }
+
+// The camera (CameraFollow at 0x00a48cc0) and the motions it steers (six, one block: CamCtl 0x00562f40 cam(0..5)) are one
+// object of the game, which Player::on_key and Player::tick move after "the player's" hero: every player has a copy.
+constexpr int kCameraMotions = 6;
+constexpr std::size_t kCameraBytes = sizeof(jo::CameraFollow) + kCameraMotions * sizeof(jo::CameraMotion);
+
+void save_camera(std::vector<u8>& to) {
+    to.resize(kCameraBytes);
+    const auto* const follow = static_cast<const jo::CameraFollow*>(camera_object());
+    std::memcpy(to.data(), follow, sizeof(jo::CameraFollow));
+    std::memcpy(to.data() + sizeof(jo::CameraFollow), follow->motions, kCameraMotions * sizeof(jo::CameraMotion));
+}
+
+// The game's camera becomes `from`. The pointers stay the game's: the camera node, the light, the motions block, and the
+// path each motion tracks (a cutscene's: a copy must never keep one the game has freed).
+void load_camera(const std::vector<u8>& from) {
+    auto* const follow = static_cast<jo::CameraFollow*>(camera_object());
+    jo::CameraMotion* const motions = follow->motions;
+    jo::Camera* const node = follow->camera;
+    jo::Light* const light = follow->light;
+    std::memcpy(follow, from.data(), sizeof(jo::CameraFollow));
+    follow->motions = motions;
+    follow->camera = node;
+    follow->light = light;
+    for (int i = 0; i < kCameraMotions; ++i) {
+        jo::CamTrackNode* const tracked = motions[i].tracked;
+        const std::int32_t count = motions[i].tracked_count;
+        std::memcpy(&motions[i], from.data() + sizeof(jo::CameraFollow) + i * sizeof(jo::CameraMotion), sizeof(jo::CameraMotion));
+        motions[i].tracked = tracked;
+        motions[i].tracked_count = count;
+    }
+}
 
 u8* unit_of(i32 id) {
     void* const list = obj(d::g_units);
@@ -101,6 +135,7 @@ void start_player(bool remote) {
     const auto* const input = static_cast<const u8*>(input_object());
     p.player.assign(player, player + sizeof(jo::Player));
     p.input.assign(input, input + sizeof(jo::Input));
+    save_camera(p.camera);
     auto* const pl = reinterpret_cast<jo::Player*>(p.player.data());
     pl->unit_id_ = hero;
     auto* const in = reinterpret_cast<jo::Input*>(p.input.data());
@@ -193,14 +228,18 @@ void as_player(OtherPlayer& p, Step step) {
     mine->blocked = host->blocked;
     mine->u8_79 = host->u8_79;
     mine->u8_7c = host->u8_7c;
-    std::vector<u8> host_player(player, player + p.player.size()), host_input(input, input + p.input.size());
+    std::vector<u8> host_player(player, player + p.player.size()), host_input(input, input + p.input.size()), host_camera;
+    save_camera(host_camera);
     std::memcpy(player, p.player.data(), p.player.size());
     std::memcpy(input, p.input.data(), p.input.size());
+    load_camera(p.camera);
     step();
     std::memcpy(p.player.data(), player, p.player.size());
     std::memcpy(p.input.data(), input, p.input.size());
+    save_camera(p.camera);
     std::memcpy(player, host_player.data(), host_player.size());
     std::memcpy(input, host_input.data(), host_input.size());
+    load_camera(host_camera);
 }
 
 bool in_mission() {
