@@ -28,6 +28,7 @@
 #include "../det_heap.hpp"
 #include "../../platform/ini.hpp"
 #include "../../platform/net.hpp"
+#include "../../platform/window.hpp"
 #include "../../data_names.hpp"
 #include "../image.hpp"
 #include "../image_runtime.hpp"
@@ -210,7 +211,8 @@ bool wait_for_player(const std::string& port_text) {
         log("[Coop] no player: %s", error.c_str());
         return false;
     }
-    log("[Coop] a player joined: streaming");
+    log("[Coop] a player joined: streaming (the game runs on in the background)");
+    platform::keep_active();
     return true;
 }
 

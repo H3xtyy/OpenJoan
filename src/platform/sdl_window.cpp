@@ -134,9 +134,13 @@ LRESULT call_proc(HWND h, UINT message, WPARAM wp, LPARAM lp) {
 
 // Tells the game when SDL's focus differs from what the game knows (Windows sends WM_ACTIVATEAPP while the call
 // that activated the window runs: CreateWindowExA, ShowWindow, SetFocus - here too).
+// What the game is told about the focus: always "active" for a co-op host (keep_active).
+bool g_keep_active = false;
+bool game_focus(bool focus) { return focus || g_keep_active; }
+
 void sync_activation_now() {
     if (!g.window) return;
-    const bool focus = (SDL_GetWindowFlags(g.window) & SDL_WINDOW_INPUT_FOCUS) != 0;
+    const bool focus = game_focus((SDL_GetWindowFlags(g.window) & SDL_WINDOW_INPUT_FOCUS) != 0);
     if (focus == g.active) return;
     g.active = focus;
     call_proc(g.hwnd, kWmActivateApp, focus ? 1u : 0u, 0);
@@ -161,7 +165,7 @@ void translate(const SDL_Event& e) {
             // what the game was told.
             for (auto it = g.sent.begin(); it != g.sent.end();)
                 it = it->message == kWmActivateApp ? g.sent.erase(it) : it + 1;
-            g.sent.push_back(make_msg(g.hwnd, kWmActivateApp, focus ? 1u : 0u, 0));
+            g.sent.push_back(make_msg(g.hwnd, kWmActivateApp, game_focus(focus) ? 1u : 0u, 0));
             joan::platform::detail::on_focus(focus);  // DirectInput: foreground devices are lost at once
             break;
         }
@@ -1024,6 +1028,8 @@ bool client_size(void* hwnd, int& w, int& h) {
 bool window_focused(void* hwnd) {
     return ours(static_cast<HWND>(hwnd)) && (SDL_GetWindowFlags(g.window) & SDL_WINDOW_INPUT_FOCUS) != 0;
 }
+
+void keep_active() { g_keep_active = true; }
 
 int refresh_rate(void* hwnd) {
     if (!ours(static_cast<HWND>(hwnd))) return 0;

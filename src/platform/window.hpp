@@ -67,6 +67,9 @@ void* gl_proc(const char* name);
 bool client_size(void* hwnd, int& w, int& h);
 /// Has the SDL game window the keyboard focus?
 bool window_focused(void* hwnd);
+/// Co-op host (docs/COOP.md): the game is never told that its window went to the background (WM_ACTIVATEAPP 0), so it
+/// keeps running for the other players; the keyboard and mouse still stop reading while another window has the focus.
+void keep_active();
 /// Refresh rate of the SDL game window's display in Hz, 0 if unknown.
 int refresh_rate(void* hwnd);
 /// Is the key with Windows virtual-key code `vk` down (the developer menu / screenshot keys; the key position of a
