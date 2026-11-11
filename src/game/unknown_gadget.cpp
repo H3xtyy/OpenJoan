@@ -111,6 +111,17 @@ struct H {
     void slide_step() {
         c_slide_step.hit();
         if (jo::view<i8>(jo::self<jo::Widget>(this)->moving) == 0 || jo::view<i8>(jo::self<jo::Widget>(this)->move_36) != 0) return;
+        if (joan::hook::settings().ui_animations == 0) {  // [Display] UiAnimations=0: at the target at once, no start delay
+            const i32 dx = static_cast<i32>(jo::self<jo::Widget>(this)->target_x) - static_cast<i32>(jo::self<jo::Widget>(this)->x);
+            const i32 dy = static_cast<i32>(jo::self<jo::Widget>(this)->target_y) - static_cast<i32>(jo::self<jo::Widget>(this)->y);
+            jo::view<u16>(jo::self<jo::Widget>(this)->x) = static_cast<u16>(jo::view<u16>(jo::self<jo::Widget>(this)->x) + static_cast<u16>(dx));
+            jo::view<u16>(jo::self<jo::Widget>(this)->x2) = static_cast<u16>(jo::view<u16>(jo::self<jo::Widget>(this)->x2) + static_cast<u16>(dx));
+            jo::view<u16>(jo::self<jo::Widget>(this)->y) = static_cast<u16>(jo::view<u16>(jo::self<jo::Widget>(this)->y) + static_cast<u16>(dy));
+            jo::view<u16>(jo::self<jo::Widget>(this)->y2) = static_cast<u16>(jo::view<u16>(jo::self<jo::Widget>(this)->y2) + static_cast<u16>(dy));
+            jo::view<i32>(jo::self<jo::Widget>(this)->move_arg) = 0;
+            joan::orig::as_widget(this)->stop_move();  // 0x0061e2d0
+            return;
+        }
         if (jo::self<jo::Widget>(this)->target_x == jo::self<jo::Widget>(this)->x && jo::self<jo::Widget>(this)->target_y == jo::self<jo::Widget>(this)->y) {
             joan::orig::as_widget(this)->stop_move();  // 0x0061e2d0
             return;
@@ -160,6 +171,12 @@ struct H {
     void fade_step() {
         c_fade_step.hit();
         if (jo::view<i8>(jo::self<jo::Widget>(this)->scaling) == 0 || jo::view<i8>(jo::self<jo::Widget>(this)->scale_5f) != 0) return;
+        if (joan::hook::settings().ui_animations == 0) {  // [Display] UiAnimations=0: at the target size at once, no start delay
+            jo::self<jo::Widget>(this)->scale = jo::self<jo::Widget>(this)->scale_target;
+            jo::view<i32>(jo::self<jo::Widget>(this)->scale_arg) = 0;
+            joan::orig::as_widget(this)->stop_scale();  // 0x0061f340
+            return;
+        }
         if (!(jo::self<jo::Widget>(this)->scale_target < jo::self<jo::Widget>(this)->scale || jo::self<jo::Widget>(this)->scale_target > jo::self<jo::Widget>(this)->scale)) {
             joan::orig::as_widget(this)->stop_scale();  // 0x0061f340
             return;
