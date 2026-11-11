@@ -173,6 +173,9 @@ bool has_bindless_textures();
 /// Loads every function; returns the name of the first missing one, or nullptr.
 /// Needs a current context. `get_proc`: the context's loader (SDL_GL_GetProcAddress).
 const char* load_functions(void* (*get_proc)(const char*));
+/// Points every function at one that does nothing (zero results): called when the context is destroyed, since the game
+/// still releases resources while it shuts down.
+void unload_functions();
 
 // --- constants ------------------------------------------------------------------
 enum : GLenum {
