@@ -9,7 +9,8 @@
 /// The platform layer: game window, display queries, settings file location, time, threads, code pages (SDL3 based).
 namespace joan::platform {
 
-/// The folder of the executable (openjoan.ini, the logs; SDL_GetBasePath, also before SDL_Init), with its separator.
+/// The folder of the executable (openjoan.ini, the logs; SDL_GetBasePath, also before SDL_Init), with its separator; started
+/// from an AppImage, the folder of the .AppImage file.
 const std::filesystem::path& exe_dir();
 /// The settings file (Phase 1 rename): `dir`/openjoan.ini, or `dir`/joan_re.ini - the name before the rename - when
 /// only that one exists; openjoan.ini when neither does (every setting at its default). Looks at the folder each call.
