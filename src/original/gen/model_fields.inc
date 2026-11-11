@@ -3,8 +3,7 @@
     std::int8_t loaded;  // 0x0
     std::uint8_t gap_1[0x1];
     std::int16_t kind;  // 0x2
-    std::uint8_t u8_4;  // 0x4
-    std::uint8_t gap_5[0x1f];
+    char name[32];  // 0x4
     std::uint8_t u8_24;  // 0x24
     std::uint8_t gap_25[0x3];
     Plane* mesh;  // 0x28

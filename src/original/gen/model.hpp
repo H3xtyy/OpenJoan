@@ -25,7 +25,7 @@ struct Model {
 static_assert(sizeof(Model) == 0x69);
 static_assert(offsetof(Model, loaded) == 0x0);
 static_assert(offsetof(Model, kind) == 0x2);
-static_assert(offsetof(Model, u8_4) == 0x4);
+static_assert(offsetof(Model, name) == 0x4);
 static_assert(offsetof(Model, u8_24) == 0x24);
 static_assert(offsetof(Model, mesh) == 0x28);
 static_assert(offsetof(Model, skin) == 0x2c);
