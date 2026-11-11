@@ -24965,9 +24965,10 @@
     },
     {
      "off": "0x4",
-     "name": "u8_4",
-     "type": "u8",
-     "size": 1
+     "name": "name",
+     "type": "char",
+     "size": 1,
+     "count": 32
     },
     {
      "off": "0x24",

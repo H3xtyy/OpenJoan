@@ -44,6 +44,7 @@
 #include <atomic>
 #include <cmath>
 #include <cstdint>
+#include <cstdlib>
 #include <cstring>
 #include <deque>
 #include <filesystem>
@@ -892,6 +893,14 @@ void* gl_proc(const char* name) { return reinterpret_cast<void*>(SDL_GL_GetProcA
 
 const std::filesystem::path& exe_dir() {
     static const std::filesystem::path dir = [] {
+#ifndef _WIN32
+        // Started from an AppImage (docs/INSTALL.md): the executable runs from a temporary mount; the game folder is the
+        // one the .AppImage file is in. The runtime sets APPIMAGE to the file's absolute path.
+        if (const char* image = std::getenv("APPIMAGE"); image != nullptr && *image != '\0' && std::getenv("APPDIR") != nullptr) {
+            const std::filesystem::path folder = std::filesystem::path(image).parent_path();
+            if (!folder.empty()) return folder / "";
+        }
+#endif
         const char* base = SDL_GetBasePath();  // UTF-8, ends with a separator; SDL keeps the string
         if (base == nullptr || *base == '\0') return std::filesystem::current_path() / "";
         return std::filesystem::path(std::u8string(reinterpret_cast<const char8_t*>(base)));
