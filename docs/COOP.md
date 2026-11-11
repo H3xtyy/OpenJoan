@@ -81,8 +81,15 @@ of them as human. The rules that compare a unit with the global (the 125) are go
 of any player" is the right reading. A player's input reaches the host as an event of the stream, so every game applies it
 at the same frame.
 
-Test before any network: a second player on the same PC, driven by scripted input (walk, attack, switch), shows two
-heroes under human control at once.
+Tested on one PC (2026-11-11, `[Debug] CoopTestPlayer=1`, `src/game/coop_players.cpp`): a scripted second player took over
+a second hero of the party in a mission and walked, turned and attacked while the host played Joan normally; the host's
+camera stayed with Joan. Two things were needed: the flags the mission's scripts set on "the player" (blocked during
+cutscenes and dialogue, and its two neighbours) are copied from the host's object to every other player each frame, and a
+hero taken over has its order cleared as `Player::select_hero` does.
+
+Next: the input of a player on another computer. The player's game sends its keyboard and mouse to the host each frame;
+the host puts them into the stream as an event of their own, just before running the other players' input, and copies them
+into that player's input object. Every game, the player's own included, then applies the same input at the same frame.
 
 ## Licence question (open)
 
