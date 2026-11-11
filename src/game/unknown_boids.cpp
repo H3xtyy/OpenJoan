@@ -21,6 +21,7 @@
 #include "../original/dynarray.hpp"
 #include "../original/layout_access.hpp"
 #include "../original/bind.hpp"
+#include "coop_players.hpp"
 
 namespace jo = joan::orig;
 
@@ -182,6 +183,7 @@ struct H {
     // ------------------------------------------------------------------ 0x00421b60
     u32 reset_three() {
         joan::orig::as_input(obj(d::g_mouse))->poll();                // 0x00594f90
+        joan::coop::other_players_poll();  // co-op: the players on other computers (coop_players.hpp)
         joan::orig::as_sound_stream(obj(d::g_snd))->update();                // 0x0059b1c0
         joan::orig::as_ambient_streams(obj(d::g_mus))->update();    // 0x005866d0
         return 0;  // void callee; callers discard the result

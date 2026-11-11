@@ -252,6 +252,54 @@ bool in_mission() {
 
 bool polling_other_player() { return g_polling; }
 
+namespace {
+
+// Runs `step` with player `p`'s Input object in the game's place.
+template <class Step>
+void with_input(OtherPlayer& p, Step step) {
+    auto* const input = static_cast<u8*>(input_object());
+    std::vector<u8> host_input(input, input + p.input.size());
+    std::memcpy(input, p.input.data(), p.input.size());
+    step();
+    std::memcpy(p.input.data(), input, p.input.size());
+    std::memcpy(input, host_input.data(), host_input.size());
+}
+
+template <class Step>
+void for_remote_players(Step step) {
+    for (OtherPlayer& p : g_others)
+        if (p.remote && unit_of(reinterpret_cast<jo::Player*>(p.player.data())->unit_id_) != nullptr) step(p);
+}
+
+}  // namespace
+
+void other_players_poll() {
+    for_remote_players([](OtherPlayer& p) {
+        take_received(p);
+        with_input(p, [&p] { poll_player(p); });
+    });
+}
+
+void other_players_clear_input() {
+    for_remote_players([](OtherPlayer& p) {
+        with_input(p, [] {
+            joan::orig::as_cursor(input_object())->clear_deltas();  // 0x004d8560
+            auto* const in = static_cast<jo::Input*>(input_object());
+            in->prev_skey_state = in->skey_state;
+        });
+    });
+}
+
+void other_players_end_input() {
+    for_remote_players([](OtherPlayer& p) {
+        auto* const in = reinterpret_cast<jo::Input*>(p.input.data());
+        in->u32_38[0] = static_cast<u32>(in->delta_x);  // the frame's motion, kept as the previous one
+        in->u32_38[1] = static_cast<u32>(in->delta_y);
+        in->u32_38[2] = static_cast<u32>(in->delta_z);
+        in->delta_x = in->delta_y = in->delta_z = 0;
+    });
+}
+
 void other_players_input(void* camera) {
     g_camera = camera;
     const bool network = joan::replay::coop_remote_players() > 0;
@@ -262,11 +310,7 @@ void other_players_input(void* camera) {
     for (OtherPlayer& p : g_others) {
         if (unit_of(reinterpret_cast<jo::Player*>(p.player.data())->unit_id_) == nullptr) continue;
         if (p.remote) {
-            take_received(p);
-            as_player(p, [&p] {
-                poll_player(p);
-                joan::orig::as_player(player_object())->on_key_42e1a0();  // 0x0042e1a0
-            });
+            as_player(p, [] { joan::orig::as_player(player_object())->on_key_42e1a0(); });  // 0x0042e1a0
         } else {
             script(p);
             as_player(p, [] { joan::orig::as_player(player_object())->on_key_42e1a0(); });  // 0x0042e1a0

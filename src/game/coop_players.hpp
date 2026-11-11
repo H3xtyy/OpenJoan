@@ -14,6 +14,18 @@ void other_players_input(void* camera);
 /// `camera` as for other_players_input.
 void other_players_tick(void* camera);
 
+/// Game::reset_three (0x00421b60), after the host's Input::poll (0x00594f90): the same poll for every player on another
+/// computer, on the items it sent.
+void other_players_poll();
+
+/// Game::run's end of a drawn frame, after the host's Input is told the frame is over (clear_deltas 0x004d8560 and the
+/// key modifiers kept as the previous ones): the same for every player on another computer.
+void other_players_clear_input();
+
+/// Game::run's end of a drawn frame, after the host's mouse motion is kept as the previous one and zeroed: the same for
+/// every player on another computer (else its last motion would act every frame).
+void other_players_end_input();
+
 /// True while the game reads another player's keyboard and mouse (Input::poll 0x00594f90 for that player): the poll then
 /// leaves this computer's mouse cursor where it is.
 bool polling_other_player();

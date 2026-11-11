@@ -23,6 +23,7 @@
 #include "../runtime/replay/replay.hpp"
 #include "../original/layout_access.hpp"
 #include "../original/bind.hpp"
+#include "coop_players.hpp"
 
 namespace jo = joan::orig;
 
@@ -277,6 +278,7 @@ struct H {
                 joan::orig::as_game(this)->process_input_debug_menu();            // 0x0052f930
                 joan::orig::as_cursor(obj(d::g_mouse))->clear_deltas();  // 0x004d8560
                 global<u16>(d::g_a51802) = global<u16>(d::g_key_modifiers);
+                joan::coop::other_players_clear_input();  // co-op: the same for the other players (coop_players.hpp)
                 joan::orig::as_game(kGame)->reset_three();
                 global<u32>(d::g_a516e8) = global<u32>(d::g_mouse_delta_x);
                 global<u32>(d::g_a516ec) = global<u32>(d::g_mouse_delta_y);
@@ -284,6 +286,7 @@ struct H {
                 global<u32>(d::g_mouse_delta_x) = 0;
                 global<u32>(d::g_mouse_delta_y) = 0;
                 global<u32>(d::g_mouse_wheel) = 0;
+                joan::coop::other_players_end_input();  // co-op: the same for the other players
             }
             jo::self<jo::Wnd>(this)->frame_ms = now - previous;
             if (jo::self<jo::Wnd>(this)->frame_ms > 0x3e8) jo::self<jo::Wnd>(this)->frame_ms = 0x3e8;
