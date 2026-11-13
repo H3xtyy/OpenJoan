@@ -8,6 +8,7 @@
 #include <cstdint>
 #include <cstring>
 #include <deque>
+#include <unordered_map>
 #include <vector>
 
 #include "../data_names.hpp"
@@ -40,6 +41,7 @@ struct OtherPlayer {
     std::vector<u8> input;   // a jo::Input
     std::vector<u8> camera;  // its camera: a jo::CameraFollow and the six jo::CameraMotion it points to
     std::vector<u8> node;    // its camera node's values (a jo::Camera: pose, matrices, ranges; the pointers are the game's)
+    std::unordered_map<const void*, jo::CamZones> zones;  // its state of each loaded cell's camera zones
     u32 frames = 0;          // frames this player has run (the scripted test's clock)
     bool remote = false;     // on another computer (else the scripted test player)
     std::deque<pin::Item> mouse, keys;  // the host: its items received and not read by the game yet
@@ -104,6 +106,45 @@ void load_node(const std::vector<u8>& from) {
     node->light_ = keep.light_;
     node->reorder = keep.reorder;
     node->portal_sector = keep.portal_sector;
+}
+
+// Every loaded cell has camera zones (CameraZone::update 0x00425fc0, run by World::draw for each cell) that move the
+// zone camera after one unit, set from "the player's" hero when they are made (CamZones::init 0x00425e20), and keep
+// which zone it is in and where it was. Player `p`'s copies (its hero, its zone) go in for its view and come out after.
+template <class Each>
+void for_camera_zones(void* world, Each each) {
+    auto* const w = static_cast<jo::World*>(world);
+    for (std::int32_t i = 0; i < w->cell_count; ++i) {
+        auto* const c = reinterpret_cast<jo::Cell*>(w->cells[i].item);
+        if (c != nullptr && c->loaded != 0 && c->camera_zones != nullptr) each(*c->camera_zones);
+    }
+}
+
+void zones_in(OtherPlayer& p, void* world, std::unordered_map<const void*, jo::CamZones>& host) {
+    const i32 hero = reinterpret_cast<const jo::Player*>(p.player.data())->unit_id_;
+    std::unordered_map<const void*, jo::CamZones> mine;
+    for_camera_zones(world, [&](jo::CamZones& z) {
+        host[&z] = z;
+        jo::CamZones own = z;
+        if (const auto it = p.zones.find(&z); it != p.zones.end()) {
+            own = it->second;
+        } else {  // a cell this player's view has not had yet: its zones start afresh for the hero
+            own.current_zone = 0;
+            std::memset(own.last_position, 0, sizeof own.last_position);
+        }
+        own.unit_id = hero;
+        own.tracks = z.tracks;  // the game's
+        z = own;
+        mine[&z] = own;
+    });
+    p.zones = std::move(mine);  // cells gone since: forgotten
+}
+
+void zones_out(OtherPlayer& p, void* world, const std::unordered_map<const void*, jo::CamZones>& host) {
+    for_camera_zones(world, [&](jo::CamZones& z) {
+        p.zones[&z] = z;
+        if (const auto it = host.find(&z); it != host.end()) z = it->second;
+    });
 }
 
 void load_camera(const std::vector<u8>& from) {
@@ -304,7 +345,7 @@ void for_remote_players(Step step) {
 
 }  // namespace
 
-void draw_world_views(void* camera, void (*draw)(void* camera)) {
+void draw_world_views(void* camera, void* world, void (*draw)(void* camera)) {
     g_camera = camera;
     std::vector<OtherPlayer*> views;
     for (OtherPlayer& p : g_others)
@@ -329,11 +370,17 @@ void draw_world_views(void* camera, void (*draw)(void* camera)) {
         wnd->game_dt = 0;
         joan::gld::set_hidden_view(!player_game);
         c_extra_view.hit();
-        as_player(*p, [p, camera, draw] {
+        as_player(*p, [p, camera, world, draw] {
             std::vector<u8> host_node;
             save_node(host_node);
             load_node(p->node);
+            std::unordered_map<const void*, jo::CamZones> host_zones;
+            zones_in(*p, world, host_zones);
+            // The hero camera follows the unit at CameraFollow +8 (World::draw passes it to CameraFollow::start
+            // 0x00563a20; hero selection sets it, 0x005639f0): this player's hero, whichever it is now.
+            static_cast<jo::CameraFollow*>(camera)->i32_8 = jo::self<jo::Player>(player_object())->unit_id_;
             draw(camera);
+            zones_out(*p, world, host_zones);
             save_node(p->node);
             load_node(host_node);
         });

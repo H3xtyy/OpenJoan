@@ -1586,7 +1586,7 @@ struct H {
     // 0x0044c800 World::draw (this = CameraFollow at 0xa45ef8-ish: +0 enabled, +4 motions,
     // +8 followed unit, +0xc camera, +0x20 / +0x21 / +0x22 streaming state, +0x2f motion).
     void world_draw() {
-        joan::coop::draw_world_views(this, [](void* camera) { static_cast<H*>(camera)->world_draw_view(); });  // co-op: a view per player
+        joan::coop::draw_world_views(this, world(), [](void* camera) { static_cast<H*>(camera)->world_draw_view(); });  // co-op: a view per player
     }
 
     void world_draw_view() {
