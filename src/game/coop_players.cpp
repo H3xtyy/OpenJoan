@@ -17,6 +17,7 @@
 #include "../platform/ini.hpp"
 #include "../platform/input.hpp"
 #include "../platform/window.hpp"
+#include "../gl/views.hpp"
 #include "../registry.hpp"
 #include "../runtime/replay/replay.hpp"
 
@@ -38,6 +39,7 @@ struct OtherPlayer {
     std::vector<u8> player;  // a jo::Player
     std::vector<u8> input;   // a jo::Input
     std::vector<u8> camera;  // its camera: a jo::CameraFollow and the six jo::CameraMotion it points to
+    std::vector<u8> node;    // its camera node's values (a jo::Camera: pose, matrices, ranges; the pointers are the game's)
     u32 frames = 0;          // frames this player has run (the scripted test's clock)
     bool remote = false;     // on another computer (else the scripted test player)
     std::deque<pin::Item> mouse, keys;  // the host: its items received and not read by the game yet
@@ -46,6 +48,9 @@ struct OtherPlayer {
 std::vector<OtherPlayer> g_others;
 bool g_tried = false;
 bool g_polling = false;  // polling_other_player()
+
+JOAN_COUNTER(c_extra_view, "Coop::extra_view");
+JOAN_COUNTER(c_view_frames, "Coop::view_frames");
 
 // The items of the network: a device byte (pin::Device) and the item, as sent by a player.
 constexpr std::size_t kWireItem = 1 + sizeof(pin::Item);
@@ -78,6 +83,29 @@ void save_camera(std::vector<u8>& to) {
 
 // The game's camera becomes `from`. The pointers stay the game's: the camera node, the light, the motions block, and the
 // path each motion tracks (a cutscene's: a copy must never keep one the game has freed).
+// The camera node the views are drawn from (CameraFollow::camera): World::draw 0x0044c800 sets its pose from the active
+// motion (Camera::set_frame 0x00614040) and draws through it, so every player has its own values. The pointers stay the
+// game's: its bone, scene, render targets, fog, light, draw order and portal sector.
+void save_node(std::vector<u8>& to) {
+    const jo::Camera* const node = static_cast<const jo::CameraFollow*>(camera_object())->camera;
+    to.resize(sizeof(jo::Camera));
+    std::memcpy(to.data(), node, sizeof(jo::Camera));
+}
+
+void load_node(const std::vector<u8>& from) {
+    jo::Camera* const node = static_cast<jo::CameraFollow*>(camera_object())->camera;
+    const jo::Camera keep = *node;
+    std::memcpy(node, from.data(), sizeof(jo::Camera));
+    node->bone_ = keep.bone_;
+    node->scene = keep.scene;
+    node->target = keep.target;
+    node->depth_target = keep.depth_target;
+    node->fog = keep.fog;
+    node->light_ = keep.light_;
+    node->reorder = keep.reorder;
+    node->portal_sector = keep.portal_sector;
+}
+
 void load_camera(const std::vector<u8>& from) {
     auto* const follow = static_cast<jo::CameraFollow*>(camera_object());
     jo::CameraMotion* const motions = follow->motions;
@@ -96,8 +124,10 @@ void load_camera(const std::vector<u8>& from) {
     }
 }
 
+void* units() { return obj(d::g_units); }
+
 u8* unit_of(i32 id) {
-    void* const list = obj(d::g_units);
+    void* const list = units();
     if (id <= 0 || joan::orig::as_dynarray(list)->empty_at(joan::orig::arg::i32(id)) != 0) return nullptr;  // 0x00428b70
     return joan::orig::arg::as<u8*>(joan::orig::as_dynarray(list)->ptr_at(joan::orig::arg::i32(id)));  // 0x0041b3c0
 }
@@ -110,7 +140,7 @@ const u8* type_of(const u8* unit) {
 i32 free_hero(i32 host_id) {
     const u8* const host = unit_of(host_id);
     if (host == nullptr) return 0;
-    const i32 last = joan::orig::as_dynarray(obj(d::g_units))->size();
+    const i32 last = joan::orig::as_dynarray(units())->size();
     for (i32 id = 1; id <= last; ++id) {
         if (id == host_id) continue;
         u8* const u = unit_of(id);
@@ -137,6 +167,7 @@ void start_player(bool remote) {
     p.player.assign(player, player + sizeof(jo::Player));
     p.input.assign(input, input + sizeof(jo::Input));
     save_camera(p.camera);
+    save_node(p.node);
     auto* const pl = reinterpret_cast<jo::Player*>(p.player.data());
     pl->unit_id_ = hero;
     auto* const in = reinterpret_cast<jo::Input*>(p.input.data());
@@ -272,6 +303,45 @@ void for_remote_players(Step step) {
 }
 
 }  // namespace
+
+void draw_world_views(void* camera, void (*draw)(void* camera)) {
+    g_camera = camera;
+    std::vector<OtherPlayer*> views;
+    for (OtherPlayer& p : g_others)
+        if (p.remote && unit_of(reinterpret_cast<jo::Player*>(p.player.data())->unit_id_) != nullptr) views.push_back(&p);
+    c_view_frames.hit();
+    if (views.empty()) {
+        draw(camera);
+        return;
+    }
+    // The host's view, then each other player's in their order: the same in every game. A game shows only its own
+    // player's view (a player's game: the one other player there is so far).
+    const bool player_game = joan::replay::coop_player();
+    joan::gld::set_hidden_view(player_game);
+    draw(camera);
+    auto* const wnd = static_cast<jo::Wnd*>(obj(d::g_game_a50088));
+    for (OtherPlayer* p : views) {
+        // The frame's time has passed in the first view: the others draw the same moment (grass, camera zones and the
+        // like advance by the frame step while drawing).
+        const u32 frame_ms = wnd->frame_ms;
+        const i32 game_dt = wnd->game_dt;
+        wnd->frame_ms = 0;
+        wnd->game_dt = 0;
+        joan::gld::set_hidden_view(!player_game);
+        c_extra_view.hit();
+        as_player(*p, [p, camera, draw] {
+            std::vector<u8> host_node;
+            save_node(host_node);
+            load_node(p->node);
+            draw(camera);
+            save_node(p->node);
+            load_node(host_node);
+        });
+        wnd->frame_ms = frame_ms;
+        wnd->game_dt = game_dt;
+    }
+    joan::gld::set_hidden_view(false);
+}
 
 void other_players_poll() {
     for_remote_players([](OtherPlayer& p) {

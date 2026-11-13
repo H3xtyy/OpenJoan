@@ -26,6 +26,12 @@ void other_players_clear_input();
 /// every player on another computer (else its last motion would act every frame).
 void other_players_end_input();
 
+/// World::draw (0x0044c800, on the camera `camera`): `draw` draws the world from the camera once for the host and once
+/// for each player on another computer, with that player's Player, Input, camera and camera node in place and the
+/// frame step at zero, in the same order in every game, so that what drawing changes is the same everywhere. A game
+/// shows its own player's view; the others go to a scratch back buffer (gl/views.hpp). Without co-op: `draw` once.
+void draw_world_views(void* camera, void (*draw)(void* camera));
+
 /// True while the game reads another player's keyboard and mouse (Input::poll 0x00594f90 for that player): the poll then
 /// leaves this computer's mouse cursor where it is.
 bool polling_other_player();
