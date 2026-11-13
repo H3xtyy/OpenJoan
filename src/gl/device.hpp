@@ -498,6 +498,9 @@ class Device final : public DeviceStubs {
     bool init(std::string& error);
     /// VSync, the frame limiter and the texture quality options again from hook::settings() (the options menu).
     void apply_live_settings();
+    /// Co-op (docs/COOP.md): while on, the back buffer and its depth are scratch surfaces of the same size, so a view of
+    /// another player is drawn as usual but never shown. Off: the real ones again.
+    void set_hidden_view(bool on);
     /// The ring that dynamic vertex / index locks write into.
     StreamRing& stream_ring() { return stream_ring_; }
     /// The pool holding the stream cache's static geometry.
@@ -861,6 +864,9 @@ class Device final : public DeviceStubs {
     bool vs_constants_dirty_ = true;
     Surface* back_buffer_ = nullptr;
     Surface* auto_depth_ = nullptr;
+    Surface* hidden_back_ = nullptr;   // set_hidden_view: the scratch back buffer (swapped with back_buffer_ while on)
+    Surface* hidden_depth_ = nullptr;  // and its depth (swapped with auto_depth_)
+    bool hidden_view_ = false;
     Surface* render_target_ = nullptr;
     Surface* depth_stencil_ = nullptr;
     GammaRamp gamma_ = {};
@@ -1012,5 +1018,8 @@ IDirect3D8* create_direct3d();
 
 /// apply_live_settings of the running device, if there is one.
 void apply_live_settings();
+
+/// set_hidden_view of the running device, if there is one (gl/views.hpp).
+void set_hidden_view(bool on);
 
 }  // namespace joan::gld

@@ -410,6 +410,8 @@ Device::~Device() {
     if (depth_stencil_) std::exchange(depth_stencil_, nullptr)->Release();
     if (back_buffer_) std::exchange(back_buffer_, nullptr)->Release();
     if (auto_depth_) std::exchange(auto_depth_, nullptr)->Release();
+    if (hidden_back_) std::exchange(hidden_back_, nullptr)->Release();
+    if (hidden_depth_) std::exchange(hidden_depth_, nullptr)->Release();
     if (ctx_.valid()) {
         stream_ring_.shutdown();
         geometry_pool_.shutdown();
@@ -736,6 +738,7 @@ void Device::draw_debug_menu(int window_w, int window_h) {
 // ---------------------------------------------------------------------------
 HRESULT Device::Reset(PresentParameters* pp) {
     if (!pp) return kInvalidCall;
+    set_hidden_view(false);
     pp_ = *pp;
     if (render_target_) std::exchange(render_target_, nullptr)->Release();
     if (depth_stencil_) std::exchange(depth_stencil_, nullptr)->Release();
@@ -762,6 +765,39 @@ void Device::apply_live_settings() {
 
 void apply_live_settings() {
     if (g_ao_device != nullptr) g_ao_device->apply_live_settings();
+}
+
+void set_hidden_view(bool on) {
+    if (g_ao_device != nullptr) g_ao_device->set_hidden_view(on);
+}
+
+void Device::set_hidden_view(bool on) {
+    if (on == hidden_view_ || back_buffer_ == nullptr) return;
+    renderer_.flush_queued();  // [Graphics] GrassBatching: queued replays go where they were meant to
+    if (on && (hidden_back_ == nullptr || hidden_back_->width != back_buffer_->width || hidden_back_->height != back_buffer_->height)) {
+        if (hidden_back_) std::exchange(hidden_back_, nullptr)->Release();
+        if (hidden_depth_) std::exchange(hidden_depth_, nullptr)->Release();
+        hidden_back_ = new Surface(this, Surface::Kind::BackBuffer, back_buffer_->format, back_buffer_->width, back_buffer_->height);
+        if (auto_depth_)
+            hidden_depth_ = new Surface(this, Surface::Kind::DepthStencil, auto_depth_->format, auto_depth_->width, auto_depth_->height);
+        if (back_buffer_->gl_msaa) enable_multisample(hidden_back_, hidden_depth_);  // the same framebuffer kind as the real one
+    }
+    Surface* const old_back = back_buffer_;
+    Surface* const old_depth = auto_depth_;
+    std::swap(back_buffer_, hidden_back_);
+    std::swap(auto_depth_, hidden_depth_);
+    // The current targets follow when they were the back buffer (a game render target stays as it is).
+    const bool moved = render_target_ == old_back;
+    if (moved) {
+        back_buffer_->AddRef();
+        std::exchange(render_target_, back_buffer_)->Release();
+    }
+    if (depth_stencil_ != nullptr && depth_stencil_ == old_depth && auto_depth_ != nullptr) {
+        auto_depth_->AddRef();
+        std::exchange(depth_stencil_, auto_depth_)->Release();
+    }
+    hidden_view_ = on;
+    if (moved) reset_viewport_to_target();
 }
 
 void Device::pace_frame() {
