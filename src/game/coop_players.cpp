@@ -549,6 +549,12 @@ bool taken_by_other_player(std::int32_t unit_id) {
     return false;
 }
 
+void other_players_hud_tick(void (*track)(void* hud)) {
+    for (OtherPlayer& p : g_others)
+        if (p.remote && unit_of(reinterpret_cast<jo::Player*>(p.player.data())->unit_id_) != nullptr)
+            as_player(p, [track] { track(hud_object()); });
+}
+
 void draw_huds(void (*draw)(void* context), void* context) {
     std::vector<OtherPlayer*> views;
     for (OtherPlayer& p : g_others)

@@ -24,6 +24,7 @@
 #include "../canvas_api.hpp"
 #include "../original/layout_access.hpp"
 #include "../original/bind.hpp"
+#include "coop_players.hpp"
 
 namespace jo = joan::orig;
 
@@ -1400,6 +1401,11 @@ struct H {
         }
     }
     void track_6fd8b0() {
+        track_body();
+        // co-op: the shown values of every other player's HUD move toward its hero's too (coop_players.hpp)
+        joan::coop::other_players_hud_tick([](void* hud) { static_cast<H*>(hud)->track_body(); });
+    }
+    void track_body() {
         c_track.hit();
         if (soldier_gone(global<u32>(d::g_player_unit_recno)) != 0) return;
         if (jo::self<jo::Hud>(this)->shown_hp != jo::as_unit(sel())->hit_points) {
