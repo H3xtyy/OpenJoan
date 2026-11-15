@@ -106,9 +106,37 @@ window's keyboard and mouse walked, turned and attacked with the second hero whi
 
 Every player also has its own copy of the camera (`CameraFollow` 0x00a48cc0 and its six motions), swapped in with its
 `Player` and `Input`: the game's control code moves "the" camera after the player's hero, and with one shared camera both
-heroes pulled it every frame. For now the player sees the host's view (step 4 draws each player's own camera). Once a player has joined, the host's game is
-never told that its window went to the background (it would pause, and every player with it); only its keyboard and mouse
-stop while another window has the focus.
+heroes pulled it every frame. Once a player has joined, the host's game is never told that its window went to the
+background (it would pause, and every player with it); only its keyboard and mouse stop while another window has the
+focus.
+
+## A view per player (step 4)
+
+Drawing changes the game here: `World::draw` (0x0044c800) advances the active camera motion, streams the world cells
+around the camera (recorded file reads), sets the camera node's pose and reads the clock. A player's game therefore
+cannot just draw from its own camera: it would make other calls than the host recorded. Instead every game draws the
+world once per player, the host first and then each other player in order, the same in every game
+(`coop::draw_world_views`, `src/game/coop_players.cpp`). For a player's draw its `Player`, `Input`, camera, the camera
+node's pose and its state of every loaded cell's camera zones are in place, and the frame step is zero (the frame's
+time has passed in the first draw). A game shows its own player's view; the others go to a scratch back buffer
+(`gl/views.hpp`), and draw calls are not recorded, so where they go changes nothing. Tested 2026-11-13 to 15 with two
+windows on one PC: each window followed its own hero, and the player's game matched the host's state on every frame.
+
+What a player's view takes from the player, and why:
+- the unit the hero camera follows, `CameraFollow` +8: `World::draw` passes it to `CameraFollow::start` (0x00563a20),
+  which sets the camera's pose from that unit every frame;
+- the camera zones of every loaded cell (`CameraZone::update` 0x00425fc0): their unit and zone state;
+- only the pose of the camera node (`prev_params`, `params`): its draw ranges and fog are the game's, set every frame by
+  `Camera::update_5634e0`; a whole-node copy kept them from the moment the player joined (a dull sky, and the ambient
+  occlusion, which reads depth with them, darkened everything).
+
+What a hidden view must not do: ambient occlusion (a second run in one frame darkens the foliage of the shown view; a
+hidden view needs none), and the sprites it queues for the screen's 2D layer (the sun's lens flare): they are collapsed
+to a point, so the layer stays the same in every game and nothing is drawn.
+
+Not done yet: the dynamic grass is placed once per frame around the host's camera only (`DynGrass::update` 0x00464740,
+in the game tick), so a player far from the host sees bare ground; the HUD shows the host's hero; the sound is heard
+from the host's camera; a player switching heroes (`Player::select_hero` 0x00432300) is not handled.
 
 ## Licence question (open)
 
