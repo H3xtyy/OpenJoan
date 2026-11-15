@@ -163,6 +163,9 @@ void load_camera(const std::vector<u8>& from) {
 
 void* units() { return obj(d::g_units); }
 
+// The game's window object (Game::run's Wnd): frame_ms / game_dt are the frame's elapsed time and step.
+jo::Wnd* game_window() { return static_cast<jo::Wnd*>(obj(d::g_game_a50088)); }
+
 u8* unit_of(i32 id) {
     void* const list = units();
     if (id <= 0 || joan::orig::as_dynarray(list)->empty_at(joan::orig::arg::i32(id)) != 0) return nullptr;  // 0x00428b70
@@ -360,7 +363,7 @@ void draw_world_views(void* camera, void* world, void (*draw)(void* camera)) {
     };
     hide(player_game);
     draw(camera);
-    auto* const wnd = static_cast<jo::Wnd*>(obj(d::g_game_a50088));
+    jo::Wnd* const wnd = game_window();
     for (OtherPlayer* p : views) {
         // The frame's time has passed in the first view: the others draw the same moment (grass, camera zones and the
         // like advance by the frame step while drawing).
@@ -391,6 +394,37 @@ void draw_world_views(void* camera, void* world, void (*draw)(void* camera)) {
 }
 
 bool drawing_hidden_view() { return g_hidden; }
+
+void draw_huds(void (*draw)(void* context), void* context) {
+    std::vector<OtherPlayer*> views;
+    for (OtherPlayer& p : g_others)
+        if (p.remote && unit_of(reinterpret_cast<jo::Player*>(p.player.data())->unit_id_) != nullptr) views.push_back(&p);
+    if (views.empty() || g_camera == nullptr) {
+        draw(context);
+        return;
+    }
+    // As draw_world_views: the host's HUD, then each other player's with its Player (and camera) in place and the frame
+    // step at zero, the same in every game; a game shows its own player's.
+    const bool player_game = joan::replay::coop_player();
+    const auto hide = [](bool on) {
+        g_hidden = on;
+        joan::gld::set_hidden_view(on);
+    };
+    hide(player_game);
+    draw(context);
+    jo::Wnd* const wnd = game_window();
+    for (OtherPlayer* p : views) {
+        const u32 frame_ms = wnd->frame_ms;
+        const i32 game_dt = wnd->game_dt;
+        wnd->frame_ms = 0;
+        wnd->game_dt = 0;
+        hide(!player_game);
+        as_player(*p, [draw, context] { draw(context); });
+        wnd->frame_ms = frame_ms;
+        wnd->game_dt = game_dt;
+    }
+    hide(false);
+}
 
 void other_players_poll() {
     for_remote_players([](OtherPlayer& p) {

@@ -24,6 +24,7 @@
 #include "../original/records.hpp"
 #include "../original/layout_access.hpp"
 #include "../original/bind.hpp"
+#include "coop_players.hpp"
 
 namespace jo = joan::orig;
 
@@ -1008,7 +1009,9 @@ struct H {
         if (!menu_open()) {
             for (std::int8_t i = 1; i <= 4; i = static_cast<std::int8_t>(i << 1)) {
                 joan::orig::as_hud(obj(d::g_player_hud))->draw_corner_icon(joan::orig::arg::u32(i));     // 0x006f9970 Hud::draw_corner_icon
-                joan::orig::as_hud(obj(d::g_player_hud))->draw(static_cast<char>(joan::orig::arg::i32(i)));     // 0x006f9b60 Hud::draw
+                joan::coop::draw_huds([](void* layer) {  // co-op: a HUD per player (coop_players.hpp)
+                    joan::orig::as_hud(obj(d::g_player_hud))->draw(static_cast<char>(*static_cast<std::int8_t*>(layer)));  // 0x006f9b60 Hud::draw
+                }, &i);
                 joan::orig::as_hud(obj(d::g_player_hud))->draw_pause_caption(static_cast<char>(joan::orig::arg::i32(i)));     // 0x006f9a60
                 joan::orig::as_panel(obj(d::g_popup_a50808))->draw_frame(1u, static_cast<std::uint8_t>(joan::orig::arg::u32(i)));  // 0x0062a9a0 (reads the byte only)
             }

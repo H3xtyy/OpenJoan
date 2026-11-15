@@ -33,6 +33,11 @@ void other_players_end_input();
 /// shows its own player's view; the others go to a scratch back buffer (gl/views.hpp). Without co-op: `draw` once.
 void draw_world_views(void* camera, void* world, void (*draw)(void* camera));
 
+/// Game::draw's 2D pass, Hud::draw (0x006f9b60) of one layer: `draw(context)` once for the host and once for each player
+/// on another computer with its Player and camera in place, as draw_world_views does for the world. A game shows its
+/// own player's HUD. Without co-op: `draw(context)` once.
+void draw_huds(void (*draw)(void* context), void* context);
+
 /// True while the world is drawn for a view this game does not show (draw_world_views): what it queues for the
 /// screen's 2D layer (the sun's lens flare, LensFlares::draw 0x006628a0) must not appear on it.
 bool drawing_hidden_view();
