@@ -155,8 +155,15 @@ local player (messages, HUD, sounds) keep the comparison.
 Switching characters (`Player::select_hero` 0x00432300) skips a hero another player controls; the player's hero id
 (0x00a47c36) and side (0x00a57fae), which a switch sets, are kept per player.
 
-Not done yet: the sound is heard from the host's camera (the game's listener position is read by the AI, so a player's
-own listener has to be applied at the OpenAL output only); menus, saves and cutscenes for players (step 5).
+When another player's hero dies (not Joan), that player switches to the next free hero, as the game does for the host
+(`Player::select_hero` with 0). When the level's units are cleared (`Game::end_session` 0x00471010: the level ends or a
+save is loaded), every other player is dropped and starts again on a free hero in the next level.
+
+Sound: the game keeps one listener, set from the host's camera, and the AI reads its position, so it stays the host's in
+every game. In a player's game only what reaches OpenAL is moved (`lib/openal/listener.hpp`): the listener is the
+player's camera, and sounds the game places on its own listener ("at the player") are placed on the player's.
+
+Not done yet: menus, saves and cutscenes for players, late join (step 5); more than one other player.
 
 ## Licence question (open)
 
