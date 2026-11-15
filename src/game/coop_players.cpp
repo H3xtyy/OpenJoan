@@ -40,7 +40,7 @@ struct OtherPlayer {
     std::vector<u8> player;  // a jo::Player
     std::vector<u8> input;   // a jo::Input
     std::vector<u8> camera;  // its camera: a jo::CameraFollow and the six jo::CameraMotion it points to
-    std::vector<u8> node;    // its camera node's values (a jo::Camera: pose, matrices, ranges; the pointers are the game's)
+    std::vector<u8> node;    // its camera node's pose (jo::Camera prev_params and params)
     std::unordered_map<const void*, jo::CamZones> zones;  // its state of each loaded cell's camera zones
     u32 frames = 0;          // frames this player has run (the scripted test's clock)
     bool remote = false;     // on another computer (else the scripted test player)
@@ -86,26 +86,21 @@ void save_camera(std::vector<u8>& to) {
 // The game's camera becomes `from`. The pointers stay the game's: the camera node, the light, the motions block, and the
 // path each motion tracks (a cutscene's: a copy must never keep one the game has freed).
 // The camera node the views are drawn from (CameraFollow::camera): World::draw 0x0044c800 sets its pose from the active
-// motion (Camera::set_frame 0x00614040) and draws through it, so every player has its own values. The pointers stay the
-// game's: its bone, scene, render targets, fog, light, draw order and portal sector.
+// motion (Camera::set_frame 0x00614040: params, the previous ones kept in prev_params) and draws through it. Only the
+// pose is a player's own: the draw ranges and fog are the game's (Camera::update_5634e0 sets them each frame), and
+// the matrices are rebuilt from the pose (Camera::dirty 0x00614170).
 void save_node(std::vector<u8>& to) {
     const jo::Camera* const node = static_cast<const jo::CameraFollow*>(camera_object())->camera;
-    to.resize(sizeof(jo::Camera));
-    std::memcpy(to.data(), node, sizeof(jo::Camera));
+    to.resize(2 * sizeof(jo::CamParams));
+    std::memcpy(to.data(), &node->prev_params, sizeof(jo::CamParams));
+    std::memcpy(to.data() + sizeof(jo::CamParams), &node->params, sizeof(jo::CamParams));
 }
 
 void load_node(const std::vector<u8>& from) {
     jo::Camera* const node = static_cast<jo::CameraFollow*>(camera_object())->camera;
-    const jo::Camera keep = *node;
-    std::memcpy(node, from.data(), sizeof(jo::Camera));
-    node->bone_ = keep.bone_;
-    node->scene = keep.scene;
-    node->target = keep.target;
-    node->depth_target = keep.depth_target;
-    node->fog = keep.fog;
-    node->light_ = keep.light_;
-    node->reorder = keep.reorder;
-    node->portal_sector = keep.portal_sector;
+    std::memcpy(&node->prev_params, from.data(), sizeof(jo::CamParams));
+    std::memcpy(&node->params, from.data() + sizeof(jo::CamParams), sizeof(jo::CamParams));
+    joan::orig::as_camera(node)->dirty();  // 0x00614170
 }
 
 // Every loaded cell has camera zones (CameraZone::update 0x00425fc0, run by World::draw for each cell) that move the
