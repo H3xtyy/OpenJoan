@@ -24,6 +24,7 @@
 #include "../original/dynarray.hpp"
 #include "../original/layout_access.hpp"
 #include "../original/bind.hpp"
+#include "coop_players.hpp"
 
 namespace jo = joan::orig;
 
@@ -745,6 +746,9 @@ struct H {
         fr[3] = f_bits(px2), fr[4] = f_bits(py1), fr[5] = 0;
         fr[6] = f_bits(px2), fr[7] = f_bits(py2), fr[8] = 0;
         fr[9] = f_bits(px1), fr[10] = f_bits(py2), fr[11] = 0;
+        if (joan::coop::drawing_hidden_view()) {  // co-op: queued while drawing a view this game does not show
+            for (i32 i = 3; i < 12; i += 3) fr[i] = fr[0], fr[i + 1] = fr[1];  // the quad as a point: nothing drawn
+        }
         fr[12] = u1, fr[13] = v1, fr[14] = u2, fr[15] = v1;
         fr[16] = u2, fr[17] = v2, fr[18] = u1, fr[19] = v2;
         const i32 base = joan::orig::arg::as<i32>(joan::orig::as_plane(mesh)->add_vertices(i32{4}));  // 0x005cd7f0

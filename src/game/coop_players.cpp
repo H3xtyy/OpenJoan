@@ -50,6 +50,7 @@ struct OtherPlayer {
 std::vector<OtherPlayer> g_others;
 bool g_tried = false;
 bool g_polling = false;  // polling_other_player()
+bool g_hidden = false;   // drawing_hidden_view()
 
 JOAN_COUNTER(c_extra_view, "Coop::extra_view");
 JOAN_COUNTER(c_view_frames, "Coop::view_frames");
@@ -353,7 +354,11 @@ void draw_world_views(void* camera, void* world, void (*draw)(void* camera)) {
     // The host's view, then each other player's in their order: the same in every game. A game shows only its own
     // player's view (a player's game: the one other player there is so far).
     const bool player_game = joan::replay::coop_player();
-    joan::gld::set_hidden_view(player_game);
+    const auto hide = [](bool on) {
+        g_hidden = on;
+        joan::gld::set_hidden_view(on);
+    };
+    hide(player_game);
     draw(camera);
     auto* const wnd = static_cast<jo::Wnd*>(obj(d::g_game_a50088));
     for (OtherPlayer* p : views) {
@@ -363,7 +368,7 @@ void draw_world_views(void* camera, void* world, void (*draw)(void* camera)) {
         const i32 game_dt = wnd->game_dt;
         wnd->frame_ms = 0;
         wnd->game_dt = 0;
-        joan::gld::set_hidden_view(!player_game);
+        hide(!player_game);
         c_extra_view.hit();
         as_player(*p, [p, camera, world, draw] {
             std::vector<u8> host_node;
@@ -382,8 +387,10 @@ void draw_world_views(void* camera, void* world, void (*draw)(void* camera)) {
         wnd->frame_ms = frame_ms;
         wnd->game_dt = game_dt;
     }
-    joan::gld::set_hidden_view(false);
+    hide(false);
 }
+
+bool drawing_hidden_view() { return g_hidden; }
 
 void other_players_poll() {
     for_remote_players([](OtherPlayer& p) {

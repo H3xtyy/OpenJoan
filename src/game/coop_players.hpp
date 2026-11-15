@@ -33,6 +33,10 @@ void other_players_end_input();
 /// shows its own player's view; the others go to a scratch back buffer (gl/views.hpp). Without co-op: `draw` once.
 void draw_world_views(void* camera, void* world, void (*draw)(void* camera));
 
+/// True while the world is drawn for a view this game does not show (draw_world_views): what it queues for the
+/// screen's 2D layer (the sun's lens flare, LensFlares::draw 0x006628a0) must not appear on it.
+bool drawing_hidden_view();
+
 /// True while the game reads another player's keyboard and mouse (Input::poll 0x00594f90 for that player): the poll then
 /// leaves this computer's mouse cursor where it is.
 bool polling_other_player();
