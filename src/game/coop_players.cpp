@@ -46,6 +46,9 @@ struct OtherPlayer {
     std::vector<u8> hud;     // its HUD values (the jo::Hud block of player_hud_range())
     std::int16_t hero_id = 0;  // its copy of the player's hero id (0x00a47c36, Player::set_unit 0x0042f9c0)
     u8 side[sizeof(std::int32_t)] = {};  // its copy of the player's side (0x00a57fae, Player::switch_to)
+    std::int16_t map_unit_id = 0;  // its minimap's tracked unit (MiniMap::unit_id / unit, MiniMap::track_unit 0x0070fb70)
+    jo::Unit* map_unit = nullptr;
+    std::int16_t map_rotation = 0;  // and its turn (MiniMap::rotation)
     u32 frames = 0;          // frames this player has run (the scripted test's clock)
     bool remote = false;     // on another computer (else the scripted test player)
     std::deque<pin::Item> mouse, keys;  // the host: its items received and not read by the game yet
@@ -202,6 +205,8 @@ i32 free_hero(i32 host_id) {
 constexpr std::size_t kHudFirst = offsetof(jo::Hud, shown_hp);
 constexpr std::size_t kHudEnd = offsetof(jo::Hud, squad_button0);
 void* hud_object() { return obj(d::g_player_hud); }
+// The HUD's minimap (Hud +0x1d69): the unit it follows and its turn are the player's, its markers the mission's.
+jo::MiniMap* minimap() { return &static_cast<jo::Hud*>(hud_object())->minimap; }
 u8* hud_values() { return static_cast<u8*>(hud_object()) + kHudFirst; }
 
 // The two globals Player::set_unit (0x0042f9c0) and switch_to set for "the player": its hero's id and side.
@@ -230,6 +235,9 @@ void start_player(bool remote) {
     p.hud.assign(hud_values(), hud_values() + (kHudEnd - kHudFirst));
     p.hero_id = static_cast<std::int16_t>(hero);
     std::memcpy(p.side, side_global(), sizeof p.side);
+    p.map_unit_id = static_cast<std::int16_t>(hero);
+    p.map_unit = jo::as_unit(unit_of(hero));
+    p.map_rotation = minimap()->rotation;
     auto* const pl = reinterpret_cast<jo::Player*>(p.player.data());
     pl->unit_id_ = hero;
     auto* const in = reinterpret_cast<jo::Input*>(p.input.data());
@@ -335,6 +343,12 @@ void as_player(OtherPlayer& p, Step step) {
     std::memcpy(hud, p.hud.data(), p.hud.size());
     hero_global() = p.hero_id;
     std::memcpy(side_global(), p.side, sizeof p.side);
+    jo::MiniMap* const map = minimap();
+    const std::int16_t host_map_unit_id = map->unit_id, host_map_rotation = map->rotation;
+    jo::Unit* const host_map_unit = map->unit;
+    map->unit_id = p.map_unit_id;
+    map->unit = p.map_unit;
+    map->rotation = p.map_rotation;
     g_current = &p;
     g_host_unit = reinterpret_cast<const jo::Player*>(host_player.data())->unit_id_;
     step();
@@ -345,6 +359,12 @@ void as_player(OtherPlayer& p, Step step) {
     std::memcpy(p.hud.data(), hud, p.hud.size());
     p.hero_id = hero_global();
     std::memcpy(p.side, side_global(), sizeof p.side);
+    p.map_unit_id = map->unit_id;
+    p.map_unit = map->unit;
+    p.map_rotation = map->rotation;
+    map->unit_id = host_map_unit_id;
+    map->unit = host_map_unit;
+    map->rotation = host_map_rotation;
     std::memcpy(player, host_player.data(), host_player.size());
     std::memcpy(input, host_input.data(), host_input.size());
     load_camera(host_camera);
