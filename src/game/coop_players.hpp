@@ -38,6 +38,14 @@ void draw_world_views(void* camera, void* world, void (*draw)(void* camera));
 /// own player's HUD. Without co-op: `draw(context)` once.
 void draw_huds(void (*draw)(void* context), void* context);
 
+/// After the host's DynGrass::update (0x00464740, `update` is its body): every player on another computer has its own
+/// dynamic grass, updated around its camera, so there is grass around every hero.
+void other_players_grass(void (*update)(void* grass));
+/// Grass::set_enabled (0x00464600) on the host's grass: the same on every player's.
+void players_grass_enabled(char on);
+/// DynGrass::release (0x00464390) of the host's grass: every player's is released too.
+void release_players_grass();
+
 /// True while the world is drawn for a view this game does not show (draw_world_views): what it queues for the
 /// screen's 2D layer (the sun's lens flare, LensFlares::draw 0x006628a0) must not appear on it.
 bool drawing_hidden_view();

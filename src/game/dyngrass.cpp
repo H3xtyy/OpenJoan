@@ -30,6 +30,7 @@
 #include "../render/grass_batch.hpp"
 #include "../render/v3d.hpp"
 #include "../en3d/scene_lists.hpp"
+#include "coop_players.hpp"
 
 namespace jo = joan::orig;
 
@@ -190,6 +191,7 @@ struct H {
         jo::view<std::uint32_t>(jo::self<jo::DynGrass>(this)->patch_count) = 0;
         jo::view<std::uint32_t>(jo::self<jo::DynGrass>(this)->patch2_count) = 0;
         jo::view<std::uint32_t>(jo::self<jo::DynGrass>(this)->res_count) = 0;
+        joan::coop::release_players_grass();  // co-op: the players' grass too (coop_players.hpp)
     }
 };
 
@@ -256,6 +258,7 @@ struct H {
     // 0x00464600 Grass::set_enabled(on): +4 flag; off removes the patches (+5 array of 0x66
     // bytes, count +9: +0x24 scene, +0x28 object) and empties the list.
     void grass_set_enabled(char on) {
+        joan::coop::players_grass_enabled(on);  // co-op: the players' grass too (coop_players.hpp)
         if (static_cast<std::int32_t>(on) != 0) {
             jo::view<char>(jo::self<jo::DynGrass>(this)->enabled) = on;
             return;
@@ -383,6 +386,11 @@ struct H {
         return imul(joan::hook::x87::ftol(b), 3);
     }
     void grass_update() {  // 0x00464740
+        grass_update_body();
+        joan::coop::other_players_grass([](void* grass) { static_cast<H*>(grass)->grass_update_body(); });  // co-op: every hero's
+    }
+
+    void grass_update_body() {
         joan::hitch::Span hitch_span("grass_update");  // [Debug] HitchLog
         if (jo::view<i8>(jo::self<jo::DynGrass>(this)->enabled) == 0) return;
         if (global<void*>(d::g_camera) == nullptr) return;

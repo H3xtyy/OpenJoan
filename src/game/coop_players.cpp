@@ -49,6 +49,7 @@ struct OtherPlayer {
     std::int16_t map_unit_id = 0;  // its minimap's tracked unit (MiniMap::unit_id / unit, MiniMap::track_unit 0x0070fb70)
     jo::Unit* map_unit = nullptr;
     std::int16_t map_rotation = 0;  // and its turn (MiniMap::rotation)
+    std::vector<u8> grass;  // its dynamic grass (a jo::DynGrass with its own patch arrays), empty until made
     u32 frames = 0;          // frames this player has run (the scripted test's clock)
     bool remote = false;     // on another computer (else the scripted test player)
     std::deque<pin::Item> mouse, keys;  // the host: its items received and not read by the game yet
@@ -453,6 +454,70 @@ void draw_world_views(void* camera, void* world, void (*draw)(void* camera)) {
 }
 
 bool drawing_hidden_view() { return g_hidden; }
+
+namespace {
+
+// The dynamic grass (DynGrass 0x00a45d30): patches around one camera, rebuilt each frame by DynGrass::update
+// (0x00464740, in the game tick). Every player has its own (its patch arrays, counts, resources and wind), so that
+// the grass is around every hero; all patches are in the scene, so every view has them.
+void* grass_object() { return obj(d::g_dyn_grass); }
+bool g_grass_busy = false;  // a player's grass is in the game's place (no passing on to the players again)
+
+template <class Step>
+void with_grass(OtherPlayer& p, Step step) {
+    auto* const g = static_cast<u8*>(grass_object());
+    std::vector<u8> host(g, g + sizeof(jo::DynGrass));
+    std::memcpy(g, p.grass.data(), sizeof(jo::DynGrass));
+    g_grass_busy = true;
+    step();
+    g_grass_busy = false;
+    std::memcpy(p.grass.data(), g, sizeof(jo::DynGrass));
+    std::memcpy(g, host.data(), sizeof(jo::DynGrass));
+}
+
+// A player's grass, as the host's is now but without patches or resources; its arrays from the game's memory as
+// DynGrass::reserve (0x004644d0) makes them.
+void make_grass(OtherPlayer& p) {
+    const auto* const host = static_cast<const jo::DynGrass*>(grass_object());
+    p.grass.assign(reinterpret_cast<const u8*>(host), reinterpret_cast<const u8*>(host) + sizeof(jo::DynGrass));
+    auto* const own = reinterpret_cast<jo::DynGrass*>(p.grass.data());
+    own->patches = nullptr;
+    own->patches2 = nullptr;
+    own->patch_count = own->patch2_count = own->res_count = 0;
+    own->density = 0.0f;  // reserve allocates when the density grows
+    const auto density = static_cast<i32>(host->density);
+    with_grass(p, [density] { joan::orig::as_grass(grass_object())->reserve(density); });  // 0x004644d0
+}
+
+}  // namespace
+
+void other_players_grass(void (*update)(void* grass)) {
+    if (g_camera == nullptr || g_grass_busy) return;
+    for (OtherPlayer& p : g_others) {
+        if (!p.remote || unit_of(reinterpret_cast<jo::Player*>(p.player.data())->unit_id_) == nullptr) continue;
+        if (p.grass.empty()) make_grass(p);
+        std::vector<u8> host_node;
+        save_node(host_node);
+        load_node(p.node);  // DynGrass::update places the grass around the camera's pose
+        with_grass(p, [update] { update(grass_object()); });  // DynGrass::update 0x00464740
+        load_node(host_node);
+    }
+}
+
+void players_grass_enabled(char on) {
+    if (g_grass_busy) return;
+    for (OtherPlayer& p : g_others)
+        if (!p.grass.empty()) with_grass(p, [on] { joan::orig::as_grass(grass_object())->set_enabled(on); });  // 0x00464600
+}
+
+void release_players_grass() {
+    if (g_grass_busy) return;
+    for (OtherPlayer& p : g_others) {
+        if (p.grass.empty()) continue;
+        with_grass(p, [] { joan::orig::as_grass(grass_object())->release(); });  // 0x00464390
+        p.grass.clear();
+    }
+}
 
 bool is_player_unit(std::int32_t unit_id) {
     if (unit_id == 0) return false;
