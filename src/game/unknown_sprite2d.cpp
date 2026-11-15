@@ -783,6 +783,9 @@ struct H {
             rx = static_cast<u32>(args[4]), ry = static_cast<u32>(args[5]), rz = static_cast<u32>(args[6]), scale = static_cast<u32>(args[7]);
         }
         c_place.hit();
+        // Co-op: a model on the screen's 2D layer (the minimap's camp, the player's arrow) is one object that keeps its
+        // last placement and is drawn once per frame: a view this game does not show leaves it where its own view put it.
+        if (joan::coop::drawing_hidden_view()) return 1;
         u8* const m = joan::orig::arg::as<u8*>(joan::orig::as_scene(jo::view<u8*>(jo::self<jo::Sprite2D>(this)->scene))->group(joan::orig::arg::i32(id)));  // 0x005ea6e0
         const float x = static_cast<float>(static_cast<i16>(x_arg)) - half(kScreenW);
         const float y = static_cast<float>(static_cast<i16>(y_arg)) - half(kScreenH);
