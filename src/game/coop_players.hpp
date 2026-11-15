@@ -42,6 +42,10 @@ void draw_huds(void (*draw)(void* context), void* context);
 /// screen's 2D layer (the sun's lens flare, LensFlares::draw 0x006628a0) must not appear on it.
 bool drawing_hidden_view();
 
+/// Player::select_hero (0x00432300): true when unit `unit_id` is the hero of a player other than the one in the
+/// game's places (the host, or another player during its input and tick) - not one to switch to.
+bool taken_by_other_player(std::int32_t unit_id);
+
 /// True while the game reads another player's keyboard and mouse (Input::poll 0x00594f90 for that player): the poll then
 /// leaves this computer's mouse cursor where it is.
 bool polling_other_player();

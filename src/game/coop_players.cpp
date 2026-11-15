@@ -5,6 +5,7 @@
 // [Debug] CoopTestPlayer=1 (no network) gives a second hero to a scripted player on this PC instead (walk, turn, attack).
 #include "coop_players.hpp"
 
+#include <cstddef>
 #include <cstdint>
 #include <cstring>
 #include <deque>
@@ -42,6 +43,9 @@ struct OtherPlayer {
     std::vector<u8> camera;  // its camera: a jo::CameraFollow and the six jo::CameraMotion it points to
     std::vector<u8> node;    // its camera node's pose (jo::Camera prev_params and params)
     std::unordered_map<const void*, jo::CamZones> zones;  // its state of each loaded cell's camera zones
+    std::vector<u8> hud;     // its HUD values (the jo::Hud block of player_hud_range())
+    std::int16_t hero_id = 0;  // its copy of the player's hero id (0x00a47c36, Player::set_unit 0x0042f9c0)
+    u8 side[sizeof(std::int32_t)] = {};  // its copy of the player's side (0x00a57fae, Player::switch_to)
     u32 frames = 0;          // frames this player has run (the scripted test's clock)
     bool remote = false;     // on another computer (else the scripted test player)
     std::deque<pin::Item> mouse, keys;  // the host: its items received and not read by the game yet
@@ -192,6 +196,21 @@ i32 free_hero(i32 host_id) {
     return 0;
 }
 
+// The HUD's values of "the player" (Hud 0x00a4d618): the shown health, mana and experience moving toward the hero's,
+// the target, the experience / level / combo animations, the squad slots, the arrows and the objective fades - all
+// value fields from shown_hp to the squad buttons. Its sprites, buttons and minimap stay the game's.
+constexpr std::size_t kHudFirst = offsetof(jo::Hud, shown_hp);
+constexpr std::size_t kHudEnd = offsetof(jo::Hud, squad_button0);
+void* hud_object() { return obj(d::g_player_hud); }
+u8* hud_values() { return static_cast<u8*>(hud_object()) + kHudFirst; }
+
+// The two globals Player::set_unit (0x0042f9c0) and switch_to set for "the player": its hero's id and side.
+std::int16_t& hero_global() { return *static_cast<std::int16_t*>(obj(d::g_a47c36)); }
+u8* side_global() { return static_cast<u8*>(obj(d::g_player_side)); }
+
+OtherPlayer* g_current = nullptr;  // the player in the game's places (as_player), nullptr = the host
+i32 g_host_unit = 0;               // the host's hero while another player is in its places
+
 void start_player(bool remote) {
     g_tried = true;
     const char* const what = remote ? "the player on the other computer" : "CoopTestPlayer: a scripted second player";
@@ -208,6 +227,9 @@ void start_player(bool remote) {
     p.input.assign(input, input + sizeof(jo::Input));
     save_camera(p.camera);
     save_node(p.node);
+    p.hud.assign(hud_values(), hud_values() + (kHudEnd - kHudFirst));
+    p.hero_id = static_cast<std::int16_t>(hero);
+    std::memcpy(p.side, side_global(), sizeof p.side);
     auto* const pl = reinterpret_cast<jo::Player*>(p.player.data());
     pl->unit_id_ = hero;
     auto* const in = reinterpret_cast<jo::Input*>(p.input.data());
@@ -302,16 +324,33 @@ void as_player(OtherPlayer& p, Step step) {
     mine->u8_7c = host->u8_7c;
     std::vector<u8> host_player(player, player + p.player.size()), host_input(input, input + p.input.size()), host_camera;
     save_camera(host_camera);
+    u8* const hud = hud_values();
+    std::vector<u8> host_hud(hud, hud + (kHudEnd - kHudFirst));
+    const std::int16_t host_hero = hero_global();
+    u8 host_side[sizeof p.side];
+    std::memcpy(host_side, side_global(), sizeof host_side);
     std::memcpy(player, p.player.data(), p.player.size());
     std::memcpy(input, p.input.data(), p.input.size());
     load_camera(p.camera);
+    std::memcpy(hud, p.hud.data(), p.hud.size());
+    hero_global() = p.hero_id;
+    std::memcpy(side_global(), p.side, sizeof p.side);
+    g_current = &p;
+    g_host_unit = reinterpret_cast<const jo::Player*>(host_player.data())->unit_id_;
     step();
+    g_current = nullptr;
     std::memcpy(p.player.data(), player, p.player.size());
     std::memcpy(p.input.data(), input, p.input.size());
     save_camera(p.camera);
+    std::memcpy(p.hud.data(), hud, p.hud.size());
+    p.hero_id = hero_global();
+    std::memcpy(p.side, side_global(), sizeof p.side);
     std::memcpy(player, host_player.data(), host_player.size());
     std::memcpy(input, host_input.data(), host_input.size());
     load_camera(host_camera);
+    std::memcpy(hud, host_hud.data(), host_hud.size());
+    hero_global() = host_hero;
+    std::memcpy(side_global(), host_side, sizeof host_side);
 }
 
 bool in_mission() {
@@ -395,6 +434,14 @@ void draw_world_views(void* camera, void* world, void (*draw)(void* camera)) {
 
 bool drawing_hidden_view() { return g_hidden; }
 
+bool taken_by_other_player(std::int32_t unit_id) {
+    if (unit_id == 0) return false;
+    if (g_current != nullptr && unit_id == g_host_unit) return true;  // the host's, while another player is in its places
+    for (const OtherPlayer& p : g_others)
+        if (&p != g_current && reinterpret_cast<const jo::Player*>(p.player.data())->unit_id_ == unit_id) return true;
+    return false;
+}
+
 void draw_huds(void (*draw)(void* context), void* context) {
     std::vector<OtherPlayer*> views;
     for (OtherPlayer& p : g_others)
@@ -459,7 +506,14 @@ void other_players_input(void* camera) {
     if (!network && !test_player_wanted()) return;
     if (!in_mission()) return;
     if (network && joan::replay::coop_player()) send_to_host();
-    if (!g_tried) start_player(network);
+    if (!g_tried) {
+        start_player(network);
+        // Its HUD starts from its hero (what Player::set_unit 0x0042f9c0 does for "the player").
+        if (!g_others.empty())
+            as_player(g_others.back(), [] {
+                joan::orig::as_hud(hud_object())->update_health_state(joan::orig::arg::i32(jo::self<jo::Player>(player_object())->unit_id_));  // 0x00703750
+            });
+    }
     for (OtherPlayer& p : g_others) {
         if (unit_of(reinterpret_cast<jo::Player*>(p.player.data())->unit_id_) == nullptr) continue;
         if (p.remote) {

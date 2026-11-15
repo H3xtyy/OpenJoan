@@ -1046,7 +1046,7 @@ struct H {
         if (hero == 0 && slot >= 4) {  // switch character from hero 5..7: the next of the original four that can take over
             for (std::int32_t next = 0; next < 4; ++next) {
                 const std::int32_t id = joan::orig::arg::as<std::int32_t>(joan::orig::as_units(kGameUnits)->find_by_3b(joan::orig::arg::i32(type_key(hero_name(next)))));  // 0x0051fd50
-                if (id != 0 && can_take_over(cur, id)) {
+                if (id != 0 && !joan::coop::taken_by_other_player(id) && can_take_over(cur, id)) {  // co-op: not another player's
                     take_over(cur, id);
                     return;
                 }
@@ -1058,7 +1058,7 @@ struct H {
             while (next != slot) {
                 const std::int32_t key = joan::orig::arg::as<std::int32_t>(joan::orig::as_unit_types(kTypes)->find(joan::orig::arg::str(&img::global<const char>(d::g_9f8b10 + next * 0x104))));  // 0x005270b0
                 const std::int32_t id = joan::orig::arg::as<std::int32_t>(joan::orig::as_units(kGameUnits)->find_by_3b(joan::orig::arg::i32(key)));  // 0x0051fd50
-                if (id != 0) {
+                if (id != 0 && !joan::coop::taken_by_other_player(id)) {  // co-op: not another player's hero
                     std::uint8_t* const unit = unit_get(id);
                     if (static_cast<std::int8_t>(joan::orig::arg::as<std::uint8_t>(joan::orig::as_unit(unit)->dead())) == 0 &&  // 0x0042d0e0
                         jo::as_unit(unit)->speech_off == 0 &&
@@ -1093,6 +1093,7 @@ struct H {
         const std::int32_t id = joan::orig::arg::as<std::int32_t>(joan::orig::as_units(kGameUnits)->find_by_3b(joan::orig::arg::i32(key)));  // 0x0051fd50
         if (id == 0) return;
         if (jo::self<jo::Player>(this)->unit_id_ == id) return;
+        if (joan::coop::taken_by_other_player(id)) return;  // co-op: another player's hero
         std::uint8_t* const unit = unit_get(id);
         if (static_cast<std::int8_t>(joan::orig::arg::as<std::uint8_t>(joan::orig::as_unit(unit)->dead())) != 0) return;  // 0x0042d0e0
         if (jo::as_unit(unit)->speech_off != 0) return;
