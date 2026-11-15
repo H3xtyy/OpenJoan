@@ -96,7 +96,9 @@ void push(DeviceState& d, DWORD ofs, DWORD data, DWORD time, DWORD seq) {
 void update_relative_mode() {
     SDL_Window* w = joan::platform::detail::window();
     if (!w) return;
-    const bool want = g_mouse_dev.acquired && g_mouse_dev.exclusive && joan::platform::detail::focused();
+    // A co-op player's game (input::forward) sends its mouse to the host without reading the device itself: it keeps
+    // the mouse in its window the same way while it has the focus.
+    const bool want = ((g_mouse_dev.acquired && g_mouse_dev.exclusive) || g_forward != nullptr) && joan::platform::detail::focused();
     if (SDL_GetWindowRelativeMouseMode(w) != want) SDL_SetWindowRelativeMouseMode(w, want);
 }
 
@@ -877,6 +879,7 @@ void read_from(std::deque<Item>* mouse, std::deque<Item>* keyboard) {
 void forward(Forward to) {
     g_forward = to;
     std::memset(g_forward_keys, 0, sizeof g_forward_keys);
+    update_relative_mode();  // the mouse stays in the window while it has the focus
 }
 
 std::uint32_t pads() {
@@ -967,7 +970,10 @@ bool key_down(int vk) {
 namespace detail {
 
 void on_focus(bool focused) {
-    if (focused) return;  // the game acquires again (Input::poll, every frame)
+    if (focused) {  // the game acquires again (Input::poll, every frame)
+        if (g_forward != nullptr) update_relative_mode();  // a co-op player's mouse is held in its window again
+        return;
+    }
     drop(g_mouse_dev);  // lost: acquire() again (Input::poll, every frame)
     drop(g_key_dev);
     update_relative_mode();

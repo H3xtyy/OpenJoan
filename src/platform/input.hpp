@@ -59,7 +59,8 @@ void read_from(std::deque<Item>* mouse, std::deque<Item>* keyboard);
 using Forward = void (*)(Device device, const Item& item);
 /// A co-op player: `to` receives every key, mouse movement, wheel step and button of this computer while the game window
 /// has the focus, whether or not the game itself reads the devices (a game that follows the host replays its input).
-/// nullptr stops it.
+/// While it is set, the mouse is held in the window (relative mode) whenever the window has the focus, as the game's
+/// own mouse is. nullptr stops it.
 void forward(Forward to);
 
 // ---------------------------------------------------------------- game pads (round P4)
