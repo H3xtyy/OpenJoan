@@ -2710,6 +2710,7 @@ bool Device::grass_replay(const render::GrassKey& key, const float* wind, std::u
 // screen (the loading view) where it is placed on the canvas (scene_viewport).
 void Device::ambient_occlusion(const float* projection) {
     ao_close_window();
+    if (hidden_view_) return;  // co-op: a view that is not shown needs no occlusion (set_hidden_view)
     if (!owner_thread() || !back_buffer_ || render_target_ != back_buffer_ || !depth_stencil_) return;
     if (depth_stencil_->width != back_buffer_->width || depth_stencil_->height != back_buffer_->height) return;
     const auto bw = static_cast<int>(back_buffer_->width), bh = static_cast<int>(back_buffer_->height);
