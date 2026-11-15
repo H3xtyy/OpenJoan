@@ -49,6 +49,8 @@ struct OtherPlayer {
     std::int16_t map_unit_id = 0;  // its minimap's tracked unit (MiniMap::unit_id / unit, MiniMap::track_unit 0x0070fb70)
     jo::Unit* map_unit = nullptr;
     std::int16_t map_rotation = 0;  // and its turn (MiniMap::rotation)
+    float map_scroll[2] = {};       // and its scroll (MiniMap::scale_x / scale_y, set by Marker::update 0x00714040)
+    std::uint32_t map_scroll_flag = 0;  // MiniMap::u32_25, set with them
     std::vector<u8> grass;  // its dynamic grass (a jo::DynGrass with its own patch arrays), empty until made
     u32 frames = 0;          // frames this player has run (the scripted test's clock)
     bool remote = false;     // on another computer (else the scripted test player)
@@ -206,7 +208,8 @@ i32 free_hero(i32 host_id) {
 constexpr std::size_t kHudFirst = offsetof(jo::Hud, shown_hp);
 constexpr std::size_t kHudEnd = offsetof(jo::Hud, squad_button0);
 void* hud_object() { return obj(d::g_player_hud); }
-// The HUD's minimap (Hud +0x1d69): the unit it follows and its turn are the player's, its markers the mission's.
+// The HUD's minimap (Hud +0x1d69): the unit it follows, its turn and its scroll are the player's (the draw recomputes
+// the scroll from the unit in layer 1 and draws the map with it in the others), its markers the mission's.
 jo::MiniMap* minimap() { return &static_cast<jo::Hud*>(hud_object())->minimap; }
 u8* hud_values() { return static_cast<u8*>(hud_object()) + kHudFirst; }
 
@@ -239,6 +242,8 @@ void start_player(bool remote) {
     p.map_unit_id = static_cast<std::int16_t>(hero);
     p.map_unit = jo::as_unit(unit_of(hero));
     p.map_rotation = minimap()->rotation;
+    p.map_scroll[0] = minimap()->scale_x;
+    p.map_scroll[1] = minimap()->scale_y;
     auto* const pl = reinterpret_cast<jo::Player*>(p.player.data());
     pl->unit_id_ = hero;
     auto* const in = reinterpret_cast<jo::Input*>(p.input.data());
@@ -347,9 +352,14 @@ void as_player(OtherPlayer& p, Step step) {
     jo::MiniMap* const map = minimap();
     const std::int16_t host_map_unit_id = map->unit_id, host_map_rotation = map->rotation;
     jo::Unit* const host_map_unit = map->unit;
+    const float host_scroll[2] = {map->scale_x, map->scale_y};
+    const std::uint32_t host_scroll_flag = map->u32_25;
     map->unit_id = p.map_unit_id;
     map->unit = p.map_unit;
     map->rotation = p.map_rotation;
+    map->scale_x = p.map_scroll[0];
+    map->scale_y = p.map_scroll[1];
+    map->u32_25 = p.map_scroll_flag;
     g_current = &p;
     g_host_unit = reinterpret_cast<const jo::Player*>(host_player.data())->unit_id_;
     step();
@@ -363,9 +373,15 @@ void as_player(OtherPlayer& p, Step step) {
     p.map_unit_id = map->unit_id;
     p.map_unit = map->unit;
     p.map_rotation = map->rotation;
+    p.map_scroll[0] = map->scale_x;
+    p.map_scroll[1] = map->scale_y;
+    p.map_scroll_flag = map->u32_25;
     map->unit_id = host_map_unit_id;
     map->unit = host_map_unit;
     map->rotation = host_map_rotation;
+    map->scale_x = host_scroll[0];
+    map->scale_y = host_scroll[1];
+    map->u32_25 = host_scroll_flag;
     std::memcpy(player, host_player.data(), host_player.size());
     std::memcpy(input, host_input.data(), host_input.size());
     load_camera(host_camera);
