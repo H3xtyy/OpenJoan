@@ -5,6 +5,7 @@
 // [Debug] CoopTestPlayer=1 (no network) gives a second hero to a scripted player on this PC instead (walk, turn, attack).
 #include "coop_players.hpp"
 
+#include <cmath>
 #include <cstddef>
 #include <cstdint>
 #include <cstring>
@@ -20,6 +21,7 @@
 #include "../platform/input.hpp"
 #include "../platform/window.hpp"
 #include "../gl/views.hpp"
+#include "../lib/openal/listener.hpp"
 #include "../registry.hpp"
 #include "../runtime/replay/replay.hpp"
 
@@ -420,6 +422,31 @@ void for_remote_players(Step step) {
 
 }  // namespace
 
+namespace {
+
+// A player's game hears from its player's camera (lib/openal/listener.hpp): the listener as Listener3d::set_orient
+// (0x005a0110) makes it from the camera's pose, at the camera's target (Camera::update_5634e0 passes the pose with
+// the distance zeroed).
+bool g_own_listener = false;
+
+void hear_from(const jo::CamParams& pose) {
+    const float yaw = pose.orbit[0], pitch = pose.orbit[1];
+    const float c1 = std::cos(pitch), c2 = std::cos(yaw), s1 = std::sin(pitch), s2 = std::sin(yaw);
+    const float at[3] = {c1 * c2, c1 * s2, -s1};
+    const float up[3] = {s1 * c2, s1 * s2, c1};
+    joan::openal::set_own_listener(true, pose.position, at, up);
+    g_own_listener = true;
+}
+
+void hear_from_game() {
+    if (!g_own_listener) return;
+    const float none[3] = {};
+    joan::openal::set_own_listener(false, none, none, none);
+    g_own_listener = false;
+}
+
+}  // namespace
+
 void draw_world_views(void* camera, void* world, void (*draw)(void* camera)) {
     g_camera = camera;
     std::vector<OtherPlayer*> views;
@@ -427,6 +454,7 @@ void draw_world_views(void* camera, void* world, void (*draw)(void* camera)) {
         if (p.remote && unit_of(reinterpret_cast<jo::Player*>(p.player.data())->unit_id_) != nullptr) views.push_back(&p);
     c_view_frames.hit();
     if (views.empty()) {
+        hear_from_game();
         draw(camera);
         return;
     }
@@ -449,7 +477,7 @@ void draw_world_views(void* camera, void* world, void (*draw)(void* camera)) {
         wnd->game_dt = 0;
         hide(!player_game);
         c_extra_view.hit();
-        as_player(*p, [p, camera, world, draw] {
+        as_player(*p, [p, camera, world, draw, player_game] {
             std::vector<u8> host_node;
             save_node(host_node);
             load_node(p->node);
@@ -459,6 +487,7 @@ void draw_world_views(void* camera, void* world, void (*draw)(void* camera)) {
             // 0x00563a20; hero selection sets it, 0x005639f0): this player's hero, whichever it is now.
             static_cast<jo::CameraFollow*>(camera)->i32_8 = jo::self<jo::Player>(player_object())->unit_id_;
             draw(camera);
+            if (player_game) hear_from(static_cast<jo::CameraFollow*>(camera)->camera->params);  // this game's own view
             zones_out(*p, world, host_zones);
             save_node(p->node);
             load_node(host_node);

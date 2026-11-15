@@ -22,6 +22,7 @@
 #include <cstdarg>
 #include <mutex>
 #include <shared_mutex>
+#include <cmath>
 #include <cstdio>
 #include <cstdlib>
 #include <algorithm>
@@ -31,6 +32,7 @@
 #include <string>
 
 #include "../../runtime/loader/import_overrides.hpp"
+#include "listener.hpp"
 #include "../../platform/ini.hpp"
 #include "../../platform/window.hpp"
 #include "../../platform/threads.hpp"
@@ -320,16 +322,42 @@ void AL_APIENTRY j_alGetSourcei(ALuint s, ALenum p, ALint* v) {
     if (tracing()) trace("alGetSourcei " + en(p), fmt("alGetSourcei(%u, %s) -> %s", s, en(p).c_str(),
                                          p == AL_SOURCE_STATE ? en(r).c_str() : std::to_string(r).c_str()));
 }
+// Co-op: a player's own listener (listener.hpp). The game's listener position is kept to find its "at the player"
+// sources; only the game thread sets the listener and those sources.
+struct OwnListener {
+    bool on = false;
+    float position[3] = {};
+    float orientation[6] = {};
+    float game_position[3] = {};
+};
+OwnListener g_own;
+
+bool at_game_listener(ALfloat a, ALfloat b, ALfloat c) {
+    const auto near = [](float x, float y) { return std::fabs(x - y) < 0.01f; };
+    return near(a, g_own.game_position[0]) && near(b, g_own.game_position[1]) && near(c, g_own.game_position[2]);
+}
+
 void AL_APIENTRY j_alListenerf(ALenum p, ALfloat v) {
     alListenerf(p, v);
     if (tracing()) trace("alListenerf " + en(p), fmt("alListenerf(%s, %g)", en(p).c_str(), static_cast<double>(v)));
 }
 void AL_APIENTRY j_alListener3f(ALenum p, ALfloat a, ALfloat b, ALfloat c) {
+    if (p == AL_POSITION) {
+        g_own.game_position[0] = a, g_own.game_position[1] = b, g_own.game_position[2] = c;
+        if (g_own.on) {
+            alListener3f(p, g_own.position[0], g_own.position[1], g_own.position[2]);  // co-op: the player's own
+            return;
+        }
+    }
     alListener3f(p, a, b, c);
     if (tracing()) trace("alListener3f " + en(p), fmt("alListener3f(%s, %g, %g, %g)", en(p).c_str(), static_cast<double>(a),
                                          static_cast<double>(b), static_cast<double>(c)));
 }
 void AL_APIENTRY j_alListenerfv(ALenum p, const ALfloat* v) {
+    if (g_own.on && v != nullptr && p == AL_ORIENTATION) {
+        alListenerfv(p, g_own.orientation);  // co-op: the player's own
+        return;
+    }
     alListenerfv(p, v);
     if (v && p == AL_ORIENTATION)
         trace("alListenerfv " + en(p), fmt("alListenerfv(%s, at %g %g %g, up %g %g %g)", en(p).c_str(),
@@ -406,6 +434,9 @@ void AL_APIENTRY j_alSourceStop(ALuint s) {
     if (tracing()) trace("alSourceStop", fmt("alSourceStop(%u)", s));
 }
 void AL_APIENTRY j_alSource3f(ALuint s, ALenum p, ALfloat a, ALfloat b, ALfloat c) {
+    if (g_own.on && p == AL_POSITION && at_game_listener(a, b, c)) {  // co-op: played "at the player": at this one
+        a = g_own.position[0], b = g_own.position[1], c = g_own.position[2];
+    }
     alSource3f(s, p, a, b, c);
     if (tracing()) trace("alSource3f " + en(p), fmt("alSource3f(%u, %s, %g, %g, %g)", s, en(p).c_str(), static_cast<double>(a),
                                        static_cast<double>(b), static_cast<double>(c)));
@@ -477,6 +508,19 @@ namespace joan::openal {
 /// End-of-run report of [Audio] Trace (called from the loader's ExitProcess: the game's own CRT exit does not run
 /// our atexit handlers).
 void write_trace_summary() { summary(); }
+
+void set_own_listener(bool on, const float position[3], const float at[3], const float up[3]) {
+    g_own.on = on;
+    if (!on) {
+        alListener3f(AL_POSITION, g_own.game_position[0], g_own.game_position[1], g_own.game_position[2]);  // the game's again
+        return;
+    }
+    std::memcpy(g_own.position, position, sizeof g_own.position);
+    std::memcpy(g_own.orientation, at, 3 * sizeof(float));
+    std::memcpy(g_own.orientation + 3, up, 3 * sizeof(float));
+    alListener3f(AL_POSITION, g_own.position[0], g_own.position[1], g_own.position[2]);
+    alListenerfv(AL_ORIENTATION, g_own.orientation);
+}
 }  // namespace joan::openal
 
 // The 32 imports of joan.exe (src/import_table.inc, OpenAL32.dll).
