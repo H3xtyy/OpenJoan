@@ -22,6 +22,7 @@
 #include "../runtime/replay/replay.hpp"
 #include "../original/layout_access.hpp"
 #include "../original/bind.hpp"
+#include "coop_players.hpp"
 
 namespace jo = joan::orig;
 
@@ -1257,7 +1258,7 @@ struct H {
         c_spiritual.hit();
         void* self = this;
         if (static_cast<i32>(joan::orig::arg::as<std::int8_t>(joan::orig::as_unit(self)->dead())) != 0 && force == 0) return 0;  // 0x0042d0e0
-        if (global<i32>(d::g_player_unit_recno) == static_cast<i32>(jo::as_unit(self)->id) && global<i32>(d::g_control_mode) != 4) return 0;
+        if (joan::coop::is_player_unit(jo::as_unit(self)->id) && global<i32>(d::g_control_mode) != 4) return 0;  // co-op: any player's hero
         {
             const double q = joan::hook::x87::Fpu{true}.div(static_cast<double>(jo::as_unit(self)->hit_points),
                                                             static_cast<double>(jo::as_unit(self)->hit_points_base));

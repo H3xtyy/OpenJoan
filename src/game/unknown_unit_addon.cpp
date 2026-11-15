@@ -19,6 +19,7 @@
 #include "../x87.hpp"
 #include "../original/layout_access.hpp"
 #include "../original/bind.hpp"
+#include "coop_players.hpp"
 
 namespace jo = joan::orig;
 
@@ -528,7 +529,7 @@ JOAN_COUNTER(c_behaviour, "Unit::type_behaviour_7c7ab0");
 
 struct H {
     u8* p2f5() { return jo::view<u8*>(jo::self<jo::Unit>(this)->actor); }
-    bool is_player() { return static_cast<i32>(jo::self<jo::Unit>(this)->id) == global<i32>(d::g_player_unit_recno); }
+    bool is_player() { return joan::coop::is_player_unit(jo::self<jo::Unit>(this)->id); }  // co-op: any player's hero
     u8* unit_type() { return joan::orig::arg::as<u8*>(joan::orig::as_records_203(kTypes)->get(joan::orig::arg::i16(jo::self<jo::Unit>(this)->type_id))); }  // 0x0042d0a0
     u8* leader() { return joan::orig::arg::as<u8*>(joan::orig::as_unit_data(jo::self<jo::Unit>(this)->modifiers)->slot_e()); }           // 0x00497580
     void stop() { joan::orig::as_unit(this)->clear_flags(); }                              // 0x0050d0d0
@@ -683,7 +684,7 @@ struct H {
             range = 0x683;
         } else if (static_cast<i32>(jo::self<jo::UnitType>(ty)->kind) == 5) {
             range = 0x683;
-        } else if (global<i32>(d::g_player_unit_recno) != static_cast<i32>(jo::self<jo::Unit>(this)->id) &&
+        } else if (!joan::coop::is_player_unit(jo::self<jo::Unit>(this)->id) &&  // co-op: any player's hero
                    group_missing(static_cast<i32>(jo::self<jo::Unit>(this)->carried_b)) == 0 &&
                    static_cast<i32>(jo::as_map_object(group(static_cast<i32>(jo::self<jo::Unit>(this)->carried_b)))->item_type) == 0xc) {
             range = 0x514;

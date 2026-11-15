@@ -42,6 +42,11 @@ void draw_huds(void (*draw)(void* context), void* context);
 /// screen's 2D layer (the sun's lens flare, LensFlares::draw 0x006628a0) must not appear on it.
 bool drawing_hidden_view();
 
+/// The game's rules for "the player's hero" (a human controls it: no AI movement, idle habits or automatic actions):
+/// true for the hero of the player in the game's places and for every other player's hero. Without co-op the same as
+/// comparing with the player's unit (the first field of the Player object, 0x00a5b9e8).
+bool is_player_unit(std::int32_t unit_id);
+
 /// Player::select_hero (0x00432300): true when unit `unit_id` is the hero of a player other than the one in the
 /// game's places (the host, or another player during its input and tick) - not one to switch to.
 bool taken_by_other_player(std::int32_t unit_id);

@@ -23,6 +23,7 @@
 #include "../runtime/replay/replay.hpp"
 #include "../original/layout_access.hpp"
 #include "../original/bind.hpp"
+#include "coop_players.hpp"
 
 namespace jo = joan::orig;
 
@@ -188,7 +189,7 @@ struct H {
 
     void idle_tick() {
         c_idle_tick.hit();
-        if ((sx16(jo::self<jo::Unit>(this)->id) == global<std::int32_t>(d::g_player_unit_recno) && sx16(jo::self<jo::Unit>(this)->layer) == 0) ||
+        if ((joan::coop::is_player_unit(sx16(jo::self<jo::Unit>(this)->id)) && sx16(jo::self<jo::Unit>(this)->layer) == 0) ||  // co-op: any player's hero
             jo::self<jo::Unit>(this)->rider_id != 0) {
             joan::orig::as_unit(this)->clear_247();  // 0x004fd630
             return;

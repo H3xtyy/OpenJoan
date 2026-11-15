@@ -24,6 +24,7 @@
 #include "../original/layout_access.hpp"
 #include "../original/bind.hpp"
 #include "../en3d/scene_lists.hpp"
+#include "coop_players.hpp"
 
 namespace jo = joan::orig;
 
@@ -436,7 +437,7 @@ struct H {
             case 4:
             case 7: {  // 0x00500098
                 delay = static_cast<std::int32_t>(static_cast<std::uint32_t>(joan::orig::as_misc(img::obj(kRandom))->random(5)) * 0xc8u);  // 0x00590540
-                if (global<std::int32_t>(d::g_player_unit_recno) == static_cast<std::int32_t>(jo::self<jo::Unit>(this)->id)) delay = 0;
+                if (joan::coop::is_player_unit(jo::self<jo::Unit>(this)->id)) delay = 0;  // co-op: any player's hero
                 jo::self<jo::Unit>(this)->anim_start_ms = jo::self<jo::Unit>(this)->anim_start_ms + delay;
                 jo::self<jo::Unit>(this)->anim_loop = 1;
                 const std::int32_t sub = jo::self<jo::Unit>(this)->prev_action;
@@ -1565,7 +1566,7 @@ struct H {
         if (sx16(action()) == 0x2a && jo::self<jo::Unit>(this)->formation_slot != 1) return;
         auto busy_return = [&]() -> bool {  // 0x00501be4 / 0x00501c8b
             if (code() != 0x2a && jo::self<jo::Unit>(this)->fell_timer > 0 &&
-                global<std::int32_t>(d::g_player_unit_recno) != sx16(jo::self<jo::Unit>(this)->id) && sx16(jo::self<jo::Unit>(this)->layer) != 0) {
+                !joan::coop::is_player_unit(sx16(jo::self<jo::Unit>(this)->id)) && sx16(jo::self<jo::Unit>(this)->layer) != 0) {  // co-op: any player's hero
                 return true;
             }
             return code() == 0x2a;

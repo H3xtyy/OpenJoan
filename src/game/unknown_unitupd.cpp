@@ -26,6 +26,7 @@
 #include "../original/layout_access.hpp"
 #include "../original/bind.hpp"
 #include "../en3d/scene_lists.hpp"
+#include "coop_players.hpp"
 
 namespace jo = joan::orig;
 
@@ -922,7 +923,7 @@ struct H {
         if (jo::view<i8>(jo::self<jo::Unit>(this)->anim_done) == 0 && jo::view<u32>(jo::as_actor(jo::self<jo::Unit>(this)->actor)->record) != 0) {
             u8* const form = form_rec(jo::view<u32>(jo::as_actor(jo::self<jo::Unit>(this)->actor)->record));
             if (jo::view<i16>(jo::as_shot(form)->state.on_ground) == 0) {
-                if (static_cast<i32>(jo::self<jo::Unit>(this)->id) != global<i32>(d::g_player_unit_recno) || jo::self<jo::Unit>(this)->layer != 0) {
+                if (!joan::coop::is_player_unit(jo::self<jo::Unit>(this)->id) || jo::self<jo::Unit>(this)->layer != 0) {  // co-op: any player's hero
                     joan::orig::as_squad(this)->clear();  // 0x00422f10
                     jo::self<jo::Unit>(this)->wait_count = jo::self<jo::Unit>(this)->wait_limit;
                     joan::orig::as_unit(this)->play_idle(i32{0}, i32{1});  // 0x00508b90
@@ -966,8 +967,8 @@ struct H {
             jo::self<jo::Unit>(this)->view = 0;
         }
         if (joan::orig::arg::as<i8>(joan::orig::as_game(obj(d::g_game_state))->flag_744()) == 0 &&  // 0x004301c0
-            static_cast<i32>(jo::self<jo::Unit>(this)->id) == global<i32>(d::g_player_unit_recno)) {
-            if (static_cast<i32>(jo::self<jo::Unit>(this)->id) != global<i32>(d::g_player_unit_recno) || global<u32>(d::g_control_mode) != 2) {
+            joan::coop::is_player_unit(jo::self<jo::Unit>(this)->id)) {  // co-op: any player's hero moves under its control
+            if (!joan::coop::is_player_unit(jo::self<jo::Unit>(this)->id) || global<u32>(d::g_control_mode) != 2) {
                 if (jo::self<jo::Unit>(this)->layer == 0) return;
             }
         }

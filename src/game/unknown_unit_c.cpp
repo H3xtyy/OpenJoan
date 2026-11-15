@@ -23,6 +23,7 @@
 #include "../runtime/replay/replay.hpp"
 #include "../original/layout_access.hpp"
 #include "../original/bind.hpp"
+#include "coop_players.hpp"
 
 namespace jo = joan::orig;
 
@@ -123,7 +124,7 @@ struct H {
     // ------------------------------------------------------------------------ 0x00512130
     i16 facing_sign() {
         c_facing_sign.hit();
-        if (global<i32>(d::g_player_unit_recno) == static_cast<i32>(jo::self<jo::Unit>(this)->id)) return 0;
+        if (joan::coop::is_player_unit(jo::self<jo::Unit>(this)->id)) return 0;  // co-op: any player's hero
         u8* const e = joan::orig::arg::as<u8*>(joan::orig::as_records_203(obj(d::g_types))->get(joan::orig::arg::i16(static_cast<i32>(jo::self<jo::Unit>(this)->type_id))));  // 0x0042d0a0
         if (static_cast<i32>(jo::self<jo::UnitType>(e)->unit_class) == 8) return 0;
         const i32 v = joan::orig::as_misc(obj(d::g_misc))->random(joan::orig::arg::i32(global<i32>(d::g_a3cca4)));  // 0x00590540

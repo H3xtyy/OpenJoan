@@ -434,6 +434,12 @@ void draw_world_views(void* camera, void* world, void (*draw)(void* camera)) {
 
 bool drawing_hidden_view() { return g_hidden; }
 
+bool is_player_unit(std::int32_t unit_id) {
+    if (unit_id == 0) return false;
+    if (unit_id == jo::self<jo::Player>(player_object())->unit_id_) return true;  // the player in the game's places
+    return taken_by_other_player(unit_id);
+}
+
 bool taken_by_other_player(std::int32_t unit_id) {
     if (unit_id == 0) return false;
     if (g_current != nullptr && unit_id == g_host_unit) return true;  // the host's, while another player is in its places
