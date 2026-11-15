@@ -549,6 +549,13 @@ bool taken_by_other_player(std::int32_t unit_id) {
     return false;
 }
 
+void level_ends() {
+    if (!g_others.empty()) hook::log_line("[Coop] the level ends: the other players start again on the next one");
+    g_others.clear();
+    g_tried = false;
+    g_received.clear();
+}
+
 void other_player_hero_died(std::int32_t unit_id) {
     for (OtherPlayer& p : g_others)
         if (p.remote && reinterpret_cast<const jo::Player*>(p.player.data())->unit_id_ == unit_id)

@@ -33,6 +33,10 @@ void other_players_end_input();
 /// shows its own player's view; the others go to a scratch back buffer (gl/views.hpp). Without co-op: `draw` once.
 void draw_world_views(void* camera, void* world, void (*draw)(void* camera));
 
+/// The level's units are cleared (the level ends, or a save is loaded: 0x00471010, unless the next scenario keeps
+/// them): every other player is dropped and starts again, on a free hero, in the next level's first frame.
+void level_ends();
+
 /// The death of unit `unit_id` (Unit::die, as for the host's hero): it was another player's hero, not Joan - that player
 /// switches to the next free hero (Player::select_hero 0x00432300 with 0, in its places). With none free it keeps the
 /// fallen hero and sees the host's view.

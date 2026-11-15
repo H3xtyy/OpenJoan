@@ -23,6 +23,7 @@
 #include "../original/bind.hpp"
 #include "../interfac/view_range.hpp"
 #include "../en3d/anim_cache.hpp"
+#include "coop_players.hpp"
 
 namespace jo = joan::orig;
 
@@ -1064,7 +1065,8 @@ struct H {
             joan::orig::as_list(obj(d::g_lights))->clear_4b0530();  // 0x004b0530
             joan::orig::as_markers(obj(d::g_slots_a3ce90))->delete_all();  // 0x004876d0
             joan::orig::as_list(obj(d::g_a5ccd0))->delete_all_eee10();  // 0x004eee10
-            joan::orig::as_grass(obj(d::g_dyn_grass))->release();  // 0x00464390
+            joan::orig::as_grass(obj(d::g_dyn_grass))->release();  // 0x00464390 (the players' grass with it)
+            joan::coop::level_ends();  // co-op: the units are gone - every other player starts again on the next level
             for (std::int32_t i = 0; i < 0x28; ++i) joan::orig::as_end_condition(&jo::self<jo::Game>(this)->end_conditions[i])->release();  // 0x00467260
             jo::self<jo::Game>(this)->end_condition_count = 0;
             global<std::int16_t>(d::g_a4d80f) = 0;
