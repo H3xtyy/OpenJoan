@@ -134,9 +134,29 @@ What a hidden view must not do: ambient occlusion (a second run in one frame dar
 hidden view needs none), and the sprites it queues for the screen's 2D layer (the sun's lens flare): they are collapsed
 to a point, so the layer stays the same in every game and nothing is drawn.
 
-Not done yet: the dynamic grass is placed once per frame around the host's camera only (`DynGrass::update` 0x00464740,
-in the game tick), so a player far from the host sees bare ground; the HUD shows the host's hero; the sound is heard
-from the host's camera; a player switching heroes (`Player::select_hero` 0x00432300) is not handled.
+The HUD (`Hud::draw` 0x006f9b60) is drawn the same way, once per player with its `Player` in place; a game shows its
+own player's. Its values of "the player" (the block from `shown_hp` to the squad buttons: shown health, mana and
+experience, target, the level and combo animations, squad slots) and its minimap's tracked unit and turn
+(`MiniMap::unit_id`, `unit`, `rotation`) are per player; the minimap's markers are the mission's.
+
+Every player also has its own dynamic grass (`DynGrass` 0x00a45d30: patch arrays, resources, wind), updated after the
+host's around the player's camera (`DynGrass::update` 0x00464740), so there is grass around every hero; its switching
+off and release follow the host's.
+
+## The rules about "the player's hero"
+
+The game compares a unit with the player's unit in many places. Where that means "a human controls this hero",
+`coop::is_player_unit` is used instead: true for every player's hero (without co-op the same comparison). So far:
+`Unit::move_update` (0x0052daa0: otherwise the AI's route following, waiting and stuck handling, which turned a player's
+hero toward Joan), the idle tick, the behaviour rules (`type_behaviour` 0x007c7ab0), an animation start's random delay,
+the fall wait, `facing_sign` (0x00512130) and the automatic use of spiritual items (0x004fd980). The rules about the
+local player (messages, HUD, sounds) keep the comparison.
+
+Switching characters (`Player::select_hero` 0x00432300) skips a hero another player controls; the player's hero id
+(0x00a47c36) and side (0x00a57fae), which a switch sets, are kept per player.
+
+Not done yet: the sound is heard from the host's camera (the game's listener position is read by the AI, so a player's
+own listener has to be applied at the OpenAL output only); menus, saves and cutscenes for players (step 5).
 
 ## Licence question (open)
 
