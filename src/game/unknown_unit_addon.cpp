@@ -398,6 +398,11 @@ struct H {
             if (t != joan::orig::arg::as<i32>(joan::orig::as_unit_types(kClasses)->find(str(d::s_JOAN_OF_ARC)))) {  // 0x005270b0 "JOAN_OF_ARC"
                 joan::orig::as_player(obj(d::g_player_unit_recno))->select_hero(0);                     // 0x00432300
             }
+        } else if (joan::coop::taken_by_other_player(jo::self<jo::Unit>(this)->id)) {
+            // co-op: another player's hero died - that player switches to the next free hero, as the host would
+            const i32 t = static_cast<i32>(jo::self<jo::Unit>(this)->type_id);
+            if (t != joan::orig::arg::as<i32>(joan::orig::as_unit_types(kClasses)->find(str(d::s_JOAN_OF_ARC))))  // 0x005270b0
+                joan::coop::other_player_hero_died(jo::self<jo::Unit>(this)->id);
         }
         joan::orig::as_unit(this)->release_slot();  // 0x00528300
         if (jo::self<jo::Unit>(this)->markers == 1) {

@@ -549,6 +549,12 @@ bool taken_by_other_player(std::int32_t unit_id) {
     return false;
 }
 
+void other_player_hero_died(std::int32_t unit_id) {
+    for (OtherPlayer& p : g_others)
+        if (p.remote && reinterpret_cast<const jo::Player*>(p.player.data())->unit_id_ == unit_id)
+            as_player(p, [] { joan::orig::as_player(player_object())->select_hero(0); });  // 0x00432300 the next hero
+}
+
 void other_players_hud_tick(void (*track)(void* hud)) {
     for (OtherPlayer& p : g_others)
         if (p.remote && unit_of(reinterpret_cast<jo::Player*>(p.player.data())->unit_id_) != nullptr)

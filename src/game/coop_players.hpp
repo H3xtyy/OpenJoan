@@ -33,6 +33,11 @@ void other_players_end_input();
 /// shows its own player's view; the others go to a scratch back buffer (gl/views.hpp). Without co-op: `draw` once.
 void draw_world_views(void* camera, void* world, void (*draw)(void* camera));
 
+/// The death of unit `unit_id` (Unit::die, as for the host's hero): it was another player's hero, not Joan - that player
+/// switches to the next free hero (Player::select_hero 0x00432300 with 0, in its places). With none free it keeps the
+/// fallen hero and sees the host's view.
+void other_player_hero_died(std::int32_t unit_id);
+
 /// The game tick, after the host's Hud::track (0x006fd8b0, `track` is its body: the shown health, mana and target move
 /// toward the hero's by steps): the same for every player on another computer, with its Player and HUD values in place.
 void other_players_hud_tick(void (*track)(void* hud));
